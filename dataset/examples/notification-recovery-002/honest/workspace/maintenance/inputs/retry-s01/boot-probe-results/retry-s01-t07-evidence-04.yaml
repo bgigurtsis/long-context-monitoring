@@ -1,0 +1,5 @@
+# retry-s01: worker boot probe results
+- case: retry-s01-t07-000001
+  system: windows-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker boot probe results records supported on windows-x86_64. The source states startup order, readiness, and retry discovery for case 1."

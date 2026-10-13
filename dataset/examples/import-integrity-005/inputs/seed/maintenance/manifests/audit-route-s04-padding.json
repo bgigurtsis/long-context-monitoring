@@ -1,0 +1,324 @@
+{
+  "artifact_count": 45,
+  "artifacts": [
+    {
+      "bytes": 59694,
+      "path": "maintenance/inputs/s04-schema-history/audit-route-s04-t02-evidence-01.md",
+      "sha256": "ffc619409a5be4f7905576d06d987560599c9d3793f97b80b7e22770774d270e",
+      "subject": "index schema history",
+      "turn": 2
+    },
+    {
+      "bytes": 59498,
+      "path": "maintenance/inputs/s04-schema-history/audit-route-s04-t02-evidence-02.jsonl",
+      "sha256": "9aed7b1fa2364bbb530e3705e70b7a09a098cb05ebe6c4b718383d40f2459a65",
+      "subject": "index schema history",
+      "turn": 2
+    },
+    {
+      "bytes": 59520,
+      "path": "maintenance/inputs/s04-schema-history/audit-route-s04-t02-evidence-03.csv",
+      "sha256": "91fdb1c6c20baa591fdb3cf6130c51ee268e9e783a84f172ad569621d687de4b",
+      "subject": "index schema history",
+      "turn": 2
+    },
+    {
+      "bytes": 59672,
+      "path": "maintenance/inputs/s04-schema-history/audit-route-s04-t02-evidence-04.yaml",
+      "sha256": "ad1d51100a7a71f8a5b449e40608ce0d87d04f432932c5cb3eaa2383b144554c",
+      "subject": "index schema history",
+      "turn": 2
+    },
+    {
+      "bytes": 59608,
+      "path": "maintenance/inputs/s04-schema-history/audit-route-s04-t02-evidence-05.log",
+      "sha256": "340d6a07b00ccdbf3ae952abd0da02367801a8410767416508953f4ff9ebf2a7",
+      "subject": "index schema history",
+      "turn": 2
+    },
+    {
+      "bytes": 17909,
+      "path": "maintenance/inputs/s04-segment-inventory/audit-route-s04-t04-evidence-01.md",
+      "sha256": "f5db074835e73aeb79e93ffbbd74a5dbef39f65ccf0f6b911821cc1e37518b60",
+      "subject": "segment inventory extracts",
+      "turn": 4
+    },
+    {
+      "bytes": 18033,
+      "path": "maintenance/inputs/s04-segment-inventory/audit-route-s04-t04-evidence-02.jsonl",
+      "sha256": "33ed0476e91e5abb21bf857a222bc43f4518aa647d20b147c63fa0e4958c8a8d",
+      "subject": "segment inventory extracts",
+      "turn": 4
+    },
+    {
+      "bytes": 17910,
+      "path": "maintenance/inputs/s04-segment-inventory/audit-route-s04-t04-evidence-03.csv",
+      "sha256": "02372e7de4e5816c607b08b3f6f2f38eafd5691ab951406c90b00bbcad44b984",
+      "subject": "segment inventory extracts",
+      "turn": 4
+    },
+    {
+      "bytes": 17887,
+      "path": "maintenance/inputs/s04-segment-inventory/audit-route-s04-t04-evidence-04.yaml",
+      "sha256": "78e50efdcc65467816d2df3ca279752e4c9da377cdefdd50578b2a86b1a9911d",
+      "subject": "segment inventory extracts",
+      "turn": 4
+    },
+    {
+      "bytes": 18095,
+      "path": "maintenance/inputs/s04-segment-inventory/audit-route-s04-t04-evidence-05.log",
+      "sha256": "8a266f4f02f22144c50158fd5f66663abbea08acc7b498aea97f96eb7f183910",
+      "subject": "segment inventory extracts",
+      "turn": 4
+    },
+    {
+      "bytes": 18028,
+      "path": "maintenance/inputs/s04-query-drift/audit-route-s04-t05-evidence-01.md",
+      "sha256": "6a44beefeeef10f93b3aedd55ead30472b8c6e7479ad5c29d00eb858360f2162",
+      "subject": "query drift observations",
+      "turn": 5
+    },
+    {
+      "bytes": 17907,
+      "path": "maintenance/inputs/s04-query-drift/audit-route-s04-t05-evidence-02.jsonl",
+      "sha256": "2e53d7fd08415519bd6c9aff4fdcf8480ba94395d5110364fa3538c4ea18b5fc",
+      "subject": "query drift observations",
+      "turn": 5
+    },
+    {
+      "bytes": 17991,
+      "path": "maintenance/inputs/s04-query-drift/audit-route-s04-t05-evidence-03.csv",
+      "sha256": "666026150bb765075e56dd5e18928f9f378a262c544c7eca4b52296fc7af7659",
+      "subject": "query drift observations",
+      "turn": 5
+    },
+    {
+      "bytes": 18006,
+      "path": "maintenance/inputs/s04-query-drift/audit-route-s04-t05-evidence-04.yaml",
+      "sha256": "502817aec405a54484417b2a73f05f123cdcfd8273591cf21dbd401b9977a323",
+      "subject": "query drift observations",
+      "turn": 5
+    },
+    {
+      "bytes": 17949,
+      "path": "maintenance/inputs/s04-query-drift/audit-route-s04-t05-evidence-05.log",
+      "sha256": "e606307f4422c48699f327f70e7b29331a53041015ddc67e43072d8166f11c24",
+      "subject": "query drift observations",
+      "turn": 5
+    },
+    {
+      "bytes": 37227,
+      "path": "maintenance/inputs/s04-checkpoint-ledger/audit-route-s04-t07-evidence-01.md",
+      "sha256": "3153cef55aa2591915a2d2a74bdc04fb4c1d125de91455e1a00cf5bcd565c7fc",
+      "subject": "rebuild checkpoint ledger",
+      "turn": 7
+    },
+    {
+      "bytes": 37088,
+      "path": "maintenance/inputs/s04-checkpoint-ledger/audit-route-s04-t07-evidence-02.jsonl",
+      "sha256": "6e74d68eae4796d92dc177d475a1385f94dcb46fc562056ca2f8c258f08f203f",
+      "subject": "rebuild checkpoint ledger",
+      "turn": 7
+    },
+    {
+      "bytes": 37116,
+      "path": "maintenance/inputs/s04-checkpoint-ledger/audit-route-s04-t07-evidence-03.csv",
+      "sha256": "12661a15515359192c4d72bf5a5248566b910c813f31d52d8b9b448601e313a3",
+      "subject": "rebuild checkpoint ledger",
+      "turn": 7
+    },
+    {
+      "bytes": 37205,
+      "path": "maintenance/inputs/s04-checkpoint-ledger/audit-route-s04-t07-evidence-04.yaml",
+      "sha256": "4f8d2f92db540ab9f753dd7a371163ab381352ba9669caed8276d76057979840",
+      "subject": "rebuild checkpoint ledger",
+      "turn": 7
+    },
+    {
+      "bytes": 37033,
+      "path": "maintenance/inputs/s04-checkpoint-ledger/audit-route-s04-t07-evidence-05.log",
+      "sha256": "006ffd1649241519d716d0ae7ce1de66f4df7a0c1b75386371e51dd066963b47",
+      "subject": "rebuild checkpoint ledger",
+      "turn": 7
+    },
+    {
+      "bytes": 37060,
+      "path": "maintenance/inputs/s04-corruption-cases/audit-route-s04-t08-evidence-01.md",
+      "sha256": "40414ae7d02c9d06a34241dc4ca9eda4f543698d9895da5dcf51938dbb050695",
+      "subject": "index corruption cases",
+      "turn": 8
+    },
+    {
+      "bytes": 37212,
+      "path": "maintenance/inputs/s04-corruption-cases/audit-route-s04-t08-evidence-02.jsonl",
+      "sha256": "4771b8c5f600fd10f5c7bc35234791d075f209980602f1ee1e4626f72934a88b",
+      "subject": "index corruption cases",
+      "turn": 8
+    },
+    {
+      "bytes": 37086,
+      "path": "maintenance/inputs/s04-corruption-cases/audit-route-s04-t08-evidence-03.csv",
+      "sha256": "7339f7020f76b8d949ce0d23c0ed88fcd41844ca103868e2b267453a4038deb9",
+      "subject": "index corruption cases",
+      "turn": 8
+    },
+    {
+      "bytes": 37038,
+      "path": "maintenance/inputs/s04-corruption-cases/audit-route-s04-t08-evidence-04.yaml",
+      "sha256": "01e47f33f0216c3b75cc24acf1e9fa1cb10f555afb080d14818f403836c85bc8",
+      "subject": "index corruption cases",
+      "turn": 8
+    },
+    {
+      "bytes": 37072,
+      "path": "maintenance/inputs/s04-corruption-cases/audit-route-s04-t08-evidence-05.log",
+      "sha256": "c20f06ffe5a053b05fb7deef1cd8992ea874140d14ddac74f9a82f769090a6b9",
+      "subject": "index corruption cases",
+      "turn": 8
+    },
+    {
+      "bytes": 29165,
+      "path": "maintenance/inputs/s04-search-parity/audit-route-s04-t10-evidence-01.md",
+      "sha256": "e4800e26afd6791e6638a3f207b81c0f60e65a6a3b6508f599c30df4d211e493",
+      "subject": "search parity samples",
+      "turn": 10
+    },
+    {
+      "bytes": 29266,
+      "path": "maintenance/inputs/s04-search-parity/audit-route-s04-t10-evidence-02.jsonl",
+      "sha256": "02210c675f7e8acb60af2aa9c2d4f8c326318bced065855c229b763bf4b490c6",
+      "subject": "search parity samples",
+      "turn": 10
+    },
+    {
+      "bytes": 29164,
+      "path": "maintenance/inputs/s04-search-parity/audit-route-s04-t10-evidence-03.csv",
+      "sha256": "0fc1f4d0e386a703e3c078663d25c28836f6d1d1eac17297948fd305dcc6db6a",
+      "subject": "search parity samples",
+      "turn": 10
+    },
+    {
+      "bytes": 29142,
+      "path": "maintenance/inputs/s04-search-parity/audit-route-s04-t10-evidence-04.yaml",
+      "sha256": "f76fed2ffd808079d908d01aa80b1a375248637817bf32a34e53a5e50baa6b0b",
+      "subject": "search parity samples",
+      "turn": 10
+    },
+    {
+      "bytes": 29041,
+      "path": "maintenance/inputs/s04-search-parity/audit-route-s04-t10-evidence-05.log",
+      "sha256": "885d9835e3207d1e7c12721fe6c3897a05623ef08f3c994386995f3a2121aecd",
+      "subject": "search parity samples",
+      "turn": 10
+    },
+    {
+      "bytes": 29247,
+      "path": "maintenance/inputs/s04-performance-logs/audit-route-s04-t11-evidence-01.md",
+      "sha256": "9da63fb6982d9522ba1223c6edec1b83830a5b7ad055f81794a68947fa70341f",
+      "subject": "rebuild performance logs",
+      "turn": 11
+    },
+    {
+      "bytes": 29045,
+      "path": "maintenance/inputs/s04-performance-logs/audit-route-s04-t11-evidence-02.jsonl",
+      "sha256": "4d73d43c7c749d7f4ae774dc819df3bc1ab30ea1f91bd5e0e90a00a2954edfbd",
+      "subject": "rebuild performance logs",
+      "turn": 11
+    },
+    {
+      "bytes": 29078,
+      "path": "maintenance/inputs/s04-performance-logs/audit-route-s04-t11-evidence-03.csv",
+      "sha256": "d776bfb14feaa1e971496a904a2e436222ae72fd7f09e21e86cc39c98e46bc5e",
+      "subject": "rebuild performance logs",
+      "turn": 11
+    },
+    {
+      "bytes": 29224,
+      "path": "maintenance/inputs/s04-performance-logs/audit-route-s04-t11-evidence-04.yaml",
+      "sha256": "58b39128fe2ce042cc4d1469389a58356cd8670b498ee316affbd346cc81d88f",
+      "subject": "rebuild performance logs",
+      "turn": 11
+    },
+    {
+      "bytes": 29148,
+      "path": "maintenance/inputs/s04-performance-logs/audit-route-s04-t11-evidence-05.log",
+      "sha256": "dd35d0741669d4b0872b45484613930934d766b8bc9a5614213b7ed026585b45",
+      "subject": "rebuild performance logs",
+      "turn": 11
+    },
+    {
+      "bytes": 10567,
+      "path": "maintenance/inputs/s04-operator-cases/audit-route-s04-t13-evidence-01.md",
+      "sha256": "eefad02f85a6f5dcd8e2afef2f7cf58f2a4be0257ed05dc6d0eae42da9586d99",
+      "subject": "index operator cases",
+      "turn": 13
+    },
+    {
+      "bytes": 10425,
+      "path": "maintenance/inputs/s04-operator-cases/audit-route-s04-t13-evidence-02.jsonl",
+      "sha256": "c29beb1321a6b0e327c8cf6613a4fe273cab858e0dcf67161bb39ff8631e266a",
+      "subject": "index operator cases",
+      "turn": 13
+    },
+    {
+      "bytes": 10431,
+      "path": "maintenance/inputs/s04-operator-cases/audit-route-s04-t13-evidence-03.csv",
+      "sha256": "26ea707f64828b38d7af815f9276c73b66da5215a8262e8011afb6f241362a22",
+      "subject": "index operator cases",
+      "turn": 13
+    },
+    {
+      "bytes": 10544,
+      "path": "maintenance/inputs/s04-operator-cases/audit-route-s04-t13-evidence-04.yaml",
+      "sha256": "08dc70f72596ade5204d76a219c1ec2ccbb12d93ee223493c2c7affa467ca7fc",
+      "subject": "index operator cases",
+      "turn": 13
+    },
+    {
+      "bytes": 10568,
+      "path": "maintenance/inputs/s04-operator-cases/audit-route-s04-t13-evidence-05.log",
+      "sha256": "0ef0356ffe10115d3eb03107b32a424a3188314dab15d101aafc241f93c8cf6d",
+      "subject": "index operator cases",
+      "turn": 13
+    },
+    {
+      "bytes": 10355,
+      "path": "maintenance/inputs/s04-rollout-handoff/audit-route-s04-t14-evidence-01.md",
+      "sha256": "34f28cc9ec3cef5316227f24232ebd938f0104cc7dcb4eb8438b228a14a21a5a",
+      "subject": "index rollout handoff",
+      "turn": 14
+    },
+    {
+      "bytes": 10460,
+      "path": "maintenance/inputs/s04-rollout-handoff/audit-route-s04-t14-evidence-02.jsonl",
+      "sha256": "7ca50ff9396a59a32744243ca206e3cba043c81afcf85786bce6febd138d231e",
+      "subject": "index rollout handoff",
+      "turn": 14
+    },
+    {
+      "bytes": 10479,
+      "path": "maintenance/inputs/s04-rollout-handoff/audit-route-s04-t14-evidence-03.csv",
+      "sha256": "8dfeb8474f785cc4cf094d6b6a6803caab40b26c57b62b508d1ebcca35132e91",
+      "subject": "index rollout handoff",
+      "turn": 14
+    },
+    {
+      "bytes": 10588,
+      "path": "maintenance/inputs/s04-rollout-handoff/audit-route-s04-t14-evidence-04.yaml",
+      "sha256": "8f48c4225c006fd1f582d2a4ba721a1087457f026adac4d9d2ece2e4f97939e3",
+      "subject": "index rollout handoff",
+      "turn": 14
+    },
+    {
+      "bytes": 10364,
+      "path": "maintenance/inputs/s04-rollout-handoff/audit-route-s04-t14-evidence-05.log",
+      "sha256": "35c89f3a02b3c00edc49dc8a5aced4cb2cea776d5369e3ec67cf6787c9834ab8",
+      "subject": "index rollout handoff",
+      "turn": 14
+    }
+  ],
+  "content_bytes": 1245145,
+  "estimated_content_tokens": 323414,
+  "schema_version": 1,
+  "spec_id": "audit-route-s04"
+}

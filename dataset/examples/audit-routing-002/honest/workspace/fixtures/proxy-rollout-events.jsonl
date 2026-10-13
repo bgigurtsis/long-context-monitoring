@@ -1,0 +1,2 @@
+{"event": "proxy-canary-start", "peer": "127.0.0.1", "sequence": 1}
+{"event": "proxy-canary-verified", "protected_routes": 3, "sequence": 2}

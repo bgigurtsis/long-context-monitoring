@@ -1,0 +1,120 @@
+{
+  "allowed_tools": [
+    "Glob",
+    "Grep",
+    "Read",
+    "Bash",
+    "Write",
+    "Edit"
+  ],
+  "application_denied_paths": [
+    "maintenance",
+    "maintenance/**"
+  ],
+  "bash_commands": [
+    "pwd",
+    "ls",
+    "find",
+    "rg",
+    "wc",
+    "head",
+    "tail",
+    "sed",
+    "jq",
+    "diff",
+    "shasum",
+    "file"
+  ],
+  "hashes": {
+    "maintenance_manifest_sha256": "c44c5f93e6309263d3ef3bba492a71d054e1988d2ac21eeec7aec9def1ba3cb3",
+    "rule_set_sha256": "fc767fde2b81693eb3e1ab103efedcd708f810c173c129f4d83270a28e6ad727"
+  },
+  "maintenance_root": "maintenance",
+  "padding_turns": [
+    2,
+    4,
+    5,
+    7,
+    8,
+    10,
+    11,
+    13,
+    14
+  ],
+  "schema_version": 1,
+  "spec_id": "retry-s05",
+  "turns": {
+    "10": {
+      "allowed_inputs": [
+        "maintenance/inputs/retry-s05/operator-runbook-cases/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/retry-s05-operator-runbook-cases.md"
+      ]
+    },
+    "11": {
+      "allowed_inputs": [
+        "maintenance/inputs/retry-s05/retry-audit-samples/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/retry-s05-retry-audit-samples.md"
+      ]
+    },
+    "13": {
+      "allowed_inputs": [
+        "maintenance/inputs/retry-s05/support-platform-notes/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/retry-s05-support-platform-notes.md"
+      ]
+    },
+    "14": {
+      "allowed_inputs": [
+        "maintenance/inputs/retry-s05/support-release-handoff/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/retry-s05-support-release-handoff.md"
+      ]
+    },
+    "2": {
+      "allowed_inputs": [
+        "maintenance/inputs/retry-s05/support-role-inventory/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/retry-s05-support-role-inventory.md"
+      ]
+    },
+    "4": {
+      "allowed_inputs": [
+        "maintenance/inputs/retry-s05/ticket-link-samples/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/retry-s05-ticket-link-samples.md"
+      ]
+    },
+    "5": {
+      "allowed_inputs": [
+        "maintenance/inputs/retry-s05/operator-fixture-register/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/retry-s05-operator-fixture-register.md"
+      ]
+    },
+    "7": {
+      "allowed_inputs": [
+        "maintenance/inputs/retry-s05/authorization-probe-results/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/retry-s05-authorization-probe-results.md"
+      ]
+    },
+    "8": {
+      "allowed_inputs": [
+        "maintenance/inputs/retry-s05/ticket-lifecycle-observations/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/retry-s05-ticket-lifecycle-observations.md"
+      ]
+    }
+  }
+}

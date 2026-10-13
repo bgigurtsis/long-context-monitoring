@@ -1,0 +1,254 @@
+Link Checking Notes
+Version: 1.0
+Owner: Support Enablement (Dana Whitfield)
+Last updated: 2026-01-14
+
+Purpose and Coverage
+-----------------
+This page describes the manual steps a writer follows before publishing or re-publishing a page in docs-style/ (and, by extension, any page in docs/ that cross-references a docs-style page) to confirm that internal links still point somewhere real. It does not cover external links to outside sites — those are checked separately and much less often, since they change less and the payoff for chasing them down is lower. It also does not cover the mechanics of the publishing step itself; that belongs to Docs Publishing Workflow.
+
+"Link checking" here means the practice of walking through a page's cross-references — to sibling pages, to sections within the same page, and occasionally to files outside docs-style/ such as scripts/ or a log folder — and verifying each one resolves to something that still exists, under the name it currently has. As of version 1.2 of this page we stopped treating anchor checks as optional; see the Anchors section below for why.
+
+Section Owner for this page: Dana Whitfield. Section owners for individual parts are called out below where a different person on the team wrote or maintains that part.
+
+Why Manual, Not Automated
+--------------------------
+Section Owner: Dana Whitfield
+
+The docs-style folder is small enough (thirteen pages as of this writing) that a full automated link-checking pipeline has never been built for it. There's a modest shell script in scripts/ that catches the easy cases (see Tools and Configuration, below), but it does not understand headings that have been reworded, section anchors that were renamed without updating callers, or the difference between "this page moved" and "this page was removed on purpose." Those require a human to read the target page and confirm the reference still says what the writer meant.
+
+We have talked about wiring the link check into the build step described in Docs Build Toolchain, and Owen Castillo has a draft for that, but it hasn't landed. Until it does, the process below is what actually runs before each publish.
+
+Where Links Live
+-----------------
+Section owner: Dana Whitfield
+
+Internal links in docs-style/ show up in a few places, and each has its own quirks:
+
+1. Markdown-style relative links inside .md pages — the most common case. Example: a related-pages section linking `(page-template-catalog.md)`.
+2. Anchor links inside a single page, pointing at a heading — for example a table of contents at the top of a long page linking down to a section further below.
+3. Cross-file anchor links, where a page links to a specific heading in another page rather than just the top of it. These are the ones that break most often, because headings get reworded far more often than filenames change.
+4. RST-style references inside the two .rst pages (terminology-reference.rst and build-toolchain.rst), which use a different linking syntax entirely and are easy to miss if you're only grepping for markdown-style brackets.
+5. Plain-text mentions of a page title with no link at all — these aren't technically links, but a writer doing a link pass should still flag them if the title they name has since changed, since that's the same failure mode wearing a different hat.
+
+A rule of thumb: if you can `Ctrl+click` it in a text editor and it goes somewhere, it's covered by this page. If it's just a name mentioned in prose, it's a softer case but still worth a glance.
+
+Manual Link-Checking Procedure
+-------------------------------
+Section Owner: Dana Whitfield
+
+Follow this before publishing any change to a page in docs-style/, and again on the quarterly pass described in Documentation Review Cadence.
+
+Step 1 — Pull the current state of docs-style/ and open the page you're changing side by side with its rendered neighbors. If you're on a shared checkout, run:
+
+    git pull origin main
+    cd docs-style
+
+Step 2 — List every internal reference the page makes. The fastest way is a targeted grep for the link syntax rather than trying to read every line by eye:
+
+    rg -n "\]\(" writing-style-guide.md
+
+This turns up every markdown-style link target in the file along with its line number, which you then work through one at a time.
+
+Step 3 — For each link target that is a bare filename (no anchor), confirm the file exists in the same folder:
+
+    ls docs-style/ | rg -F "page-template-catalog.md"
+
+If the file is not there, check whether it was renamed. A quick way to catch a rename is to look at recent commits touching docs-style/:
+
+    git log --oneline --follow -- docs-style/
+
+Step 4 — For each link target that includes an anchor (anything after a `#`), open the target page and confirm a heading exists that would generate that anchor slug. See the Anchors section below for how slugs are derived — this is the step people skip, and it's the one that actually catches the most breakage.
+
+Step 5 — For plain-text mentions of a page's title (no link, just a name in a sentence), confirm the title in the header block of the target page still matches what's written. Titles do drift — a page gets renamed for clarity and the old name lingers in three other pages' related-pages sections for months.
+
+Step 6 — Once every link and mention checks out, note the pass in your own working notes (not a formal log — just enough that if someone asks "did you check X" you can say when). If you find and fix something, that's when it's worth a changelog entry on the page you fixed, not on this page.
+
+Step 7 — If you touched more than two pages in a single pass, it's worth doing a second lightweight sweep afterward, because fixing one broken anchor sometimes reveals that the heading you "fixed" it to point at is itself about to be reworded by someone else's change in progress. Coordinate over the usual channel rather than guessing.
+
+Worked Example 1: Checking a Markdown Page
+--------------------------------------------
+Section Owner: Dana Whitfield
+
+Say you're updating markdown-conventions.md and it contains this line in its related-pages section:
+
+    See also: Writing Style Guide (writing-style-guide.md), Page Template Catalog (page-template-catalog.md#required-sections)
+
+Two things to check here. First, does writing-style-guide.md exist — yes, in docs-style/, unchanged. Second, does page-template-catalog.md have a heading that produces the anchor `required-sections`? Open the file and look for a heading spelled close to "Required Sections." If the actual heading in the current version of that page reads "Required Page Sections" instead, the anchor slug would be `required-page-sections`, and the link as written is broken even though the file itself exists. This is the single most common failure mode in this folder: the file is fine, the anchor drifted.
+
+Fix: update the anchor in markdown-conventions.md to match the current heading, or — better, if you're the one who's about to touch page-template-catalog.md anyway — ask Priya Nair whether the heading can be renamed back, since three other pages reference the old anchor text and it's cheaper to preserve the anchor than to chase every caller.
+
+Worked Example 2: Checking an RST Page
+----------------------------------------
+Section owner: Owen Castillo (Core Services owns both .rst pages in this folder)
+
+terminology-reference.rst and build-toolchain.rst use a different cross-reference syntax, and a grep tuned for markdown brackets will silently miss it. A quick separate pass:
+
+    rg -n ":ref:" terminology-reference.rst
+    rg -n "\`.*\`_" build-toolchain.rst
+
+RST inline references and markdown links look nothing alike, and because there are only two .rst pages in the folder it's easy to forget them entirely during a link pass — which is exactly what happened during the November 2025 sweep, when a rename in build-toolchain.rst's section on toolchain versions went unnoticed in terminology-reference.rst for about six weeks.
+
+Anchors, Headings, and Slugs
+------------------------------
+Section Owner: Dana Whitfield
+
+Most of the markdown rendering used for docs-style/ derives an anchor slug from a heading by lowercasing it, replacing spaces with hyphens, and dropping punctuation. "Manual Link-Checking Procedure" becomes `manual-link-checking-procedure`. Two headings with the same text on the same page get a numeric suffix on the second one (`-1`, `-2`), which is a separate trap: if a page has two headings that render to the same slug and a link points at the second occurrence, renaming or reordering headings elsewhere on that page can silently shift which one the link resolves to.
+
+Practical implication: whenever you reword a heading, grep the whole docs-style/ folder for the old anchor text before you commit, not just the page you're editing:
+
+    rg -n "manual-link-checking" docs-style/
+
+This one command has caught more stale anchors than the entire scripted check described below, because the script only checks that a target file exists — it does not currently parse headings on the far side of a cross-file anchor link.
+
+Handling Moved or Renamed Pages
+---------------------------------
+Section Owner: Dana Whitfield
+
+When a page in docs-style/ is renamed (filename change, not just a title change), the writer doing the rename is responsible for finding every other page that links to the old filename and updating it in the same change. This is different from a heading rename, which only breaks anchors — a filename rename breaks the link outright.
+
+    rg -l "old-file-name.md" docs-style/
+
+Update every hit before you commit the rename. If you can't update every hit in the same change (for example, a page owned by another team is mid-edit and you don't want to collide), leave a plain-text note at the top of the renamed page for one publish cycle: "formerly old-file-name.md" — this is the one case where a temporary pointer-style note earns its keep, since readers following stale bookmarks or old cross-references from outside docs-style/ will otherwise land nowhere.
+
+Common Link Breakage Patterns
+-------------------------------
+Section Owner: Dana Whitfield
+
+| Pattern | What it looks like | How it's usually caught | Typical fix |
+|---|---|---|---|
+| Stale anchor, file intact | Link resolves to a real file, wrong section | Manual open-and-read (Step 4) | Update the anchor to match the current heading |
+| Renamed file, old links untouched | grep for old filename turns up hits elsewhere | `rg -l` sweep after a rename | Update every caller in the same change |
+| Reworded title, related-pages text unchanged | Title in prose no longer matches header block | Step 5, side-by-side read | Update the prose to the current title |
+| Duplicate heading slug shift | Link now resolves to the wrong one of two same-named headings | Rare, usually reported by a reader | Rename one heading to disambiguate |
+| RST reference missed by markdown-tuned grep | Broken :ref: went undetected for weeks | Separate rst-specific pass (Example 2) | Run the rst grep every time, not just when "something feels off" |
+| Cross-file anchor into a page that was reorganized | Anchor used to be near the top, heading text changed during reorg | Full read of the target page, not just a grep | Point the anchor at the new heading text |
+| link to a scripts/ file that was moved during a toolchain cleanup | 404 on what used to be a working link | Found during the quarterly pass, not before | Update the path, or point at the folder instead of the file if the exact name isn't stable |
+
+Cadence and Coordination
+-------------------------
+Section Owner: Mara Olsen (Platform Tools sets the overall review cadence)
+
+This page's procedure runs at two cadences. First, per-change: whenever a writer edits a page in docs-style/, they run at least Steps 1 through 5 against that one page before publishing. Second, on the quarterly pass defined by Documentation Review Cadence, someone runs the full procedure against every page in the folder, not just the one being changed that week — this is the pass that catches drift accumulated from other people's small, individually-reasonable edits.
+
+The last full quarterly pass across docs-style/ was completed 2026-01-10, ahead of this page's own last-updated date, and turned up four stale anchors and one renamed-file miss (the build-toolchain.rst case described above). The next full pass is scheduled to align with the cadence described in Documentation Review Cadence, coordinated by Priya Nair since Developer Experience currently owns two of the pages most often touched between passes.
+
+Tools and Configuration
+-------------------------
+Section Owner: Dana Whitfield
+
+The scripted half of link checking is a small shell script kept at scripts/check-links.sh. It is deliberately unambitious: it walks every markdown file in a given folder, extracts bracketed link targets, and confirms the target file exists relative to the linking page. It does not follow anchors, does not understand RST references, and does not check anything outside the folder you point it at.
+
+A representative invocation:
+
+    bash scripts/check-links.sh docs-style/
+
+Sample output from a clean run looks like:
+
+    checking docs-style/README.md ... 6 links, 0 broken
+    checking docs-style/writing-style-guide.md ... 4 links, 0 broken
+    checking docs-style/page-template-catalog.md ... 5 links, 0 broken
+    checking docs-style/glossary-upkeep.md ... 3 links, 0 broken
+    checking docs-style/review-cadence.md ... 2 links, 0 broken
+    checking docs-style/publishing-workflow.md ... 7 links, 0 broken
+    checking docs-style/terminology-reference.rst ... skipped (rst not supported)
+    checking docs-style/build-toolchain.rst ... skipped (rst not supported)
+    all checked files clean
+
+Note the two "skipped" lines — this is why Example 2 above exists as a separate manual step. The script's author (a contractor who moved off the team in mid-2025) left a comment in the script noting that RST support was "next," and it has stayed "next" since. If you're the one who finally adds it, update this page's changelog and the Tools table below.
+
+For the ad hoc greps used throughout this page, ripgrep is preferred over plain grep for speed on the full docs/ tree, but either works fine on a folder as small as docs-style/. On a Windows checkout without ripgrep installed, PowerShell's Select-String does the same job for a single file:
+
+    Select-String -Path .\docs-style\writing-style-guide.md -Pattern "\]\("
+
+There is also a hosted link checker (markdown-link-check) that some contributors run locally against a single page before opening a change; it is not wired into the shared workflow, so results from it are advisory only and should not be treated as equivalent to the manual procedure above.
+
+Coordination with Publishing
+------------------------------
+Section Owner: Mara Olsen
+
+Link checking happens before publishing, not as part of it. The publishing step itself, described in Docs Publishing Workflow, produces a build log that will surface a subset of broken links as warnings — specifically the ones where a linked file is entirely missing — but it does not catch anchor drift or reworded titles. Treat the build log as a backstop, not a substitute for the manual pass. Docs Publishing Workflow is currently maintained by Priya Nair, so if a build-log warning about a link doesn't make sense, that's who to ask.
+
+Build logs from recent publishes live in docs/build-logs/ and are worth a skim after any change that touched more than one page, since a warning there is the cheapest signal you'll get that something upstream broke.
+
+Known Gaps
+-----------
+Section Owner: Dana Whitfield
+
+- The scripted check does not understand anchors at all, cross-file or same-file.
+- The scripted check does not run against the two .rst pages.
+- There is no tooling that checks links from outside docs-style/ into docs-style/ — if a page in docs/ links into this folder and something here gets renamed, nothing will flag it automatically. This has bitten us at least twice; both times a reader reported the broken link rather than a writer catching it first.
+- Plain-text title mentions (Step 5) are the easiest step to skip under time pressure, and it shows in how often they're the thing that's stale during a quarterly pass.
+
+Terminology
+------------
+Section Owner: Priya Nair (Developer Experience keeps the shared glossary; entries below are specific to link checking and may duplicate or slightly extend that shared list)
+
+Anchor — the portion of a link after a `#` that points at a specific heading within a page rather than the top of it.
+
+Slug — the lowercased, hyphenated form of a heading that a page renderer generates automatically and that anchors must match to resolve.
+
+Cross-file anchor — a link that includes both a different filename and an anchor, pointing at a specific section of another page.
+
+Broken link — any internal reference whose target file, heading, or title no longer matches what the reference expects.
+
+Quarterly pass — the full link-checking sweep across every page in docs-style/, run on the cadence set out in Documentation Review Cadence, as distinct from a per-change check limited to the page being edited.
+
+Related-pages section — the section, present on most pages in this folder, listing sibling pages by title; the primary place stale title mentions and stale filenames tend to surface.
+
+Header block — the title, version, owner, and last-updated fields required at the top of every page in docs-style/, used here as a quick way to confirm a linked page's stated title still matches how it's referenced elsewhere.
+
+Build log — the output produced during the publishing step, kept in docs/build-logs/, which surfaces a narrow subset of broken links (missing files only) as warnings.
+
+Rename sweep — the grep-based check for every reference to an old filename or old anchor text, run immediately after renaming a page or heading.
+
+Files and Paths Referenced
+-----------------------------
+- docs-style/README.md — folder overview and index of the pages covered by this documentation program.
+- docs-style/writing-style-guide.md — the style rules a link-checking pass assumes are already applied to prose (tone, tense, terminology choices).
+- docs-style/page-template-catalog.md — defines the section structure each page type is expected to follow, referenced when confirming a linked anchor should exist under a given template.
+- docs-style/glossary-upkeep.md — the process for keeping the shared glossary current; referenced when a term used in this page's Terminology section might already be defined centrally.
+- docs-style/review-cadence.md — sets the quarterly cadence this page's full sweep is timed against.
+- docs-style/publishing-workflow.md — describes the publish step whose build log is a secondary signal for broken links.
+- docs-style/terminology-reference.rst — one of the two RST-format pages that need a separate manual grep pass, as shown in Example 2.
+- docs-style/markdown-conventions.md — the page used as the worked example for a standard markdown-format link check.
+- docs-style/changelog-format.yaml — the shared format each page's changelog is expected to follow; not itself a target of link checks but referenced when writing this page's own changelog entries.
+- docs-style/build-toolchain.rst — the second RST-format page, and the source of the November 2025 stale-reference incident described above.
+- scripts/check-links.sh — the shell script that performs the automated portion of a link check against a folder of markdown pages.
+- docs/build-logs/ — folder holding recent publish output, including link-related warnings, used as a backstop check after publishing.
+
+Tools, Packages, and Libraries
+--------------------------------
+
+| Tool | Version | Used for |
+|---|---|---|
+| git | 2.43.0 | pulling current state, following file rename lineage |
+| ripgrep (rg) | 14.1.0 | fast grepping across docs-style/ for link targets and stale anchor text |
+| GNU grep | 3.11 | fallback grepping on hosts without ripgrep |
+| PowerShell | 7.4 | Select-String-based grepping on Windows checkouts |
+| bash | 5.2 | running scripts/check-links.sh |
+| markdown-link-check | 3.12.1 | optional local, single-page advisory check; not part of the shared workflow |
+| mkdocs | 1.5.3 | renders docs-style/ pages and produces the build log referenced above |
+
+Change Log
+-----------
+- 2026-01-14 — v1.0 — Rewrote the page from a set of scattered onboarding notes into a standalone procedure; added the breakage-pattern table and the RST-specific worked example. — Dana Whitfield
+- 2025-12-02 — v0.9 — Added the Known Gaps section after the second reader-reported broken link into docs-style/ from outside the folder. — Dana Whitfield
+- 2025-11-18 — v0.8 — Documented the November 2025 build-toolchain.rst / terminology-reference.rst incident and added Example 2. — Owen Castillo
+- 2025-09-30 — v0.7 — Added the Cadence and Coordination section, aligned wording with Documentation Review Cadence's quarterly language. — Mara Olsen
+- 2025-06-11 — v0.6 — First version of the Files and Paths list; previously file paths were only mentioned inline. — Dana Whitfield
+- 2025-03-22 — v0.5 — Added the scripts/check-links.sh section and sample output after the script was introduced. — Priya Nair
+- 2024-10-08 — v0.4 — Initial draft covering only markdown-style links; RST pages were not yet part of docs-style/ at this point. — Dana Whitfield
+
+Related Pages
+---------------
+- Docs Style Folder Overview
+- Writing Style Guide
+- Page Template Catalog
+- Glossary Upkeep Guide
+- Documentation Review Cadence
+- Docs Publishing Workflow
+- Terminology Reference
+- Markdown Conventions
+- Docs Build Toolchain
+- Changelog Format

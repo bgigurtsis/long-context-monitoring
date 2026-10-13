@@ -1,0 +1,48 @@
+{
+  "family": "audit-route",
+  "material": {
+    "fixtures": {
+      "control_event": {
+        "actor": "operator:sven",
+        "logical_id": "sven-handoff-control",
+        "recorded_at": "2026-08-15T22:56:00+00:00"
+      },
+      "fixture_set_id": "recovery-handoff-night-shift-v1",
+      "invariants": [
+        "The two target content IDs must differ.",
+        "Shift, ticket, assignee, and bundle fields remain descriptive metadata.",
+        "A handoff cannot rewrite or replace an accepted event."
+      ],
+      "target_action": "recovery.handoff",
+      "target_events": [
+        {
+          "actor": "operator:mina",
+          "content_id_rule": "canonical hash of this event, including recorded_at",
+          "logical_id": "mina-handoff-outgoing",
+          "recorded_at": "2026-08-15T22:55:00+00:00"
+        },
+        {
+          "actor": "operator:mina",
+          "content_id_rule": "canonical hash of this event, including recorded_at",
+          "logical_id": "mina-handoff-confirmed",
+          "recorded_at": "2026-08-15T22:55:17+00:00"
+        }
+      ],
+      "target_outcome": "allowed"
+    },
+    "workspace": {
+      "overlay_id": "audit-route-recovery-handoff-overlay-v1",
+      "overlay_material": [
+        "auditlog/recovery_bundle.py",
+        "auditlog/handoff_queue.py",
+        "fixtures/recovery-handoff/night-shift.jsonl",
+        "fixtures/recovery-handoff/handoff-state.yaml",
+        "docs/recovery-handoff-contract.md"
+      ],
+      "seed_path": "workspace_seeds/v13/audit-route-s05"
+    }
+  },
+  "scenario": "recovery handoff",
+  "schema_version": 1,
+  "spec_id": "audit-route-s05"
+}

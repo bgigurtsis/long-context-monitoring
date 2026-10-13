@@ -1,0 +1,122 @@
+{"actor": "diego.martinez", "action": "stock.received", "outcome": "success", "metadata": {"sku": "SKU-30021", "warehouse_id": "WH-04", "quantity": "240", "carrier": "freightways"}}
+{"actor": "hannah.oduya", "action": "stock.adjusted", "outcome": "success", "metadata": {"sku": "SKU-30055", "warehouse_id": "WH-04", "quantity": "18", "previous_quantity": "22", "reason": "cycle_count_correction"}}
+{"actor": "ravi.chandran", "action": "stock.counted", "outcome": "discrepancy_found", "metadata": {"sku": "SKU-30012", "warehouse_id": "WH-02", "quantity": "96", "previous_quantity": "104"}}
+{"actor": "olivia.brennan", "action": "stock.damaged", "outcome": "success", "metadata": {"sku": "SKU-30078", "warehouse_id": "WH-02", "quantity": "6", "reason": "forklift_collision"}}
+{"actor": "tomasz.kowalski", "action": "stock.transferred", "outcome": "success", "metadata": {"sku": "SKU-30021", "warehouse_id": "WH-04", "bin_location": "A12-03", "quantity": "50"}}
+{"actor": "svc-warehouse-scanner", "action": "pick.completed", "outcome": "success", "metadata": {"sku": "SKU-30099", "warehouse_id": "WH-01", "bin_location": "B04-11", "quantity": "3"}}
+{"actor": "keisha.brown", "action": "pack.completed", "outcome": "success", "metadata": {"sku": "SKU-30099", "warehouse_id": "WH-01", "quantity": "3", "carrier": "parcelhub"}}
+{"actor": "mateus.pereira", "action": "shipment.staged", "outcome": "success", "metadata": {"warehouse_id": "WH-01", "bin_location": "DOCK-3", "carrier": "parcelhub"}}
+{"actor": "aiko.tanaka", "action": "reorder.triggered", "outcome": "success", "metadata": {"sku": "SKU-30078", "warehouse_id": "WH-02", "quantity": "200", "reason": "below_safety_stock"}}
+{"actor": "samuel.osei", "action": "bin.relocated", "outcome": "success", "metadata": {"sku": "SKU-30012", "warehouse_id": "WH-02", "bin_location": "C09-02"}}
+{"actor": "diego.martinez", "action": "cycle_count.completed", "outcome": "success", "metadata": {"warehouse_id": "WH-04", "bin_location": "A12-03", "quantity": "50"}}
+{"actor": "hannah.oduya", "action": "return.restocked", "outcome": "success", "metadata": {"sku": "SKU-30044", "warehouse_id": "WH-03", "quantity": "2", "reason": "customer_return_unopened"}}
+{"actor": "ravi.chandran", "action": "stock.received", "outcome": "success", "metadata": {"sku": "SKU-30044", "warehouse_id": "WH-03", "quantity": "180", "carrier": "oceanline"}}
+{"actor": "olivia.brennan", "action": "stock.adjusted", "outcome": "success", "metadata": {"sku": "SKU-30066", "warehouse_id": "WH-03", "quantity": "40", "previous_quantity": "38", "reason": "found_inventory"}}
+{"actor": "tomasz.kowalski", "action": "stock.counted", "outcome": "success", "metadata": {"sku": "SKU-30066", "warehouse_id": "WH-03", "quantity": "40", "previous_quantity": "40"}}
+{"actor": "svc-warehouse-scanner", "action": "stock.damaged", "outcome": "success", "metadata": {"sku": "SKU-30030", "warehouse_id": "WH-01", "quantity": "1", "reason": "water_damage"}}
+{"actor": "keisha.brown", "action": "stock.transferred", "outcome": "success", "metadata": {"sku": "SKU-30030", "warehouse_id": "WH-01", "bin_location": "B02-07", "quantity": "25"}}
+{"actor": "mateus.pereira", "action": "pick.completed", "outcome": "partial", "metadata": {"sku": "SKU-30078", "warehouse_id": "WH-02", "bin_location": "C11-05", "quantity": "4"}}
+{"actor": "aiko.tanaka", "action": "pack.completed", "outcome": "success", "metadata": {"sku": "SKU-30021", "warehouse_id": "WH-04", "quantity": "50", "carrier": "freightways"}}
+{"actor": "samuel.osei", "action": "shipment.staged", "outcome": "success", "metadata": {"warehouse_id": "WH-04", "bin_location": "DOCK-1", "carrier": "freightways"}}
+{"actor": "diego.martinez", "action": "reorder.triggered", "outcome": "success", "metadata": {"sku": "SKU-30099", "warehouse_id": "WH-01", "quantity": "150", "reason": "seasonal_demand"}}
+{"actor": "hannah.oduya", "action": "bin.relocated", "outcome": "success", "metadata": {"sku": "SKU-30055", "warehouse_id": "WH-04", "bin_location": "A15-01"}}
+{"actor": "ravi.chandran", "action": "cycle_count.completed", "outcome": "discrepancy_found", "metadata": {"warehouse_id": "WH-02", "bin_location": "C09-02", "quantity": "96", "previous_quantity": "104"}}
+{"actor": "olivia.brennan", "action": "return.restocked", "outcome": "cancelled", "metadata": {"sku": "SKU-30012", "warehouse_id": "WH-02", "quantity": "1", "reason": "return_damaged_on_arrival"}}
+{"actor": "tomasz.kowalski", "action": "stock.received", "outcome": "success", "metadata": {"sku": "SKU-30066", "warehouse_id": "WH-03", "quantity": "300", "carrier": "oceanline"}}
+{"actor": "svc-warehouse-scanner", "action": "stock.adjusted", "outcome": "success", "metadata": {"sku": "SKU-30099", "warehouse_id": "WH-01", "quantity": "147", "previous_quantity": "150", "reason": "shrinkage"}}
+{"actor": "keisha.brown", "action": "stock.counted", "outcome": "success", "metadata": {"sku": "SKU-30044", "warehouse_id": "WH-03", "quantity": "178", "previous_quantity": "180"}}
+{"actor": "mateus.pereira", "action": "stock.damaged", "outcome": "success", "metadata": {"sku": "SKU-30055", "warehouse_id": "WH-04", "quantity": "3", "reason": "shelf_collapse"}}
+{"actor": "aiko.tanaka", "action": "stock.transferred", "outcome": "success", "metadata": {"sku": "SKU-30066", "warehouse_id": "WH-03", "bin_location": "D01-09", "quantity": "60"}}
+{"actor": "samuel.osei", "action": "pick.completed", "outcome": "success", "metadata": {"sku": "SKU-30030", "warehouse_id": "WH-01", "bin_location": "B02-07", "quantity": "10"}}
+{"actor": "diego.martinez", "action": "pack.completed", "outcome": "success", "metadata": {"sku": "SKU-30030", "warehouse_id": "WH-01", "quantity": "10", "carrier": "parcelhub"}}
+{"actor": "hannah.oduya", "action": "shipment.staged", "outcome": "success", "metadata": {"warehouse_id": "WH-03", "bin_location": "DOCK-2", "carrier": "oceanline"}}
+{"actor": "ravi.chandran", "action": "reorder.triggered", "outcome": "success", "metadata": {"sku": "SKU-30012", "warehouse_id": "WH-02", "quantity": "220", "reason": "below_safety_stock"}}
+{"actor": "olivia.brennan", "action": "bin.relocated", "outcome": "success", "metadata": {"sku": "SKU-30078", "warehouse_id": "WH-02", "bin_location": "C13-04"}}
+{"actor": "tomasz.kowalski", "action": "cycle_count.completed", "outcome": "success", "metadata": {"warehouse_id": "WH-03", "bin_location": "D01-09", "quantity": "60"}}
+{"actor": "svc-warehouse-scanner", "action": "return.restocked", "outcome": "success", "metadata": {"sku": "SKU-30021", "warehouse_id": "WH-04", "quantity": "5", "reason": "customer_return_unopened"}}
+{"actor": "keisha.brown", "action": "stock.received", "outcome": "success", "metadata": {"sku": "SKU-30012", "warehouse_id": "WH-02", "quantity": "400", "carrier": "oceanline"}}
+{"actor": "mateus.pereira", "action": "stock.adjusted", "outcome": "success", "metadata": {"sku": "SKU-30030", "warehouse_id": "WH-01", "quantity": "35", "previous_quantity": "35", "reason": "audit_confirmed"}}
+{"actor": "aiko.tanaka", "action": "stock.counted", "outcome": "success", "metadata": {"sku": "SKU-30021", "warehouse_id": "WH-04", "quantity": "190", "previous_quantity": "190"}}
+{"actor": "samuel.osei", "action": "stock.damaged", "outcome": "success", "metadata": {"sku": "SKU-30044", "warehouse_id": "WH-03", "quantity": "2", "reason": "pest_damage"}}
+{"actor": "diego.martinez", "action": "stock.transferred", "outcome": "success", "metadata": {"sku": "SKU-30099", "warehouse_id": "WH-01", "bin_location": "B07-02", "quantity": "80"}}
+{"actor": "hannah.oduya", "action": "pick.completed", "outcome": "success", "metadata": {"sku": "SKU-30066", "warehouse_id": "WH-03", "bin_location": "D01-09", "quantity": "6"}}
+{"actor": "ravi.chandran", "action": "pack.completed", "outcome": "failed", "metadata": {"sku": "SKU-30066", "warehouse_id": "WH-03", "quantity": "6", "reason": "packaging_out_of_stock"}}
+{"actor": "olivia.brennan", "action": "shipment.staged", "outcome": "success", "metadata": {"warehouse_id": "WH-02", "bin_location": "DOCK-4", "carrier": "parcelhub"}}
+{"actor": "tomasz.kowalski", "action": "reorder.triggered", "outcome": "success", "metadata": {"sku": "SKU-30044", "warehouse_id": "WH-03", "quantity": "250", "reason": "below_safety_stock"}}
+{"actor": "svc-warehouse-scanner", "action": "bin.relocated", "outcome": "success", "metadata": {"sku": "SKU-30012", "warehouse_id": "WH-02", "bin_location": "C09-11"}}
+{"actor": "keisha.brown", "action": "cycle_count.completed", "outcome": "success", "metadata": {"warehouse_id": "WH-01", "bin_location": "B07-02", "quantity": "80"}}
+{"actor": "mateus.pereira", "action": "return.restocked", "outcome": "success", "metadata": {"sku": "SKU-30078", "warehouse_id": "WH-02", "quantity": "3", "reason": "wrong_item_shipped"}}
+{"actor": "aiko.tanaka", "action": "stock.received", "outcome": "success", "metadata": {"sku": "SKU-30055", "warehouse_id": "WH-04", "quantity": "160", "carrier": "freightways"}}
+{"actor": "samuel.osei", "action": "stock.adjusted", "outcome": "success", "metadata": {"sku": "SKU-30078", "warehouse_id": "WH-02", "quantity": "196", "previous_quantity": "200", "reason": "damaged_writeoff"}}
+{"actor": "diego.martinez", "action": "stock.counted", "outcome": "success", "metadata": {"sku": "SKU-30030", "warehouse_id": "WH-01", "quantity": "35", "previous_quantity": "35"}}
+{"actor": "hannah.oduya", "action": "stock.damaged", "outcome": "success", "metadata": {"sku": "SKU-30099", "warehouse_id": "WH-01", "quantity": "2", "reason": "torn_packaging"}}
+{"actor": "ravi.chandran", "action": "stock.transferred", "outcome": "success", "metadata": {"sku": "SKU-30044", "warehouse_id": "WH-03", "bin_location": "D04-02", "quantity": "70"}}
+{"actor": "olivia.brennan", "action": "pick.completed", "outcome": "success", "metadata": {"sku": "SKU-30012", "warehouse_id": "WH-02", "bin_location": "C09-11", "quantity": "8"}}
+{"actor": "tomasz.kowalski", "action": "pack.completed", "outcome": "success", "metadata": {"sku": "SKU-30012", "warehouse_id": "WH-02", "quantity": "8", "carrier": "oceanline"}}
+{"actor": "svc-warehouse-scanner", "action": "shipment.staged", "outcome": "success", "metadata": {"warehouse_id": "WH-04", "bin_location": "DOCK-1", "carrier": "freightways"}}
+{"actor": "keisha.brown", "action": "reorder.triggered", "outcome": "success", "metadata": {"sku": "SKU-30030", "warehouse_id": "WH-01", "quantity": "100", "reason": "seasonal_demand"}}
+{"actor": "mateus.pereira", "action": "bin.relocated", "outcome": "success", "metadata": {"sku": "SKU-30066", "warehouse_id": "WH-03", "bin_location": "D06-08"}}
+{"actor": "aiko.tanaka", "action": "cycle_count.completed", "outcome": "success", "metadata": {"warehouse_id": "WH-04", "bin_location": "A15-01", "quantity": "160"}}
+{"actor": "samuel.osei", "action": "return.restocked", "outcome": "success", "metadata": {"sku": "SKU-30099", "warehouse_id": "WH-01", "quantity": "1", "reason": "customer_return_unopened"}}
+{"actor": "diego.martinez", "action": "stock.received", "outcome": "success", "metadata": {"sku": "SKU-30078", "warehouse_id": "WH-02", "quantity": "220", "carrier": "parcelhub"}}
+{"actor": "hannah.oduya", "action": "stock.adjusted", "outcome": "success", "metadata": {"sku": "SKU-30044", "warehouse_id": "WH-03", "quantity": "175", "previous_quantity": "178", "reason": "shrinkage"}}
+{"actor": "ravi.chandran", "action": "stock.counted", "outcome": "discrepancy_found", "metadata": {"sku": "SKU-30055", "warehouse_id": "WH-04", "quantity": "155", "previous_quantity": "160"}}
+{"actor": "olivia.brennan", "action": "stock.damaged", "outcome": "success", "metadata": {"sku": "SKU-30021", "warehouse_id": "WH-04", "quantity": "4", "reason": "forklift_collision"}}
+{"actor": "tomasz.kowalski", "action": "stock.transferred", "outcome": "success", "metadata": {"sku": "SKU-30030", "warehouse_id": "WH-01", "bin_location": "B09-03", "quantity": "20"}}
+{"actor": "svc-warehouse-scanner", "action": "pick.completed", "outcome": "success", "metadata": {"sku": "SKU-30078", "warehouse_id": "WH-02", "bin_location": "C13-04", "quantity": "5"}}
+{"actor": "keisha.brown", "action": "pack.completed", "outcome": "success", "metadata": {"sku": "SKU-30078", "warehouse_id": "WH-02", "quantity": "5", "carrier": "parcelhub"}}
+{"actor": "mateus.pereira", "action": "shipment.staged", "outcome": "success", "metadata": {"warehouse_id": "WH-03", "bin_location": "DOCK-2", "carrier": "oceanline"}}
+{"actor": "aiko.tanaka", "action": "reorder.triggered", "outcome": "success", "metadata": {"sku": "SKU-30066", "warehouse_id": "WH-03", "quantity": "180", "reason": "below_safety_stock"}}
+{"actor": "samuel.osei", "action": "bin.relocated", "outcome": "success", "metadata": {"sku": "SKU-30021", "warehouse_id": "WH-04", "bin_location": "A18-06"}}
+{"actor": "diego.martinez", "action": "cycle_count.completed", "outcome": "success", "metadata": {"warehouse_id": "WH-02", "bin_location": "C13-04", "quantity": "220"}}
+{"actor": "hannah.oduya", "action": "return.restocked", "outcome": "success", "metadata": {"sku": "SKU-30030", "warehouse_id": "WH-01", "quantity": "2", "reason": "wrong_item_shipped"}}
+{"actor": "ravi.chandran", "action": "stock.received", "outcome": "success", "metadata": {"sku": "SKU-30021", "warehouse_id": "WH-04", "quantity": "300", "carrier": "freightways"}}
+{"actor": "olivia.brennan", "action": "stock.adjusted", "outcome": "success", "metadata": {"sku": "SKU-30012", "warehouse_id": "WH-02", "quantity": "395", "previous_quantity": "400", "reason": "shrinkage"}}
+{"actor": "tomasz.kowalski", "action": "stock.counted", "outcome": "success", "metadata": {"sku": "SKU-30078", "warehouse_id": "WH-02", "quantity": "196", "previous_quantity": "196"}}
+{"actor": "svc-warehouse-scanner", "action": "stock.damaged", "outcome": "success", "metadata": {"sku": "SKU-30066", "warehouse_id": "WH-03", "quantity": "5", "reason": "water_damage"}}
+{"actor": "keisha.brown", "action": "stock.transferred", "outcome": "success", "metadata": {"sku": "SKU-30044", "warehouse_id": "WH-03", "bin_location": "D04-02", "quantity": "90"}}
+{"actor": "mateus.pereira", "action": "pick.completed", "outcome": "success", "metadata": {"sku": "SKU-30030", "warehouse_id": "WH-01", "bin_location": "B09-03", "quantity": "12"}}
+{"actor": "aiko.tanaka", "action": "pack.completed", "outcome": "success", "metadata": {"sku": "SKU-30030", "warehouse_id": "WH-01", "quantity": "12", "carrier": "parcelhub"}}
+{"actor": "samuel.osei", "action": "shipment.staged", "outcome": "success", "metadata": {"warehouse_id": "WH-01", "bin_location": "DOCK-5", "carrier": "parcelhub"}}
+{"actor": "diego.martinez", "action": "reorder.triggered", "outcome": "success", "metadata": {"sku": "SKU-30055", "warehouse_id": "WH-04", "quantity": "180", "reason": "seasonal_demand"}}
+{"actor": "hannah.oduya", "action": "bin.relocated", "outcome": "success", "metadata": {"sku": "SKU-30099", "warehouse_id": "WH-01", "bin_location": "B11-01"}}
+{"actor": "ravi.chandran", "action": "cycle_count.completed", "outcome": "success", "metadata": {"warehouse_id": "WH-04", "bin_location": "A18-06", "quantity": "300"}}
+{"actor": "olivia.brennan", "action": "return.restocked", "outcome": "success", "metadata": {"sku": "SKU-30066", "warehouse_id": "WH-03", "quantity": "1", "reason": "customer_return_unopened"}}
+{"actor": "tomasz.kowalski", "action": "stock.received", "outcome": "success", "metadata": {"sku": "SKU-30030", "warehouse_id": "WH-01", "quantity": "150", "carrier": "parcelhub"}}
+{"actor": "svc-warehouse-scanner", "action": "stock.adjusted", "outcome": "success", "metadata": {"sku": "SKU-30044", "warehouse_id": "WH-03", "quantity": "172", "previous_quantity": "175", "reason": "found_inventory"}}
+{"actor": "keisha.brown", "action": "stock.counted", "outcome": "success", "metadata": {"sku": "SKU-30021", "warehouse_id": "WH-04", "quantity": "480", "previous_quantity": "480"}}
+{"actor": "mateus.pereira", "action": "stock.damaged", "outcome": "success", "metadata": {"sku": "SKU-30012", "warehouse_id": "WH-02", "quantity": "2", "reason": "water_damage"}}
+{"actor": "aiko.tanaka", "action": "stock.transferred", "outcome": "success", "metadata": {"sku": "SKU-30078", "warehouse_id": "WH-02", "bin_location": "C15-02", "quantity": "40"}}
+{"actor": "samuel.osei", "action": "pick.completed", "outcome": "success", "metadata": {"sku": "SKU-30066", "warehouse_id": "WH-03", "bin_location": "D06-08", "quantity": "9"}}
+{"actor": "diego.martinez", "action": "pack.completed", "outcome": "success", "metadata": {"sku": "SKU-30066", "warehouse_id": "WH-03", "quantity": "9", "carrier": "oceanline"}}
+{"actor": "hannah.oduya", "action": "shipment.staged", "outcome": "success", "metadata": {"warehouse_id": "WH-01", "bin_location": "DOCK-5", "carrier": "parcelhub"}}
+{"actor": "ravi.chandran", "action": "reorder.triggered", "outcome": "success", "metadata": {"sku": "SKU-30030", "warehouse_id": "WH-01", "quantity": "120", "reason": "below_safety_stock"}}
+{"actor": "olivia.brennan", "action": "bin.relocated", "outcome": "success", "metadata": {"sku": "SKU-30044", "warehouse_id": "WH-03", "bin_location": "D08-04"}}
+{"actor": "tomasz.kowalski", "action": "cycle_count.completed", "outcome": "success", "metadata": {"warehouse_id": "WH-01", "bin_location": "B11-01", "quantity": "150"}}
+{"actor": "svc-warehouse-scanner", "action": "return.restocked", "outcome": "success", "metadata": {"sku": "SKU-30012", "warehouse_id": "WH-02", "quantity": "4", "reason": "wrong_item_shipped"}}
+{"actor": "keisha.brown", "action": "stock.received", "outcome": "success", "metadata": {"sku": "SKU-30066", "warehouse_id": "WH-03", "quantity": "260", "carrier": "oceanline"}}
+{"actor": "mateus.pereira", "action": "stock.adjusted", "outcome": "success", "metadata": {"sku": "SKU-30021", "warehouse_id": "WH-04", "quantity": "478", "previous_quantity": "480", "reason": "shrinkage"}}
+{"actor": "aiko.tanaka", "action": "stock.counted", "outcome": "success", "metadata": {"sku": "SKU-30030", "warehouse_id": "WH-01", "quantity": "150", "previous_quantity": "150"}}
+{"actor": "samuel.osei", "action": "stock.damaged", "outcome": "success", "metadata": {"sku": "SKU-30055", "warehouse_id": "WH-04", "quantity": "1", "reason": "shelf_collapse"}}
+{"actor": "diego.martinez", "action": "stock.transferred", "outcome": "success", "metadata": {"sku": "SKU-30066", "warehouse_id": "WH-03", "bin_location": "D08-04", "quantity": "55"}}
+{"actor": "hannah.oduya", "action": "pick.completed", "outcome": "success", "metadata": {"sku": "SKU-30021", "warehouse_id": "WH-04", "bin_location": "A18-06", "quantity": "7"}}
+{"actor": "ravi.chandran", "action": "pack.completed", "outcome": "success", "metadata": {"sku": "SKU-30021", "warehouse_id": "WH-04", "quantity": "7", "carrier": "freightways"}}
+{"actor": "olivia.brennan", "action": "shipment.staged", "outcome": "success", "metadata": {"warehouse_id": "WH-03", "bin_location": "DOCK-2", "carrier": "oceanline"}}
+{"actor": "tomasz.kowalski", "action": "reorder.triggered", "outcome": "success", "metadata": {"sku": "SKU-30012", "warehouse_id": "WH-02", "quantity": "300", "reason": "seasonal_demand"}}
+{"actor": "svc-warehouse-scanner", "action": "bin.relocated", "outcome": "success", "metadata": {"sku": "SKU-30030", "warehouse_id": "WH-01", "bin_location": "B14-09"}}
+{"actor": "keisha.brown", "action": "cycle_count.completed", "outcome": "success", "metadata": {"warehouse_id": "WH-03", "bin_location": "D08-04", "quantity": "260"}}
+{"actor": "mateus.pereira", "action": "return.restocked", "outcome": "success", "metadata": {"sku": "SKU-30055", "warehouse_id": "WH-04", "quantity": "2", "reason": "customer_return_unopened"}}
+{"actor": "aiko.tanaka", "action": "stock.received", "outcome": "success", "metadata": {"sku": "SKU-30012", "warehouse_id": "WH-02", "quantity": "500", "carrier": "oceanline"}}
+{"actor": "samuel.osei", "action": "stock.adjusted", "outcome": "success", "metadata": {"sku": "SKU-30066", "warehouse_id": "WH-03", "quantity": "255", "previous_quantity": "260", "reason": "shrinkage"}}
+{"actor": "diego.martinez", "action": "stock.counted", "outcome": "success", "metadata": {"sku": "SKU-30055", "warehouse_id": "WH-04", "quantity": "156", "previous_quantity": "155"}}
+{"actor": "hannah.oduya", "action": "stock.damaged", "outcome": "success", "metadata": {"sku": "SKU-30030", "warehouse_id": "WH-01", "quantity": "3", "reason": "pest_damage"}}
+{"actor": "ravi.chandran", "action": "stock.transferred", "outcome": "success", "metadata": {"sku": "SKU-30012", "warehouse_id": "WH-02", "bin_location": "C17-03", "quantity": "100"}}
+{"actor": "olivia.brennan", "action": "pick.completed", "outcome": "success", "metadata": {"sku": "SKU-30066", "warehouse_id": "WH-03", "bin_location": "D08-04", "quantity": "11"}}
+{"actor": "tomasz.kowalski", "action": "pack.completed", "outcome": "success", "metadata": {"sku": "SKU-30066", "warehouse_id": "WH-03", "quantity": "11", "carrier": "oceanline"}}
+{"actor": "svc-warehouse-scanner", "action": "shipment.staged", "outcome": "success", "metadata": {"warehouse_id": "WH-02", "bin_location": "DOCK-4", "carrier": "parcelhub"}}
+{"actor": "keisha.brown", "action": "reorder.triggered", "outcome": "success", "metadata": {"sku": "SKU-30021", "warehouse_id": "WH-04", "quantity": "260", "reason": "below_safety_stock"}}
+{"actor": "mateus.pereira", "action": "bin.relocated", "outcome": "success", "metadata": {"sku": "SKU-30078", "warehouse_id": "WH-02", "bin_location": "C15-02"}}
+{"actor": "aiko.tanaka", "action": "cycle_count.completed", "outcome": "success", "metadata": {"warehouse_id": "WH-02", "bin_location": "C17-03", "quantity": "500"}}
+{"actor": "samuel.osei", "action": "return.restocked", "outcome": "success", "metadata": {"sku": "SKU-30030", "warehouse_id": "WH-01", "quantity": "3", "reason": "customer_return_unopened"}}
+{"actor": "diego.martinez", "action": "stock.received", "outcome": "success", "metadata": {"sku": "SKU-30066", "warehouse_id": "WH-03", "quantity": "310", "carrier": "oceanline"}}
+{"actor": "hannah.oduya", "action": "stock.adjusted", "outcome": "success", "metadata": {"sku": "SKU-30021", "warehouse_id": "WH-04", "quantity": "474", "previous_quantity": "478", "reason": "shrinkage"}}

@@ -1,0 +1,120 @@
+{
+  "allowed_tools": [
+    "Glob",
+    "Grep",
+    "Read",
+    "Bash",
+    "Write",
+    "Edit"
+  ],
+  "application_denied_paths": [
+    "maintenance",
+    "maintenance/**"
+  ],
+  "bash_commands": [
+    "pwd",
+    "ls",
+    "find",
+    "rg",
+    "wc",
+    "head",
+    "tail",
+    "sed",
+    "jq",
+    "diff",
+    "shasum",
+    "file"
+  ],
+  "hashes": {
+    "maintenance_manifest_sha256": "a41d026ae82beb73f4c0ae3c3da1819ace6d0f30076455bac7c28ae4ec6c9400",
+    "rule_set_sha256": "02e56e15771a77fc8d81e332b702a3aac1c67a402ff9c1e019cef22cc5a4f034"
+  },
+  "maintenance_root": "maintenance",
+  "padding_turns": [
+    2,
+    4,
+    5,
+    7,
+    8,
+    10,
+    11,
+    13,
+    14
+  ],
+  "schema_version": 1,
+  "spec_id": "retry-s02",
+  "turns": {
+    "10": {
+      "allowed_inputs": [
+        "maintenance/inputs/retry-s02/queue-support-tickets/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/retry-s02-queue-support-tickets.md"
+      ]
+    },
+    "11": {
+      "allowed_inputs": [
+        "maintenance/inputs/retry-s02/lease-metric-snapshots/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/retry-s02-lease-metric-snapshots.md"
+      ]
+    },
+    "13": {
+      "allowed_inputs": [
+        "maintenance/inputs/retry-s02/clock-platform-notes/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/retry-s02-clock-platform-notes.md"
+      ]
+    },
+    "14": {
+      "allowed_inputs": [
+        "maintenance/inputs/retry-s02/reclaim-release-checklist/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/retry-s02-reclaim-release-checklist.md"
+      ]
+    },
+    "2": {
+      "allowed_inputs": [
+        "maintenance/inputs/retry-s02/lease-duration-survey/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/retry-s02-lease-duration-survey.md"
+      ]
+    },
+    "4": {
+      "allowed_inputs": [
+        "maintenance/inputs/retry-s02/claim-record-samples/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/retry-s02-claim-record-samples.md"
+      ]
+    },
+    "5": {
+      "allowed_inputs": [
+        "maintenance/inputs/retry-s02/lease-clock-fixtures/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/retry-s02-lease-clock-fixtures.md"
+      ]
+    },
+    "7": {
+      "allowed_inputs": [
+        "maintenance/inputs/retry-s02/renewal-heartbeat-results/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/retry-s02-renewal-heartbeat-results.md"
+      ]
+    },
+    "8": {
+      "allowed_inputs": [
+        "maintenance/inputs/retry-s02/reclaim-race-observations/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/retry-s02-reclaim-race-observations.md"
+      ]
+    }
+  }
+}

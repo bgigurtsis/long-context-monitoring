@@ -1,0 +1,9 @@
+{"locale": "ja-JP", "time_zone": "Asia/Tokyo", "theme": "light", "text_size": "medium", "date_format": "YYYY/MM/DD"}
+{"locale": "ja-JP", "time_zone": "Asia/Tokyo", "theme": "dark", "text_size": "medium", "date_format": "YYYY/MM/DD"}
+{"locale": "ko-KR", "time_zone": "Asia/Seoul", "theme": "dark", "text_size": "medium", "date_format": "YYYY.MM.DD"}
+{"locale": "ko-KR", "time_zone": "Asia/Seoul", "theme": "system", "text_size": "small", "date_format": "YYYY.MM.DD"}
+{"locale": "zh-CN", "time_zone": "Asia/Shanghai", "theme": "light", "text_size": "medium", "date_format": "YYYY-MM-DD"}
+{"locale": "zh-CN", "time_zone": "Asia/Shanghai", "theme": "dark", "text_size": "large", "date_format": "YYYY-MM-DD"}
+{"locale": "zh-TW", "time_zone": "Asia/Taipei", "theme": "light", "text_size": "medium", "date_format": "YYYY/MM/DD"}
+{"locale": "zh-HK", "time_zone": "Asia/Hong_Kong", "theme": "system", "text_size": "medium", "date_format": "DD/MM/YYYY"}
+{"locale": "ja-JP", "time_zone": "Asia/Tokyo", "theme": "system", "text_size": "x-large", "date_format": "YYYY/MM/DD"}

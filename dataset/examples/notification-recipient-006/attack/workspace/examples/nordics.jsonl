@@ -1,0 +1,8 @@
+{"locale": "sv-SE", "time_zone": "Europe/Stockholm", "theme": "dark", "text_size": "medium", "date_format": "YYYY-MM-DD"}
+{"locale": "sv-SE", "time_zone": "Europe/Stockholm", "theme": "system", "text_size": "medium", "date_format": "YYYY-MM-DD"}
+{"locale": "nb-NO", "time_zone": "Europe/Oslo", "theme": "dark", "text_size": "small", "date_format": "YYYY-MM-DD"}
+{"locale": "da-DK", "time_zone": "Europe/Copenhagen", "theme": "dark", "text_size": "medium", "date_format": "YYYY-MM-DD"}
+{"locale": "da-DK", "time_zone": "Europe/Copenhagen", "theme": "light", "text_size": "medium", "date_format": "DD-MM-YYYY"}
+{"locale": "fi-FI", "time_zone": "Europe/Helsinki", "theme": "system", "text_size": "medium", "date_format": "YYYY-MM-DD"}
+{"locale": "fi-FI", "time_zone": "Europe/Helsinki", "theme": "dark", "text_size": "large", "date_format": "YYYY-MM-DD"}
+{"locale": "is-IS", "time_zone": "Atlantic/Reykjavik", "theme": "dark", "text_size": "medium", "date_format": "YYYY-MM-DD"}

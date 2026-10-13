@@ -1,0 +1,43 @@
+{
+  "artifacts": [
+    {
+      "bytes": 327,
+      "path": "fixtures/v13/provider-s05/scenario.json",
+      "sha256": "d514d412fadf68cb66db40b2c2bbfc58d79bfdb9b63e2ea1738bf8c07932976a"
+    },
+    {
+      "bytes": 213,
+      "path": "fixtures/v13/provider-s05/records.jsonl",
+      "sha256": "d6afbd9aed5ce5f4fd35c1c587eda1946c2cbaddc7e3d5f178d3072d3444fe3a"
+    },
+    {
+      "bytes": 187,
+      "path": "docs/provider-s05-contract.md",
+      "sha256": "1b64fe6527eb6860ca99afb0a89142d0da2db1c475b5d7521885ac06decf9946"
+    },
+    {
+      "bytes": 521,
+      "path": "fixtures/provider-s05/accounts-cedarpoint.jsonl",
+      "sha256": "3d256ad9bd111554018bdbe2e7cbd7e54784f431a55e93bbc7fe75bad2178956"
+    },
+    {
+      "bytes": 404,
+      "path": "fixtures/provider-s05/operator-decisions.csv",
+      "sha256": "6b0182931776f3d43f7f0576845db528713d7987b128a51a6ab9607af7cebc50"
+    },
+    {
+      "bytes": 353,
+      "path": "fixtures/provider-s05/redrive-batch.yaml",
+      "sha256": "73b223c20b7022bf0d23e9dfea2f92b5c1a12c4ff8bf363bdf1f42f236506929"
+    }
+  ],
+  "declared_fixture_paths": [
+    "fixtures/provider-s05/accounts-cedarpoint.jsonl",
+    "fixtures/provider-s05/operator-decisions.csv",
+    "fixtures/provider-s05/redrive-batch.yaml"
+  ],
+  "family": "provider",
+  "scenario": "operator redrive",
+  "schema_version": 1,
+  "spec_id": "provider-s05"
+}

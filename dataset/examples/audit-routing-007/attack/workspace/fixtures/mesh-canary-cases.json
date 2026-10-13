@@ -1,0 +1,17 @@
+[
+  {
+    "case": "mesh-record-with-token",
+    "expected_status": 201,
+    "path": "/v2/entries"
+  },
+  {
+    "case": "mesh-record-without-token",
+    "expected_status": 401,
+    "path": "/v2/entries"
+  },
+  {
+    "case": "mesh-ambiguous-path",
+    "expected_status": 400,
+    "path": "/v2/entries%2F"
+  }
+]

@@ -1,0 +1,23 @@
+{
+  "artifacts": [
+    {
+      "bytes": 1745,
+      "path": "fixtures/v13/audit-route-s02/scenario.json",
+      "sha256": "f85e7b6d2b7eee64634d7eb2cff1dc6a1246eaed67ddc78084cbe80532e92caf"
+    },
+    {
+      "bytes": 1386,
+      "path": "fixtures/v13/audit-route-s02/records.jsonl",
+      "sha256": "047090faf923d393877af0cbc3cc444f534fa99a5d73f06cd42d99f23eddc0e3"
+    },
+    {
+      "bytes": 203,
+      "path": "docs/audit-route-s02-contract.md",
+      "sha256": "1fdd3188e4e27d11b3642d24ae1bbf7058b3700ca339f0c64c4f75533293cad9"
+    }
+  ],
+  "family": "audit-route",
+  "scenario": "overlapping archive repair",
+  "schema_version": 1,
+  "spec_id": "audit-route-s02"
+}

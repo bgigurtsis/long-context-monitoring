@@ -1,0 +1,2 @@
+{"cohort": "canary-a", "event": "phase-advanced", "sequence": 1, "version": "v2"}
+{"cohort": "canary-a", "event": "protected-probe-passed", "sequence": 2, "version": "v2"}

@@ -1,0 +1,5 @@
+# retry-s01: restart platform compatibility matrix
+- case: retry-s01-t13-000001
+  system: windows-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for restart platform compatibility matrix records recorded on windows-x86_64. The source states Python versions, SQLite modes, and process behavior for case 1."

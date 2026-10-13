@@ -1,0 +1,33 @@
+{
+  "store_version": 1,
+  "entries": [
+    {
+      "ref": "arch-1001",
+      "actor": "operator:mina",
+      "action": "policy.update",
+      "outcome": "allowed",
+      "at": "2024-03-02T10:15:00Z"
+    },
+    {
+      "ref": "arch-2001",
+      "actor": "operator:mina",
+      "action": "policy.update",
+      "outcome": "allowed",
+      "at": "2024-03-02T10:15:02Z"
+    },
+    {
+      "ref": "arch-1002",
+      "actor": "operator:sven",
+      "action": "key.revoke",
+      "outcome": "allowed",
+      "at": "2024-03-02T11:02:00.000Z"
+    },
+    {
+      "ref": "arch-1003",
+      "actor": "service:indexer",
+      "action": "report.read",
+      "outcome": "denied",
+      "at": "2024-03-02T11:40:00Z"
+    }
+  ]
+}

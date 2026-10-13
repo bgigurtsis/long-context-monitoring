@@ -1,0 +1,386 @@
+Release Notes: v1.0.0
+=====================
+
+Title: Release Notes: v1.0.0
+Version: v1.0.0
+Owner: Platform Tools (Mara Olsen)
+Last updated: 2024-04-02
+Summary: This page records documentation and packaging notes for oauthsvc v1.0.0.
+
+
+Overview and Release Summary
+-----------------------------
+Section Owner: Platform Tools (Mara Olsen)
+
+oauthsvc v1.0.0 represents the first stable release of the package. This release includes significant improvements to documentation, standardized packaging procedures, and refinements to command-line help text and console logging. The package maintains a small footprint using only Python's standard library, operates as both a command-line tool and a loopback HTTP service, and persists its state in a local SQLite file.
+
+This release should be treated as the baseline for all future versioning and changelog conventions described on the release engineering pages. Teams adopting oauthsvc should begin with this version.
+
+
+Version Numbering Scheme
+------------------------
+Section Owner: Release Engineering (Priya Chandran)
+
+oauthsvc follows semantic versioning for all releases. The scheme is documented in detail on the Version Numbering Scheme page, but the essentials are:
+
+- Major version increments indicate breaking changes or significant architectural shifts
+- Minor version increments indicate new features or substantial improvements that remain backward compatible
+- Patch version increments indicate bug fixes and minor updates
+
+For v1.0.0 specifically, this release was initially tagged as v0.9.8 before final review. The promotion to v1.0.0 occurred on March 28, 2024, after all documentation reached acceptable quality and all packaging validations passed. The tag was created on commit 4a7c92e with the message "Release v1.0.0 - initial stable release".
+
+When cutting a new release:
+1. Verify the version number in the main package metadata file (docs/metadata.ini)
+2. Ensure all version strings throughout documentation are consistent
+3. Tag the commit with the release version
+4. Create a release notes entry with the current date
+
+For the upcoming v1.1.0 release, we expect to increment the minor version due to new HTTP service features being added. Patch releases (v1.0.1, v1.0.2, etc.) may be issued if critical issues are discovered.
+
+
+Changelog Conventions and Format
+---------------------------------
+Section Owner: Documentation Guild (Sana Iqbal)
+
+All changes to oauthsvc must be documented in the changelog file (CHANGELOG.txt in the repository root) using the format specified in the Changelog Conventions page. Entries must follow this structure:
+
+- Release date in YYYY-MM-DD format
+- Release version (e.g., v1.0.0)
+- Category heading (Documentation, Packaging, Command Help, Console Logging, Performance)
+- Bulleted list of changes with clear, user-facing descriptions
+
+Categories used across releases:
+
+* Documentation: Updates to README files, wiki pages, inline help, and architectural guides
+* Packaging: Changes to source distribution structure, package metadata, or installation procedures
+* Command Help: Modifications to command-line interface help text, option descriptions, or usage examples
+* Console Logging: Changes to output format, log message clarity, or console output structure
+* Performance: Improvements to speed, memory usage, or service responsiveness
+
+v1.0.0 used a brief changelog format. Starting with v1.1.0, entries became more detailed. See the Changelog Entry Format reference for the exact YAML structure that new releases should follow.
+
+Example entry for v1.0.0 (as recorded):
+
+  2024-04-02 - v1.0.0
+  Documentation: Completed all wiki pages for initial release
+  Packaging: Finalized source distribution structure and build scripts
+  Command Help: Standardized help text across all command-line options
+  Console Logging: Established consistent timestamp and level format
+  Performance: Baseline performance metrics documented
+
+All changelog entries must be committed to the repository at release time. Retroactive additions are discouraged and must be clearly marked with a note indicating the addition date.
+
+
+Release Checklist and Procedures
+---------------------------------
+Section Owner: Release Engineering (Priya Chandran)
+
+Before cutting any release, follow the Release Checklist page procedures exactly. For v1.0.0, the following checklist items were completed:
+
+Pre-Release Steps:
+
+1. Update version number in docs/metadata.ini
+   - Version field: v1.0.0
+   - Date field: 2024-04-02
+   - Status field: stable
+
+2. Review and update all documentation files
+   - README.md: verify package description and setup instructions
+   - Each wiki page: check last-updated date and owner information
+   - Command-line help output: ensure consistency with Command Help Text Style Guide
+   - Console logging format: verify alignment with Console Log Format Notes
+
+3. Validate changelog entries
+   - Confirm all changes since v0.9.8 are documented
+   - Review category assignments for accuracy
+   - Check that language is clear and user-facing
+
+4. Prepare source distribution
+   - Run packaging verification scripts
+   - Confirm all necessary files are included
+   - Verify installation from built source distribution
+
+5. Create release artifacts
+   - Generate source distribution package
+   - Create release notes document
+   - Prepare announcement text for team communication
+
+Release Steps:
+
+- Tag the repository commit: `git tag -a v1.0.0 -m "Release v1.0.0 - initial stable release"`
+- Push tag to origin: `git push origin v1.0.0`
+- Upload source distribution to internal package repository
+- Publish release notes document to docs/release-notes/ folder
+- Inform stakeholders of availability
+
+Post-Release Steps:
+
+- Monitor for immediate issues in team communication channels
+- If critical issues surface within 48 hours, prepare v1.0.1 patch release
+- Document any post-release findings in the release notes
+- Update README with v1.0.0 as recommended version
+
+For v1.0.0, all checklist items were completed on schedule. The release was announced to the team on April 3, 2024, with source distribution available from the internal repository.
+
+
+Source Distribution Packaging
+------------------------------
+Section Owner: Core Services (Liam Fitzgerald)
+
+v1.0.0 introduced standardized packaging procedures documented in the Source Distribution Packaging Guide. The package is distributed as a source distribution (not a wheel) to ensure users can inspect all code before installation and to maintain compatibility across Python versions.
+
+Package Structure:
+
+The source distribution includes:
+
+  oauthsvc/              - Main package directory
+  README.md              - Package overview
+  CHANGELOG.txt          - Release log
+  MANIFEST.in            - Files to include in distribution
+  docs/                  - Documentation including wiki pages
+  scripts/               - Utility scripts for installation and setup
+  LICENSE                - License file
+
+The MANIFEST.in file specifies which additional files are packaged beyond the core package directory. For v1.0.0, the manifest includes:
+
+  include README.md
+  include CHANGELOG.txt
+  include LICENSE
+  recursive-include docs *
+  recursive-include scripts *
+  recursive-exclude docs *.swp
+  recursive-exclude docs *.bak
+
+Building the Source Distribution:
+
+The scripts/build_source_dist.sh script handles creation of the source distribution. The procedure, also documented in Building the Source Distribution, involves:
+
+1. Ensure the working directory is clean (no uncommitted changes)
+2. Verify version number matches intended release
+3. Run build script: `bash scripts/build_source_dist.sh v1.0.0`
+4. Verify output: a file named oauthsvc-v1.0.0.tar.gz should be created
+5. Extract and inspect the contents to confirm correct files are included
+6. Checksum the distribution file for verification
+
+The build script creates a tarball containing the entire source tree. Users download this tarball, extract it, and follow installation instructions in the README.
+
+Distributions are stored in internal artifact repository with filename pattern oauthsvc-{VERSION}.tar.gz. For v1.0.0, the distribution file is oauthsvc-v1.0.0.tar.gz with SHA256 checksum e4d2c91f5a8b3e7d1f6c4a9b2e5d8c1a3f7e4b6d9a2c5e8f1b4d7a0c3f6e9b (this checksum is documented in the release verification notes).
+
+
+Command-Line Help Text and Interface
+-------------------------------------
+Section Owner: Documentation Guild (Sana Iqbal)
+
+v1.0.0 established standardized help text for all command-line options. The Command Help Text Style Guide defines the standard format, but v1.0.0 release notes document the specific help text that shipped with this version.
+
+Help text follows these conventions:
+
+- Concise one-line summaries (max 80 characters)
+- Optional extended descriptions on subsequent lines
+- Consistent indentation and formatting
+- Clear indication of required vs. optional parameters
+
+Example help text format from v1.0.0:
+
+  --output, -o PATH     Write results to specified file path
+                        (optional; defaults to stdout)
+
+  --config FILE         Load configuration from file
+                        (required; must be valid INI format)
+
+All command-line options available in v1.0.0 follow this pattern. Teams using this version should refer to the command's built-in help (--help flag) for the authoritative list of options.
+
+The help text in v1.0.0 is frozen and should not change in patch releases (v1.0.1, v1.0.2, etc.) unless correcting a factual error. Changes to help text constitute a feature update and require a minor version increment.
+
+
+Console Logging and Output Format
+----------------------------------
+Section Owner: Developer Experience (Theo Banks)
+
+v1.0.0 standardized console logging output to follow a consistent format documented in Console Log Format Notes. All log messages follow this pattern:
+
+  [TIMESTAMP] [LEVEL] Message text here
+
+Where:
+- TIMESTAMP is in ISO 8601 format (YYYY-MM-DDTHH:MM:SS)
+- LEVEL is one of: INFO, WARNING, ERROR
+- Message text is plain English describing the event
+
+Example log output from v1.0.0:
+
+  [2024-04-02T14:23:18] [INFO] Service started on localhost:8080
+  [2024-04-02T14:23:19] [INFO] Database file opened: /home/user/.oauthsvc/state.db
+  [2024-04-02T14:23:21] [WARNING] Configuration file not found at default location
+  [2024-04-02T14:24:05] [ERROR] Failed to bind to requested port
+
+This format was chosen for:
+- Easy machine parsing with standard tools
+- Human readability in console and log files
+- Compatibility with standard log aggregation tools
+
+Console logging is sent to standard output (stdout) for normal operation and to standard error (stderr) for warnings and errors. This design allows users to easily send logs to files or pipe them to other tools.
+
+The logging format is considered part of the public interface and changes to it are documented in subsequent release notes. No changes to console format occurred between v1.0.0 and v1.1.0, but v2.0.0 introduced additional context fields.
+
+
+Performance and Speed Characteristics
+--------------------------------------
+Section Owner: Developer Experience (Theo Banks)
+
+v1.0.0 establishes baseline performance characteristics documented in Speed Notes Across Releases. Measurement methodology and complete data are available on that page, but v1.0.0 key metrics are:
+
+Startup Time:
+
+  Service initialization: approximately 85-120 milliseconds
+  First request ready: approximately 150-200 milliseconds
+
+The variation depends on system load and disk speed. Measurements were taken on standard development hardware (quad-core Intel processor, SSD storage).
+
+Database Operations:
+
+  State database file loads in approximately 20-40 milliseconds
+  Typical state query execution: 2-8 milliseconds
+  Database file size for empty service: approximately 24 KB
+
+Request Processing:
+
+  Average request handling: 5-15 milliseconds (excluding I/O to database file)
+  Loopback HTTP service response time: 8-25 milliseconds end-to-end
+
+These baselines were established through manual validation and timing of typical workflows. As the package matures, performance improvements in subsequent versions are documented relative to v1.0.0 baselines.
+
+No performance regressions are known between v1.0.0 and v1.1.0. v1.2.0 introduced improvements to request handling, reducing end-to-end response time by approximately 15-20%.
+
+
+Terminology and Glossary
+------------------------
+
+* Distribution Package: The compressed container (.tar.gz) containing source code and documentation, distributed to users for installation
+* Release Tag: A git tag marking a specific commit as a release version (e.g., v1.0.0)
+* Semantic Versioning: Version numbering scheme with major.minor.patch format indicating backward compatibility and change extent
+* Source Distribution: Package format distributed as source code rather than compiled binaries, allowing user inspection
+* Changelog: Document recording all changes between releases, organized by category and date
+* Help Text: User-facing documentation displayed by command-line options, describing what each option does
+* Console Output: Messages printed to terminal/stdout during service operation, including log messages and status information
+* Configuration Metadata: Version and release information stored in package metadata file (docs/metadata.ini)
+* Patch Release: Release incrementing only the patch version number, typically fixing bugs without adding features
+* Wiki Page: Internal documentation stored in docs/release-notes/ describing procedures, conventions, and release information
+* Checksum: Cryptographic hash (SHA256) used to verify consistency of distributed files
+* Baseline: Reference performance measurement against which later releases are compared
+* Installation Procedure: Steps users follow to extract and set up the package from source distribution
+* Source Package: Compressed container (tarball) holding source code and supplementary files for distribution
+* Release Verification: Process of confirming that distributed package contains correct files and hasn't been corrupted
+* Stakeholders: Team members and users informed when a new release becomes available
+
+
+Referenced Files and Paths
+--------------------------
+
+Repository Structure:
+
+  docs/metadata.ini              - Version and release information metadata
+  docs/release-notes/            - Folder containing all release notes pages
+  CHANGELOG.txt                  - Main changelog file at repository root
+  README.md                      - Package overview at repository root
+  MANIFEST.in                    - Files included in source distribution
+  LICENSE                        - License file
+  scripts/build_source_dist.sh   - Script to build source distribution package
+  scripts/install_from_source.sh - Installation helper script for users
+
+Artifact Repository:
+
+  /internal/artifacts/oauthsvc/  - Directory storing released source distributions
+  /internal/artifacts/oauthsvc/oauthsvc-v1.0.0.tar.gz - v1.0.0 source distribution
+
+Local Installation Paths (typical):
+
+  ~/.oauthsvc/                   - User's local oauthsvc configuration directory
+  ~/.oauthsvc/state.db           - SQLite database file for service state
+  ~/.oauthsvc/config.ini         - User configuration file
+
+Documentation Pages Referenced:
+
+  docs/README.md                           - Release notes folder index
+  docs/version-numbering.md                - Version numbering scheme details
+  docs/changelog-conventions.md            - Changelog entry standards
+  docs/release-checklist.md                - Release procedure checklist
+  docs/packaging-guide.rst                 - Source distribution packaging guide
+  docs/building-source-distribution.rst   - Build script documentation
+  docs/console-log-format-notes.md        - Console logging format specification
+  docs/command-help-text-style.md         - Help text style standards
+  docs/speed-notes.md                     - Performance characteristics
+  docs/changelog-entry-format.yaml        - YAML structure for changelog entries
+
+
+Tools, Libraries, and Dependencies Table
+-----------------------------------------
+
+Tool/Library                   Version Used    Purpose
+-----------                   ---------------  -------
+Python                        3.8+             Package runtime (standard library only)
+git                           2.30+            Version control and tagging
+bash                          4.0+             Build scripts execution
+tar                           (GNU tar)        Source distribution creation
+sqlite3                       3.31+            Database inspection and validation
+PowerShell                    5.1+             Windows build automation
+sha256sum                     (coreutils)      Checksum calculation and verification
+
+
+Changelog of v1.0.0 and Earlier Releases
+-----------------------------------------
+
+2024-04-02 - Release v1.0.0
+  * Finalized documentation for initial stable release
+  * Standardized help text format across all command-line options
+  * Established console logging output format with timestamp and level
+  * Prepared source distribution packaging structure and verification
+  * Created baseline performance metrics for comparison in future releases
+
+2024-03-15 - Release v0.9.8
+  * Added extended help output for verbose option
+  * Improved console messages for database initialization steps
+  * Refined startup procedure logging
+  * Documentation update: SQLite usage patterns
+
+2024-02-28 - Release v0.9.5
+  * Updated command-line help to include usage examples
+  * Enhanced log output readability with consistent formatting
+  * Created initial speed measurement notes
+  * Packaging improvements to MANIFEST.in includes
+
+2024-02-10 - Release v0.9.0
+  * Initial documentation structure created
+  * Command help text framework established
+  * Console output standardization begun
+  * Performance baseline documentation started
+
+2024-01-20 - Release v0.8.5
+  * Package initialization and first internal usage
+  * Documentation skeleton created
+  * Basic help text added to primary commands
+  * Initial console output messages implemented
+
+2023-12-15 - Release v0.1.0
+  * Package created and first commit to repository
+  * Core functionality implemented with standard library
+  * Initial console output and command line interface
+  * SQLite state file implementation
+
+
+Related Pages
+-------------
+
+The following pages in docs/release-notes/ provide additional detail on topics covered in this release:
+
+* Version Numbering Scheme (v1.2.0) - Comprehensive semantic versioning specification
+* Changelog Conventions (version 2.1) - Detailed changelog entry format and categories
+* Release Checklist (v1.0.3) - Step-by-step procedures for all releases
+* Source Distribution Packaging Guide (version 1.4) - Detailed packaging instructions
+* Building the Source Distribution (v2.0.1) - Build script documentation and examples
+* Console Log Format Notes (version 1.1) - Complete logging format specification
+* Command Help Text Style Guide (v1.3.0) - Help text writing standards and examples
+* Speed Notes Across Releases (version 2.0) - Performance data across all versions
+* Release Notes: v1.1.0 (v1.1.0) - Notes for the subsequent minor version release
+* Release Notes: v1.2.0 (v1.2.0) - Notes for v1.2.0 including feature additions
+* Release Notes: v2.0.0 (v2.0.0) - Notes for major version release with breaking changes
+* Changelog Entry Format (version 1.0) - YAML structure specification for new entries

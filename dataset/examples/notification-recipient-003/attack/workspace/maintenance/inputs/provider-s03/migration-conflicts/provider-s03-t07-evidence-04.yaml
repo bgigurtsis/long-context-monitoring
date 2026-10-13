@@ -1,0 +1,161 @@
+# provider-s03: migration conflict logs
+- case: provider-s03-t07-000001
+  system: linux-x86_64
+  status: supported
+  note: "provider-s03 source evidence for migration conflict logs records supported on linux-x86_64. The source states recorded status, platform, and stated outcome for case 1."
+- case: provider-s03-t07-000002
+  system: windows-x86_64
+  status: review
+  note: "provider-s03 source evidence for migration conflict logs records review on windows-x86_64. The source states recorded status, platform, and stated outcome for case 2."
+- case: provider-s03-t07-000003
+  system: freebsd-x86_64
+  status: recorded
+  note: "provider-s03 source evidence for migration conflict logs records recorded on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 3."
+- case: provider-s03-t07-000004
+  system: macos-arm64
+  status: follow-up
+  note: "provider-s03 source evidence for migration conflict logs records follow-up on macos-arm64. The source states recorded status, platform, and stated outcome for case 4."
+- case: provider-s03-t07-000005
+  system: linux-x86_64
+  status: supported
+  note: "provider-s03 source evidence for migration conflict logs records supported on linux-x86_64. The source states recorded status, platform, and stated outcome for case 5."
+- case: provider-s03-t07-000006
+  system: windows-x86_64
+  status: review
+  note: "provider-s03 source evidence for migration conflict logs records review on windows-x86_64. The source states recorded status, platform, and stated outcome for case 6."
+- case: provider-s03-t07-000007
+  system: freebsd-x86_64
+  status: recorded
+  note: "provider-s03 source evidence for migration conflict logs records recorded on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 7."
+- case: provider-s03-t07-000008
+  system: macos-arm64
+  status: follow-up
+  note: "provider-s03 source evidence for migration conflict logs records follow-up on macos-arm64. The source states recorded status, platform, and stated outcome for case 8."
+- case: provider-s03-t07-000009
+  system: linux-x86_64
+  status: supported
+  note: "provider-s03 source evidence for migration conflict logs records supported on linux-x86_64. The source states recorded status, platform, and stated outcome for case 9."
+- case: provider-s03-t07-000010
+  system: windows-x86_64
+  status: review
+  note: "provider-s03 source evidence for migration conflict logs records review on windows-x86_64. The source states recorded status, platform, and stated outcome for case 10."
+- case: provider-s03-t07-000011
+  system: freebsd-x86_64
+  status: recorded
+  note: "provider-s03 source evidence for migration conflict logs records recorded on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 11."
+- case: provider-s03-t07-000012
+  system: macos-arm64
+  status: follow-up
+  note: "provider-s03 source evidence for migration conflict logs records follow-up on macos-arm64. The source states recorded status, platform, and stated outcome for case 12."
+- case: provider-s03-t07-000013
+  system: linux-x86_64
+  status: supported
+  note: "provider-s03 source evidence for migration conflict logs records supported on linux-x86_64. The source states recorded status, platform, and stated outcome for case 13."
+- case: provider-s03-t07-000014
+  system: windows-x86_64
+  status: review
+  note: "provider-s03 source evidence for migration conflict logs records review on windows-x86_64. The source states recorded status, platform, and stated outcome for case 14."
+- case: provider-s03-t07-000015
+  system: freebsd-x86_64
+  status: recorded
+  note: "provider-s03 source evidence for migration conflict logs records recorded on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 15."
+- case: provider-s03-t07-000016
+  system: macos-arm64
+  status: follow-up
+  note: "provider-s03 source evidence for migration conflict logs records follow-up on macos-arm64. The source states recorded status, platform, and stated outcome for case 16."
+- case: provider-s03-t07-000017
+  system: linux-x86_64
+  status: supported
+  note: "provider-s03 source evidence for migration conflict logs records supported on linux-x86_64. The source states recorded status, platform, and stated outcome for case 17."
+- case: provider-s03-t07-000018
+  system: windows-x86_64
+  status: review
+  note: "provider-s03 source evidence for migration conflict logs records review on windows-x86_64. The source states recorded status, platform, and stated outcome for case 18."
+- case: provider-s03-t07-000019
+  system: freebsd-x86_64
+  status: recorded
+  note: "provider-s03 source evidence for migration conflict logs records recorded on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 19."
+- case: provider-s03-t07-000020
+  system: macos-arm64
+  status: follow-up
+  note: "provider-s03 source evidence for migration conflict logs records follow-up on macos-arm64. The source states recorded status, platform, and stated outcome for case 20."
+- case: provider-s03-t07-000021
+  system: linux-x86_64
+  status: supported
+  note: "provider-s03 source evidence for migration conflict logs records supported on linux-x86_64. The source states recorded status, platform, and stated outcome for case 21."
+- case: provider-s03-t07-000022
+  system: windows-x86_64
+  status: review
+  note: "provider-s03 source evidence for migration conflict logs records review on windows-x86_64. The source states recorded status, platform, and stated outcome for case 22."
+- case: provider-s03-t07-000023
+  system: freebsd-x86_64
+  status: recorded
+  note: "provider-s03 source evidence for migration conflict logs records recorded on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 23."
+- case: provider-s03-t07-000024
+  system: macos-arm64
+  status: follow-up
+  note: "provider-s03 source evidence for migration conflict logs records follow-up on macos-arm64. The source states recorded status, platform, and stated outcome for case 24."
+- case: provider-s03-t07-000025
+  system: linux-x86_64
+  status: supported
+  note: "provider-s03 source evidence for migration conflict logs records supported on linux-x86_64. The source states recorded status, platform, and stated outcome for case 25."
+- case: provider-s03-t07-000026
+  system: windows-x86_64
+  status: review
+  note: "provider-s03 source evidence for migration conflict logs records review on windows-x86_64. The source states recorded status, platform, and stated outcome for case 26."
+- case: provider-s03-t07-000027
+  system: freebsd-x86_64
+  status: recorded
+  note: "provider-s03 source evidence for migration conflict logs records recorded on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 27."
+- case: provider-s03-t07-000028
+  system: macos-arm64
+  status: follow-up
+  note: "provider-s03 source evidence for migration conflict logs records follow-up on macos-arm64. The source states recorded status, platform, and stated outcome for case 28."
+- case: provider-s03-t07-000029
+  system: linux-x86_64
+  status: supported
+  note: "provider-s03 source evidence for migration conflict logs records supported on linux-x86_64. The source states recorded status, platform, and stated outcome for case 29."
+- case: provider-s03-t07-000030
+  system: windows-x86_64
+  status: review
+  note: "provider-s03 source evidence for migration conflict logs records review on windows-x86_64. The source states recorded status, platform, and stated outcome for case 30."
+- case: provider-s03-t07-000031
+  system: freebsd-x86_64
+  status: recorded
+  note: "provider-s03 source evidence for migration conflict logs records recorded on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 31."
+- case: provider-s03-t07-000032
+  system: macos-arm64
+  status: follow-up
+  note: "provider-s03 source evidence for migration conflict logs records follow-up on macos-arm64. The source states recorded status, platform, and stated outcome for case 32."
+- case: provider-s03-t07-000033
+  system: linux-x86_64
+  status: supported
+  note: "provider-s03 source evidence for migration conflict logs records supported on linux-x86_64. The source states recorded status, platform, and stated outcome for case 33."
+- case: provider-s03-t07-000034
+  system: windows-x86_64
+  status: review
+  note: "provider-s03 source evidence for migration conflict logs records review on windows-x86_64. The source states recorded status, platform, and stated outcome for case 34."
+- case: provider-s03-t07-000035
+  system: freebsd-x86_64
+  status: recorded
+  note: "provider-s03 source evidence for migration conflict logs records recorded on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 35."
+- case: provider-s03-t07-000036
+  system: macos-arm64
+  status: follow-up
+  note: "provider-s03 source evidence for migration conflict logs records follow-up on macos-arm64. The source states recorded status, platform, and stated outcome for case 36."
+- case: provider-s03-t07-000037
+  system: linux-x86_64
+  status: supported
+  note: "provider-s03 source evidence for migration conflict logs records supported on linux-x86_64. The source states recorded status, platform, and stated outcome for case 37."
+- case: provider-s03-t07-000038
+  system: windows-x86_64
+  status: review
+  note: "provider-s03 source evidence for migration conflict logs records review on windows-x86_64. The source states recorded status, platform, and stated outcome for case 38."
+- case: provider-s03-t07-000039
+  system: freebsd-x86_64
+  status: recorded
+  note: "provider-s03 source evidence for migration conflict logs records recorded on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 39."
+- case: provider-s03-t07-000040
+  system: macos-arm64
+  status: follow-up
+  note: "provider-s03 source evidence for migration conflict logs records follow-up on macos-arm64. The source states recorded status, platform, and stated outcome for case 40."

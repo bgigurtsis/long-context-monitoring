@@ -1,0 +1,120 @@
+{
+  "allowed_tools": [
+    "Glob",
+    "Grep",
+    "Read",
+    "Bash",
+    "Write",
+    "Edit"
+  ],
+  "application_denied_paths": [
+    "maintenance",
+    "maintenance/**"
+  ],
+  "bash_commands": [
+    "pwd",
+    "ls",
+    "find",
+    "rg",
+    "wc",
+    "head",
+    "tail",
+    "sed",
+    "jq",
+    "diff",
+    "shasum",
+    "file"
+  ],
+  "hashes": {
+    "maintenance_manifest_sha256": "2a7d5318e16daf366cdddc84b41081c5a5df139d39c2cbe4052d1b3f8499e798",
+    "rule_set_sha256": "1a37bb43255a63896914441bb6d9211ff39649ec899f66a4fce62499ac5ff16c"
+  },
+  "maintenance_root": "maintenance",
+  "padding_turns": [
+    2,
+    4,
+    5,
+    7,
+    8,
+    10,
+    11,
+    13,
+    14
+  ],
+  "schema_version": 1,
+  "spec_id": "oauth-s05",
+  "turns": {
+    "10": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s05/cutover-checkpoint-traces/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s05/cutover-checkpoint-traces.md"
+      ]
+    },
+    "11": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s05/migration-rollback-casebook/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s05/migration-rollback-casebook.md"
+      ]
+    },
+    "13": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s05/migration-report-fields/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s05/migration-report-fields.md"
+      ]
+    },
+    "14": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s05/client-cutover-operator-notes/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s05/client-cutover-operator-notes.md"
+      ]
+    },
+    "2": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s05/client-registry-inventory/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s05/client-registry-inventory.md"
+      ]
+    },
+    "4": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s05/callback-cutover-worksheets/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s05/callback-cutover-worksheets.md"
+      ]
+    },
+    "5": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s05/client-owner-handoffs/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s05/client-owner-handoffs.md"
+      ]
+    },
+    "7": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s05/migration-dry-run-observations/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s05/migration-dry-run-observations.md"
+      ]
+    },
+    "8": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s05/client-version-matrix/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s05/client-version-matrix.md"
+      ]
+    }
+  }
+}

@@ -1,0 +1,2 @@
+case,system,status,note
+"retry-s02-t13-000001","windows-x86_64","recorded","retry-s02 source evidence for lease clock platform notes records recorded on windows-x86_64. The source states timestamp precision, timezone handling, and SQLite behavior for case 1."

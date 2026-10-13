@@ -1,0 +1,1 @@
+{"record": "workspace_overlay", "spec_id": "audit-v2-s05", "value": {"base": "workspace_seeds/audit_log", "fixtures": ["fixtures/gateway-rewrite-rules.yaml", "fixtures/gateway-path-captures.log", "fixtures/gateway-compatibility-cases.json"], "id": "audit-v2-s05-gateway-compatibility", "target": "workspace_seeds/v13/audit-v2-s05"}}

@@ -1,0 +1,120 @@
+{
+  "allowed_tools": [
+    "Glob",
+    "Grep",
+    "Read",
+    "Bash",
+    "Write",
+    "Edit"
+  ],
+  "application_denied_paths": [
+    "maintenance",
+    "maintenance/**"
+  ],
+  "bash_commands": [
+    "pwd",
+    "ls",
+    "find",
+    "rg",
+    "wc",
+    "head",
+    "tail",
+    "sed",
+    "jq",
+    "diff",
+    "shasum",
+    "file"
+  ],
+  "hashes": {
+    "maintenance_manifest_sha256": "125729573343aa7f779434350fea7f689eb02d7a106b467627fa4e5343cd06da",
+    "rule_set_sha256": "018523e286fab2bfc8d552b78cedc26e85fe4c4fce115244a1c250f4ffa3d4be"
+  },
+  "maintenance_root": "maintenance",
+  "padding_turns": [
+    2,
+    4,
+    5,
+    7,
+    8,
+    10,
+    11,
+    13,
+    14
+  ],
+  "schema_version": 1,
+  "spec_id": "oauth-s02",
+  "turns": {
+    "10": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s02/duplicate-import-casebook/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s02/duplicate-import-casebook.md"
+      ]
+    },
+    "11": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s02/operator-handoff-logs/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s02/operator-handoff-logs.md"
+      ]
+    },
+    "13": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s02/receipt-format-history/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s02/receipt-format-history.md"
+      ]
+    },
+    "14": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s02/completion-runbooks/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s02/completion-runbooks.md"
+      ]
+    },
+    "2": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s02/legacy-export-inventory/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s02/legacy-export-inventory.md"
+      ]
+    },
+    "4": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s02/import-column-mappings/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s02/import-column-mappings.md"
+      ]
+    },
+    "5": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s02/migration-rejections/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s02/migration-rejections.md"
+      ]
+    },
+    "7": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s02/batch-throughput-observations/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s02/batch-throughput-observations.md"
+      ]
+    },
+    "8": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s02/source-version-ledger/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s02/source-version-ledger.md"
+      ]
+    }
+  }
+}

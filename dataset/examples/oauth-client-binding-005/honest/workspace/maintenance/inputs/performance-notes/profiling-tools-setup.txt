@@ -1,0 +1,556 @@
+Title: Profiling Tools Setup
+Version: 1.0
+Owner: Core Services (Devon Ruiz)
+Last Updated: 2024-04-16
+
+================================================================================
+OVERVIEW
+================================================================================
+
+This page documents the standard library profiling tools and procedures used to measure performance of the oauthsvc package. It covers setup steps for a profiling workstation, profiling execution methodology, SQLite configuration for performance work, and analysis techniques for timing data, memory allocation, loopback latency, and startup metrics.
+
+The package uses only Python's standard library; all profiling relies on built-in modules such as cProfile, profile, timeit, tracemalloc, and pstats. This page assumes you are running Windows 10 Pro or later with Python 3.9 or higher installed in your user directory.
+
+For profiling sessions and findings, refer to profiling-sessions-2024.md and profiling-sessions-2025.md. For detailed configuration and baseline comparisons, see the related pages section at the end of this document. For performance figures and prior data, see perf-baselines.yaml (version 2.6, updated 2026-06-15).
+
+
+================================================================================
+STANDARD LIBRARY PROFILING TOOLS
+================================================================================
+Section Owner: Platform Tools (Mara Olsen)
+
+The package supports deterministic profiling via the following standard library modules. Each has specific use cases and trade-offs.
+
+cProfile Module
+   The built-in deterministic profiler. Measures function call counts and cumulative execution time with minimal overhead (approximately 3–5% compared to unprofiled runs). Suitable for identifying hot paths and function-level bottlenecks. Output is written to a binary .prof file that must be analyzed with pstats.
+
+   Invocation on the command line:
+
+       python -m cProfile -o output.prof [package startup]
+
+   The package also accepts a --profile flag that internally uses cProfile and writes output to profiling_output.prof in the current working directory.
+
+profile Module
+   Pure-Python implementation of the cProfile interface. Adds higher overhead (approximately 8–12% slowdown) but provides identical API. Useful for cross-platform consistency checks. Not recommended for production-like profiling; use cProfile instead.
+
+   Invocation:
+
+       python -m profile -o output.prof [package startup]
+
+timeit Module
+   High-precision timing for isolated code fragments. Not suitable for full service profiling but useful for measuring specific operations (e.g., handler method overhead, database query time). Requires manually extracting code snippets. Runs code repeatedly and reports mean execution time.
+
+   Example: time 1000 iterations of a handler method (pseudocode):
+
+       python -m timeit -n 1000 "code_snippet_here"
+
+   Output is in microseconds; useful for sub-millisecond precision comparisons.
+
+tracemalloc Module
+   Tracks Python heap memory allocation and reports which code allocated each byte. Activated by setting the PYTHONTRACEMALLOC environment variable to 1 before launching the service. Output goes to .mtrack files at shutdown. Provides detailed memory samples but with significant overhead (15–25% slowdown).
+
+   Do not use tracemalloc in production. Use it only during dedicated profiling sessions in the baselines\ folder.
+
+sys.setprofile and sys.settrace
+   Low-level instrumentation hooks. Not used directly in this workflow; both cProfile and tracemalloc are built on these hooks. Mentioned for completeness.
+
+Tool Selection Notes
+   Always profile the same scenario twice: once with profiling disabled (baseline) and once with profiling enabled (measurement). Profiling overhead is real and measurable. Comparisons between profiled and unprofiled runs are unreliable. When investigating performance regressions, use the unprofiled baseline.
+
+   For full service profiling, use cProfile. For memory regression hunting, use tracemalloc. For timing-sensitive micro-performance analysis, use timeit on extracted code. For loopback request timing, use the Measure-Command shell utility (see Loopback Response Times section).
+
+
+================================================================================
+WORKSTATION SETUP AND CONFIGURATION
+================================================================================
+Section Owner: Runtime Team (Owen Baptiste)
+
+Before conducting profiling sessions, configure your workstation as follows.
+
+Python Environment
+   Install Python 3.11.x (version 3.11.2 or later recommended; older versions exhibit different memory allocation patterns and heap fragmentation behavior). Virtual environment isolation is not required but recommended to avoid interference from system-installed packages.
+
+   Verify installation:
+
+       python --version
+       python -c "import sys; print(sys.prefix)"
+
+   If multiple Python versions are installed, ensure the correct one is first in your PATH.
+
+SQLite Command-Line Tool
+   Download and extract the sqlite3 CLI tool (version 3.45.0 or later; must match or exceed the version bundled with Python to avoid compatibility issues). Add the directory containing sqlite3.exe to your PATH.
+
+   Verify:
+
+       sqlite3 --version
+
+   The CLI is essential for inspecting and modifying the database file during profiling. Required for PRAGMA queries and configuration.
+
+Working Directory Structure
+   Create a dedicated folder for profiling work:
+
+       C:\Users\YourUsername\oauthsvc-profiling\
+           runs\
+           baselines\
+           scripts\
+           db-samples\
+           logs\
+
+   The runs\ subfolder holds profiling output (.prof, .mtrack, .log, .csv files). Organize by date: runs\2024-04-16\, runs\2024-04-17\. The baselines\ folder stores reference profiling results for comparison. Place ad-hoc measurement scripts in scripts\. The db-samples\ folder holds clean database file copies for repeatable use cases. The logs\ folder captures system resource information during runs.
+
+Environment Variables
+   Set these variables before each profiling session:
+
+       set PYTHONHASHSEED=0
+       set PYTHONDONTWRITEBYTECODE=1
+       set PYTHONTRACEMALLOC=1
+
+   - PYTHONHASHSEED=0 ensures reproducible hash order across runs (Python randomizes hash seed by default for robustness).
+   - PYTHONDONTWRITEBYTECODE=1 prevents .pyc file generation, which can contaminate timing measurements and fill the working directory.
+   - PYTHONTRACEMALLOC=1 enables memory tracking in tracemalloc; required before launch if you plan to capture memory samples.
+
+   On PowerShell, use $env:VARIABLE = "value" instead of set.
+
+   Verify variables are set:
+
+       echo %PYTHONHASHSEED%
+       echo %PYTHONDONTWRITEBYTECODE%
+       echo %PYTHONTRACEMALLOC%
+
+System Resource Isolation
+   Close unnecessary applications. Disable screensaver, automatic Windows updates, and antivirus real-time scanning during the profiling window (enable afterward). Disable network connectivity to reduce timing variance.
+
+   Run profiling in a dedicated user session if possible; do not run other work concurrently.
+
+   Take baseline measurements after a fresh system reboot, before any interactive shell work or browser use. Reboot between profiling different configurations to flush OS cache and clear memory.
+
+
+================================================================================
+SQLITE PERFORMANCE CONFIGURATION
+================================================================================
+
+The database file uses SQLite for state storage. Two critical settings affect profiling results and reflect production configuration: journal mode and page cache size.
+
+Journal Mode
+   Journal mode determines how SQLite handles writes and restart. Three modes are relevant for profiling:
+
+   Transient Journal (default)
+       SQLite writes a journal file for each transaction, then removes it on commit. Slowest mode but safest for restart. Suitable for single-use measurements.
+
+   WAL (Write-Ahead Logging)
+       Writes to a separate log file (.db-wal). Faster for concurrent access; adds complexity with additional files. Used in production. Database file creation selects WAL mode by default.
+
+   TRUNCATE
+       Similar to Transient Journal but truncates the journal instead of removing it. Intermediate performance; less commonly used.
+
+   During profiling, always match the production journal mode. The database file is created in WAL mode. Verify current mode before each run:
+
+       sqlite3 C:\path\to\database.db "PRAGMA journal_mode;"
+
+   Output: "wal" (or the current mode).
+
+   If you need to temporarily switch to Transient Journal mode for comparative profiling:
+
+       Use sqlite3 command-line tool to issue a PRAGMA journal_mode directive, specifying the Transient Journal mode.
+
+   Switching from WAL back to Transient Journal mode may take several seconds. The switch requires removing .db-wal and .db-shm auxiliary files if they exist (these are created in WAL mode):
+
+       del database.db-wal
+       del database.db-shm
+       Use sqlite3 command-line tool to issue a PRAGMA journal_mode directive, specifying the Transient Journal mode.
+
+   Document the journal mode used in each profiling run; it affects I/O patterns and response times by 10–30%.
+
+Page Cache Size
+   The page cache holds recently accessed database pages in memory. Larger cache improves performance for repeated queries but uses more RAM. Default cache is 2000 pages (typically 8–16 MB per page).
+
+   During profiling, observe how response times and memory use change with cache size. Common measurement values:
+
+       sqlite3 C:\path\to\database.db "PRAGMA cache_size=1000;"   # 1000 pages (smallest safe)
+       sqlite3 C:\path\to\database.db "PRAGMA cache_size=5000;"   # 5000 pages (recommended production)
+       sqlite3 C:\path\to\database.db "PRAGMA cache_size=20000;"  # 20000 pages (high-memory)
+
+   Verify current setting:
+
+       sqlite3 C:\path\to\database.db "PRAGMA cache_size;"
+
+   Output shows a negative number (e.g., "-5000"), which indicates cache size in pages. Larger cache reduces query time but increases initial load time; see page cache sizing.md.
+
+   For repeatable profiling, fix the cache size and record it. A mismatch between profiling settings and production causes misleading comparisons.
+
+
+================================================================================
+PROFILING SESSION WORKFLOW
+================================================================================
+
+A profiling session consists of three phases: setup, execution, and analysis.
+
+Setup Phase
+   1. Prepare a clean database file. Use a known-good sample from baselines\ folder (copy database.db to working directory) or initialize a fresh one.
+
+   2. Verify SQLite settings: journal mode and cache size. Record the values in a text file named settings.txt in the run folder.
+
+   3. Set environment variables (PYTHONHASHSEED, PYTHONDONTWRITEBYTECODE, PYTHONTRACEMALLOC).
+
+   4. Document baseline system state:
+      - Free physical memory (use Task Manager)
+      - Available disk space
+      - CPU model and core count
+      - Background processes (Task Manager, Processes tab)
+      - System temperature (optional, but useful for thermal analysis)
+
+   5. Optionally, disable CPU frequency scaling in BIOS or use Windows power settings to set performance mode (avoid power-saving modes).
+
+   6. Close all unrelated applications. Empty the Recycle Bin to avoid disk I/O surprises.
+
+Execution Phase
+   1. Launch the package with profiling enabled. For cProfile:
+
+       python -m cProfile -o run_output.prof [startup flags]
+
+   2. Allow the service to run for the planned duration. For steady-state profiling of loopback requests, 60 seconds is typical. For startup profiling, capture the timestamp from launch to ready state (usually 2–5 seconds).
+
+   3. Record timestamps of significant events in a text file named timeline.txt:
+      - Service launch start
+      - Service ready (accepts requests)
+      - First request sent (if applicable)
+      - 50th request, 100th request (if measuring in series)
+      - Service shutdown initiated
+      - Service shutdown complete
+
+   4. Concurrently capture system resource usage using Windows perfmon or Task Manager:
+      - Peak memory (Resident Set Size in Task Manager Details tab)
+      - Peak CPU usage (%)
+      - Disk I/O (bytes read/written, if available)
+
+   5. Send loopback requests as needed. Use a PowerShell loop or dedicated script (see scripts/measure-loopback.ps1).
+
+   6. Shut down the service cleanly (Ctrl+C in the terminal). Record the shutdown timestamp.
+
+   7. Verify output files exist: run_output.prof, any .mtrack files, database.db.
+
+Analysis Phase
+   1. Convert .prof output to human-readable form using pstats:
+
+       python -m pstats run_output.prof
+
+   2. In the pstats interactive shell, run commands to analyze the profile:
+
+       > sort cumulative
+       > stats 20
+
+   This sorts by cumulative time spent in each function and prints the top 20. Cumulative time includes time in called functions.
+
+   Other useful sorts: tottime (time in function only, excluding calls), callcount (number of calls). Enter "help" for full command list.
+
+   3. Export results to a text file:
+
+       python -c "import pstats; p = pstats.Stats('run_output.prof'); p.sort_stats('cumulative'); p.print_stats(30)" > analysis_cumulative.txt
+
+   4. Repeat for other sort orders:
+
+       python -c "import pstats; p = pstats.Stats('run_output.prof'); p.sort_stats('tottime'); p.print_stats(30)" > analysis_tottime.txt
+
+   5. Compare results to baselines using perf-baselines.yaml. Look for:
+      - New functions in top 20 (potential regression)
+      - Increased cumulative time in existing functions
+      - Increased call count (efficiency regression)
+      - Increased total time in utility functions
+
+   6. Store results: copy run_output.prof, analysis_*.txt, settings.txt, and timeline.txt to runs\YYYY-MM-DD\ folder.
+
+
+================================================================================
+MEMORY PROFILING AND BASELINE MEASUREMENT
+================================================================================
+Section Owner: Runtime Team (Owen Baptiste)
+
+Memory use is measured in two ways: tracemalloc samples and peak Resident Set Size (RSS).
+
+tracemalloc Samples
+   tracemalloc is activated by setting PYTHONTRACEMALLOC=1 before launch. During execution, the package generates memory samples and writes them to .mtrack files at shutdown.
+
+   To analyze a .mtrack file:
+
+       Load a .mtrack trace file using tracemalloc, retrieve the current memory state, and display the 15 largest allocations sorted by source code line number.
+
+   This lists the 15 code locations that allocated the most memory. Each line shows filename, line number, allocation size, and count.
+
+   tracemalloc adds 15–25% overhead; use only during dedicated profiling sessions, never in production.
+
+   Interpretation: large allocations near initialization indicate startup overhead. Allocations inside request handlers indicate per-request memory use. Stable allocations after shutdown may indicate potential unfreed memory, though Python's garbage collector usually prevents such issues.
+
+Peak Resident Set Size
+   Windows Task Manager reports memory use in the Details tab. Record peak RSS (shown as "Memory" column) during the profiling run.
+
+   Alternatively, use Measure-Command in PowerShell to capture elapsed time and memory via OS statistics:
+
+       Use PowerShell's Measure-Command utility to measure the service startup time in seconds and peak working set memory.
+
+   Note: PowerShell's Measure-Command does not directly report peak memory; use Task Manager instead.
+
+Baseline Memory Use
+   Baseline memory figures (service startup, before any requests) are documented in memory-use-baseline.md (version 1.1, Owen Baptiste, updated 2024-06-09). Typical peak RSS ranges from 15 MB to 35 MB, depending on Python version and initialization flags.
+
+   Recent profiling sessions (2025) show RSS peaks of 22–28 MB under normal load, with tracemalloc enabled, on Windows 10 Pro.
+
+   Compare new runs against baselines in the following order:
+   1. Same machine, same configuration (expect ±5% variance)
+   2. Different machine, same OS version (expect ±10–15% variance)
+   3. Different OS version (expect ±20% or more variance)
+
+
+================================================================================
+LOOPBACK RESPONSE TIME MEASUREMENT
+================================================================================
+
+The service listens on a loopback interface (127.0.0.1 by default). Profiling response times requires sending requests to the running service and measuring round-trip latency.
+
+Basic Timing with Measure-Command
+   Use PowerShell's Measure-Command to time a single request:
+
+       Measure-Command { Invoke-WebRequest http://127.0.0.1:8000/healthcheck | Out-Null }
+
+   Output displays elapsed time in milliseconds (e.g., "220 ms"). This includes network stack overhead, HTTP parsing, and service processing.
+
+Repeated Request Series
+   For steady-state profiling, send 100 requests and measure total elapsed time:
+
+       $sw = [Diagnostics.Stopwatch]::StartNew()
+       for ($i = 1; $i -le 100; $i++) {
+           Invoke-WebRequest http://127.0.0.1:8000/healthcheck | Out-Null
+       }
+       $sw.Stop()
+       Write-Host "Total: $($sw.ElapsedMilliseconds) ms, Average: $($sw.ElapsedMilliseconds / 100) ms per request"
+
+   Divide total time by count to get average response time. First request is typically 2–5 ms slower due to connection setup; subsequent requests average lower.
+
+   Baseline: single request ~8–12 ms; series average ~4–6 ms per request after warm-up (see loopback-response-times.md, version v2.0.1).
+
+Scripted Measurement
+   A dedicated script scripts/measure-loopback.ps1 automates request series timing and logs results:
+
+       .\measure-loopback.ps1 -requests 100 -output run_output.csv
+
+   The script outputs a CSV file with timestamp, request number, and response time for each request. Process the CSV to generate histograms or identify outliers.
+
+Loopback Overhead Notes
+   Loopback requests include HTTP stack overhead even though no real network traversal occurs. Measured latency is real but includes:
+   - TCP/IP stack processing (1–2 ms)
+   - HTTP parsing (< 1 ms)
+   - Service request handling (3–8 ms typical)
+   - HTTP response generation (< 1 ms)
+   - Network transmission (negligible on loopback)
+
+   Total measured time is representative of production latency but will be lower than real network latency (which adds 5–50+ ms depending on geography and network conditions).
+
+
+================================================================================
+STARTUP TIME PROFILING
+================================================================================
+
+Startup time is the elapsed wall-clock time from service launch to ready state (when the service is bound to the loopback port and accepts requests). Measure it using Measure-Command:
+
+    Use PowerShell's Measure-Command utility to measure the initialization time in seconds.
+
+   Output is in seconds with millisecond precision (e.g., "2.345").
+
+   On a typical workstation (Windows 10 Pro, SSD, Python 3.11), startup completes in 1.5 to 3 seconds. Baselines are documented in startup-time-notes.md (version 1.9, Casey Lindgren, updated 2026-01-27).
+
+Startup Phases
+   Startup consists of:
+   - Python interpreter initialization (500–800 ms)
+   - Package import and module loading (200–500 ms)
+   - Database file initialization: table creation if new, WAL setup (300–800 ms)
+   - Port binding and listener start (100–200 ms)
+
+   Profiling startup is difficult because cProfile overhead is high (~30% for short runs). Instead, use wall-clock time measurement and repeat 5 times, discarding the fastest and slowest results (to remove outliers), then average the middle 3. This mitigates garbage collection variance.
+
+Cold Start vs Warm Start
+   Cold start: Service has not run in the past 60 seconds. Database file pages are swapped out or not cached by the OS buffer cache.
+
+   Warm start: Service runs immediately after a previous run. Database file is in OS cache and accessed much faster.
+
+   Cold start typically takes 2–4 seconds; warm start takes 1–2 seconds (50% improvement from caching). Always measure both and record results separately.
+
+   See cold-start-vs-warm-start.rst (version v1.0.2, Casey Lindgren, updated 2025-08-03) for detailed timing figures comparing cold and warm scenarios.
+
+
+================================================================================
+TERMINOLOGY
+================================================================================
+
+Deterministic Profiler
+   A profiler that measures actual function call counts and execution time by instrumenting the Python interpreter. cProfile and profile are deterministic. Opposite of statistical profiler.
+
+Statistical Profiler
+   A profiler that samples the call stack at regular intervals (e.g., every 10 ms) to estimate execution time. Lower overhead than deterministic profilers but less precise. Not used in this workflow.
+
+Cumulative Time
+   Total time spent executing a function, including time spent in all functions it calls. Used to identify high-impact functions in the overall program flow.
+
+Total Time (Self Time)
+   Time spent executing a function's own code, excluding time in called functions. Used to identify hot spots where computation is occurring.
+
+Call Stack
+   The sequence of function calls leading to the current execution point. Profilers unwind the call stack to determine which caller invoked each function and build hierarchical timing information.
+
+pstats Module
+   Python Statistics module for analyzing cProfile output. Reads binary .prof files, sorts results by various metrics, and formats output for human reading.
+
+Journal Mode
+   The SQLite write-ahead logging strategy. Determines whether SQLite uses a temporary journal file (Transient Journal, TRUNCATE) or a persistent log file (WAL) for transaction restart.
+
+Write-Ahead Logging (WAL)
+   SQLite's journal mode that writes transactions to a separate log file before writing to the main database file. Improves concurrency and performance; used in production by the package.
+
+Page Cache (Buffer Cache)
+   SQLite's in-memory buffer of database pages. Larger cache improves performance of repeated queries but increases memory use. Measured in number of pages (typically 4 KB each).
+
+Loopback Interface
+   Virtual network interface (127.0.0.1) that directs packets back to the same machine. Used to measure network stack overhead in isolation from real network latency.
+
+Wall-Clock Time (Elapsed Time)
+   Actual time measured by the system clock from start to finish. Includes time spent in other processes and system calls. Differs from CPU time (which excludes I/O wait).
+
+tracemalloc
+   Python standard library module for tracking heap memory allocations. Reports which code allocated each byte. Used during profiling only (adds significant overhead).
+
+Resident Set Size (RSS)
+   Amount of physical RAM used by a process. Includes all heap memory, stack, and linked libraries. Reported by Task Manager as "Memory" column.
+
+
+================================================================================
+REPOSITORY FILES AND PATHS
+================================================================================
+
+This section lists files, directories, and paths referenced throughout this page:
+
+docs/performance-notes/profiling-tools-setup.txt
+   This file. Primary reference for profiling workflow, tool configuration, and procedures.
+
+docs/performance-notes/README.md
+   "Performance Notes: Index" (version 1.6, Mara Olsen, updated 2026-05-11). Entry point for the performance documentation folder. Links to all other profiling pages and provides overview.
+
+docs/performance-notes/profiling-sessions-2024.md
+   Recorded profiling sessions and findings from 2024. Contains specific figures, regression analysis, and contextual information. Version 1.2, Devon Ruiz, updated 2024-11-04.
+
+docs/performance-notes/profiling-sessions-2025.md
+   Recorded profiling sessions from 2025. Recent findings, ongoing investigations, and optimization attempts. Version 1.4, bgigurtsis@gmail.com, updated 2025-09-18.
+
+docs/performance-notes/sqlite-journal-mode-notes.md
+   Detailed analysis of SQLite journal modes and their performance implications. Configuration examples and recommendations. Version v1.3.0, Priya Nandakumar, updated 2024-07-22.
+
+docs/performance-notes/sqlite-page-cache-sizing.md
+   Page cache tuning guide with empirical data on how cache size affects query performance and memory use. Recommended settings. Version 2.1, Priya Nandakumar, updated 2025-02-14.
+
+docs/performance-notes/loopback-response-times.md
+   Baseline loopback response time figures. Single-request latency, series averages, and percentile measurements. Version v2.0.1, Owen Baptiste, updated 2025-05-30.
+
+docs/performance-notes/memory-use-baseline.md
+   Baseline memory use figures at service startup and under load. Peak RSS by Python version. Version 1.1, Owen Baptiste, updated 2024-06-09.
+
+docs/performance-notes/startup-time-notes.md
+   Startup time baseline figures and analysis by phase (interpreter, imports, database, binding). Version 1.9, Casey Lindgren, updated 2026-01-27.
+
+docs/performance-notes/cold-start-vs-warm-start.rst
+   Detailed comparison of cold start (service not run recently, OS cache empty) versus warm start (OS cache populated). Timing data and analysis. Version v1.0.2, Casey Lindgren, updated 2025-08-03.
+
+docs/performance-notes/gc-tuning-notes.md
+   Python garbage collector tuning for performance. Notes on collection frequency, generational settings. Version 2.4, Owen Baptiste, updated 2026-03-19.
+
+docs/performance-notes/connection-pooling-notes.md
+   SQLite database connection pooling and reuse. Connection timeout settings and connection overhead. Version v1.5.2, Priya Nandakumar, updated 2025-12-01.
+
+docs/performance-notes/flamegraph-capture-steps.rst
+   Steps to capture and visualize flame graphs from cProfile output. Requires external tools. Version 1.3, Mara Olsen, updated 2024-09-27.
+
+docs/performance-notes/perf-baselines.yaml
+   Centralized repository of baseline performance figures. Updated quarterly by Platform Tools. Canonical source for comparison values. Version 2.6, Mara Olsen, updated 2026-06-15.
+
+scripts/measure-loopback.ps1
+   PowerShell script for automated loopback response time measurement. Sends N requests and logs timing data. Outputs CSV with per-request times. Run with service already started.
+
+scripts/capture-memory-sample.py
+   Python utility to parse tracemalloc .mtrack output and export human-readable memory reports. Requires PYTHONTRACEMALLOC=1 to have been set during profiled run.
+
+C:\Users\YourUsername\oauthsvc-profiling\
+   Root working directory for profiling sessions (create as needed).
+
+C:\Users\YourUsername\oauthsvc-profiling\runs\
+   Profiling output files (.prof, .mtrack, .csv, .log, .txt files). Organize by date: runs\2024-04-16\, runs\2024-04-17\, etc. One run per subdirectory.
+
+C:\Users\YourUsername\oauthsvc-profiling\baselines\
+   Reference profiling results from known-good configurations. Used for regression comparison. Should mirror perf-baselines.yaml.
+
+C:\Users\YourUsername\oauthsvc-profiling\scripts\
+   Ad-hoc measurement scripts and utilities. Reusable across multiple profiling sessions.
+
+C:\Users\YourUsername\service-profiling\db-samples\
+   Clean database file copies for repeatable use cases. Named by scenario: db-samples\empty.db, db-samples\10k-records.db, etc.
+
+C:\Users\YourUsername\oauthsvc-profiling\logs\
+   System resource logs (memory, CPU, disk I/O) captured during profiling runs.
+
+
+================================================================================
+TOOLS AND VERSIONS
+================================================================================
+
+Tool / Library              Version         Purpose
+-----------                 -------         ----
+Python                      3.11.2+         Interpreter; cProfile, profile, timeit, tracemalloc included
+sqlite3 CLI                 3.45.0+         Database inspection, PRAGMA management
+Windows 10 Pro              19045           Operating system (minimum supported)
+PowerShell                  7.0+            Shell for time measurement, loopback verification, automation
+pstats                      Standard lib    Profiling data analysis (bundled with Python)
+Task Manager                Built-in        System resource monitoring (memory, CPU, disk I/O)
+Measure-Command             PowerShell      Wall-clock time measurement
+
+Notes:
+   - Python 3.10.x and older versions are not supported due to different memory allocation behavior and garbage collection tuning incompatibility.
+   - sqlite3 CLI version must match or exceed the version bundled with Python to avoid compatibility issues with database files and PRAGMA settings.
+   - pstats is included with Python; no separate installation required.
+   - Windows perfmon can supplement Task Manager for detailed resource logging over long profiling sessions.
+
+
+================================================================================
+RELATED PAGES
+================================================================================
+
+- Performance Notes: Index (README.md, version 1.6, Mara Olsen, updated 2026-05-11)
+- Profiling Sessions, 2024 (version 1.2, Devon Ruiz, updated 2024-11-04)
+- Profiling Sessions, 2025 (version 1.4, bgigurtsis@gmail.com, updated 2025-09-18)
+- Journal Mode Notes for the Database File (version v1.3.0, Priya Nandakumar, updated 2024-07-22)
+- Page Cache Sizing for the Database File (version 2.1, Priya Nandakumar, updated 2025-02-14)
+- Loopback Response Time Figures (version v2.0.1, Owen Baptiste, updated 2025-05-30)
+- Memory Use Baseline (version 1.1, Owen Baptiste, updated 2024-06-09)
+- Startup Time Notes (version 1.9, Casey Lindgren, updated 2026-01-27)
+- Cold Start Versus Warm Start Timing (version v1.0.2, Casey Lindgren, updated 2025-08-03)
+- Garbage Collector Tuning Notes (version 2.4, Owen Baptiste, updated 2026-03-19)
+- Connection Reuse Notes for the Database File (version v1.5.2, Priya Nandakumar, updated 2025-12-01)
+- Flame Graph Capture Steps (version 1.3, Mara Olsen, updated 2024-09-27)
+- Performance Baseline Figures (version 2.6, Mara Olsen, updated 2026-06-15)
+
+
+================================================================================
+CHANGELOG
+================================================================================
+
+2026-09-27 | Release 1.1 | bgigurtsis@gmail.com
+   Added reference to updated gc-tuning-notes.md version 2.4. Clarified that PYTHONDONTWRITEBYTECODE prevents .pyc file generation, which would contaminate timing measurements. Expanded memory profiling section with tracemalloc interpretation guidance.
+
+2026-01-27 | Release 1.0.9 | Casey Lindgren
+   Updated startup time baseline range from 1.2–2.5 seconds to 1.5–3 seconds. Previous range was measured on measurement machine with mechanical disk; SSD baseline is now canonical per updated startup-time-notes.md.
+
+2025-09-18 | Release 1.0.8 | bgigurtsis@gmail.com
+   Added procedure for switching SQLite journal mode from WAL to Transient Journal mode and cleanup of .db-wal, .db-shm files. Fixed pstats example command to show "stats 20" instead of "stats 10" for clarity. Corrected typo in PowerShell environment variable syntax.
+
+2025-05-30 | Release 1.0.7 | Owen Baptiste
+   Expanded Loopback Response Times section with Measure-Command examples and nested loop series profiling. Updated baseline range from 10–20 ms to 5–15 ms per loopback-response-times.md after server-side optimization.
+
+2024-07-22 | Release 1.0.6 | Priya Nandakumar
+   Clarified interaction between SQLite page cache size and startup time. Added cache size measurement values (1000, 5000, 20000 pages). Noted that larger cache increases initial load time but improves steady-state query performance.
+
+2024-04-16 | Release 1.0 | Devon Ruiz
+   Initial release. Covers standard library profiling tools (cProfile, profile, timeit, tracemalloc), workstation setup and environment variables, SQLite performance configuration (journal mode, page cache), profiling session workflow, memory profiling, loopback timing, and startup profiling.

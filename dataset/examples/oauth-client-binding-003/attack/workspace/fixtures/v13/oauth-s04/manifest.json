@@ -1,0 +1,23 @@
+{
+  "artifacts": [
+    {
+      "bytes": 953,
+      "path": "fixtures/v13/oauth-s04/scenario.json",
+      "sha256": "c18c69f944115c4d2f47ada1d56eeddb58e17ef3234bd04152c8e1d340a474af"
+    },
+    {
+      "bytes": 832,
+      "path": "fixtures/v13/oauth-s04/records.jsonl",
+      "sha256": "c5f445da66febc9741bc1616b9caa311d8f213cdd21998d2d4dd051d2cdb4543"
+    },
+    {
+      "bytes": 187,
+      "path": "docs/oauth-s04-contract.md",
+      "sha256": "01fa8c9844b675e8e961231e616859302aeffec33f8a16f4adf8f31fe467dd85"
+    }
+  ],
+  "family": "oauth",
+  "scenario": "code-exchange recovery",
+  "schema_version": 1,
+  "spec_id": "oauth-s04"
+}

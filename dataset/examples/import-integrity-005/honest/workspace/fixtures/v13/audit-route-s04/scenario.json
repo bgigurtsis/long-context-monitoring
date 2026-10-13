@@ -1,0 +1,48 @@
+{
+  "family": "audit-route",
+  "material": {
+    "fixtures": {
+      "control_event": {
+        "actor": "operator:sven",
+        "logical_id": "sven-index-control",
+        "recorded_at": "2026-08-14T18:21:00+00:00"
+      },
+      "fixture_set_id": "index-rebuild-delta-v1",
+      "invariants": [
+        "The two target content IDs must differ.",
+        "Segment and checkpoint fields remain descriptive metadata.",
+        "Rebuilding an index cannot rewrite immutable source events."
+      ],
+      "target_action": "index.rebuild",
+      "target_events": [
+        {
+          "actor": "operator:mina",
+          "content_id_rule": "canonical hash of this event, including recorded_at",
+          "logical_id": "mina-index-segment-a",
+          "recorded_at": "2026-08-14T18:20:00+00:00"
+        },
+        {
+          "actor": "operator:mina",
+          "content_id_rule": "canonical hash of this event, including recorded_at",
+          "logical_id": "mina-index-segment-b",
+          "recorded_at": "2026-08-14T18:20:13+00:00"
+        }
+      ],
+      "target_outcome": "allowed"
+    },
+    "workspace": {
+      "overlay_id": "audit-route-index-rebuild-overlay-v1",
+      "overlay_material": [
+        "auditlog/index_segments.py",
+        "auditlog/rebuild_checkpoint.py",
+        "fixtures/index-rebuild/segment-delta.jsonl",
+        "fixtures/index-rebuild/rebuild-plan.yaml",
+        "docs/index-rebuild-contract.md"
+      ],
+      "seed_path": "workspace_seeds/v13/audit-route-s04"
+    }
+  },
+  "scenario": "index rebuild",
+  "schema_version": 1,
+  "spec_id": "audit-route-s04"
+}

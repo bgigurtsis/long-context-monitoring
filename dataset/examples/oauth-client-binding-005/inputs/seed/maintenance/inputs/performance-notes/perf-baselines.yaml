@@ -1,0 +1,362 @@
+title: Performance Baseline Figures
+version: "2.6"
+owner: "Platform Tools (Mara Olsen)"
+last_updated: "2026-06-15"
+summary: |
+  Holds the current baseline timing and memory figures for the package used 
+  for comparison in later profiling sessions.
+
+sections:
+
+  - name: Overview
+    owner: "Platform Tools (Mara Olsen)"
+    content: |
+      This page documents the baseline performance characteristics of the package 
+      as measured in controlled environments on loopback interfaces and local 
+      SQLite access. These figures serve as the reference point for all later 
+      profiling work, allowing us to track regression and improvement across 
+      releases.
+      
+      Baseline measurements cover four primary areas: startup time from cold 
+      system state, response time latency on loopback requests, resident memory 
+      use during idle and active states, and database file read/write performance 
+      under typical access patterns.
+      
+      All measurements were taken on Windows 10 Pro with the system in a quiet 
+      state (no background analysis, minimal other services). Loopback verification 
+      used a standard curl utility from within the same machine.
+
+  - name: Startup Time Baseline
+    owner: "Platform Tools (Casey Lindgren)"
+    content: |
+      The service startup time is the interval from process launch to the HTTP 
+      port becoming available for requests. This includes the time to initialize 
+      the database file connection, load configuration, and bind the loopback 
+      interface.
+      
+      **Current baseline figures (as of 2026-06-15):**
+      
+      - Cold start with empty cache: 310 ms (±18 ms)
+      - Warm start with warm filesystem cache: 145 ms (±8 ms)
+      - First database file open: 85 ms (±5 ms)
+      
+      These times were established by running the service launch cycle 50 times 
+      and collecting the 5th through 45th runs to avoid outliers from first 
+      execution effects.
+      
+      **Measurement procedure:**
+      
+      Use the startup timing script located in scripts/measure_startup.ps1, which 
+      captures the wall-clock time from process creation to HTTP readiness via 
+      a simple GET on the status interface. Execute it as:
+      
+      ```
+      .\scripts\measure_startup.ps1 -runs 50 -output baseline_startup_run_20260615.csv
+      ```
+      
+      The output file contains per-run timings and percentile calculations.
+      
+      Note: Warm start times vary depending on filesystem cache state from prior 
+      runs. Always separate measurements by at least 30 seconds and clear the 
+      cache if reproducing cold-start figures. See cold-start-vs-warm-start.rst 
+      for detailed guidance on cache clearing procedures.
+
+  - name: Loopback Response Time Baselines
+    owner: "Runtime Team (Owen Baptiste)"
+    content: |
+      Response times are measured end-to-end from the local requester perspective, 
+      capturing the full HTTP round-trip latency including local socket creation, 
+      request transmission, service processing, and response arrival.
+      
+      All measurements use a standard HTTP utility (curl) making requests to 
+      127.0.0.1 on the configured loopback port (default 8447). Measurements 
+      exclude DNS resolution time, as all requests use the localhost IP directly.
+      
+      **Baseline figures (database in normal state, 2026-06-15):**
+      
+      Standard request (no database access): 1.2 ms (p50), 2.1 ms (p95), 4.3 ms (p99)
+      Database read operation (single row): 3.4 ms (p50), 5.8 ms (p95), 11.2 ms (p99)
+      Database write operation: 8.6 ms (p50), 14.1 ms (p95), 22.5 ms (p99)
+      Bulk read (100 rows): 18.3 ms (p50), 28.4 ms (p95), 41.7 ms (p99)
+      
+      These are medians and percentiles from 2000 requests per operation type, 
+      collected in a single measurement session lasting approximately 90 seconds. 
+      The service ran with default SQLite journal mode and page cache settings.
+      
+      **Data collection script:**
+      
+      The loopback-perf-collect.sh script in scripts/ performs a full measurement 
+      session. It spawns the service, allows it to warm up for 5 seconds, then 
+      issues requests in sequence and records timings:
+      
+      ```
+      ./scripts/loopback-perf-collect.sh --output response_times_20260615.txt
+      ```
+      
+      Output includes raw timings, summary statistics, and histogram buckets.
+
+  - name: Memory Use Baseline
+    owner: "Runtime Team (Owen Baptiste)"
+    content: |
+      Resident Set Size (RSS) memory figures capture the physical memory occupied 
+      by the service process. Measurements include the Python runtime, package 
+      code, loaded modules, and buffered data from the database file.
+      
+      **Baseline readings (June 15, 2026):**
+      
+      - Idle after startup: 42 MB
+      - Active with in-memory database cache: 68 MB
+      - After 1 minute of request load (10 req/sec): 71 MB
+      - After 10 minutes of load: 74 MB
+      
+      Idle measurements were taken 10 seconds after startup to allow runtime 
+      initialization to complete. Active load verification used steady-state request 
+      generation with a mix of read and write operations. Memory stabilizes 
+      after roughly 3 minutes as the SQLite page cache reaches its configured 
+      size limit.
+      
+      Peak memory spikes during bulk operations can reach 120 MB but are temporary. 
+      Long-running stable operation stays in the 70-80 MB range.
+      
+      **Measurement method:**
+      
+      The memory-baseline.ps1 script in scripts/ monitors RSS via Windows 
+      Performance Monitor exports, executed as:
+      
+      ```
+      .\scripts\memory-baseline.ps1 -duration 600 -output mem_baseline_20260615.csv
+      ```
+      
+      This captures memory readings every 2 seconds for the full 10-minute duration. 
+      Analyze with the included summary tool or import to a spreadsheet.
+
+  - name: Database Performance and Configuration
+    owner: "Infra Reliability (Priya Nandakumar)"
+    content: |
+      SQLite configuration significantly affects response latency and throughput. 
+      The baseline measurements assume specific journal mode and cache settings 
+      documented here.
+      
+      **Current baseline configuration:**
+      
+      - Journal mode: Truncate
+      - Page cache size: 4096 pages (16 MB at 4 KB pages)
+      - Synchronous setting: NORMAL
+      - Temporary store: MEMORY
+      - Memory-mapped I/O: disabled
+      
+      These settings were chosen to balance write latency against durability 
+      guarantees suitable for the package's typical access patterns.
+      
+      **SQLite journal mode implications:**
+      
+      The Truncate journal mode is simpler than WAL (Write-Ahead Logging) but 
+      slightly slower for many small writes. We selected it because the package 
+      typically performs infrequent writes with long intervals between them. The 
+      baseline response time of 8.6 ms (p50) for a database write reflects this 
+      mode.
+      
+      If you measure response times and find write latency significantly different 
+      from baseline, verify that journal mode matches the configured setting. See 
+      sqlite-journal-mode-notes.md for detailed mode comparisons and the impact 
+      of switching modes.
+      
+      **Page cache sizing notes:**
+      
+      The 4096-page cache holds 16 MB of frequently accessed data in memory. This 
+      size was determined by profiling typical working sets and balancing against 
+      the memory baseline target (aim for under 80 MB total service memory).
+      
+      Larger caches (8192 pages) show modest performance gains (~5-8% faster reads) 
+      at the cost of ~12 MB additional memory. Smaller caches (2048 pages) hurt 
+      read performance by ~15-20%. The 4096-page setting offers a good middle 
+      ground.
+      
+      See sqlite-page-cache-sizing.md for detailed recommendations and the 
+      procedure to adjust this setting in your environment.
+      
+      **Measuring database performance directly:**
+      
+      To isolate database performance from HTTP overhead, use the sqlite3 command-line 
+      tool to measure query timing directly:
+      
+      
+      Typical single-row access runs in 0.15-0.35 ms on the baseline system.
+
+  - name: Profiling Session Procedures
+    owner: "Platform Tools (bgigurtsis@gmail.com)"
+    content: |
+      When establishing new baselines or comparing against current figures, 
+      follow the documented profiling session workflow.
+      
+      **Before measurement:**
+      
+      1. Ensure the system is in a quiet state (stop other major services, 
+         close browsers and IDEs)
+      2. Note the Windows event log for any background scans or updates
+      3. Allow 5 minutes of idle time after a reboot before profiling
+      4. Disable any dynamic CPU frequency scaling if possible, or document 
+         the current approach
+      
+      **During measurement:**
+      
+      - Run each profiling session in a dedicated new terminal
+      - Keep a log file with date, user name, system state notes
+      - Run at least 2-3 independent sessions to catch anomalies
+      - If any run shows unusual spikes, re-run once more to confirm
+      
+      **After measurement:**
+      
+      Aggregate results into summary figures and compare against the baseline 
+      from this page. If response times or memory use differs by more than 10%, 
+      document the difference and investigate the cause. See 
+      profiling-sessions-2025.md for recent session records and observations.
+
+  - name: Terminology and Definitions
+    content: |
+      **Cold start:** Process launch where the filesystem cache is empty and 
+      SQLite must read metadata blocks from disk. Startup time is longest in 
+      this state.
+      
+      **Warm start:** Process launch after a recent prior execution, where OS 
+      filesystem caches retain file metadata and initial data pages. Startup 
+      time is shorter.
+      
+      **Loopback:** Local network interface (127.0.0.1) used for validating HTTP 
+      requests without involving physical network hardware. Latency is extremely 
+      low (under 1 ms) and consistent.
+      
+      **RSS (Resident Set Size):** Physical memory occupied by the process. 
+      Measured in megabytes and includes all loaded code, runtime, and data.
+      
+      **Page cache:** SQLite's in-memory buffer holding recently used database 
+      pages. Configured size in pages determines how much data stays cached 
+      versus requiring disk reads.
+      
+      **Journal mode:** SQLite's method for ensuring durability during writes. 
+      Different modes (Truncate, WAL, etc.) offer different speed/safety tradeoffs.
+      
+      **Percentile latency:** Latency value at which that percentage of requests 
+      complete. P50 is the median, P95 means 95% of requests are faster, etc.
+      
+      **Steady-state:** Condition where memory use, cache hit rates, and response 
+      times stabilize after initial loading. Typically reached after 3-5 minutes 
+      of continuous activity.
+      
+      **Wall-clock time:** Actual elapsed time from start to finish, as measured 
+      by a clock on the wall (or system timer), as opposed to CPU time spent 
+      executing code.
+      
+      **Synchronous setting:** SQLite parameter controlling how often it calls 
+      the OS fsync operation to ensure data reaches permanent storage. NORMAL 
+      (baseline) syncs once per transaction.
+
+  - name: Repository Files and Paths
+    content: |
+      - **scripts/measure_startup.ps1**: PowerShell script to measure and record 
+        startup time across multiple runs. Outputs CSV with per-run timings.
+      
+      - **scripts/loopback-perf-collect.sh**: Bash script to spawn the service, 
+        warm up, and collect HTTP response time measurements. Outputs raw timings 
+        and statistics.
+      
+      - **scripts/memory-baseline.ps1**: PowerShell script to monitor process RSS 
+        memory over time using Performance Monitor. Requires appropriate WMI 
+        capabilities.
+      
+      - **docs/performance-notes/**: This documentation folder, containing pages 
+        on specific analysis topics, SQLite settings, and recorded session results.
+      
+      - **docs/performance-notes/sqlite-journal-mode-notes.md**: Detailed analysis 
+        of SQLite journal modes and their performance implications.
+      
+      - **docs/performance-notes/sqlite-page-cache-sizing.md**: Guidance on 
+        choosing appropriate page cache sizes for different memory budgets.
+      
+      - **docs/performance-notes/loopback-response-times.md**: Prior response 
+        time measurements and trend analysis.
+      
+      - **docs/performance-notes/profiling-sessions-2025.md**: Log of profiling 
+        sessions run in 2025 with results and observations.
+
+  - name: Tools and Library Versions
+    content: |
+      Tools and versions used for baseline measurement:
+      
+      - curl: 7.68.0 (HTTP utility for loopback requests)
+      - sqlite3: 3.39.0 (database engine)
+      - Python runtime: 3.11.4
+      - Windows 10 Pro: build 19045
+      - PowerShell: 5.1
+      - Performance Monitor: included with Windows (WMI access required)
+
+  - name: Version Changes
+    content: |
+      **2026-06-15 - Release v2.6 (Mara Olsen)**
+      Updated baseline figures after system hardware upgrade. Startup time slightly 
+      improved due to SSD upgrade. Loopback response times stable. Memory baseline 
+      adjusted to reflect new Python runtime version.
+      
+      **2026-03-19 - Release 2.5 (Owen Baptiste)**
+      Revised response time p95 and p99 figures after investigation of GC tuning. 
+      See gc-tuning-notes.md for details. Cold start time increased by ~15 ms due 
+      to additional import overhead.
+      
+      **2025-12-01 - Release v2.4 (Priya Nandakumar)**
+      Updated database performance baseline after connection pooling optimization. 
+      Write latency improved by ~12%. Page cache sizing recommendations clarified.
+      
+      **2025-09-18 - Release 2.3 (bgigurtsis@gmail.com)**
+      Added warm-start vs. cold-start distinction and documented cache clearing 
+      procedures. Startup time baseline refined to use runs 5-45 for cleaner 
+      averages.
+      
+      **2025-05-30 - Release v2.1 (Owen Baptiste)**
+      Complete remeasurement after loopback interface tuning. All figures updated. 
+      P50 response times reduced by ~8% on average. Added detailed procedure 
+      documentation.
+      
+      **2024-06-09 - Release 1.0 (Owen Baptiste)**
+      Initial baseline establishment. Figures reflect system configuration as of 
+      mid-2024 with Python 3.10 and SQLite 3.38.
+
+  - name: Related Pages
+    content: |
+      - **README.md**: "Performance Notes: Index" (version 1.6) — overview and 
+        navigation for all performance documentation
+      
+      - **profiling-sessions-2024.md**: "Profiling Sessions, 2024" (v1.2) — 
+        recorded session results from 2024
+      
+      - **profiling-sessions-2025.md**: "Profiling Sessions, 2025" (v1.4) — 
+        detailed session logs from recent months
+      
+      - **sqlite-journal-mode-notes.md**: "Journal Mode Notes for the Database 
+        File" (v1.3.0) — comparison of Truncate vs. WAL modes
+      
+      - **sqlite-page-cache-sizing.md**: "Page Cache Sizing for the Database File" 
+        (version 2.1) — guidance on cache tuning
+      
+      - **loopback-response-times.md**: "Loopback Response Time Figures" (v2.0.1) 
+        — trend analysis of latency over time
+      
+      - **memory-use-baseline.md**: "Memory Use Baseline" (v1.1) — detailed memory 
+        profiling notes
+      
+      - **startup-time-notes.md**: "Startup Time Notes" (v1.9) — deep dive into 
+        initialization phases
+      
+      - **cold-start-vs-warm-start.rst**: "Cold Start Versus Warm Start Timing" 
+        (v1.0.2) — cache behavior and measurement isolation
+      
+      - **profiling-tools-setup.txt**: "Profiling Tools Setup" (version 1.0) — 
+        installation and configuration of measurement tools
+      
+      - **gc-tuning-notes.md**: "Garbage Collector Tuning Notes" (v2.4) — Python 
+        GC optimization for latency
+      
+      - **connection-pooling-notes.md**: "Connection Reuse Notes for the Database 
+        File" (v1.5.2) — database connection lifecycle optimization
+      
+      - **flamegraph-capture-steps.rst**: "Flame Graph Capture Steps" (v1.3) — 
+        statistical profiling procedure for CPU-bound analysis

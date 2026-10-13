@@ -1,0 +1,324 @@
+{
+  "artifact_count": 45,
+  "artifacts": [
+    {
+      "bytes": 37665,
+      "path": "maintenance/inputs/retry-s02/lease-duration-survey/retry-s02-t02-evidence-01.md",
+      "sha256": "16dcbc7892a47d309da0803df61bd5f5bfce06a7ad1d5d368a7dcd36b77505eb",
+      "subject": "queue lease duration survey",
+      "turn": 2
+    },
+    {
+      "bytes": 37777,
+      "path": "maintenance/inputs/retry-s02/lease-duration-survey/retry-s02-t02-evidence-02.jsonl",
+      "sha256": "cc722cb9e819f422d4f1fe5c0d7d16918253758a7ff1c3572207daecf5b16f22",
+      "subject": "queue lease duration survey",
+      "turn": 2
+    },
+    {
+      "bytes": 37836,
+      "path": "maintenance/inputs/retry-s02/lease-duration-survey/retry-s02-t02-evidence-03.csv",
+      "sha256": "ca812b6f909f3671084833d8878681eb0c34aa94dacdbec0f07c229c7f693339",
+      "subject": "queue lease duration survey",
+      "turn": 2
+    },
+    {
+      "bytes": 37643,
+      "path": "maintenance/inputs/retry-s02/lease-duration-survey/retry-s02-t02-evidence-04.yaml",
+      "sha256": "90b3c30185abe3a28a6c7ac5e2d2205778d4e2df5bd012d6cd145334733efa5d",
+      "subject": "queue lease duration survey",
+      "turn": 2
+    },
+    {
+      "bytes": 37731,
+      "path": "maintenance/inputs/retry-s02/lease-duration-survey/retry-s02-t02-evidence-05.log",
+      "sha256": "35c77f5ddce8c46829ae9caf9e3ed1ef7e6220658d5dce90d4b59f89ffd5b91c",
+      "subject": "queue lease duration survey",
+      "turn": 2
+    },
+    {
+      "bytes": 35557,
+      "path": "maintenance/inputs/retry-s02/claim-record-samples/retry-s02-t04-evidence-01.md",
+      "sha256": "8ce6aaf477569efe7623b97615de3ac137cc9889f7487a37313c8fbffdad30c7",
+      "subject": "durable claim record samples",
+      "turn": 4
+    },
+    {
+      "bytes": 35464,
+      "path": "maintenance/inputs/retry-s02/claim-record-samples/retry-s02-t04-evidence-02.jsonl",
+      "sha256": "abf91816dbe5b0faf6a7761983c4b5a463bea9543eb720f921566222561d137b",
+      "subject": "durable claim record samples",
+      "turn": 4
+    },
+    {
+      "bytes": 35516,
+      "path": "maintenance/inputs/retry-s02/claim-record-samples/retry-s02-t04-evidence-03.csv",
+      "sha256": "f3c1d6e5f082dc6aac97b8b35643f20a74f4b481821bac1c934232522a172607",
+      "subject": "durable claim record samples",
+      "turn": 4
+    },
+    {
+      "bytes": 35535,
+      "path": "maintenance/inputs/retry-s02/claim-record-samples/retry-s02-t04-evidence-04.yaml",
+      "sha256": "1e0443635b0795e4e09ced659f81a51aba35ac299e37319883b42ed2452f7094",
+      "subject": "durable claim record samples",
+      "turn": 4
+    },
+    {
+      "bytes": 35550,
+      "path": "maintenance/inputs/retry-s02/claim-record-samples/retry-s02-t04-evidence-05.log",
+      "sha256": "c4db5fd43b92a5a6dd351b2009a6709dbe91953b2e87bd66a391c542c1746506",
+      "subject": "durable claim record samples",
+      "turn": 4
+    },
+    {
+      "bytes": 35536,
+      "path": "maintenance/inputs/retry-s02/lease-clock-fixtures/retry-s02-t05-evidence-01.md",
+      "sha256": "c6d22d65b1c24c43172ecceeb2a5efa32f1967c2830e7171499f505d619e3c37",
+      "subject": "deterministic lease clock fixtures",
+      "turn": 5
+    },
+    {
+      "bytes": 35521,
+      "path": "maintenance/inputs/retry-s02/lease-clock-fixtures/retry-s02-t05-evidence-02.jsonl",
+      "sha256": "4f3ac06187f4c1f596da5a75158192f507657e3768af307ca7de5e20f0e42a23",
+      "subject": "deterministic lease clock fixtures",
+      "turn": 5
+    },
+    {
+      "bytes": 35604,
+      "path": "maintenance/inputs/retry-s02/lease-clock-fixtures/retry-s02-t05-evidence-03.csv",
+      "sha256": "651400c8dfd08ff4fb51550ca8bb832c54b474c47ae50f1a908184733d8c1e72",
+      "subject": "deterministic lease clock fixtures",
+      "turn": 5
+    },
+    {
+      "bytes": 35514,
+      "path": "maintenance/inputs/retry-s02/lease-clock-fixtures/retry-s02-t05-evidence-04.yaml",
+      "sha256": "f9e16231212ed78bf9decf3a745a56b1ab1d0302ab84abc2031aad05d7534e08",
+      "subject": "deterministic lease clock fixtures",
+      "turn": 5
+    },
+    {
+      "bytes": 35504,
+      "path": "maintenance/inputs/retry-s02/lease-clock-fixtures/retry-s02-t05-evidence-05.log",
+      "sha256": "baefae5fad8f064671d49e69e1a5c969d6e3c6abb65c961811fb9b1eaa129e61",
+      "subject": "deterministic lease clock fixtures",
+      "turn": 5
+    },
+    {
+      "bytes": 34477,
+      "path": "maintenance/inputs/retry-s02/renewal-heartbeat-results/retry-s02-t07-evidence-01.md",
+      "sha256": "aa397f2f6f7c824289960f4e2d6c0d939e40c9fb925572d85416471c11648fec",
+      "subject": "lease renewal heartbeat results",
+      "turn": 7
+    },
+    {
+      "bytes": 34459,
+      "path": "maintenance/inputs/retry-s02/renewal-heartbeat-results/retry-s02-t07-evidence-02.jsonl",
+      "sha256": "33cf113c03fcd5e22ba5eab3c0248d178aa09513e874a3fb8b1337dce85b4ade",
+      "subject": "lease renewal heartbeat results",
+      "turn": 7
+    },
+    {
+      "bytes": 34534,
+      "path": "maintenance/inputs/retry-s02/renewal-heartbeat-results/retry-s02-t07-evidence-03.csv",
+      "sha256": "54331ef0f02727cb657837eaa3d92373d7aada6ab994147d1866c2d3eab81931",
+      "subject": "lease renewal heartbeat results",
+      "turn": 7
+    },
+    {
+      "bytes": 34455,
+      "path": "maintenance/inputs/retry-s02/renewal-heartbeat-results/retry-s02-t07-evidence-04.yaml",
+      "sha256": "18315647cc8640fd90786565deba4083e9b640f9e9aeb57a598a6b6d2d3621f9",
+      "subject": "lease renewal heartbeat results",
+      "turn": 7
+    },
+    {
+      "bytes": 34435,
+      "path": "maintenance/inputs/retry-s02/renewal-heartbeat-results/retry-s02-t07-evidence-05.log",
+      "sha256": "6dff352920abd86b5c69bc177dc92809c285f9435b8a753d9ac83804b43e94aa",
+      "subject": "lease renewal heartbeat results",
+      "turn": 7
+    },
+    {
+      "bytes": 34600,
+      "path": "maintenance/inputs/retry-s02/reclaim-race-observations/retry-s02-t08-evidence-01.md",
+      "sha256": "74f17137a2741342b7834a1a448c318a42b852921dea9f57217078acfd194c4a",
+      "subject": "concurrent lease reclaim observations",
+      "turn": 8
+    },
+    {
+      "bytes": 34550,
+      "path": "maintenance/inputs/retry-s02/reclaim-race-observations/retry-s02-t08-evidence-02.jsonl",
+      "sha256": "1a4a533faa11c698715c2c8ca8eaae2705733b2fc1827c9b8d86b1cf6a117536",
+      "subject": "concurrent lease reclaim observations",
+      "turn": 8
+    },
+    {
+      "bytes": 34497,
+      "path": "maintenance/inputs/retry-s02/reclaim-race-observations/retry-s02-t08-evidence-03.csv",
+      "sha256": "3dae456f1f7cdd5e213c4d6c0c3f210c0a1dfd72d681206354ec423a3fb98fd0",
+      "subject": "concurrent lease reclaim observations",
+      "turn": 8
+    },
+    {
+      "bytes": 34578,
+      "path": "maintenance/inputs/retry-s02/reclaim-race-observations/retry-s02-t08-evidence-04.yaml",
+      "sha256": "d577481ee99323ccda152273fddb38dcf7beb8553c583f85cd5f6b81e95fb66f",
+      "subject": "concurrent lease reclaim observations",
+      "turn": 8
+    },
+    {
+      "bytes": 34592,
+      "path": "maintenance/inputs/retry-s02/reclaim-race-observations/retry-s02-t08-evidence-05.log",
+      "sha256": "b039338952c1ac22f2b8bf8e71f2ea151b9d2609eaa3266bec211cde6cc63739",
+      "subject": "concurrent lease reclaim observations",
+      "turn": 8
+    },
+    {
+      "bytes": 33692,
+      "path": "maintenance/inputs/retry-s02/queue-support-tickets/retry-s02-t10-evidence-01.md",
+      "sha256": "3b53c64bf7352fd767194130505b2672f3cce44c148d03abddfe3b35d883845d",
+      "subject": "expired lease support tickets",
+      "turn": 10
+    },
+    {
+      "bytes": 33732,
+      "path": "maintenance/inputs/retry-s02/queue-support-tickets/retry-s02-t10-evidence-02.jsonl",
+      "sha256": "f2014df75491358566ea6b14fdfa9728131132f3c8d75f0c0f52eadaec6938b6",
+      "subject": "expired lease support tickets",
+      "turn": 10
+    },
+    {
+      "bytes": 33586,
+      "path": "maintenance/inputs/retry-s02/queue-support-tickets/retry-s02-t10-evidence-03.csv",
+      "sha256": "324762ace1a1a4bfb6078a886e0ac0f08f075e7ee1f7603c0271d68d3a30119d",
+      "subject": "expired lease support tickets",
+      "turn": 10
+    },
+    {
+      "bytes": 33669,
+      "path": "maintenance/inputs/retry-s02/queue-support-tickets/retry-s02-t10-evidence-04.yaml",
+      "sha256": "d7ad307816a0e66f1f946761525c0d99abc4c4ef5009f890ca58f3de96d73ab4",
+      "subject": "expired lease support tickets",
+      "turn": 10
+    },
+    {
+      "bytes": 33595,
+      "path": "maintenance/inputs/retry-s02/queue-support-tickets/retry-s02-t10-evidence-05.log",
+      "sha256": "6eb3e6d8e720c7896429c94176965cd6fef0b2c7e04d94610ea522aa90d0522d",
+      "subject": "expired lease support tickets",
+      "turn": 10
+    },
+    {
+      "bytes": 33689,
+      "path": "maintenance/inputs/retry-s02/lease-metric-snapshots/retry-s02-t11-evidence-01.md",
+      "sha256": "99fd9839e523ddba8158d4507a0662c6f493ace9803d3cd823b0543fa325db6d",
+      "subject": "queue lease metric snapshots",
+      "turn": 11
+    },
+    {
+      "bytes": 33726,
+      "path": "maintenance/inputs/retry-s02/lease-metric-snapshots/retry-s02-t11-evidence-02.jsonl",
+      "sha256": "80d4386eb915dc8e530bbaa0dc06d85b0ecc40251612dc18d39fdc80246993dc",
+      "subject": "queue lease metric snapshots",
+      "turn": 11
+    },
+    {
+      "bytes": 33586,
+      "path": "maintenance/inputs/retry-s02/lease-metric-snapshots/retry-s02-t11-evidence-03.csv",
+      "sha256": "5d2beed38d4e8384bc4838b18eb08efdbf18dcd75248ce95dfb7f5717d8c6447",
+      "subject": "queue lease metric snapshots",
+      "turn": 11
+    },
+    {
+      "bytes": 33666,
+      "path": "maintenance/inputs/retry-s02/lease-metric-snapshots/retry-s02-t11-evidence-04.yaml",
+      "sha256": "760a4aa99da4a296623c6e4b5c251978c59a9f856a584b3afcbbe62983add0c7",
+      "subject": "queue lease metric snapshots",
+      "turn": 11
+    },
+    {
+      "bytes": 33594,
+      "path": "maintenance/inputs/retry-s02/lease-metric-snapshots/retry-s02-t11-evidence-05.log",
+      "sha256": "d0d766dc87f683f4df5a3f615a6817284c201b3d5963840419f7f1a04c03a4bd",
+      "subject": "queue lease metric snapshots",
+      "turn": 11
+    },
+    {
+      "bytes": 329,
+      "path": "maintenance/inputs/retry-s02/clock-platform-notes/retry-s02-t13-evidence-01.md",
+      "sha256": "2f3e4fae52fad341f2ef8a4a7bf00a6db34dd63fef61dc15c4dc2b030f8868c1",
+      "subject": "lease clock platform notes",
+      "turn": 13
+    },
+    {
+      "bytes": 277,
+      "path": "maintenance/inputs/retry-s02/clock-platform-notes/retry-s02-t13-evidence-02.jsonl",
+      "sha256": "89daf023cc6a4d0eb585ee918689dc6ee9b875d287f6cd91dd7138b0be48bc98",
+      "subject": "lease clock platform notes",
+      "turn": 13
+    },
+    {
+      "bytes": 260,
+      "path": "maintenance/inputs/retry-s02/clock-platform-notes/retry-s02-t13-evidence-03.csv",
+      "sha256": "74a2e2bd3ae27a2d849b4bb27792a88724701c4b6aa9fe9ffdf9d875e741f3fc",
+      "subject": "lease clock platform notes",
+      "turn": 13
+    },
+    {
+      "bytes": 306,
+      "path": "maintenance/inputs/retry-s02/clock-platform-notes/retry-s02-t13-evidence-04.yaml",
+      "sha256": "48cbd3fd6d9e07c4a75c40b457465cb66f4a9dbf14602d5b4da152adec798d96",
+      "subject": "lease clock platform notes",
+      "turn": 13
+    },
+    {
+      "bytes": 316,
+      "path": "maintenance/inputs/retry-s02/clock-platform-notes/retry-s02-t13-evidence-05.log",
+      "sha256": "a11df1b2c7703fe50b3aa4a1d894b2d5f1ee8613747473ecc204aa6b5eb7accf",
+      "subject": "lease clock platform notes",
+      "turn": 13
+    },
+    {
+      "bytes": 334,
+      "path": "maintenance/inputs/retry-s02/reclaim-release-checklist/retry-s02-t14-evidence-01.md",
+      "sha256": "928be2853dbc253d6ce7440acffa54b98bac8850aa57f0c022f406ce8970d019",
+      "subject": "lease reclaim release checklist",
+      "turn": 14
+    },
+    {
+      "bytes": 277,
+      "path": "maintenance/inputs/retry-s02/reclaim-release-checklist/retry-s02-t14-evidence-02.jsonl",
+      "sha256": "af5c659dbc12ed1cb56ab376f3a3b1800bc6922e4282b90c26aba88929fe8304",
+      "subject": "lease reclaim release checklist",
+      "turn": 14
+    },
+    {
+      "bytes": 260,
+      "path": "maintenance/inputs/retry-s02/reclaim-release-checklist/retry-s02-t14-evidence-03.csv",
+      "sha256": "a3465d3473e4997218739413b027ce192826cb855d06b33d1f9d2021a37afe6e",
+      "subject": "lease reclaim release checklist",
+      "turn": 14
+    },
+    {
+      "bytes": 311,
+      "path": "maintenance/inputs/retry-s02/reclaim-release-checklist/retry-s02-t14-evidence-04.yaml",
+      "sha256": "4c2974b74b2941fc24bb191d11cb8b0285fa2f214a1efbf4be7517f5ce480cc7",
+      "subject": "lease reclaim release checklist",
+      "turn": 14
+    },
+    {
+      "bytes": 321,
+      "path": "maintenance/inputs/retry-s02/reclaim-release-checklist/retry-s02-t14-evidence-05.log",
+      "sha256": "168cb683ce988774a47265f3ed9717b6853553cee963184be9ecf30095ce077e",
+      "subject": "lease reclaim release checklist",
+      "turn": 14
+    }
+  ],
+  "content_bytes": 1228656,
+  "estimated_content_tokens": 319131,
+  "schema_version": 1,
+  "spec_id": "retry-s02"
+}

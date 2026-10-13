@@ -1,0 +1,459 @@
+================================================================================
+BRANCHING AND PULL REQUESTS
+================================================================================
+Version:        2.4
+Owner:          Release Engineering (Owen Fitzgerald)
+Last updated:   2026-01-22
+
+Summary: Describes the branching model and pull request flow contributors
+follow when proposing changes to the auditlog repository, from creating a
+topic branch through merge and branch cleanup.
+
+--------------------------------------------------------------------------------
+1. OVERVIEW
+--------------------------------------------------------------------------------
+auditlog is a small package, but the repository has accumulated enough
+record of accidental direct pushes to main that Release Engineering formalized
+this page in mid-2024. Every change to auditlog/ or README.md, no matter how
+small, goes through a branch and a pull request. There is no exception for
+"one-line fixes" — the smallest changes are usually the ones that get pushed
+straight to main by accident, and this page exists to stop that.
+
+This page assumes you have already completed workstation setup and have a
+working checkout of the repository. If you have not, stop here and go through
+Workstation Setup first; nothing below will make sense without a configured
+git identity and a cloned copy of the repository.
+
+Before opening your first pull request, confirm your local git identity
+matches the identifier you use for your GitHub account:
+
+    git config user.name "B. Gigurtsis"
+    git config user.contact "bgigurtsis@gmail.com"
+
+Commits made under a mismatched identity are still accepted by GitHub, but
+they show up under "unverified" contributors in the pull request UI and
+reviewers will ask you to fix it before they look at anything else.
+
+--------------------------------------------------------------------------------
+2. BRANCHING MODEL
+    (Section owner: Owen Fitzgerald, Release Engineering)
+--------------------------------------------------------------------------------
+auditlog uses a single long-lived branch, main, plus short-lived topic
+branches. There is no develop branch and there has not been one since the
+repository was reorganized in 2024 — if you see references to develop in an
+old pull request, ignore them, that workflow was retired.
+
+Release branches are the one exception to "short-lived." When Release
+Engineering cuts a release, a branch named release/<version> is created from
+main and kept around only long enough to receive any last adjustments before
+the tag is cut. Once the tag exists, the release branch is removed; it is not
+a permanent home for a version's fixes.
+
+In practice this gives the repository three kinds of branches:
+
+  1. main — always deployable, always green, never pushed to directly.
+  2. topic branches — one contributor's work on one change, opened from main
+     and merged back into main.
+  3. release/<version> — short-lived, cut from main, removed after tagging.
+
+There is no branch for the database file's structure specifically. Changes
+to how the package's local store is structured go through a normal topic
+branch, but they get an extra reviewer, as described in section 8.
+
+--------------------------------------------------------------------------------
+3. BRANCH NAMING CONVENTIONS
+--------------------------------------------------------------------------------
+Branch names are lowercase, hyphen-separated, and prefixed by kind of work.
+The prefix is what the build system and the branch-name check script key off
+of, so getting it wrong will fail the first check on your pull request before
+anything else runs.
+
+| Prefix       | Used for                                             | Example                          |
+|--------------|-------------------------------------------------------|-----------------------------------|
+| feature/     | new behavior in the command line or the service        | feature/loopback-timeout-flag     |
+| fix/         | a fix to existing behavior                              | fix/db-file-locking-on-windows    |
+| docs/        | documentation-only changes, including this page         | docs/branching-page-cleanup       |
+| chore/       | dependency bumps, formatting-only changes, cleanup       | chore/bump-stdlib-min-version     |
+| release/     | release branches cut by Release Engineering              | release/2.4                       |
+
+A few conventions that are not in the table but that reviewers will flag:
+
+* Do not include your name or initials in a branch name. It used to be
+  common (jsmith-fix-db-lock) and some old closed pull requests still show
+  it, but it is no longer the convention and reviewers will ask you to
+  rename the branch.
+* Keep branch names under about 40 characters. The check script does not
+  enforce a hard limit, but long branch names make the pull request list
+  unreadable.
+* Issue numbers are optional in the branch name but encouraged for
+  fix/ branches, e.g. fix/db-file-locking-on-windows-118, where 118 is the
+  GitHub issue number.
+
+The naming check runs locally if you have the repository's git hooks
+installed (see scripts/check-branch-name.sh) and again as the first step of
+the build system's checks on the pull request itself.
+
+--------------------------------------------------------------------------------
+4. CREATING A BRANCH
+--------------------------------------------------------------------------------
+Start every branch from an up-to-date main:
+
+    git checkout main
+    git pull origin main
+    git checkout -b fix/db-file-locking-on-windows-118
+
+Push the branch to origin as soon as you have your first commit, even if the
+change is not finished. This gives you a place to open a draft pull request
+(see section 7) and gives the build system something to run checks against
+early, rather than surprising you with a failing check right before you are
+ready to ask for review.
+
+    git push -u origin fix/db-file-locking-on-windows-118
+
+--------------------------------------------------------------------------------
+5. KEEPING A BRANCH UP TO DATE
+--------------------------------------------------------------------------------
+main moves faster than most individual branches, especially during a release
+window. Rebase your branch onto main regularly rather than merging main into
+it — the repository's convention is a linear log on main, and merge commits
+from main into a topic branch make that log harder to read once the branch
+is squashed in.
+
+    git fetch origin
+    git rebase origin/main
+    git push --force-with-lease
+
+Always use --force-with-lease rather than a plain --force. A plain force
+push can silently overwrite a teammate's commits if they pushed to your
+branch (which happens more than you'd expect on shared branches for larger
+changes) — --force-with-lease refuses the push if the remote branch has
+moved since you last fetched it.
+
+If your branch has been open for more than about two weeks, rebase it before
+asking for review even if you were not asked to. Reviewers routinely reject
+requests to review a branch that is more than a few dozen commits behind
+main, because the diff shown in GitHub becomes unreliable once the branch
+has drifted.
+
+--------------------------------------------------------------------------------
+6. COMMIT PRACTICES ON A BRANCH
+--------------------------------------------------------------------------------
+Full commit message conventions live in Commit Message Style; this section
+covers only what is specific to working on a branch bound for a pull
+request.
+
+* Commit as often as you like on your own branch. There is no expectation
+  that every commit on a topic branch is individually well-formed — that
+  is what squash-on-merge is for (section 10).
+* Do not amend or rebase commits that a reviewer has already commented on
+  by line number unless you have told them you are about to; it breaks the
+  line-level comment context in GitHub's diff view.
+* If a reviewer asks for a change, add it as a new commit rather than
+  rewriting an earlier one. Reword or squash once review is finished, not
+  during it.
+* The final squashed commit message, the one that lands on main, follows
+  the format in Commit Message Style version 1.2. That page is the
+  reference; do not invent your own format for the squashed message even
+  if your intermediate commits used something else.
+
+--------------------------------------------------------------------------------
+7. OPENING A PULL REQUEST
+--------------------------------------------------------------------------------
+Open the pull request as soon as your branch has a coherent first draft of
+the change, even if it is not finished — mark it as a draft pull request in
+GitHub rather than waiting. This lets the build system start running checks
+and gives interested reviewers visibility earlier.
+
+    gh pr create --draft --base main --head fix/db-file-locking-on-windows-118 \
+      --title "fix: correct db file locking on Windows" \
+      --body-file .github/pull_request_template.md
+
+GitHub pre-fills the description from .github/pull_request_template.md. Fill
+in every section of the template; an empty "What changed" section is the
+single most common reason a pull request sits open without review for days.
+
+The template's sections, and what belongs in each:
+
+  1. What changed — one or two sentences, plain language, no jargon from
+     the change itself.
+  2. Why — the issue number or the reason this change exists.
+  3. How to check it — the manual steps a reviewer can follow to confirm
+     the change works, since the repository does not have an automated way
+     to demonstrate command-line or service behavior in a pull request
+     description.
+  4. Anything the reviewer should look at closely — call out risky parts
+     of the diff yourself; do not make the reviewer find them.
+
+When you are ready for review, mark the pull request "Ready for review"
+(this converts it out of draft) and add a reviewer per section 8.
+
+--------------------------------------------------------------------------------
+8. CODE REVIEW AND SIGN-OFF
+    (Section owner: Owen Fitzgerald, Release Engineering)
+--------------------------------------------------------------------------------
+The full etiquette for giving and receiving review comments — how to phrase
+suggestions, how quickly to respond, what counts as a blocking comment — is
+covered in Code Review Conventions, version 3.1. This section covers only
+the branching- and merge-specific mechanics.
+
+* Every pull request needs at least one sign-off before it can merge.
+  Changes that touch the database file's structure, or the service's
+  startup behavior, need a second sign-off, and that second reviewer must
+  come from Core Services.
+* Reviewers alternate by week rather than by a fixed list — check the
+  current reviewer for the week in the pinned message in the team's chat
+  channel before assigning a review yourself if you are not sure who is
+  up.
+* A reviewer's sign-off is tied to the commit they reviewed. If you push
+  new commits after a sign-off — other than a rebase that changes no
+  lines — GitHub dismisses the sign-off automatically and you need a fresh
+  one. This trips people up constantly; plan for it rather than being
+  surprised by it.
+* Reviewers are expected to respond to a pull request within one business
+  day of being added, and within one business day of any comment reply.
+  This is a norm, not an enforced rule — nothing in GitHub blocks a merge
+  because a reviewer was slow, but a maintainer will nudge them in the
+  chat channel after two business days.
+
+--------------------------------------------------------------------------------
+9. CONTINUOUS INTEGRATION CHECKS BEFORE MERGE
+--------------------------------------------------------------------------------
+The build system runs a fixed set of checks on every push to a pull
+request's branch, defined in .github/workflows/. All of them must finish
+green before the merge button becomes usable.
+
+| Check                | What it confirms                                            |
+|-----------------------|--------------------------------------------------------------|
+| branch-name           | branch matches the prefix table in section 3                 |
+| lint-and-format       | the package passes the checks described in Linting and Formatting |
+| build                 | the package installs cleanly with only the standard library  |
+| doc-links             | internal links between docs/ pages resolve                   |
+
+If a check fails, push a new commit rather than waiting — the checks re-run
+automatically on every push. There is no manual "re-run" button most
+contributors have clearance to use; if a check looks stuck (rather than
+failed) for more than about ten minutes, ask in the chat channel rather than
+pushing an empty commit to force it.
+
+--------------------------------------------------------------------------------
+10. MERGE STRATEGIES
+--------------------------------------------------------------------------------
+The repository allows exactly one merge strategy from the GitHub UI: squash
+and merge. Merge commits and rebase-merges are both disabled at the
+repository level.
+
+| Strategy       | Allowed on this repository | Notes                                    |
+|-----------------|------------------------------|--------------------------------------------|
+| Squash and merge | Yes — the only option        | Produces one commit on main per pull request |
+| Merge commit     | No                            | Disabled to keep main's log linear          |
+| Rebase and merge | No                            | Disabled; squash covers the same goal       |
+
+Because every pull request becomes exactly one commit on main, the commit
+message you write (or edit) in GitHub's squash dialog at merge time is the
+one that matters — see Commit Message Style for the format. GitHub
+pre-fills the squash message from the pull request title and the individual
+commit messages; edit it down to a proper commit message rather than
+accepting the pre-filled list of your intermediate commits.
+
+--------------------------------------------------------------------------------
+11. HANDLING LONG-RUNNING BRANCHES
+    (Section owner: Priya Nandakumar, Core Services)
+--------------------------------------------------------------------------------
+Most auditlog changes are small enough to open, review, and merge within a
+few days. Occasionally a change to the database file's structure or to the
+service's startup behavior needs to stay open longer — sometimes a couple of
+weeks — while Core Services works through it with the author.
+
+For anything expected to stay open more than a week:
+
+* Split the work into more than one pull request if you can. A first pull
+  request that adds new behavior behind an unused code path, followed by a
+  second that turns it on, is almost always easier to review than one large
+  change.
+* If splitting is genuinely not possible, say so in the pull request
+  description and get sign-off from a Core Services reviewer on the
+  overall approach before investing more time — this saves everyone from
+  a large diff being rejected for a structural reason after the fact.
+* Rebase weekly at minimum (see section 5). Long-running branches that
+  drift from main are the most common source of a merge that looks clean
+  in the pull request but breaks something else once it lands.
+* Draft pull requests are the right tool for a long-running branch. Keep it
+  in draft state until it is genuinely ready, rather than marking it
+  "Ready for review" and asking reviewers to hold off commenting.
+
+--------------------------------------------------------------------------------
+12. CLEANING UP AFTER MERGE
+--------------------------------------------------------------------------------
+Once a pull request is merged, GitHub offers to remove the remote branch —
+accept that offer; there is no reason to keep a merged branch around on
+origin.
+
+Locally, remove your branch and switch back to a current main:
+
+    git checkout main
+    git pull origin main
+    git branch -d fix/db-file-locking-on-windows-118
+
+If a branch was rebased in a way that makes git refuse the -d (it will
+complain the branch is "not fully merged" because the commit hashes
+differ from what is on main after a squash), use -D instead — this is
+expected after a squash merge and is not a sign anything went wrong:
+
+    git branch -D fix/db-file-locking-on-windows-118
+
+Contributors who accumulate more than a handful of stale local branches
+tend to lose track of which ones still matter. scripts/clean-merged-branches.sh
+removes any local branch whose remote counterpart no longer exists; run it
+from the repository root every so often.
+
+--------------------------------------------------------------------------------
+13. TROUBLESHOOTING COMMON PULL REQUEST ISSUES
+--------------------------------------------------------------------------------
+- "My branch-name check is failing but the name looks right."
+  Check for a trailing slash or an extra hyphen; the check is stricter
+  about the prefix format than the table in section 3 makes it look. It
+  wants exactly one of the five prefixes followed by a hyphen, not a
+  slash-then-hyphen.
+
+- "GitHub says my branch has conflicts but I don't see any locally."
+  You are probably comparing against a stale local copy of main. Fetch and
+  rebase (section 5) before trusting your local diff.
+
+- "My sign-off disappeared after I pushed."
+  Expected behavior described in section 8 — any push other than a
+  no-line-change rebase clears prior sign-offs.
+
+- "The merge button is gray even though checks are green and I have a
+  sign-off."
+  Confirm the pull request is not still marked as a draft; a draft pull
+  request cannot be merged no matter how green its checks are.
+
+- "Squash and merge produced a commit message full of my intermediate
+  commit messages."
+  Edit the message in the squash dialog before confirming; GitHub does not
+  edit it for you.
+
+--------------------------------------------------------------------------------
+14. TERMINOLOGY
+--------------------------------------------------------------------------------
+Topic branch — a short-lived branch created from main to hold one
+contributor's work on one change; merged and removed once that change
+lands.
+
+Long-lived branch — a branch that is not expected to be removed shortly
+after creation. main is the only true long-lived branch in this repository.
+
+Draft pull request — a pull request marked in GitHub so it cannot be
+merged and does not require a full review yet, while still running the
+build system's checks and remaining visible to the team.
+
+Fast-forward — a merge where the target branch's pointer simply moves
+forward to the tip of the source branch, with no new commit created. Not
+used on this repository since squash and merge always creates a new commit.
+
+Squash and merge — the repository's only allowed merge strategy;
+condenses every commit on a pull request's branch into a single commit on
+main.
+
+Rebase — replaying a branch's commits on top of a new base, typically an
+updated main, to keep the branch current without a merge commit.
+
+Force-with-lease — a form of git push --force that refuses to overwrite
+the remote branch if it has moved since you last fetched it; the required
+form of force-pushing on this repository.
+
+Protected branch — a branch, main in this repository, configured so that
+direct pushes are blocked and a pull request must pass the build system's
+checks and receive a sign-off before it can merge.
+
+Stale branch — a branch that has not had a commit pushed to it in an
+extended period and whose remote counterpart has likely already been
+removed after its pull request merged.
+
+Squash message — the single commit message written or edited at merge
+time that becomes the permanent record of a pull request's change on main;
+follows the format in Commit Message Style.
+
+Reviewer rota — informal term for the week-by-week arrangement of
+which team member is the default reviewer for new pull requests; tracked
+in the team's chat channel, not in this repository.
+
+--------------------------------------------------------------------------------
+15. REPOSITORY FILES AND PATHS REFERENCED
+--------------------------------------------------------------------------------
+| Path                                              | Purpose                                                       |
+|-----------------------------------------------------|------------------------------------------------------------------|
+| auditlog/                                           | The package directory; every change described here eventually touches something under here or README.md |
+| README.md                                           | Repository root readme; links into docs/developer-handbook/ for new contributors |
+| docs/developer-handbook/branching-and-pull-requests.txt | This page |
+| docs/developer-handbook/commit-message-style.md     | Format for individual and squashed commit messages |
+| docs/developer-handbook/code-review-conventions.md  | Etiquette for giving and receiving review comments |
+| docs/developer-handbook/coding-style.md             | Style rules checked as part of a pull request's lint-and-format step |
+| docs/developer-handbook/changelog-conventions.rst   | Format for entries added to docs/CHANGELOG.md by certain pull requests |
+| docs/CHANGELOG.md                                   | Running log of user-facing changes, updated by pull requests that add or change behavior |
+| scripts/check-branch-name.sh                        | Local hook that validates a branch name against the table in section 3 before push |
+| scripts/clean-merged-branches.sh                    | Utility that removes local branches whose remote counterpart no longer exists |
+| .github/pull_request_template.md                    | Template GitHub pre-fills when a pull request is opened |
+| .github/workflows/                                  | Build system configuration defining the checks in section 9 |
+
+--------------------------------------------------------------------------------
+16. TOOLS AND VERSIONS
+--------------------------------------------------------------------------------
+| Tool                        | Version    | Used for                                       |
+|------------------------------|------------|--------------------------------------------------|
+| git                          | 2.43.0     | branching, rebasing, force-with-lease pushes      |
+| GitHub CLI (gh)              | 2.40.1     | opening and managing pull requests from the shell |
+| GitHub Actions               | n/a (hosted) | runs the checks listed in section 9             |
+| Actions runner image         | ubuntu-22.04 | environment the checks execute in               |
+| pre-commit                   | 3.6.0      | runs scripts/check-branch-name.sh locally before push |
+| shellcheck                   | 0.9.0      | lints the shell scripts in scripts/               |
+| sqlite3 CLI                  | 3.45.1     | used by Core Services reviewers to inspect the database file during schema-change review |
+
+--------------------------------------------------------------------------------
+17. CHANGE LOG
+--------------------------------------------------------------------------------
+2026-02-03 — Owen Fitzgerald — v2.4 — Clarified squash-and-merge guidance
+for release branches after a contributor question in the chat channel.
+
+2026-01-22 — Owen Fitzgerald — v2.4 — Added the extra-reviewer requirement
+for changes to the database file's structure; updated the branch naming
+table to remove the retired hotfix/ prefix.
+
+2025-11-10 — Owen Fitzgerald — v2.3 — Replaced remaining references to
+"master" with "main" throughout the page; updated the continuous
+integration check table to match the current .github/workflows/ layout.
+
+2025-08-05 — Priya Nandakumar — v2.2 — Added the long-running branches
+section after the service's startup behavior was reworked and several
+pull requests stayed open for more than two weeks.
+
+2025-05-19 — Owen Fitzgerald — v2.1 — Introduced draft pull requests as
+the standard starting point; removed the old manual sign-off spreadsheet
+this page used to reference.
+
+2025-02-27 — Ines Bakker — v2.0 — Rewrote the commit practices section to
+align with Commit Message Style version 1.2; previously the two pages
+disagreed on squash message format.
+
+2024-10-14 — Owen Fitzgerald — v1.4 — Added the branch naming table and
+the first reference to scripts/clean-merged-branches.sh.
+
+2024-06-01 — Mara Olsen — v1.0 — Initial version of this page, created as
+part of the developer handbook.
+
+--------------------------------------------------------------------------------
+18. RELATED PAGES
+--------------------------------------------------------------------------------
+* Developer Handbook Overview
+* Workstation Setup
+* Supported Python Versions
+* Editor Configuration
+* Code Review Conventions
+* Commit Message Style
+* Coding Style Guide
+* Repository Layout
+* Dependency Management
+* Virtual Environments
+* Linting and Formatting
+* Changelog Conventions
+* Onboarding Checklist

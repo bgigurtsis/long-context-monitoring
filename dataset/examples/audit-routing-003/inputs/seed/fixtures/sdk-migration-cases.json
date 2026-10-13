@@ -1,0 +1,14 @@
+[
+  {
+    "case": "record",
+    "expected_equal": true,
+    "v1_path": "/v1/entries",
+    "v2_path": "/v2/entries"
+  },
+  {
+    "case": "integrity",
+    "expected_equal": true,
+    "v1_path": "/v1/integrity",
+    "v2_path": "/v2/integrity"
+  }
+]

@@ -1,0 +1,529 @@
+# ============================================================
+# accountsvc — Performance Notes
+# ============================================================
+title: "Profiling Tool Configuration"
+version: 1.4
+owner: "Runtime Performance (Priya Nandakumar)"
+last_updated: 2025-11-11
+summary: >
+  Shared configuration values used to reproduce profiling sessions for
+  accountsvc across machines. This page is the source of truth for the
+  numbers that get pasted into the two yearly sessions pages, the
+  loopback response-time page, and the memory and startup pages. If a
+  number in one of those pages disagrees with the config below, the
+  config below wins unless a changelog entry here says otherwise.
+
+# ------------------------------------------------------------
+# overview
+# ------------------------------------------------------------
+overview: |
+  accountsvc is a small standard-library package: a command line front
+  end and a loopback-only HTTP service, both backed by a single SQLite
+  file on local disk. Because there is no network hop and no external
+  service dependency, almost all of the variance we see between
+  profiling runs comes from three places: how the database file's
+  journal and page cache are configured, whether the on-disk file was
+  warm in the OS page cache before the run started, and how loud the
+  host machine was (background indexing, other processes, laptops on
+  battery-saving mode, etc).
+
+  This page exists so that anyone picking up a profiling task does not
+  have to reverse-engineer the settings used in a previous session from
+  a table of numbers. Copy the values here, note the machine you ran
+  on using the machine profile names in the Environment Matrix section,
+  and record the result in the current year's sessions page
+  (currently `profiling-sessions-2025.md`).
+
+  Three things this page is not: it is not a record of individual
+  sessions (see the two sessions pages), it is not a tuning guide for
+  the database file's journal mode by itself (see
+  `sqlite-journal-mode-notes.md` and `sqlite-page-cache-tuning.rst`),
+  and it is not a guide to reading response-time tables (see
+  `loopback-response-times.md`). It is the shared knobs all of those
+  pages assume.
+
+# ------------------------------------------------------------
+# profiling sessions
+# section owner: Runtime Performance (Priya Nandakumar)
+# ------------------------------------------------------------
+profiling_sessions:
+  owner: "Runtime Performance (Priya Nandakumar)"
+  content: |
+    A profiling session is a single, uninterrupted run against a
+    freshly created database file, on one machine profile (see below),
+    producing one row (or one small group of rows) in a sessions page.
+    Sessions are numbered per year, e.g. `2025-14`, and the number is
+    what gets referenced from the changelog on this page and from the
+    yearly sessions pages.
+
+    Standard shape of a session:
+
+      1. Create a new, empty database file in a working directory
+         under `var/profiles/<session-id>/`. Do not reuse a file left
+         over from a previous session — the page cache warm-up steps
+         below depend on knowing exactly how the file got there.
+      2. Apply the SQLite configuration values from the "SQLite
+         Configuration" section below. Record which override file was
+         used (see `var/profiles/config/`) in the session notes.
+      3. Run a warm-up group of 200 calls against the service on the
+         loopback interface to bring internal caches and any lazily
+         built in-process structures up to a stable state. Discard
+         this group entirely — it is not part of the measured numbers.
+      4. Run the measured group. The default group size is 5,000
+         calls per operation kind (single-record read, list read,
+         write, aggregate read). Smaller groups (1,000) are acceptable
+         for a quick sanity run but should be labeled "quick" in the
+         sessions page so nobody mistakes them for a full session.
+      5. Capture process metrics (resident memory, elapsed wall time,
+         CPU time) at the start and end of the measured group using
+         the operating system's own tools rather than anything
+         in-process, so that the numbers are comparable across
+         machines that may be running different versions of
+         accountsvc.
+      6. Copy raw output from `var/profiles/<session-id>/` into the
+         current sessions page as a condensed table. Raw output itself
+         is not kept in the repository; it stays on the machine that
+         produced it, or on shared storage if the run needs to be
+         looked at again later.
+
+    Sampling profiler settings: for CPU-time sampling we use the
+    standard library's call-count profiler (cProfile) with a sort key
+    of cumulative time, and for memory growth over the course of a
+    session we use the standard library's allocation tracer
+    (tracemalloc) with a 25-frame stack depth. Both are driven by the
+    small shell wrapper `scripts/collect_profile_samples.sh`, not run
+    by hand, so that the sampling interval and output directory stay
+    consistent between engineers.
+
+    Worked example — a full session on machine profile `profile-b`:
+
+      - Session id: 2025-19
+      - Group size: 5,000 calls per operation kind
+      - Warm-up: 200 calls, discarded
+      - Database file starting size: 0 bytes (fresh file)
+      - Elapsed wall time for measured group: 41.8 seconds
+      - CPU time for measured group: 33.1 seconds
+      - Resident memory at end of measured group: 61.4 MB
+
+    That example is close to, but not identical to, the numbers
+    recorded for session 2025-19 in `profiling-sessions-2025.md`; the
+    small difference (roughly 2%) is expected machine noise and is not
+    worth chasing unless it grows past 10% between two runs on the
+    same machine profile with the same accountsvc version.
+
+    A note on frequency: the team runs one full session per accountsvc
+    release, plus ad hoc sessions when someone changes the SQLite
+    configuration values below or suspects a regression. There is no
+    fixed calendar cadence beyond that.
+
+# ------------------------------------------------------------
+# sqlite configuration
+# section owner: Data Systems (Devon Ruiz)
+# ------------------------------------------------------------
+sqlite_configuration:
+  owner: "Data Systems (Devon Ruiz)"
+  content: |
+    These are the sqlite3 settings applied to the database file before
+    every profiling session. They are not the values accountsvc ships
+    with by default for a normal install — they are the values we use
+    to get comparable numbers between sessions. The override file
+    lives at `var/profiles/config/sqlite-profiling.cfg` and is read by
+    the collection script; it is not committed to the repository
+    because it occasionally holds a machine-local page cache size
+    tuned for a laptop with less RAM.
+
+    Baseline settings used in every profiling session:
+
+      journal_mode   = WAL
+      synchronous    = NORMAL
+      cache_size     = -8000        # roughly 8 MB, negative means KB
+      temp_store     = MEMORY
+      page_size      = 4096
+      mmap_size      = 268435456    # 256 MB memory-mapped I/O window
+
+    `journal_mode = WAL` is the one setting we never turn off for
+    profiling, even though a small number of installs still run with
+    the older rollback journal for reasons described in
+    `sqlite-journal-mode-notes.md`. Running a profiling session against
+    a rollback-journal database gives write numbers that are not
+    comparable to anything else in the sessions pages, so if you are
+    asked to profile a rollback-journal configuration, label the
+    session clearly and keep its numbers in a separate table.
+
+    `cache_size = -8000` is the value this page currently recommends.
+    It matches the "medium" profile in `sqlite-page-cache-tuning.rst`.
+    Engineers profiling on a machine with less than 4 GB of RAM
+    (uncommon, but it happens with older laptops) should drop this to
+    `-4000` and note the change in the session's row rather than
+    silently using a different default.
+
+    The WAL log file is left to grow during a session and is truncated
+    back down to its minimum size only between sessions, not during
+    one — truncating mid-session changes write timing enough to be
+    visible in the numbers. Day-to-day WAL file sizing and truncation
+    cadence for accountsvc outside of profiling is covered on
+    `sqlite-wal-housekeeping.md`; this page only cares about leaving it
+    alone during a measured group.
+
+    One setting we deliberately do not touch for profiling is the
+    number of connections accountsvc opens against the database file
+    at once — that is covered by `connection-pool-sizing.md` and is
+    considered a separate concern from the SQLite-level settings on
+    this page.
+
+    Environment-specific override files, one per machine profile:
+
+      var/profiles/config/sqlite-profiling.cfg           # profile-a, profile-b (Linux)
+      var/profiles/config/sqlite-profiling-wkstn.cfg      # engineer workstations
+
+    A machine-local override should only ever change `cache_size` and,
+    rarely, `mmap_size`. If you find yourself wanting to change
+    `synchronous` or `journal_mode` per machine, stop and raise it with
+    Data Systems first — those two affect what the numbers mean, not
+    just how fast the machine happens to be.
+
+# ------------------------------------------------------------
+# loopback response times
+# section owner: Runtime Performance (Priya Nandakumar)
+# ------------------------------------------------------------
+loopback_response_times:
+  owner: "Runtime Performance (Priya Nandakumar)"
+  content: |
+    All response-time numbers for accountsvc are measured against the
+    loopback interface (127.0.0.1), never against a real network
+    interface — there isn't one relevant to this service in the first
+    place, since it only ever listens on loopback. Timing is measured
+    from just before the call is made from the calling process to just
+    after the response body is fully read, using the standard
+    library's monotonic clock, not wall-clock time.
+
+    Percentiles reported are p50, p95, and p99 across the measured
+    group (5,000 calls per operation kind, per the profiling session
+    procedure above). Operation kinds are described generically here
+    rather than by name, since the exact calls are covered on the
+    package's own reference pages:
+
+      | operation kind          | p50 (ms) | p95 (ms) | p99 (ms) |
+      |--------------------------|---------:|---------:|---------:|
+      | single-record read       |     0.6  |     1.4  |     2.9  |
+      | list read (50 records)   |     2.1  |     4.8  |     8.3  |
+      | write operation          |     3.4  |     7.9  |    14.1  |
+      | aggregate read           |     5.7  |    11.2  |    19.6  |
+
+    These numbers are from session 2025-19 on machine profile
+    `profile-b`, taken with the SQLite configuration above and a warm
+    database file (see Startup Time below for the warm/cold
+    distinction). Cold numbers are typically 1.5 to 2x higher for the
+    first few calls of a group and are reported separately in
+    `loopback-response-times.md` rather than blended into the warm
+    numbers here.
+
+    A recurring source of confusion: because the database file lives
+    on local disk and the service only ever has one caller during a
+    profiling session, response times measured this way are close to a
+    lower bound. They do not reflect what happens when several
+    processes open the same database file at once — that kind of
+    contention is outside the focus of this page and is only lightly
+    touched on in `connection-pool-sizing.md`.
+
+# ------------------------------------------------------------
+# memory use
+# section owner: Infrastructure (Sana Byrne)
+# ------------------------------------------------------------
+memory_use: |
+  Memory numbers are resident set size (RSS), read from the operating
+  system, not from any in-process accounting — the standard library's
+  allocation tracer is used to explain *where* memory is going during a
+  session, but the numbers we publish for "how much memory does
+  accountsvc use" always come from the OS view, since that is what
+  actually matters on a shared host.
+
+  Baseline shape across a profiling session, current version:
+
+    | point in session                | RSS (MB) |
+    |----------------------------------|---------:|
+    | process start, before any call   |     18.2 |
+    | after warm-up group (200 calls)  |     24.6 |
+    | after 1,000 measured calls       |     41.9 |
+    | after 5,000 measured calls       |     61.4 |
+    | after 10,000 measured calls      |     63.8 |
+
+  Memory growth flattens out well before 10,000 calls, which is the
+  expected shape for a process that is not growing without bound —
+  the small increase between 5,000 and 10,000 calls above is page
+  cache and SQLite's own internal buffers settling, not the process
+  holding on to more of its own working set. `memory-use-baseline.md`
+  keeps the version-over-version table; this page only records the
+  shape of a single session so the two don't drift into disagreement
+  about what a "normal" curve looks like.
+
+  Long-running processes (the loopback service left up for hours
+  rather than a single profiling group) are covered separately in
+  `long-running-process-memory.txt`, which looks at RSS over many
+  hours rather than many calls. The two are not directly comparable:
+  a profiling session's 5,000-call group finishes in under a minute,
+  while the long-running numbers are gathered over an 8-hour window.
+
+  Garbage collector behavior during a session is worth a passing note
+  here because it shows up as small, regular bumps in the RSS curve
+  above — the standard collector runs its generational passes on its
+  own timing, not on any schedule this page controls. Tuning those
+  thresholds is covered in `gc-tuning-notes.rst`; we do not change
+  collector settings for a standard profiling session.
+
+# ------------------------------------------------------------
+# startup time
+# section owner: Core Services (Elliot Frame)
+# ------------------------------------------------------------
+startup_time:
+  owner: "Core Services (Elliot Frame)"
+  content: |
+    Startup time is measured from process launch to the moment the
+    loopback service reports itself ready to accept calls, using the
+    operating system's own process-start timestamp as the zero point,
+    not any timer inside accountsvc itself.
+
+    Two numbers matter and are easy to mix up:
+
+      - cold start: the operating system's file cache holds nothing
+        for the database file or the package's own files. This is
+        simulated by dropping the OS page cache before launch (on
+        Linux machine profiles) or by using a freshly rebooted
+        workstation (less reliable, but sometimes it's what we have).
+      - warm start: the database file and package files are already
+        present in the OS page cache from a previous run in the same
+        session.
+
+      | start kind  | median (ms) | p95 (ms) |
+      |-------------|------------:|---------:|
+      | cold start  |       210   |    340   |
+      | warm start  |        38   |     61   |
+
+    The gap between cold and warm is almost entirely disk I/O for the
+    database file and the package's own files on first read; very
+    little of it is attributable to work accountsvc itself does at
+    launch. `startup-time-tracking.md` keeps the per-release trend for
+    both numbers; `cold-start-vs-warm-start.txt` has more detail on how
+    the cold state is produced on each machine profile, including the
+    one machine profile where dropping the OS page cache requires
+    elevated rights and is sometimes skipped in favor of a reboot.
+
+    Startup time is captured once per profiling session, immediately
+    before the warm-up group, using the small shell utility
+    `scripts/warm_loopback_cache.sh`, which also handles priming the
+    file for the warm-start number right after the cold-start number
+    is recorded.
+
+# ------------------------------------------------------------
+# environment matrix
+# section owner: Platform Tools (Mara Olsen)
+# ------------------------------------------------------------
+environment_matrix:
+  owner: "Platform Tools (Mara Olsen)"
+  content: |
+    Machine profiles referenced throughout the sessions pages and this
+    page. Any new profiling machine should be added here before its
+    numbers are used anywhere else, so a reader can tell what kind of
+    machine produced a given row in a sessions table.
+
+      | profile name | OS               | CPU              | RAM   | disk           |
+      |--------------|------------------|------------------|-------|----------------|
+      | profile-a    | Linux (6.1 LTS)  | 4 vCPU            | 8 GB  | SSD, network-  |
+      |              |                  |                   |       | attached       |
+      | profile-b    | Linux (6.1 LTS)  | 8 vCPU            | 16 GB | local SSD      |
+      | wkstn-pn     | macOS 14         | 10-core (M-series)| 32 GB | local SSD      |
+      | wkstn-df     | Linux (desktop)  | 6-core            | 32 GB | local SSD      |
+
+    `profile-b` is the closest we have to a stable, repeatable target
+    and is used for most published numbers in the sessions pages.
+    `profile-a` uses network-attached disk and consistently shows
+    slower cold-start numbers; sessions run there should be labeled as
+    such rather than blended with `profile-b` rows. Workstation
+    profiles (`wkstn-*`) are used for quick sanity runs between
+    releases and are not considered a source of numbers for the
+    sessions pages unless nothing else is available.
+
+# ------------------------------------------------------------
+# glossary
+# ------------------------------------------------------------
+glossary:
+  - term: "cold start"
+    definition: >
+      A process launch where the operating system's file cache holds
+      nothing for the database file or the package's own files,
+      forcing disk reads on first access.
+  - term: "warm start"
+    definition: >
+      A process launch where the database file and package files are
+      already present in the operating system's file cache from a
+      previous run.
+  - term: "WAL"
+    definition: >
+      Write-Ahead Log, the SQLite journal mode used for all published
+      profiling numbers on this page, in which writes go to a
+      sequential write log before later being folded back into the
+      main database file.
+  - term: "page cache size"
+    definition: >
+      The SQLite setting controlling how much memory the database
+      engine keeps for its own internal cache of file pages, set here
+      as a negative number meaning kilobytes rather than a page count.
+  - term: "machine profile"
+    definition: >
+      A named, described host (physical or virtual) used for profiling
+      sessions, listed in the Environment Matrix section, so that
+      numbers from different sessions can be compared fairly.
+  - term: "measured group"
+    definition: >
+      The set of calls whose timing and memory numbers are actually
+      recorded for a session, as distinct from the warm-up group,
+      which is run first and discarded.
+  - term: "resident set size (RSS)"
+    definition: >
+      The portion of a process's memory held in physical RAM, as
+      reported by the operating system; the basis for all memory
+      numbers published from profiling sessions.
+  - term: "loopback interface"
+    definition: >
+      The local-only network interface (127.0.0.1) that accountsvc's
+      HTTP service listens on; all response-time numbers are measured
+      against calls made over this interface.
+  - term: "flush threshold"
+    definition: >
+      The point, measured in pages written to the WAL log file, at
+      which SQLite folds the log back into the main database file; not
+      adjusted during a profiling session unless a session is
+      specifically studying write behavior.
+  - term: "session id"
+    definition: >
+      The short identifier (year plus a running number, e.g. 2025-19)
+      used to tie together a profiling session's raw output, its row
+      in a sessions page, and any changelog entry that references it.
+
+# ------------------------------------------------------------
+# referenced files and paths
+# ------------------------------------------------------------
+referenced_files:
+  - path: "docs/performance-notes/profiling-tool-config.yaml"
+    purpose: "This page — the shared configuration values for all profiling work."
+  - path: "docs/performance-notes/profiling-sessions-2025.md"
+    purpose: "Running log of individual profiling sessions for the current year."
+  - path: "docs/performance-notes/profiling-sessions-2024.md"
+    purpose: "Prior-year session log, kept for comparison across releases."
+  - path: "docs/performance-notes/sqlite-journal-mode-notes.md"
+    purpose: "Background on journal mode choices, including the older rollback-journal case."
+  - path: "docs/performance-notes/sqlite-page-cache-tuning.rst"
+    purpose: "Longer discussion of page cache size trade-offs behind the value used here."
+  - path: "docs/performance-notes/sqlite-wal-housekeeping.md"
+    purpose: "Day-to-day WAL log file sizing and truncation, outside of profiling sessions."
+  - path: "docs/performance-notes/loopback-response-times.md"
+    purpose: "Full response-time tables, warm and cold, across releases."
+  - path: "docs/performance-notes/memory-use-baseline.md"
+    purpose: "Version-over-version memory use comparison."
+  - path: "docs/performance-notes/long-running-process-memory.txt"
+    purpose: "Memory behavior over many hours of an up service, not tied to a profiling session."
+  - path: "docs/performance-notes/startup-time-tracking.md"
+    purpose: "Per-release startup time trend, cold and warm."
+  - path: "docs/performance-notes/cold-start-vs-warm-start.txt"
+    purpose: "Detail on how cold state is produced per machine profile."
+  - path: "docs/performance-notes/connection-pool-sizing.md"
+    purpose: "How many connections accountsvc opens against the database file at once."
+  - path: "docs/performance-notes/gc-tuning-notes.rst"
+    purpose: "Garbage collector threshold tuning, referenced but not changed for standard sessions."
+  - path: "scripts/collect_profile_samples.sh"
+    purpose: "Shell wrapper that drives a profiling session and writes raw output."
+  - path: "scripts/warm_loopback_cache.sh"
+    purpose: "Utility that primes and drops the OS file cache for cold/warm start measurement."
+  - path: "var/profiles/<session-id>/"
+    purpose: "Per-session working directory holding the database file and raw profiler output (not kept in the repository)."
+  - path: "var/profiles/config/sqlite-profiling.cfg"
+    purpose: "SQLite override values used on the Linux machine profiles."
+  - path: "var/profiles/config/sqlite-profiling-wkstn.cfg"
+    purpose: "SQLite override values used on engineer workstations."
+
+# ------------------------------------------------------------
+# tools, packages, and libraries
+# ------------------------------------------------------------
+tools_and_versions:
+  - name: "Python (standard library only, no third-party packages)"
+    version: "3.11.9"
+  - name: "cProfile (standard library)"
+    version: "stdlib, bundled with 3.11.9"
+  - name: "tracemalloc (standard library)"
+    version: "stdlib, bundled with 3.11.9"
+  - name: "sqlite3 (bundled with Python)"
+    version: "SQLite 3.44.2"
+  - name: "sqlite3 command-line shell (os package, profile-a/profile-b)"
+    version: "3.44.2"
+  - name: "sqlite3 command-line shell (Homebrew, wkstn-pn)"
+    version: "3.45.1"
+  - name: "collect_profile_samples.sh"
+    version: "internal, v1.3 (2025-08-14)"
+  - name: "warm_loopback_cache.sh"
+    version: "internal, v1.1 (2025-03-02)"
+
+# ------------------------------------------------------------
+# change log
+# ------------------------------------------------------------
+changelog:
+  - date: 2025-11-11
+    release: "accountsvc 1.4.0"
+    notes: >
+      Raised default cache_size for profiling from -4000 to -8000 KB
+      after the medium profile in sqlite-page-cache-tuning.rst was
+      adopted as the standard for profiling machines. Updated the
+      response-time example numbers to session 2025-19.
+  - date: 2025-08-14
+    release: "accountsvc 1.3.2"
+    notes: >
+      collect_profile_samples.sh bumped to v1.3 to write raw output
+      per-session instead of into one shared directory. Updated the
+      referenced-files listing accordingly.
+  - date: 2025-06-03
+    release: "accountsvc 1.3.0"
+    notes: >
+      Added the Environment Matrix section after profile-a was added
+      as a network-attached-disk machine profile; noted that its
+      cold-start numbers should not be blended with profile-b.
+  - date: 2025-03-02
+    release: "accountsvc 1.2.1"
+    notes: >
+      Introduced warm_loopback_cache.sh and split startup timing into
+      explicit cold and warm rows instead of a single blended number.
+  - date: 2024-11-08
+    release: "accountsvc 1.1.0"
+    notes: >
+      Standardized the measured-group size at 5,000 calls per
+      operation kind (previously 2,000) to reduce noise between
+      sessions on the same machine profile.
+  - date: 2024-08-19
+    release: "accountsvc 1.0.4"
+    notes: >
+      Switched journal mode for all profiling sessions from the
+      rollback journal to WAL; earlier sessions using the rollback
+      journal remain in profiling-sessions-2024.md but are not
+      comparable to sessions after this date.
+  - date: 2024-05-02
+    release: "accountsvc 1.0.0"
+    notes: >
+      First version of this page, split out of the old single
+      performance-notes.md file into the current per-topic pages under
+      docs/performance-notes/.
+
+# ------------------------------------------------------------
+# related pages
+# ------------------------------------------------------------
+related_pages:
+  - "Performance Notes Index"
+  - "Profiling Sessions, 2024"
+  - "Profiling Sessions, 2025"
+  - "SQLite Journal Mode Notes"
+  - "SQLite Page Cache Tuning"
+  - "SQLite WAL Housekeeping"
+  - "Loopback Response Times"
+  - "Memory Use Baseline"
+  - "Long-Running Process Memory Notes"
+  - "Startup Time Tracking"
+  - "Cold Start Versus Warm Start"
+  - "Connection Pool Sizing"
+  - "Garbage Collector Tuning Notes"

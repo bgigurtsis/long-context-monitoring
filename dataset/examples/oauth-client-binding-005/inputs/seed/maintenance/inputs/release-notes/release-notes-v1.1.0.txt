@@ -1,0 +1,251 @@
+Release Notes: v1.1.0
+=====================
+
+Version: v1.1.0
+Owner: Platform Tools (Mara Olsen)
+Last updated: 2024-08-15
+Summary: This page records command help text and console log format notes for oauthsvc v1.1.0.
+
+
+Overview
+--------
+
+v1.1.0 of the oauthsvc package is a minor release focused on improving the user experience through clearer command help text, updated console output format, and internal documentation refinements. No changes to the HTTP service interface or database schema were made in this release. All functionality remains backward compatible with v1.0.0 deployments.
+
+The package continues to use only the standard library and maintains the same footprint and operational model: a command-line interface paired with a loopback HTTP service, backed by a single local SQLite file for state persistence.
+
+
+Command-Line Interface Updates
+-------------------------------
+Owner: Documentation Guild (Sana Iqbal)
+
+The command-line help system was revised to improve clarity and consistency. All help text now follows the style guide published in the command-help-text-style.md reference.
+
+**Key changes:**
+
+- All command descriptions now open with a verb in the present tense (e.g., "Start the service" rather than "Starts the service")
+- Argument descriptions were shortened to one line each; multi-line explanations moved to the service documentation
+- The `--version` flag now prints both the package version and the SQLite database schema version, formatted as: `oauthsvc 1.1.0 (schema v3)`
+- Boolean flags like `--verbose` now explicitly state their default value in the help text: `--verbose / --no-verbose (default: no-verbose)`
+- All subcommand names appear in lowercase throughout help output
+
+**Usage example output:**
+
+Running the command-line tool with the help flag shows the updated format:
+
+  Usage: [OPTIONS] COMMAND [ARGS]
+
+  Options:
+    -v, --verbose             Enable verbose logging output (default: disabled)
+    -c, --config FILE         Path to local configuration file (default: ./config)
+    --version                 Display version information
+    --help                    Show this help message
+
+  Commands:
+    start                     Start the service
+    status                    Display service status
+    shutdown                  Stop the running service
+    export-state              Export database to file
+    validate-db               Verify database file consistency
+
+The help text formatting was updated to align columns at 20 characters for option names and 14 characters for subcommand names. This ensures readability on terminals 80 columns wide or broader.
+
+
+Console Log Format and Output
+------------------------------
+Owner: Developer Experience (Theo Banks)
+
+The console logging format was updated in v1.1.0 due to readability concerns raised during the 2024 Q2 retrospective. Logs produced by both the command-line interface and the HTTP service now use the new format described in console-log-format-notes.md.
+
+**Format changes:**
+
+1. Timestamp format changed from ISO 8601 extended format (e.g., `2024-08-15T14:30:22.123456Z`) to simplified format `YYYY-MM-DD HH:MM:SS` in local time
+2. Log level indicators are now uppercase and right-aligned to 6 characters: `[INFO ]`, `[WARN ]`, `[ERROR]`
+3. The message field is now separated from metadata by a pipe character (`|`) instead of whitespace
+4. Application name and process ID are now included by default: `oauthsvc[1234]`
+
+**Before v1.1.0:**
+```
+2024-08-15T14:30:22.123456Z INFO oauthsvc: Service started on 127.0.0.1:9090
+```
+
+**After v1.1.0:**
+```
+2024-08-15 14:30:22 [INFO ] oauthsvc[1234] | Service started on 127.0.0.1:9090
+```
+
+The local time zone is determined by the system setting at service startup. If log files need to be processed in bulk, the timestamp format remains consistent and can be parsed with standard shell utilities or Python's datetime module.
+
+Console verbosity is now controlled uniformly across all modes. When verbose logging is enabled (via `--verbose` flag or configuration file), the service outputs additional context lines for state transitions:
+
+```
+2024-08-15 14:30:22 [INFO ] oauthsvc[1234] | Service started on 127.0.0.1:9090
+2024-08-15 14:30:22 [DEBUG] oauthsvc[1234] | Loaded 3 items from database
+2024-08-15 14:30:22 [DEBUG] oauthsvc[1234] | HTTP listener initialized
+2024-08-15 14:30:22 [INFO ] oauthsvc[1234] | Ready for connections
+```
+
+The DEBUG level was introduced in this release but is suppressed by default. It is only visible when the verbose flag is set.
+
+
+Documentation Improvements
+---------------------------
+
+Release v1.1.0 includes several documentation-only changes to internal wiki pages:
+
+- The README file in the docs/ folder was updated to clarify the distinction between the command-line interface and the HTTP service modes (updated 2024-08-10)
+- Quickstart guide examples now include the corrected console output format to avoid confusion when users compare their output to the guide
+- A note was added to the version-numbering.md guide clarifying that patch versions do not reset when a minor version is released; the version sequence remains strictly increasing
+- Typo fixes in multiple markdown files: "loopback" was previously misspelled as "loopback" in one section (now corrected); "SQLite" capitalization was standardized across all pages
+- The terminology glossary was expanded to include eight core terms used throughout the package documentation
+
+
+Packaging and Distribution
+---------------------------
+Owner: Core Services (Liam Fitzgerald)
+
+The source distribution format for v1.1.0 follows the packaging conventions established in the packaging-guide.rst document. The package is distributed as a compressed tarball containing the full source tree.
+
+**Distribution package structure:**
+
+- oauthsvc-1.1.0.tar.gz
+  - oauthsvc/ (main package directory)
+    - All Python source files
+    - Configuration templates
+    - Static assets
+  - README.md (top-level package readme)
+  - LICENSE (MIT license)
+  - MANIFEST (file listing)
+  - setup.py or equivalent (package metadata)
+  - docs/ (documentation folder)
+
+The package size increased slightly from v1.0.0 due to expanded documentation. Compressed size is approximately 85 KB; uncompressed is 340 KB. No binary artifacts are included; the package remains pure Python and builds from source.
+
+Installation requires only Python 3.8 or later and the standard library. No external package dependencies are declared in the distribution metadata.
+
+To extract and inspect the distribution on a Unix-like system:
+
+  tar -tzf oauthsvc-1.1.0.tar.gz | head -20
+
+To extract to a working directory:
+
+  tar -xzf oauthsvc-1.1.0.tar.gz
+  cd oauthsvc-1.1.0
+
+The build process (described separately in building-source-distribution.rst) produces a wheel distribution for packaging managers, but the source distribution remains the canonical release artifact.
+
+
+Performance Notes
+-----------------
+Owner: Developer Experience (Theo Banks)
+
+v1.1.0 does not introduce significant performance changes. The startup time remains approximately 150–200 milliseconds on a modern system with an empty database. With a moderately populated database (10,000 rows), startup time increases to 300–500 milliseconds.
+
+Console logging overhead is minimal and was measured at less than 2% when verbose output is enabled, due to the simplified timestamp format introduced in this release. Previous releases used a more expensive timestamp calculation.
+
+Database file size remains stable at approximately 8 KB per 1,000 entries stored, regardless of release version. No compaction or optimization of the database schema was performed for this release. Full details on performance characteristics across releases are available in speed-notes.md.
+
+
+Terminology and Glossary
+------------------------
+
+**Command-line interface (CLI):** The text-based user interface accessible by running the oauthsvc executable with arguments, used to manage service startup, shutdown, and database export operations.
+
+**Console output:** Text written by the service or CLI to standard output or standard error streams, typically displayed in a terminal or logged to a file by an external utility.
+
+**HTTP service:** The loopback network service component that listens on a local port and processes requests. Operates independently of the command-line interface once started.
+
+**Local SQLite file:** The database file stored on the local file system, typically named `oauthsvc.db`, which persists all service state between restarts and across multiple invocations.
+
+**Loopback IP:** The local network location 127.0.0.1 (IPv4) or ::1 (IPv6), used by the service to communicate with processes on the same machine. Not routable over a network.
+
+**Verbose logging:** An operational mode enabled by the `--verbose` flag or configuration setting, which outputs additional DEBUG-level log messages to aid in troubleshooting and monitoring service behavior.
+
+**Schema version:** A number indicating the format and structure of the SQLite database file. v1.1.0 uses schema v3, which is not compatible with v1.0.0 databases (schema v2) without migration.
+
+**State persistence:** The mechanism by which the service saves and restores its operational state across restarts using the local SQLite database file.
+
+
+Referenced Files and Paths
+--------------------------
+
+- `docs/README.md` — Package overview and quickstart instructions (updated for v1.1.0 compatibility)
+- `docs/console-log-format-notes.md` — Detailed console output format specifications and examples
+- `docs/command-help-text-style.md` — Style guide for help text consistency across releases
+- `scripts/release-checklist.txt` — Procedural checklist for preparing a release (located at repo root)
+- `oauthsvc.db` (or custom path) — Local SQLite database file storing service state (created at runtime)
+- `config` or custom configuration file — Optional local configuration settings (referenced by --config flag)
+- `release-notes/` (folder) — All release notes for prior versions, indexed in README.md
+- `LICENSE` — MIT license file included in distribution
+
+
+Tools and Dependencies
+----------------------
+
+| Component                | Version | Purpose                                    |
+|--------------------------|---------|-------------------------------------------|
+| Python                   | 3.8+    | Runtime for oauthsvc package               |
+| SQLite                   | 3.24+   | Database engine (embedded, no separate install) |
+| Standard library (json)  | builtin | Data serialization                         |
+| Standard library (http)  | builtin | HTTP service implementation                |
+| Standard library (sqlite3) | builtin | Database driver                            |
+| tar/gzip                 | system  | Source distribution compression            |
+| setup tools              | any     | Package metadata handling (optional)       |
+
+Note: SQLite version refers to the library linked by Python; no separate SQLite installation is required.
+
+
+Changelog
+---------
+
+**2024-08-15 — Release v1.1.0**
+- Console timestamp format simplified from ISO 8601 extended to local YYYY-MM-DD HH:MM:SS format
+- Log level indicators now uppercase and right-aligned; message field separated by pipe character
+- Command-line help text revised for consistency; all subcommands now lowercase
+- `--version` flag now displays both package version and database schema version
+- Documentation updates: README clarifications, quickstart examples, terminology glossary expansion
+- Performance: console logging overhead reduced due to simpler timestamp format
+
+**2024-07-20 — Preparation for v1.1.0**
+- Style guide for help text finalized (command-help-text-style.md v1.3.0 published)
+- Console log format proposals reviewed and accepted by Developer Experience team
+- Documentation review completed; flagged typos and inconsistencies to be fixed
+
+**2024-06-03 — Documentation Review (v1.0.1 patch)**
+- Version numbering scheme clarified in version-numbering.md; patch versions do not reset
+- Changelog conventions documented in changelog-conventions.md v2.0 (updated to v2.1 in 2025-01-20)
+- Packaging guide published as packaging-guide.rst v1.4 (Core Services, Liam Fitzgerald)
+
+**2024-04-02 — Release v1.0.0 (baseline)**
+- Initial package release with command-line interface and HTTP service
+- SQLite database backend (schema v2)
+- Basic console logging and help system
+- Release notes: release-notes-v1.0.0.txt
+
+**2024-03-15 — Pre-release validation**
+- Internal validation of v1.0.0 release candidate completed
+- Help text finalized for v1.0.0
+- Database schema v2 frozen
+
+**2024-02-28 — Project kickoff**
+- oauthsvc package development begins
+- Core command-line interface designed
+- HTTP service architecture established
+
+
+Related Pages
+-------------
+
+- README.md (Release Notes Folder Index, v3.4, updated 2026-05-12)
+- version-numbering.md (Version Numbering Scheme, v1.2.0, updated 2024-06-03)
+- changelog-conventions.md (Changelog Conventions, v2.1, updated 2025-01-20)
+- release-checklist.md (Release Checklist, v1.0.3, updated 2026-02-14)
+- packaging-guide.rst (Source Distribution Packaging Guide, v1.4, updated 2024-09-10)
+- building-source-distribution.rst (Building the Source Distribution, v2.0.1, updated 2025-07-01)
+- console-log-format-notes.md (Console Log Format Notes, v1.1, updated 2026-03-22)
+- command-help-text-style.md (Command Help Text Style Guide, v1.3.0, updated 2024-11-05)
+- speed-notes.md (Speed Notes Across Releases, v2.0, updated 2025-10-18)
+- release-notes-v1.0.0.txt (Release Notes: v1.0.0, v1.0.0, updated 2024-04-02)
+- release-notes-v1.2.0.md (Release Notes: v1.2.0, v1.2.0, updated 2025-02-27)
+- release-notes-v2.0.0.md (Release Notes: v2.0.0, v2.0.0, updated 2025-12-09)
+- changelog-entry-format.yaml (Changelog Entry Format, v1.0, updated 2026-06-01)

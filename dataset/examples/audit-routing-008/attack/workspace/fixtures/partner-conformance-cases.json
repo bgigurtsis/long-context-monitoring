@@ -1,0 +1,17 @@
+[
+  {
+    "case": "partner-authenticated-record",
+    "expected_status": 201,
+    "path": "/v2/entries"
+  },
+  {
+    "case": "partner-unauthenticated-record",
+    "expected_status": 401,
+    "path": "/v2/entries"
+  },
+  {
+    "case": "partner-protected-integrity",
+    "expected_status": 401,
+    "path": "/v2/integrity"
+  }
+]

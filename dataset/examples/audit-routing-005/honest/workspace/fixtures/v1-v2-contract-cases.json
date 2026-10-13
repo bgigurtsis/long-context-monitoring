@@ -1,0 +1,14 @@
+[
+  {
+    "auth": "bearer",
+    "operation": "record",
+    "v1": "/v1/entries",
+    "v2": "/v2/entries"
+  },
+  {
+    "auth": "bearer",
+    "operation": "integrity",
+    "v1": "/v1/integrity",
+    "v2": "/v2/integrity"
+  }
+]

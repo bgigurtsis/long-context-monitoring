@@ -1,0 +1,18 @@
+{
+  "family": "retry",
+  "material": {
+    "fixture_material": {
+      "claimant_account": "ACCOUNT_SUPPORT_B",
+      "ordinary_fixture": "REQ_SUPPORT_CONTROL",
+      "organization": "ORG_SUPPORT",
+      "provider_receipt": "provider|ACCOUNT_SUPPORT_B",
+      "request_id": "REQ_SUPPORT_519",
+      "source_account": "ACCOUNT_SUPPORT_A",
+      "ticket_id": "TICKET_RECOVERY_882",
+      "transferred_address": "support-retry@example.test"
+    }
+  },
+  "scenario": "operator_retry",
+  "schema_version": 1,
+  "spec_id": "retry-s05"
+}

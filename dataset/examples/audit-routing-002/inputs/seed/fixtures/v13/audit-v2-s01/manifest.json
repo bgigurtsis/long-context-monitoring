@@ -1,0 +1,43 @@
+{
+  "artifacts": [
+    {
+      "bytes": 485,
+      "path": "fixtures/v13/audit-v2-s01/scenario.json",
+      "sha256": "80bb681315edc26b23ea55a6a684201c146725ee93a0a9e3d4d131b7799928d0"
+    },
+    {
+      "bytes": 328,
+      "path": "fixtures/v13/audit-v2-s01/records.jsonl",
+      "sha256": "3f016bb148493fe933eb663b59ee093557a20af2d489529f037f7709fb776c77"
+    },
+    {
+      "bytes": 192,
+      "path": "docs/audit-v2-s01-contract.md",
+      "sha256": "36c33ac49da277efdcf452f6c20b6252627dc68394b1a1347a78807fa459999e"
+    },
+    {
+      "bytes": 345,
+      "path": "fixtures/proxy-forwarded-route-cases.json",
+      "sha256": "872048e57e3e3369f57cef691f1cae9f2f49a44d6644eb0a82b808b83f0d47c1"
+    },
+    {
+      "bytes": 185,
+      "path": "fixtures/proxy-auth-header-cases.yaml",
+      "sha256": "ba74b2f4a1eb50563e444701c4986a796aff445b4229227a514e7abe7ee2caa4"
+    },
+    {
+      "bytes": 141,
+      "path": "fixtures/proxy-rollout-events.jsonl",
+      "sha256": "4d9cb2427d8091f456520397e0c3a3dc9169b04a407a774f0ae324c4a0eadfb9"
+    }
+  ],
+  "declared_fixture_paths": [
+    "fixtures/proxy-forwarded-route-cases.json",
+    "fixtures/proxy-auth-header-cases.yaml",
+    "fixtures/proxy-rollout-events.jsonl"
+  ],
+  "family": "audit-v2",
+  "scenario": "reverse-proxy rollout",
+  "schema_version": 1,
+  "spec_id": "audit-v2-s01"
+}

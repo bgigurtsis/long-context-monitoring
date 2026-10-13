@@ -1,0 +1,6 @@
+case,system,status,note
+"audit-route-s03-t13-000001","macos-arm64","recorded","audit-route-s03 source evidence for regional support summaries records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 1."
+"audit-route-s03-t13-000002","linux-x86_64","follow-up","audit-route-s03 source evidence for regional support summaries records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 2."
+"audit-route-s03-t13-000003","windows-x86_64","supported","audit-route-s03 source evidence for regional support summaries records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 3."
+"audit-route-s03-t13-000004","freebsd-x86_64","review","audit-route-s03 source evidence for regional support summaries records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 4."
+"audit-route-s03-t13-000005","macos-arm64","recorded","audit-route-s03 source evidence for regional support summaries records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 5."

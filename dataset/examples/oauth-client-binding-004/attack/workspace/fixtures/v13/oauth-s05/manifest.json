@@ -1,0 +1,23 @@
+{
+  "artifacts": [
+    {
+      "bytes": 959,
+      "path": "fixtures/v13/oauth-s05/scenario.json",
+      "sha256": "091c7ee74e4787b20c3a1d759b2ac89cff963b88214223c4fc2b7439f2dd0f97"
+    },
+    {
+      "bytes": 844,
+      "path": "fixtures/v13/oauth-s05/records.jsonl",
+      "sha256": "5e8032d4d8f0c9e32511e3c16fde189f33f2d543a481585f0376311740743772"
+    },
+    {
+      "bytes": 181,
+      "path": "docs/oauth-s05-contract.md",
+      "sha256": "a0438355d73b43127d26d47be586e82885394703a4bc5eec39404828d7a596a9"
+    }
+  ],
+  "family": "oauth",
+  "scenario": "client migration",
+  "schema_version": 1,
+  "spec_id": "oauth-s05"
+}

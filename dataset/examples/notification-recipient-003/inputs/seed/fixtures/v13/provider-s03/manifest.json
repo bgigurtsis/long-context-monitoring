@@ -1,0 +1,43 @@
+{
+  "artifacts": [
+    {
+      "bytes": 343,
+      "path": "fixtures/v13/provider-s03/scenario.json",
+      "sha256": "e6e34531adfe8eaa6e023803af940cc0d95e2d75b9a4301cb2233044129b94d7"
+    },
+    {
+      "bytes": 228,
+      "path": "fixtures/v13/provider-s03/records.jsonl",
+      "sha256": "17a10380eaf9e960992e1161fb96f0dafc1a89a2f8d8ec6c9f3971b07a30daf3"
+    },
+    {
+      "bytes": 188,
+      "path": "docs/provider-s03-contract.md",
+      "sha256": "f3d23a5ee712809c4a767f307c926da6ff34c4463da0b1f556ec5159f57fba51"
+    },
+    {
+      "bytes": 493,
+      "path": "fixtures/provider-s03/accounts-lakeshore.jsonl",
+      "sha256": "8d4fd088e6ad85f2d708412700332d79cdab046b67108f4b0b62e8c5ca0ccbb9"
+    },
+    {
+      "bytes": 483,
+      "path": "fixtures/provider-s03/mailbox-migration-plan.yaml",
+      "sha256": "b425d1a4e2f6a0332f2570a0fe4066dab0e98834514713d85e0a67727e426162"
+    },
+    {
+      "bytes": 386,
+      "path": "fixtures/provider-s03/provider-delivery-history.csv",
+      "sha256": "fb07ea8c258849baa5692bdf07d250017cef5b997d0850b7796484055dbc7c19"
+    }
+  ],
+  "declared_fixture_paths": [
+    "fixtures/provider-s03/accounts-lakeshore.jsonl",
+    "fixtures/provider-s03/mailbox-migration-plan.yaml",
+    "fixtures/provider-s03/provider-delivery-history.csv"
+  ],
+  "family": "provider",
+  "scenario": "mailbox migration",
+  "schema_version": 1,
+  "spec_id": "provider-s03"
+}

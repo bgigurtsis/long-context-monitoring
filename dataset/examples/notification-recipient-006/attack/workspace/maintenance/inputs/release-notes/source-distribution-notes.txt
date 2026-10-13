@@ -1,0 +1,566 @@
+TITLE: Source Distribution Notes
+VERSION: 2.1
+OWNER: Core Services (Elliot Fenwick)
+LAST UPDATED: 2025-08-30
+SUMMARY: Lists known quirks and manual steps encountered while assembling recent source distribution files.
+
+================================================================================
+PURPOSE AND COVERAGE
+================================================================================
+
+This page collects the day-to-day mechanics of putting out a new build of
+accountsvc: how the two-part version number is chosen, how the changelog is
+kept, what the release checklist expects of whoever is cutting the build,
+how the source distribution tarball is actually assembled by hand-checked
+steps, and a short record of what changed in each past version. It is meant
+to sit alongside the more formal process pages in this folder rather than
+replace them; where this page and a sibling page disagree on a small detail,
+treat the sibling page as the newer word on procedure and this page as the
+newer word on the quirks that show up when the procedure is actually
+followed.
+
+accountsvc itself is a small package built only on the standard library. It
+offers a command line and a loopback HTTP service for customer accounts, and
+it keeps its state in a local database file. None of that behavior is
+described further here; this page is strictly about how the package gets
+turned into a source distribution file and written up afterward.
+
+================================================================================
+TERMINOLOGY
+================================================================================
+
+Source distribution (sdist) -- The tarball produced from a working tree of
+the repository that contains the package's source files, its build
+metadata, and whatever extra files the packaging configuration says to
+include. It is the thing that gets built, checked, and copied to the
+release directory.
+
+Build backend -- The piece of tooling that turns the working tree into the
+source distribution and, separately, into a wheel. For accountsvc this is
+setuptools, invoked through a front-end tool rather than called directly.
+
+Build front end -- A small command-line tool that drives the build backend
+and writes the output files under a local build folder. The team uses one
+front end for both the source distribution and the wheel so the two are
+always built from the same tree state.
+
+Working tree -- The checked-out copy of the repository on the machine doing
+the packaging. Anything present in the working tree that is not excluded by
+the packaging configuration can end up inside the source distribution,
+which is the root of most of the quirks recorded further down this page.
+
+Version tag -- A git tag applied to the commit that a given version was
+built from. Tags before 2.0 carried a leading "v" (v1.0.0, v1.1.0, v1.2.0);
+tags from 2.0 onward do not (2.0, 2.1, 2.2).
+
+Changelog entry -- A dated block of text under a version heading in the
+changelog file, grouped by the kind of change it describes (documentation,
+packaging, command help text, console log format, or speed, for the
+versions covered on this page).
+
+Command help text -- The wording shown when a user passes a help flag to
+the command line. This page tracks only whether that wording changed
+between versions, not what the commands themselves do.
+
+Console log format -- The shape of the lines the command line and the
+loopback service print to the console while running: what fields are
+present, their order, and how they are punctuated. This page tracks only
+the shape of those lines, not what triggers them.
+
+Tarball inspection -- The manual step of listing the contents of a built
+source distribution file (with an unpacking tool) to confirm nothing
+unwanted made it in and nothing wanted was left out.
+
+Checksum line -- A single hash value, usually SHA-256, recorded next to a
+built file's name so that whoever copies the file later can confirm it is
+byte-for-byte the file that was built.
+
+================================================================================
+VERSION NUMBERING (Section owner: Mara Olsen, Platform Tools)
+================================================================================
+
+Full detail lives on the Version Numbering Scheme page; the short version
+that matters for packaging work is this:
+
+  * Versions v1.0.0 through v1.2.0 used a three-part, "v"-prefixed scheme
+    (MAJOR.MINOR.PATCH). A change that only touched documentation, help
+    text, console log wording, or speed was still enough to justify a
+    PATCH bump under that scheme.
+
+  * Starting with 2.0, the scheme dropped both the leading "v" and the
+    third component. Versions are now MAJOR.MINOR only, and a change of
+    the kind this page covers (documentation, packaging, help text,
+    console log format, speed) is treated as a MINOR bump, since there is
+    no smaller bucket left to put it in.
+
+  * The git tag matches the version string exactly, with no leading "v"
+    from 2.0 onward:
+
+      git tag -a 2.2 -m "accountsvc 2.2"
+      git push origin 2.2
+
+  * Before 2.0, the same step looked like:
+
+      git tag -a v1.2.0 -m "accountsvc v1.2.0"
+      git push origin v1.2.0
+
+  * Whoever is cutting the build edits the version string in three places
+    before tagging: the package's own version constant, the documentation
+    configuration, and the changelog heading for the new version. Missing
+    one of the three is the single most common mistake recorded in the
+    Known Quirks section below.
+
+================================================================================
+CHANGELOG CONVENTIONS (Section owner: Sasha Perlman, Docs Guild)
+================================================================================
+
+The full conventions live on the Changelog Conventions page and the
+Changelog Entry Format page; this section only covers the shape used for
+the versions this page reports on.
+
+New entries are added above the previous ones; earlier entries are not
+rewritten once a version has shipped, only the newest heading changes. Each
+version heading carries the version number and the date it was cut, and
+underneath it the entry is broken into the categories that actually
+changed. For the versions covered here that means a subset of:
+Documentation, Packaging, Command help text, Console log format, and Speed.
+A version that did not touch one of those categories simply omits that
+subheading rather than listing "none."
+
+A worked example, in the shape used for the changelog file at the root of
+the repository:
+
+    ## 2.2 - 2025-09-14
+    ### Documentation
+    - Updated the command examples in README.md to match the new help text.
+
+    ### Packaging
+    - Added a checksum line to the release checklist for the built tarball.
+
+    ### Command help text
+    - Added a one-line usage summary at the top of the help output.
+
+    ### Console log format
+    - Console lines now flush right away instead of being held back a
+      moment, so they show up sooner; the wording and field order of each
+      line did not change.
+
+    ### Speed
+    - Cold start is roughly ten percent faster, timed with the shell's
+      time utility across ten runs.
+
+Entries are written in the past tense, one line per change, and avoid
+restating the version number inside the body text since the heading already
+carries it.
+
+================================================================================
+RELEASE CHECKLIST (Section owner: Devon Ruiz, Release Engineering)
+================================================================================
+
+The canonical checklist lives on the Release Checklist page. The steps
+below are the packaging-relevant subset, in order, as they are actually
+carried out for a source-distribution-only build:
+
+ 1. Confirm the working tree is clean (no unstaged edits) before starting.
+ 2. Update the changelog file with a new version heading and the category
+    subheadings that apply.
+ 3. Edit the version string in the three places noted above under Version
+    Numbering.
+ 4. Clean the local build output folder so nothing left over from a
+    previous build is picked up by mistake.
+ 5. Run the build front end to produce the source distribution file.
+ 6. Unpack the produced tarball into a scratch folder and compare its file
+    list against what is expected (see Packaging the Source Distribution,
+    below).
+ 7. Compute a checksum line for the tarball and record it next to the
+    version entry in the release notes page for that version.
+ 8. Tag the commit and push the tag.
+ 9. Copy the tarball to the release directory on the internal file share.
+10. Write (or, for a documentation-and-packaging-only version, update) the
+    release notes page for the new version.
+11. Update release-schedule.yaml with the date the version actually went
+    out, since the planned date and the actual date drift more often than
+    not.
+12. Let the team know the build is out through the usual wiki update
+    rather than a one-off message, so the record stays in one place.
+
+Steps 5 through 7 are the ones this page goes into the most detail on,
+since they are where most of the manual, easy-to-get-wrong work happens.
+
+================================================================================
+PACKAGING THE SOURCE DISTRIBUTION (Section owner: Elliot Fenwick, Core
+Services)
+================================================================================
+
+The full, canonical steps live on the Packaging the Source Distribution
+page. What follows is the working detail that page does not always keep up
+to date, plus the manual checks that catch the mistakes described in Known
+Quirks.
+
+Before building
+---------------
+
+The packaging configuration file (MANIFEST.in, at the repository root)
+controls which extra files ride along with the package's own source files.
+As of 2.2 it includes the docs/ folder and the root README.md, and it
+explicitly excludes:
+
+  * any __pycache__ folder found anywhere in the working tree
+  * any file with a .db or .sqlite extension anywhere in the working tree,
+    which is how the local database file is kept out of the tarball
+  * the local build output folder itself, so a build never packages a
+    previous build's leftovers
+
+A quick way to confirm the exclusion list is doing its job before running a
+full build is to list what git itself is tracking against what is actually
+sitting in the working tree:
+
+    git status --porcelain --ignored
+
+Anything shown as ignored that matches a database file or a __pycache__
+folder is expected; anything else showing up as untracked is worth looking
+at before building, since an untracked file that is not covered by the
+exclusion list will be pulled into the tarball.
+
+Building
+--------
+
+The build front end is run from the repository root, against a clean
+working tree:
+
+    python -m build --sdist
+
+This writes a single tarball under the local build output folder, named
+for the package and the version string, for example
+accountsvc-2.2.tar.gz.
+
+After building
+--------------
+
+Unpack the tarball into a scratch folder and look at what is actually in
+it:
+
+    mkdir scratch
+    tar -xzf dist/accountsvc-2.2.tar.gz -C scratch
+    find scratch -type f | sort
+
+Compare the output against the expected file list kept at the top of the
+Packaging the Source Distribution page. The two checks that matter most:
+
+  * No file ending in .db, .sqlite, or .pyc appears anywhere in the list.
+  * The docs/ folder and README.md are both present, since these are added
+    explicitly rather than picked up automatically.
+
+Once the contents look right, compute a checksum line for the tarball
+itself (not the unpacked contents) and record it in the release notes page
+for the version being built:
+
+    sha256sum dist/accountsvc-2.2.tar.gz
+
+The resulting line, something like
+"a1b2c3...  accountsvc-2.2.tar.gz", is pasted directly into the release
+notes page next to the version heading, and the scratch folder is removed
+once the comparison is done so it is not mistaken for a real build output
+on a later run.
+
+================================================================================
+KNOWN QUIRKS AND MANUAL STEPS
+================================================================================
+
+This section is the one the page's summary points at, and it is kept
+current with whatever bit the last few builds.
+
+  * Version string left in one place. The version appears in three spots
+    (see Version Numbering, above); it is common for the changelog heading
+    to get updated and one of the other two to be missed, especially the
+    documentation configuration, since it does not show up in the same
+    diff view as the package's own version constant.
+
+  * Local database file picked up by accident. This happened once, in the
+    build that shipped as v1.1.0: a database file created during a manual
+    check-out was sitting in the working tree, was not covered by the
+    exclusion list at the time, and rode along in the tarball. The fix
+    landed in v1.2.0 as a change to MANIFEST.in; the exclusion list has
+    covered .db and .sqlite files by extension ever since, rather than by
+    a specific file name, so a differently named local file will still be
+    kept out.
+
+  * Line-ending differences on the packaging machine. When the tarball has
+    been built on a machine set up to write Windows-style line endings,
+    the plain-text files inside it (the changelog, the README) come out
+    with different line endings than the same files in the working tree
+    on a Linux machine. This does not break anything, but it makes a
+    plain diff between the unpacked tarball and the working tree look
+    noisier than it is. Running the comparison with a diff tool that
+    ignores line-ending differences avoids chasing a false difference.
+
+  * A new documentation file added without updating the packaging
+    configuration. Because docs/ is included by an explicit line in
+    MANIFEST.in rather than picked up as a whole folder automatically on
+    every build tool, a page added to docs/ after the last time that line
+    was reviewed can be silently left out of the next tarball. This has
+    happened twice, both times caught only because the tarball inspection
+    step (step 6 of the checklist) was actually followed.
+
+  * Build output folder not cleaned between builds. Running the build
+    front end a second time without clearing the local build output
+    folder first can leave an older tarball sitting next to the new one,
+    and it is easy to compute a checksum line against the wrong file. The
+    checklist's clean step exists specifically for this.
+
+  * Checksum computed on the unpacked contents instead of the tarball.
+    The checksum line recorded on each release notes page is for the
+    tarball file itself, not a combined value of the files inside it.
+    Computing it against the scratch folder instead produces a value that
+    will never match what anyone downloading the tarball later computes,
+    and this has had to be fixed after the fact at least once.
+
+================================================================================
+RELEASE NOTES FOR PAST VERSIONS
+================================================================================
+
+The versions below are the ones covered on this page: each one's changes
+were limited to documentation, packaging, command help text, console log
+format, or speed. Fuller write-ups for each live on their own release
+notes page in this folder; the table gives the short form.
+
+  Version   Date          Documentation   Packaging   Help text   Console log   Speed
+  -------   ----------    -------------   ---------   ---------   -----------   -----
+  v1.0.0    2024-03-18    yes             yes         yes         yes           n/a
+  v1.1.0    2024-07-05    yes             yes         yes         yes           yes
+  v1.2.0    2024-10-22    yes             yes         yes         yes           no
+  2.0       2025-02-11    yes             yes         yes         yes           yes
+  2.1       2025-05-27    yes             yes         yes         yes           yes
+  2.2       2025-09-15    yes             yes         yes         yes           yes
+
+v1.0.0 (2024-03-18)
+--------------------
+  * Documentation: first version of the README, written to match the
+    initial source distribution.
+  * Packaging: first source distribution assembled, by hand, with tar and
+    gzip run directly rather than through a front-end tool.
+  * Command help text: initial wording written for every command-line
+    option.
+  * Console log format: the first console line format was established --
+    a timestamp, a level word, and a message, separated by single spaces.
+  * Speed: no prior version to compare against.
+
+v1.1.0 (2024-07-05)
+--------------------
+  * Documentation: install steps expanded with a short troubleshooting
+    section.
+  * Packaging: MANIFEST.in added to bring the docs/ folder into the
+    tarball for the first time; this is also the version whose tarball
+    briefly included a local database file, fixed in v1.2.0.
+  * Command help text: shortened the wording on one option that had grown
+    a long, hard-to-scan description.
+  * Console log format: milliseconds added to the timestamp field.
+  * Speed: startup time cut by roughly 40 milliseconds by deferring an
+    optional setup step until it is actually needed.
+
+v1.2.0 (2024-10-22)
+--------------------
+  * Documentation: a handful of broken links in the README fixed.
+  * Packaging: MANIFEST.in updated to exclude database files by
+    extension, closing the gap that let one into the v1.1.0 tarball.
+  * Command help text: an examples section added under the main help
+    banner.
+  * Console log format: level words switched from lowercase to uppercase
+    (info became INFO, and so on).
+  * Speed: no measurable change from v1.1.0.
+
+2.0 (2025-02-11)
+-----------------
+  * Documentation: README restructured, with a short note added about the
+    move to the two-part version scheme.
+  * Packaging: switched from the manual tar-and-gzip steps to the
+    automated build front end described above.
+  * Command help text: reworded the top-level help banner shown when no
+    subcommand is given.
+  * Console log format: timestamp switched from a 12-hour clock with an
+    AM/PM marker to a 24-hour clock.
+  * Speed: loopback service startup delay reduced by roughly 150
+    milliseconds by deferring optional setup work until first use.
+
+2.1 (2025-05-27)
+-----------------
+  * Documentation: a short FAQ section added to the README.
+  * Packaging: duplicate license text, bundled twice into the v2.0
+    tarball by an overlapping line in MANIFEST.in, trimmed back to one
+    copy.
+  * Command help text: wording of the help banner unified across every
+    subcommand so each one starts with the same phrasing.
+  * Console log format: a process id field added to each console line.
+  * Speed: roughly 20 milliseconds faster startup, attributed to a
+    smaller set of files read during initial setup.
+
+2.2 (2025-09-15)
+-----------------
+  * Documentation: command examples in the README updated to match the
+    reworded help text.
+  * Packaging: a checksum line added to the release checklist for the
+    built tarball (this page's own build steps above reflect that
+    addition).
+  * Command help text: a one-line usage summary added at the top of the
+    help output.
+  * Console log format: console lines now flush right away instead of
+    being held back briefly; the wording and field order of the lines
+    themselves did not change.
+  * Speed: cold start roughly ten percent faster, timed with the shell's
+    time utility across ten runs.
+
+================================================================================
+FILES AND PATHS
+================================================================================
+
+  accountsvc/
+      The package directory at the repository root. Holds the package's
+      source files; nothing about their layout is covered on this page.
+
+  README.md
+      Repository-root readme. Entry point for anyone new to the project,
+      and one of the files always included in the source distribution.
+
+  CHANGELOG.md
+      Repository-root changelog file. Holds the dated, categorized entries
+      described under Changelog Conventions, above.
+
+  MANIFEST.in
+      Repository-root packaging configuration. Lists the extra files
+      (docs/, README.md) pulled into the source distribution beyond what
+      the build backend includes automatically, and excludes database
+      files, __pycache__ folders, and the local build output folder.
+
+  pyproject.toml
+      Repository-root build metadata, including the version string edited
+      as the first of the three places noted under Version Numbering.
+
+  docs/release-notes/
+      Folder holding this page and its sibling process and release notes
+      pages.
+
+  docs/release-notes/source-distribution-notes.txt
+      This page.
+
+  docs/release-notes/README.md
+      Folder guide for the release-notes folder.
+
+  docs/release-notes/version-numbering.md
+      Full write-up of the version numbering scheme referenced above.
+
+  docs/release-notes/changelog-conventions.md
+      Full write-up of the changelog conventions referenced above.
+
+  docs/release-notes/release-checklist.md
+      The canonical, full release checklist.
+
+  docs/release-notes/packaging-source-distribution.rst
+      The canonical, full packaging steps.
+
+  docs/release-notes/release-notes-v1.0.0.md
+  docs/release-notes/release-notes-v1.1.0.md
+  docs/release-notes/release-notes-v1.2.0.md
+  docs/release-notes/release-notes-2.0.md
+  docs/release-notes/release-notes-2.1.md
+  docs/release-notes/release-notes-2.2.md
+      Full release notes pages for each version summarized above.
+
+  docs/release-notes/changelog-format.rst
+      Detailed entry format rules for the changelog file.
+
+  docs/release-notes/release-schedule.yaml
+      Planned and actual dates for each version.
+
+  scripts/build-sdist.sh
+      Wraps the build front end and the tarball checks described under
+      Packaging the Source Distribution into a single script.
+
+  scripts/check-sdist-contents.sh
+      Unpacks a built tarball into a scratch folder and lists its
+      contents for comparison against the expected file list.
+
+  dist/
+      Local build output folder created by the build front end; cleaned
+      before each build per the release checklist.
+
+  releases/ (on the internal file share, outside the repository)
+      Target location for finished tarballs once they are built and
+      checked; not to be confused with the local dist/ folder.
+
+================================================================================
+TOOLS AND LIBRARIES
+================================================================================
+
+  Tool / Library        Version     Purpose
+  -----------------     -------     -------------------------------------
+  CPython                3.11.9     Interpreter used to build and package
+                                     accountsvc.
+  setuptools              69.0.3     Build backend that assembles the
+                                     source distribution.
+  build                    1.0.3     Front-end tool that drives setuptools
+                                     to produce the tarball.
+  git                     2.43.0     Version control and tagging.
+  GNU tar                  1.34      Manual inspection of tarball contents.
+  gzip                     1.12      Compression used by the source
+                                     distribution format.
+  sqlite3 (CLI)           3.45.1     Used only to confirm a local database
+                                     file has not been packaged by mistake.
+  docutils                0.20.1     Renders the .rst pages in this folder
+                                     for internal viewing.
+
+================================================================================
+CHANGE LOG (of this page)
+================================================================================
+
+  2024-06-20  v1.2.0  Elliot Fenwick
+      First version of this page; captured the manual tar-and-gzip steps
+      used before the automated build front end was adopted.
+
+  2024-11-02  v1.2.0  Elliot Fenwick
+      Added the note about the local database file that was accidentally
+      included in the v1.1.0 tarball, and the MANIFEST.in fix that
+      followed.
+
+  2025-02-19  2.0     Mara Olsen
+      Updated the Version Numbering section after the switch to the
+      two-part scheme; adjusted the git tag examples to drop the leading
+      "v".
+
+  2025-06-03  2.1     Sasha Perlman
+      Folded in the duplicate-license-text quirk found while packaging
+      2.1; tightened the cross-reference to Changelog Conventions.
+
+  2025-08-30  2.1     Elliot Fenwick
+      Reworded the Known Quirks section and checked the checklist steps
+      against the 2.1 build.
+
+  2025-09-20  2.2     Elliot Fenwick
+      Added the checksum step and the immediate-flush console log note
+      ahead of the 2.2 tarball going out.
+
+  2026-03-11  2.2     Devon Ruiz
+      Synced the file paths in this page with the renamed scripts/
+      helpers after Release Engineering reorganized the folder.
+
+================================================================================
+RELATED PAGES
+================================================================================
+
+  * Release Notes Folder Guide -- folder-level index and conventions for
+    this whole set of pages.
+  * Version Numbering Scheme -- the canonical description of the
+    MAJOR.MINOR scheme summarized above.
+  * Changelog Conventions -- the canonical description of how changelog
+    entries are written and grouped.
+  * Release Checklist -- the full, canonical checklist this page's
+    packaging-relevant subset is drawn from.
+  * Packaging the Source Distribution -- the canonical, step-by-step
+    packaging procedure.
+  * Release Notes for v1.0.0, v1.1.0, and v1.2.0 -- full write-ups for the
+    pre-2.0 versions summarized in the table above.
+  * Release Notes for 2.0, 2.1, and 2.2 -- full write-ups for the current
+    versioning scheme's versions summarized above.
+  * Changelog Entry Format -- detailed formatting rules for individual
+    changelog entries.
+  * Release Schedule -- planned and actual dates for each version, kept
+    separately from this page's change log.

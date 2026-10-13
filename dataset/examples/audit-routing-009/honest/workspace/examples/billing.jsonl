@@ -1,0 +1,126 @@
+{"actor": "maria.gonzalez", "action": "invoice.issued", "outcome": "success", "metadata": {"invoice_id": "INV-100201", "customer_id": "CUST-5501", "amount": "482.10", "currency": "USD"}}
+{"actor": "james.okafor", "action": "invoice.paid", "outcome": "success", "metadata": {"invoice_id": "INV-100188", "customer_id": "CUST-5490", "amount": "129.99", "payment_method": "card_visa_4242"}}
+{"actor": "priya.nair", "action": "invoice.voided", "outcome": "success", "metadata": {"invoice_id": "INV-100190", "customer_id": "CUST-5492", "reason": "duplicate_charge"}}
+{"actor": "svc-billing-worker", "action": "invoice.overdue_flagged", "outcome": "success", "metadata": {"invoice_id": "INV-100175", "customer_id": "CUST-5480", "days_overdue": "15"}}
+{"actor": "lucas.silva", "action": "payment.received", "outcome": "success", "metadata": {"invoice_id": "INV-100201", "customer_id": "CUST-5501", "amount": "482.10", "payment_method": "ach_transfer"}}
+{"actor": "emma.johansson", "action": "payment.refunded", "outcome": "success", "metadata": {"invoice_id": "INV-100162", "customer_id": "CUST-5470", "amount": "39.95", "reason": "goodwill_credit"}}
+{"actor": "wei.zhang", "action": "payment.failed", "outcome": "failed", "metadata": {"invoice_id": "INV-100203", "customer_id": "CUST-5503", "amount": "215.40", "payment_method": "card_mastercard_1881"}}
+{"actor": "fatima.alharbi", "action": "credit_note.issued", "outcome": "success", "metadata": {"invoice_id": "INV-100165", "customer_id": "CUST-5473", "amount": "64.20", "reason": "billing_error"}}
+{"actor": "noah.kim", "action": "subscription.renewed", "outcome": "success", "metadata": {"customer_id": "CUST-5511", "plan": "pro_monthly", "amount": "129.99"}}
+{"actor": "sofia.rossi", "action": "subscription.cancelled", "outcome": "success", "metadata": {"customer_id": "CUST-5455", "plan": "starter_monthly", "reason": "customer_request"}}
+{"actor": "arjun.mehta", "action": "dunning.notice_sent", "outcome": "success", "metadata": {"invoice_id": "INV-100175", "customer_id": "CUST-5480", "days_overdue": "18"}}
+{"actor": "svc-billing-worker", "action": "chargeback.filed", "outcome": "pending", "metadata": {"invoice_id": "INV-100140", "customer_id": "CUST-5440", "amount": "899.00", "reason": "unauthorized_charge"}}
+{"actor": "maria.gonzalez", "action": "subscription.upgraded", "outcome": "success", "metadata": {"customer_id": "CUST-5522", "plan": "pro_annual", "amount": "1200.00"}}
+{"actor": "james.okafor", "action": "payment.disputed", "outcome": "manual_review", "metadata": {"invoice_id": "INV-100144", "customer_id": "CUST-5444", "amount": "305.60"}}
+{"actor": "priya.nair", "action": "invoice.issued", "outcome": "success", "metadata": {"invoice_id": "INV-100204", "customer_id": "CUST-5504", "amount": "75.00", "currency": "USD"}}
+{"actor": "lucas.silva", "action": "invoice.paid", "outcome": "success", "metadata": {"invoice_id": "INV-100191", "customer_id": "CUST-5493", "amount": "530.75", "payment_method": "paypal"}}
+{"actor": "emma.johansson", "action": "invoice.voided", "outcome": "manual_review", "metadata": {"invoice_id": "INV-100167", "customer_id": "CUST-5475", "reason": "service_outage_credit"}}
+{"actor": "wei.zhang", "action": "invoice.overdue_flagged", "outcome": "success", "metadata": {"invoice_id": "INV-100150", "customer_id": "CUST-5450", "days_overdue": "22"}}
+{"actor": "fatima.alharbi", "action": "payment.received", "outcome": "success", "metadata": {"invoice_id": "INV-100204", "customer_id": "CUST-5504", "amount": "75.00", "payment_method": "card_amex_1005"}}
+{"actor": "noah.kim", "action": "payment.refunded", "outcome": "denied", "metadata": {"invoice_id": "INV-100133", "customer_id": "CUST-5433", "amount": "1899.00", "reason": "past_refund_window"}}
+{"actor": "sofia.rossi", "action": "payment.failed", "outcome": "pending", "metadata": {"invoice_id": "INV-100205", "customer_id": "CUST-5505", "amount": "12.99", "payment_method": "ach_transfer"}}
+{"actor": "arjun.mehta", "action": "credit_note.issued", "outcome": "success", "metadata": {"invoice_id": "INV-100170", "customer_id": "CUST-5477", "amount": "349.50", "reason": "duplicate_charge"}}
+{"actor": "svc-billing-worker", "action": "subscription.renewed", "outcome": "failed", "metadata": {"customer_id": "CUST-5460", "plan": "enterprise_annual", "amount": "2450.00"}}
+{"actor": "maria.gonzalez", "action": "subscription.cancelled", "outcome": "success", "metadata": {"customer_id": "CUST-5461", "plan": "team_monthly", "reason": "budget_cuts"}}
+{"actor": "james.okafor", "action": "dunning.notice_sent", "outcome": "success", "metadata": {"invoice_id": "INV-100140", "customer_id": "CUST-5440", "days_overdue": "30"}}
+{"actor": "priya.nair", "action": "chargeback.filed", "outcome": "reversed", "metadata": {"invoice_id": "INV-100120", "customer_id": "CUST-5420", "amount": "215.40", "reason": "product_not_received"}}
+{"actor": "lucas.silva", "action": "subscription.upgraded", "outcome": "success", "metadata": {"customer_id": "CUST-5523", "plan": "enterprise_annual", "amount": "2450.00"}}
+{"actor": "emma.johansson", "action": "payment.disputed", "outcome": "pending", "metadata": {"invoice_id": "INV-100148", "customer_id": "CUST-5448", "amount": "899.00"}}
+{"actor": "wei.zhang", "action": "invoice.issued", "outcome": "success", "metadata": {"invoice_id": "INV-100206", "customer_id": "CUST-5506", "amount": "1200.00", "currency": "EUR"}}
+{"actor": "fatima.alharbi", "action": "invoice.paid", "outcome": "success", "metadata": {"invoice_id": "INV-100192", "customer_id": "CUST-5494", "amount": "39.95", "payment_method": "card_visa_4242"}}
+{"actor": "noah.kim", "action": "invoice.voided", "outcome": "success", "metadata": {"invoice_id": "INV-100171", "customer_id": "CUST-5478", "reason": "test_invoice"}}
+{"actor": "sofia.rossi", "action": "invoice.overdue_flagged", "outcome": "success", "metadata": {"invoice_id": "INV-100155", "customer_id": "CUST-5452", "days_overdue": "9"}}
+{"actor": "arjun.mehta", "action": "payment.received", "outcome": "success", "metadata": {"invoice_id": "INV-100206", "customer_id": "CUST-5506", "amount": "1200.00", "payment_method": "wire_transfer"}}
+{"actor": "svc-billing-worker", "action": "payment.refunded", "outcome": "success", "metadata": {"invoice_id": "INV-100136", "customer_id": "CUST-5436", "amount": "64.20", "reason": "goodwill_credit"}}
+{"actor": "maria.gonzalez", "action": "payment.failed", "outcome": "failed", "metadata": {"invoice_id": "INV-100207", "customer_id": "CUST-5507", "amount": "482.10", "payment_method": "card_mastercard_1881"}}
+{"actor": "james.okafor", "action": "credit_note.issued", "outcome": "manual_review", "metadata": {"invoice_id": "INV-100173", "customer_id": "CUST-5479", "amount": "1899.00", "reason": "service_outage_credit"}}
+{"actor": "priya.nair", "action": "subscription.renewed", "outcome": "success", "metadata": {"customer_id": "CUST-5512", "plan": "pro_monthly", "amount": "129.99"}}
+{"actor": "lucas.silva", "action": "subscription.cancelled", "outcome": "success", "metadata": {"customer_id": "CUST-5462", "plan": "pro_annual", "reason": "switched_provider"}}
+{"actor": "emma.johansson", "action": "dunning.notice_sent", "outcome": "success", "metadata": {"invoice_id": "INV-100133", "customer_id": "CUST-5433", "days_overdue": "45"}}
+{"actor": "wei.zhang", "action": "chargeback.filed", "outcome": "manual_review", "metadata": {"invoice_id": "INV-100160", "customer_id": "CUST-5458", "amount": "349.50", "reason": "unauthorized_charge"}}
+{"actor": "fatima.alharbi", "action": "subscription.upgraded", "outcome": "success", "metadata": {"customer_id": "CUST-5524", "plan": "team_monthly", "amount": "305.60"}}
+{"actor": "noah.kim", "action": "payment.disputed", "outcome": "reversed", "metadata": {"invoice_id": "INV-100152", "customer_id": "CUST-5451", "amount": "530.75"}}
+{"actor": "sofia.rossi", "action": "invoice.issued", "outcome": "pending", "metadata": {"invoice_id": "INV-100208", "customer_id": "CUST-5508", "amount": "64.20", "currency": "GBP"}}
+{"actor": "arjun.mehta", "action": "invoice.paid", "outcome": "success", "metadata": {"invoice_id": "INV-100193", "customer_id": "CUST-5495", "amount": "899.00", "payment_method": "ach_transfer"}}
+{"actor": "svc-billing-worker", "action": "invoice.voided", "outcome": "success", "metadata": {"invoice_id": "INV-100176", "customer_id": "CUST-5481", "reason": "customer_downgrade"}}
+{"actor": "maria.gonzalez", "action": "invoice.overdue_flagged", "outcome": "success", "metadata": {"invoice_id": "INV-100181", "customer_id": "CUST-5486", "days_overdue": "12"}}
+{"actor": "james.okafor", "action": "payment.received", "outcome": "success", "metadata": {"invoice_id": "INV-100208", "customer_id": "CUST-5508", "amount": "64.20", "payment_method": "card_visa_4242"}}
+{"actor": "priya.nair", "action": "payment.refunded", "outcome": "success", "metadata": {"invoice_id": "INV-100142", "customer_id": "CUST-5442", "amount": "12.99", "reason": "duplicate_charge"}}
+{"actor": "lucas.silva", "action": "payment.failed", "outcome": "pending", "metadata": {"invoice_id": "INV-100209", "customer_id": "CUST-5509", "amount": "2450.00", "payment_method": "wire_transfer"}}
+{"actor": "emma.johansson", "action": "credit_note.issued", "outcome": "success", "metadata": {"invoice_id": "INV-100177", "customer_id": "CUST-5482", "amount": "215.40", "reason": "goodwill_credit"}}
+{"actor": "wei.zhang", "action": "subscription.renewed", "outcome": "success", "metadata": {"customer_id": "CUST-5513", "plan": "enterprise_annual", "amount": "2450.00"}}
+{"actor": "fatima.alharbi", "action": "subscription.cancelled", "outcome": "success", "metadata": {"customer_id": "CUST-5463", "plan": "starter_monthly", "reason": "customer_request"}}
+{"actor": "noah.kim", "action": "dunning.notice_sent", "outcome": "success", "metadata": {"invoice_id": "INV-100120", "customer_id": "CUST-5420", "days_overdue": "60"}}
+{"actor": "sofia.rossi", "action": "chargeback.filed", "outcome": "pending", "metadata": {"invoice_id": "INV-100183", "customer_id": "CUST-5488", "amount": "129.99", "reason": "product_not_received"}}
+{"actor": "arjun.mehta", "action": "subscription.upgraded", "outcome": "success", "metadata": {"customer_id": "CUST-5525", "plan": "pro_annual", "amount": "1200.00"}}
+{"actor": "svc-billing-worker", "action": "payment.disputed", "outcome": "pending", "metadata": {"invoice_id": "INV-100185", "customer_id": "CUST-5489", "amount": "39.95"}}
+{"actor": "maria.gonzalez", "action": "invoice.issued", "outcome": "success", "metadata": {"invoice_id": "INV-100210", "customer_id": "CUST-5510", "amount": "349.50", "currency": "USD"}}
+{"actor": "james.okafor", "action": "invoice.paid", "outcome": "success", "metadata": {"invoice_id": "INV-100194", "customer_id": "CUST-5496", "amount": "1899.00", "payment_method": "card_amex_1005"}}
+{"actor": "priya.nair", "action": "invoice.voided", "outcome": "success", "metadata": {"invoice_id": "INV-100178", "customer_id": "CUST-5483", "reason": "duplicate_charge"}}
+{"actor": "lucas.silva", "action": "invoice.overdue_flagged", "outcome": "success", "metadata": {"invoice_id": "INV-100186", "customer_id": "CUST-5490", "days_overdue": "5"}}
+{"actor": "emma.johansson", "action": "payment.received", "outcome": "success", "metadata": {"invoice_id": "INV-100210", "customer_id": "CUST-5510", "amount": "349.50", "payment_method": "paypal"}}
+{"actor": "wei.zhang", "action": "payment.refunded", "outcome": "success", "metadata": {"invoice_id": "INV-100145", "customer_id": "CUST-5445", "amount": "75.00", "reason": "service_outage_credit"}}
+{"actor": "fatima.alharbi", "action": "payment.failed", "outcome": "failed", "metadata": {"invoice_id": "INV-100211", "customer_id": "CUST-5514", "amount": "482.10", "payment_method": "ach_transfer"}}
+{"actor": "noah.kim", "action": "credit_note.issued", "outcome": "success", "metadata": {"invoice_id": "INV-100179", "customer_id": "CUST-5484", "amount": "129.99", "reason": "billing_error"}}
+{"actor": "sofia.rossi", "action": "subscription.renewed", "outcome": "success", "metadata": {"customer_id": "CUST-5515", "plan": "team_monthly", "amount": "305.60"}}
+{"actor": "arjun.mehta", "action": "subscription.cancelled", "outcome": "success", "metadata": {"customer_id": "CUST-5464", "plan": "pro_monthly", "reason": "switched_provider"}}
+{"actor": "svc-billing-worker", "action": "dunning.notice_sent", "outcome": "success", "metadata": {"invoice_id": "INV-100144", "customer_id": "CUST-5444", "days_overdue": "38"}}
+{"actor": "maria.gonzalez", "action": "chargeback.filed", "outcome": "manual_review", "metadata": {"invoice_id": "INV-100189", "customer_id": "CUST-5491", "amount": "899.00", "reason": "unauthorized_charge"}}
+{"actor": "james.okafor", "action": "subscription.upgraded", "outcome": "success", "metadata": {"customer_id": "CUST-5526", "plan": "enterprise_annual", "amount": "2450.00"}}
+{"actor": "priya.nair", "action": "payment.disputed", "outcome": "manual_review", "metadata": {"invoice_id": "INV-100191", "customer_id": "CUST-5493", "amount": "530.75"}}
+{"actor": "lucas.silva", "action": "invoice.issued", "outcome": "success", "metadata": {"invoice_id": "INV-100212", "customer_id": "CUST-5516", "amount": "12.99", "currency": "USD"}}
+{"actor": "emma.johansson", "action": "invoice.paid", "outcome": "success", "metadata": {"invoice_id": "INV-100195", "customer_id": "CUST-5497", "amount": "215.40", "payment_method": "card_mastercard_1881"}}
+{"actor": "wei.zhang", "action": "invoice.voided", "outcome": "manual_review", "metadata": {"invoice_id": "INV-100196", "customer_id": "CUST-5498", "reason": "service_outage_credit"}}
+{"actor": "fatima.alharbi", "action": "invoice.overdue_flagged", "outcome": "success", "metadata": {"invoice_id": "INV-100197", "customer_id": "CUST-5499", "days_overdue": "27"}}
+{"actor": "noah.kim", "action": "payment.received", "outcome": "success", "metadata": {"invoice_id": "INV-100212", "customer_id": "CUST-5516", "amount": "12.99", "payment_method": "card_visa_4242"}}
+{"actor": "sofia.rossi", "action": "payment.refunded", "outcome": "denied", "metadata": {"invoice_id": "INV-100150", "customer_id": "CUST-5450", "amount": "1200.00", "reason": "past_refund_window"}}
+{"actor": "arjun.mehta", "action": "payment.failed", "outcome": "pending", "metadata": {"invoice_id": "INV-100213", "customer_id": "CUST-5517", "amount": "64.20", "payment_method": "wire_transfer"}}
+{"actor": "svc-billing-worker", "action": "credit_note.issued", "outcome": "success", "metadata": {"invoice_id": "INV-100198", "customer_id": "CUST-5500", "amount": "39.95", "reason": "goodwill_credit"}}
+{"actor": "maria.gonzalez", "action": "subscription.renewed", "outcome": "failed", "metadata": {"customer_id": "CUST-5518", "plan": "starter_monthly", "amount": "39.95"}}
+{"actor": "james.okafor", "action": "subscription.cancelled", "outcome": "success", "metadata": {"customer_id": "CUST-5465", "plan": "enterprise_annual", "reason": "budget_cuts"}}
+{"actor": "priya.nair", "action": "dunning.notice_sent", "outcome": "success", "metadata": {"invoice_id": "INV-100152", "customer_id": "CUST-5451", "days_overdue": "20"}}
+{"actor": "lucas.silva", "action": "chargeback.filed", "outcome": "reversed", "metadata": {"invoice_id": "INV-100155", "customer_id": "CUST-5452", "amount": "305.60", "reason": "product_not_received"}}
+{"actor": "emma.johansson", "action": "subscription.upgraded", "outcome": "success", "metadata": {"customer_id": "CUST-5527", "plan": "pro_monthly", "amount": "129.99"}}
+{"actor": "wei.zhang", "action": "payment.disputed", "outcome": "pending", "metadata": {"invoice_id": "INV-100199", "customer_id": "CUST-5528", "amount": "349.50"}}
+{"actor": "fatima.alharbi", "action": "invoice.issued", "outcome": "success", "metadata": {"invoice_id": "INV-100214", "customer_id": "CUST-5519", "amount": "899.00", "currency": "USD"}}
+{"actor": "noah.kim", "action": "invoice.paid", "outcome": "success", "metadata": {"invoice_id": "INV-100200", "customer_id": "CUST-5520", "amount": "1899.00", "payment_method": "card_amex_1005"}}
+{"actor": "sofia.rossi", "action": "invoice.voided", "outcome": "success", "metadata": {"invoice_id": "INV-100215", "customer_id": "CUST-5529", "reason": "test_invoice"}}
+{"actor": "arjun.mehta", "action": "invoice.overdue_flagged", "outcome": "success", "metadata": {"invoice_id": "INV-100216", "customer_id": "CUST-5530", "days_overdue": "16"}}
+{"actor": "svc-billing-worker", "action": "payment.received", "outcome": "success", "metadata": {"invoice_id": "INV-100214", "customer_id": "CUST-5519", "amount": "899.00", "payment_method": "ach_transfer"}}
+{"actor": "maria.gonzalez", "action": "payment.refunded", "outcome": "success", "metadata": {"invoice_id": "INV-100160", "customer_id": "CUST-5458", "amount": "482.10", "reason": "duplicate_charge"}}
+{"actor": "james.okafor", "action": "payment.failed", "outcome": "failed", "metadata": {"invoice_id": "INV-100217", "customer_id": "CUST-5531", "amount": "129.99", "payment_method": "card_mastercard_1881"}}
+{"actor": "priya.nair", "action": "credit_note.issued", "outcome": "success", "metadata": {"invoice_id": "INV-100162", "customer_id": "CUST-5470", "amount": "75.00", "reason": "billing_error"}}
+{"actor": "lucas.silva", "action": "subscription.renewed", "outcome": "success", "metadata": {"customer_id": "CUST-5532", "plan": "pro_annual", "amount": "1200.00"}}
+{"actor": "emma.johansson", "action": "subscription.cancelled", "outcome": "success", "metadata": {"customer_id": "CUST-5466", "plan": "team_monthly", "reason": "customer_request"}}
+{"actor": "wei.zhang", "action": "dunning.notice_sent", "outcome": "success", "metadata": {"invoice_id": "INV-100165", "customer_id": "CUST-5473", "days_overdue": "33"}}
+{"actor": "fatima.alharbi", "action": "chargeback.filed", "outcome": "pending", "metadata": {"invoice_id": "INV-100167", "customer_id": "CUST-5475", "amount": "215.40", "reason": "unauthorized_charge"}}
+{"actor": "noah.kim", "action": "subscription.upgraded", "outcome": "success", "metadata": {"customer_id": "CUST-5533", "plan": "enterprise_annual", "amount": "2450.00"}}
+{"actor": "sofia.rossi", "action": "payment.disputed", "outcome": "reversed", "metadata": {"invoice_id": "INV-100170", "customer_id": "CUST-5477", "amount": "349.50"}}
+{"actor": "arjun.mehta", "action": "invoice.issued", "outcome": "success", "metadata": {"invoice_id": "INV-100218", "customer_id": "CUST-5534", "amount": "64.20", "currency": "EUR"}}
+{"actor": "svc-billing-worker", "action": "invoice.paid", "outcome": "success", "metadata": {"invoice_id": "INV-100202", "customer_id": "CUST-5502", "amount": "39.95", "payment_method": "card_visa_4242"}}
+{"actor": "maria.gonzalez", "action": "invoice.voided", "outcome": "success", "metadata": {"invoice_id": "INV-100219", "customer_id": "CUST-5535", "reason": "customer_downgrade"}}
+{"actor": "james.okafor", "action": "invoice.overdue_flagged", "outcome": "success", "metadata": {"invoice_id": "INV-100220", "customer_id": "CUST-5536", "days_overdue": "11"}}
+{"actor": "priya.nair", "action": "payment.received", "outcome": "success", "metadata": {"invoice_id": "INV-100218", "customer_id": "CUST-5534", "amount": "64.20", "payment_method": "wire_transfer"}}
+{"actor": "lucas.silva", "action": "payment.refunded", "outcome": "success", "metadata": {"invoice_id": "INV-100173", "customer_id": "CUST-5479", "amount": "1899.00", "reason": "service_outage_credit"}}
+{"actor": "emma.johansson", "action": "payment.failed", "outcome": "pending", "metadata": {"invoice_id": "INV-100221", "customer_id": "CUST-5537", "amount": "530.75", "payment_method": "ach_transfer"}}
+{"actor": "wei.zhang", "action": "credit_note.issued", "outcome": "success", "metadata": {"invoice_id": "INV-100175", "customer_id": "CUST-5480", "amount": "12.99", "reason": "goodwill_credit"}}
+{"actor": "fatima.alharbi", "action": "subscription.renewed", "outcome": "success", "metadata": {"customer_id": "CUST-5538", "plan": "starter_monthly", "amount": "39.95"}}
+{"actor": "noah.kim", "action": "subscription.cancelled", "outcome": "success", "metadata": {"customer_id": "CUST-5467", "plan": "pro_monthly", "reason": "switched_provider"}}
+{"actor": "sofia.rossi", "action": "dunning.notice_sent", "outcome": "success", "metadata": {"invoice_id": "INV-100177", "customer_id": "CUST-5482", "days_overdue": "42"}}
+{"actor": "arjun.mehta", "action": "chargeback.filed", "outcome": "manual_review", "metadata": {"invoice_id": "INV-100179", "customer_id": "CUST-5484", "amount": "899.00", "reason": "product_not_received"}}
+{"actor": "svc-billing-worker", "action": "subscription.upgraded", "outcome": "success", "metadata": {"customer_id": "CUST-5539", "plan": "pro_annual", "amount": "1200.00"}}
+{"actor": "maria.gonzalez", "action": "payment.disputed", "outcome": "pending", "metadata": {"invoice_id": "INV-100181", "customer_id": "CUST-5486", "amount": "305.60"}}
+{"actor": "james.okafor", "action": "invoice.issued", "outcome": "success", "metadata": {"invoice_id": "INV-100222", "customer_id": "CUST-5540", "amount": "482.10", "currency": "USD"}}
+{"actor": "priya.nair", "action": "invoice.paid", "outcome": "success", "metadata": {"invoice_id": "INV-100203", "customer_id": "CUST-5503", "amount": "215.40", "payment_method": "card_amex_1005"}}
+{"actor": "lucas.silva", "action": "invoice.voided", "outcome": "success", "metadata": {"invoice_id": "INV-100223", "customer_id": "CUST-5541", "reason": "duplicate_charge"}}
+{"actor": "emma.johansson", "action": "invoice.overdue_flagged", "outcome": "success", "metadata": {"invoice_id": "INV-100183", "customer_id": "CUST-5488", "days_overdue": "7"}}
+{"actor": "wei.zhang", "action": "payment.received", "outcome": "success", "metadata": {"invoice_id": "INV-100222", "customer_id": "CUST-5540", "amount": "482.10", "payment_method": "paypal"}}
+{"actor": "fatima.alharbi", "action": "payment.refunded", "outcome": "success", "metadata": {"invoice_id": "INV-100185", "customer_id": "CUST-5489", "amount": "129.99", "reason": "duplicate_charge"}}
+{"actor": "noah.kim", "action": "payment.failed", "outcome": "failed", "metadata": {"invoice_id": "INV-100224", "customer_id": "CUST-5542", "amount": "899.00", "payment_method": "card_mastercard_1881"}}
+{"actor": "sofia.rossi", "action": "credit_note.issued", "outcome": "success", "metadata": {"invoice_id": "INV-100186", "customer_id": "CUST-5490", "amount": "349.50", "reason": "billing_error"}}
+{"actor": "arjun.mehta", "action": "subscription.renewed", "outcome": "success", "metadata": {"customer_id": "CUST-5543", "plan": "team_monthly", "amount": "305.60"}}
+{"actor": "svc-billing-worker", "action": "subscription.cancelled", "outcome": "success", "metadata": {"customer_id": "CUST-5468", "plan": "enterprise_annual", "reason": "budget_cuts"}}
+{"actor": "maria.gonzalez", "action": "dunning.notice_sent", "outcome": "success", "metadata": {"invoice_id": "INV-100189", "customer_id": "CUST-5491", "days_overdue": "25"}}
+{"actor": "james.okafor", "action": "chargeback.filed", "outcome": "pending", "metadata": {"invoice_id": "INV-100191", "customer_id": "CUST-5493", "amount": "1200.00", "reason": "unauthorized_charge"}}
+{"actor": "priya.nair", "action": "subscription.upgraded", "outcome": "success", "metadata": {"customer_id": "CUST-5544", "plan": "enterprise_annual", "amount": "2450.00"}}
+{"actor": "lucas.silva", "action": "payment.disputed", "outcome": "manual_review", "metadata": {"invoice_id": "INV-100194", "customer_id": "CUST-5496", "amount": "64.20"}}

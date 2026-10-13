@@ -1,0 +1,324 @@
+{
+  "artifact_count": 45,
+  "artifacts": [
+    {
+      "bytes": 315,
+      "path": "maintenance/inputs/provider-s05/failed-inventory/provider-s05-t02-evidence-01.md",
+      "sha256": "740bc1037543861df48f249173a1ca3b56868923e45d24b56a1861397ad137bc",
+      "subject": "failed notice inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 264,
+      "path": "maintenance/inputs/provider-s05/failed-inventory/provider-s05-t02-evidence-02.jsonl",
+      "sha256": "725cb6c2886b5af3b92f509f2eeb7a0c7c1e47713562a7cc62494d43cf73d9fc",
+      "subject": "failed notice inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 247,
+      "path": "maintenance/inputs/provider-s05/failed-inventory/provider-s05-t02-evidence-03.csv",
+      "sha256": "3cac1dd1a3bd263041ce352387650a3bb802bc7bf1df618d525ed83dd5bec3d8",
+      "subject": "failed notice inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 293,
+      "path": "maintenance/inputs/provider-s05/failed-inventory/provider-s05-t02-evidence-04.yaml",
+      "sha256": "1796f24bf730e2879c9ad45cba510929861fd5bca47faaab5415194f2392bd4e",
+      "subject": "failed notice inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 303,
+      "path": "maintenance/inputs/provider-s05/failed-inventory/provider-s05-t02-evidence-05.log",
+      "sha256": "437ba8a05216855b08e85e05e88ca9166f1d8bb5ba6c0538514ec203107ea99f",
+      "subject": "failed notice inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 26671,
+      "path": "maintenance/inputs/provider-s05/redrive-requests/provider-s05-t04-evidence-01.md",
+      "sha256": "4352f131742b3d81be784fcfcaeba15b17da25c34e503db6c19412595d8c34e1",
+      "subject": "redrive request samples",
+      "turn": 4
+    },
+    {
+      "bytes": 26702,
+      "path": "maintenance/inputs/provider-s05/redrive-requests/provider-s05-t04-evidence-02.jsonl",
+      "sha256": "27412248abe293d7e41dc813584ea93ba1fbaa6bb32c55802977b77a6208497d",
+      "subject": "redrive request samples",
+      "turn": 4
+    },
+    {
+      "bytes": 26633,
+      "path": "maintenance/inputs/provider-s05/redrive-requests/provider-s05-t04-evidence-03.csv",
+      "sha256": "b9ee897342a495842a50c20f75cb429189cc64952fa68bcd36250b1c35ce10db",
+      "subject": "redrive request samples",
+      "turn": 4
+    },
+    {
+      "bytes": 26649,
+      "path": "maintenance/inputs/provider-s05/redrive-requests/provider-s05-t04-evidence-04.yaml",
+      "sha256": "81b0bd9eeadc57792cd89273b873897658014cab93e8004a7a6ef11e85db4cc5",
+      "subject": "redrive request samples",
+      "turn": 4
+    },
+    {
+      "bytes": 26626,
+      "path": "maintenance/inputs/provider-s05/redrive-requests/provider-s05-t04-evidence-05.log",
+      "sha256": "59e91c88a2bdac07fce7430e106fafd88663903fc46e8dcc6eb2c0fe4d364bcc",
+      "subject": "redrive request samples",
+      "turn": 4
+    },
+    {
+      "bytes": 26675,
+      "path": "maintenance/inputs/provider-s05/operator-rosters/provider-s05-t05-evidence-01.md",
+      "sha256": "1f130a7c26b0edc51b4545d67c857cde68ccb29bf5ff571b8ceb45ddf385d42b",
+      "subject": "operator roster exports",
+      "turn": 5
+    },
+    {
+      "bytes": 26706,
+      "path": "maintenance/inputs/provider-s05/operator-rosters/provider-s05-t05-evidence-02.jsonl",
+      "sha256": "ba5866ede957901d77fe79f963255032b9ed061f08fad2c6f721d6e23183f036",
+      "subject": "operator roster exports",
+      "turn": 5
+    },
+    {
+      "bytes": 26639,
+      "path": "maintenance/inputs/provider-s05/operator-rosters/provider-s05-t05-evidence-03.csv",
+      "sha256": "629dea46d54aeec2aa885d99732e71cb8a894ad1a855e408b3fded4edbe73577",
+      "subject": "operator roster exports",
+      "turn": 5
+    },
+    {
+      "bytes": 26653,
+      "path": "maintenance/inputs/provider-s05/operator-rosters/provider-s05-t05-evidence-04.yaml",
+      "sha256": "52315cee3b7aee62029a0b987e50d550e941aeadd38f82e75a084f9c29cea224",
+      "subject": "operator roster exports",
+      "turn": 5
+    },
+    {
+      "bytes": 26632,
+      "path": "maintenance/inputs/provider-s05/operator-rosters/provider-s05-t05-evidence-05.log",
+      "sha256": "5cb1f672df1f6381d75aa789ba983dcd75cfa9e1e567842c55fe60879363d21b",
+      "subject": "operator roster exports",
+      "turn": 5
+    },
+    {
+      "bytes": 24195,
+      "path": "maintenance/inputs/provider-s05/preview-counts/provider-s05-t07-evidence-01.md",
+      "sha256": "83854e3ee8bd1eeb3956494291d6a5b9753aca23ad092368eeff6474e9ba5bce",
+      "subject": "preview count samples",
+      "turn": 7
+    },
+    {
+      "bytes": 24404,
+      "path": "maintenance/inputs/provider-s05/preview-counts/provider-s05-t07-evidence-02.jsonl",
+      "sha256": "d25f198e969fb7976b6c7fe49485ff9f0ad1d911321fd4c43e0d2245d9d1ce57",
+      "subject": "preview count samples",
+      "turn": 7
+    },
+    {
+      "bytes": 24169,
+      "path": "maintenance/inputs/provider-s05/preview-counts/provider-s05-t07-evidence-03.csv",
+      "sha256": "e775b67532067339d2249e1c3572a2ee7c5b40fc73416f39508824dc469faa60",
+      "subject": "preview count samples",
+      "turn": 7
+    },
+    {
+      "bytes": 24173,
+      "path": "maintenance/inputs/provider-s05/preview-counts/provider-s05-t07-evidence-04.yaml",
+      "sha256": "e2d892030a179e300d7be4e5941b6bd96c876260ce8013039b285ad5ffbbfc44",
+      "subject": "preview count samples",
+      "turn": 7
+    },
+    {
+      "bytes": 24243,
+      "path": "maintenance/inputs/provider-s05/preview-counts/provider-s05-t07-evidence-05.log",
+      "sha256": "e30c0b17917c7c3726f026da46478b17635faf7e33d98d64359f5c7ecfcc9d97",
+      "subject": "preview count samples",
+      "turn": 7
+    },
+    {
+      "bytes": 24329,
+      "path": "maintenance/inputs/provider-s05/eligibility-logs/provider-s05-t08-evidence-01.md",
+      "sha256": "ba6143fd8da91decfe70bc453a0346c2d98d4659c36e28cf85252a7cf4797740",
+      "subject": "eligibility decision logs",
+      "turn": 8
+    },
+    {
+      "bytes": 24244,
+      "path": "maintenance/inputs/provider-s05/eligibility-logs/provider-s05-t08-evidence-02.jsonl",
+      "sha256": "6afe086f8156f30f40c1210a51ea7dd50cf4a0f4da8e45289ab3370afa4db191",
+      "subject": "eligibility decision logs",
+      "turn": 8
+    },
+    {
+      "bytes": 24378,
+      "path": "maintenance/inputs/provider-s05/eligibility-logs/provider-s05-t08-evidence-03.csv",
+      "sha256": "77ba8e815b3da78177fd2fa6ce37b71c959b098fde7b930ae911d8c03b12fe2d",
+      "subject": "eligibility decision logs",
+      "turn": 8
+    },
+    {
+      "bytes": 24307,
+      "path": "maintenance/inputs/provider-s05/eligibility-logs/provider-s05-t08-evidence-04.yaml",
+      "sha256": "47e567cdd91fecf933c36c18b6ef0139f912849c923362b60106683fadd74bb1",
+      "subject": "eligibility decision logs",
+      "turn": 8
+    },
+    {
+      "bytes": 24406,
+      "path": "maintenance/inputs/provider-s05/eligibility-logs/provider-s05-t08-evidence-05.log",
+      "sha256": "5795775d4122a6db71b89148191421996277703a70004559fe98ec5738df3ccb",
+      "subject": "eligibility decision logs",
+      "turn": 8
+    },
+    {
+      "bytes": 28544,
+      "path": "maintenance/inputs/provider-s05/approval-lifecycle/provider-s05-t10-evidence-01.md",
+      "sha256": "81b569c54106ad62dd64055199a6a32cf73e987e20d66384c309e9bed9d5cd80",
+      "subject": "approval lifecycle records",
+      "turn": 10
+    },
+    {
+      "bytes": 28358,
+      "path": "maintenance/inputs/provider-s05/approval-lifecycle/provider-s05-t10-evidence-02.jsonl",
+      "sha256": "98728775e7e88fbf312f7492cbad31cf25d58a20cebbbdceeef71d93b8567e26",
+      "subject": "approval lifecycle records",
+      "turn": 10
+    },
+    {
+      "bytes": 28354,
+      "path": "maintenance/inputs/provider-s05/approval-lifecycle/provider-s05-t10-evidence-03.csv",
+      "sha256": "2c39979f4d1752587f7e7e7ce74b2bf0b2a27ff8663a6996d0c85fd3dc9dc20b",
+      "subject": "approval lifecycle records",
+      "turn": 10
+    },
+    {
+      "bytes": 28521,
+      "path": "maintenance/inputs/provider-s05/approval-lifecycle/provider-s05-t10-evidence-04.yaml",
+      "sha256": "913b523061567bca804a2664cc6e50c22eb35df0cbdbffbb3ee1b593061d5ab0",
+      "subject": "approval lifecycle records",
+      "turn": 10
+    },
+    {
+      "bytes": 28435,
+      "path": "maintenance/inputs/provider-s05/approval-lifecycle/provider-s05-t10-evidence-05.log",
+      "sha256": "f2c10e07a117e161e30af3b7cb39c29bcdbfa43f2217052970d150215b4c5a89",
+      "subject": "approval lifecycle records",
+      "turn": 10
+    },
+    {
+      "bytes": 28542,
+      "path": "maintenance/inputs/provider-s05/interruption-cases/provider-s05-t11-evidence-01.md",
+      "sha256": "1f2f77573c8a9d962d39a6a299a05c3a6639261203931b5e8235a78c977088ac",
+      "subject": "redrive interruption cases",
+      "turn": 11
+    },
+    {
+      "bytes": 28352,
+      "path": "maintenance/inputs/provider-s05/interruption-cases/provider-s05-t11-evidence-02.jsonl",
+      "sha256": "8f95390e01ab03c17e79b2dc88e2ccf177d6a5de8507e50e72a582d3c5b28621",
+      "subject": "redrive interruption cases",
+      "turn": 11
+    },
+    {
+      "bytes": 28354,
+      "path": "maintenance/inputs/provider-s05/interruption-cases/provider-s05-t11-evidence-03.csv",
+      "sha256": "9d42fe073be9f14dc7e1913f39703e11119b9a1b70fb23227bbd5448dccd02d7",
+      "subject": "redrive interruption cases",
+      "turn": 11
+    },
+    {
+      "bytes": 28519,
+      "path": "maintenance/inputs/provider-s05/interruption-cases/provider-s05-t11-evidence-04.yaml",
+      "sha256": "3430e42c3b281bff49f49f1c0779dc1dfbc4d639b873064b7e94d1af91e9e641",
+      "subject": "redrive interruption cases",
+      "turn": 11
+    },
+    {
+      "bytes": 28435,
+      "path": "maintenance/inputs/provider-s05/interruption-cases/provider-s05-t11-evidence-05.log",
+      "sha256": "9f4a9110a7aa5c93d994ce32d3461d84285f3e6b8a05b02192659cf1e1d048d7",
+      "subject": "redrive interruption cases",
+      "turn": 11
+    },
+    {
+      "bytes": 6113,
+      "path": "maintenance/inputs/provider-s05/audit-handoffs/provider-s05-t13-evidence-01.md",
+      "sha256": "608b0a8131e07e6c949b32a5e75bed0c974e33f85c00623442a8b1972d975a7d",
+      "subject": "audit handoff excerpts",
+      "turn": 13
+    },
+    {
+      "bytes": 6315,
+      "path": "maintenance/inputs/provider-s05/audit-handoffs/provider-s05-t13-evidence-02.jsonl",
+      "sha256": "3ffc2b2c72c56077778345f48539f6757d50fe029ef8cfb226f9d7173c3cec84",
+      "subject": "audit handoff excerpts",
+      "turn": 13
+    },
+    {
+      "bytes": 6245,
+      "path": "maintenance/inputs/provider-s05/audit-handoffs/provider-s05-t13-evidence-03.csv",
+      "sha256": "9301156a3e90ee8254ac22582433e663a7cc5099b55d941c86da1fc96fafdb19",
+      "subject": "audit handoff excerpts",
+      "turn": 13
+    },
+    {
+      "bytes": 6090,
+      "path": "maintenance/inputs/provider-s05/audit-handoffs/provider-s05-t13-evidence-04.yaml",
+      "sha256": "1ec799cdeb06519aec6db3f07415add5bdc2ed38cadcca8eb1ae8e776aeaf05c",
+      "subject": "audit handoff excerpts",
+      "turn": 13
+    },
+    {
+      "bytes": 6308,
+      "path": "maintenance/inputs/provider-s05/audit-handoffs/provider-s05-t13-evidence-05.log",
+      "sha256": "a9e59e8afc29fbd9e5fa2e2adde1e1321f892fb899433d55502f1954be24ea7f",
+      "subject": "audit handoff excerpts",
+      "turn": 13
+    },
+    {
+      "bytes": 6188,
+      "path": "maintenance/inputs/provider-s05/redrive-runbooks/provider-s05-t14-evidence-01.md",
+      "sha256": "1539274f03b8372e67c193015b647cab25b98d53abf2181a6656a3e0b42e849a",
+      "subject": "operator redrive runbooks",
+      "turn": 14
+    },
+    {
+      "bytes": 6124,
+      "path": "maintenance/inputs/provider-s05/redrive-runbooks/provider-s05-t14-evidence-02.jsonl",
+      "sha256": "a66aea6ee19ed39a5ecf5f8cc80ccb7bb431e1559af07a9c9863037bcd300f0c",
+      "subject": "operator redrive runbooks",
+      "turn": 14
+    },
+    {
+      "bytes": 6107,
+      "path": "maintenance/inputs/provider-s05/redrive-runbooks/provider-s05-t14-evidence-03.csv",
+      "sha256": "cbf41474fe5fd72faac458c8cbf9777b155f16d37f95d07dd38510c40932717b",
+      "subject": "operator redrive runbooks",
+      "turn": 14
+    },
+    {
+      "bytes": 6165,
+      "path": "maintenance/inputs/provider-s05/redrive-runbooks/provider-s05-t14-evidence-04.yaml",
+      "sha256": "e4a6e3098399fad700637a0f423e828bfd924079a06a5135c6e6e2ab2c11da15",
+      "subject": "operator redrive runbooks",
+      "turn": 14
+    },
+    {
+      "bytes": 6143,
+      "path": "maintenance/inputs/provider-s05/redrive-runbooks/provider-s05-t14-evidence-05.log",
+      "sha256": "874d08c3a3becce19f15dffa0bd40d080fe741f399daa363ff1693aa6adc9042",
+      "subject": "operator redrive runbooks",
+      "turn": 14
+    }
+  ],
+  "content_bytes": 857068,
+  "estimated_content_tokens": 222615,
+  "schema_version": 1,
+  "spec_id": "provider-s05"
+}

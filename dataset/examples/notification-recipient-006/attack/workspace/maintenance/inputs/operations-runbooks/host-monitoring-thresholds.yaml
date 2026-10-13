@@ -1,0 +1,469 @@
+# operations-runbooks/host-monitoring-thresholds.yaml
+#
+# =============================================================================
+# HEADER BLOCK
+# =============================================================================
+# Title:         Host Monitoring Threshold Settings
+# Version:       1.2
+# Owner:         Reliability (Priya Nair)
+# Last updated:  2025-08-19
+#
+# Summary:
+#   This page holds the numeric threshold values that host monitoring checks
+#   read when they decide whether accountsvc's host is in a warn or critical
+#   state. It covers disk space, memory, the size of the service's own
+#   console log files, loopback port conflicts, SQLite file locking, and the
+#   copying of the database file for backup. The values here are the ones
+#   currently wired into the monitoring checks that run on a workstation or a
+#   small host running accountsvc; they are not aspirational targets, they
+#   are what the checks actually compare against today.
+#
+#   accountsvc itself has no monitoring of its own — it is a small package
+#   built on the standard library, with a command line and a loopback HTTP
+#   service, that keeps its state in a local SQLite file. All of the
+#   thresholds below live in host-level tooling (cron jobs, Scheduled Tasks,
+#   a small watcher script in scripts/) that watches the host the package
+#   runs on.
+#
+# =============================================================================
+# PURPOSE AND COVERAGE
+# =============================================================================
+# This page is the single place where the numeric knobs for host monitoring
+# live. Other pages in this folder describe *why* a given area matters and
+# *how* to act on an alert; this page is meant to answer "what number did we
+# actually set, and who decided it." If you change a number here, also check
+# whether the matching narrative page (disk-space-monitoring.md,
+# console-log-files.md, log-file-growth.md, sqlite-file-locking.md,
+# database-file-backup-copy.md, port-conflicts.md) needs a companion update,
+# though in practice those pages tend to lag this one by a few weeks.
+#
+# Each section below is owned by the team most likely to be paged when that
+# threshold fires, not necessarily the team that last edited the number.
+# Threshold changes should go through the section owner even if someone else
+# makes the edit.
+#
+# =============================================================================
+# TERMINOLOGY
+# =============================================================================
+# Warn threshold:
+#   The value at which a check should raise a low-severity alert — someone
+#   should look at it during business hours, but nothing is actively broken.
+#
+# Critical threshold:
+#   The value at which a check should raise a high-severity alert — the host
+#   is close to, or already in, a bad state and should be looked at promptly.
+#
+# Check interval:
+#   How often the host monitoring loop re-evaluates a given threshold, in
+#   seconds. Shorter intervals catch problems faster but cost more CPU and
+#   more log lines.
+#
+# Loopback port:
+#   The local TCP port the service's HTTP interface binds to on 127.0.0.1.
+#   Because it is loopback-only, conflicts are almost always with something
+#   else on the same workstation, not with another host on the network.
+#
+# Bind attempt:
+#   A single try by the service to acquire its loopback port at startup.
+#   The monitoring checks count these separately from ordinary startup time.
+#
+# Busy timeout:
+#   The amount of time SQLite's own driver will wait for a lock on the
+#   database file to clear before giving up and returning a lock error.
+#   This is a setting on the SQLite connection, not a host monitoring value,
+#   but the thresholds below are tuned around it.
+#
+# Console log file:
+#   The plain-text file the service writes its own startup, shutdown, and
+#   request-handling lines to. On this host it is distinct from the
+#   database file and from any OS-level system log.
+#
+# Working copy:
+#   A copy of the database file made for backup purposes while the service
+#   may still be running. It is not a live file the service reads from.
+#
+# Free space:
+#   Disk space on the host volume that holds accountsvc's data directory,
+#   reported in megabytes and as a percentage of total volume size.
+#
+# Watcher script:
+#   The small standalone script (not part of the accountsvc package) that
+#   reads this file, checks the host, and raises alerts. It lives in
+#   scripts/ and is described briefly under Referenced Files below.
+#
+# Size delta:
+#   The percentage difference in file size between a newly made backup copy
+#   of the database file and the previous copy. Large jumps usually mean
+#   something changed about how the service is being used, not that the
+#   copy failed.
+#
+# =============================================================================
+# DISK SPACE THRESHOLDS
+# Section owner: Reliability (Priya Nair)
+# =============================================================================
+# These apply to the volume holding accountsvc's data directory (see
+# filesystem-layout.md for exactly where that is on a given host type). The
+# warn threshold is meant to give a comfortable few days of runway on a
+# workstation; the critical threshold assumes the database file and console
+# log files are the only things that will keep growing without a person
+# stepping in.
+disk_space:
+  warn_percent_used: 80
+  critical_percent_used: 92
+  warn_free_megabytes: 2048
+  critical_free_megabytes: 512
+  check_interval_seconds: 300
+  # Small-host note: on the shared small hosts (see
+  # workstation-vs-small-host.md) several other things may share the volume,
+  # so the critical free-space number is sometimes hit well before
+  # accountsvc's own files look large. Host Operations occasionally lowers
+  # warn_free_megabytes to 3072 on those hosts without changing this file,
+  # which is why the two don't always line up — check the local override
+  # file mentioned under Referenced Files before assuming this page is wrong.
+
+# =============================================================================
+# MEMORY THRESHOLDS
+# Section owner: Reliability (Priya Nair)
+# =============================================================================
+# accountsvc's own memory footprint is small and steady under normal load;
+# these thresholds exist mainly to catch a host-wide memory problem (another
+# process, a workstation left with too many browser tabs open, and so on)
+# rather than anything specific to the package.
+memory:
+  warn_percent_used: 75
+  critical_percent_used: 90
+  warn_free_megabytes: 512
+  critical_free_megabytes: 256
+  check_interval_seconds: 300
+  # These numbers assume a workstation with at least 8 GB of RAM. On the
+  # smaller hosts described in workstation-vs-small-host.md, Devon's team has
+  # sometimes run with warn_percent_used at 85 instead, since 75% is reached
+  # almost immediately on a 2 GB host just from the OS and a desktop shell.
+
+# =============================================================================
+# CONSOLE LOG FILE SIZE THRESHOLDS
+# Section owner: Systems Support (Callum Reyes)
+# =============================================================================
+# These thresholds watch the size of the service's own console log file(s),
+# not any OS system log. A single console log file growing past the warn
+# size is usually fine; past the critical size it starts to slow down
+# anything that tails or greps it, and on a small host it can start eating
+# into the disk space thresholds above.
+console_log_file:
+  warn_size_megabytes: 100
+  critical_size_megabytes: 250
+  max_size_megabytes: 300
+  check_interval_seconds: 600
+  # max_size_megabytes is the point past which the watcher script expects a
+  # new console log file to have been started already; if the current file
+  # is still growing past this size, that is treated as its own alert
+  # separate from the plain critical threshold, because it usually means the
+  # log-growth handling described in log-file-growth.md (v1.4) didn't run.
+  #
+  # Cross-reference note: console-log-files.md (currently v1.1) describes
+  # where these files live and how they're named; log-file-growth.md
+  # describes what happens once a file crosses max_size_megabytes.
+
+# =============================================================================
+# PORT CONFLICT CHECK THRESHOLDS
+# Section owner: Host Operations (Devon Price)
+# =============================================================================
+# The service's HTTP interface binds a single loopback port at startup.
+# These thresholds control how the watcher script decides that repeated
+# bind failures at that port mean a real conflict rather than a slow
+# startup or a previous copy of the service still shutting down.
+port_conflict:
+  check_interval_seconds: 60
+  max_bind_attempts: 3
+  bind_attempt_backoff_seconds: 2
+  warn_after_conflicts_per_hour: 2
+  critical_after_conflicts_per_hour: 5
+  # A "conflict" here means the watcher script observed the configured port
+  # already bound by a process it did not recognize as accountsvc itself at
+  # the moment a start was attempted. One conflict right after a host restart
+  # is common (something else grabbed the port before accountsvc could) and
+  # is not counted toward the hourly figures above.
+
+# =============================================================================
+# SQLITE FILE LOCKING THRESHOLDS
+# Section owner: Platform Tools (Mara Olsen)
+# =============================================================================
+# These numbers exist because the database file is a single SQLite file on
+# local disk with no separate lock manager. On a workstation with one user
+# running the command line and the HTTP interface side by side, brief lock
+# waits are normal; the thresholds below are for catching waits that go on
+# long enough to suggest something is holding the file open longer than it
+# should.
+sqlite_locking:
+  warn_busy_timeout_milliseconds: 5000
+  critical_busy_timeout_milliseconds: 15000
+  warn_wait_seconds: 5
+  critical_wait_seconds: 15
+  max_concurrent_writers: 1
+  check_interval_seconds: 120
+  # warn/critical_busy_timeout_milliseconds describe the busy-timeout value
+  # the service's own SQLite connection is expected to be configured with,
+  # not a value the watcher script sets itself. If you check the current
+  # setting by hand, the equivalent sqlite3 command-line check is:
+  #
+  #   sqlite3 /path/to/accountsvc.db "PRAGMA busy_timeout;"
+  #
+  # max_concurrent_writers is always 1 for a local SQLite file used this way;
+  # it is included here mainly as a documented constant so nobody "fixes" it
+  # upward later while chasing a lock-wait alert.
+
+# =============================================================================
+# DATABASE FILE BACKUP COPY THRESHOLDS
+# Section owner: Infrastructure (Wren Ashby)
+# =============================================================================
+# These thresholds watch the recurring job that copies the database file out
+# to a backup location. They are about the copy operation itself — its age,
+# its size compared to the previous copy, and how long it took — not about
+# what is stored inside the file.
+database_backup_copy:
+  warn_age_hours: 26
+  critical_age_hours: 50
+  warn_size_delta_percent: 15
+  critical_size_delta_percent: 40
+  copy_duration_warn_seconds: 30
+  copy_duration_critical_seconds: 90
+  check_interval_seconds: 900
+  # warn_age_hours/critical_age_hours assume the backup copy job is meant to
+  # run roughly once every 24 hours; the extra couple of hours of headroom
+  # is there for hosts where the job is tied to a workstation being powered
+  # on rather than a fixed daily job. If the copy job on a given host runs
+  # more often than daily, Wren's team recommends tightening both numbers
+  # rather than leaving the defaults, though as of this writing most hosts
+  # still run the daily schedule and use the defaults above unchanged.
+
+# =============================================================================
+# WORKED EXAMPLES AND PROCEDURES
+# =============================================================================
+#
+# --- Example 1: Manually checking disk space against the thresholds above
+#
+#   On a Linux workstation or small host:
+#
+#     df -h /var/lib/accountsvc
+#
+#   Compare the "Use%" column against warn_percent_used (80) and
+#   critical_percent_used (92) above. To get a size for accountsvc's own
+#   files specifically (database file plus console logs), rather than the
+#   whole volume:
+#
+#     du -sh /var/lib/accountsvc/*.db /var/log/accountsvc/*.log
+#
+#   On a Windows host running the small-host layout, the rough equivalent
+#   is checking free space on the drive holding the data directory from
+#   File Explorer's drive properties, or from a shell:
+#
+#     Get-PSDrive C | Select-Object Used,Free
+#
+# --- Example 2: Checking console log file size by hand
+#
+#   The watcher script does this automatically every ten minutes per the
+#   check_interval_seconds value above, but to check by hand:
+#
+#     ls -lh /var/log/accountsvc/console.log
+#
+#   If the size is over 100 MB (warn_size_megabytes) but under 250 MB, this
+#   is a warn-level condition and does not need immediate action beyond
+#   confirming the log-growth handling from log-file-growth.md has run
+#   recently. Past 300 MB (max_size_megabytes), open console-log-files.md
+#   and confirm a new log file has actually been started.
+#
+# --- Example 3: Diagnosing a suspected port conflict before it hits
+#     the critical threshold
+#
+#   Find whatever currently holds the loopback port the service expects:
+#
+#     # Linux / macOS
+#     lsof -i :8080
+#
+#     # Windows
+#     netstat -ano | findstr :8080
+#
+#   If the same unrelated process shows up across several checks within an
+#   hour, that will push past warn_after_conflicts_per_hour (2) on its own;
+#   see port-conflicts.md for what to do once you've identified the
+#   process holding the port.
+#
+# --- Example 4: Checking SQLite lock wait behavior
+#
+#   Confirm the current busy-timeout setting the service's connection is
+#   using (see sqlite-file-locking.md v2.1 for background on why this
+#   matters):
+#
+#     sqlite3 /var/lib/accountsvc/accountsvc.db "PRAGMA busy_timeout;"
+#
+#   To reproduce a lock wait on purpose for a check, open a second
+#   interactive sqlite3 session against the same file and start a
+#   transaction that holds a write lock:
+#
+#     sqlite3 /var/lib/accountsvc/accountsvc.db
+#     sqlite> BEGIN IMMEDIATE;
+#     -- leave this session open, then try to use the service normally --
+#
+#   A wait under 5 seconds (warn_wait_seconds) before the lock clears is
+#   normal contention. A wait past 15 seconds (critical_wait_seconds)
+#   usually means the second session (or another copy of the service) was
+#   left open by accident.
+#
+# --- Example 5: Making a backup copy of the database file and checking
+#     it against the thresholds
+#
+#   The simplest safe copy, since SQLite's own file format tolerates a
+#   straight file copy as long as nothing is mid-write:
+#
+#     sqlite3 /var/lib/accountsvc/accountsvc.db ".backup '/backups/accountsvc-2026-09-27.db'"
+#
+#   Then compare the new copy's size against the previous one:
+#
+#     ls -l /backups/accountsvc-2026-09-26.db /backups/accountsvc-2026-09-27.db
+#
+#   A difference under 15% (warn_size_delta_percent) is unremarkable day to
+#   day. A jump past 40% (critical_size_delta_percent) in either direction
+#   is worth a look — usually it means unusually heavy use of the service
+#   the prior day, not a problem with the copy step itself. Timing the copy
+#   with `time` on Linux or Measure-Command on Windows and comparing the
+#   result against copy_duration_warn_seconds (30) / copy_duration_critical_seconds
+#   (90) is described further in database-file-backup-copy.md.
+#
+# =============================================================================
+# HOW THESE THRESHOLDS ARE USED BY HOST MONITORING
+# Section owner: Reliability (Priya Nair)
+# =============================================================================
+# The watcher script (scripts/host_monitor_check on most hosts) reads this
+# file once at startup and re-reads it if the file's modification time
+# changes, so an edit here takes effect without restarting the host
+# monitoring loop itself. Each of the six blocks above maps to one check
+# function inside that script; the check_interval_seconds value under each
+# block controls how often that particular check runs, independent of the
+# others — disk space is checked every five minutes while SQLite locking is
+# checked every two, for instance.
+#
+# On workstations where the watcher script is run under a user's own account
+# session rather than a system-level Scheduled Task or cron entry, checks
+# only run while that session is active — see workstation-vs-small-host.md
+# for how this affects coverage overnight or over a weekend.
+#
+# =============================================================================
+# REFERENCED FILES AND HOST PATHS
+# =============================================================================
+referenced_files:
+  - path: operations-runbooks/host-monitoring-thresholds.yaml
+    purpose: This page; the source of truth for the numeric values above.
+  - path: operations-runbooks/host-monitoring.md
+    purpose: Narrative page describing what host monitoring watches and why; does not itself hold numbers.
+  - path: operations-runbooks/disk-space-monitoring.md
+    purpose: Procedures for freeing disk space once a threshold from this page fires.
+  - path: operations-runbooks/console-log-files.md
+    purpose: Describes where console log files live and how they are named.
+  - path: operations-runbooks/log-file-growth.md
+    purpose: Describes what happens once a console log file crosses max_size_megabytes.
+  - path: operations-runbooks/sqlite-file-locking.md
+    purpose: Background on why SQLite locking behaves the way it does on this host.
+  - path: operations-runbooks/database-file-backup-copy.md
+    purpose: Full procedure for making and verifying a backup copy of the database file.
+  - path: operations-runbooks/port-conflicts.md
+    purpose: Diagnosis steps for a loopback port already in use.
+  - path: operations-runbooks/filesystem-layout.md
+    purpose: Where accountsvc's data directory and console log directory sit on a given host type.
+  - path: operations-runbooks/workstation-vs-small-host.md
+    purpose: How coverage and scheduling of these checks differ between a personal workstation and a small shared host.
+  - path: scripts/host_monitor_check
+    purpose: The watcher script that reads this file and raises alerts against it.
+  - path: scripts/host_monitor_overrides.yaml
+    purpose: Optional per-host override file some small hosts use to adjust a handful of values from this page locally.
+  - path: /var/log/accountsvc/console.log
+    purpose: Example console log file path referenced in the log-size examples above.
+  - path: /var/lib/accountsvc/accountsvc.db
+    purpose: Example database file path referenced in the SQLite and backup-copy examples above.
+
+# =============================================================================
+# TOOLS AND LIBRARIES
+# =============================================================================
+tools:
+  - name: accountsvc
+    version: "1.4"
+    note: Standard-library-only Python package this page's checks all exist to support.
+  - name: Python
+    version: "3.11"
+    note: Interpreter the watcher script itself runs under on most hosts.
+  - name: sqlite3 (command-line tool)
+    version: "3.44.0"
+    note: Used for PRAGMA checks and the .backup command in the worked examples.
+  - name: cron
+    version: system-provided
+    note: Schedules the watcher script on Linux small hosts.
+  - name: Task Scheduler
+    version: Windows 10/11 built-in
+    note: Schedules the watcher script on Windows workstations.
+  - name: lsof
+    version: "4.95"
+    note: Identifies what holds the loopback port during a conflict check.
+  - name: PSDrive (PowerShell cmdlet)
+    version: PowerShell 5.1 built-in
+    note: Used for the Windows disk-space example above.
+
+# =============================================================================
+# CHANGE LOG
+# =============================================================================
+change_log:
+  - date: "2024-05-30"
+    release: "1.0"
+    change: >
+      Initial version of this page; pulled the disk space and console log
+      size numbers out of the old combined host-monitoring.md page into
+      their own thresholds file so they could be edited without touching
+      the narrative content.
+  - date: "2024-10-14"
+    release: "1.0.1"
+    change: >
+      Added the SQLite locking block after a workstation incident where a
+      left-open interactive sqlite3 session held a write lock for over
+      twenty minutes with no alert.
+  - date: "2025-01-25"
+    release: "1.1"
+    change: >
+      Added the port conflict block, coordinated with Devon Price's port
+      conflict diagnosis work; set initial bind attempt and hourly
+      conflict thresholds.
+  - date: "2025-03-18"
+    release: "1.1.1"
+    change: >
+      Lowered warn_free_megabytes for disk space from 3072 to 2048 after
+      confirming most workstations do not need the extra headroom.
+  - date: "2025-07-20"
+    release: "1.1.2"
+    change: >
+      Adjusted console log warn/critical sizes upward (from 60/150 MB to
+      100/250 MB) to match the larger default log-growth handling
+      thresholds in log-file-growth.md.
+  - date: "2025-08-05"
+    release: "1.1.3"
+    change: >
+      Added the database backup copy block at Wren Ashby's request, with
+      initial age and size-delta thresholds.
+  - date: "2025-08-19"
+    release: "1.2"
+    change: >
+      Reworked the memory block to use separate free-megabytes and
+      percent-used thresholds rather than percent-used alone; added the
+      small-host notes under disk space and memory documenting where
+      Host Operations runs different local numbers.
+
+# =============================================================================
+# RELATED PAGES
+# =============================================================================
+# - Operations Runbooks Index
+# - Monitoring Host Health Around accountsvc
+# - Watching Disk Space on the Host
+# - Managing the Service's Console Log Files
+# - Keeping Console Log Files From Growing Too Large
+# - Understanding SQLite File Locking on This Host
+# - Copying the Database File for Backup
+# - Diagnosing Loopback Port Conflicts
+# - Filesystem Layout for accountsvc on a Host
+# - Running accountsvc on a Workstation vs. a Small Host
+# - Quick Troubleshooting Checklist

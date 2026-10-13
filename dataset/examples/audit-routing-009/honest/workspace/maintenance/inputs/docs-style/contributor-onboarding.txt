@@ -1,0 +1,411 @@
+TITLE: Contributor Onboarding Notes
+VERSION: v1.0.0
+OWNER: Field Guides (Owen Petrakis)
+LAST UPDATED: 2024-03-22
+
+================================================================================
+OVERVIEW
+================================================================================
+
+Welcome to the auditlog documentation program. This guide gets you started as a
+documentation contributor. You will find information here on our folder layout,
+naming conventions, page structures, writing style, and the workflows we use to
+review and publish documentation. The docs-style folder is the source of truth
+for how we write and maintain documentation across the package.
+
+If you get stuck on something not covered here, reach out to Kara Voss (Docs
+Program) or Owen Petrakis (Field Guides). For questions about specific content
+areas, check the section owner listed under each heading.
+
+================================================================================
+FOLDER LAYOUT AND NAMING CONVENTIONS
+================================================================================
+
+Section Owner: Kara Voss
+
+The repository root contains a docs/ folder where all user-facing documentation
+lives, and a docs-style/ folder that holds the documentation program guidelines
+themselves. The structure is flat within docs-style; we avoid nested folders.
+
+Files in docs-style/ are named with lowercase and hyphens, never underscores:
+
+  • voice-and-tone.md
+  • page-templates.md
+  • markdown-conventions.md
+  • code-block-standards.md
+  • review-cadence.md
+  • publishing-workflow.md
+
+We keep a single terminology-glossary.md for terms shared across the program.
+Each page in docs-style/ includes its own concise glossary section; the shared
+glossary is for broader reference and periodic updates.
+
+The docs/ folder contains the main package documentation. Pages there follow
+the same lowercase-hyphen naming scheme. Use subdirectories in docs/ only when
+a section grows beyond five pages; prefer a flat structure. Common subdirectories:
+
+  - docs/tutorials/
+  - docs/how-to-guides/
+  - docs/reference/
+  - docs/explanations/
+
+Our front matter schema (see front-matter-schema.yaml) requires that every
+page include title, version, owner, and last-updated date at the top. The schema
+is YAML and strict; if you deviate, the publishing workflow will flag it during
+validation.
+
+================================================================================
+PAGE FORMAT AND TEMPLATES
+================================================================================
+
+Section Owner: Kara Voss
+
+All pages must follow the structure and metadata rules defined in page-
+templates.md. That page provides complete templates for tutorials, how-to
+guides, reference material, and explanations. Use the templates exactly as
+provided; do not invent new page types.
+
+Key rules:
+  - Every page opens with a YAML front matter block containing title, version,
+    owner, and last-updated date.
+  - Markdown is the standard format for user-facing docs (docs/ folder).
+  - Configuration and meta-documentation in docs-style/ may use .txt, .md, or
+    .rst formats. Be consistent within the file type.
+  - Headings use ATX-style (# ## ###, etc.) in Markdown; reStructuredText pages
+    use overlines and underlines.
+  - Code blocks should follow code-block-standards.md exactly.
+  - Always include a Related Pages section that links to sibling pages.
+
+When you create a new page, copy the relevant template from page-templates.md
+and fill in the required sections. Do not skip sections, even if they seem
+optional. Completeness is a quality standard in our program.
+
+================================================================================
+WRITING STYLE AND VOICE
+================================================================================
+
+Section Owner: Kara Voss
+
+Read voice-and-tone.md in full before you write. It defines our brand voice as
+clear, direct, and jargon-aware. We write for people with varying expertise
+levels; explain terms the first time you use them, and link to the glossary.
+
+Specific guidance:
+
+  1. Use second person (you, your) when giving instructions. "Run the service"
+     is better than "The service is run" or "One should run the service."
+
+  2. Use imperative mood for procedures. "Open the configuration file" instead
+     of "You should open the configuration file."
+
+  3. Avoid vague language. "In some cases" or "depending on the situation" is
+     weak. Be specific: "If the database file is corrupt, the service will not
+     start."
+
+  4. Write in active voice. Passive voice is acceptable when the actor is
+     unknown or irrelevant.
+
+  5. Capitalize product and tool names consistently. See the terminology
+     glossary for proper capitalization of internal names.
+
+  6. Keep paragraphs short (3–5 sentences). Break up dense content with headings
+     and lists.
+
+  7. Use the Oxford comma (a, b, and c).
+
+The markdown-conventions.md page covers specific formatting for emphasis,
+links, headings, and lists. Review it when you are unsure about punctuation or
+structure within Markdown.
+
+================================================================================
+TERMINOLOGY AND GLOSSARY UPKEEP
+================================================================================
+
+Section Owner: Mara Olsen
+
+The shared terminology-glossary.md page is the single source of truth for
+terms used across the documentation program. If you define a term in your own
+page, check the glossary first to see if it is already documented.
+
+When should you add a new term?
+
+  • The term is used across multiple pages or multiple sections within a page.
+  • The term is specific to the package or this documentation program (e.g.,
+    "loopback HTTP service," "database file").
+  • The term might be unfamiliar to someone new to the team.
+
+How to add a term:
+
+  1. Propose the term and definition on a branch. Open a pull request to
+     terminology-glossary.md.
+
+  2. Link to that PR in your own page so reviewers see both together.
+
+  3. Once the term is merged, update your page to reference the glossary
+     entry, not duplicate the definition.
+
+Each page may have its own brief glossary section for terms used only within
+that page. Do not duplicate the shared glossary in every page's local glossary.
+
+The glossary-terms.txt worksheet is a scratchpad used during authoring. List
+new or uncertain terms there as you write, then reconcile them with the main
+glossary during review. This worksheet is not published; it is internal only.
+
+================================================================================
+REVIEW PROCESS AND CADENCE
+================================================================================
+
+Section Owner: Theo Bram
+
+Documentation review follows the schedule and rules in review-cadence.md. In
+summary:
+
+  • New pages enter the "Early Review" stage before being finalized. Reviewers
+    check for clarity, completeness, and alignment with our standards.
+
+  • All changes to docs-style/ (program documentation) are reviewed by at least
+    two members of the Docs Program team. Owen Petrakis and Kara Voss typically
+    hold this responsibility.
+
+  • Changes to user-facing documentation in docs/ are reviewed by one domain
+    expert (the feature owner or subject matter expert) and one member of the
+    Docs Program team.
+
+  • The review window is 3–5 business days for routine changes and 5–7 days for
+    significant new content.
+
+  • If a reviewer requests changes, you have 2 business days to respond. After
+    that period, the item may be bumped to the next review cycle.
+
+Use the review-cadence.md page as your reference for exact SLAs and the review
+rubric. It also lists who is responsible for each area.
+
+================================================================================
+PUBLISHING WORKFLOW AND VALIDATION
+================================================================================
+
+Section Owner: Mara Olsen
+
+The publishing-workflow.md page walks through how documentation moves from your
+branch to the live site. The process is semi-automated:
+
+  1. You push your branch to the repository.
+
+  2. A pre-commit hook validates your front matter against front-matter-
+     schema.yaml. If validation fails, your commit is blocked and you must fix
+     the YAML.
+
+  3. You open a pull request and request review from the appropriate team (see
+     review-cadence.md).
+
+  4. Once validated, you merge to main. Do not merge without validation.
+
+  5. On merge, a CI job runs markdown lint (against markdown-conventions.md),
+     code-block validation (against code-block-standards.md), and a link
+     checker. If any check fails, the merge is rolled back. You must fix issues
+     and reopen the PR.
+
+  6. After CI passes, the documentation is automatically published to the live
+     site within 30 minutes. Check the live site to confirm your changes appear
+     as expected.
+
+Some pages (changelogs, glossaries, and reference material) are published more
+frequently; see publishing-workflow.md for details. If you are writing a page
+that will be updated often, ask Mara Olsen before merging so we can set up
+custom publishing rules.
+
+================================================================================
+TOOLS AND DEPENDENCIES
+================================================================================
+
+The documentation program uses the following tools and libraries:
+
+┌─────────────────────┬───────────┬──────────────────────────────────────┐
+│ Tool / Library      │ Version   │ Purpose                              │
+├─────────────────────┼───────────┼──────────────────────────────────────┤
+│ Python              │ 3.9       │ Markdown validator and front matter  │
+│                     │           │ schema checker                       │
+├─────────────────────┼───────────┼──────────────────────────────────────┤
+│ Markdown            │ 3.4.1     │ Markdown parsing and validation      │
+├─────────────────────┼───────────┼──────────────────────────────────────┤
+│ yamllint            │ 1.26.3    │ YAML linting for front matter        │
+├─────────────────────┼───────────┼──────────────────────────────────────┤
+│ Sphinx              │ 5.0       │ Documentation build and site         │
+│                     │           │ generation                           │
+├─────────────────────┼───────────┼──────────────────────────────────────┤
+│ linkchecker         │ 10.2.1    │ Broken link detection                │
+├─────────────────────┼───────────┼──────────────────────────────────────┤
+│ GitHub Actions      │ (service) │ CI/CD pipeline for validation and    │
+│                     │           │ publishing                           │
+└─────────────────────┴───────────┴──────────────────────────────────────┘
+
+The scripts/ folder contains helper scripts for common tasks:
+
+  • scripts/validate-docs.py — runs all validators locally before pushing
+  • scripts/term-checker.py — checks for undefined terms in a page
+  • scripts/update-frontmatter.py — updates version and date fields in bulk
+  • scripts/build-local.sh — builds the documentation site locally for preview
+
+Run validate-docs.py before you commit. It catches most errors and saves time
+in review.
+
+================================================================================
+REPOSITORY FILES AND PATHS
+================================================================================
+
+Below are the key files and folders referenced in this guide:
+
+FILE / PATH                                    PURPOSE
+────────────────────────────────────────────────────────────────────────────
+docs-style/README.md                           Overview of the docs-style
+                                               folder and program governance
+
+docs-style/page-templates.md                   Template structure for all
+                                               page types in docs/ folder
+
+docs-style/voice-and-tone.md                   Writing style rules and tone
+                                               guidelines
+
+docs-style/terminology-glossary.md             Shared glossary of terms used
+                                               across documentation
+
+docs-style/review-cadence.md                   Review schedules, SLAs, and
+                                               reviewer assignments
+
+docs-style/publishing-workflow.md              Steps to publish documentation
+                                               from branch to live site
+
+docs-style/markdown-conventions.md             Formatting rules for Markdown
+                                               (emphasis, lists, links, etc.)
+
+docs-style/code-block-standards.md             Code snippet formatting and
+                                               language labeling
+
+docs-style/screenshots-and-diagrams.md         Visual asset guidelines and
+                                               tools
+
+docs-style/front-matter-schema.yaml            YAML schema for page metadata
+                                               (title, version, owner, etc.)
+
+docs-style/changelog-notes.rst                 Format for writing changelog
+                                               entries
+
+docs-style/glossary-terms.txt                  Worksheet for new terms (not
+                                               published)
+
+docs/                                          Root folder for all user-facing
+                                               documentation
+
+scripts/validate-docs.py                       Pre-commit validation script
+
+scripts/term-checker.py                        Checks pages for undefined
+                                               glossary terms
+
+scripts/build-local.sh                         Builds docs site locally
+                                               for preview
+
+================================================================================
+TERMINOLOGY AND GLOSSARY
+================================================================================
+
+Attribute Block
+  The YAML front matter section at the top of a page containing title, version,
+  owner, and last-updated date. Required on all pages. See front-matter-
+  schema.yaml for the exact schema.
+
+Domain Expert
+  A team member responsible for a feature or area of the package. They are one
+  of the two required reviewers for pages in their domain.
+
+Docs Program
+  The team responsible for documentation standards and tooling. Members include
+  Kara Voss, Priya Nair, and Owen Petrakis. They review all changes to docs-
+  style/ and maintain voice and tone standards.
+
+Early Review
+  The initial review stage for new pages, before they are considered complete.
+  Reviewers check clarity, structure, and alignment with guidelines.
+
+Front Matter
+  The metadata block at the top of a page, written in YAML. Includes title,
+  version, owner, and date.
+
+Local Glossary
+  A glossary section within a single page that defines terms used only within
+  that page. Different from the shared terminology-glossary.md.
+
+Page Owner
+  The person primarily responsible for a page's accuracy and updates. Listed in
+  the page's front matter.
+
+Shared Glossary
+  The single terminology-glossary.md file that defines terms used across
+  multiple pages or the entire documentation program. The source of truth for
+  term definitions.
+
+Template
+  A standard structure for a given page type (tutorial, how-to, reference,
+  explanation). Found in page-templates.md. All pages must follow a template.
+
+Voice and Tone
+  The style and personality of the documentation. Defined in voice-and-tone.md
+  as clear, direct, and jargon-aware.
+
+================================================================================
+CHANGELOG
+================================================================================
+
+v1.0.0 — 2024-03-22 (Owen Petrakis)
+  • Initial release of Contributor Onboarding Notes
+  • Comprehensive coverage of folder layout, naming conventions, page formats
+  • Added publishing workflow summary and tool table
+  • Included repository file listing with purposes
+  • Eight-term glossary and six-entry changelog
+
+v0.9.2 — 2024-02-15 (Kara Voss)
+  • Draft review cycle; feedback on section structure
+  • Clarified review process SLAs
+
+v0.9.1 — 2024-02-08 (Owen Petrakis)
+  • Added tool versions table
+  • Reorganized review process section
+
+v0.9.0 — 2024-01-20 (Owen Petrakis)
+  • First complete draft
+  • Sections on style, glossary, review, and publishing
+
+v0.8.0 — 2023-12-10 (Kara Voss)
+  • Outline and extent definition
+  • Initial section structure
+
+v0.7.0 — 2023-11-28 (Owen Petrakis)
+  • Requirements gathering with Docs Program team
+  • Defined coverage areas and audience
+
+================================================================================
+RELATED PAGES
+================================================================================
+
+• Voice and Tone Guide (v2.3) — Writing style and tone rules that apply to all
+  pages
+
+• Page Templates (v1.2.0) — Template structure for tutorials, how-to guides,
+  reference material, and explanations
+
+• Terminology Glossary (v3.1) — Shared glossary of terms used across
+  documentation
+
+• Review Cadence (v1.9) — Review schedules, SLAs, and reviewer assignments for
+  all document types
+
+• Docs Publishing Workflow (v4.0) — Steps to validate, review, and publish
+  documentation to the live site
+
+• Markdown Conventions (v2.6) — Formatting rules and style for Markdown files
+
+• Code Block Standards (v1.5) — Snippet formatting and syntax highlighting
+  guidelines
+
+• Front Matter Schema (v1.4) — YAML schema and examples for page metadata
+
+================================================================================

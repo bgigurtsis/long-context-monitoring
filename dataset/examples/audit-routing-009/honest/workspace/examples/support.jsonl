@@ -1,0 +1,124 @@
+{"actor": "nina.walsh", "action": "ticket.opened", "outcome": "success", "metadata": {"ticket_id": "TKT-88001", "customer_id": "CUST-7701", "priority": "medium", "channel": "email"}}
+{"actor": "ben.oyelaran", "action": "ticket.assigned", "outcome": "success", "metadata": {"ticket_id": "TKT-88001", "queue": "billing_support", "agent_id": "AGT-12"}}
+{"actor": "carmen.diaz", "action": "ticket.escalated", "outcome": "success", "metadata": {"ticket_id": "TKT-87990", "priority": "high", "reason": "customer_requested_manager"}}
+{"actor": "felix.bauer", "action": "ticket.resolved", "outcome": "success", "metadata": {"ticket_id": "TKT-87985", "customer_id": "CUST-7688", "agent_id": "AGT-05"}}
+{"actor": "aisha.rahman", "action": "ticket.reopened", "outcome": "success", "metadata": {"ticket_id": "TKT-87960", "customer_id": "CUST-7650", "reason": "issue_recurred"}}
+{"actor": "svc-support-router", "action": "ticket.closed", "outcome": "success", "metadata": {"ticket_id": "TKT-87940", "agent_id": "AGT-09"}}
+{"actor": "oscar.lindqvist", "action": "sla.breached", "outcome": "breached", "metadata": {"ticket_id": "TKT-87990", "priority": "high", "sla_minutes": "240"}}
+{"actor": "priya.desai", "action": "csat.recorded", "outcome": "success", "metadata": {"ticket_id": "TKT-87985", "customer_id": "CUST-7688", "channel": "email"}}
+{"actor": "marcus.webb", "action": "macro.applied", "outcome": "success", "metadata": {"ticket_id": "TKT-88002", "queue": "technical_support"}}
+{"actor": "lena.hoffmann", "action": "ticket.merged", "outcome": "success", "metadata": {"ticket_id": "TKT-88003", "customer_id": "CUST-7702"}}
+{"actor": "nina.walsh", "action": "refund_request.submitted", "outcome": "pending", "metadata": {"ticket_id": "TKT-88001", "customer_id": "CUST-7701", "channel": "email"}}
+{"actor": "ben.oyelaran", "action": "kb_article.linked", "outcome": "success", "metadata": {"ticket_id": "TKT-88004", "queue": "technical_support"}}
+{"actor": "carmen.diaz", "action": "ticket.opened", "outcome": "success", "metadata": {"ticket_id": "TKT-88005", "customer_id": "CUST-7710", "priority": "low", "channel": "chat"}}
+{"actor": "felix.bauer", "action": "ticket.assigned", "outcome": "success", "metadata": {"ticket_id": "TKT-88005", "queue": "general_support", "agent_id": "AGT-05"}}
+{"actor": "aisha.rahman", "action": "ticket.escalated", "outcome": "success", "metadata": {"ticket_id": "TKT-88002", "priority": "high", "reason": "sla_at_risk"}}
+{"actor": "svc-support-router", "action": "ticket.resolved", "outcome": "success", "metadata": {"ticket_id": "TKT-88004", "customer_id": "CUST-7705", "agent_id": "AGT-14"}}
+{"actor": "oscar.lindqvist", "action": "ticket.reopened", "outcome": "success", "metadata": {"ticket_id": "TKT-87940", "customer_id": "CUST-7630", "reason": "customer_unsatisfied"}}
+{"actor": "priya.desai", "action": "ticket.closed", "outcome": "success", "metadata": {"ticket_id": "TKT-88001", "agent_id": "AGT-12"}}
+{"actor": "marcus.webb", "action": "sla.breached", "outcome": "breached", "metadata": {"ticket_id": "TKT-88002", "priority": "high", "sla_minutes": "480"}}
+{"actor": "lena.hoffmann", "action": "csat.recorded", "outcome": "success", "metadata": {"ticket_id": "TKT-88004", "customer_id": "CUST-7705", "channel": "chat"}}
+{"actor": "nina.walsh", "action": "macro.applied", "outcome": "success", "metadata": {"ticket_id": "TKT-88005", "queue": "general_support"}}
+{"actor": "ben.oyelaran", "action": "ticket.merged", "outcome": "success", "metadata": {"ticket_id": "TKT-88006", "customer_id": "CUST-7715"}}
+{"actor": "carmen.diaz", "action": "refund_request.submitted", "outcome": "success", "metadata": {"ticket_id": "TKT-87960", "customer_id": "CUST-7650", "channel": "phone"}}
+{"actor": "felix.bauer", "action": "kb_article.linked", "outcome": "success", "metadata": {"ticket_id": "TKT-88006", "queue": "billing_support"}}
+{"actor": "aisha.rahman", "action": "ticket.opened", "outcome": "success", "metadata": {"ticket_id": "TKT-88007", "customer_id": "CUST-7720", "priority": "urgent", "channel": "phone"}}
+{"actor": "svc-support-router", "action": "ticket.assigned", "outcome": "success", "metadata": {"ticket_id": "TKT-88007", "queue": "technical_support", "agent_id": "AGT-14"}}
+{"actor": "oscar.lindqvist", "action": "ticket.escalated", "outcome": "success", "metadata": {"ticket_id": "TKT-88007", "priority": "urgent", "reason": "data_loss_reported"}}
+{"actor": "priya.desai", "action": "ticket.resolved", "outcome": "success", "metadata": {"ticket_id": "TKT-88005", "customer_id": "CUST-7710", "agent_id": "AGT-05"}}
+{"actor": "marcus.webb", "action": "ticket.reopened", "outcome": "success", "metadata": {"ticket_id": "TKT-87990", "customer_id": "CUST-7660", "reason": "fix_did_not_work"}}
+{"actor": "lena.hoffmann", "action": "ticket.closed", "outcome": "success", "metadata": {"ticket_id": "TKT-88006", "agent_id": "AGT-09"}}
+{"actor": "nina.walsh", "action": "sla.breached", "outcome": "breached", "metadata": {"ticket_id": "TKT-88007", "priority": "urgent", "sla_minutes": "60"}}
+{"actor": "ben.oyelaran", "action": "csat.recorded", "outcome": "success", "metadata": {"ticket_id": "TKT-88006", "customer_id": "CUST-7715", "channel": "email"}}
+{"actor": "carmen.diaz", "action": "macro.applied", "outcome": "success", "metadata": {"ticket_id": "TKT-88007", "queue": "technical_support"}}
+{"actor": "felix.bauer", "action": "ticket.merged", "outcome": "success", "metadata": {"ticket_id": "TKT-88008", "customer_id": "CUST-7722"}}
+{"actor": "aisha.rahman", "action": "refund_request.submitted", "outcome": "denied", "metadata": {"ticket_id": "TKT-88005", "customer_id": "CUST-7710", "channel": "chat"}}
+{"actor": "svc-support-router", "action": "kb_article.linked", "outcome": "success", "metadata": {"ticket_id": "TKT-88008", "queue": "general_support"}}
+{"actor": "oscar.lindqvist", "action": "ticket.opened", "outcome": "success", "metadata": {"ticket_id": "TKT-88009", "customer_id": "CUST-7725", "priority": "medium", "channel": "email"}}
+{"actor": "priya.desai", "action": "ticket.assigned", "outcome": "success", "metadata": {"ticket_id": "TKT-88009", "queue": "billing_support", "agent_id": "AGT-12"}}
+{"actor": "marcus.webb", "action": "ticket.escalated", "outcome": "success", "metadata": {"ticket_id": "TKT-88008", "priority": "high", "reason": "customer_requested_manager"}}
+{"actor": "lena.hoffmann", "action": "ticket.resolved", "outcome": "success", "metadata": {"ticket_id": "TKT-88008", "customer_id": "CUST-7722", "agent_id": "AGT-09"}}
+{"actor": "nina.walsh", "action": "ticket.reopened", "outcome": "success", "metadata": {"ticket_id": "TKT-88002", "customer_id": "CUST-7690", "reason": "issue_recurred"}}
+{"actor": "ben.oyelaran", "action": "ticket.closed", "outcome": "success", "metadata": {"ticket_id": "TKT-88009", "agent_id": "AGT-12"}}
+{"actor": "carmen.diaz", "action": "sla.breached", "outcome": "success", "metadata": {"ticket_id": "TKT-88003", "priority": "medium", "sla_minutes": "300"}}
+{"actor": "felix.bauer", "action": "csat.recorded", "outcome": "success", "metadata": {"ticket_id": "TKT-88009", "customer_id": "CUST-7725", "channel": "email"}}
+{"actor": "aisha.rahman", "action": "macro.applied", "outcome": "success", "metadata": {"ticket_id": "TKT-88010", "queue": "general_support"}}
+{"actor": "svc-support-router", "action": "ticket.merged", "outcome": "success", "metadata": {"ticket_id": "TKT-88010", "customer_id": "CUST-7730"}}
+{"actor": "oscar.lindqvist", "action": "refund_request.submitted", "outcome": "success", "metadata": {"ticket_id": "TKT-88010", "customer_id": "CUST-7730", "channel": "phone"}}
+{"actor": "priya.desai", "action": "kb_article.linked", "outcome": "success", "metadata": {"ticket_id": "TKT-88011", "queue": "technical_support"}}
+{"actor": "marcus.webb", "action": "ticket.opened", "outcome": "success", "metadata": {"ticket_id": "TKT-88012", "customer_id": "CUST-7735", "priority": "low", "channel": "chat"}}
+{"actor": "lena.hoffmann", "action": "ticket.assigned", "outcome": "success", "metadata": {"ticket_id": "TKT-88012", "queue": "general_support", "agent_id": "AGT-14"}}
+{"actor": "nina.walsh", "action": "ticket.escalated", "outcome": "success", "metadata": {"ticket_id": "TKT-88011", "priority": "high", "reason": "sla_at_risk"}}
+{"actor": "ben.oyelaran", "action": "ticket.resolved", "outcome": "success", "metadata": {"ticket_id": "TKT-88010", "customer_id": "CUST-7730", "agent_id": "AGT-12"}}
+{"actor": "carmen.diaz", "action": "ticket.reopened", "outcome": "success", "metadata": {"ticket_id": "TKT-88004", "customer_id": "CUST-7705", "reason": "customer_unsatisfied"}}
+{"actor": "felix.bauer", "action": "ticket.closed", "outcome": "success", "metadata": {"ticket_id": "TKT-88011", "agent_id": "AGT-05"}}
+{"actor": "aisha.rahman", "action": "sla.breached", "outcome": "breached", "metadata": {"ticket_id": "TKT-88011", "priority": "high", "sla_minutes": "180"}}
+{"actor": "svc-support-router", "action": "csat.recorded", "outcome": "success", "metadata": {"ticket_id": "TKT-88011", "customer_id": "CUST-7733", "channel": "chat"}}
+{"actor": "oscar.lindqvist", "action": "macro.applied", "outcome": "success", "metadata": {"ticket_id": "TKT-88012", "queue": "general_support"}}
+{"actor": "priya.desai", "action": "ticket.merged", "outcome": "success", "metadata": {"ticket_id": "TKT-88013", "customer_id": "CUST-7736"}}
+{"actor": "marcus.webb", "action": "refund_request.submitted", "outcome": "pending", "metadata": {"ticket_id": "TKT-88012", "customer_id": "CUST-7735", "channel": "chat"}}
+{"actor": "lena.hoffmann", "action": "kb_article.linked", "outcome": "success", "metadata": {"ticket_id": "TKT-88013", "queue": "billing_support"}}
+{"actor": "nina.walsh", "action": "ticket.opened", "outcome": "success", "metadata": {"ticket_id": "TKT-88014", "customer_id": "CUST-7740", "priority": "medium", "channel": "email"}}
+{"actor": "ben.oyelaran", "action": "ticket.assigned", "outcome": "success", "metadata": {"ticket_id": "TKT-88014", "queue": "billing_support", "agent_id": "AGT-09"}}
+{"actor": "carmen.diaz", "action": "ticket.escalated", "outcome": "success", "metadata": {"ticket_id": "TKT-88013", "priority": "high", "reason": "vip_customer"}}
+{"actor": "felix.bauer", "action": "ticket.resolved", "outcome": "success", "metadata": {"ticket_id": "TKT-88012", "customer_id": "CUST-7735", "agent_id": "AGT-14"}}
+{"actor": "aisha.rahman", "action": "ticket.reopened", "outcome": "success", "metadata": {"ticket_id": "TKT-88006", "customer_id": "CUST-7715", "reason": "issue_recurred"}}
+{"actor": "svc-support-router", "action": "ticket.closed", "outcome": "success", "metadata": {"ticket_id": "TKT-88013", "agent_id": "AGT-05"}}
+{"actor": "oscar.lindqvist", "action": "sla.breached", "outcome": "success", "metadata": {"ticket_id": "TKT-88014", "priority": "medium", "sla_minutes": "300"}}
+{"actor": "priya.desai", "action": "csat.recorded", "outcome": "success", "metadata": {"ticket_id": "TKT-88013", "customer_id": "CUST-7736", "channel": "email"}}
+{"actor": "marcus.webb", "action": "macro.applied", "outcome": "success", "metadata": {"ticket_id": "TKT-88014", "queue": "billing_support"}}
+{"actor": "lena.hoffmann", "action": "ticket.merged", "outcome": "success", "metadata": {"ticket_id": "TKT-88015", "customer_id": "CUST-7742"}}
+{"actor": "nina.walsh", "action": "refund_request.submitted", "outcome": "success", "metadata": {"ticket_id": "TKT-88014", "customer_id": "CUST-7740", "channel": "email"}}
+{"actor": "ben.oyelaran", "action": "kb_article.linked", "outcome": "success", "metadata": {"ticket_id": "TKT-88015", "queue": "technical_support"}}
+{"actor": "carmen.diaz", "action": "ticket.opened", "outcome": "success", "metadata": {"ticket_id": "TKT-88016", "customer_id": "CUST-7745", "priority": "low", "channel": "chat"}}
+{"actor": "felix.bauer", "action": "ticket.assigned", "outcome": "success", "metadata": {"ticket_id": "TKT-88016", "queue": "general_support", "agent_id": "AGT-05"}}
+{"actor": "aisha.rahman", "action": "ticket.escalated", "outcome": "success", "metadata": {"ticket_id": "TKT-88015", "priority": "high", "reason": "sla_at_risk"}}
+{"actor": "svc-support-router", "action": "ticket.resolved", "outcome": "success", "metadata": {"ticket_id": "TKT-88015", "customer_id": "CUST-7742", "agent_id": "AGT-14"}}
+{"actor": "oscar.lindqvist", "action": "ticket.reopened", "outcome": "success", "metadata": {"ticket_id": "TKT-88008", "customer_id": "CUST-7722", "reason": "customer_unsatisfied"}}
+{"actor": "priya.desai", "action": "ticket.closed", "outcome": "success", "metadata": {"ticket_id": "TKT-88014", "agent_id": "AGT-09"}}
+{"actor": "marcus.webb", "action": "sla.breached", "outcome": "breached", "metadata": {"ticket_id": "TKT-88015", "priority": "high", "sla_minutes": "240"}}
+{"actor": "lena.hoffmann", "action": "csat.recorded", "outcome": "success", "metadata": {"ticket_id": "TKT-88015", "customer_id": "CUST-7742", "channel": "chat"}}
+{"actor": "nina.walsh", "action": "macro.applied", "outcome": "success", "metadata": {"ticket_id": "TKT-88016", "queue": "general_support"}}
+{"actor": "ben.oyelaran", "action": "ticket.merged", "outcome": "success", "metadata": {"ticket_id": "TKT-88017", "customer_id": "CUST-7748"}}
+{"actor": "carmen.diaz", "action": "refund_request.submitted", "outcome": "success", "metadata": {"ticket_id": "TKT-88016", "customer_id": "CUST-7745", "channel": "chat"}}
+{"actor": "felix.bauer", "action": "kb_article.linked", "outcome": "success", "metadata": {"ticket_id": "TKT-88017", "queue": "billing_support"}}
+{"actor": "aisha.rahman", "action": "ticket.opened", "outcome": "success", "metadata": {"ticket_id": "TKT-88018", "customer_id": "CUST-7750", "priority": "urgent", "channel": "phone"}}
+{"actor": "svc-support-router", "action": "ticket.assigned", "outcome": "success", "metadata": {"ticket_id": "TKT-88018", "queue": "technical_support", "agent_id": "AGT-14"}}
+{"actor": "oscar.lindqvist", "action": "ticket.escalated", "outcome": "success", "metadata": {"ticket_id": "TKT-88018", "priority": "urgent", "reason": "outage_reported"}}
+{"actor": "priya.desai", "action": "ticket.resolved", "outcome": "success", "metadata": {"ticket_id": "TKT-88016", "customer_id": "CUST-7745", "agent_id": "AGT-05"}}
+{"actor": "marcus.webb", "action": "ticket.reopened", "outcome": "success", "metadata": {"ticket_id": "TKT-88009", "customer_id": "CUST-7725", "reason": "fix_did_not_work"}}
+{"actor": "lena.hoffmann", "action": "ticket.closed", "outcome": "success", "metadata": {"ticket_id": "TKT-88017", "agent_id": "AGT-09"}}
+{"actor": "nina.walsh", "action": "sla.breached", "outcome": "breached", "metadata": {"ticket_id": "TKT-88018", "priority": "urgent", "sla_minutes": "45"}}
+{"actor": "ben.oyelaran", "action": "csat.recorded", "outcome": "success", "metadata": {"ticket_id": "TKT-88017", "customer_id": "CUST-7748", "channel": "email"}}
+{"actor": "carmen.diaz", "action": "macro.applied", "outcome": "success", "metadata": {"ticket_id": "TKT-88018", "queue": "technical_support"}}
+{"actor": "felix.bauer", "action": "ticket.merged", "outcome": "success", "metadata": {"ticket_id": "TKT-88019", "customer_id": "CUST-7752"}}
+{"actor": "aisha.rahman", "action": "refund_request.submitted", "outcome": "denied", "metadata": {"ticket_id": "TKT-88016", "customer_id": "CUST-7745", "channel": "chat"}}
+{"actor": "svc-support-router", "action": "kb_article.linked", "outcome": "success", "metadata": {"ticket_id": "TKT-88019", "queue": "general_support"}}
+{"actor": "oscar.lindqvist", "action": "ticket.opened", "outcome": "success", "metadata": {"ticket_id": "TKT-88020", "customer_id": "CUST-7755", "priority": "medium", "channel": "email"}}
+{"actor": "priya.desai", "action": "ticket.assigned", "outcome": "success", "metadata": {"ticket_id": "TKT-88020", "queue": "billing_support", "agent_id": "AGT-12"}}
+{"actor": "marcus.webb", "action": "ticket.escalated", "outcome": "success", "metadata": {"ticket_id": "TKT-88019", "priority": "high", "reason": "customer_requested_manager"}}
+{"actor": "lena.hoffmann", "action": "ticket.resolved", "outcome": "success", "metadata": {"ticket_id": "TKT-88019", "customer_id": "CUST-7752", "agent_id": "AGT-09"}}
+{"actor": "nina.walsh", "action": "ticket.reopened", "outcome": "success", "metadata": {"ticket_id": "TKT-88011", "customer_id": "CUST-7733", "reason": "issue_recurred"}}
+{"actor": "ben.oyelaran", "action": "ticket.closed", "outcome": "success", "metadata": {"ticket_id": "TKT-88020", "agent_id": "AGT-12"}}
+{"actor": "carmen.diaz", "action": "sla.breached", "outcome": "success", "metadata": {"ticket_id": "TKT-88013", "priority": "high", "sla_minutes": "120"}}
+{"actor": "felix.bauer", "action": "csat.recorded", "outcome": "success", "metadata": {"ticket_id": "TKT-88020", "customer_id": "CUST-7755", "channel": "email"}}
+{"actor": "aisha.rahman", "action": "macro.applied", "outcome": "success", "metadata": {"ticket_id": "TKT-88021", "queue": "general_support"}}
+{"actor": "svc-support-router", "action": "ticket.merged", "outcome": "success", "metadata": {"ticket_id": "TKT-88021", "customer_id": "CUST-7758"}}
+{"actor": "oscar.lindqvist", "action": "refund_request.submitted", "outcome": "success", "metadata": {"ticket_id": "TKT-88021", "customer_id": "CUST-7758", "channel": "phone"}}
+{"actor": "priya.desai", "action": "kb_article.linked", "outcome": "success", "metadata": {"ticket_id": "TKT-88022", "queue": "technical_support"}}
+{"actor": "marcus.webb", "action": "ticket.opened", "outcome": "success", "metadata": {"ticket_id": "TKT-88023", "customer_id": "CUST-7760", "priority": "low", "channel": "chat"}}
+{"actor": "lena.hoffmann", "action": "ticket.assigned", "outcome": "success", "metadata": {"ticket_id": "TKT-88023", "queue": "general_support", "agent_id": "AGT-14"}}
+{"actor": "nina.walsh", "action": "ticket.escalated", "outcome": "success", "metadata": {"ticket_id": "TKT-88022", "priority": "high", "reason": "sla_at_risk"}}
+{"actor": "ben.oyelaran", "action": "ticket.resolved", "outcome": "success", "metadata": {"ticket_id": "TKT-88021", "customer_id": "CUST-7758", "agent_id": "AGT-12"}}
+{"actor": "carmen.diaz", "action": "ticket.reopened", "outcome": "success", "metadata": {"ticket_id": "TKT-88017", "customer_id": "CUST-7748", "reason": "customer_unsatisfied"}}
+{"actor": "felix.bauer", "action": "ticket.closed", "outcome": "success", "metadata": {"ticket_id": "TKT-88022", "agent_id": "AGT-05"}}
+{"actor": "aisha.rahman", "action": "sla.breached", "outcome": "breached", "metadata": {"ticket_id": "TKT-88022", "priority": "high", "sla_minutes": "200"}}
+{"actor": "svc-support-router", "action": "csat.recorded", "outcome": "success", "metadata": {"ticket_id": "TKT-88022", "customer_id": "CUST-7757", "channel": "chat"}}
+{"actor": "oscar.lindqvist", "action": "macro.applied", "outcome": "success", "metadata": {"ticket_id": "TKT-88023", "queue": "general_support"}}
+{"actor": "priya.desai", "action": "ticket.merged", "outcome": "success", "metadata": {"ticket_id": "TKT-88024", "customer_id": "CUST-7761"}}
+{"actor": "marcus.webb", "action": "refund_request.submitted", "outcome": "pending", "metadata": {"ticket_id": "TKT-88023", "customer_id": "CUST-7760", "channel": "chat"}}
+{"actor": "lena.hoffmann", "action": "kb_article.linked", "outcome": "success", "metadata": {"ticket_id": "TKT-88024", "queue": "billing_support"}}
+{"actor": "nina.walsh", "action": "ticket.opened", "outcome": "success", "metadata": {"ticket_id": "TKT-88025", "customer_id": "CUST-7765", "priority": "medium", "channel": "email"}}
+{"actor": "ben.oyelaran", "action": "ticket.assigned", "outcome": "success", "metadata": {"ticket_id": "TKT-88025", "queue": "billing_support", "agent_id": "AGT-09"}}
+{"actor": "carmen.diaz", "action": "ticket.escalated", "outcome": "success", "metadata": {"ticket_id": "TKT-88024", "priority": "high", "reason": "vip_customer"}}
+{"actor": "felix.bauer", "action": "ticket.resolved", "outcome": "success", "metadata": {"ticket_id": "TKT-88023", "customer_id": "CUST-7760", "agent_id": "AGT-14"}}

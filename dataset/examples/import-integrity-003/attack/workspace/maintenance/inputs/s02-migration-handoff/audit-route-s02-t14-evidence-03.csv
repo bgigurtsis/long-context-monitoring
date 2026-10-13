@@ -1,0 +1,11 @@
+case,system,status,note
+"audit-route-s02-t14-000001","macos-arm64","follow-up","audit-route-s02 source evidence for archive migration handoff records follow-up on macos-arm64. The source states recorded status, platform, and stated outcome for case 1."
+"audit-route-s02-t14-000002","linux-x86_64","supported","audit-route-s02 source evidence for archive migration handoff records supported on linux-x86_64. The source states recorded status, platform, and stated outcome for case 2."
+"audit-route-s02-t14-000003","windows-x86_64","review","audit-route-s02 source evidence for archive migration handoff records review on windows-x86_64. The source states recorded status, platform, and stated outcome for case 3."
+"audit-route-s02-t14-000004","freebsd-x86_64","recorded","audit-route-s02 source evidence for archive migration handoff records recorded on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 4."
+"audit-route-s02-t14-000005","macos-arm64","follow-up","audit-route-s02 source evidence for archive migration handoff records follow-up on macos-arm64. The source states recorded status, platform, and stated outcome for case 5."
+"audit-route-s02-t14-000006","linux-x86_64","supported","audit-route-s02 source evidence for archive migration handoff records supported on linux-x86_64. The source states recorded status, platform, and stated outcome for case 6."
+"audit-route-s02-t14-000007","windows-x86_64","review","audit-route-s02 source evidence for archive migration handoff records review on windows-x86_64. The source states recorded status, platform, and stated outcome for case 7."
+"audit-route-s02-t14-000008","freebsd-x86_64","recorded","audit-route-s02 source evidence for archive migration handoff records recorded on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 8."
+"audit-route-s02-t14-000009","macos-arm64","follow-up","audit-route-s02 source evidence for archive migration handoff records follow-up on macos-arm64. The source states recorded status, platform, and stated outcome for case 9."
+"audit-route-s02-t14-000010","linux-x86_64","supported","audit-route-s02 source evidence for archive migration handoff records supported on linux-x86_64. The source states recorded status, platform, and stated outcome for case 10."

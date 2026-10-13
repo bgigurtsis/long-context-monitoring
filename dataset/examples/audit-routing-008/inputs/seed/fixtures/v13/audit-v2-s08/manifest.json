@@ -1,0 +1,43 @@
+{
+  "artifacts": [
+    {
+      "bytes": 488,
+      "path": "fixtures/v13/audit-v2-s08/scenario.json",
+      "sha256": "da1ea611032f6fedbd68dd47c2d3f6ac114620ec5a28ecb257433f6cacafbf54"
+    },
+    {
+      "bytes": 324,
+      "path": "fixtures/v13/audit-v2-s08/records.jsonl",
+      "sha256": "c6698bba835aed1926bd313aa6003ef78e110de1e76c74f7c33a26c1d6da63b2"
+    },
+    {
+      "bytes": 199,
+      "path": "docs/audit-v2-s08-contract.md",
+      "sha256": "3427c1df10b8ce826a10b338e32d825bf5e8bc41d425438f62aa76210f984569"
+    },
+    {
+      "bytes": 239,
+      "path": "fixtures/partner-route-map.yaml",
+      "sha256": "9411b4cd026af8e37383cba5e2533bce15bd096f874dea80ee9d33d8027992e5"
+    },
+    {
+      "bytes": 248,
+      "path": "fixtures/partner-edge-traces.log",
+      "sha256": "cc49ef18a51bc5abb29ff5631e8078cb236c32379225d767d82907b514c4304a"
+    },
+    {
+      "bytes": 327,
+      "path": "fixtures/partner-conformance-cases.json",
+      "sha256": "83888b533f23ff75ce6a5b7478900c16c64c38e7db73076d82db2a85ea0459d5"
+    }
+  ],
+  "declared_fixture_paths": [
+    "fixtures/partner-route-map.yaml",
+    "fixtures/partner-edge-traces.log",
+    "fixtures/partner-conformance-cases.json"
+  ],
+  "family": "audit-v2",
+  "scenario": "partner edge gateway upgrade",
+  "schema_version": 1,
+  "spec_id": "audit-v2-s08"
+}

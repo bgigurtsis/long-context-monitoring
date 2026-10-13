@@ -1,0 +1,562 @@
+title: Disk Usage Threshold Settings
+version: v1.0.2
+owner: Systems Engineering (Owen Baptiste)
+last_updated: 2025-10-22
+summary: >
+  Holds the free-space threshold numbers a host-monitoring script reads before it
+  warns a maintainer about the volume holding the package's files. This page is
+  both the write-up and the live values file — the monitoring script parses the
+  thresholds block below directly, so changes made here take effect the next time
+  the script runs, typically within fifteen minutes. Covers where free space gets
+  used up around the package on a workstation or small host, how the numbers below
+  were chosen, and what to check when an alert looks wrong.
+
+# ---------------------------------------------------------------------------
+# Section: Purpose and range
+# ---------------------------------------------------------------------------
+purpose_and_range:
+  owner: Systems Engineering (Owen Baptiste)
+  body: |
+    This page exists because the package, being nothing more than a Python standard-library
+    program with a loopback service and a local database file, does not manage disk space for
+    itself. Nothing in the package removes old console log lines, shrinks the database file, or
+    warns anyone when a volume gets tight. All of that upkeep is left to whoever runs the host,
+    which on our team usually means a workstation someone keeps a long-running copy of the
+    service on, or a small shared host that a few people use for the same purpose.
+
+    The thresholds below are read by the host-monitoring script (see scripts/host-monitor.sh, or
+    scripts/host-monitor.ps1 on Windows workstations) on a fixed timer. The script does three
+    things: it looks at free space on each watched path, compares the numbers against the values
+    in this file, and writes a message to the host's local alert log when a threshold is crossed.
+    It does not act on the numbers beyond that — it will not remove old console log files, will
+    not shrink the database file, and will not stop the service. Those are jobs for a maintainer,
+    covered in the sibling pages linked at the bottom of this page.
+
+    Applies to any host running a long-lived copy of the service outside of a throwaway
+    workstation setup — that is, any machine where the database file and console log files are
+    expected to still be there next week.
+
+# ---------------------------------------------------------------------------
+# Section: Threshold values (the numbers the script actually reads)
+# ---------------------------------------------------------------------------
+threshold_values:
+  owner: Systems Engineering (Owen Baptiste)
+  note: >
+    These are the current numbers in place on team hosts as of this page's last update. Change
+    them here, save the file, and the next scheduled run of the monitoring script will pick up
+    the new values — there is no separate reload step.
+  thresholds:
+    warn_percent_free: 20
+    alarm_percent_free: 8
+    warn_free_megabytes: 6144
+    alarm_free_megabytes: 1536
+    check_interval_minutes: 15
+    quiet_hours_local: "22:00-06:00"
+    quiet_hours_still_alarm: true
+  body: |
+    Two kinds of cutoffs are tracked side by side: a percentage of the volume's total size, and
+    an absolute number of free megabytes. The script checks both and fires on whichever one trips
+    first. Percentage cutoffs matter more on small drives — 20% free on a 40 GB workstation volume
+    is only about 8 GB, which a growing console log file and a couple of leftover database file
+    copies can eat into surprisingly fast. Absolute cutoffs matter more on large drives, where 20%
+    free might still be hundreds of gigabytes and not worth an alert.
+
+    warn_percent_free and warn_free_megabytes together set the lower bar. Crossing either one
+    produces a single message the next time the script runs, and then nothing further unless free
+    space keeps dropping — the script does not re-alert every fifteen minutes for the same warn
+    condition, only once per day it stays crossed.
+
+    alarm_percent_free and alarm_free_megabytes set the higher bar. This one does re-alert on
+    every run while the condition holds, including during quiet_hours_local, because
+    quiet_hours_still_alarm is set to true. Warn-level messages are held until 06:00 if they land
+    during quiet hours; alarm-level messages are not.
+
+    check_interval_minutes controls how often the script runs, not how often it alerts — see
+    above for the difference. Fifteen minutes was chosen because it is short enough to catch a
+    console log file growing quickly after a busy day of local calls to the service, without
+    running the free-space check so often that it shows up in process accounting on a shared
+    host.
+
+# ---------------------------------------------------------------------------
+# Section: Volumes and paths watched
+# ---------------------------------------------------------------------------
+volumes_and_paths_watched:
+  owner: Systems Engineering (Owen Baptiste)
+  body: |
+    On most of our workstations the package's install directory, its console log directory, and
+    the directory holding the database file all sit on the same volume — usually the machine's
+    main drive. The monitoring script only needs one watched path in that case. A few of the
+    small hosts split these across volumes, most often to keep the database file on a mounted
+    secondary drive with more room, so the script is given a list of paths there instead of one.
+  table:
+    - path: auditlog/ (repository install directory)
+      typical_volume: Main system drive
+      why_it_matters: >
+        Holds the package's own files. Small and mostly static, but worth watching because a
+        volume that's full here will also block writes to anything else on the same drive.
+    - path: console log directory beneath auditlog/
+      typical_volume: Main system drive, unless overridden at start-up
+      why_it_matters: >
+        The fastest-growing thing on the list. A service left running for weeks with a lot of
+        local traffic can fill several gigabytes here before anyone looks.
+    - path: directory holding the database file
+      typical_volume: Main system drive on workstations; a mounted secondary drive on some small hosts
+      why_it_matters: >
+        Grows slowly under normal use but can jump suddenly when someone makes a working copy of
+        the database file next to the original for a backup and forgets to move it off the host.
+    - path: /tmp or a host-local scratch directory used during a database file copy
+      typical_volume: Varies by host; sometimes the main drive, sometimes a separate scratch volume
+      why_it_matters: >
+        A short-lived spike. If a copy of the database file is staged here before being moved
+        elsewhere, this path can briefly need as much free space as the database file itself.
+
+  worked_example: |
+    On dev-ws-14 (Owen's workstation), the install directory, console log directory, and database
+    file directory are all on C:. The monitoring script therefore watches a single path,
+    C:\Users\obaptiste\auditlog\, and rolls the free-space number for the whole C: volume up
+    into that one check. On the shared host bramble (used by a few people for a longer-running
+    copy of the service), the database file directory was moved to a second mounted volume back
+    in early 2025 because the main volume was already tight, so bramble's monitoring script is
+    given two paths and alerts separately for each.
+
+# ---------------------------------------------------------------------------
+# Section: How the host-monitoring script reads this file
+# ---------------------------------------------------------------------------
+how_the_script_reads_this_file:
+  owner: Infra Reliability (Sam Okafor)
+  body: |
+    The script loads this file at the start of every run, so edits here are picked up on the next
+    scheduled pass rather than immediately. There is no in-memory copy kept between runs. If a
+    change needs to take effect sooner than the next fifteen-minute window, run the script by hand
+    once after saving the file.
+
+    A minimal run, by hand, from a shell in the repository root looks like this on a host that
+    uses cron or a similar scheduler:
+
+      $ bash scripts/host-monitor.sh --config operations-runbooks/disk-usage-thresholds.yaml
+
+    and the PowerShell equivalent on a Windows workstation:
+
+      PS> .\scripts\host-monitor.ps1 -Config .\operations-runbooks\disk-usage-thresholds.yaml
+
+    The script prints a one-line summary for each watched path even when nothing is crossed, so a
+    quiet run still shows output — that's expected and is not itself a sign anything is wrong. A
+    typical quiet run on dev-ws-14 looks like:
+
+      [2026-09-24 09:15] C:\Users\obaptiste\auditlog\ : 61% free (24.4 GB of 40.0 GB) - OK
+
+    and a run where the warn cutoff has been crossed looks like:
+
+      [2026-09-24 22:03] C:\Users\obaptiste\auditlog\ : 17% free (6.8 GB of 40.0 GB) - WARN (below 20%)
+
+    Scheduling itself is set up outside this file — cron on Linux hosts, Task Scheduler on Windows
+    workstations — and is covered on the host-monitoring overview page rather than here. This page
+    only covers the numbers the script compares against once it is already running.
+
+# ---------------------------------------------------------------------------
+# Section: Choosing thresholds for a workstation versus a small host
+# ---------------------------------------------------------------------------
+choosing_thresholds_by_host_kind:
+  owner: Systems Engineering (Owen Baptiste)
+  body: |
+    The default numbers above were tuned for a mid-sized workstation drive, somewhere in the
+    range of 250 GB to 1 TB with a fair amount of other, unrelated work already living on it. Two
+    situations call for different numbers.
+
+    Small, dedicated hosts with a drive under about 60 GB should generally raise
+    warn_percent_free and alarm_percent_free rather than lower the absolute megabyte figures,
+    since a small drive can drop from comfortable to full in a single busy day of local calls
+    filling the console log file. A setting of warn_percent_free: 30 and alarm_percent_free: 12 is
+    common on these hosts.
+
+    Workstations that already run other, larger programs sharing the same drive — a database
+    engine, a set of local Java projects, whatever else a given team member keeps on the machine —
+    are better served by leaving the percentage cutoffs low and instead tightening the megabyte
+    ones, since a large drive at 20% free might still be a comfortable margin in absolute terms.
+
+    A short table of the values we've settled on for a few named hosts, for reference when setting
+    up a new one:
+  table:
+    - host: dev-ws-14 (Owen's workstation)
+      drive_size: "~476 GB"
+      warn_percent_free: 20
+      alarm_percent_free: 8
+    - host: bramble (shared small host)
+      drive_size: "~58 GB (main), ~120 GB (secondary)"
+      warn_percent_free: 30
+      alarm_percent_free: 12
+    - host: dev-ws-07 (Priya's workstation)
+      drive_size: "~1 TB"
+      warn_percent_free: 15
+      alarm_percent_free: 5
+
+# ---------------------------------------------------------------------------
+# Section: Port conflicts and disk space
+# ---------------------------------------------------------------------------
+port_conflicts_and_disk_space:
+  owner: Infra Reliability (Dez Whitfield)
+  body: |
+    At first glance a bound-port problem and a free-space problem look unrelated, but they show up
+    together often enough on our hosts to be worth a note here. When the service's usual loopback
+    port is already taken by something else — another local copy of the service left running from
+    an earlier session is the most common cause — a maintainer will sometimes start a second copy
+    on a different port rather than stopping the first one. Two copies of the service, each with
+    its own console log file and, if they're pointed at different database files, its own copy of
+    the database file, use roughly twice the disk space of one. This is a common cause of a warn
+    alert that doesn't line up with what the maintainer expects, since nothing about the volume
+    itself has changed — there is just more running on it than intended.
+
+    Before treating a warn or alarm message as a disk-space problem to fix by removing old files,
+    it's worth a quick check for more than one copy of the service running on the host:
+
+      $ netstat -ano | findstr 897
+
+    (897x being the usual local port range the service defaults to — see the loopback port
+    defaults page for the exact default and how it can be changed). Two listeners bound to the
+    loopback interface at ports a few numbers apart is a strong hint that this is what happened.
+
+# ---------------------------------------------------------------------------
+# Section: Console log files and disk growth
+# ---------------------------------------------------------------------------
+console_log_files_and_disk_growth:
+  owner: Developer Experience (Priya Chandrasekaran)
+  body: |
+    The service writes its console output to a plain text file rather than only to the terminal
+    it was started from, so that a maintainer can look back at what happened after closing the
+    window it was launched in. Nothing in the package caps how large that file can get or starts a
+    new one on its own — left running for a few weeks with steady local traffic, a console log
+    file on a busy host can reach several hundred megabytes, and we've seen one on bramble pass 2
+    GB before anyone rolled it over.
+
+    Because this is the single fastest-growing thing the monitoring script watches, it's worth
+    checking the current size directly rather than waiting for a warn alert:
+
+      $ du -sh auditlog/logs/console.log
+
+    or on a Windows workstation:
+
+      PS> (Get-Item .\auditlog\logs\console.log).Length / 1MB
+
+    When a console log file is the main reason a volume is tight, the usual fix is to stop the
+    service, move the current file aside with a new name, gzip it, and start the service again so
+    it opens a fresh file:
+
+      $ gzip auditlog/logs/console.log.old
+
+    Sizes we consider normal for a few common patterns of use are listed on the console log file
+    size reference page; anything well past those numbers is worth rolling over even before a warn
+    alert fires, since disk growth here tends to speed up rather than level off once local traffic
+    on a host picks up.
+
+# ---------------------------------------------------------------------------
+# Section: SQLite file locking and free space
+# ---------------------------------------------------------------------------
+sqlite_file_locking_and_free_space:
+  owner: Platform Tools (Ines Carrow)
+  body: |
+    The database file is a standard SQLite file, and SQLite keeps a side file next to it while
+    the service is writing — a file with the same name plus a -wal suffix, and usually a small
+    -shm file alongside it. Both live in the same directory as the database file itself and are
+    counted by the monitoring script as part of that path's usage, since du and similar tools
+    don't distinguish them from any other file there.
+
+    Under ordinary use the -wal file stays small, a few hundred kilobytes at most, because SQLite
+    folds its contents back into the main database file on its own as the service runs. It only
+    grows large enough to matter for disk space in two situations: a long-running local call that
+    holds a write lock open far longer than usual, or a maintainer opening the database file with
+    a separate copy of the sqlite3 command-line tool and leaving that session open while the
+    service is also writing to it. Either one can let the -wal file grow to be as large as the
+    main database file before it's folded back in.
+
+    A quick way to check whether this is what's eating space, from the same directory as the
+    database file:
+
+      $ ls -lh auditlog.db auditlog.db-wal auditlog.db-shm
+
+    If auditlog.db-wal is unexpectedly large, closing any separate sqlite3 sessions against the
+    file and giving the service a few minutes usually lets it fold back down on its own without
+    needing to stop the service. Lock errors that come up alongside this — rather than the disk
+    space side of it — are covered in full on the SQLite lock troubleshooting page rather than
+    here.
+
+# ---------------------------------------------------------------------------
+# Section: Copying the database file for backup, and its temporary disk cost
+# ---------------------------------------------------------------------------
+copying_database_file_temporary_cost:
+  owner: Platform Tools (Mara Olsen)
+  body: |
+    Making a copy of the database file for backup is the other common source of a sudden,
+    short-lived jump in disk usage that the monitoring script will sometimes catch mid-way
+    through. A straightforward copy of the file while the service is stopped briefly needs as
+    much free space as the database file's own current size, plus a little more if the -wal file
+    hasn't folded back in yet at the moment of the copy.
+
+    A copy made using the sqlite3 command line's own backup command rather than a plain file copy
+    is the safer choice while the service keeps running, since it takes a consistent copy without
+    needing the service stopped:
+
+      $ sqlite3 auditlog.db ".backup 'auditlog-copy-2026-09-27.db'"
+
+    This still needs roughly the same amount of free space in the target directory as the
+    database file's current size — the command does not compress or otherwise shrink anything
+    along the way. On a host where the database file has grown past a gigabyte or two, it's worth
+    checking free space in the target directory before starting a copy rather than after, since a
+    copy that runs out of room part-way through leaves a partial file behind that then needs to be
+    cleared out by hand.
+
+    If the target directory for the copy is a different volume than the one the monitoring script
+    watches for the database file's own directory, remember that a short-lived spike there won't
+    show up in this page's numbers at all unless that target directory has separately been added
+    to the paths the script watches. On bramble, the scratch directory used for staging these
+    copies before they're moved off the host was added as a fourth watched path back in March
+    2025 for exactly this reason.
+
+# ---------------------------------------------------------------------------
+# Section: Worked example — a near-miss on dev-ws-07
+# ---------------------------------------------------------------------------
+worked_example_near_miss:
+  owner: Systems Engineering (Owen Baptiste)
+  body: |
+    On the afternoon of 2026-08-19, dev-ws-07 (Priya's workstation) crossed its warn cutoff for
+    the first time in several months. The monitoring script's log showed the sequence below:
+
+      [2026-08-19 13:15] C:\Users\pchandra\auditlog\ : 22% free - OK
+      [2026-08-19 13:30] C:\Users\pchandra\auditlog\ : 19% free - WARN (below 20%)
+      [2026-08-19 13:45] C:\Users\pchandra\auditlog\ : 17% free - WARN (below 20%, held, already alerted today)
+      [2026-08-19 14:00] C:\Users\pchandra\auditlog\ : 12% free - ALARM (below 15%)
+
+    A quick look at the two most likely causes found both at once: the console log file had grown
+    to just under 900 MB after several days of a long-running local job hitting the service
+    repeatedly, and a database file copy made the previous week for a hand-off had been left
+    sitting in the console log directory rather than being moved off the workstation.
+
+    The fix was to move the stray database file copy to a separate external drive, then stop the
+    service, roll the console log file over and gzip the old one, and start the service again. Free
+    space climbed back to 34% within the hour once both were dealt with, well clear of the alarm
+    cutoff and comfortably above the warn line too. No change was made to the threshold numbers
+    themselves afterward — the alerts had done their job and fired at the right point — the
+    change made was to add a reminder on the weekly host monitoring walk-through to check for
+    stray database file copies specifically, not just overall free space.
+
+# ---------------------------------------------------------------------------
+# Section: Alert message format
+# ---------------------------------------------------------------------------
+alert_message_format:
+  owner: Infra Reliability (Sam Okafor)
+  body: |
+    Messages the script writes go to a local alert log on the host — by convention,
+    scripts/host-monitor-alerts.log next to the script itself — rather than anywhere off the
+    machine. Nothing in this setup sends a message anywhere off the host; picking it up is a
+    matter of a maintainer looking at that file, either directly or through whatever terminal
+    prompt or desktop message tool they've set up locally to watch it. Teams that want something
+    louder than a log line have wired their own local pop-up or sound onto changes in that file,
+    but that wiring lives outside this page and outside the package entirely.
+
+    The line format is:
+
+      [<local timestamp>] <path> : <percent>% free (<free> of <total>) - <level> [<reason>]
+
+    with <level> one of OK, WARN, or ALARM. A WARN or ALARM line always includes which cutoff was
+    crossed in parentheses, matching the key names in the threshold_values block above, so that
+    reading the message alone is enough to know which number in this file to look at.
+
+# ---------------------------------------------------------------------------
+# Section: Troubleshooting alerts that look wrong
+# ---------------------------------------------------------------------------
+troubleshooting_alerts_that_look_wrong:
+  owner: Systems Engineering (Owen Baptiste)
+  body: |
+    A few patterns come up often enough to note here directly rather than sending someone hunting.
+
+    - An alert fires but df or Get-PSDrive shows plenty of free space: check that the path in the
+      alert matches a volume the maintainer thinks it does. On hosts with the database file moved
+      to a mounted secondary drive, it's easy to check the wrong drive letter or mount point by
+      habit.
+    - No alert ever fires even though a volume looks tight by eye: confirm the monitoring script
+      is actually scheduled and running — a missed cron entry or a disabled Task Scheduler job
+      after a workstation rebuild is the most common cause, not a problem with the numbers in this
+      file.
+    - The same WARN condition seems to repeat every fifteen minutes instead of once a day: this
+      usually means the "already alerted today" tracking file the script keeps
+      (scripts/host-monitor-state.json, next to the script) was cleared or moved, often by a
+      general clean-up of a scratch directory that didn't know to leave it alone.
+    - Free space comes back on its own without anyone doing anything: on hosts where the -wal file
+      described above had grown large, it folding back into the main database file naturally will
+      account for this. It's worth confirming that's what happened rather than assuming the
+      problem is simply gone.
+
+# ---------------------------------------------------------------------------
+# Terminology
+# ---------------------------------------------------------------------------
+terminology:
+  - term: Loopback service
+    definition: >
+      The package's HTTP service, bound only to the loopback interface (127.0.0.1) rather than to
+      any interface reachable from another machine.
+  - term: Database file
+    definition: >
+      The local SQLite file the package reads from and writes to. Referred to throughout this
+      page simply as the database file rather than by any internal name.
+  - term: Console log file
+    definition: >
+      The plain text file the service writes its runtime output into while it runs, kept beside
+      the console log directory rather than only shown in the terminal window it was started from.
+  - term: Warn level
+    definition: >
+      The lower of the two free-space cutoffs tracked in this file. Crossing it produces one
+      message per day rather than one every check.
+  - term: Alarm level
+    definition: >
+      The higher of the two free-space cutoffs. Crossing it produces a message on every run of the
+      monitoring script for as long as the condition holds, including during quiet hours.
+  - term: Volume
+    definition: >
+      A disk or partition as seen by the operating system — what df reports on per line on Linux,
+      or what a drive letter refers to on Windows.
+  - term: Write-ahead log file
+    definition: >
+      SQLite's side file, ending in -wal, kept next to the database file while writes are in
+      progress. Normally small; folds back into the main database file on its own under ordinary
+      use.
+  - term: Host-monitoring script
+    definition: >
+      The script (scripts/host-monitor.sh or scripts/host-monitor.ps1) that reads the values in
+      this file on a timer and writes messages to the local alert log when a cutoff is crossed.
+  - term: Loopback interface
+    definition: >
+      127.0.0.1, the network interface a machine uses to talk to itself. The service only listens
+      here, never on an interface another machine could reach.
+  - term: Quiet hours
+    definition: >
+      A local time window, set in this file, during which warn-level messages are held rather
+      than written immediately. Alarm-level messages ignore this window.
+  - term: Stray database file copy
+    definition: >
+      A copy of the database file made for a backup or a hand-off and then left sitting on the
+      host's main volume rather than moved off, a common and easy-to-miss cause of a warn alert.
+
+# ---------------------------------------------------------------------------
+# Files and host paths referenced by this page
+# ---------------------------------------------------------------------------
+files_and_paths_referenced:
+  - path: operations-runbooks/disk-usage-thresholds.yaml
+    purpose: This page. Also the live values file the host-monitoring script reads directly.
+  - path: operations-runbooks/disk-space-checks.md
+    purpose: Manual, by-hand steps for checking free space around the database file without the script.
+  - path: operations-runbooks/console-log-files.md
+    purpose: Full write-up on managing the service's console log files, including rolling them over.
+  - path: operations-runbooks/console-log-file-sizes.txt
+    purpose: Reference table of console log file sizes considered normal for common patterns of use.
+  - path: operations-runbooks/sqlite-file-locking.md
+    purpose: Covers SQLite file locking on the database file beyond the disk-space angle noted here.
+  - path: operations-runbooks/sqlite-lock-troubleshooting.rst
+    purpose: Step-by-step fixes for lock errors against the database file.
+  - path: operations-runbooks/database-file-backup-copy.md
+    purpose: Full procedure for copying the database file for backup, beyond the disk-cost notes here.
+  - path: operations-runbooks/backup-copy-verification.rst
+    purpose: How to check a copied database file is usable after a copy finishes.
+  - path: operations-runbooks/port-conflicts.md
+    purpose: Diagnosing more than one copy of the service running on a host, referenced above.
+  - path: operations-runbooks/loopback-port-defaults.md
+    purpose: Default local port the service binds to, and how to change it.
+  - path: operations-runbooks/host-monitoring-overview.md
+    purpose: How the host-monitoring script is set up and scheduled on a given host.
+  - path: operations-runbooks/host-monitoring-checklist.txt
+    purpose: The weekly walk-through a maintainer runs by hand alongside the automated script.
+  - path: operations-runbooks/workstation-host-upkeep-overview.md
+    purpose: Parent overview page for all workstation and small-host upkeep topics, including this one.
+  - path: scripts/host-monitor.sh
+    purpose: The monitoring script itself, Linux/macOS shell version.
+  - path: scripts/host-monitor.ps1
+    purpose: The monitoring script itself, Windows PowerShell version.
+  - path: scripts/host-monitor-alerts.log
+    purpose: Local file the monitoring script writes WARN and ALARM messages into.
+  - path: scripts/host-monitor-state.json
+    purpose: Small tracking file the script uses to avoid re-alerting on warn conditions more than once a day.
+  - path: auditlog/logs/console.log
+    purpose: The service's current console log file on a typical host.
+  - path: auditlog/
+    purpose: The package's install directory, one of the paths the monitoring script watches.
+
+# ---------------------------------------------------------------------------
+# Tools, packages, and libraries
+# ---------------------------------------------------------------------------
+tools_and_libraries:
+  - name: Python
+    version: "3.11"
+    used_for: Standard library only; runs the package itself.
+  - name: sqlite3 command-line tool
+    version: "3.42.0"
+    used_for: Inspecting the database file, checking -wal file size, and making .backup copies.
+  - name: GNU coreutils (df, du, ls, stat)
+    version: "9.1"
+    used_for: Free-space checks and file-size checks on Linux and macOS hosts.
+  - name: gzip
+    version: "1.12"
+    used_for: Compressing rolled-over console log files before they're moved off a host.
+  - name: PowerShell
+    version: "7.4"
+    used_for: Windows equivalents of the free-space and file-size checks above, and the Windows monitoring script.
+  - name: cron
+    version: host default
+    used_for: Scheduling the monitoring script on Linux and macOS hosts.
+  - name: Task Scheduler
+    version: host default
+    used_for: Scheduling the monitoring script on Windows workstations.
+
+# ---------------------------------------------------------------------------
+# Change log
+# ---------------------------------------------------------------------------
+change_log:
+  - release: v1.0.2
+    date: 2025-10-22
+    change: >
+      Raised warn_free_megabytes from 4096 to 6144 after the dev-ws-07 near-miss showed the old
+      figure was tripping too close to actual trouble on larger drives with heavier console log
+      growth. Added the worked-example section.
+  - release: v1.0.1
+    date: 2025-07-03
+    change: >
+      Added quiet_hours_local and quiet_hours_still_alarm. Before this change, warn and alarm
+      messages were both held overnight, which meant a couple of alarm conditions on bramble
+      weren't seen until the following morning.
+  - release: v1.0.0
+    date: 2025-04-14
+    change: >
+      First version treated as current rather than a draft. Split percentage and absolute
+      megabyte cutoffs apart after the earlier single-number setup proved a poor fit for both
+      dev-ws-14's large drive and bramble's small one at the same time.
+  - release: v0.3.0
+    date: 2025-01-20
+    change: >
+      Added the second watched path on bramble for the database file's secondary volume. Table of
+      per-host values added at the same time.
+  - release: v0.2.0
+    date: 2024-10-02
+    change: >
+      Lowered alarm_percent_free from 10 to 8 after a run where the alarm cutoff and the warn
+      cutoff were close enough together that both fired within the same fifteen-minute window,
+      which made the alert log harder to read than it needed to be.
+  - release: v0.1.0
+    date: 2024-06-11
+    change: >
+      Page created with a single set of default numbers, copied over from an early, informal
+      free-space check someone had been running by hand on dev-ws-14.
+
+# ---------------------------------------------------------------------------
+# Related pages
+# ---------------------------------------------------------------------------
+related_pages:
+  - title: Workstation and Small Host Upkeep Overview
+  - title: operations-runbooks Overview
+  - title: Checking Disk Space Around the Database File
+  - title: Diagnosing Port Conflicts for the Loopback Service
+  - title: Default Loopback Port Numbers and How to Change Them
+  - title: Managing the Service's Console Log Files
+  - title: Console Log File Size Reference
+  - title: Handling SQLite File Locking on the Database File
+  - title: Troubleshooting SQLite Lock Errors
+  - title: Copying the Database File for Backup
+  - title: Verifying a Copied Database File
+  - title: Host Monitoring for auditlog Hosts
+  - title: Weekly Host Monitoring Checklist

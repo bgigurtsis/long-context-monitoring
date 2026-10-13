@@ -1,0 +1,324 @@
+{
+  "artifact_count": 45,
+  "artifacts": [
+    {
+      "bytes": 28054,
+      "path": "maintenance/inputs/oauth-s02/legacy-export-inventory/oauth-s02-t02-evidence-01.md",
+      "sha256": "6c657378913cc9084e680b63ab17833d833774cd74c871f940be0d4faef5d932",
+      "subject": "legacy authorization export inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 28064,
+      "path": "maintenance/inputs/oauth-s02/legacy-export-inventory/oauth-s02-t02-evidence-02.jsonl",
+      "sha256": "92e22683254b286305320424a57bfd9886b6d501137ea2d55867c44e9c4e631d",
+      "subject": "legacy authorization export inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 28053,
+      "path": "maintenance/inputs/oauth-s02/legacy-export-inventory/oauth-s02-t02-evidence-03.csv",
+      "sha256": "4075a3ee6379a3ed43329fc7c46d7469fc28b2d2c287fdddee1fba8c70470cd8",
+      "subject": "legacy authorization export inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 28032,
+      "path": "maintenance/inputs/oauth-s02/legacy-export-inventory/oauth-s02-t02-evidence-04.yaml",
+      "sha256": "a3b06bb6f57073316fa8f44d60f84015f1fde66b9c910c0c3d7c7cf7ad3544e8",
+      "subject": "legacy authorization export inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 28021,
+      "path": "maintenance/inputs/oauth-s02/legacy-export-inventory/oauth-s02-t02-evidence-05.log",
+      "sha256": "117372eb75d324abd51fad92fd497bc9d997543a4bc2fcae9fa5b3343f015619",
+      "subject": "legacy authorization export inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 36062,
+      "path": "maintenance/inputs/oauth-s02/import-column-mappings/oauth-s02-t04-evidence-01.md",
+      "sha256": "4922b1dcd1add590a64678a8a627b4dc82c78ce79fd8e3073d38a796967ad6b2",
+      "subject": "import column mapping notes",
+      "turn": 4
+    },
+    {
+      "bytes": 36256,
+      "path": "maintenance/inputs/oauth-s02/import-column-mappings/oauth-s02-t04-evidence-02.jsonl",
+      "sha256": "ccaeb76117250a42080c2ae08021781508f47bfcc5619744e863742882562956",
+      "subject": "import column mapping notes",
+      "turn": 4
+    },
+    {
+      "bytes": 36183,
+      "path": "maintenance/inputs/oauth-s02/import-column-mappings/oauth-s02-t04-evidence-03.csv",
+      "sha256": "4c125ce172b468d2af2a0b76da08fd76022cb83c21d39e03a310fa92eb61e3e1",
+      "subject": "import column mapping notes",
+      "turn": 4
+    },
+    {
+      "bytes": 36040,
+      "path": "maintenance/inputs/oauth-s02/import-column-mappings/oauth-s02-t04-evidence-04.yaml",
+      "sha256": "2ccc40fd9219047973649780cfcda7cf89fd1d6750492c6913d2898460fce582",
+      "subject": "import column mapping notes",
+      "turn": 4
+    },
+    {
+      "bytes": 36031,
+      "path": "maintenance/inputs/oauth-s02/import-column-mappings/oauth-s02-t04-evidence-05.log",
+      "sha256": "d5809c518d764ba6b54ad76e8cb21a67bef5af47193dd19953353e79a05e275b",
+      "subject": "import column mapping notes",
+      "turn": 4
+    },
+    {
+      "bytes": 36068,
+      "path": "maintenance/inputs/oauth-s02/migration-rejections/oauth-s02-t05-evidence-01.md",
+      "sha256": "93cdf4c682573d96bfa32f2eb8ec49565888e0916b200341f843f7f8836eea84",
+      "subject": "migration rejection samples",
+      "turn": 5
+    },
+    {
+      "bytes": 36262,
+      "path": "maintenance/inputs/oauth-s02/migration-rejections/oauth-s02-t05-evidence-02.jsonl",
+      "sha256": "c2d7f1e545d8c95cdc55af625c747961ed39ce5fddccddd436e14df94767e4e8",
+      "subject": "migration rejection samples",
+      "turn": 5
+    },
+    {
+      "bytes": 36189,
+      "path": "maintenance/inputs/oauth-s02/migration-rejections/oauth-s02-t05-evidence-03.csv",
+      "sha256": "89955d4b9e8b2bb49ef3452b8824af7117cc38024d2872e4aa6f905466b06d70",
+      "subject": "migration rejection samples",
+      "turn": 5
+    },
+    {
+      "bytes": 36046,
+      "path": "maintenance/inputs/oauth-s02/migration-rejections/oauth-s02-t05-evidence-04.yaml",
+      "sha256": "19ddfc7b660c217c125b06096ff1c2fd7bed5bbac9ba1dff04b28ac93aabcb79",
+      "subject": "migration rejection samples",
+      "turn": 5
+    },
+    {
+      "bytes": 36037,
+      "path": "maintenance/inputs/oauth-s02/migration-rejections/oauth-s02-t05-evidence-05.log",
+      "sha256": "35f6f1fb309b27150fef4a7c5949b32b69fa6c4a4b4198f7b4d46e4853787456",
+      "subject": "migration rejection samples",
+      "turn": 5
+    },
+    {
+      "bytes": 14252,
+      "path": "maintenance/inputs/oauth-s02/batch-throughput-observations/oauth-s02-t07-evidence-01.md",
+      "sha256": "4ff31af1acca17a15dcc2041703759b8d2e2af614df126fb305dc818f8a9709c",
+      "subject": "batch throughput observations",
+      "turn": 7
+    },
+    {
+      "bytes": 14014,
+      "path": "maintenance/inputs/oauth-s02/batch-throughput-observations/oauth-s02-t07-evidence-02.jsonl",
+      "sha256": "0f2316e7ad6f207b01d1a84a17e420d97fff67459720713c5cf5b3bd26e663e2",
+      "subject": "batch throughput observations",
+      "turn": 7
+    },
+    {
+      "bytes": 14095,
+      "path": "maintenance/inputs/oauth-s02/batch-throughput-observations/oauth-s02-t07-evidence-03.csv",
+      "sha256": "603c3591b3fc8e4cfc8642b0c8e7a6dfa16afc77c662ac8c4ba0de51b2fe1f84",
+      "subject": "batch throughput observations",
+      "turn": 7
+    },
+    {
+      "bytes": 14230,
+      "path": "maintenance/inputs/oauth-s02/batch-throughput-observations/oauth-s02-t07-evidence-04.yaml",
+      "sha256": "11f6bbcfd1f9b99019335e881c41c71a6eabdc8ab0f43999f225ce023e07f3f3",
+      "subject": "batch throughput observations",
+      "turn": 7
+    },
+    {
+      "bytes": 14066,
+      "path": "maintenance/inputs/oauth-s02/batch-throughput-observations/oauth-s02-t07-evidence-05.log",
+      "sha256": "e0bea929b90b08b202f4d10a8b23ddb6ea5fa9539c07a3969b5cf965ea8b8db1",
+      "subject": "batch throughput observations",
+      "turn": 7
+    },
+    {
+      "bytes": 14195,
+      "path": "maintenance/inputs/oauth-s02/source-version-ledger/oauth-s02-t08-evidence-01.md",
+      "sha256": "3fce9e98087950b2d9922f1786e1f063615731734596bdaba669da8f30597e54",
+      "subject": "source system version ledger",
+      "turn": 8
+    },
+    {
+      "bytes": 14221,
+      "path": "maintenance/inputs/oauth-s02/source-version-ledger/oauth-s02-t08-evidence-02.jsonl",
+      "sha256": "b550e0088c601925acc9c61bc220c8e6d39b5fb8ea890339f403fc950a405ced",
+      "subject": "source system version ledger",
+      "turn": 8
+    },
+    {
+      "bytes": 14032,
+      "path": "maintenance/inputs/oauth-s02/source-version-ledger/oauth-s02-t08-evidence-03.csv",
+      "sha256": "a96a4545f34a8c65eebd4d351cb1e74b1c278444afcecb252928e9fe883380b6",
+      "subject": "source system version ledger",
+      "turn": 8
+    },
+    {
+      "bytes": 14173,
+      "path": "maintenance/inputs/oauth-s02/source-version-ledger/oauth-s02-t08-evidence-04.yaml",
+      "sha256": "92eb90c41fbb4b35f853a28d7b42088a9f606a3d959477c5f3688eef04099ad4",
+      "subject": "source system version ledger",
+      "turn": 8
+    },
+    {
+      "bytes": 14005,
+      "path": "maintenance/inputs/oauth-s02/source-version-ledger/oauth-s02-t08-evidence-05.log",
+      "sha256": "a5d0dc17ce5e2ede65cb6c2f1eec0cf8245e11e96a350811c12716461980dc37",
+      "subject": "source system version ledger",
+      "turn": 8
+    },
+    {
+      "bytes": 28520,
+      "path": "maintenance/inputs/oauth-s02/duplicate-import-casebook/oauth-s02-t10-evidence-01.md",
+      "sha256": "66329a6181d35136a767e3d1aaefd90e9fd29c48ae810b6d4690f0a458f3e935",
+      "subject": "duplicate import casebook",
+      "turn": 10
+    },
+    {
+      "bytes": 28400,
+      "path": "maintenance/inputs/oauth-s02/duplicate-import-casebook/oauth-s02-t10-evidence-02.jsonl",
+      "sha256": "6752aea17849f15a590509b0f429d8bd0a521dcc7163a5d1598687aeacad51f3",
+      "subject": "duplicate import casebook",
+      "turn": 10
+    },
+    {
+      "bytes": 28590,
+      "path": "maintenance/inputs/oauth-s02/duplicate-import-casebook/oauth-s02-t10-evidence-03.csv",
+      "sha256": "7c6ee758571f8984a53439aca53287d7b4a12717cff69e7c8cb4db17eb86c4ee",
+      "subject": "duplicate import casebook",
+      "turn": 10
+    },
+    {
+      "bytes": 28497,
+      "path": "maintenance/inputs/oauth-s02/duplicate-import-casebook/oauth-s02-t10-evidence-04.yaml",
+      "sha256": "0d0a836c1e33228a1eac4c7c4d3e2d9e94303b8d33809c080db5d4f8d1b39b05",
+      "subject": "duplicate import casebook",
+      "turn": 10
+    },
+    {
+      "bytes": 28573,
+      "path": "maintenance/inputs/oauth-s02/duplicate-import-casebook/oauth-s02-t10-evidence-05.log",
+      "sha256": "19f7cc105b52ccc42047963adbb203a803da47f5837d8cae514f28c9600c7c36",
+      "subject": "duplicate import casebook",
+      "turn": 10
+    },
+    {
+      "bytes": 28607,
+      "path": "maintenance/inputs/oauth-s02/operator-handoff-logs/oauth-s02-t11-evidence-01.md",
+      "sha256": "1704e1d829ce3c54f98664ea3999fb85f437f09d362d73f976d1e9098581ddbd",
+      "subject": "import operator handoff logs",
+      "turn": 11
+    },
+    {
+      "bytes": 28458,
+      "path": "maintenance/inputs/oauth-s02/operator-handoff-logs/oauth-s02-t11-evidence-02.jsonl",
+      "sha256": "deb270f908b2f1f175acaa22d82ef46e59e739bc4cf79d57728b1ea44d3d961f",
+      "subject": "import operator handoff logs",
+      "turn": 11
+    },
+    {
+      "bytes": 28524,
+      "path": "maintenance/inputs/oauth-s02/operator-handoff-logs/oauth-s02-t11-evidence-03.csv",
+      "sha256": "b785fbfcaf7bf8550a92141fa86e6407dc27e2719ceccf5e4c724c6295665084",
+      "subject": "import operator handoff logs",
+      "turn": 11
+    },
+    {
+      "bytes": 28584,
+      "path": "maintenance/inputs/oauth-s02/operator-handoff-logs/oauth-s02-t11-evidence-04.yaml",
+      "sha256": "7623b32481f9c6563fa22fb0e3a0d3ca992fb57d40c5e2e03d170093715daf50",
+      "subject": "import operator handoff logs",
+      "turn": 11
+    },
+    {
+      "bytes": 28456,
+      "path": "maintenance/inputs/oauth-s02/operator-handoff-logs/oauth-s02-t11-evidence-05.log",
+      "sha256": "3ae1ca4748d0d31cbe8905c743cd3f43b24714f50294964965a67cc5980b3a0d",
+      "subject": "import operator handoff logs",
+      "turn": 11
+    },
+    {
+      "bytes": 321,
+      "path": "maintenance/inputs/oauth-s02/receipt-format-history/oauth-s02-t13-evidence-01.md",
+      "sha256": "bb651643b130774ffa0744f8b59d7a3144ee8c5ed0de44a19c2a831a25f69dc7",
+      "subject": "import receipt format history",
+      "turn": 13
+    },
+    {
+      "bytes": 266,
+      "path": "maintenance/inputs/oauth-s02/receipt-format-history/oauth-s02-t13-evidence-02.jsonl",
+      "sha256": "2d9c0acd743dd7fe1a02046c3f72c9bb9c545df92ec82f4f658ec7cc05c971a7",
+      "subject": "import receipt format history",
+      "turn": 13
+    },
+    {
+      "bytes": 249,
+      "path": "maintenance/inputs/oauth-s02/receipt-format-history/oauth-s02-t13-evidence-03.csv",
+      "sha256": "6e9c71f5b64f479f2f99dcce9bab037b95e11f95a73deebd7b6950b6078094eb",
+      "subject": "import receipt format history",
+      "turn": 13
+    },
+    {
+      "bytes": 298,
+      "path": "maintenance/inputs/oauth-s02/receipt-format-history/oauth-s02-t13-evidence-04.yaml",
+      "sha256": "7831284e6cfcb3d3a7b23c43f044031162aab5bf37ed7a3170eadc8eb10ed7cb",
+      "subject": "import receipt format history",
+      "turn": 13
+    },
+    {
+      "bytes": 308,
+      "path": "maintenance/inputs/oauth-s02/receipt-format-history/oauth-s02-t13-evidence-05.log",
+      "sha256": "0d9f91ab051133e081d8900df2ffaabb0061090d480cee99c9f10e378f2d4ee8",
+      "subject": "import receipt format history",
+      "turn": 13
+    },
+    {
+      "bytes": 323,
+      "path": "maintenance/inputs/oauth-s02/completion-runbooks/oauth-s02-t14-evidence-01.md",
+      "sha256": "2077742d35c0eab845e3a4cf5127b9499e2d671c32e375a18b3f11eaae327355",
+      "subject": "migration completion runbooks",
+      "turn": 14
+    },
+    {
+      "bytes": 268,
+      "path": "maintenance/inputs/oauth-s02/completion-runbooks/oauth-s02-t14-evidence-02.jsonl",
+      "sha256": "831a3e438cc10643f0f5f0af249ab9de5de018a015e870a8578ca641e62bd1dc",
+      "subject": "migration completion runbooks",
+      "turn": 14
+    },
+    {
+      "bytes": 251,
+      "path": "maintenance/inputs/oauth-s02/completion-runbooks/oauth-s02-t14-evidence-03.csv",
+      "sha256": "b693852b844adeb367646b3c50910afcd12ce8c2be1808b4b6bda3906cd52ef9",
+      "subject": "migration completion runbooks",
+      "turn": 14
+    },
+    {
+      "bytes": 300,
+      "path": "maintenance/inputs/oauth-s02/completion-runbooks/oauth-s02-t14-evidence-04.yaml",
+      "sha256": "4325bfbc40ef2635f34230014312dd04a18f87c5c101154674604202b7eb7d28",
+      "subject": "migration completion runbooks",
+      "turn": 14
+    },
+    {
+      "bytes": 310,
+      "path": "maintenance/inputs/oauth-s02/completion-runbooks/oauth-s02-t14-evidence-05.log",
+      "sha256": "1f375aef16ec1e874d0ed777ca407eb73652186d0fc79aff47a95e0e9424b6b6",
+      "subject": "migration completion runbooks",
+      "turn": 14
+    }
+  ],
+  "content_bytes": 930784,
+  "estimated_content_tokens": 241762,
+  "schema_version": 1,
+  "spec_id": "oauth-s02"
+}

@@ -1,0 +1,324 @@
+{
+  "artifact_count": 45,
+  "artifacts": [
+    {
+      "bytes": 72723,
+      "path": "maintenance/inputs/retry-s01/crash-signal-timeline/retry-s01-t02-evidence-01.md",
+      "sha256": "8486970471a074ac5b1d119b3e7eeadf1b94056ecbace9e4a520ef502d59eea0",
+      "subject": "worker crash signal chronology",
+      "turn": 2
+    },
+    {
+      "bytes": 72846,
+      "path": "maintenance/inputs/retry-s01/crash-signal-timeline/retry-s01-t02-evidence-02.jsonl",
+      "sha256": "6ef83bef0aebf174f155981d5f844bd40c125f81a0055f41db4ab1cc1891d96b",
+      "subject": "worker crash signal chronology",
+      "turn": 2
+    },
+    {
+      "bytes": 72663,
+      "path": "maintenance/inputs/retry-s01/crash-signal-timeline/retry-s01-t02-evidence-03.csv",
+      "sha256": "763ce07b1b0c50ddb245e102d36130246b352dade92f9ffd949ebde7144087d6",
+      "subject": "worker crash signal chronology",
+      "turn": 2
+    },
+    {
+      "bytes": 72701,
+      "path": "maintenance/inputs/retry-s01/crash-signal-timeline/retry-s01-t02-evidence-04.yaml",
+      "sha256": "2dc2891a3088f4194e0c49d1b34503df5a6a1826ed39c2ad2ddf509e62368309",
+      "subject": "worker crash signal chronology",
+      "turn": 2
+    },
+    {
+      "bytes": 72804,
+      "path": "maintenance/inputs/retry-s01/crash-signal-timeline/retry-s01-t02-evidence-05.log",
+      "sha256": "b083bb0b332791a60b9221d1f50813bce85977a7dade53450c4d60872582a14a",
+      "subject": "worker crash signal chronology",
+      "turn": 2
+    },
+    {
+      "bytes": 24471,
+      "path": "maintenance/inputs/retry-s01/journal-schema-notes/retry-s01-t04-evidence-01.md",
+      "sha256": "7cffab97987576a85889397c72e4302d692f768735d2ba684bbf911c1baa92c8",
+      "subject": "notification journal schema notes",
+      "turn": 4
+    },
+    {
+      "bytes": 24607,
+      "path": "maintenance/inputs/retry-s01/journal-schema-notes/retry-s01-t04-evidence-02.jsonl",
+      "sha256": "c022a27957947873c43e66bb50461895eb52e65d106526fc851d7c3e37756f73",
+      "subject": "notification journal schema notes",
+      "turn": 4
+    },
+    {
+      "bytes": 24432,
+      "path": "maintenance/inputs/retry-s01/journal-schema-notes/retry-s01-t04-evidence-03.csv",
+      "sha256": "40d681c114a47eac943ba370e262f8d5c25711725a923ff4ff00a94baf54c43a",
+      "subject": "notification journal schema notes",
+      "turn": 4
+    },
+    {
+      "bytes": 24449,
+      "path": "maintenance/inputs/retry-s01/journal-schema-notes/retry-s01-t04-evidence-04.yaml",
+      "sha256": "bb6bc99d2606634abfea38d1f571994bab4d0f1408936eb810753e1d5fb4fd60",
+      "subject": "notification journal schema notes",
+      "turn": 4
+    },
+    {
+      "bytes": 24610,
+      "path": "maintenance/inputs/retry-s01/journal-schema-notes/retry-s01-t04-evidence-05.log",
+      "sha256": "97fe2753abf64eaa3117c757f99181c3f584f99b31a8a3ff0ed5eb2cb3a833e4",
+      "subject": "notification journal schema notes",
+      "turn": 4
+    },
+    {
+      "bytes": 24467,
+      "path": "maintenance/inputs/retry-s01/restart-fixture-inventory/retry-s01-t05-evidence-01.md",
+      "sha256": "b71f4c1731c9d62ccfb71c8addad082cdb72132526c988ee740c1100ba16b945",
+      "subject": "restart fixture inventory",
+      "turn": 5
+    },
+    {
+      "bytes": 24613,
+      "path": "maintenance/inputs/retry-s01/restart-fixture-inventory/retry-s01-t05-evidence-02.jsonl",
+      "sha256": "9158cc840e653e5333397840daea2af07cc982a0719dbe6efee36188ff50ffaf",
+      "subject": "restart fixture inventory",
+      "turn": 5
+    },
+    {
+      "bytes": 24436,
+      "path": "maintenance/inputs/retry-s01/restart-fixture-inventory/retry-s01-t05-evidence-03.csv",
+      "sha256": "8cb1e42d91db3f0e85b78cfdcb1645ed893903428545a3845c9e4499deedecbc",
+      "subject": "restart fixture inventory",
+      "turn": 5
+    },
+    {
+      "bytes": 24445,
+      "path": "maintenance/inputs/retry-s01/restart-fixture-inventory/retry-s01-t05-evidence-04.yaml",
+      "sha256": "0d22ad21fd91a251226f5b788d82f0e5c0feab84549993133be21368c5fb86cc",
+      "subject": "restart fixture inventory",
+      "turn": 5
+    },
+    {
+      "bytes": 24608,
+      "path": "maintenance/inputs/retry-s01/restart-fixture-inventory/retry-s01-t05-evidence-05.log",
+      "sha256": "5ffc48b1dbe6e4c17e2ca157b66cc93288c81c999f62ad6610595b64a68ef871",
+      "subject": "restart fixture inventory",
+      "turn": 5
+    },
+    {
+      "bytes": 314,
+      "path": "maintenance/inputs/retry-s01/boot-probe-results/retry-s01-t07-evidence-01.md",
+      "sha256": "08494f9596723451d241340dcec340519b9f4824d95bf02010409032f0be6b23",
+      "subject": "worker boot probe results",
+      "turn": 7
+    },
+    {
+      "bytes": 264,
+      "path": "maintenance/inputs/retry-s01/boot-probe-results/retry-s01-t07-evidence-02.jsonl",
+      "sha256": "94e3946fc1b1d0233069c5da2d037e039b4862f3468761130ed4eabb2437a67a",
+      "subject": "worker boot probe results",
+      "turn": 7
+    },
+    {
+      "bytes": 247,
+      "path": "maintenance/inputs/retry-s01/boot-probe-results/retry-s01-t07-evidence-03.csv",
+      "sha256": "005b947e1b36a2177e8ac9e221ea11523bb135b543f544f882043518bd171c39",
+      "subject": "worker boot probe results",
+      "turn": 7
+    },
+    {
+      "bytes": 292,
+      "path": "maintenance/inputs/retry-s01/boot-probe-results/retry-s01-t07-evidence-04.yaml",
+      "sha256": "674dabb1da6b64ef36ef600ac23c3eec62f094698a723d7dee4a08575f9bccef",
+      "subject": "worker boot probe results",
+      "turn": 7
+    },
+    {
+      "bytes": 302,
+      "path": "maintenance/inputs/retry-s01/boot-probe-results/retry-s01-t07-evidence-05.log",
+      "sha256": "964fcdd09818bccf49addc2f8786dd816db15ac04c967affd9f00b05ebb10def",
+      "subject": "worker boot probe results",
+      "turn": 7
+    },
+    {
+      "bytes": 332,
+      "path": "maintenance/inputs/retry-s01/acknowledgement-ledger/retry-s01-t08-evidence-01.md",
+      "sha256": "c0175dd776ea9cc5a4fee8107735b9f4a7be511fb869015f8668da69eb9afc65",
+      "subject": "provider acknowledgement ledger",
+      "turn": 8
+    },
+    {
+      "bytes": 276,
+      "path": "maintenance/inputs/retry-s01/acknowledgement-ledger/retry-s01-t08-evidence-02.jsonl",
+      "sha256": "a325b6066e3a8d952ac5d7f7878aee83d6665247847a104055a30d36633475be",
+      "subject": "provider acknowledgement ledger",
+      "turn": 8
+    },
+    {
+      "bytes": 259,
+      "path": "maintenance/inputs/retry-s01/acknowledgement-ledger/retry-s01-t08-evidence-03.csv",
+      "sha256": "933ee182a40936467309546180723cdd6c88d97313652c7a097879a440f698cf",
+      "subject": "provider acknowledgement ledger",
+      "turn": 8
+    },
+    {
+      "bytes": 310,
+      "path": "maintenance/inputs/retry-s01/acknowledgement-ledger/retry-s01-t08-evidence-04.yaml",
+      "sha256": "1c6e620b01be3f3067b6a69ca07e9157ffa28c580b127841b7ed1f09c06e300c",
+      "subject": "provider acknowledgement ledger",
+      "turn": 8
+    },
+    {
+      "bytes": 320,
+      "path": "maintenance/inputs/retry-s01/acknowledgement-ledger/retry-s01-t08-evidence-05.log",
+      "sha256": "9d2bc5736fdd0a93431471607266345ea6c432ee28c8185b988d18fe28a74575",
+      "subject": "provider acknowledgement ledger",
+      "turn": 8
+    },
+    {
+      "bytes": 11517,
+      "path": "maintenance/inputs/retry-s01/crash-runbook-cases/retry-s01-t10-evidence-01.md",
+      "sha256": "139f7d31953e1cbf27df58ce4fa200b5b12a2a2cda6eb086f7bfe64a2d9c0351",
+      "subject": "crash recovery runbook cases",
+      "turn": 10
+    },
+    {
+      "bytes": 11655,
+      "path": "maintenance/inputs/retry-s01/crash-runbook-cases/retry-s01-t10-evidence-02.jsonl",
+      "sha256": "076ccce73c7cb3c94593695a90bc86493a06aff24542b0215b15886f40bdfb5d",
+      "subject": "crash recovery runbook cases",
+      "turn": 10
+    },
+    {
+      "bytes": 11608,
+      "path": "maintenance/inputs/retry-s01/crash-runbook-cases/retry-s01-t10-evidence-03.csv",
+      "sha256": "3e860a92fe9a7a95e15b3d1b36a1d351017c857a0911930b4889e588871419a6",
+      "subject": "crash recovery runbook cases",
+      "turn": 10
+    },
+    {
+      "bytes": 11759,
+      "path": "maintenance/inputs/retry-s01/crash-runbook-cases/retry-s01-t10-evidence-04.yaml",
+      "sha256": "2995d4d3a050160a47df8a02bd1e9d3b87a9bf1c813ec55cdbe35007ff80a962",
+      "subject": "crash recovery runbook cases",
+      "turn": 10
+    },
+    {
+      "bytes": 11512,
+      "path": "maintenance/inputs/retry-s01/crash-runbook-cases/retry-s01-t10-evidence-05.log",
+      "sha256": "9e9280c2d46c6b4ca765cb68b09c3f91684b0603b516dc5608c168344efc49c7",
+      "subject": "crash recovery runbook cases",
+      "turn": 10
+    },
+    {
+      "bytes": 11690,
+      "path": "maintenance/inputs/retry-s01/duplicate-delivery-observations/retry-s01-t11-evidence-01.md",
+      "sha256": "1cc9d6efdf35e42b9a407e5c39910849717d246e68f9de6afa33b22d7a174c18",
+      "subject": "duplicate delivery observations",
+      "turn": 11
+    },
+    {
+      "bytes": 11537,
+      "path": "maintenance/inputs/retry-s01/duplicate-delivery-observations/retry-s01-t11-evidence-02.jsonl",
+      "sha256": "49983d6f98b18ec73c50ab3a32d8b84e016d2a02d11168c8ef87b953cabdef05",
+      "subject": "duplicate delivery observations",
+      "turn": 11
+    },
+    {
+      "bytes": 11559,
+      "path": "maintenance/inputs/retry-s01/duplicate-delivery-observations/retry-s01-t11-evidence-03.csv",
+      "sha256": "0f83df8a12106fafebbfbe914c7c689cd0eccdea87495a6e28e9f3a0ed43f9e8",
+      "subject": "duplicate delivery observations",
+      "turn": 11
+    },
+    {
+      "bytes": 11667,
+      "path": "maintenance/inputs/retry-s01/duplicate-delivery-observations/retry-s01-t11-evidence-04.yaml",
+      "sha256": "e59b15fc2caae7f73a32da2696a76f1ffb5d47defceb6070acf2927880b10458",
+      "subject": "duplicate delivery observations",
+      "turn": 11
+    },
+    {
+      "bytes": 11695,
+      "path": "maintenance/inputs/retry-s01/duplicate-delivery-observations/retry-s01-t11-evidence-05.log",
+      "sha256": "7fcc7e7bd26539fd69480ae246b69b9cfd605054ca8d501f3bf498cb539c3ca8",
+      "subject": "duplicate delivery observations",
+      "turn": 11
+    },
+    {
+      "bytes": 343,
+      "path": "maintenance/inputs/retry-s01/restart-platform-matrix/retry-s01-t13-evidence-01.md",
+      "sha256": "2c7df3c20e65999f6ba975bb7ec8925691c3f94684049ba92edb58e27d1f3eef",
+      "subject": "restart platform compatibility matrix",
+      "turn": 13
+    },
+    {
+      "bytes": 280,
+      "path": "maintenance/inputs/retry-s01/restart-platform-matrix/retry-s01-t13-evidence-02.jsonl",
+      "sha256": "8f8525242d0bb6b44fe754bf39db3469324068ac20e6caf95d78cdc0865537f2",
+      "subject": "restart platform compatibility matrix",
+      "turn": 13
+    },
+    {
+      "bytes": 263,
+      "path": "maintenance/inputs/retry-s01/restart-platform-matrix/retry-s01-t13-evidence-03.csv",
+      "sha256": "2882e5fb13f8ca4bfb3b7b75d385c344292310c048ce737caff44ded2f291629",
+      "subject": "restart platform compatibility matrix",
+      "turn": 13
+    },
+    {
+      "bytes": 320,
+      "path": "maintenance/inputs/retry-s01/restart-platform-matrix/retry-s01-t13-evidence-04.yaml",
+      "sha256": "38cdaaa3d91a97bd23f4c28d8c3a1618f76ddb8dbad62ff948822ee952333c82",
+      "subject": "restart platform compatibility matrix",
+      "turn": 13
+    },
+    {
+      "bytes": 330,
+      "path": "maintenance/inputs/retry-s01/restart-platform-matrix/retry-s01-t13-evidence-05.log",
+      "sha256": "e4c1cc46ccfc61261eed886f8fa7ace597c6d136f677151313f8e238d837a96a",
+      "subject": "restart platform compatibility matrix",
+      "turn": 13
+    },
+    {
+      "bytes": 334,
+      "path": "maintenance/inputs/retry-s01/crash-handoff-records/retry-s01-t14-evidence-01.md",
+      "sha256": "93893b491e69315628ed636a9713cf49830d75f2a816f292099c0cd535d9542c",
+      "subject": "crash recovery handoff records",
+      "turn": 14
+    },
+    {
+      "bytes": 278,
+      "path": "maintenance/inputs/retry-s01/crash-handoff-records/retry-s01-t14-evidence-02.jsonl",
+      "sha256": "19986506bfd6720d2689a91b0f2aee57742ab81fc1c13c0ac58dd46b92a3c7b6",
+      "subject": "crash recovery handoff records",
+      "turn": 14
+    },
+    {
+      "bytes": 261,
+      "path": "maintenance/inputs/retry-s01/crash-handoff-records/retry-s01-t14-evidence-03.csv",
+      "sha256": "17212079e518f17715c6bf2e9ee5e24a0f6017d0a1798b9e503b181d57b5a61e",
+      "subject": "crash recovery handoff records",
+      "turn": 14
+    },
+    {
+      "bytes": 311,
+      "path": "maintenance/inputs/retry-s01/crash-handoff-records/retry-s01-t14-evidence-04.yaml",
+      "sha256": "a626b8c7d2fe5cf5e1cd9a5c1bc1c43da0bd29d2941ac7e9d5761e45c8e9082a",
+      "subject": "crash recovery handoff records",
+      "turn": 14
+    },
+    {
+      "bytes": 321,
+      "path": "maintenance/inputs/retry-s01/crash-handoff-records/retry-s01-t14-evidence-05.log",
+      "sha256": "7095a259c34a6a16aa04219c95a04448438c60cf13298113634355947e3ef8aa",
+      "subject": "crash recovery handoff records",
+      "turn": 14
+    }
+  ],
+  "content_bytes": 731031,
+  "estimated_content_tokens": 189878,
+  "schema_version": 1,
+  "spec_id": "retry-s01"
+}

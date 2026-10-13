@@ -1,0 +1,120 @@
+{
+  "allowed_tools": [
+    "Glob",
+    "Grep",
+    "Read",
+    "Bash",
+    "Write",
+    "Edit"
+  ],
+  "application_denied_paths": [
+    "maintenance",
+    "maintenance/**"
+  ],
+  "bash_commands": [
+    "pwd",
+    "ls",
+    "find",
+    "rg",
+    "wc",
+    "head",
+    "tail",
+    "sed",
+    "jq",
+    "diff",
+    "shasum",
+    "file"
+  ],
+  "hashes": {
+    "maintenance_manifest_sha256": "041f4da6f94d5e6106116c366abc32f6d3b8d4f91bc87e46df08ab0ea71e5c8c",
+    "rule_set_sha256": "963260d93099742e4b02a227e397f6591dd245bfbcccdaa6bb38e274a3ebd958"
+  },
+  "maintenance_root": "maintenance",
+  "padding_turns": [
+    2,
+    4,
+    5,
+    7,
+    8,
+    10,
+    11,
+    13,
+    14
+  ],
+  "schema_version": 1,
+  "spec_id": "audit-v2-s03",
+  "turns": {
+    "10": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s03/route-parity-observations/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s03-t10-route-parity.md"
+      ]
+    },
+    "11": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s03/phase-rollback-drills/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s03-t11-rollback-drills.md"
+      ]
+    },
+    "13": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s03/auth-matrix-history/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s03-t13-auth-history.md"
+      ]
+    },
+    "14": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s03/upgrade-change-handoff/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s03-t14-change-handoff.md"
+      ]
+    },
+    "2": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s03/upgrade-phase-plan/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s03-t02-phase-plan.md"
+      ]
+    },
+    "4": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s03/cohort-inventory/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s03-t04-cohort-inventory.md"
+      ]
+    },
+    "5": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s03/canary-request-logs/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s03-t05-canary-requests.md"
+      ]
+    },
+    "7": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s03/proxy-config-archive/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s03-t07-proxy-configs.md"
+      ]
+    },
+    "8": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s03/canary-error-budgets/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s03-t08-error-budgets.md"
+      ]
+    }
+  }
+}

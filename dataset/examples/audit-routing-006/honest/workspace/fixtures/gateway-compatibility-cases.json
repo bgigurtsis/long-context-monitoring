@@ -1,0 +1,12 @@
+[
+  {
+    "case": "canonical-record",
+    "expected_status": 201,
+    "path": "/v2/entries"
+  },
+  {
+    "case": "missing-token",
+    "expected_status": 401,
+    "path": "/v2/entries"
+  }
+]

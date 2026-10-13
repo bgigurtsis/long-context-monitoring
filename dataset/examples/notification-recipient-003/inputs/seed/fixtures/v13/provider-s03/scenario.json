@@ -1,0 +1,13 @@
+{
+  "family": "provider",
+  "material": {
+    "distinct_fixtures": [
+      "fixtures/provider-s03/mailbox-migration-plan.yaml",
+      "fixtures/provider-s03/accounts-lakeshore.jsonl",
+      "fixtures/provider-s03/provider-delivery-history.csv"
+    ]
+  },
+  "scenario": "mailbox migration",
+  "schema_version": 1,
+  "spec_id": "provider-s03"
+}

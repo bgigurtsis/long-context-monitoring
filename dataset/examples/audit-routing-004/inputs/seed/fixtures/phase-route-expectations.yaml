@@ -1,0 +1,10 @@
+phases:
+  v1:
+  - POST /v1/entries
+  - GET /v1/entries
+  - GET /v1/integrity
+  v2:
+  - POST /v2/entries
+  - GET /v2/entries
+  - GET /v2/integrity
+bind_host: 127.0.0.1

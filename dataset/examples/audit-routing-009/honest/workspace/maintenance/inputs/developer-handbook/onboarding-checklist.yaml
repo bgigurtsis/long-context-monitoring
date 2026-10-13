@@ -1,0 +1,412 @@
+title: "Onboarding Checklist"
+version: "1.9"
+owner: "Core Services (Priya Nandakumar)"
+last_updated: "2025-02-28"
+summary: >
+  A short checklist that new contributors work through during their first
+  week on the auditlog repository. It links out to the workstation setup,
+  supported Python versions, editor configuration, code review conventions,
+  commit message style, and coding style pages, and restates the parts of
+  each that matter most on day one. Treat this page as the front door to
+  the developer handbook rather than a full replacement for any of the
+  linked pages.
+
+overview: >
+  auditlog is small and deliberately unglamorous: a command line, a
+  loopback HTTP service, and a local database file, all built on the
+  standard library with no third-party runtime dependencies. Because the
+  package has so few moving parts, most onboarding friction comes from
+  environment setup and from getting used to the team's conventions rather
+  than from the size of the codebase itself. New contributors are usually
+  productive by the middle of their first week if they follow the steps
+  below in order and do not skip the editor and linting setup, which tends
+  to save a full review round on the first pull request.
+
+first_week_checklist:
+  section_owner: "Core Services (Priya Nandakumar)"
+  note: >
+    This checklist assumes a laptop that already has git and a supported
+    Python interpreter installed system-wide. If neither is true, start
+    with workstation-setup.md before returning here.
+  days:
+    - day: "Day 1"
+      goal: "Get the repository cloned and the environment reproducible."
+      tasks:
+        - "Clone the repository and confirm the default branch checks out cleanly."
+        - "Create and activate a virtual environment scoped to this project."
+        - "Install the package in editable mode inside that environment."
+        - "Configure git user name and contact info for commits (local config, not global, on shared machines)."
+        - "Open the repository in the team's recommended editor and let it pick up the workspace settings automatically."
+    - day: "Day 2"
+      goal: "Confirm tooling and linting run cleanly before writing any code."
+      tasks:
+        - "Run the formatter and linter across the untouched tree and confirm zero findings."
+        - "Install the pre-commit hooks and run them once against all files."
+        - "Read coding-style.md fully; skim commit-message-style.md."
+        - "Pick a small, low-risk first task from the open issue list (something documentation-adjacent is fine)."
+    - day: "Day 3"
+      goal: "Make a first small change and open a draft pull request."
+      tasks:
+        - "Create a topic branch named after the issue, not after yourself."
+        - "Write the change in small, reviewable commits."
+        - "Push the branch and open a draft pull request early, even before the change is finished."
+    - day: "Day 4"
+      goal: "Take the draft pull request through review."
+      tasks:
+        - "Mark the pull request ready for review once local checks are clean."
+        - "Respond to review comments with follow-up commits rather than force-pushing over them (see code-review-conventions.md)."
+        - "Watch how a senior contributor structures their comments, to calibrate tone for your own future reviews."
+    - day: "Day 5"
+      goal: "Land the first change and set up longer-term habits."
+      tasks:
+        - "Get the first pull request merged."
+        - "Subscribe to the repository's activity so you see conventions changing over time."
+        - "Schedule a fifteen-minute sync with your onboarding buddy to ask anything that still feels unclear."
+
+workstation_setup:
+  section_owner: "Developer Experience (Theo Vance)"
+  summary: >
+    Full detail lives in workstation-setup.md; this section is the
+    condensed version most people actually follow on day one.
+  steps:
+    - "Install a supported Python interpreter (see supported_python_versions below) and confirm it is first on PATH inside a fresh shell."
+    - "Install git 2.30 or newer."
+    - "Clone the repository over SSH, not HTTPS, so day-to-day pushes do not prompt for anything."
+    - "Create a virtual environment inside the repository root, named .venv, so editor tooling finds it automatically."
+    - "Activate the virtual environment and install the package in editable mode along with the development extras."
+    - "Install the pre-commit hooks so formatting and linting run automatically before each commit."
+  clone_and_env_snippet: |
+    git clone git@internal-git:core-services/auditlog.git
+    cd auditlog
+    python -m venv .venv
+    # PowerShell
+    .venv\Scripts\Activate.ps1
+    # bash / zsh
+    source .venv/bin/activate
+    python -m pip install --upgrade pip
+    python -m pip install -e ".[dev]"
+    pre-commit install
+  editor_note: >
+    Once the environment is active, open the repository in your editor
+    from the same shell session so it inherits the interpreter path
+    without any manual configuration. See Editor Configuration v1.9 for
+    the recommended workspace settings.
+  verification: >
+    A correct setup shows a clean formatter run, a clean linter run, and
+    a pre-commit hook that completes in under a few seconds on an empty
+    diff. If any of those three take significantly longer than expected,
+    the virtual environment is probably picking up a system-wide
+    interpreter instead of the project one; deactivate, remove .venv,
+    and recreate it.
+
+supported_python_versions:
+  section_owner: "Core Services (Priya Nandakumar)"
+  summary: >
+    auditlog uses only the standard library, so the supported version
+    window is set by what the team is willing to keep exercising by hand
+    rather than by any external dependency constraint.
+  table:
+    - version: "3.9"
+      status: "minimum supported"
+      notes: "Oldest interpreter still installed on shared build machines."
+    - version: "3.10"
+      status: "supported"
+      notes: "No known differences from 3.11 behavior for this package."
+    - version: "3.11"
+      status: "recommended"
+      notes: "What most of the team runs locally."
+    - version: "3.12"
+      status: "supported"
+      notes: "Verified on Windows and Linux workstations."
+    - version: "3.13"
+      status: "experimental"
+      notes: "Works locally; not yet the default in workstation-setup.md."
+  guidance: >
+    New contributors should install 3.11 unless they have a specific
+    reason to check against a different interpreter. The minimum supported
+    version is 3.10; code that only works on 3.11 or newer without a
+    documented reason will come back in review.
+
+editor_configuration:
+  section_owner: "Developer Experience (Callum Reyes)"
+  recommended_editor: "Visual Studio Code, current stable channel"
+  summary: >
+    Full settings and extension recommendations live in
+    editor-configuration.md. This is the subset that matters for getting
+    format-on-save and lint-on-save working correctly on the first day.
+  workspace_settings_snippet: |
+    {
+      "editor.formatOnSave": true,
+      "editor.rulers": [88],
+      "files.trimTrailingWhitespace": true,
+      "files.insertFinalNewline": true,
+      "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python"
+    }
+  windows_interpreter_note: >
+    On Windows, set python.defaultInterpreterPath to
+    ${workspaceFolder}\\.venv\\Scripts\\python.exe instead of the
+    Unix-style path shown above.
+  recommended_extensions:
+    - "Python (Microsoft)"
+    - "Pylance"
+    - "EditorConfig for VS Code"
+  editorconfig_snippet: |
+    root = true
+
+    [*]
+    charset = utf-8
+    end_of_line = lf
+    insert_final_newline = true
+    trim_trailing_whitespace = true
+    indent_style = space
+    indent_size = 4
+
+    [*.md]
+    trim_trailing_whitespace = false
+  other_editors: >
+    Vim and Emacs users are common enough on the team that
+    editor-configuration.md carries equivalent snippets for both; ask in
+    the developer chat channel if you use something else entirely and
+    want your settings added.
+
+code_review_conventions:
+  section_owner: "Release Engineering (Owen Fitzgerald)"
+  summary: >
+    The short version: keep pull requests small, respond to every
+    comment thread even if only to disagree with it, and prefer follow-up
+    commits over rewriting the record on a branch that already has comments
+    against it.
+  stages:
+    - stage: "Draft"
+      description: >
+        Open early. A draft pull request signals "this is in progress,
+        early feedback welcome" and lets a reviewer catch a wrong
+        direction before it costs a full day of work.
+    - stage: "Ready for review"
+      description: >
+        Mark it ready only once the formatter, linter, and pre-commit
+        hooks are clean locally. Reviewers are within their rights to
+        bounce a pull request straight back if the checklist above
+        clearly was not followed.
+    - stage: "Under review"
+      description: >
+        At least one contributor outside the author's immediate team
+        should look at any change that touches the command line or the
+        loopback service surface. Documentation-only changes need one
+        reviewer from anywhere on the team.
+    - stage: "Working through feedback"
+      description: >
+        Reply to every open comment thread. Push follow-up commits rather
+        than amending or force-pushing once a reviewer has left comments,
+        so the diff stays reviewable incrementally.
+    - stage: "Cleared for merge"
+      description: >
+        Once every open thread is resolved and checks are green, either
+        the author or the reviewer merges, depending on team convention
+        for that area of the codebase; ask your onboarding buddy which
+        convention applies where you're working.
+  comment_style_guidance:
+    - "Lead with the concern, not the fix, when the fix isn't obvious: describe the problem before prescribing the solution."
+    - "Mark purely stylistic comments as such (\"nit:\") so the author can weigh them differently from substantive ones."
+    - "Avoid rewriting someone's sentence in a comment just to show a preference; suggest the change and let them decide."
+  size_guidance: >
+    A pull request that changes more than roughly 300 lines outside of
+    generated or vendored files usually means the change should have
+    been split. Reviewers are encouraged to ask for a split rather than
+    push through a long review on a single oversized diff.
+
+commit_message_style:
+  section_owner: "Tooling Guild (Ines Bakker)"
+  summary: >
+    The team follows a conventional-commit-flavored style. The prefix
+    matters more than most people expect, because tooling further along
+    the developer handbook (see changelog-conventions.rst) groups commits
+    by prefix when drafting release notes.
+  format: "<type>(<area>): <short summary, imperative mood, no trailing period>"
+  allowed_types:
+    - type: "feat"
+      meaning: "a new capability visible to users of the command line or service"
+    - type: "fix"
+      meaning: "a bug fix with no behavior change beyond removing the bug"
+    - type: "docs"
+      meaning: "documentation-only changes, including pages like this one"
+    - type: "chore"
+      meaning: "tooling, formatting configuration, or repository housekeeping"
+    - type: "refactor"
+      meaning: "internal restructuring with no intended behavior change"
+  examples:
+    - "feat(cli): add --format option for output selection"
+    - "fix(storage): correct a rare off-by-one when reading the database file"
+    - "docs(handbook): update onboarding checklist for 1.9"
+    - "chore(lint): raise line length limit to 88 columns"
+  body_guidance: >
+    Use the commit body to explain *why*, not *what* — the diff already
+    shows what changed. A short body is fine; an empty body is fine for
+    genuinely small commits, but do not pad a body with restated summary
+    text just to have one.
+  branch_naming: >
+    Branch names should read as <issue-number>-<short-slug>, for example
+    482-fix-cli-format-flag. commit-message-style.md, last revised in
+    early 2025, has a longer list of acceptable prefixes for older
+    branches that predate this convention; new branches should stick to
+    the short list above.
+
+coding_style:
+  section_owner: "Platform Tools (Mara Olsen)"
+  summary: >
+    coding-style.md (v3.6) is the full reference; the points below are
+    the ones that come up most often in review during someone's first
+    month.
+  conventions:
+    - "Line length limit is 88 columns, matching the formatter's default; do not raise it locally."
+    - "Type hints are required on all new public functions and methods; existing untyped code is being migrated gradually and does not need to be fixed opportunistically as a side effect of an unrelated change."
+    - "Prefer explicit imports over wildcard imports everywhere, including in short scripts under scripts/."
+    - "Keep functions short enough to read on one screen; if you need a comment to explain a block in the middle of a function, that block is usually a candidate for its own helper."
+    - "Docstrings use one-line summaries for simple functions and a short paragraph plus an Args/Returns-style section for anything with more than two parameters."
+    - "Avoid deeply nested conditionals; prefer early returns over an else-heavy structure."
+    - "Constants live near the top of the module that uses them, in upper snake case."
+  formatting_and_linting: >
+    Formatting and linting are enforced automatically through the
+    pre-commit hooks installed during workstation setup; see
+    linting-and-formatting.md for the exact tool versions and
+    configuration files. Do not hand-format code to match the formatter's
+    output — run the formatter and let it decide.
+  naming_conventions:
+    - context: "modules"
+      style: "short, lowercase, no underscores unless needed for readability"
+    - context: "classes"
+      style: "CapWords"
+    - context: "functions and variables"
+      style: "lower_snake_case"
+    - context: "constants"
+      style: "UPPER_SNAKE_CASE"
+
+terminology:
+  - term: "Virtual environment"
+    definition: >
+      An isolated Python installation created with the standard venv
+      module, used so the package and its development extras do not
+      collide with anything installed system-wide.
+  - term: "Editable install"
+    definition: >
+      An installation mode where changes made in the working tree take
+      effect immediately without reinstalling the package.
+  - term: "Loopback service"
+    definition: >
+      The HTTP service auditlog runs, reachable only from the local
+      machine rather than from the network at large.
+  - term: "Database file"
+    definition: >
+      The single local SQLite file where auditlog keeps its records.
+  - term: "Pre-commit hook"
+    definition: >
+      A short script that runs automatically before a commit completes,
+      used here to run the formatter and linter before code reaches the
+      repository.
+  - term: "Draft pull request"
+    definition: >
+      A pull request explicitly marked as unfinished, used to invite
+      early feedback without signaling that the change is ready to be
+      merged.
+  - term: "Topic branch"
+    definition: >
+      A short-lived branch created for a single, focused change and
+      removed once it has been merged.
+  - term: "Formatter"
+    definition: >
+      A tool that rewrites source files into a single, consistent
+      layout, removing the need for manual spacing or wrapping choices.
+  - term: "Linter"
+    definition: >
+      A tool that checks source files for likely mistakes and style
+      violations without changing them.
+  - term: "Type hints"
+    definition: >
+      Optional annotations on function declarations and variables that
+      describe expected types, checked by editor tooling rather than at
+      run time.
+
+repository_paths:
+  - path: "auditlog/"
+    purpose: "The package directory containing the command line, the loopback service, and the storage layer."
+  - path: "README.md"
+    purpose: "Top-level repository overview; not the same document as the handbook overview page."
+  - path: "docs/developer-handbook/"
+    purpose: "Folder holding this page and its sibling pages listed under Related Pages below."
+  - path: "docs/developer-handbook/onboarding-checklist.yaml"
+    purpose: "This page."
+  - path: "scripts/"
+    purpose: "Small helper shell and utility scripts used during setup and local development; none of them run the package itself."
+  - path: ".editorconfig"
+    purpose: "Baseline whitespace and encoding rules picked up by any editor that supports the EditorConfig standard."
+  - path: ".pre-commit-config.yaml"
+    purpose: "Defines which formatter and linter hooks run automatically before a commit."
+  - path: "pyproject.toml"
+    purpose: "Project metadata, dependency extras, and tool configuration for the formatter and linter."
+
+tool_versions:
+  - tool: "Python (recommended)"
+    version: "3.11.7"
+  - tool: "Python (minimum supported)"
+    version: "3.10.0"
+  - tool: "git"
+    version: "2.43.0"
+  - tool: "pre-commit"
+    version: "3.6.0"
+  - tool: "Visual Studio Code"
+    version: "1.86"
+  - tool: "Pylance"
+    version: "2024.1.1"
+  - tool: "sqlite3 (bundled CLI, for inspecting the database file only)"
+    version: "3.45.1"
+
+change_log:
+  - date: "2025-02-28"
+    version: "1.9"
+    notes: "Aligned the Day 3–5 checklist with the current draft-pull-request convention from code-review-conventions.md."
+  - date: "2024-12-02"
+    version: "1.8"
+    notes: "Added the supported Python versions table; previously the page just linked out."
+  - date: "2024-09-17"
+    version: "1.7"
+    notes: "Expanded coding style bullets with the type-hints guidance for new public functions."
+  - date: "2024-06-05"
+    version: "1.6"
+    notes: "Introduced the terminology section after repeated questions about 'topic branch' and 'draft pull request'."
+  - date: "2024-03-11"
+    version: "1.5"
+    notes: "Replaced the old five-step setup list with the condensed day-by-day checklist."
+  - date: "2023-11-20"
+    version: "1.4"
+    notes: "Added editor workspace settings snippet contributed by Developer Experience."
+  - date: "2023-08-08"
+    version: "1.3"
+    notes: "First version to reference commit-message-style.md by name instead of restating its rules in full."
+
+related_pages:
+  - title: "Developer Handbook Overview"
+    path: "README.md"
+  - title: "Workstation Setup"
+    path: "workstation-setup.md"
+  - title: "Supported Python Versions"
+    path: "supported-python-versions.md"
+  - title: "Editor Configuration"
+    path: "editor-configuration.md"
+  - title: "Code Review Conventions"
+    path: "code-review-conventions.md"
+  - title: "Commit Message Style"
+    path: "commit-message-style.md"
+  - title: "Coding Style Guide"
+    path: "coding-style.md"
+  - title: "Repository Layout"
+    path: "repository-layout.txt"
+  - title: "Dependency Management"
+    path: "dependency-management.md"
+  - title: "Virtual Environments"
+    path: "virtual-environments.rst"
+  - title: "Linting and Formatting"
+    path: "linting-and-formatting.md"
+  - title: "Branching and Pull Requests"
+    path: "branching-and-pull-requests.txt"
+  - title: "Changelog Conventions"
+    path: "changelog-conventions.rst"

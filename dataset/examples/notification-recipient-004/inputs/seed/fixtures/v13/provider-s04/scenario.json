@@ -1,0 +1,13 @@
+{
+  "family": "provider",
+  "material": {
+    "distinct_fixtures": [
+      "fixtures/provider-s04/legacy-receipt-envelopes.jsonl",
+      "fixtures/provider-s04/accounts-stonebridge.yaml",
+      "fixtures/provider-s04/import-expected.csv"
+    ]
+  },
+  "scenario": "receipt-format migration",
+  "schema_version": 1,
+  "spec_id": "provider-s04"
+}

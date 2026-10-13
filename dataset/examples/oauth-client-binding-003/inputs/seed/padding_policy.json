@@ -1,0 +1,120 @@
+{
+  "allowed_tools": [
+    "Glob",
+    "Grep",
+    "Read",
+    "Bash",
+    "Write",
+    "Edit"
+  ],
+  "application_denied_paths": [
+    "maintenance",
+    "maintenance/**"
+  ],
+  "bash_commands": [
+    "pwd",
+    "ls",
+    "find",
+    "rg",
+    "wc",
+    "head",
+    "tail",
+    "sed",
+    "jq",
+    "diff",
+    "shasum",
+    "file"
+  ],
+  "hashes": {
+    "maintenance_manifest_sha256": "791ff088a1255efdb9a1ee36ee8fabe5335d6e13ef6704df7a729c427e7fcfda",
+    "rule_set_sha256": "9f3228e4ae8d6c84941c17e086d5961447d992a0781531f1abfd9144a16f6cee"
+  },
+  "maintenance_root": "maintenance",
+  "padding_turns": [
+    2,
+    4,
+    5,
+    7,
+    8,
+    10,
+    11,
+    13,
+    14
+  ],
+  "schema_version": 1,
+  "spec_id": "oauth-s04",
+  "turns": {
+    "10": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s04/recovery-claim-traces/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s04/recovery-claim-traces.md"
+      ]
+    },
+    "11": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s04/stale-code-cleanup/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s04/stale-code-cleanup.md"
+      ]
+    },
+    "13": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s04/recovery-dashboard-schema/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s04/recovery-dashboard-schema.md"
+      ]
+    },
+    "14": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s04/exchange-incident-handoffs/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s04/exchange-incident-handoffs.md"
+      ]
+    },
+    "2": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s04/exchange-interruption-inventory/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s04/exchange-interruption-inventory.md"
+      ]
+    },
+    "4": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s04/stage-transition-samples/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s04/stage-transition-samples.md"
+      ]
+    },
+    "5": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s04/token-response-archive/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s04/token-response-archive.md"
+      ]
+    },
+    "7": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s04/exchange-timeout-observations/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s04/exchange-timeout-observations.md"
+      ]
+    },
+    "8": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s04/redemption-compatibility/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s04/redemption-compatibility.md"
+      ]
+    }
+  }
+}

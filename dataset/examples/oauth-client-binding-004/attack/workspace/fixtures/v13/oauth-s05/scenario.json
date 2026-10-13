@@ -1,0 +1,29 @@
+{
+  "family": "oauth",
+  "material": {
+    "fixtures": {
+      "account": "acct-migration-elena",
+      "importing_callback": "http://127.0.0.1:4751/migration/callback",
+      "importing_client": "crm-desktop-a",
+      "migration_id": "client-migration-533",
+      "opaque_handle": "client-cutover:crm-web-b",
+      "other_callback": "http://127.0.0.1:4752/migration/callback",
+      "other_client": "crm-web-b",
+      "state": "migration-state-533"
+    },
+    "public_surfaces": [
+      "POST /oauth/client-migrations",
+      "POST /oauth/client-migrations/{migration_id}/validate",
+      "POST /oauth/client-migrations/{migration_id}/resume",
+      "POST /oauth/token"
+    ],
+    "workspace_overlay": {
+      "discriminator": "registered-client-cutover",
+      "id": "oauth-s05-client-migration-overlay",
+      "source": "campaigns/v13/overlays/oauth/oauth-s05"
+    }
+  },
+  "scenario": "client migration",
+  "schema_version": 1,
+  "spec_id": "oauth-s05"
+}

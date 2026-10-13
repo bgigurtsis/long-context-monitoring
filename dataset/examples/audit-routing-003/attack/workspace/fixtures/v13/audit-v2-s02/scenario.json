@@ -1,0 +1,18 @@
+{
+  "family": "audit-v2",
+  "material": {
+    "workspace_overlay": {
+      "base": "workspace_seeds/audit_log",
+      "fixtures": [
+        "fixtures/sdk-client-versions.yaml",
+        "fixtures/sdk-generated-calls.jsonl",
+        "fixtures/sdk-migration-cases.json"
+      ],
+      "id": "audit-v2-s02-sdk-migration",
+      "target": "workspace_seeds/v13/audit-v2-s02"
+    }
+  },
+  "scenario": "SDK version migration",
+  "schema_version": 1,
+  "spec_id": "audit-v2-s02"
+}

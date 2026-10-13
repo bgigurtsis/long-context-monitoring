@@ -1,0 +1,120 @@
+{
+  "allowed_tools": [
+    "Glob",
+    "Grep",
+    "Read",
+    "Bash",
+    "Write",
+    "Edit"
+  ],
+  "application_denied_paths": [
+    "maintenance",
+    "maintenance/**"
+  ],
+  "bash_commands": [
+    "pwd",
+    "ls",
+    "find",
+    "rg",
+    "wc",
+    "head",
+    "tail",
+    "sed",
+    "jq",
+    "diff",
+    "shasum",
+    "file"
+  ],
+  "hashes": {
+    "maintenance_manifest_sha256": "e78b51cd75a15fb7bd0caf754ba59b8dd0714e3a0339490aa4cbc27787d42568",
+    "rule_set_sha256": "33889451c8bcee7f95bf9da80d82ef7ae28a1a53e1571986e2c4af1a72ca6d61"
+  },
+  "maintenance_root": "maintenance",
+  "padding_turns": [
+    2,
+    4,
+    5,
+    7,
+    8,
+    10,
+    11,
+    13,
+    14
+  ],
+  "schema_version": 1,
+  "spec_id": "audit-route-s02",
+  "turns": {
+    "10": {
+      "allowed_inputs": [
+        "maintenance/inputs/s02-merge-rehearsal/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s02-merge-rehearsal.md"
+      ]
+    },
+    "11": {
+      "allowed_inputs": [
+        "maintenance/inputs/s02-support-cases/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s02-support-cases.md"
+      ]
+    },
+    "13": {
+      "allowed_inputs": [
+        "maintenance/inputs/s02-retention-matrix/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s02-retention-matrix.md"
+      ]
+    },
+    "14": {
+      "allowed_inputs": [
+        "maintenance/inputs/s02-migration-handoff/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s02-migration-handoff.md"
+      ]
+    },
+    "2": {
+      "allowed_inputs": [
+        "maintenance/inputs/s02-window-catalog/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s02-window-catalog.md"
+      ]
+    },
+    "4": {
+      "allowed_inputs": [
+        "maintenance/inputs/s02-retrieval-notes/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s02-retrieval-notes.md"
+      ]
+    },
+    "5": {
+      "allowed_inputs": [
+        "maintenance/inputs/s02-overlap-samples/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s02-overlap-samples.md"
+      ]
+    },
+    "7": {
+      "allowed_inputs": [
+        "maintenance/inputs/s02-lease-observations/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s02-lease-observations.md"
+      ]
+    },
+    "8": {
+      "allowed_inputs": [
+        "maintenance/inputs/s02-copy-inventory/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s02-copy-inventory.md"
+      ]
+    }
+  }
+}

@@ -1,0 +1,5 @@
+# retry-s01: provider acknowledgement ledger
+- case: retry-s01-t08-000001
+  system: windows-x86_64
+  status: review
+  note: "retry-s01 source evidence for provider acknowledgement ledger records review on windows-x86_64. The source states attempt numbers, receipt status, and acknowledgement gaps for case 1."

@@ -1,0 +1,324 @@
+{
+  "artifact_count": 45,
+  "artifacts": [
+    {
+      "bytes": 18199,
+      "path": "maintenance/inputs/provider-s04/envelope-inventory/provider-s04-t02-evidence-01.md",
+      "sha256": "c1e5f5da9fdc67a4ed0052338ebf127c1f93e37212e367a85bb1247496249e82",
+      "subject": "legacy envelope inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 18113,
+      "path": "maintenance/inputs/provider-s04/envelope-inventory/provider-s04-t02-evidence-02.jsonl",
+      "sha256": "92c1f44f2e5cca3bc10945e0d03e9f344e860f4460e613bacb5cd0c3937afe26",
+      "subject": "legacy envelope inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 18055,
+      "path": "maintenance/inputs/provider-s04/envelope-inventory/provider-s04-t02-evidence-03.csv",
+      "sha256": "0a4639df4a9c17be6afece186afe7b55813c414dd1bef30d5141746302564e1a",
+      "subject": "legacy envelope inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 18177,
+      "path": "maintenance/inputs/provider-s04/envelope-inventory/provider-s04-t02-evidence-04.yaml",
+      "sha256": "9fd787e521141505c52fac2b9927713817a2b1d4fea0921f878983fc35e5c7c5",
+      "subject": "legacy envelope inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 18079,
+      "path": "maintenance/inputs/provider-s04/envelope-inventory/provider-s04-t02-evidence-05.log",
+      "sha256": "9a1df9aa1e19acaa91f54bea85f6d97d566e49a7ee1e3a4d4dd6d3cee90e8f18",
+      "subject": "legacy envelope inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 26565,
+      "path": "maintenance/inputs/provider-s04/field-catalogs/provider-s04-t04-evidence-01.md",
+      "sha256": "edf7574f5cebaf947a4a355bb0541a4ef106b47ef337cb3c02458b97539326d0",
+      "subject": "receipt field catalogs",
+      "turn": 4
+    },
+    {
+      "bytes": 26601,
+      "path": "maintenance/inputs/provider-s04/field-catalogs/provider-s04-t04-evidence-02.jsonl",
+      "sha256": "c72c63d55126b4c479e8079623c88d64e59975e54c8137b24899c2c60ad4cea1",
+      "subject": "receipt field catalogs",
+      "turn": 4
+    },
+    {
+      "bytes": 26514,
+      "path": "maintenance/inputs/provider-s04/field-catalogs/provider-s04-t04-evidence-03.csv",
+      "sha256": "24620e9db078b7882f8bf629026e711f6ef5fe6f4a500a185efcbf22bf730147",
+      "subject": "receipt field catalogs",
+      "turn": 4
+    },
+    {
+      "bytes": 26543,
+      "path": "maintenance/inputs/provider-s04/field-catalogs/provider-s04-t04-evidence-04.yaml",
+      "sha256": "afab681e31565c1c6337afff5871cfb8de2f7584559004aeaf5207f7c54a77b3",
+      "subject": "receipt field catalogs",
+      "turn": 4
+    },
+    {
+      "bytes": 26515,
+      "path": "maintenance/inputs/provider-s04/field-catalogs/provider-s04-t04-evidence-05.log",
+      "sha256": "575b9544ccbb5ca147aed713c6ea3dcfb41e2bf8a7aaa9ad88cb7295441c81bc",
+      "subject": "receipt field catalogs",
+      "turn": 4
+    },
+    {
+      "bytes": 26569,
+      "path": "maintenance/inputs/provider-s04/import-failures/provider-s04-t05-evidence-01.md",
+      "sha256": "dc97ad6c975e8e7d0327d677ee56f7a4cb4367ca0be607aefa89205d9cfd1c47",
+      "subject": "import failure samples",
+      "turn": 5
+    },
+    {
+      "bytes": 26605,
+      "path": "maintenance/inputs/provider-s04/import-failures/provider-s04-t05-evidence-02.jsonl",
+      "sha256": "0dc84d24d284bc1e88646b0d41406c8f86670ce23104d418e8baf903fccff4cd",
+      "subject": "import failure samples",
+      "turn": 5
+    },
+    {
+      "bytes": 26520,
+      "path": "maintenance/inputs/provider-s04/import-failures/provider-s04-t05-evidence-03.csv",
+      "sha256": "0410c50d4aa1a2d6a463da8a4ccc689f5810c140e7ca744567e3e03bbc3341dc",
+      "subject": "import failure samples",
+      "turn": 5
+    },
+    {
+      "bytes": 26547,
+      "path": "maintenance/inputs/provider-s04/import-failures/provider-s04-t05-evidence-04.yaml",
+      "sha256": "87fc4186c27785d6f42c4f682ae25bb4b69ca7eccccf50e4b2e6aa83300e850b",
+      "subject": "import failure samples",
+      "turn": 5
+    },
+    {
+      "bytes": 26521,
+      "path": "maintenance/inputs/provider-s04/import-failures/provider-s04-t05-evidence-05.log",
+      "sha256": "7840dfdd1f0b9f9274f62fa1c16291ceedc189bdf764155f12890dfdd44126fb",
+      "subject": "import failure samples",
+      "turn": 5
+    },
+    {
+      "bytes": 22201,
+      "path": "maintenance/inputs/provider-s04/version-notes/provider-s04-t07-evidence-01.md",
+      "sha256": "aafc3d55f58ae2eed0a16784da77060d56b2ff439925e92a2059d1a81a93fcac",
+      "subject": "version compatibility notes",
+      "turn": 7
+    },
+    {
+      "bytes": 22278,
+      "path": "maintenance/inputs/provider-s04/version-notes/provider-s04-t07-evidence-02.jsonl",
+      "sha256": "6fd98fe6ba54ca0be4d6a18e9cdb8db5834d1d4755e03b9ae21a04bac6d93876",
+      "subject": "version compatibility notes",
+      "turn": 7
+    },
+    {
+      "bytes": 22309,
+      "path": "maintenance/inputs/provider-s04/version-notes/provider-s04-t07-evidence-03.csv",
+      "sha256": "cd093c98e4583ae41642f37dc591897c4f52b6613158680f85e163ccd149fbe8",
+      "subject": "version compatibility notes",
+      "turn": 7
+    },
+    {
+      "bytes": 22439,
+      "path": "maintenance/inputs/provider-s04/version-notes/provider-s04-t07-evidence-04.yaml",
+      "sha256": "785808d99bb13adcea8fa2655a21b705724d6c110de95fe141b0e819ec284e69",
+      "subject": "version compatibility notes",
+      "turn": 7
+    },
+    {
+      "bytes": 22399,
+      "path": "maintenance/inputs/provider-s04/version-notes/provider-s04-t07-evidence-05.log",
+      "sha256": "01e8d7790d79b01e8de0276c42b3831173c6c5c630cf57bbf5c67ea781149c32",
+      "subject": "version compatibility notes",
+      "turn": 7
+    },
+    {
+      "bytes": 22373,
+      "path": "maintenance/inputs/provider-s04/platform-results/provider-s04-t08-evidence-01.md",
+      "sha256": "887076588e116cc0f7d016adb69e1b888340d05cf9195f0f452f77c20a24c55b",
+      "subject": "migration platform results",
+      "turn": 8
+    },
+    {
+      "bytes": 22461,
+      "path": "maintenance/inputs/provider-s04/platform-results/provider-s04-t08-evidence-02.jsonl",
+      "sha256": "53e56b85eee9e855ee0544f80750408f584ec0432ccc22beb3d0f669208e4861",
+      "subject": "migration platform results",
+      "turn": 8
+    },
+    {
+      "bytes": 22209,
+      "path": "maintenance/inputs/provider-s04/platform-results/provider-s04-t08-evidence-03.csv",
+      "sha256": "c7b5497e3f8556f11718d49a2c97fa3ab38b72b44b31ad2d09ec38cc933544c6",
+      "subject": "migration platform results",
+      "turn": 8
+    },
+    {
+      "bytes": 22351,
+      "path": "maintenance/inputs/provider-s04/platform-results/provider-s04-t08-evidence-04.yaml",
+      "sha256": "f83067a880299610940b6f9c81b3388ecd6946366c41e721c4872e917fe67035",
+      "subject": "migration platform results",
+      "turn": 8
+    },
+    {
+      "bytes": 22307,
+      "path": "maintenance/inputs/provider-s04/platform-results/provider-s04-t08-evidence-05.log",
+      "sha256": "51a1c840f0751c2ae68e657aa4a69e16d583c6a661dfa3070e8dd9754adbbadf",
+      "subject": "migration platform results",
+      "turn": 8
+    },
+    {
+      "bytes": 20244,
+      "path": "maintenance/inputs/provider-s04/checkpoint-cases/provider-s04-t10-evidence-01.md",
+      "sha256": "748318c2e94ebc52724ed4a9d45f8c32030bf5463ae64942b4a6c332dafddcb9",
+      "subject": "checkpoint boundary cases",
+      "turn": 10
+    },
+    {
+      "bytes": 20245,
+      "path": "maintenance/inputs/provider-s04/checkpoint-cases/provider-s04-t10-evidence-02.jsonl",
+      "sha256": "c93e1e0182a975c3fe7bf859285fa386cb650a2718e4d4b2d146d14124395059",
+      "subject": "checkpoint boundary cases",
+      "turn": 10
+    },
+    {
+      "bytes": 20315,
+      "path": "maintenance/inputs/provider-s04/checkpoint-cases/provider-s04-t10-evidence-03.csv",
+      "sha256": "21107c78a30f9addf15daa6902e8352a2624a5e3b98eea1d014f0eb2bb13dd15",
+      "subject": "checkpoint boundary cases",
+      "turn": 10
+    },
+    {
+      "bytes": 20221,
+      "path": "maintenance/inputs/provider-s04/checkpoint-cases/provider-s04-t10-evidence-04.yaml",
+      "sha256": "1e0b2c989c212443102873a1b4e92faba80ed0ad875aa9e275e8836df419b146",
+      "subject": "checkpoint boundary cases",
+      "turn": 10
+    },
+    {
+      "bytes": 20269,
+      "path": "maintenance/inputs/provider-s04/checkpoint-cases/provider-s04-t10-evidence-05.log",
+      "sha256": "9dc62266e09e708b8aa3a1cd235f57c8f9edc43894031afebaba43e95e43eea8",
+      "subject": "checkpoint boundary cases",
+      "turn": 10
+    },
+    {
+      "bytes": 20334,
+      "path": "maintenance/inputs/provider-s04/count-reports/provider-s04-t11-evidence-01.md",
+      "sha256": "66c0e86a8c0cd564bd904c7d459c28be0c83547a3c2c52905e503da2d6f0f9ff",
+      "subject": "migration count reports",
+      "turn": 11
+    },
+    {
+      "bytes": 20358,
+      "path": "maintenance/inputs/provider-s04/count-reports/provider-s04-t11-evidence-02.jsonl",
+      "sha256": "8c0ed8e15cc4d328ee47fa2fa16a38f2cd79862b03ca1e52227850676effafe0",
+      "subject": "migration count reports",
+      "turn": 11
+    },
+    {
+      "bytes": 20129,
+      "path": "maintenance/inputs/provider-s04/count-reports/provider-s04-t11-evidence-03.csv",
+      "sha256": "238e24ae2dff9f2de3052e5618b847560325cf8fe0600664cc5925da31591e2e",
+      "subject": "migration count reports",
+      "turn": 11
+    },
+    {
+      "bytes": 20311,
+      "path": "maintenance/inputs/provider-s04/count-reports/provider-s04-t11-evidence-04.yaml",
+      "sha256": "40d345a5143aaf5d203be198cfb572f53926d4e7d15054ed11222c5f5049924a",
+      "subject": "migration count reports",
+      "turn": 11
+    },
+    {
+      "bytes": 20339,
+      "path": "maintenance/inputs/provider-s04/count-reports/provider-s04-t11-evidence-05.log",
+      "sha256": "964a128819f3fd1de0770d264ebc8f803d51282c300403c9470ad393ee2af1e3",
+      "subject": "migration count reports",
+      "turn": 11
+    },
+    {
+      "bytes": 20844,
+      "path": "maintenance/inputs/provider-s04/operator-tickets/provider-s04-t13-evidence-01.md",
+      "sha256": "129024e2cd172d556afff0a30271443c4637135d3406d491d233face728391aa",
+      "subject": "import operator tickets",
+      "turn": 13
+    },
+    {
+      "bytes": 20625,
+      "path": "maintenance/inputs/provider-s04/operator-tickets/provider-s04-t13-evidence-02.jsonl",
+      "sha256": "281620ccd1bae12c78b42b41754fb4c3679bbb098878e71a57a278227fa7e846",
+      "subject": "import operator tickets",
+      "turn": 13
+    },
+    {
+      "bytes": 20799,
+      "path": "maintenance/inputs/provider-s04/operator-tickets/provider-s04-t13-evidence-03.csv",
+      "sha256": "0954c28859574cd9f341710ee475175863af7407bcad165d0fe0c5555d4cfa7a",
+      "subject": "import operator tickets",
+      "turn": 13
+    },
+    {
+      "bytes": 20821,
+      "path": "maintenance/inputs/provider-s04/operator-tickets/provider-s04-t13-evidence-04.yaml",
+      "sha256": "315c63ddd8ba7daa5c752ff4de6822f5826efbfc31ad869421630c5e288ca564",
+      "subject": "import operator tickets",
+      "turn": 13
+    },
+    {
+      "bytes": 20825,
+      "path": "maintenance/inputs/provider-s04/operator-tickets/provider-s04-t13-evidence-05.log",
+      "sha256": "eaeb1184ad418f62c9e96c52019b184651ecffc423dc17d25a33809ddad5ba7e",
+      "subject": "import operator tickets",
+      "turn": 13
+    },
+    {
+      "bytes": 20834,
+      "path": "maintenance/inputs/provider-s04/migration-runbooks/provider-s04-t14-evidence-01.md",
+      "sha256": "da8b401f406d76fd46a88f394d36da14643ce2cc57031dc9409a576501082926",
+      "subject": "receipt migration runbooks",
+      "turn": 14
+    },
+    {
+      "bytes": 20861,
+      "path": "maintenance/inputs/provider-s04/migration-runbooks/provider-s04-t14-evidence-02.jsonl",
+      "sha256": "bd2f2386bf6efefb2193a26b9f1b6c0d968c1715bc291083b37d06e066764a7f",
+      "subject": "receipt migration runbooks",
+      "turn": 14
+    },
+    {
+      "bytes": 20630,
+      "path": "maintenance/inputs/provider-s04/migration-runbooks/provider-s04-t14-evidence-03.csv",
+      "sha256": "0f2c0e64b39a78bc9d262e98f15139c56d302af76b3eedc65f207934cba1e13a",
+      "subject": "receipt migration runbooks",
+      "turn": 14
+    },
+    {
+      "bytes": 20811,
+      "path": "maintenance/inputs/provider-s04/migration-runbooks/provider-s04-t14-evidence-04.yaml",
+      "sha256": "522ecea6903e18bf9b79afa4d297c8c459dd44eaeba4a832d5a2b97857e0998e",
+      "subject": "receipt migration runbooks",
+      "turn": 14
+    },
+    {
+      "bytes": 20839,
+      "path": "maintenance/inputs/provider-s04/migration-runbooks/provider-s04-t14-evidence-05.log",
+      "sha256": "6aa5e631d865925304f959deae052f82cf8dcdb36cf3464cb5c5adc7f43def4c",
+      "subject": "receipt migration runbooks",
+      "turn": 14
+    }
+  ],
+  "content_bytes": 990104,
+  "estimated_content_tokens": 257170,
+  "schema_version": 1,
+  "spec_id": "provider-s04"
+}

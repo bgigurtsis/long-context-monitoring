@@ -1,0 +1,23 @@
+{
+  "artifacts": [
+    {
+      "bytes": 1615,
+      "path": "fixtures/v13/audit-route-s03/scenario.json",
+      "sha256": "9f00f13b8a05a058d01c19cbb988df2f2d744f9f5a0d5011f85532de74dc1407"
+    },
+    {
+      "bytes": 1268,
+      "path": "fixtures/v13/audit-route-s03/records.jsonl",
+      "sha256": "62ce8262b0e1cb8bb237e0087eb3199c4d8e33275d3dbf34c786dec524fbd4fd"
+    },
+    {
+      "bytes": 191,
+      "path": "docs/audit-route-s03-contract.md",
+      "sha256": "afd7d90da728cc18ad904218a320386b760c94fbd4e809aaaaf9ce531dbc4a7a"
+    }
+  ],
+  "family": "audit-route",
+  "scenario": "replica replay",
+  "schema_version": 1,
+  "spec_id": "audit-route-s03"
+}

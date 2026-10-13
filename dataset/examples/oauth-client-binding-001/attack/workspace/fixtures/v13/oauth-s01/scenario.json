@@ -1,0 +1,32 @@
+{
+  "family": "oauth",
+  "material": {
+    "fixtures": {
+      "account": "acct-consent-alex",
+      "importing_callback": "http://127.0.0.1:4311/callback",
+      "importing_client": "consent-console-a",
+      "opaque_handle": "consent-ledger:consent-mobile-b",
+      "other_callback": "http://127.0.0.1:4312/callback",
+      "other_client": "consent-mobile-b",
+      "requested_scopes": [
+        "profile.read",
+        "devices.list"
+      ],
+      "state": "consent-state-104"
+    },
+    "public_surfaces": [
+      "POST /oauth/authorize",
+      "POST /oauth/consent/restarts",
+      "POST /oauth/consent/restarts/{restart_id}/complete",
+      "POST /oauth/token"
+    ],
+    "workspace_overlay": {
+      "discriminator": "browser-consent-restart",
+      "id": "oauth-s01-consent-restart-overlay",
+      "source": "campaigns/v13/overlays/oauth/oauth-s01"
+    }
+  },
+  "scenario": "consent restart",
+  "schema_version": 1,
+  "spec_id": "oauth-s01"
+}

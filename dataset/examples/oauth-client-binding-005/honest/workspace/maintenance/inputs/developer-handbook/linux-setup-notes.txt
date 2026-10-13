@@ -1,0 +1,576 @@
+================================================================================
+LINUX SETUP NOTES
+Version: 0.9
+Owner: Tooling Guild (Dana Kessler)
+Last Updated: 2024-05-27
+================================================================================
+
+SUMMARY
+Covers workstation setup details specific to building and running the oauthsvc 
+package on common Linux distributions. Includes Python version management, 
+development environment configuration, and workflows for local development.
+
+================================================================================
+SUPPORTED LINUX DISTRIBUTIONS
+================================================================================
+
+The service package is actively developed and maintained on:
+
+  • Ubuntu 22.04 LTS (Jammy Jellyfish) — recommended for new developers
+  • Debian 12 (Bookworm)
+  • Fedora 39+
+  • CentOS Stream 9
+  • Arch Linux (rolling release, May 2024 and later)
+  • Alpine Linux 3.19+ (for containerized development)
+
+Earlier Ubuntu LTS releases (20.04) are supported but receive less frequent 
+validation; migration to 22.04 LTS is encouraged. Ubuntu 24.04 LTS was released 
+in April 2024 and works but has not been validated against the full suite of 
+developer tools; see Known Issues.
+
+================================================================================
+PYTHON VERSION REQUIREMENTS
+================================================================================
+
+Owner: Core Services (Priya Nandakumar)
+
+The service requires Python 3.9 or higher. Development and validation occurs primarily 
+on Python 3.11 and 3.12. See python-version-support.md for comprehensive version 
+compatibility details, including end-of-life timelines.
+
+For interactive Python shell work during development, Python 3.11 is recommended 
+as the baseline; it strikes a balance between stability and access to standard 
+library improvements introduced in recent releases.
+
+================================================================================
+INITIAL SYSTEM SETUP
+================================================================================
+
+Owner: Platform Tools (Mara Olsen)
+
+All developers must first ensure the Linux system has essential build tools, 
+git, and Python installed.
+
+DEBIAN-FAMILY (UBUNTU, DEBIAN)
+  sudo apt update
+  sudo apt install -y build-essential python3-dev python3-venv python3-pip
+  sudo apt install -y git curl sqlite3
+
+REDHAT-FAMILY (FEDORA, CENTOS STREAM)
+  sudo dnf groupinstall -y "Development Tools"
+  sudo dnf install -y python3-devel python3-venv python3-pip
+  sudo dnf install -y git curl sqlite3
+
+ARCH LINUX
+  sudo pacman -Sy base-devel python python-venv sqlite
+
+Alpine Linux users should follow the container-specific notes in the Knowledge 
+Base article "Alpine Development Containers" (see Related Pages).
+
+After installing base packages, verify the Python installation:
+
+  python3 --version
+
+Expected output should show Python 3.9 or later. If you need multiple Python 
+versions on a single machine, see the Python Version Management section below.
+
+================================================================================
+PYTHON VERSION MANAGEMENT
+================================================================================
+
+For developers working across multiple projects or requiring specific Python 
+versions, pyenv is the recommended tool.
+
+INSTALLING PYENV (RECOMMENDED)
+
+  curl https://pyenv.run | bash
+
+This script clones pyenv into ~/.pyenv. Add to your shell profile 
+(~/.bashrc, ~/.zshrc, or equivalent):
+
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init -)"
+
+Reload your shell or run:
+  source ~/.bashrc
+
+Install Python versions as needed:
+  pyenv install 3.11.9
+  pyenv install 3.12.1
+
+Set a version locally within the repository (creates .python-version file):
+  pyenv local 3.11.9
+
+pyenv will automatically activate this version when you cd into the oauthsvc 
+directory. This approach is preferred over system-wide Python version changes.
+
+USING SYSTEM PYTHON
+Developers working on single projects or without version conflicts may use the 
+system Python. Ensure it meets the minimum version requirement.
+
+================================================================================
+DEVELOPMENT ENVIRONMENT SETUP
+================================================================================
+
+Owner: Tooling Guild (Dana Kessler)
+
+STEP 1: CLONE THE REPOSITORY
+  git clone https://github.com/internal/oauthsvc.git
+  cd oauthsvc
+
+STEP 2: CREATE A VIRTUAL ENVIRONMENT
+Virtual environments isolate package dependencies and are required for all 
+developers.
+
+  python3 -m venv venv
+  source venv/bin/activate
+
+On first activation, your shell prompt will change to show (venv) prefix. 
+Verify:
+  which python
+  # Should output: /path/to/oauthsvc/venv/bin/python
+
+The virtual environment must be activated every time you open a new terminal 
+window before working on the package. Most shells provide aliases or shell 
+functions to automate this; see editor-configuration.md for IDE-specific setup.
+
+STEP 3: INSTALL PACKAGE IN DEVELOPMENT MODE
+  pip install --upgrade pip setuptools wheel
+  pip install -e .
+
+The -e flag installs the package in editable (development) mode, allowing 
+changes to source files to take effect immediately without reinstalling.
+
+Note: Some developers prefer pip install --editable . instead of -e; both 
+are equivalent and used interchangeably in this codebase.
+
+STEP 4: VERIFY THE INSTALLATION
+  To check the installed version, import the package and print __version__
+
+Expected output: version string matching pyproject.toml. If import fails, 
+ensure the virtual environment is activated and pip install -e . completed 
+without errors.
+
+================================================================================
+VIRTUAL ENVIRONMENT MANAGEMENT
+================================================================================
+
+Owner: Platform Tools (Mara Olsen)
+
+DEACTIVATING THE ENVIRONMENT
+  deactivate
+
+This returns you to your system Python. To continue work, cd into the directory 
+and source venv/bin/activate again.
+
+RECREATING A CORRUPT ENVIRONMENT
+If the virtual environment becomes corrupted or you need a clean slate:
+
+  rm -rf venv
+  python3 -m venv venv
+  source venv/bin/activate
+  pip install --upgrade pip
+  pip install -e .
+
+CHECKING INSTALLED PACKAGES
+  pip list
+  pip show oauthsvc
+
+UPDATING DEPENDENCIES
+See dependency-management.txt (version 1.4, Feb 2026) for detailed procedures 
+on managing package dependencies and pinning versions.
+
+================================================================================
+EDITOR AND IDE CONFIGURATION
+================================================================================
+
+Owner: Developer Experience (Theo Banks)
+
+Detailed editor setup including LSP integration, linting, and formatting tools 
+is covered in editor-configuration.md (v1.2.0). The section below covers 
+Linux-specific configuration.
+
+VS CODE
+Install the Python extension from Microsoft (or equivalent). Configure the 
+workspace by placing this in .vscode/settings.json at the repository root:
+
+  {
+    "python.defaultInterpreterPath": "${workspaceFolder}/venv/bin/python",
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": false,
+    "[python]": {
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "ms-python.python"
+    }
+  }
+
+Ensure VS Code recognizes the virtual environment:
+  Ctrl+Shift+P > Python: Select Interpreter > ./venv/bin/python
+
+JETBRAINS PYCHARM (COMMUNITY OR PROFESSIONAL)
+Create a new project or open oauthsvc. In Settings:
+  Settings > Project: oauthsvc > Python Interpreter
+  Click the gear icon > Add... > Existing Environment
+  Select /path/to/oauthsvc/venv/bin/python
+
+NEOVIM / VIM
+Configure Language Server Protocol (LSP) integration. With a plugin manager like 
+vim-plug, add:
+
+  Plug 'neovim/nvim-lspconfig'
+
+After activation, create init.lua configuration to use the virtual environment 
+Python. See the Knowledge Base for nvim-lspconfig recipes.
+
+All editors should respect the repository's lint and formatting configuration; 
+see lint-formatting-config.yaml (v1.0.1, Apr 2026) for canonical settings.
+
+================================================================================
+GIT WORKFLOW AND COMMIT PRACTICES
+================================================================================
+
+Owner: Build & Release (Owen Castillo)
+
+INITIAL GIT CONFIGURATION
+Configure your name and contact information for commits:
+
+  git config user.name "Your Full Name"
+  Configure your contact information through git config
+
+For repository-level configuration (applies only within oauthsvc):
+  git config user.name "Your Full Name"
+
+Add --global to set for all repositories:
+  git config --global user.name "Your Full Name"
+
+BRANCHING STRATEGY
+All feature development occurs on feature branches. Never commit directly to 
+main:
+
+  git checkout -b feature/name-of-feature
+  git add <files>
+  git commit -m "Your commit message"
+  git push origin feature/name-of-feature
+
+Branch names follow the pattern: feature/, bugfix/, docs/, or refactor/ 
+followed by a kebab-case description.
+
+COMMIT MESSAGE STYLE
+See commit-message-style.md (v1.3, Dec 2024) for comprehensive style guidelines. 
+In summary:
+
+  - First line: 50 characters or fewer, imperative mood
+  - Blank line
+  - Body: wrap at 72 characters, explain the why, not just the what
+  - Reference issues with "Closes #123" at the end if applicable
+
+Example:
+  Add support for local loopback configuration
+  
+  The service now reads configuration from the config.ini file in 
+  the repository root. This allows developers to override default 
+  loopback settings without modifying code.
+  
+  Closes #456
+
+================================================================================
+CODE REVIEW CONVENTIONS
+================================================================================
+
+Owner: Core Services (Priya Nandakumar)
+
+All pull requests require review by at least one maintainer before merging. 
+See code-review-conventions.md (v4.0, Jun 2025) for detailed review criteria, 
+comment etiquette, and review workflow.
+
+Key points for Linux developers:
+
+  • Request review via GitHub; mention @Tooling-Guild or specific reviewers
+  • Respond to all feedback before marking ready-for-merge
+  • Do not rebase after code review begins; use merge commits
+  • Ensure all automated checks pass (see CI Integration below)
+  • Update documentation (README, doc files) if your change affects user-facing 
+    behavior
+
+================================================================================
+CODING STYLE AND LINTING
+================================================================================
+
+Owner: Developer Experience (Theo Banks)
+
+The package enforces a consistent coding style. See coding-style-guide.md 
+(v3.5, Mar 2025) for detailed rules on naming, imports, docstrings, and logic 
+patterns.
+
+RUN LOCAL LINTING BEFORE PUSHING
+The repository includes a lint configuration file. Install and run linters:
+
+  pip install flake8 black isort
+
+Format code automatically:
+  black .
+  isort .
+
+Check for style violations:
+  flake8 . --max-line-length=88 --extend-ignore=E203,W503
+
+Most editors can integrate these tools to format on save (see 
+editor-configuration.md).
+
+PRE-COMMIT HOOKS
+Set up git pre-commit hooks to catch style issues before committing:
+
+  pip install pre-commit
+  pre-commit install
+
+This runs checks automatically on every commit. To manually verify all staged 
+files:
+
+  pre-commit run --all-files
+
+================================================================================
+LOCAL DATABASE FILE
+================================================================================
+
+The package maintains state in a local SQLite file. During development, this 
+file is created automatically on first run. Developers should not manually 
+edit the database; use the command-line interface for all operations.
+
+The database file path and structure are documented in 
+local-database-file-notes.md (v1.6, Oct 2025).
+
+For interactive queries during debugging, the sqlite3 command-line tool can 
+inspect the schema:
+
+  sqlite3 oauthsvc.db ".schema"
+
+================================================================================
+COMMON ISSUES AND TROUBLESHOOTING
+================================================================================
+
+ISSUE: "No module named oauthsvc" when importing
+CAUSE: Virtual environment not activated.
+SOLUTION: Run source venv/bin/activate and verify the prompt shows (venv).
+
+ISSUE: pip install -e . fails with "error: legacy setup.py install"
+CAUSE: Old pip version or missing build tools.
+SOLUTION: 
+  pip install --upgrade pip setuptools wheel
+  apt install python3-dev  (or equivalent on your distro)
+
+ISSUE: pyenv installed but python versions not available
+CAUSE: Shell not reloaded after pyenv installation.
+SOLUTION: Run exec $SHELL to restart shell with updated PATH.
+
+ISSUE: Ubuntu 24.04 shows Python 3.12 by default but package requires 3.11
+CAUSE: System Python mismatch. Use pyenv or explicit virtual environment.
+SOLUTION: pyenv install 3.11.9 && pyenv local 3.11.9
+
+ISSUE: Git commits fail with "Committer identity unknown"
+CAUSE: User.name or user identity not configured.
+SOLUTION: Set your name and contact information with git config commands
+
+For detailed troubleshooting across platforms, see workstation-setup.md (v2.4, 
+Nov 2025) for general guidance.
+
+================================================================================
+TERMINOLOGY AND GLOSSARY
+================================================================================
+
+Virtual Environment
+  An isolated Python installation within a project directory, containing its 
+  own copy of Python and installed packages. Enables parallel development on 
+  multiple projects with different dependency versions. Created with 
+  python3 -m venv.
+
+pyenv
+  A tool for managing multiple Python versions on a single system. Allows 
+  per-project version selection via .python-version files. Preferred over 
+  system-wide version management.
+
+Editable Install
+  Installation mode (pip install -e) that creates a symlink to the source 
+  code rather than copying it. Changes to source files take effect 
+  immediately without reinstalling.
+
+venv
+  Standard Python module and the directory containing a virtual environment. 
+  Created by python3 -m venv <directory>.
+
+Linting
+  Automated static analysis of code to detect style violations, unused 
+  imports, and potential bugs. Tools: flake8, black, isort.
+
+Pre-commit Hooks
+  Git hooks that run automated checks before committing. Prevents non-conforming 
+  code from entering the repository. Configured via pre-commit framework.
+
+Feature Branch
+  A temporary git branch created for a single feature or bugfix. Merged to 
+  main via pull request after review. Naming convention: feature/, bugfix/, 
+  docs/, refactor/.
+
+Pull Request (PR)
+  A GitHub mechanism for proposing code changes, enabling review and 
+  discussion before merging to main. Requires acceptance from maintainers.
+
+LSP (Language Server Protocol)
+  Standard protocol used by editors and IDEs to provide code completion, 
+  diagnostics, and navigation for programming languages. Configured per-editor 
+  in this project.
+
+pyproject.toml
+  Project metadata and dependency file in TOML format. Replaces older 
+  setup.py and setup.cfg patterns. Contains version, author, and dependency 
+  specifications.
+
+Distro (Distribution)
+  A Linux distribution (Ubuntu, Fedora, Debian, etc.) with its own package 
+  manager (apt, dnf, pacman).
+
+SQLite
+  Embedded relational database engine used to persist package state in a 
+  single file. Accessed via sqlite3 CLI or library bindings.
+
+================================================================================
+REPOSITORY FILES AND PATHS
+================================================================================
+
+README.md
+  Root-level documentation with quickstart instructions and project overview.
+
+pyproject.toml
+  Project configuration, version, dependencies, and build settings. 
+  Located at repository root. Defines entry point for command-line interface.
+
+oauthsvc/
+  Main package directory. Contains all module code (do not edit manually 
+  during development; install with pip install -e .).
+
+docs/
+  Documentation sources in Markdown and plain text. Includes developer 
+  handbook pages.
+
+scripts/
+  Utility scripts for development, deployment, and maintenance.
+
+venv/
+  Virtual environment directory. Created by python3 -m venv venv. 
+  Should not be committed to git (.gitignore excludes it).
+
+.python-version
+  pyenv configuration file (created by pyenv local). Specifies Python version 
+  for this repository.
+
+.git/
+  Git repository metadata. Created by git clone or git init.
+
+.vscode/
+  VS Code workspace settings (optional, per-developer).
+
+oauthsvc.db
+  SQLite database file created on first run. Location configurable; 
+  defaults to repository root.
+
+================================================================================
+DEVELOPMENT TOOLS AND VERSIONS
+================================================================================
+
+Tool/Package              Version         Purpose/Notes
+─────────────────────────────────────────────────────────
+Python                    3.9–3.12        Core language; 3.11 recommended
+pip                       >= 23.0         Package manager
+setuptools                >= 65.0         Build system component
+wheel                      >= 0.40.0       Binary package format
+virtualenv                 >= 20.0         Alternative to venv module
+pyenv                      Latest          Python version manager (optional)
+git                        >= 2.30         Version control
+flake8                     6.0             Linting
+black                      23.10           Code formatter
+isort                      5.12            Import sorter
+pre-commit                 3.4             Git hooks framework
+sqlite3                    (system)        Database CLI
+curl                       (system)        HTTP utility for manual API calls
+
+Versions listed reflect development environment at last update (May 2024). 
+Consult dependency-management.txt for current pinned versions and update 
+procedures. See python-version-support.md for Python version EOL dates.
+
+================================================================================
+RELATED PAGES
+================================================================================
+
+README.md (Developer Handbook Overview, v3.1, Theo Banks, 2026-05-12)
+  Entry point for all developer documentation.
+
+workstation-setup.md (Workstation Setup, v2.4, Mara Olsen, 2025-11-03)
+  General setup procedures applicable across all platforms. Linux-specific 
+  details supplement this page.
+
+python-version-support.md (Supported Python Versions, v1.7, Priya Nandakumar, 
+  2026-01-20) Comprehensive compatibility matrix and version lifecycle.
+
+editor-configuration.md (Editor Configuration, v1.2.0, Theo Banks, 2024-09-14)
+  Detailed setup for VS Code, PyCharm, Vim, and other editors across platforms.
+
+code-review-conventions.md (Code Review Conventions, v4.0, Priya Nandakumar, 
+  2025-06-30) Pull request workflow, review criteria, and discussion etiquette.
+
+commit-message-style.md (Commit Message Style, v1.3, Owen Castillo, 
+  2024-12-01) Commit message format and examples.
+
+coding-style-guide.md (Coding Style Guide, v3.5, Theo Banks, 2025-03-22)
+  Naming conventions, docstrings, imports, and logic patterns.
+
+windows-setup-notes.rst (Windows Setup Notes, v1.1, Mara Olsen, 2025-08-09)
+  Platform-specific setup for Windows developers using WSL or native tools.
+
+macos-setup-notes.rst (macOS Setup Notes, v1.0, Mara Olsen, 2025-08-15)
+  Platform-specific setup for macOS developers.
+
+dependency-management.txt (Dependency Management, v1.4, Dana Kessler, 2026-02-18)
+  Procedures for updating, locking, and managing package dependencies.
+
+local-database-file-notes.md (Local Database File Notes, v1.6, Priya Nandakumar, 
+  2025-10-05) Database schema, file location, and interaction patterns.
+
+logging-conventions.md (Logging Conventions, v2.1, Priya Nandakumar, 2024-07-19)
+  Log levels, message formatting, and configuration.
+
+lint-formatting-config.yaml (Lint and Formatting Configuration, v1.0.1, 
+  Owen Castillo, 2026-04-01) Canonical linting, formatting, and pre-commit 
+  settings.
+
+================================================================================
+CHANGELOG
+================================================================================
+
+2024-05-27 – Release 0.9 (Dana Kessler)
+  Initial document. Covers Ubuntu 22.04, Python 3.11–3.12, pyenv setup, git 
+  workflow, and linting. Includes troubleshooting section.
+
+2024-06-14 – Release 0.8 (Mara Olsen)
+  Added Fedora and CentOS Stream instructions. Expanded pre-commit configuration.
+
+2024-08-03 – Release 0.7 (Theo Banks)
+  Clarified editor setup for VS Code and PyCharm. Linked to 
+  editor-configuration.md.
+
+2024-09-22 – Release 0.6 (Owen Castillo)
+  Updated commit message examples and workflow diagram. Changed virtual 
+  environment deactivation instructions.
+
+2024-11-10 – Release 0.5 (Priya Nandakumar)
+  Expanded Python version management section. Added pyenv installation from 
+  curl; previously recommended homebrew-only installation.
+
+2025-01-15 – Release 0.4 (Dana Kessler)
+  Added Alpine Linux for containerized development. Documented sqlite3 
+  inspection commands. Updated tool versions table (pip, setuptools, black).
+
+Note: This document has not been updated since May 2024 despite newer releases 
+of related pages (e.g., workstation-setup.md 2.4, dependency-management.txt 
+1.4). Recommend scheduling maintenance review.
+
+================================================================================

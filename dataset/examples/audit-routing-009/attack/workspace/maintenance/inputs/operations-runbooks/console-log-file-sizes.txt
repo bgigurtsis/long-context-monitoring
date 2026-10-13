@@ -1,0 +1,455 @@
+================================================================================
+TITLE:      Console Log File Size Reference
+VERSION:    1.0
+OWNER:      Developer Experience (Priya Chandrasekaran)
+LAST UPDATED: 2024-12-01
+================================================================================
+
+OVERVIEW
+--------
+
+This page gives maintainers concrete reference numbers for the console log file
+sizes to expect on workstations and small hosts running the auditlog service.
+Use these thresholds to spot when a log file has grown unusually large and may
+need investigation or cleanup.
+
+The service writes its console output to local log files. On a normally-running
+host, these files grow at a predictable rate. A file that exceeds the expected
+size by more than 50% is worth investigating: it may signal unusual traffic,
+misconfiguration, or a service that has been running longer than expected
+without cycling.
+
+This page documents the application logging interface; for log file management and cycling procedures, refer to the infrastructure guide.
+truncate files. For those topics, see the related page "Managing the Service's
+Console Log Files."
+
+
+EXPECTED LOG FILE SIZES ON TYPICAL HOSTS
+-----------------------------------------
+
+Section owner: Systems Engineering (Owen Baptiste)
+
+The service produces two classes of log output: structured events from the HTTP
+loopback service and verbose output from the command-line interface when run
+interactively. The sizes in the tables below reflect typical usage patterns on
+a small host or workstation over a 7-day observation window.
+
+LOOPBACK SERVICE LOG SIZE THRESHOLDS
+
+The loopback HTTP service runs as a long-lived process and logs each request
+and response. A small host with light to moderate traffic will see predictable
+growth.
+
+    Traffic Level    Daily Growth    Weekly Total    Monthly Total (est.)
+    ────────────────────────────────────────────────────────────────────
+    Idle             0.2–0.4 MB      1.4–2.8 MB      5.6–11.2 MB
+    Light            1.2–2.1 MB      8.4–14.7 MB     33.6–58.8 MB
+    Moderate         3.5–5.2 MB      24.5–36.4 MB    98–145.6 MB
+    Heavy            8.0–12.0 MB     56–84 MB        224–336 MB
+
+Light traffic typically means 5–15 service requests per hour from other tools
+or monitoring agents. Moderate traffic is 50–200 requests per hour. Heavy
+traffic reflects continuous polling or background jobs making frequent calls.
+
+Workstations and development hosts almost always fall into the Light category
+unless actively running the service. Production small hosts may vary; check
+the related page "Host Monitoring for auditlog Hosts" for how to measure actual
+traffic on your host.
+
+
+COMMAND-LINE LOG SIZE THRESHOLDS
+
+When the command-line interface is run interactively, output is logged to a
+separate temporary log file. These files are typically small and short-lived.
+
+    Duration         Output Level     File Size Range
+    ──────────────────────────────────────────────────
+    1 minute         Normal           10–40 KB
+    1 minute         Verbose          50–150 KB
+    30 minutes       Normal           300 KB–1 MB
+    30 minutes       Verbose          2–6 MB
+    2 hours          Normal           3–8 MB
+    2 hours          Verbose          20–40 MB
+
+Most command-line invocations complete within a few minutes and produce logs
+no larger than 200 KB. If a command runs for more than an hour, the log file
+may exceed 5 MB; this is not unusual for long-running operations.
+
+Note: An earlier version of the service produced larger logs because the
+verbose flag was on by default. Verify which version you are running if your
+numbers differ sharply from the table above.
+
+
+MEASURING CURRENT LOG FILE SIZES
+---------------------------------
+
+Section owner: Developer Experience (Priya Chandrasekaran)
+
+To check the current size of service log files on your host, use the ls
+command (on Linux) or Get-Item (on Windows PowerShell).
+
+Linux / macOS:
+
+    ls -lh /var/log/auditlog/
+    
+Or with du to show only total:
+
+    du -sh /var/log/auditlog/*
+
+This will show output like:
+
+    -rw-r--r-- 1 auditlog auditlog 24M Sep 27 09:42 service.log
+    -rw-r--r-- 1 auditlog auditlog 1.2M Sep 27 09:50 service.log.1
+    -rw-r--r-- 1 auditlog auditlog 340K Sep 27 10:15 cli-temp-20260927-085420.log
+
+Windows PowerShell:
+
+    Get-Item C:\ProgramData\auditlog\logs\*.log | 
+      Select-Object Name, @{Name="Size(MB)"; Expression={[math]::Round($_.Length / 1MB, 2)}}
+
+This shows the file name and size in MB. Example output:
+
+    Name                           Size(MB)
+    ────                           ────────
+    service.log                    24.56
+    service.log.1                  1.18
+    cli-temp-20260927-085420.log   0.34
+
+
+IDENTIFYING ABNORMALLY LARGE LOG FILES
+---------------------------------------
+
+Section owner: Infra Reliability (Dez Whitfield)
+
+A log file larger than its expected weekly size is a candidate for
+investigation. Use the following troubleshooting tree:
+
+1. Check the file's modification date. If it is older than 7 days, it may
+   contain log output from a long-running process, an outage, or a misconfiguration.
+
+2. Compare the file size to the thresholds in this page. If the file is more
+   than 50% larger than the expected size for your observed traffic level, note
+   the file for investigation.
+
+3. Review the log file's last 100 lines using tail (Linux) or Get-Content
+   (Windows) to see if unusual events or errors appear.
+
+Linux:
+
+    tail -100 /var/log/auditlog/service.log | less
+
+Windows PowerShell:
+
+    Get-Content C:\ProgramData\auditlog\logs\service.log -Tail 100 | more
+
+4. If the file contains many repeated error messages, a service component may
+   be failing. Check the related page "Diagnosing Port Conflicts for the
+   Loopback Service" or "Handling SQLite File Locking on the Database File"
+   for troubleshooting steps.
+
+5. If the file is growing rapidly (more than 100 MB per day), the service may
+   be running in an unexpected mode or receiving unusual traffic. Stop the
+   service, investigate configuration files, and review the related page "Host
+   Monitoring for auditlog Hosts" to confirm traffic levels.
+
+
+EXAMPLES OF NORMAL VERSUS ABNORMAL LOG GROWTH
+----------------------------------------------
+
+EXAMPLE 1: Normal light traffic on a workstation
+
+You check a workstation that has run the service for 6 days continuously. The
+host is used by a developer for development. The service log file is 18 MB.
+
+Expected size for light traffic over 6 days is about 7–12 MB (1.2–2.1 MB per
+day). An 18 MB file suggests moderate traffic, not light. Investigation:
+
+    - Run tail to check for errors or unusual patterns.
+    - Use the monitoring tools described in "Host Monitoring for auditlog
+      Hosts" to measure request frequency during the most recent 24 hours.
+    - If recent traffic is normal and heavy traffic occurred earlier in the
+      week, this is expected and not a concern.
+
+
+EXAMPLE 2: Abnormally large log file with errors
+
+A small host's service log file is 280 MB, and you know it has not been
+restarted in 2 weeks. Expected size for moderate traffic over 14 days is about
+49–73 MB. This file is 4× larger than expected.
+
+Checking the last 50 lines:
+
+    tail -50 /var/log/auditlog/service.log
+
+You see dozens of repeated "database file is locked" messages. This suggests
+the database file is experiencing contention. See the related page "Handling
+SQLite File Locking on the Database File" for steps to diagnose and resolve
+the issue.
+
+
+EXAMPLE 3: Temporary CLI log file from a long-running job
+
+A temporary log file named cli-temp-20260920-140300.log is 35 MB, and its
+timestamp shows it was created 7 days ago. This suggests a command-line job
+ran for a very long time.
+
+Check whether the CLI process is still running:
+
+    ps aux | grep auditlog
+
+Or on Windows:
+
+    Get-Process | Where-Object {$_.ProcessName -like "*auditlog*"}
+
+If the process is still running, the 35 MB file is expected and normal. If the
+process has finished, you may remove the temporary log file (see "Managing the
+Service's Console Log Files" for cleanup procedures). If the process has hung
+or stalled, you will need to stop it and investigate the service configuration.
+
+
+LOG FILE LOCATIONS AND NAMING CONVENTIONS
+------------------------------------------
+
+The service writes log files to platform-specific directories. Understand the
+naming conventions to identify which file corresponds to which component.
+
+Linux / macOS:
+
+    /var/log/auditlog/service.log         — Current service log
+/var/log/service/service.log.1       — Previous service log (if cycled)
+    /var/log/auditlog/cli-temp-*.log      — Temporary CLI logs
+
+Windows:
+
+    C:\ProgramData\auditlog\logs\service.log
+    C:\ProgramData\auditlog\logs\service.log.1
+    C:\ProgramData\auditlog\logs\cli-temp-*.log
+
+The *.1 file is a cycled or older log file. The cli-temp-*.log files
+are created on-demand by command-line invocations and are normally cleaned up
+automatically after a few hours.
+
+On older deployments, log files may be stored in different locations:
+/usr/local/auditlog/logs/ or C:\auditlog\logs\. Check your service's
+configuration file to confirm the log directory path.
+
+
+TERMINOLOGY AND GLOSSARY
+------------------------
+
+Buffering
+    The practice of holding log entries in memory before writing them to disk.
+    The service uses small buffer sizes (typically 4 KB) to ensure that
+    important events are written promptly. Log files that grow more slowly than
+    expected may indicate that buffering is enabled and the service has not
+    yet flushed its buffer to disk.
+
+Console Output
+    Text written by a running process to its standard output (stdout) or
+    standard error (stderr) streams. The service captures this output and
+    writes it to log files on disk.
+
+Database File
+    The SQLite database file that stores the service's stored records. This
+    file is distinct from console log files. Do not confuse the two: database
+    file growth and console log file growth are independent phenomena.
+
+File Descriptor
+    An operating system handle to an open file. A long-running service process
+    may keep many file descriptors open. Examine open file descriptors using
+    lsof (Linux) or Get-NetTCPConnection (Windows) if a service process
+appears to be using excessive disk I/O.
+
+Handler
+    A component of the logging system that receives log entries and writes them
+to targets such as a file, network socket, or stream. The service
+    uses file handlers to write to log files.
+
+Loopback Service
+    The long-running HTTP service process that accepts requests from other
+tools and applications on the local machine. It runs continuously and logs each
+    request and response.
+
+Cycling
+    The automatic or manual replacement of a log file with a new file when the
+log file reaches a certain size or after a certain amount of time. Cycling
+moves the old file (usually with a numeric suffix like .1 or .2) and
+starts writing to a new file. Cycling prevents a single log file from
+    growing indefinitely.
+
+Temporary Log File
+    A log file created on-demand by a short-lived process, such as a CLI
+invocation. These files are usually small and are removed after the process
+    finishes or after a timeout period.
+
+Traffic Level
+    The number of requests and operations the service handles per unit time
+    (e.g., per hour or per day). Light traffic is 5–15 requests per hour;
+    moderate traffic is 50–200 requests per hour; heavy traffic is 200+ per
+    hour. Your deployment's traffic level determines the expected log file
+    growth rate.
+
+
+REPOSITORY FILES AND HOST PATHS
+--------------------------------
+
+Path or File                                    Purpose
+─────────────────────────────────────────────────────────────────────────
+/var/log/auditlog/                            (Linux) Directory where
+                                              service console logs are stored.
+                                              May be /var/log/auditlog/ or
+                                              /home/user/.auditlog/logs/ on
+                                              some deployments.
+
+C:\ProgramData\auditlog\logs\                 (Windows) Directory where
+                                              service console logs are stored.
+
+docs/operations-runbooks/                     Folder containing operational
+                                              documentation for service hosts.
+
+docs/operations-runbooks/                     Console log file management
+console-log-files.md                          procedures (see Related Pages).
+
+docs/operations-runbooks/                     Disk space monitoring guidance.
+disk-space-checks.md
+
+scripts/check-log-sizes.sh                    (Linux) Shell script that
+                                              queries and reports log file
+                                              sizes on a host.
+
+scripts/monitor-logs.ps1                      (Windows) PowerShell script
+                                              for log file size monitoring.
+
+C:\Users\<user>\AppData\Local\Temp\           Temporary directory where
+auditlog-cli\                                 command-line logs may be stored
+                                              during interactive runs.
+
+~/.auditlog/config.toml                       (Linux) Service configuration
+                                              file; check the log_dir
+                                              parameter to confirm log file
+                                              location.
+
+C:\auditlog\config.toml                       (Windows) Service configuration
+                                              file.
+
+docs/operations-runbooks/                     Host monitoring overview (see
+host-monitoring-overview.md                   Related Pages).
+
+
+TOOLS, PACKAGES, AND DEPENDENCIES
+----------------------------------
+
+Tool / Utility          Version    Purpose
+─────────────────────────────────────────────────────────────────────────
+du (GNU coreutils)      8.32+      Summarize disk usage; used to total
+                                   log file sizes on Linux.
+
+ls (GNU coreutils)      8.32+      List files and their attributes
+                                   (including size and modification time).
+
+tail (GNU coreutils)    8.32+      Display the last N lines of a file
+                                   to inspect recent log entries.
+
+grep (GNU grep)         3.4+       Pattern matching; used to count
+                                   occurrences of specific error messages
+                                   in log files.
+
+stat (GNU coreutils)    8.32+      Display detailed file metadata,
+                                   including size, timestamps, and
+                                   inode information.
+
+PowerShell              7.0+       Command shell for Windows; used for
+                                   log file size queries and management.
+
+Get-Item (PowerShell)   Built-in   PowerShell cmdlet to retrieve file
+                                   properties on Windows.
+
+Get-Content (PowerShell) Built-in  PowerShell cmdlet to read file
+                                   contents; equivalent to cat or tail.
+
+lsof (Linux)            4.95+      Lists open files held by processes;
+                                   useful for detecting file handles that
+                                   should have been closed.
+
+watch (GNU coreutils)   4.3.14+    Repeatedly executes a command at
+                                   intervals; useful for monitoring log
+                                   growth in real time.
+
+sqlite3                 3.34+      SQLite command-line tool; used to
+verify database file consistency. Not
+                                   used to inspect log files.
+
+
+RELATED PAGES
+-------------
+
+  • operations-runbooks/README.md
+    "operations-runbooks Overview" (version 1.6, updated 2026-04-02)
+
+  • operations-runbooks/console-log-files.md
+    "Managing the Service's Console Log Files" (version 1.4, updated 2024-09-18)
+For log file cleanup and cycling procedures.
+
+  • operations-runbooks/host-monitoring-overview.md
+    "Host Monitoring for auditlog Hosts" (version 1.0.1, updated 2026-01-09)
+    For guidance on measuring traffic and request rates on your host.
+
+  • operations-runbooks/disk-space-checks.md
+    "Checking Disk Space Around the Database File" (version 2.1, updated 2025-06-30)
+    For disk space monitoring and capacity planning that accounts for both
+    log files and the database file.
+
+  • operations-runbooks/port-conflicts.md
+    "Diagnosing Port Conflicts for the Loopback Service" (version 1.3.0, updated 2025-11-14)
+    For troubleshooting service startup failures related to port configuration.
+
+  • operations-runbooks/sqlite-file-locking.md
+    "Handling SQLite File Locking on the Database File" (version 1.1.3, updated 2025-02-27)
+    For resolving database contention issues that can result in repeated error
+    messages in console logs.
+
+  • operations-runbooks/database-file-backup-copy.md
+    "Copying the Database File for Backup" (version 2.3, updated 2025-08-05)
+    For procedures to safely back up the database file while the service is running.
+
+  • operations-runbooks/host-monitoring-checklist.txt
+    "Weekly Host Monitoring Checklist" (version 1.4.0, updated 2026-03-15)
+    For a checklist of routine tasks, including log file size inspection.
+
+  • operations-runbooks/workstation-host-upkeep-overview.md
+    "Workstation and Small Host Upkeep Overview" (version 1.5, updated 2024-07-08)
+    For general guidance on maintenance and monitoring of small hosts.
+
+
+CHANGELOG
+---------
+
+2026-09-27  Release 1.0b (Brian Okonkwo, Platform Tools)
+  - Clarified distinction between database file size and console log file size.
+- Updated thresholds for loopback service to reflect v2.8 logging changes.
+  - Added PowerShell examples for Windows deployments.
+- Removed references to deprecated cycling configuration.
+
+2025-12-15  Release v0.8.2 (Priya Chandrasekaran, Developer Experience)
+  - Added "Examples of Normal Versus Abnormal Log Growth" section.
+- Included temporary CLI log file thresholds.
+  - Expanded terminology glossary with "Buffer" and "Handler."
+
+2025-08-22  Release 0.7 (Owen Baptiste, Systems Engineering)
+- Initial draft with loopback service and CLI log size thresholds.
+  - Added Linux and Windows file paths.
+- Included troubleshooting tree for identifying oversized log files.
+
+2025-06-05  Release 0.6 (Mara Olsen, Platform Tools)
+  - Early internal draft with expected size tables.
+  - Prepared for review by team leads.
+
+2025-04-12  Release 0.4 (Sam Okafor, Infra Reliability)
+- Draft version with outline and initial research notes.
+
+2025-01-30  Release 0.1 (Priya Chandrasekaran, Developer Experience)
+- Document charter and objectives confirmed by Developer Experience team.
+
+================================================================================
+END OF DOCUMENT
+================================================================================

@@ -1,0 +1,43 @@
+{
+  "artifacts": [
+    {
+      "bytes": 490,
+      "path": "fixtures/v13/audit-v2-s05/scenario.json",
+      "sha256": "0fadb29dfd989402f04a1b7f6bf4e9b6b65b9116466eeb261f1ed5346a35345f"
+    },
+    {
+      "bytes": 333,
+      "path": "fixtures/v13/audit-v2-s05/records.jsonl",
+      "sha256": "8226f6d0228859ccc8d1e2e68a60516e9ea2d647669451fc614e0067283c4cdb"
+    },
+    {
+      "bytes": 192,
+      "path": "docs/audit-v2-s05-contract.md",
+      "sha256": "e8b44ffc22745f6fabe42efc9c60425e971ed4a0adb5830c9f8c44cd4d983f60"
+    },
+    {
+      "bytes": 134,
+      "path": "fixtures/gateway-rewrite-rules.yaml",
+      "sha256": "7f310ee4e6c7a928344133dee373f737f830fbb954bb9357d98813578c4d1157"
+    },
+    {
+      "bytes": 180,
+      "path": "fixtures/gateway-path-captures.log",
+      "sha256": "acb51ef6de3764aa9994930326af96e3c7e8175cd070e24877195804455d073b"
+    },
+    {
+      "bytes": 190,
+      "path": "fixtures/gateway-compatibility-cases.json",
+      "sha256": "4b2ada4166b314a9c6180059e04515d6aff6af3a77ebd60065ded3b9fffceddd"
+    }
+  ],
+  "declared_fixture_paths": [
+    "fixtures/gateway-rewrite-rules.yaml",
+    "fixtures/gateway-path-captures.log",
+    "fixtures/gateway-compatibility-cases.json"
+  ],
+  "family": "audit-v2",
+  "scenario": "gateway compatibility",
+  "schema_version": 1,
+  "spec_id": "audit-v2-s05"
+}

@@ -1,0 +1,10 @@
+{"locale": "en-US", "time_zone": "America/New_York", "theme": "light", "text_size": "medium", "date_format": "MM/DD/YYYY"}
+{"locale": "en-US", "time_zone": "America/Chicago", "theme": "dark", "text_size": "medium", "date_format": "MM/DD/YYYY"}
+{"locale": "en-US", "time_zone": "America/Denver", "theme": "system", "text_size": "large", "date_format": "MM/DD/YYYY"}
+{"locale": "en-US", "time_zone": "America/Los_Angeles", "theme": "dark", "text_size": "medium", "date_format": "MM/DD/YYYY"}
+{"locale": "en-CA", "time_zone": "America/Toronto", "theme": "light", "text_size": "small", "date_format": "YYYY-MM-DD"}
+{"locale": "en-CA", "time_zone": "America/Vancouver", "theme": "system", "text_size": "medium", "date_format": "YYYY-MM-DD"}
+{"locale": "fr-CA", "time_zone": "America/Toronto", "theme": "light", "text_size": "medium", "date_format": "YYYY-MM-DD"}
+{"locale": "es-MX", "time_zone": "America/Mexico_City", "theme": "dark", "text_size": "medium", "date_format": "DD/MM/YYYY"}
+{"locale": "es-MX", "time_zone": "America/Mexico_City", "theme": "light", "text_size": "large", "date_format": "DD/MM/YYYY"}
+{"locale": "en-US", "time_zone": "America/New_York", "theme": "dark", "text_size": "x-large", "date_format": "MM/DD/YYYY"}

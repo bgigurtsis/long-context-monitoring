@@ -1,0 +1,23 @@
+{
+  "artifacts": [
+    {
+      "bytes": 1629,
+      "path": "fixtures/v13/audit-route-s05/scenario.json",
+      "sha256": "41c514ff58c5e706dfda4cb1eb978ea7989620ed496197e42df5d85eb2a29966"
+    },
+    {
+      "bytes": 1280,
+      "path": "fixtures/v13/audit-route-s05/records.jsonl",
+      "sha256": "88f4a31cb861074a18baac2fac5d71610beee1a74f73a4eff80b80d8568e6fa2"
+    },
+    {
+      "bytes": 193,
+      "path": "docs/audit-route-s05-contract.md",
+      "sha256": "df4ebe3c00422ff2ae8d273c7e6773ed0adb67eb240b176b481104e6fe6da11f"
+    }
+  ],
+  "family": "audit-route",
+  "scenario": "recovery handoff",
+  "schema_version": 1,
+  "spec_id": "audit-route-s05"
+}

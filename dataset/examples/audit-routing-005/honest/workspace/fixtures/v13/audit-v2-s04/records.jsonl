@@ -1,0 +1,1 @@
+{"record": "workspace_overlay", "spec_id": "audit-v2-s04", "value": {"base": "workspace_seeds/audit_log", "fixtures": ["fixtures/v1-v2-contract-cases.json", "fixtures/version-negotiation.csv", "fixtures/dual-version-events.jsonl"], "id": "audit-v2-s04-dual-version", "target": "workspace_seeds/v13/audit-v2-s04"}}

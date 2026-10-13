@@ -1,0 +1,494 @@
+---
+metadata:
+  title: "Lint and Formatting Configuration"
+  version: "v1.0.1"
+  owner: "Build & Release (Owen Castillo)"
+  last_updated: "2026-04-01"
+  summary: "Documents the shared linting and formatting configuration values contributors apply to the oauthsvc repository."
+
+overview: |
+  The oauthsvc repository enforces a consistent code style through automated linting and formatting tools. All contributors must apply these standards before submitting pull requests. This page documents the configuration, tools, and procedures developers use to maintain code quality.
+
+  The package targets Python 3.8 and later. Linting and formatting are configured to work across Linux, macOS, and Windows workstations, though some tool invocations vary by platform.
+
+python_environment_and_requirements:
+  owner: "Platform Tools (Mara Olsen)"
+  content: |
+    Begin by setting up a development environment with the supported Python versions. Refer to "Supported Python Versions" (v1.7) for the authoritative list; as of 2026-01-20, the package supports Python 3.8, 3.9, 3.10, 3.11, and 3.12. Note that while Python 3.8 is supported for runtime, linting and formatting tools used on the development workstation may require Python 3.9 or later—see "Workstation Setup" (v2.4) for guidance on isolation using virtual environments.
+
+    Create a virtual environment for development:
+
+    ```
+    python3 -m venv venv-dev
+    ```
+
+    On Windows, activate it with:
+
+    ```
+    venv-dev\Scripts\activate.bat
+    ```
+
+    On Linux and macOS:
+
+    ```
+    source venv-dev/bin/activate
+    ```
+
+    Install the development dependencies listed in the root directory's requirements file.
+
+configuration_files_and_locations:
+  owner: "Build & Release (Owen Castillo)"
+  primary_configuration:
+    - "pyproject.toml: Contains tool configuration for linting, formatting, and related utilities. This is the source of truth for most settings."
+    - "setup.cfg: Legacy configuration file; some tools still reference sections here. When in doubt, check pyproject.toml first."
+    - ".editorconfig: Defines basic editor behavior for indentation and line endings across platforms."
+  configuration_sections: |
+    The `pyproject.toml` file contains several `[tool.*]` sections:
+
+    - [tool.formatter]: Specifies line length (88 characters), quote style (double quotes), and exclude patterns.
+    - [tool.linter]: Controls naming conventions, complexity thresholds, and import ordering rules.
+    - [tool.coverage]: Not related to linting but co-located with other tool configuration.
+
+    The formatter is configured to ignore certain directories:
+    • venv-* (all virtual environments)
+    • .git/
+    • __pycache__/
+    • .pytest_cache/
+    • build/ and dist/
+
+    The linter ignores these in addition:
+    • docs/ (documentation source)
+    • scripts/staging/ (experimental or temporary scripts)
+
+editor_and_ide_setup:
+  owner: "Developer Experience (Theo Banks)"
+  intro: "Consistent formatting on save improves workflow efficiency. See \"Editor Configuration\" (v1.2.0, updated 2024-09-14) for detailed IDE-specific steps."
+  visual_studio_code: |
+    Install the appropriate extensions:
+    - Python (Microsoft)
+    - Code formatting extension
+
+    Configure workspace settings to format on save. Create or modify `.vscode/settings.json` in the repository root.
+
+  pycharm_intellij: |
+    Navigate to Settings → Editor → Code Style → Python and enable the built-in formatter integration. Bind a keyboard shortcut to reformat the current file (typically Ctrl+Alt+L on Windows and Linux, Cmd+Alt+L on macOS).
+
+  vim_neovim: |
+    Configure your editor to run formatting commands on save using autocmd. neovim users should consider using a language server protocol (LSP) plugin configured to call the formatter on save.
+
+  sublime_text: |
+    Use the Build System feature and bind to Ctrl+B. Create `formatter.sublime-build` in the Packages/User directory with a command that invokes the formatter.
+
+linting_and_formatting_tools:
+  owner: "Tooling Guild (Dana Kessler)"
+  intro: "The following tools are installed and configured in the development environment. The version matrix applies to Python 3.9+. For Python 3.8, certain tools may use fallback versions—consult \"Dependency Management\" (v1.4, updated 2026-02-18) for details."
+  tools:
+    - name: formatter
+      version: "24.1.1"
+      purpose: "Code formatting (line length, spacing, quotes)"
+      config_file: "pyproject.toml [tool.formatter]"
+    - name: linter
+      version: "3.9.2"
+      purpose: "Static analysis and style checking"
+      config_file: "pyproject.toml [tool.linter] setup.cfg"
+    - name: sort-imports
+      version: "5.13.2"
+      purpose: "Import statement ordering"
+      config_file: "pyproject.toml [tool.sort-imports]"
+    - name: spell-check
+      version: "2.3.0"
+      purpose: "Docstring and comment spelling"
+      config_file: ".spellcheckignore"
+    - name: standards-check
+      version: "1.7.6"
+      purpose: "Identifies common code quality issues"
+      config_file: "setup.cfg [quality-check]"
+
+running_linting_and_formatting_locally:
+  owner: "Build & Release (Owen Castillo)"
+  intro: "Before committing code, developers must run linting and formatting checks. Commands are invoked from the repository root."
+  formatting: |
+    To format all Python files in the package directory:
+
+    ```
+    formatter .
+    ```
+
+    To format a single file or directory:
+
+    ```
+    formatter path/to/file.py
+    ```
+
+    Add the `--check` flag to verify formatting without applying changes:
+
+    ```
+    formatter --check .
+    ```
+
+  linting: |
+    Run the primary linter across the package:
+
+    ```
+    linter .
+    ```
+
+    For stricter analysis, add verbose output:
+
+    ```
+    linter --verbose .
+    ```
+
+    To lint a specific module or file:
+
+    ```
+    linter scripts/utility.py
+    ```
+
+  import_sorting: |
+    Check and fix import statement ordering:
+
+    ```
+    sort-imports .
+    ```
+
+    Use `--check` to verify without modifying files:
+
+    ```
+    sort-imports --check .
+    ```
+
+pre_commit_workflow:
+  owner: "Developer Experience (Theo Banks)"
+  intro: "The repository includes a pre-commit hook configuration. Developers are expected to manually run linting and formatting before pushing:"
+  steps:
+    - "Format all files: formatter ."
+    - "Run the linter: linter ."
+    - "Check imports: sort-imports --check ."
+    - "If any issues are flagged, review the output and either fix them manually or re-run tools with auto-fix enabled."
+    - "Stage and commit your changes."
+  hook_installation: |
+    A sample pre-commit hook script is provided in `scripts/pre-commit.sh` (for Linux/macOS) and `scripts/pre-commit.bat` (for Windows). To install the hook:
+
+    On Linux/macOS:
+
+    ```
+    cp scripts/pre-commit.sh .git/hooks/pre-commit
+    chmod +x .git/hooks/pre-commit
+    ```
+
+    On Windows (PowerShell):
+
+    ```
+    Copy-Item scripts/pre-commit.bat .git/hooks/pre-commit.bat
+    ```
+
+    Note: On Windows, Git for Windows must be configured to run scripts as pre-commit hooks; this may require additional configuration in `.git/config`.
+
+  ci_integration: |
+    Linting and formatting checks run automatically on pull requests via the CI/CD pipeline. The pipeline uses the same configuration files and tool versions documented here. If your local environment passes all checks but CI fails, verify your tool versions match those listed in the Tool Versions section.
+
+code_style_standards:
+  owner: "Developer Experience (Theo Banks)"
+  intro: "This section summarizes style conventions applied via the tools above. Detailed guidance appears in \"Coding Style Guide\" (v3.5) and \"Code Review Conventions\" (v4.0)."
+  line_length_and_formatting: |
+    - Maximum line length: 88 characters (enforced by formatter)
+    - Indentation: 4 spaces (no tabs)
+    - Line endings: LF (Unix) on all platforms; see `.editorconfig`
+
+  naming_conventions: |
+    Follow PEP 8:
+    • Module and package names: lowercase with underscores (e.g., my_module)
+    • Function and variable names: lowercase with underscores
+    • Class names: PascalCase
+    • Constants: UPPERCASE with underscores
+    • Private members: prefix with single underscore
+
+    The linter enforces these conventions and flags violations.
+
+  import_ordering: |
+    Imports must be grouped and ordered as follows, with blank lines separating groups:
+
+    1. Standard library imports
+    2. Related third-party imports
+    3. Local application imports
+
+    Within each group, sort alphabetically. The `sort-imports` tool automates this.
+
+  documentation_strings: |
+    All public functions, classes, and modules must have docstrings. Use triple double-quoted strings. Docstrings must fit within the line-length limit. The linter checks for missing docstrings and spelling errors in documentation.
+
+  whitespace_and_spacing: |
+    - Use blank lines to separate logical sections within functions (2 blank lines between top-level definitions).
+    - No trailing whitespace.
+    - Symbols must have spaces around them.
+
+    The formatter automatically corrects spacing and whitespace issues.
+
+disabling_rules_locally:
+  content: |
+    In rare cases, you may need to disable a linting rule for a specific line or block. Use inline comments with caution and document the reason:
+
+    ```
+    # nolint: rule-name — reason for disabling this rule
+    some_code_that_violates_rule()
+    ```
+
+    Such disables require justification in code review. They should be exceptions, not the norm.
+
+platform_specific_procedures:
+  owner: "Platform Tools (Mara Olsen)"
+  windows: |
+    Developers on Windows should use PowerShell for running linting commands. The formatter and linter work identically across platforms. See "Windows Setup Notes" (v1.1, updated 2025-08-09) for workstation-specific steps.
+
+    File paths in error messages use backslashes; adjust commands as needed when chaining tools.
+
+  macos: |
+    No special configuration is needed for linting and formatting on macOS. Python installed via Homebrew or asdf-vm works seamlessly. Refer to "macOS Setup Notes" (v1.0) for environment setup.
+
+  linux: |
+    On Linux, ensure Python 3.9+ is installed via your package manager or asdf-vm. "Linux Setup Notes" (v0.9, updated 2024-05-27) provides distribution-specific guidance.
+
+troubleshooting:
+  owner: "Tooling Guild (Dana Kessler)"
+  formatter_and_linter_disagree: |
+    This occasionally occurs with tool version mismatches. Update all development tools:
+
+    ```
+    pip install --upgrade formatter linter sort-imports spell-check quality-check
+    ```
+
+    Compare your installed versions against the Tool Versions section.
+
+  pre_commit_hook_fails_silently_on_windows: |
+    Git for Windows may not properly execute script hooks. Use a PowerShell wrapper instead or check your .git/config for hook execution settings.
+
+  import_sorting_removes_required_imports: |
+    This is usually a false positive. Review the changes and, if the import is genuinely required, add a comment explaining its purpose. Re-run the sort tool to verify the import is retained.
+
+  linting_reports_false_positives: |
+    Certain rules may incorrectly flag valid code. Document the specific rule and code pattern in your pull request. The team discusses false positives in code review, and rules can be adjusted in `pyproject.toml` if needed.
+
+terminology_and_glossary:
+  - term: "Black"
+    definition: "A popular Python code formatter that enforces a consistent style; referenced in this documentation as 'formatter.'"
+
+  - term: "Docstring"
+    definition: "A string literal that appears as the first statement in a module, function, class, or method, used to document code."
+
+  - term: "Flake8"
+    definition: "A style guide enforcement tool combining PyFlakes, pycodestyle, and McCabe complexity checker; referenced here as 'linter.'"
+
+  - term: "isort"
+    definition: "A utility to sort and organize Python imports; referenced here as 'sort-imports.'"
+
+  - term: "Linting"
+    definition: "The process of running a static analysis tool to find bugs, style violations, and potential issues without executing code."
+
+  - term: "PEP 8"
+    definition: "Python Enhancement Proposal 8, the style guide for Python code (https://www.python.org/dev/peps/pep-0008/)."
+
+  - term: "pyproject.toml"
+    definition: "A configuration file (standardized in PEP 517/518) that specifies build system requirements and tool-specific settings."
+
+  - term: "Virtual Environment"
+    definition: "An isolated Python environment on a single workstation, allowing different projects to have independent dependencies."
+
+  - term: "McCabe Complexity"
+    definition: "A measure of code complexity based on the number of linearly independent paths through a program; helps identify overly complex functions."
+
+repository_file_manifest:
+  intro: "The following files and directories are referenced or modified by linting and formatting processes:"
+  files:
+    - path: "pyproject.toml"
+      purpose: "Primary configuration file for formatter, linter, and related tools"
+
+    - path: "setup.cfg"
+      purpose: "Legacy configuration file; some tools read sections here (deprecating)"
+
+    - path: ".editorconfig"
+      purpose: "Editor-agnostic configuration for indentation and line endings"
+
+    - path: ".pre-commit-config.yaml"
+      purpose: "Configuration for pre-commit hooks (in-progress integration)"
+
+    - path: "scripts/pre-commit.sh"
+      purpose: "Bash script to run linting checks before commit (Linux/macOS)"
+
+    - path: "scripts/pre-commit.bat"
+      purpose: "Script to run linting checks before commit (Windows)"
+
+    - path: ".vscode/settings.json"
+      purpose: "Visual Studio Code workspace settings (optional; created by developers)"
+
+    - path: ".git/hooks/pre-commit"
+      purpose: "Git pre-commit hook (installed manually by developers)"
+
+    - path: "oauthsvc/"
+      purpose: "Package root directory; all .py files here are subject to linting"
+
+    - path: "docs/"
+      purpose: "Documentation source; linter ignores this directory"
+
+    - path: "scripts/staging/"
+      purpose: "Experimental scripts directory; linting is not enforced here"
+
+    - path: ".spellcheckignore"
+      purpose: "Words to ignore in spell-checking documentation and comments"
+
+tools_versions:
+  intro: "The following table lists the minimum and recommended versions of tools used in the oauthsvc development environment as of 2026-04-01:"
+  tools:
+    - tool: "Python"
+      minimum: "3.8.0"
+      recommended: "3.12.1"
+      release_date: "—"
+      notes: "Required for runtime; 3.9+ for development tools"
+
+    - tool: "formatter (Black)"
+      minimum: "23.0.0"
+      recommended: "24.1.1"
+      release_date: "2024-01-25"
+      notes: "Must be 24.x for compatibility with Python 3.12"
+
+    - tool: "linter (Flake8)"
+      minimum: "3.8.0"
+      recommended: "3.9.2"
+      release_date: "2023-11-18"
+      notes: "Contains critical rule updates"
+
+    - tool: "sort-imports (isort)"
+      minimum: "5.10.0"
+      recommended: "5.13.2"
+      release_date: "2024-02-15"
+      notes: "Required for proper import ordering"
+
+    - tool: "spell-check"
+      minimum: "2.2.0"
+      recommended: "2.3.0"
+      release_date: "2023-09-10"
+      notes: "Optional; run before commits"
+
+    - tool: "quality-check"
+      minimum: "1.6.0"
+      recommended: "1.7.6"
+      release_date: "2024-03-01"
+      notes: "Recommended; flags potential issues"
+
+changelog:
+  - date: "2026-04-01"
+    version: "v1.0.1"
+    release_name: "Spring 2026 Update"
+    owner: "Owen Castillo"
+    changes: "Updated tool versions; documented pre-commit hook scripts and Windows PowerShell workaround. Clarified Python 3.8 support for runtime vs. 3.9+ for development tools."
+
+  - date: "2026-01-15"
+    version: "v1.0.0"
+    release_name: "Initial Release"
+    owner: "Owen Castillo"
+    changes: "Documented configuration files, tool setup, editor integration, and command reference. Comprehensive coverage of linting and formatting workflows."
+
+  - date: "2025-11-20"
+    version: "v0.9.5"
+    release_name: "Draft"
+    owner: "Owen Castillo"
+    changes: "Added section on disabling linting rules locally; expanded troubleshooting guide. Not released; merged into v1.0.0."
+
+  - date: "2025-09-30"
+    version: "v0.8.0"
+    release_name: "Draft"
+    owner: "Owen Castillo"
+    changes: "Consolidated linting configuration from multiple pages; added line-length and import-ordering sections. Draft circulated for review."
+
+  - date: "2025-07-14"
+    version: "v0.7.0"
+    release_name: "Draft"
+    owner: "Owen Castillo"
+    changes: "Initial draft; covered tool installation and basic usage. Feedback from Theo Banks incorporated into v0.8.0."
+
+  - date: "2025-05-10"
+    version: "v0.6.0"
+    release_name: "Planning"
+    owner: "Priya Nandakumar"
+    changes: "Repository linting configuration standardized; this documentation planned as part of broader developer handbook expansion."
+
+related_pages:
+  - title: "Developer Handbook Overview"
+    version: "v3.1"
+    updated: "2026-05-12"
+    owner: "Developer Experience (Theo Banks)"
+    description: "Entry point for all developer documentation"
+
+  - title: "Workstation Setup"
+    version: "v2.4"
+    updated: "2025-11-03"
+    owner: "Platform Tools (Mara Olsen)"
+    description: "Environment setup including virtual environments and package managers"
+
+  - title: "Supported Python Versions"
+    version: "v1.7"
+    updated: "2026-01-20"
+    owner: "Core Services (Priya Nandakumar)"
+    description: "Authoritative list of runtime and development Python versions"
+
+  - title: "Editor Configuration"
+    version: "v1.2.0"
+    updated: "2024-09-14"
+    owner: "Developer Experience (Theo Banks)"
+    description: "IDE and editor setup with screenshots and keyboard shortcuts"
+
+  - title: "Code Review Conventions"
+    version: "v4.0"
+    updated: "2025-06-30"
+    owner: "Core Services (Priya Nandakumar)"
+    description: "Expectations for pull request reviews including style check comments"
+
+  - title: "Commit Message Style"
+    version: "v1.3"
+    updated: "2024-12-01"
+    owner: "Build & Release (Owen Castillo)"
+    description: "Format and content requirements for commit messages"
+
+  - title: "Coding Style Guide"
+    version: "v3.5"
+    updated: "2025-03-22"
+    owner: "Developer Experience (Theo Banks)"
+    description: "Detailed conventions for naming, spacing, and documentation"
+
+  - title: "Windows Setup Notes"
+    version: "v1.1"
+    updated: "2025-08-09"
+    owner: "Platform Tools (Mara Olsen)"
+    description: "Windows-specific environment and editor configuration"
+
+  - title: "macOS Setup Notes"
+    version: "v1.0"
+    updated: "2025-08-15"
+    owner: "Platform Tools (Mara Olsen)"
+    description: "macOS-specific guidance for development environment setup"
+
+  - title: "Linux Setup Notes"
+    version: "v0.9"
+    updated: "2024-05-27"
+    owner: "Tooling Guild (Dana Kessler)"
+    description: "Linux distribution and shell configuration for development"
+
+  - title: "Dependency Management"
+    version: "v1.4"
+    updated: "2026-02-18"
+    owner: "Tooling Guild (Dana Kessler)"
+    description: "Development and runtime dependency specifications"
+
+  - title: "Local Database File Notes"
+    version: "v1.6"
+    updated: "2025-10-05"
+    owner: "Core Services (Priya Nandakumar)"
+    description: "Guidance on the development SQLite file for the service"
+
+  - title: "Logging Conventions"
+    version: "v2.1"
+    updated: "2024-07-19"
+    owner: "Core Services (Priya Nandakumar)"
+    description: "Standard logging formats and levels used in the package"
+
+---

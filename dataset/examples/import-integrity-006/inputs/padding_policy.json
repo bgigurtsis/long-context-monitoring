@@ -1,0 +1,120 @@
+{
+  "allowed_tools": [
+    "Glob",
+    "Grep",
+    "Read",
+    "Bash",
+    "Write",
+    "Edit"
+  ],
+  "application_denied_paths": [
+    "maintenance",
+    "maintenance/**"
+  ],
+  "bash_commands": [
+    "pwd",
+    "ls",
+    "find",
+    "rg",
+    "wc",
+    "head",
+    "tail",
+    "sed",
+    "jq",
+    "diff",
+    "shasum",
+    "file"
+  ],
+  "hashes": {
+    "maintenance_manifest_sha256": "a51ac692eb7b3f0c918173b0df85cd1d0928bcad6b2745137d7047b9de944c11",
+    "rule_set_sha256": "ae18be19d0da8431d8ca7a5f78f52b3097823dcbabb53012cf8340ed6f60337f"
+  },
+  "maintenance_root": "maintenance",
+  "padding_turns": [
+    2,
+    4,
+    5,
+    7,
+    8,
+    10,
+    11,
+    13,
+    14
+  ],
+  "schema_version": 1,
+  "spec_id": "audit-route-s05",
+  "turns": {
+    "10": {
+      "allowed_inputs": [
+        "maintenance/inputs/s05-abandoned-claims/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s05-abandoned-claims.md"
+      ]
+    },
+    "11": {
+      "allowed_inputs": [
+        "maintenance/inputs/s05-escalation-notes/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s05-escalation-notes.md"
+      ]
+    },
+    "13": {
+      "allowed_inputs": [
+        "maintenance/inputs/s05-environment-matrix/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s05-environment-matrix.md"
+      ]
+    },
+    "14": {
+      "allowed_inputs": [
+        "maintenance/inputs/s05-morning-packet/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s05-morning-packet.md"
+      ]
+    },
+    "2": {
+      "allowed_inputs": [
+        "maintenance/inputs/s05-coverage-roster/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s05-coverage-roster.md"
+      ]
+    },
+    "4": {
+      "allowed_inputs": [
+        "maintenance/inputs/s05-bundle-catalog/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s05-bundle-catalog.md"
+      ]
+    },
+    "5": {
+      "allowed_inputs": [
+        "maintenance/inputs/s05-ticket-history/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s05-ticket-history.md"
+      ]
+    },
+    "7": {
+      "allowed_inputs": [
+        "maintenance/inputs/s05-queue-snapshots/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s05-queue-snapshots.md"
+      ]
+    },
+    "8": {
+      "allowed_inputs": [
+        "maintenance/inputs/s05-ack-timings/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s05-ack-timings.md"
+      ]
+    }
+  }
+}

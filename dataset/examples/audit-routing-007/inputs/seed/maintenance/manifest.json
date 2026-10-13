@@ -1,0 +1,324 @@
+{
+  "artifact_count": 45,
+  "artifacts": [
+    {
+      "bytes": 55219,
+      "path": "maintenance/inputs/audit-v2-s06/mesh-route-inventory/audit-v2-s06-t02-evidence-01.md",
+      "sha256": "7ce562bcbe486f59e4d11a553049b96b6b42e45c51916f18a8515b54fc634fdb",
+      "subject": "mesh route inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 55173,
+      "path": "maintenance/inputs/audit-v2-s06/mesh-route-inventory/audit-v2-s06-t02-evidence-02.jsonl",
+      "sha256": "bff6882b4a0c51431abb2238ca73c507fec9825b56b6acb1c0988bb55867e4b8",
+      "subject": "mesh route inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 55124,
+      "path": "maintenance/inputs/audit-v2-s06/mesh-route-inventory/audit-v2-s06-t02-evidence-03.csv",
+      "sha256": "5ec6383ddf103b4bfa315f88ceee5c98390b820758ee4b00bedd1e6c98ecb360",
+      "subject": "mesh route inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 55197,
+      "path": "maintenance/inputs/audit-v2-s06/mesh-route-inventory/audit-v2-s06-t02-evidence-04.yaml",
+      "sha256": "93c7ef9652027b2e2a28d616ce2db649a2ff325810eaebceaa2881771a4cfabc",
+      "subject": "mesh route inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 55013,
+      "path": "maintenance/inputs/audit-v2-s06/mesh-route-inventory/audit-v2-s06-t02-evidence-05.log",
+      "sha256": "db4462a6d2409122629e20f1150b6759b162b296fa9f1b312e08bb58b1cba30a",
+      "subject": "mesh route inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 24929,
+      "path": "maintenance/inputs/audit-v2-s06/ingress-policy-snapshots/audit-v2-s06-t04-evidence-01.md",
+      "sha256": "94e82eced5f8aa0267b9a8cb1881e14baff1172b02173304ce378ff6a0cf5162",
+      "subject": "ingress policy snapshots",
+      "turn": 4
+    },
+    {
+      "bytes": 24863,
+      "path": "maintenance/inputs/audit-v2-s06/ingress-policy-snapshots/audit-v2-s06-t04-evidence-02.jsonl",
+      "sha256": "3cbf3f9111f3cbc33412246b2623ea0a71d5638c5e1503e6a16ad2d3ba921d1b",
+      "subject": "ingress policy snapshots",
+      "turn": 4
+    },
+    {
+      "bytes": 24938,
+      "path": "maintenance/inputs/audit-v2-s06/ingress-policy-snapshots/audit-v2-s06-t04-evidence-03.csv",
+      "sha256": "a7c7660a97ebcd49ede355944e30d1fba63a31bab50bb721c3cdbc2ab5946ef1",
+      "subject": "ingress policy snapshots",
+      "turn": 4
+    },
+    {
+      "bytes": 24907,
+      "path": "maintenance/inputs/audit-v2-s06/ingress-policy-snapshots/audit-v2-s06-t04-evidence-04.yaml",
+      "sha256": "128580728eeec8ff8800f4fd14c34da983dab2df81e76f32339c60b13cc087b8",
+      "subject": "ingress policy snapshots",
+      "turn": 4
+    },
+    {
+      "bytes": 24993,
+      "path": "maintenance/inputs/audit-v2-s06/ingress-policy-snapshots/audit-v2-s06-t04-evidence-05.log",
+      "sha256": "6cda04dd404c7eb54fb1f699c4e6e429dbbc3a66424418e7fb24ce58b4122d7a",
+      "subject": "ingress policy snapshots",
+      "turn": 4
+    },
+    {
+      "bytes": 25031,
+      "path": "maintenance/inputs/audit-v2-s06/path-rewrite-observations/audit-v2-s06-t05-evidence-01.md",
+      "sha256": "f625129b4e57a89af518c47c850a11ad98f272b915425ec542db0849e27f141d",
+      "subject": "path rewrite observations",
+      "turn": 5
+    },
+    {
+      "bytes": 24960,
+      "path": "maintenance/inputs/audit-v2-s06/path-rewrite-observations/audit-v2-s06-t05-evidence-02.jsonl",
+      "sha256": "1f96ba046c5d46b6cbdc529ea2228a0d9f48a8a1540c9d9ada132eb4c0b1be99",
+      "subject": "path rewrite observations",
+      "turn": 5
+    },
+    {
+      "bytes": 24821,
+      "path": "maintenance/inputs/audit-v2-s06/path-rewrite-observations/audit-v2-s06-t05-evidence-03.csv",
+      "sha256": "80a2dfbe54e683981d2e24b646cb73217dd90c4496e16267c22c9066117e3c61",
+      "subject": "path rewrite observations",
+      "turn": 5
+    },
+    {
+      "bytes": 25009,
+      "path": "maintenance/inputs/audit-v2-s06/path-rewrite-observations/audit-v2-s06-t05-evidence-04.yaml",
+      "sha256": "4bf50a0fcca64331ac447354309adce49a3a9ba047f9a99f5fa952a3bb3eda14",
+      "subject": "path rewrite observations",
+      "turn": 5
+    },
+    {
+      "bytes": 24851,
+      "path": "maintenance/inputs/audit-v2-s06/path-rewrite-observations/audit-v2-s06-t05-evidence-05.log",
+      "sha256": "2ce887fd96edc9c89296448360a72c88f6c4ce78ae067b926e85497187e5b725",
+      "subject": "path rewrite observations",
+      "turn": 5
+    },
+    {
+      "bytes": 32657,
+      "path": "maintenance/inputs/audit-v2-s06/canary-instance-matrix/audit-v2-s06-t07-evidence-01.md",
+      "sha256": "3fc2315a06bd741815c87e5a7660e02364405da023275a2c5da94dd40163e994",
+      "subject": "canary instance matrix",
+      "turn": 7
+    },
+    {
+      "bytes": 32673,
+      "path": "maintenance/inputs/audit-v2-s06/canary-instance-matrix/audit-v2-s06-t07-evidence-02.jsonl",
+      "sha256": "fc32d0dcfdbcd44a6a96573113511f24c9fd1f45799486ed323cb3f806fa9de3",
+      "subject": "canary instance matrix",
+      "turn": 7
+    },
+    {
+      "bytes": 32614,
+      "path": "maintenance/inputs/audit-v2-s06/canary-instance-matrix/audit-v2-s06-t07-evidence-03.csv",
+      "sha256": "88e95905b1b7355f56e8430d268cd856e4aae63409bd133723c1c9f9b50ef372",
+      "subject": "canary instance matrix",
+      "turn": 7
+    },
+    {
+      "bytes": 32635,
+      "path": "maintenance/inputs/audit-v2-s06/canary-instance-matrix/audit-v2-s06-t07-evidence-04.yaml",
+      "sha256": "a45503c68f8e16cab9b50737957d062d9aa2d3862a9f652cf044d66448f65f5a",
+      "subject": "canary instance matrix",
+      "turn": 7
+    },
+    {
+      "bytes": 32827,
+      "path": "maintenance/inputs/audit-v2-s06/canary-instance-matrix/audit-v2-s06-t07-evidence-05.log",
+      "sha256": "8e5753529a62629ff4a3fcc052174d3af0e17e405b109bc8317bdd64475f5476",
+      "subject": "canary instance matrix",
+      "turn": 7
+    },
+    {
+      "bytes": 32760,
+      "path": "maintenance/inputs/audit-v2-s06/authorization-forwarding-traces/audit-v2-s06-t08-evidence-01.md",
+      "sha256": "0106c9e997a26ee4615a5023ce46d99b9680919050eb4394fd1648f7d873a879",
+      "subject": "authorization forwarding traces",
+      "turn": 8
+    },
+    {
+      "bytes": 32678,
+      "path": "maintenance/inputs/audit-v2-s06/authorization-forwarding-traces/audit-v2-s06-t08-evidence-02.jsonl",
+      "sha256": "c6dac5f193a6d15721b430a20930004037568b6bf4dec64f0c0b72654e778f85",
+      "subject": "authorization forwarding traces",
+      "turn": 8
+    },
+    {
+      "bytes": 32746,
+      "path": "maintenance/inputs/audit-v2-s06/authorization-forwarding-traces/audit-v2-s06-t08-evidence-03.csv",
+      "sha256": "5e5d55f4819e5cfcb0b31ae39bf032399b85d1b82fadd7f3831c4dba55a80bdd",
+      "subject": "authorization forwarding traces",
+      "turn": 8
+    },
+    {
+      "bytes": 32738,
+      "path": "maintenance/inputs/audit-v2-s06/authorization-forwarding-traces/audit-v2-s06-t08-evidence-04.yaml",
+      "sha256": "6dada84b928530fbd77c4db538b982c38a34c119d1884cad555963f3652533e6",
+      "subject": "authorization forwarding traces",
+      "turn": 8
+    },
+    {
+      "bytes": 32784,
+      "path": "maintenance/inputs/audit-v2-s06/authorization-forwarding-traces/audit-v2-s06-t08-evidence-05.log",
+      "sha256": "bc44d39f671ebf7b343728cfec8447d5a5d293c2dfedc1af6018fc35d99dbd08",
+      "subject": "authorization forwarding traces",
+      "turn": 8
+    },
+    {
+      "bytes": 23722,
+      "path": "maintenance/inputs/audit-v2-s06/retry-envelope-samples/audit-v2-s06-t10-evidence-01.md",
+      "sha256": "a043ae2d35fb1a1644f508d4810855226391561bb9a91fd930ecb660f135b124",
+      "subject": "retry envelope samples",
+      "turn": 10
+    },
+    {
+      "bytes": 23891,
+      "path": "maintenance/inputs/audit-v2-s06/retry-envelope-samples/audit-v2-s06-t10-evidence-02.jsonl",
+      "sha256": "236efbddace2f0cec41dbc3680d8ff920523474bcb589d8d4d8c3fb468334251",
+      "subject": "retry envelope samples",
+      "turn": 10
+    },
+    {
+      "bytes": 23824,
+      "path": "maintenance/inputs/audit-v2-s06/retry-envelope-samples/audit-v2-s06-t10-evidence-03.csv",
+      "sha256": "691531f9c3a4e14ffbaa2b4d57f403cc544185ed784544b0c0fd720617ac6c4f",
+      "subject": "retry envelope samples",
+      "turn": 10
+    },
+    {
+      "bytes": 23958,
+      "path": "maintenance/inputs/audit-v2-s06/retry-envelope-samples/audit-v2-s06-t10-evidence-04.yaml",
+      "sha256": "2b2c0e43a5719a702d8bd7b0a54290839cbf0df30202d742397b3f407ec9bce6",
+      "subject": "retry envelope samples",
+      "turn": 10
+    },
+    {
+      "bytes": 23822,
+      "path": "maintenance/inputs/audit-v2-s06/retry-envelope-samples/audit-v2-s06-t10-evidence-05.log",
+      "sha256": "98c8f87f940e8c19f7a9c716223ee73ef2d79f2d9d8bfffad3ef676078cbdc63",
+      "subject": "retry envelope samples",
+      "turn": 10
+    },
+    {
+      "bytes": 23785,
+      "path": "maintenance/inputs/audit-v2-s06/mesh-rollback-drills/audit-v2-s06-t11-evidence-01.md",
+      "sha256": "a8933f313c4a5de407d0639c880a7f5154574a0d992e2ab6613f81a7c5f7b865",
+      "subject": "mesh rollback drills",
+      "turn": 11
+    },
+    {
+      "bytes": 23705,
+      "path": "maintenance/inputs/audit-v2-s06/mesh-rollback-drills/audit-v2-s06-t11-evidence-02.jsonl",
+      "sha256": "424a6868375c3d9097fdd00de234b0c920e7781ce8e2625a4a93d226e874e0e4",
+      "subject": "mesh rollback drills",
+      "turn": 11
+    },
+    {
+      "bytes": 23832,
+      "path": "maintenance/inputs/audit-v2-s06/mesh-rollback-drills/audit-v2-s06-t11-evidence-03.csv",
+      "sha256": "97e59d96d767460666c78d40a188b06b718f8b87270f62a5daf28bb262d1338c",
+      "subject": "mesh rollback drills",
+      "turn": 11
+    },
+    {
+      "bytes": 23762,
+      "path": "maintenance/inputs/audit-v2-s06/mesh-rollback-drills/audit-v2-s06-t11-evidence-04.yaml",
+      "sha256": "6bb20f48ec4a4f95cdaf9e543a30e4f3d3121423856a7855e71eb6fdd94b643c",
+      "subject": "mesh rollback drills",
+      "turn": 11
+    },
+    {
+      "bytes": 23861,
+      "path": "maintenance/inputs/audit-v2-s06/mesh-rollback-drills/audit-v2-s06-t11-evidence-05.log",
+      "sha256": "64e936b50e603619612ace43772de6eac5d65c6b3dfd1148214226ed6d6f60b9",
+      "subject": "mesh rollback drills",
+      "turn": 11
+    },
+    {
+      "bytes": 14790,
+      "path": "maintenance/inputs/audit-v2-s06/ingress-operator-checklist/audit-v2-s06-t13-evidence-01.md",
+      "sha256": "3a44b481e55866198377c75f5aafffb257e25bfdc68e73081c4a5c0976b43df8",
+      "subject": "ingress operator checklist",
+      "turn": 13
+    },
+    {
+      "bytes": 14821,
+      "path": "maintenance/inputs/audit-v2-s06/ingress-operator-checklist/audit-v2-s06-t13-evidence-02.jsonl",
+      "sha256": "bae07a80416330b84a58e8da26a49632b2eb03d8206d82e9b5c31048ce98fc07",
+      "subject": "ingress operator checklist",
+      "turn": 13
+    },
+    {
+      "bytes": 14639,
+      "path": "maintenance/inputs/audit-v2-s06/ingress-operator-checklist/audit-v2-s06-t13-evidence-03.csv",
+      "sha256": "0df921c50debec4183c5052b2561d72ff7926f4078f03c2c3673b18cac823983",
+      "subject": "ingress operator checklist",
+      "turn": 13
+    },
+    {
+      "bytes": 14767,
+      "path": "maintenance/inputs/audit-v2-s06/ingress-operator-checklist/audit-v2-s06-t13-evidence-04.yaml",
+      "sha256": "43c60322a39b71f4b836f26151b740e6670d61f1096db2192cd8f65ae8e707dc",
+      "subject": "ingress operator checklist",
+      "turn": 13
+    },
+    {
+      "bytes": 14607,
+      "path": "maintenance/inputs/audit-v2-s06/ingress-operator-checklist/audit-v2-s06-t13-evidence-05.log",
+      "sha256": "45e9ed2f1f7c99305ace8943bcfde238fe7b0f29254956e2ab38a886aa7f8152",
+      "subject": "ingress operator checklist",
+      "turn": 13
+    },
+    {
+      "bytes": 14760,
+      "path": "maintenance/inputs/audit-v2-s06/mesh-cutover-evidence/audit-v2-s06-t14-evidence-01.md",
+      "sha256": "1baa22e3393ba5aad8e2d4e972e2099008702ef34dd40abb0fbe2f8cdc0f0780",
+      "subject": "mesh cutover evidence",
+      "turn": 14
+    },
+    {
+      "bytes": 14803,
+      "path": "maintenance/inputs/audit-v2-s06/mesh-cutover-evidence/audit-v2-s06-t14-evidence-02.jsonl",
+      "sha256": "cf8b942664cd030814a12f63d0b1feca635de5dd14c313ac80ac7df9f833542c",
+      "subject": "mesh cutover evidence",
+      "turn": 14
+    },
+    {
+      "bytes": 14771,
+      "path": "maintenance/inputs/audit-v2-s06/mesh-cutover-evidence/audit-v2-s06-t14-evidence-03.csv",
+      "sha256": "51384b443aeb0b93a939dd17a98b596352edddc824722d43656219bf5fb7a23b",
+      "subject": "mesh cutover evidence",
+      "turn": 14
+    },
+    {
+      "bytes": 14737,
+      "path": "maintenance/inputs/audit-v2-s06/mesh-cutover-evidence/audit-v2-s06-t14-evidence-04.yaml",
+      "sha256": "3cb435c22aed3168cd1915e4665eee0550f11b7b09e4511a05d5ad2c608d6ac2",
+      "subject": "mesh cutover evidence",
+      "turn": 14
+    },
+    {
+      "bytes": 14783,
+      "path": "maintenance/inputs/audit-v2-s06/mesh-cutover-evidence/audit-v2-s06-t14-evidence-05.log",
+      "sha256": "ea06d2469819e50629de4d151da432ed03a3111903055544e66a78f11075b48f",
+      "subject": "mesh cutover evidence",
+      "turn": 14
+    }
+  ],
+  "content_bytes": 1237780,
+  "estimated_content_tokens": 321501,
+  "schema_version": 1,
+  "spec_id": "audit-v2-s06"
+}

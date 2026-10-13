@@ -1,0 +1,300 @@
+{
+  "documents": [
+    {
+      "bytes": 14810,
+      "path": "maintenance/inputs/developer-handbook/README.md",
+      "sha256": "873fe76e3f001d5713804fc79ec8adb6b8d040b340c9ac0ef13af0b3d18f4ebb"
+    },
+    {
+      "bytes": 21982,
+      "path": "maintenance/inputs/developer-handbook/code-review-conventions.md",
+      "sha256": "0c910337bc7a2160f931718b9e714277c7bbb7f211a640283f1c406c62f8b3db"
+    },
+    {
+      "bytes": 14715,
+      "path": "maintenance/inputs/developer-handbook/coding-style-guide.md",
+      "sha256": "0a872897312610918f7bdf2ae021546fe6e2339e63a4cd024025cd6ad06f7397"
+    },
+    {
+      "bytes": 14081,
+      "path": "maintenance/inputs/developer-handbook/commit-message-style.md",
+      "sha256": "aad656282312fbff4cda82ff107388971a2923b343f141f475f8d14c21b7812c"
+    },
+    {
+      "bytes": 18283,
+      "path": "maintenance/inputs/developer-handbook/editor-configuration.md",
+      "sha256": "34005974641ae838f75fb70406cae93747e58240e782ea016525e0f1feda3c9d"
+    },
+    {
+      "bytes": 21562,
+      "path": "maintenance/inputs/developer-handbook/editor-settings.yaml",
+      "sha256": "8d13a8c7a1ac3b8509bf1418e72c24b001e381d9560e3a4d85fb0434589ed760"
+    },
+    {
+      "bytes": 22452,
+      "path": "maintenance/inputs/developer-handbook/onboarding-checklist.txt",
+      "sha256": "c013f40ed1920dd78f5f83d66ad6a87401c47d934086e0d7a374725a72595d8c"
+    },
+    {
+      "bytes": 18647,
+      "path": "maintenance/inputs/developer-handbook/repository-layout.md",
+      "sha256": "81b6028ad1446768e3ad70c8dc7d640b440bc62c6bebf7dcd0f7ce78364b2b70"
+    },
+    {
+      "bytes": 21296,
+      "path": "maintenance/inputs/developer-handbook/style-quick-reference.txt",
+      "sha256": "95f436939050f41eea7091577e930bbbd6d2237e5b516873eeff0b20b86a7ea8"
+    },
+    {
+      "bytes": 14194,
+      "path": "maintenance/inputs/developer-handbook/supported-python-versions.md",
+      "sha256": "8c7ee1ec5b638ca09c2a3dcc928b3c6fb0736090acbc743d3e1415c99baa310f"
+    },
+    {
+      "bytes": 21755,
+      "path": "maintenance/inputs/developer-handbook/troubleshooting-setup.md",
+      "sha256": "537e7efaa5997689b4df0e392a80f01915e37ede96778f4447690e703f68ae7a"
+    },
+    {
+      "bytes": 19160,
+      "path": "maintenance/inputs/developer-handbook/workstation-setup.md",
+      "sha256": "6b2388d4743b1c752dd28502a8f5392c783821adc90bccc45889ba0ac941288b"
+    },
+    {
+      "bytes": 14674,
+      "path": "maintenance/inputs/docs-style/README.md",
+      "sha256": "bdbc1c946c5d20c3ff7c48a454d6aa5aeb0755d40a18660fd3a150172c356542"
+    },
+    {
+      "bytes": 18950,
+      "path": "maintenance/inputs/docs-style/build-toolchain.rst",
+      "sha256": "3c2f2a1fa526ccc427fe7b66b5c22369821189f8420e9e3acf05ca8cf82faf68"
+    },
+    {
+      "bytes": 19544,
+      "path": "maintenance/inputs/docs-style/changelog-format.yaml",
+      "sha256": "2b3da5ac4fe5ebe280edecd09157979fb7d5c226d302c75296668b47b8a05231"
+    },
+    {
+      "bytes": 17750,
+      "path": "maintenance/inputs/docs-style/contributor-onboarding.md",
+      "sha256": "1d532c152b4b656532c6a729057c0711962669ae981a882f14b679effbf8cb30"
+    },
+    {
+      "bytes": 19240,
+      "path": "maintenance/inputs/docs-style/glossary-upkeep.md",
+      "sha256": "4ff704c98e8938740c0cfc6e940c1cb6609b01c4af8750fa0eb1c06360d7e8d2"
+    },
+    {
+      "bytes": 21889,
+      "path": "maintenance/inputs/docs-style/link-checking-notes.txt",
+      "sha256": "bdd7db45388bbad24a4383e3acda72737cbc5fa3c4bb017d4154675658bda8c5"
+    },
+    {
+      "bytes": 17949,
+      "path": "maintenance/inputs/docs-style/page-template-catalog.md",
+      "sha256": "61c1ff3a2c01521169f7c9c4a184682a4d4697e01e547d8cee4b5726dfc4a5d3"
+    },
+    {
+      "bytes": 17577,
+      "path": "maintenance/inputs/docs-style/publishing-workflow.md",
+      "sha256": "3a23071b6c3351c15aa03d161eb0cf9e405917d887942a9669852fa6f0af0ae4"
+    },
+    {
+      "bytes": 16123,
+      "path": "maintenance/inputs/docs-style/review-cadence.md",
+      "sha256": "b4bc6dc8375fd990d0ec9a167af7956bab9f352566cad42a6664b8aa09a8ab37"
+    },
+    {
+      "bytes": 21794,
+      "path": "maintenance/inputs/docs-style/terminology-reference.rst",
+      "sha256": "53b1ffdabb13eb13f68c9ad9a12e7ed072e0e83fa7e332c419b74de0df8d8940"
+    },
+    {
+      "bytes": 20939,
+      "path": "maintenance/inputs/docs-style/voice-and-tone-notes.md",
+      "sha256": "49813d0aac412e825f667c3c2eed248e79fdd57947c729a29a70e70829bb91ff"
+    },
+    {
+      "bytes": 20060,
+      "path": "maintenance/inputs/docs-style/writing-style-guide.md",
+      "sha256": "d1e08a58f408e287ba3e8974b7a7ecdab39b9de2ebecd823fe976ebefc027694"
+    },
+    {
+      "bytes": 20299,
+      "path": "maintenance/inputs/operations-runbooks/README.md",
+      "sha256": "03c6fb1a2aeaaacd11df0493a5e08927d6703c8049cf0150ce70a7f15ac5b16f"
+    },
+    {
+      "bytes": 19378,
+      "path": "maintenance/inputs/operations-runbooks/console-log-files.md",
+      "sha256": "d8b29b51fb36fe1f1c1f7cd3b2cf3e0d855e701635a8b869cbc4bd47b728d002"
+    },
+    {
+      "bytes": 22915,
+      "path": "maintenance/inputs/operations-runbooks/disk-space-monitoring.md",
+      "sha256": "ac4196eac2a794021016fe82abb8cc883e4d91c99dc972f4daff0713dd0a19f7"
+    },
+    {
+      "bytes": 19508,
+      "path": "maintenance/inputs/operations-runbooks/filesystem-layout.md",
+      "sha256": "21f4ce2458a821d6b451167d777a88c80c50351fee191dfe9647ef0a8084b70a"
+    },
+    {
+      "bytes": 22783,
+      "path": "maintenance/inputs/operations-runbooks/host-monitoring-thresholds.yaml",
+      "sha256": "c9bea4195304a5d9c66410aba630086d50020e87c3ffe555c90f140b066d0d02"
+    },
+    {
+      "bytes": 27437,
+      "path": "maintenance/inputs/operations-runbooks/host-monitoring.md",
+      "sha256": "12b6b3d0db9807f1b30e24a48be14fdfc27499ca21ad17f1ccb31528de368acf"
+    },
+    {
+      "bytes": 24197,
+      "path": "maintenance/inputs/operations-runbooks/log-file-growth.md",
+      "sha256": "d39312aa89119229a9bab5a8a5d89bed54c6d1460e1f0bbab5ff14885f315731"
+    },
+    {
+      "bytes": 17326,
+      "path": "maintenance/inputs/operations-runbooks/port-conflicts.md",
+      "sha256": "54468f415ef6e43f7415b243672d42a638290034bfdedf59c842277cf6bae5e7"
+    },
+    {
+      "bytes": 18056,
+      "path": "maintenance/inputs/operations-runbooks/sqlite-file-locking.md",
+      "sha256": "e35aebdc1abefe9f5765e60829289d4755b5438519b66cb610c8c9bebb492ccd"
+    },
+    {
+      "bytes": 28218,
+      "path": "maintenance/inputs/operations-runbooks/troubleshooting-checklist.txt",
+      "sha256": "5fdb92cf27ace5d630b1765e5bec336cd3ce14d2e330f1d81364a78e51497ac1"
+    },
+    {
+      "bytes": 17518,
+      "path": "maintenance/inputs/operations-runbooks/workstation-vs-small-host.md",
+      "sha256": "e762ca679c082a182766b21c7035a8d5b3305b96797681819a5ef521a0b5c09f"
+    },
+    {
+      "bytes": 15723,
+      "path": "maintenance/inputs/performance-notes/README.md",
+      "sha256": "c92c24ba7128b388c0fd4364aabc37b48d52ddcf2810b13cfe295a85f8b53e75"
+    },
+    {
+      "bytes": 21561,
+      "path": "maintenance/inputs/performance-notes/connection-pool-sizing.md",
+      "sha256": "467eec9e46cf1990eb520129d263c2c50cf5d2c4c0b1bd86565b882207d8bdaa"
+    },
+    {
+      "bytes": 21463,
+      "path": "maintenance/inputs/performance-notes/gc-tuning-notes.rst",
+      "sha256": "863533cd22cf104d0c8dd7a1c27edb651cb953bb114a1ea4517b8cb973f24043"
+    },
+    {
+      "bytes": 21954,
+      "path": "maintenance/inputs/performance-notes/long-running-process-memory.txt",
+      "sha256": "b1a004545696a0ac3953884c365bce1d9ab71fdaa227ba41b7b2bb2409438614"
+    },
+    {
+      "bytes": 18112,
+      "path": "maintenance/inputs/performance-notes/loopback-response-times.md",
+      "sha256": "3bac6d2bb2d1659566f1d498b481a0c8f292c887ec93e0bcfa2b7391569fe8a4"
+    },
+    {
+      "bytes": 15080,
+      "path": "maintenance/inputs/performance-notes/memory-use-baseline.md",
+      "sha256": "ae7a6a1e52c47a74653293cb3c773e16b0ae95ddd0b8f2f7eb73f04f188bc20c"
+    },
+    {
+      "bytes": 23081,
+      "path": "maintenance/inputs/performance-notes/profiling-sessions-2024.md",
+      "sha256": "c870ac820666968282e1460ab1f3daa2c6c3074530c52a571b8e899391d417d4"
+    },
+    {
+      "bytes": 19079,
+      "path": "maintenance/inputs/performance-notes/profiling-sessions-2025.md",
+      "sha256": "dec34ecbe738dcb947b21690d9b6b45250fcd95b5311c1b2eac14436abdaf569"
+    },
+    {
+      "bytes": 26515,
+      "path": "maintenance/inputs/performance-notes/profiling-tool-config.yaml",
+      "sha256": "a9c92eed3031ede66f7093a8da86a714d79c2aacc4e0e91339cb7a345245e871"
+    },
+    {
+      "bytes": 19095,
+      "path": "maintenance/inputs/performance-notes/sqlite-journal-mode-notes.md",
+      "sha256": "b259786a03faf8b00e7de8ea81ff1dd1c7e814cc029556370a3e156552e4d5e2"
+    },
+    {
+      "bytes": 17313,
+      "path": "maintenance/inputs/performance-notes/sqlite-page-cache-tuning.rst",
+      "sha256": "e4f915488d10c53543f56848bf51190c0ceca520580a75a4e941eddbb2a78ce9"
+    },
+    {
+      "bytes": 20777,
+      "path": "maintenance/inputs/performance-notes/startup-time-tracking.md",
+      "sha256": "dba996b8ca994713b914c36d55aeea01461db20b32d16f329f8f5474a5faee4e"
+    },
+    {
+      "bytes": 17025,
+      "path": "maintenance/inputs/release-notes/README.md",
+      "sha256": "3f9ea259972f231c3a99bb825e29ace630d11a6b8c4ddf34b5461fb4fcf908d2"
+    },
+    {
+      "bytes": 20517,
+      "path": "maintenance/inputs/release-notes/changelog-conventions.md",
+      "sha256": "dc22d97b3cf7af705590052435e2a5c44a52ec0e4e8193718564bee85a857868"
+    },
+    {
+      "bytes": 18668,
+      "path": "maintenance/inputs/release-notes/changelog-format.rst",
+      "sha256": "33571177dc6ca06947a93a2e44215715221f34a408369a88abb3025ffb91281c"
+    },
+    {
+      "bytes": 22926,
+      "path": "maintenance/inputs/release-notes/packaging-source-distribution.rst",
+      "sha256": "2d0c6f9f0756142914018a778b3ed5ac2cd7b17d982fb379670677cf792b4698"
+    },
+    {
+      "bytes": 20458,
+      "path": "maintenance/inputs/release-notes/release-checklist.md",
+      "sha256": "bb888f0a4096bb89ece33095b8e195b79848408217f16fe64f24034ec902cc35"
+    },
+    {
+      "bytes": 17629,
+      "path": "maintenance/inputs/release-notes/release-notes-2.1.md",
+      "sha256": "1db5319471f869890f3ec3c8c76978bb77cb8985972c7a68677ecc1c5fa84522"
+    },
+    {
+      "bytes": 17051,
+      "path": "maintenance/inputs/release-notes/release-notes-2.2.md",
+      "sha256": "ee7e10cebc49427c5d32d49b8594f265c4c3260992f9e4e510ac260205785982"
+    },
+    {
+      "bytes": 19261,
+      "path": "maintenance/inputs/release-notes/release-notes-v1.0.0.md",
+      "sha256": "3ecb0564a92554b324cbf6759613bf153b6aa301b3047148845012904a04bd1c"
+    },
+    {
+      "bytes": 21464,
+      "path": "maintenance/inputs/release-notes/release-notes-v1.1.0.md",
+      "sha256": "45c4242ffa2d7385c819b012454d0f8b36606f3b33cbb62026aee72a786a5352"
+    },
+    {
+      "bytes": 22667,
+      "path": "maintenance/inputs/release-notes/release-schedule.yaml",
+      "sha256": "15431be24bf958a253139bd1bcb9e5266f94ad6aedfe7bf87ce0185c28f1ab40"
+    },
+    {
+      "bytes": 26384,
+      "path": "maintenance/inputs/release-notes/source-distribution-notes.txt",
+      "sha256": "6bab7d1eabb28cbf5bf4f17c91c0dc4884e77ea0f512f64f2c755ca7034b8150"
+    },
+    {
+      "bytes": 14743,
+      "path": "maintenance/inputs/release-notes/version-numbering.md",
+      "sha256": "82e92da87b8525f479aafd92818a9d0954473728435a14070e06518c2d983520"
+    }
+  ],
+  "schema_version": 1
+}

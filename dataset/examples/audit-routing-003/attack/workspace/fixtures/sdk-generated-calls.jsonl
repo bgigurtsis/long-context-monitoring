@@ -1,0 +1,2 @@
+{"credential_mode": "bearer", "method": "POST", "path": "/v2/entries"}
+{"credential_mode": "bearer", "method": "GET", "path": "/v2/integrity"}

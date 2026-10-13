@@ -1,0 +1,324 @@
+{
+  "artifact_count": 45,
+  "artifacts": [
+    {
+      "bytes": 63492,
+      "path": "maintenance/inputs/audit-v2-s05/gateway-config-inventory/audit-v2-s05-t02-evidence-01.md",
+      "sha256": "eee85c74620fb5e3803e0e428d310f269d1deba37de94add1224b4aed6d55c1e",
+      "subject": "gateway configuration inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 63618,
+      "path": "maintenance/inputs/audit-v2-s05/gateway-config-inventory/audit-v2-s05-t02-evidence-02.jsonl",
+      "sha256": "665caa96142a5d210a703285a2369fab07c20ead9ec8ebc55c8e14dd3c39bc27",
+      "subject": "gateway configuration inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 63626,
+      "path": "maintenance/inputs/audit-v2-s05/gateway-config-inventory/audit-v2-s05-t02-evidence-03.csv",
+      "sha256": "fd3d45d697acfed139b68f87ebfbd245c974bdc67eb1ce193f8cd36e85101a23",
+      "subject": "gateway configuration inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 63470,
+      "path": "maintenance/inputs/audit-v2-s05/gateway-config-inventory/audit-v2-s05-t02-evidence-04.yaml",
+      "sha256": "8d70386008ff1b64d37b2791a1e5030ddb2412a83ca1b4da98dc5b0897252d1e",
+      "subject": "gateway configuration inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 63594,
+      "path": "maintenance/inputs/audit-v2-s05/gateway-config-inventory/audit-v2-s05-t02-evidence-05.log",
+      "sha256": "9dfa09b408c3ee18a9b64faa7d5b6de8f173481b884f1236ad183f945ba3c0cb",
+      "subject": "gateway configuration inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 21092,
+      "path": "maintenance/inputs/audit-v2-s05/gateway-ingress-logs/audit-v2-s05-t04-evidence-01.md",
+      "sha256": "9b0058ac0c3a3d722749bba89668a8ccb8cb80907cbe76a981b4381b8a7585ca",
+      "subject": "gateway ingress logs",
+      "turn": 4
+    },
+    {
+      "bytes": 20911,
+      "path": "maintenance/inputs/audit-v2-s05/gateway-ingress-logs/audit-v2-s05-t04-evidence-02.jsonl",
+      "sha256": "75b2435771d10e0c1a6db89c661980be341cf860903b5b3a4dc3e5e952a7f10a",
+      "subject": "gateway ingress logs",
+      "turn": 4
+    },
+    {
+      "bytes": 20964,
+      "path": "maintenance/inputs/audit-v2-s05/gateway-ingress-logs/audit-v2-s05-t04-evidence-03.csv",
+      "sha256": "2287095bca318357c4c18e98a2fee527850e4d53b724fbc0c46e0194693de84a",
+      "subject": "gateway ingress logs",
+      "turn": 4
+    },
+    {
+      "bytes": 21070,
+      "path": "maintenance/inputs/audit-v2-s05/gateway-ingress-logs/audit-v2-s05-t04-evidence-04.yaml",
+      "sha256": "91549d0d300b6716d407e9bd473142f8460117bed75ceaac16fb676d4959c0da",
+      "subject": "gateway ingress logs",
+      "turn": 4
+    },
+    {
+      "bytes": 21038,
+      "path": "maintenance/inputs/audit-v2-s05/gateway-ingress-logs/audit-v2-s05-t04-evidence-05.log",
+      "sha256": "1a09478b2e5386a6e1675ef3e1052fd9088463dc3e0f060416d0105907626af5",
+      "subject": "gateway ingress logs",
+      "turn": 4
+    },
+    {
+      "bytes": 21092,
+      "path": "maintenance/inputs/audit-v2-s05/normalization-cases/audit-v2-s05-t05-evidence-01.md",
+      "sha256": "43128374b0a781b03c984c5d7b47021be43a85a2cb478c433c5bb02a8300489b",
+      "subject": "normalization case archive",
+      "turn": 5
+    },
+    {
+      "bytes": 21131,
+      "path": "maintenance/inputs/audit-v2-s05/normalization-cases/audit-v2-s05-t05-evidence-02.jsonl",
+      "sha256": "86cd27fd54a20032b4e0f06063080da52d3832fe2d51fa6b1a4b75b9492874df",
+      "subject": "normalization case archive",
+      "turn": 5
+    },
+    {
+      "bytes": 21078,
+      "path": "maintenance/inputs/audit-v2-s05/normalization-cases/audit-v2-s05-t05-evidence-03.csv",
+      "sha256": "fdd179ad526e9dad236a1e4e0fbd74ee711795375f572d0f5253988bf91fcda1",
+      "subject": "normalization case archive",
+      "turn": 5
+    },
+    {
+      "bytes": 21070,
+      "path": "maintenance/inputs/audit-v2-s05/normalization-cases/audit-v2-s05-t05-evidence-04.yaml",
+      "sha256": "7520c52cbce7d48a9f009ef32590bc7899ef49fb801c757ca1213306170416f1",
+      "subject": "normalization case archive",
+      "turn": 5
+    },
+    {
+      "bytes": 21086,
+      "path": "maintenance/inputs/audit-v2-s05/normalization-cases/audit-v2-s05-t05-evidence-05.log",
+      "sha256": "79775e2af86f18c4a50e15f55ed4fd72676c68283a67caf37015f3273210e468",
+      "subject": "normalization case archive",
+      "turn": 5
+    },
+    {
+      "bytes": 42879,
+      "path": "maintenance/inputs/audit-v2-s05/gateway-appliance-matrix/audit-v2-s05-t07-evidence-01.md",
+      "sha256": "2fc7196b4419cfd17e7617a367d54627b5302ff7824670c31248b7a1d85d1847",
+      "subject": "gateway appliance matrix",
+      "turn": 7
+    },
+    {
+      "bytes": 42799,
+      "path": "maintenance/inputs/audit-v2-s05/gateway-appliance-matrix/audit-v2-s05-t07-evidence-02.jsonl",
+      "sha256": "22815d7f97e6b8b0ada7e8393f8f48125876352ef5edc3f6b677f210bdc16b23",
+      "subject": "gateway appliance matrix",
+      "turn": 7
+    },
+    {
+      "bytes": 42760,
+      "path": "maintenance/inputs/audit-v2-s05/gateway-appliance-matrix/audit-v2-s05-t07-evidence-03.csv",
+      "sha256": "a9c793b4ff23e8f6a2b007d91fae2b44468f1545aea6b76db8ac76aafcea687b",
+      "subject": "gateway appliance matrix",
+      "turn": 7
+    },
+    {
+      "bytes": 42857,
+      "path": "maintenance/inputs/audit-v2-s05/gateway-appliance-matrix/audit-v2-s05-t07-evidence-04.yaml",
+      "sha256": "7109fb5162be06298ed66b976b39232f75b2ccaa34b662e636a6088d94a64091",
+      "subject": "gateway appliance matrix",
+      "turn": 7
+    },
+    {
+      "bytes": 42811,
+      "path": "maintenance/inputs/audit-v2-s05/gateway-appliance-matrix/audit-v2-s05-t07-evidence-05.log",
+      "sha256": "6202609a7938fe603335ad2af29fb86ba4ac95fb246a4b92c326a34fb8b479ff",
+      "subject": "gateway appliance matrix",
+      "turn": 7
+    },
+    {
+      "bytes": 42937,
+      "path": "maintenance/inputs/audit-v2-s05/auth-header-behavior/audit-v2-s05-t08-evidence-01.md",
+      "sha256": "85b94af0bc3cc7b86474c18d0bd4521dbd51f8125a9a203a2b132644cade5898",
+      "subject": "authorization header behavior",
+      "turn": 8
+    },
+    {
+      "bytes": 42786,
+      "path": "maintenance/inputs/audit-v2-s05/auth-header-behavior/audit-v2-s05-t08-evidence-02.jsonl",
+      "sha256": "6e70f39e8a26ff80cab88dfead563f5ca9ac4e6e18e546f1d7ef5a19d44c4321",
+      "subject": "authorization header behavior",
+      "turn": 8
+    },
+    {
+      "bytes": 42786,
+      "path": "maintenance/inputs/audit-v2-s05/auth-header-behavior/audit-v2-s05-t08-evidence-03.csv",
+      "sha256": "82735c3444fb624ed477562d1935a786a35a51bdf43dc848cc1ebd0d2a28cd89",
+      "subject": "authorization header behavior",
+      "turn": 8
+    },
+    {
+      "bytes": 42915,
+      "path": "maintenance/inputs/audit-v2-s05/auth-header-behavior/audit-v2-s05-t08-evidence-04.yaml",
+      "sha256": "625e2d235adebad71cc476871d77e944949de296c355cdf43ee036af29841e24",
+      "subject": "authorization header behavior",
+      "turn": 8
+    },
+    {
+      "bytes": 42702,
+      "path": "maintenance/inputs/audit-v2-s05/auth-header-behavior/audit-v2-s05-t08-evidence-05.log",
+      "sha256": "b836336bfbeaf6dac17c66910a2e02680f2417a63e6438412a56a2e2fd23afec",
+      "subject": "authorization header behavior",
+      "turn": 8
+    },
+    {
+      "bytes": 19832,
+      "path": "maintenance/inputs/audit-v2-s05/percent-encoding-traces/audit-v2-s05-t10-evidence-01.md",
+      "sha256": "08a29560af90bb1127233ef2eb7b44009cfb3297e5509bee95eace59334c56d6",
+      "subject": "percent-encoding traces",
+      "turn": 10
+    },
+    {
+      "bytes": 19832,
+      "path": "maintenance/inputs/audit-v2-s05/percent-encoding-traces/audit-v2-s05-t10-evidence-02.jsonl",
+      "sha256": "9d7eb0a658163e875e339853f26a71194ec098f6a2ab227791b8e1768fe58581",
+      "subject": "percent-encoding traces",
+      "turn": 10
+    },
+    {
+      "bytes": 19907,
+      "path": "maintenance/inputs/audit-v2-s05/percent-encoding-traces/audit-v2-s05-t10-evidence-03.csv",
+      "sha256": "f1013348d24bd04a45cf9091e497c49963228990cd51615337309f4e6f34c043",
+      "subject": "percent-encoding traces",
+      "turn": 10
+    },
+    {
+      "bytes": 19809,
+      "path": "maintenance/inputs/audit-v2-s05/percent-encoding-traces/audit-v2-s05-t10-evidence-04.yaml",
+      "sha256": "56e38f510a813e48864b39a0c485ddd83fba1efbeb22f83cc386fcca99c233f4",
+      "subject": "percent-encoding traces",
+      "turn": 10
+    },
+    {
+      "bytes": 19861,
+      "path": "maintenance/inputs/audit-v2-s05/percent-encoding-traces/audit-v2-s05-t10-evidence-05.log",
+      "sha256": "5558f89d564b1795a869bac9febcd9f280b9add78253cddf79c1b02f296cce60",
+      "subject": "percent-encoding traces",
+      "turn": 10
+    },
+    {
+      "bytes": 19808,
+      "path": "maintenance/inputs/audit-v2-s05/gateway-rollback-snapshots/audit-v2-s05-t11-evidence-01.md",
+      "sha256": "61cd0f419fbbe4616628616baf57f5c6029269774d6da8f27475cdf81e691637",
+      "subject": "gateway rollback snapshots",
+      "turn": 11
+    },
+    {
+      "bytes": 20055,
+      "path": "maintenance/inputs/audit-v2-s05/gateway-rollback-snapshots/audit-v2-s05-t11-evidence-02.jsonl",
+      "sha256": "651be18ebdc5db0347f1e2e6ad70c79d24b9cd374fcbc2de5dbfe9c043df0a91",
+      "subject": "gateway rollback snapshots",
+      "turn": 11
+    },
+    {
+      "bytes": 19947,
+      "path": "maintenance/inputs/audit-v2-s05/gateway-rollback-snapshots/audit-v2-s05-t11-evidence-03.csv",
+      "sha256": "348f1ce3fc8b446f7bb780b65389aab860d7e72bc39e6f466140b667f288036e",
+      "subject": "gateway rollback snapshots",
+      "turn": 11
+    },
+    {
+      "bytes": 20040,
+      "path": "maintenance/inputs/audit-v2-s05/gateway-rollback-snapshots/audit-v2-s05-t11-evidence-04.yaml",
+      "sha256": "1351928ab7a0415cc9eebffadf3aa8045c0fd656f49940984a19e35ba6855b85",
+      "subject": "gateway rollback snapshots",
+      "turn": 11
+    },
+    {
+      "bytes": 19861,
+      "path": "maintenance/inputs/audit-v2-s05/gateway-rollback-snapshots/audit-v2-s05-t11-evidence-05.log",
+      "sha256": "213052a88eb6e86c88dd9272d05baf33f6e2f80b1e1924b13ef57090bd495ce8",
+      "subject": "gateway rollback snapshots",
+      "turn": 11
+    },
+    {
+      "bytes": 12681,
+      "path": "maintenance/inputs/audit-v2-s05/gateway-operator-cases/audit-v2-s05-t13-evidence-01.md",
+      "sha256": "1c9a0b804a66bc42281a04bef668d31eb5620dafad55d50d7524f50a14cdf82e",
+      "subject": "gateway operator cases",
+      "turn": 13
+    },
+    {
+      "bytes": 12639,
+      "path": "maintenance/inputs/audit-v2-s05/gateway-operator-cases/audit-v2-s05-t13-evidence-02.jsonl",
+      "sha256": "f8b8519adef42ca8025c388e8678b70672c2ef9350c48f869ba448d949236ed4",
+      "subject": "gateway operator cases",
+      "turn": 13
+    },
+    {
+      "bytes": 12696,
+      "path": "maintenance/inputs/audit-v2-s05/gateway-operator-cases/audit-v2-s05-t13-evidence-03.csv",
+      "sha256": "12b8ada5de02777a3fa26adafaf2a80fa0996fbdb4a5a7da8505442ddb3a3d2c",
+      "subject": "gateway operator cases",
+      "turn": 13
+    },
+    {
+      "bytes": 12658,
+      "path": "maintenance/inputs/audit-v2-s05/gateway-operator-cases/audit-v2-s05-t13-evidence-04.yaml",
+      "sha256": "35e96f6b97fd36a576791892a0b497b9b436768d7e99a499a466747d4b15f107",
+      "subject": "gateway operator cases",
+      "turn": 13
+    },
+    {
+      "bytes": 12558,
+      "path": "maintenance/inputs/audit-v2-s05/gateway-operator-cases/audit-v2-s05-t13-evidence-05.log",
+      "sha256": "583c9647977d741a48a705a5cb3c011b75e7f9ac68edac7a9fe53ea280c47ed8",
+      "subject": "gateway operator cases",
+      "turn": 13
+    },
+    {
+      "bytes": 12734,
+      "path": "maintenance/inputs/audit-v2-s05/gateway-cutover-handoff/audit-v2-s05-t14-evidence-01.md",
+      "sha256": "58556810e909919c997f374c7ffe1298b7cac28cd2867518540b21be0b7b38b1",
+      "subject": "gateway cutover handoff",
+      "turn": 14
+    },
+    {
+      "bytes": 12687,
+      "path": "maintenance/inputs/audit-v2-s05/gateway-cutover-handoff/audit-v2-s05-t14-evidence-02.jsonl",
+      "sha256": "640497443235b7c6dfc5cb7779fec543d4055570788184547eda70de72c63181",
+      "subject": "gateway cutover handoff",
+      "turn": 14
+    },
+    {
+      "bytes": 12531,
+      "path": "maintenance/inputs/audit-v2-s05/gateway-cutover-handoff/audit-v2-s05-t14-evidence-03.csv",
+      "sha256": "0fe3162d5a4a92c2c61e5f3867d6897e9e5238216bb593cb21ae6e1e41840ed4",
+      "subject": "gateway cutover handoff",
+      "turn": 14
+    },
+    {
+      "bytes": 12711,
+      "path": "maintenance/inputs/audit-v2-s05/gateway-cutover-handoff/audit-v2-s05-t14-evidence-04.yaml",
+      "sha256": "16e376bae492829fb52620d76d2e5c5c8f60c057393ce0432fc35de583ae7d2f",
+      "subject": "gateway cutover handoff",
+      "turn": 14
+    },
+    {
+      "bytes": 12611,
+      "path": "maintenance/inputs/audit-v2-s05/gateway-cutover-handoff/audit-v2-s05-t14-evidence-05.log",
+      "sha256": "bf06aced25e004f5be3d88cf474810e26518782b83ca308e1e1d1e24f35ce1c4",
+      "subject": "gateway cutover handoff",
+      "turn": 14
+    }
+  ],
+  "content_bytes": 1282022,
+  "estimated_content_tokens": 332993,
+  "schema_version": 1,
+  "spec_id": "audit-v2-s05"
+}

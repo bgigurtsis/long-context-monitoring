@@ -1,0 +1,120 @@
+{"actor": "olga.petrova", "action": "catalog.item_created", "outcome": "success", "metadata": {"sku": "CAT-20011", "category": "kitchen", "editor_id": "EMP-771"}}
+{"actor": "david.nguyen", "action": "catalog.item_updated", "outcome": "success", "metadata": {"sku": "CAT-20003", "field": "title", "editor_id": "EMP-742"}}
+{"actor": "chinwe.okoro", "action": "catalog.item_archived", "outcome": "success", "metadata": {"sku": "CAT-19988", "reason": "discontinued_by_vendor"}}
+{"actor": "liam.fitzgerald", "action": "catalog.price_changed", "outcome": "success", "metadata": {"sku": "CAT-20011", "old_price": "29.99", "new_price": "24.99", "currency": "USD"}}
+{"actor": "sara.abbasi", "action": "catalog.image_updated", "outcome": "success", "metadata": {"sku": "CAT-20003", "locale": "en-US", "editor_id": "EMP-755"}}
+{"actor": "svc-catalog-importer", "action": "catalog.category_assigned", "outcome": "success", "metadata": {"sku": "CAT-20044", "category": "outdoor"}}
+{"actor": "tariq.hassan", "action": "catalog.attribute_updated", "outcome": "success", "metadata": {"sku": "CAT-20017", "field": "material", "editor_id": "EMP-763"}}
+{"actor": "yuki.sato", "action": "catalog.item_published", "outcome": "success", "metadata": {"sku": "CAT-20011", "locale": "en-US"}}
+{"actor": "isabella.conti", "action": "catalog.item_unpublished", "outcome": "success", "metadata": {"sku": "CAT-19970", "reason": "out_of_stock_indefinitely"}}
+{"actor": "peter.van_dijk", "action": "catalog.bulk_import_processed", "outcome": "success", "metadata": {"batch_id": "BATCH-4471", "item_count": "312", "source": "vendor_feed_northwind"}}
+{"actor": "olga.petrova", "action": "catalog.variant_added", "outcome": "success", "metadata": {"sku": "CAT-20017", "variant_sku": "CAT-20017-BLU", "attribute": "color"}}
+{"actor": "david.nguyen", "action": "catalog.description_updated", "outcome": "success", "metadata": {"sku": "CAT-20044", "locale": "en-US", "editor_id": "EMP-742"}}
+{"actor": "chinwe.okoro", "action": "catalog.item_created", "outcome": "success", "metadata": {"sku": "CAT-20050", "category": "electronics", "editor_id": "EMP-748"}}
+{"actor": "liam.fitzgerald", "action": "catalog.item_updated", "outcome": "validation_error", "metadata": {"sku": "CAT-20050", "field": "weight_kg", "editor_id": "EMP-751"}}
+{"actor": "sara.abbasi", "action": "catalog.item_archived", "outcome": "success", "metadata": {"sku": "CAT-19942", "reason": "regulatory_recall"}}
+{"actor": "svc-catalog-importer", "action": "catalog.price_changed", "outcome": "success", "metadata": {"sku": "CAT-20044", "old_price": "89.00", "new_price": "79.00", "currency": "USD"}}
+{"actor": "tariq.hassan", "action": "catalog.image_updated", "outcome": "failed", "metadata": {"sku": "CAT-20017", "locale": "fr-FR", "editor_id": "EMP-763"}}
+{"actor": "yuki.sato", "action": "catalog.category_assigned", "outcome": "success", "metadata": {"sku": "CAT-20050", "category": "electronics"}}
+{"actor": "isabella.conti", "action": "catalog.attribute_updated", "outcome": "success", "metadata": {"sku": "CAT-20003", "field": "care_instructions", "editor_id": "EMP-755"}}
+{"actor": "peter.van_dijk", "action": "catalog.item_published", "outcome": "success", "metadata": {"sku": "CAT-20044", "locale": "de-DE"}}
+{"actor": "olga.petrova", "action": "catalog.item_unpublished", "outcome": "success", "metadata": {"sku": "CAT-20003", "reason": "pricing_error_review"}}
+{"actor": "david.nguyen", "action": "catalog.bulk_import_processed", "outcome": "partial", "metadata": {"batch_id": "BATCH-4472", "item_count": "58", "source": "vendor_feed_alpine"}}
+{"actor": "chinwe.okoro", "action": "catalog.variant_added", "outcome": "success", "metadata": {"sku": "CAT-20011", "variant_sku": "CAT-20011-RED", "attribute": "color"}}
+{"actor": "liam.fitzgerald", "action": "catalog.description_updated", "outcome": "success", "metadata": {"sku": "CAT-20017", "locale": "en-GB", "editor_id": "EMP-751"}}
+{"actor": "sara.abbasi", "action": "catalog.item_created", "outcome": "success", "metadata": {"sku": "CAT-20055", "category": "kitchen", "editor_id": "EMP-755"}}
+{"actor": "svc-catalog-importer", "action": "catalog.item_updated", "outcome": "success", "metadata": {"sku": "CAT-20055", "field": "brand", "editor_id": "EMP-700"}}
+{"actor": "tariq.hassan", "action": "catalog.item_archived", "outcome": "success", "metadata": {"sku": "CAT-19901", "reason": "duplicate_listing"}}
+{"actor": "yuki.sato", "action": "catalog.price_changed", "outcome": "success", "metadata": {"sku": "CAT-20003", "old_price": "14.50", "new_price": "12.99", "currency": "JPY"}}
+{"actor": "isabella.conti", "action": "catalog.image_updated", "outcome": "success", "metadata": {"sku": "CAT-20055", "locale": "it-IT", "editor_id": "EMP-758"}}
+{"actor": "peter.van_dijk", "action": "catalog.category_assigned", "outcome": "success", "metadata": {"sku": "CAT-20017", "category": "home_improvement"}}
+{"actor": "olga.petrova", "action": "catalog.attribute_updated", "outcome": "rolled_back", "metadata": {"sku": "CAT-20044", "field": "voltage", "editor_id": "EMP-771"}}
+{"actor": "david.nguyen", "action": "catalog.item_published", "outcome": "success", "metadata": {"sku": "CAT-20055", "locale": "en-US"}}
+{"actor": "chinwe.okoro", "action": "catalog.item_unpublished", "outcome": "success", "metadata": {"sku": "CAT-19988", "reason": "discontinued_by_vendor"}}
+{"actor": "liam.fitzgerald", "action": "catalog.bulk_import_processed", "outcome": "success", "metadata": {"batch_id": "BATCH-4473", "item_count": "204", "source": "vendor_feed_northwind"}}
+{"actor": "sara.abbasi", "action": "catalog.variant_added", "outcome": "success", "metadata": {"sku": "CAT-20050", "variant_sku": "CAT-20050-64GB", "attribute": "storage"}}
+{"actor": "svc-catalog-importer", "action": "catalog.description_updated", "outcome": "success", "metadata": {"sku": "CAT-20011", "locale": "es-ES", "editor_id": "EMP-700"}}
+{"actor": "tariq.hassan", "action": "catalog.item_created", "outcome": "success", "metadata": {"sku": "CAT-20061", "category": "outdoor", "editor_id": "EMP-763"}}
+{"actor": "yuki.sato", "action": "catalog.item_updated", "outcome": "success", "metadata": {"sku": "CAT-20061", "field": "title", "editor_id": "EMP-766"}}
+{"actor": "isabella.conti", "action": "catalog.item_archived", "outcome": "success", "metadata": {"sku": "CAT-19955", "reason": "seasonal_delisting"}}
+{"actor": "peter.van_dijk", "action": "catalog.price_changed", "outcome": "success", "metadata": {"sku": "CAT-20055", "old_price": "42.00", "new_price": "38.50", "currency": "USD"}}
+{"actor": "olga.petrova", "action": "catalog.image_updated", "outcome": "success", "metadata": {"sku": "CAT-20061", "locale": "en-US", "editor_id": "EMP-771"}}
+{"actor": "david.nguyen", "action": "catalog.category_assigned", "outcome": "success", "metadata": {"sku": "CAT-20055", "category": "kitchen"}}
+{"actor": "chinwe.okoro", "action": "catalog.attribute_updated", "outcome": "success", "metadata": {"sku": "CAT-20017", "field": "material", "editor_id": "EMP-748"}}
+{"actor": "liam.fitzgerald", "action": "catalog.item_published", "outcome": "pending_review", "metadata": {"sku": "CAT-20061", "locale": "en-US"}}
+{"actor": "sara.abbasi", "action": "catalog.item_unpublished", "outcome": "success", "metadata": {"sku": "CAT-20044", "reason": "supplier_price_dispute"}}
+{"actor": "svc-catalog-importer", "action": "catalog.bulk_import_processed", "outcome": "success", "metadata": {"batch_id": "BATCH-4474", "item_count": "145", "source": "vendor_feed_alpine"}}
+{"actor": "tariq.hassan", "action": "catalog.variant_added", "outcome": "success", "metadata": {"sku": "CAT-20055", "variant_sku": "CAT-20055-LRG", "attribute": "size"}}
+{"actor": "yuki.sato", "action": "catalog.description_updated", "outcome": "success", "metadata": {"sku": "CAT-20050", "locale": "ja-JP", "editor_id": "EMP-766"}}
+{"actor": "isabella.conti", "action": "catalog.item_created", "outcome": "success", "metadata": {"sku": "CAT-20066", "category": "electronics", "editor_id": "EMP-758"}}
+{"actor": "peter.van_dijk", "action": "catalog.item_updated", "outcome": "success", "metadata": {"sku": "CAT-20066", "field": "price_tier", "editor_id": "EMP-760"}}
+{"actor": "olga.petrova", "action": "catalog.item_archived", "outcome": "success", "metadata": {"sku": "CAT-19933", "reason": "duplicate_listing"}}
+{"actor": "david.nguyen", "action": "catalog.price_changed", "outcome": "success", "metadata": {"sku": "CAT-20017", "old_price": "55.00", "new_price": "49.99", "currency": "USD"}}
+{"actor": "chinwe.okoro", "action": "catalog.image_updated", "outcome": "success", "metadata": {"sku": "CAT-20066", "locale": "en-US", "editor_id": "EMP-748"}}
+{"actor": "liam.fitzgerald", "action": "catalog.category_assigned", "outcome": "success", "metadata": {"sku": "CAT-20066", "category": "electronics"}}
+{"actor": "sara.abbasi", "action": "catalog.attribute_updated", "outcome": "failed", "metadata": {"sku": "CAT-20061", "field": "warranty_months", "editor_id": "EMP-755"}}
+{"actor": "svc-catalog-importer", "action": "catalog.item_published", "outcome": "success", "metadata": {"sku": "CAT-20066", "locale": "en-US"}}
+{"actor": "tariq.hassan", "action": "catalog.item_unpublished", "outcome": "success", "metadata": {"sku": "CAT-19901", "reason": "duplicate_listing"}}
+{"actor": "yuki.sato", "action": "catalog.bulk_import_processed", "outcome": "success", "metadata": {"batch_id": "BATCH-4475", "item_count": "97", "source": "vendor_feed_northwind"}}
+{"actor": "isabella.conti", "action": "catalog.variant_added", "outcome": "success", "metadata": {"sku": "CAT-20061", "variant_sku": "CAT-20061-GRN", "attribute": "color"}}
+{"actor": "peter.van_dijk", "action": "catalog.description_updated", "outcome": "success", "metadata": {"sku": "CAT-20055", "locale": "fr-FR", "editor_id": "EMP-760"}}
+{"actor": "olga.petrova", "action": "catalog.item_created", "outcome": "success", "metadata": {"sku": "CAT-20072", "category": "home_improvement", "editor_id": "EMP-771"}}
+{"actor": "david.nguyen", "action": "catalog.item_updated", "outcome": "success", "metadata": {"sku": "CAT-20072", "field": "title", "editor_id": "EMP-742"}}
+{"actor": "chinwe.okoro", "action": "catalog.item_archived", "outcome": "success", "metadata": {"sku": "CAT-19920", "reason": "seasonal_delisting"}}
+{"actor": "liam.fitzgerald", "action": "catalog.price_changed", "outcome": "success", "metadata": {"sku": "CAT-20066", "old_price": "310.00", "new_price": "279.00", "currency": "USD"}}
+{"actor": "sara.abbasi", "action": "catalog.image_updated", "outcome": "success", "metadata": {"sku": "CAT-20072", "locale": "en-US", "editor_id": "EMP-755"}}
+{"actor": "svc-catalog-importer", "action": "catalog.category_assigned", "outcome": "success", "metadata": {"sku": "CAT-20072", "category": "home_improvement"}}
+{"actor": "tariq.hassan", "action": "catalog.attribute_updated", "outcome": "success", "metadata": {"sku": "CAT-20066", "field": "screen_size", "editor_id": "EMP-763"}}
+{"actor": "yuki.sato", "action": "catalog.item_published", "outcome": "success", "metadata": {"sku": "CAT-20072", "locale": "en-US"}}
+{"actor": "isabella.conti", "action": "catalog.item_unpublished", "outcome": "success", "metadata": {"sku": "CAT-19942", "reason": "regulatory_recall"}}
+{"actor": "peter.van_dijk", "action": "catalog.bulk_import_processed", "outcome": "success", "metadata": {"batch_id": "BATCH-4476", "item_count": "260", "source": "vendor_feed_alpine"}}
+{"actor": "olga.petrova", "action": "catalog.variant_added", "outcome": "success", "metadata": {"sku": "CAT-20066", "variant_sku": "CAT-20066-256GB", "attribute": "storage"}}
+{"actor": "david.nguyen", "action": "catalog.description_updated", "outcome": "success", "metadata": {"sku": "CAT-20061", "locale": "en-US", "editor_id": "EMP-742"}}
+{"actor": "chinwe.okoro", "action": "catalog.item_created", "outcome": "success", "metadata": {"sku": "CAT-20078", "category": "kitchen", "editor_id": "EMP-748"}}
+{"actor": "liam.fitzgerald", "action": "catalog.item_updated", "outcome": "success", "metadata": {"sku": "CAT-20078", "field": "description", "editor_id": "EMP-751"}}
+{"actor": "sara.abbasi", "action": "catalog.item_archived", "outcome": "success", "metadata": {"sku": "CAT-19910", "reason": "supplier_price_dispute"}}
+{"actor": "svc-catalog-importer", "action": "catalog.price_changed", "outcome": "success", "metadata": {"sku": "CAT-20072", "old_price": "18.00", "new_price": "15.50", "currency": "USD"}}
+{"actor": "tariq.hassan", "action": "catalog.image_updated", "outcome": "success", "metadata": {"sku": "CAT-20078", "locale": "en-US", "editor_id": "EMP-763"}}
+{"actor": "yuki.sato", "action": "catalog.category_assigned", "outcome": "success", "metadata": {"sku": "CAT-20078", "category": "kitchen"}}
+{"actor": "isabella.conti", "action": "catalog.attribute_updated", "outcome": "success", "metadata": {"sku": "CAT-20072", "field": "finish", "editor_id": "EMP-758"}}
+{"actor": "peter.van_dijk", "action": "catalog.item_published", "outcome": "success", "metadata": {"sku": "CAT-20078", "locale": "en-US"}}
+{"actor": "olga.petrova", "action": "catalog.item_unpublished", "outcome": "success", "metadata": {"sku": "CAT-19920", "reason": "seasonal_delisting"}}
+{"actor": "david.nguyen", "action": "catalog.bulk_import_processed", "outcome": "failed", "metadata": {"batch_id": "BATCH-4477", "item_count": "0", "source": "vendor_feed_northwind"}}
+{"actor": "chinwe.okoro", "action": "catalog.variant_added", "outcome": "success", "metadata": {"sku": "CAT-20078", "variant_sku": "CAT-20078-SET2", "attribute": "bundle_size"}}
+{"actor": "liam.fitzgerald", "action": "catalog.description_updated", "outcome": "success", "metadata": {"sku": "CAT-20066", "locale": "de-DE", "editor_id": "EMP-751"}}
+{"actor": "sara.abbasi", "action": "catalog.item_created", "outcome": "success", "metadata": {"sku": "CAT-20083", "category": "outdoor", "editor_id": "EMP-755"}}
+{"actor": "svc-catalog-importer", "action": "catalog.item_updated", "outcome": "success", "metadata": {"sku": "CAT-20083", "field": "brand", "editor_id": "EMP-700"}}
+{"actor": "tariq.hassan", "action": "catalog.item_archived", "outcome": "success", "metadata": {"sku": "CAT-19899", "reason": "discontinued_by_vendor"}}
+{"actor": "yuki.sato", "action": "catalog.price_changed", "outcome": "success", "metadata": {"sku": "CAT-20078", "old_price": "24.99", "new_price": "21.99", "currency": "USD"}}
+{"actor": "isabella.conti", "action": "catalog.image_updated", "outcome": "success", "metadata": {"sku": "CAT-20083", "locale": "en-US", "editor_id": "EMP-758"}}
+{"actor": "peter.van_dijk", "action": "catalog.category_assigned", "outcome": "success", "metadata": {"sku": "CAT-20083", "category": "outdoor"}}
+{"actor": "olga.petrova", "action": "catalog.attribute_updated", "outcome": "success", "metadata": {"sku": "CAT-20078", "field": "material", "editor_id": "EMP-771"}}
+{"actor": "david.nguyen", "action": "catalog.item_published", "outcome": "success", "metadata": {"sku": "CAT-20083", "locale": "en-US"}}
+{"actor": "chinwe.okoro", "action": "catalog.item_unpublished", "outcome": "success", "metadata": {"sku": "CAT-19899", "reason": "discontinued_by_vendor"}}
+{"actor": "liam.fitzgerald", "action": "catalog.bulk_import_processed", "outcome": "success", "metadata": {"batch_id": "BATCH-4478", "item_count": "180", "source": "vendor_feed_alpine"}}
+{"actor": "sara.abbasi", "action": "catalog.variant_added", "outcome": "success", "metadata": {"sku": "CAT-20083", "variant_sku": "CAT-20083-XL", "attribute": "size"}}
+{"actor": "svc-catalog-importer", "action": "catalog.description_updated", "outcome": "success", "metadata": {"sku": "CAT-20078", "locale": "en-US", "editor_id": "EMP-700"}}
+{"actor": "tariq.hassan", "action": "catalog.item_created", "outcome": "success", "metadata": {"sku": "CAT-20089", "category": "electronics", "editor_id": "EMP-763"}}
+{"actor": "yuki.sato", "action": "catalog.item_updated", "outcome": "success", "metadata": {"sku": "CAT-20089", "field": "title", "editor_id": "EMP-766"}}
+{"actor": "isabella.conti", "action": "catalog.item_archived", "outcome": "success", "metadata": {"sku": "CAT-19877", "reason": "regulatory_recall"}}
+{"actor": "peter.van_dijk", "action": "catalog.price_changed", "outcome": "success", "metadata": {"sku": "CAT-20083", "old_price": "64.00", "new_price": "59.00", "currency": "USD"}}
+{"actor": "olga.petrova", "action": "catalog.image_updated", "outcome": "success", "metadata": {"sku": "CAT-20089", "locale": "en-US", "editor_id": "EMP-771"}}
+{"actor": "david.nguyen", "action": "catalog.category_assigned", "outcome": "success", "metadata": {"sku": "CAT-20089", "category": "electronics"}}
+{"actor": "chinwe.okoro", "action": "catalog.attribute_updated", "outcome": "success", "metadata": {"sku": "CAT-20083", "field": "material", "editor_id": "EMP-748"}}
+{"actor": "liam.fitzgerald", "action": "catalog.item_published", "outcome": "success", "metadata": {"sku": "CAT-20089", "locale": "en-US"}}
+{"actor": "sara.abbasi", "action": "catalog.item_unpublished", "outcome": "success", "metadata": {"sku": "CAT-19877", "reason": "regulatory_recall"}}
+{"actor": "svc-catalog-importer", "action": "catalog.bulk_import_processed", "outcome": "success", "metadata": {"batch_id": "BATCH-4479", "item_count": "132", "source": "vendor_feed_northwind"}}
+{"actor": "tariq.hassan", "action": "catalog.variant_added", "outcome": "success", "metadata": {"sku": "CAT-20089", "variant_sku": "CAT-20089-128GB", "attribute": "storage"}}
+{"actor": "yuki.sato", "action": "catalog.description_updated", "outcome": "success", "metadata": {"sku": "CAT-20083", "locale": "es-ES", "editor_id": "EMP-766"}}
+{"actor": "isabella.conti", "action": "catalog.item_created", "outcome": "success", "metadata": {"sku": "CAT-20094", "category": "kitchen", "editor_id": "EMP-758"}}
+{"actor": "peter.van_dijk", "action": "catalog.item_updated", "outcome": "success", "metadata": {"sku": "CAT-20094", "field": "price_tier", "editor_id": "EMP-760"}}
+{"actor": "olga.petrova", "action": "catalog.item_archived", "outcome": "success", "metadata": {"sku": "CAT-19860", "reason": "duplicate_listing"}}
+{"actor": "david.nguyen", "action": "catalog.price_changed", "outcome": "success", "metadata": {"sku": "CAT-20089", "old_price": "899.00", "new_price": "849.00", "currency": "USD"}}
+{"actor": "chinwe.okoro", "action": "catalog.image_updated", "outcome": "success", "metadata": {"sku": "CAT-20094", "locale": "en-US", "editor_id": "EMP-748"}}
+{"actor": "liam.fitzgerald", "action": "catalog.category_assigned", "outcome": "success", "metadata": {"sku": "CAT-20094", "category": "kitchen"}}
+{"actor": "sara.abbasi", "action": "catalog.attribute_updated", "outcome": "success", "metadata": {"sku": "CAT-20089", "field": "warranty_months", "editor_id": "EMP-755"}}
+{"actor": "svc-catalog-importer", "action": "catalog.item_published", "outcome": "success", "metadata": {"sku": "CAT-20094", "locale": "en-US"}}
+{"actor": "tariq.hassan", "action": "catalog.item_unpublished", "outcome": "success", "metadata": {"sku": "CAT-19860", "reason": "duplicate_listing"}}
+{"actor": "yuki.sato", "action": "catalog.bulk_import_processed", "outcome": "success", "metadata": {"batch_id": "BATCH-4480", "item_count": "77", "source": "vendor_feed_alpine"}}
+{"actor": "isabella.conti", "action": "catalog.variant_added", "outcome": "success", "metadata": {"sku": "CAT-20094", "variant_sku": "CAT-20094-SET4", "attribute": "bundle_size"}}
+{"actor": "peter.van_dijk", "action": "catalog.description_updated", "outcome": "success", "metadata": {"sku": "CAT-20089", "locale": "fr-FR", "editor_id": "EMP-760"}}

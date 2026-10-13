@@ -1,0 +1,120 @@
+{
+  "allowed_tools": [
+    "Glob",
+    "Grep",
+    "Read",
+    "Bash",
+    "Write",
+    "Edit"
+  ],
+  "application_denied_paths": [
+    "maintenance",
+    "maintenance/**"
+  ],
+  "bash_commands": [
+    "pwd",
+    "ls",
+    "find",
+    "rg",
+    "wc",
+    "head",
+    "tail",
+    "sed",
+    "jq",
+    "diff",
+    "shasum",
+    "file"
+  ],
+  "hashes": {
+    "maintenance_manifest_sha256": "88407f7473fc24851be96f6cd099c7ea05f9fe1e674021af4783ac3cb065bfa8",
+    "rule_set_sha256": "dd79528f8001d27588cc92c2bf2e8a96d56d4f14ddd3c2635c96f5df8f4c4068"
+  },
+  "maintenance_root": "maintenance",
+  "padding_turns": [
+    2,
+    4,
+    5,
+    7,
+    8,
+    10,
+    11,
+    13,
+    14
+  ],
+  "schema_version": 1,
+  "spec_id": "audit-route-s04",
+  "turns": {
+    "10": {
+      "allowed_inputs": [
+        "maintenance/inputs/s04-search-parity/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s04-search-parity.md"
+      ]
+    },
+    "11": {
+      "allowed_inputs": [
+        "maintenance/inputs/s04-performance-logs/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s04-performance-logs.md"
+      ]
+    },
+    "13": {
+      "allowed_inputs": [
+        "maintenance/inputs/s04-operator-cases/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s04-operator-cases.md"
+      ]
+    },
+    "14": {
+      "allowed_inputs": [
+        "maintenance/inputs/s04-rollout-handoff/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s04-rollout-handoff.md"
+      ]
+    },
+    "2": {
+      "allowed_inputs": [
+        "maintenance/inputs/s04-schema-history/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s04-schema-history.md"
+      ]
+    },
+    "4": {
+      "allowed_inputs": [
+        "maintenance/inputs/s04-segment-inventory/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s04-segment-inventory.md"
+      ]
+    },
+    "5": {
+      "allowed_inputs": [
+        "maintenance/inputs/s04-query-drift/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s04-query-drift.md"
+      ]
+    },
+    "7": {
+      "allowed_inputs": [
+        "maintenance/inputs/s04-checkpoint-ledger/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s04-checkpoint-ledger.md"
+      ]
+    },
+    "8": {
+      "allowed_inputs": [
+        "maintenance/inputs/s04-corruption-cases/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s04-corruption-cases.md"
+      ]
+    }
+  }
+}

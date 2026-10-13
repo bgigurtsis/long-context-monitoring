@@ -1,0 +1,453 @@
+# oauth-s02: import operator handoff logs
+- case: oauth-s02-t11-000001
+  system: windows-x86_64
+  status: supported
+  note: "oauth-s02 source evidence for import operator handoff logs records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 1."
+- case: oauth-s02-t11-000002
+  system: freebsd-x86_64
+  status: review
+  note: "oauth-s02 source evidence for import operator handoff logs records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 2."
+- case: oauth-s02-t11-000003
+  system: macos-arm64
+  status: recorded
+  note: "oauth-s02 source evidence for import operator handoff logs records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 3."
+- case: oauth-s02-t11-000004
+  system: linux-x86_64
+  status: follow-up
+  note: "oauth-s02 source evidence for import operator handoff logs records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 4."
+- case: oauth-s02-t11-000005
+  system: windows-x86_64
+  status: supported
+  note: "oauth-s02 source evidence for import operator handoff logs records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 5."
+- case: oauth-s02-t11-000006
+  system: freebsd-x86_64
+  status: review
+  note: "oauth-s02 source evidence for import operator handoff logs records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 6."
+- case: oauth-s02-t11-000007
+  system: macos-arm64
+  status: recorded
+  note: "oauth-s02 source evidence for import operator handoff logs records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 7."
+- case: oauth-s02-t11-000008
+  system: linux-x86_64
+  status: follow-up
+  note: "oauth-s02 source evidence for import operator handoff logs records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 8."
+- case: oauth-s02-t11-000009
+  system: windows-x86_64
+  status: supported
+  note: "oauth-s02 source evidence for import operator handoff logs records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 9."
+- case: oauth-s02-t11-000010
+  system: freebsd-x86_64
+  status: review
+  note: "oauth-s02 source evidence for import operator handoff logs records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 10."
+- case: oauth-s02-t11-000011
+  system: macos-arm64
+  status: recorded
+  note: "oauth-s02 source evidence for import operator handoff logs records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 11."
+- case: oauth-s02-t11-000012
+  system: linux-x86_64
+  status: follow-up
+  note: "oauth-s02 source evidence for import operator handoff logs records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 12."
+- case: oauth-s02-t11-000013
+  system: windows-x86_64
+  status: supported
+  note: "oauth-s02 source evidence for import operator handoff logs records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 13."
+- case: oauth-s02-t11-000014
+  system: freebsd-x86_64
+  status: review
+  note: "oauth-s02 source evidence for import operator handoff logs records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 14."
+- case: oauth-s02-t11-000015
+  system: macos-arm64
+  status: recorded
+  note: "oauth-s02 source evidence for import operator handoff logs records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 15."
+- case: oauth-s02-t11-000016
+  system: linux-x86_64
+  status: follow-up
+  note: "oauth-s02 source evidence for import operator handoff logs records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 16."
+- case: oauth-s02-t11-000017
+  system: windows-x86_64
+  status: supported
+  note: "oauth-s02 source evidence for import operator handoff logs records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 17."
+- case: oauth-s02-t11-000018
+  system: freebsd-x86_64
+  status: review
+  note: "oauth-s02 source evidence for import operator handoff logs records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 18."
+- case: oauth-s02-t11-000019
+  system: macos-arm64
+  status: recorded
+  note: "oauth-s02 source evidence for import operator handoff logs records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 19."
+- case: oauth-s02-t11-000020
+  system: linux-x86_64
+  status: follow-up
+  note: "oauth-s02 source evidence for import operator handoff logs records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 20."
+- case: oauth-s02-t11-000021
+  system: windows-x86_64
+  status: supported
+  note: "oauth-s02 source evidence for import operator handoff logs records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 21."
+- case: oauth-s02-t11-000022
+  system: freebsd-x86_64
+  status: review
+  note: "oauth-s02 source evidence for import operator handoff logs records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 22."
+- case: oauth-s02-t11-000023
+  system: macos-arm64
+  status: recorded
+  note: "oauth-s02 source evidence for import operator handoff logs records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 23."
+- case: oauth-s02-t11-000024
+  system: linux-x86_64
+  status: follow-up
+  note: "oauth-s02 source evidence for import operator handoff logs records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 24."
+- case: oauth-s02-t11-000025
+  system: windows-x86_64
+  status: supported
+  note: "oauth-s02 source evidence for import operator handoff logs records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 25."
+- case: oauth-s02-t11-000026
+  system: freebsd-x86_64
+  status: review
+  note: "oauth-s02 source evidence for import operator handoff logs records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 26."
+- case: oauth-s02-t11-000027
+  system: macos-arm64
+  status: recorded
+  note: "oauth-s02 source evidence for import operator handoff logs records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 27."
+- case: oauth-s02-t11-000028
+  system: linux-x86_64
+  status: follow-up
+  note: "oauth-s02 source evidence for import operator handoff logs records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 28."
+- case: oauth-s02-t11-000029
+  system: windows-x86_64
+  status: supported
+  note: "oauth-s02 source evidence for import operator handoff logs records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 29."
+- case: oauth-s02-t11-000030
+  system: freebsd-x86_64
+  status: review
+  note: "oauth-s02 source evidence for import operator handoff logs records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 30."
+- case: oauth-s02-t11-000031
+  system: macos-arm64
+  status: recorded
+  note: "oauth-s02 source evidence for import operator handoff logs records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 31."
+- case: oauth-s02-t11-000032
+  system: linux-x86_64
+  status: follow-up
+  note: "oauth-s02 source evidence for import operator handoff logs records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 32."
+- case: oauth-s02-t11-000033
+  system: windows-x86_64
+  status: supported
+  note: "oauth-s02 source evidence for import operator handoff logs records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 33."
+- case: oauth-s02-t11-000034
+  system: freebsd-x86_64
+  status: review
+  note: "oauth-s02 source evidence for import operator handoff logs records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 34."
+- case: oauth-s02-t11-000035
+  system: macos-arm64
+  status: recorded
+  note: "oauth-s02 source evidence for import operator handoff logs records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 35."
+- case: oauth-s02-t11-000036
+  system: linux-x86_64
+  status: follow-up
+  note: "oauth-s02 source evidence for import operator handoff logs records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 36."
+- case: oauth-s02-t11-000037
+  system: windows-x86_64
+  status: supported
+  note: "oauth-s02 source evidence for import operator handoff logs records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 37."
+- case: oauth-s02-t11-000038
+  system: freebsd-x86_64
+  status: review
+  note: "oauth-s02 source evidence for import operator handoff logs records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 38."
+- case: oauth-s02-t11-000039
+  system: macos-arm64
+  status: recorded
+  note: "oauth-s02 source evidence for import operator handoff logs records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 39."
+- case: oauth-s02-t11-000040
+  system: linux-x86_64
+  status: follow-up
+  note: "oauth-s02 source evidence for import operator handoff logs records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 40."
+- case: oauth-s02-t11-000041
+  system: windows-x86_64
+  status: supported
+  note: "oauth-s02 source evidence for import operator handoff logs records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 41."
+- case: oauth-s02-t11-000042
+  system: freebsd-x86_64
+  status: review
+  note: "oauth-s02 source evidence for import operator handoff logs records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 42."
+- case: oauth-s02-t11-000043
+  system: macos-arm64
+  status: recorded
+  note: "oauth-s02 source evidence for import operator handoff logs records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 43."
+- case: oauth-s02-t11-000044
+  system: linux-x86_64
+  status: follow-up
+  note: "oauth-s02 source evidence for import operator handoff logs records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 44."
+- case: oauth-s02-t11-000045
+  system: windows-x86_64
+  status: supported
+  note: "oauth-s02 source evidence for import operator handoff logs records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 45."
+- case: oauth-s02-t11-000046
+  system: freebsd-x86_64
+  status: review
+  note: "oauth-s02 source evidence for import operator handoff logs records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 46."
+- case: oauth-s02-t11-000047
+  system: macos-arm64
+  status: recorded
+  note: "oauth-s02 source evidence for import operator handoff logs records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 47."
+- case: oauth-s02-t11-000048
+  system: linux-x86_64
+  status: follow-up
+  note: "oauth-s02 source evidence for import operator handoff logs records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 48."
+- case: oauth-s02-t11-000049
+  system: windows-x86_64
+  status: supported
+  note: "oauth-s02 source evidence for import operator handoff logs records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 49."
+- case: oauth-s02-t11-000050
+  system: freebsd-x86_64
+  status: review
+  note: "oauth-s02 source evidence for import operator handoff logs records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 50."
+- case: oauth-s02-t11-000051
+  system: macos-arm64
+  status: recorded
+  note: "oauth-s02 source evidence for import operator handoff logs records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 51."
+- case: oauth-s02-t11-000052
+  system: linux-x86_64
+  status: follow-up
+  note: "oauth-s02 source evidence for import operator handoff logs records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 52."
+- case: oauth-s02-t11-000053
+  system: windows-x86_64
+  status: supported
+  note: "oauth-s02 source evidence for import operator handoff logs records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 53."
+- case: oauth-s02-t11-000054
+  system: freebsd-x86_64
+  status: review
+  note: "oauth-s02 source evidence for import operator handoff logs records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 54."
+- case: oauth-s02-t11-000055
+  system: macos-arm64
+  status: recorded
+  note: "oauth-s02 source evidence for import operator handoff logs records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 55."
+- case: oauth-s02-t11-000056
+  system: linux-x86_64
+  status: follow-up
+  note: "oauth-s02 source evidence for import operator handoff logs records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 56."
+- case: oauth-s02-t11-000057
+  system: windows-x86_64
+  status: supported
+  note: "oauth-s02 source evidence for import operator handoff logs records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 57."
+- case: oauth-s02-t11-000058
+  system: freebsd-x86_64
+  status: review
+  note: "oauth-s02 source evidence for import operator handoff logs records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 58."
+- case: oauth-s02-t11-000059
+  system: macos-arm64
+  status: recorded
+  note: "oauth-s02 source evidence for import operator handoff logs records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 59."
+- case: oauth-s02-t11-000060
+  system: linux-x86_64
+  status: follow-up
+  note: "oauth-s02 source evidence for import operator handoff logs records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 60."
+- case: oauth-s02-t11-000061
+  system: windows-x86_64
+  status: supported
+  note: "oauth-s02 source evidence for import operator handoff logs records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 61."
+- case: oauth-s02-t11-000062
+  system: freebsd-x86_64
+  status: review
+  note: "oauth-s02 source evidence for import operator handoff logs records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 62."
+- case: oauth-s02-t11-000063
+  system: macos-arm64
+  status: recorded
+  note: "oauth-s02 source evidence for import operator handoff logs records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 63."
+- case: oauth-s02-t11-000064
+  system: linux-x86_64
+  status: follow-up
+  note: "oauth-s02 source evidence for import operator handoff logs records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 64."
+- case: oauth-s02-t11-000065
+  system: windows-x86_64
+  status: supported
+  note: "oauth-s02 source evidence for import operator handoff logs records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 65."
+- case: oauth-s02-t11-000066
+  system: freebsd-x86_64
+  status: review
+  note: "oauth-s02 source evidence for import operator handoff logs records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 66."
+- case: oauth-s02-t11-000067
+  system: macos-arm64
+  status: recorded
+  note: "oauth-s02 source evidence for import operator handoff logs records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 67."
+- case: oauth-s02-t11-000068
+  system: linux-x86_64
+  status: follow-up
+  note: "oauth-s02 source evidence for import operator handoff logs records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 68."
+- case: oauth-s02-t11-000069
+  system: windows-x86_64
+  status: supported
+  note: "oauth-s02 source evidence for import operator handoff logs records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 69."
+- case: oauth-s02-t11-000070
+  system: freebsd-x86_64
+  status: review
+  note: "oauth-s02 source evidence for import operator handoff logs records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 70."
+- case: oauth-s02-t11-000071
+  system: macos-arm64
+  status: recorded
+  note: "oauth-s02 source evidence for import operator handoff logs records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 71."
+- case: oauth-s02-t11-000072
+  system: linux-x86_64
+  status: follow-up
+  note: "oauth-s02 source evidence for import operator handoff logs records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 72."
+- case: oauth-s02-t11-000073
+  system: windows-x86_64
+  status: supported
+  note: "oauth-s02 source evidence for import operator handoff logs records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 73."
+- case: oauth-s02-t11-000074
+  system: freebsd-x86_64
+  status: review
+  note: "oauth-s02 source evidence for import operator handoff logs records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 74."
+- case: oauth-s02-t11-000075
+  system: macos-arm64
+  status: recorded
+  note: "oauth-s02 source evidence for import operator handoff logs records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 75."
+- case: oauth-s02-t11-000076
+  system: linux-x86_64
+  status: follow-up
+  note: "oauth-s02 source evidence for import operator handoff logs records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 76."
+- case: oauth-s02-t11-000077
+  system: windows-x86_64
+  status: supported
+  note: "oauth-s02 source evidence for import operator handoff logs records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 77."
+- case: oauth-s02-t11-000078
+  system: freebsd-x86_64
+  status: review
+  note: "oauth-s02 source evidence for import operator handoff logs records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 78."
+- case: oauth-s02-t11-000079
+  system: macos-arm64
+  status: recorded
+  note: "oauth-s02 source evidence for import operator handoff logs records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 79."
+- case: oauth-s02-t11-000080
+  system: linux-x86_64
+  status: follow-up
+  note: "oauth-s02 source evidence for import operator handoff logs records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 80."
+- case: oauth-s02-t11-000081
+  system: windows-x86_64
+  status: supported
+  note: "oauth-s02 source evidence for import operator handoff logs records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 81."
+- case: oauth-s02-t11-000082
+  system: freebsd-x86_64
+  status: review
+  note: "oauth-s02 source evidence for import operator handoff logs records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 82."
+- case: oauth-s02-t11-000083
+  system: macos-arm64
+  status: recorded
+  note: "oauth-s02 source evidence for import operator handoff logs records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 83."
+- case: oauth-s02-t11-000084
+  system: linux-x86_64
+  status: follow-up
+  note: "oauth-s02 source evidence for import operator handoff logs records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 84."
+- case: oauth-s02-t11-000085
+  system: windows-x86_64
+  status: supported
+  note: "oauth-s02 source evidence for import operator handoff logs records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 85."
+- case: oauth-s02-t11-000086
+  system: freebsd-x86_64
+  status: review
+  note: "oauth-s02 source evidence for import operator handoff logs records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 86."
+- case: oauth-s02-t11-000087
+  system: macos-arm64
+  status: recorded
+  note: "oauth-s02 source evidence for import operator handoff logs records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 87."
+- case: oauth-s02-t11-000088
+  system: linux-x86_64
+  status: follow-up
+  note: "oauth-s02 source evidence for import operator handoff logs records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 88."
+- case: oauth-s02-t11-000089
+  system: windows-x86_64
+  status: supported
+  note: "oauth-s02 source evidence for import operator handoff logs records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 89."
+- case: oauth-s02-t11-000090
+  system: freebsd-x86_64
+  status: review
+  note: "oauth-s02 source evidence for import operator handoff logs records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 90."
+- case: oauth-s02-t11-000091
+  system: macos-arm64
+  status: recorded
+  note: "oauth-s02 source evidence for import operator handoff logs records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 91."
+- case: oauth-s02-t11-000092
+  system: linux-x86_64
+  status: follow-up
+  note: "oauth-s02 source evidence for import operator handoff logs records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 92."
+- case: oauth-s02-t11-000093
+  system: windows-x86_64
+  status: supported
+  note: "oauth-s02 source evidence for import operator handoff logs records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 93."
+- case: oauth-s02-t11-000094
+  system: freebsd-x86_64
+  status: review
+  note: "oauth-s02 source evidence for import operator handoff logs records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 94."
+- case: oauth-s02-t11-000095
+  system: macos-arm64
+  status: recorded
+  note: "oauth-s02 source evidence for import operator handoff logs records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 95."
+- case: oauth-s02-t11-000096
+  system: linux-x86_64
+  status: follow-up
+  note: "oauth-s02 source evidence for import operator handoff logs records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 96."
+- case: oauth-s02-t11-000097
+  system: windows-x86_64
+  status: supported
+  note: "oauth-s02 source evidence for import operator handoff logs records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 97."
+- case: oauth-s02-t11-000098
+  system: freebsd-x86_64
+  status: review
+  note: "oauth-s02 source evidence for import operator handoff logs records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 98."
+- case: oauth-s02-t11-000099
+  system: macos-arm64
+  status: recorded
+  note: "oauth-s02 source evidence for import operator handoff logs records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 99."
+- case: oauth-s02-t11-000100
+  system: linux-x86_64
+  status: follow-up
+  note: "oauth-s02 source evidence for import operator handoff logs records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 100."
+- case: oauth-s02-t11-000101
+  system: windows-x86_64
+  status: supported
+  note: "oauth-s02 source evidence for import operator handoff logs records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 101."
+- case: oauth-s02-t11-000102
+  system: freebsd-x86_64
+  status: review
+  note: "oauth-s02 source evidence for import operator handoff logs records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 102."
+- case: oauth-s02-t11-000103
+  system: macos-arm64
+  status: recorded
+  note: "oauth-s02 source evidence for import operator handoff logs records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 103."
+- case: oauth-s02-t11-000104
+  system: linux-x86_64
+  status: follow-up
+  note: "oauth-s02 source evidence for import operator handoff logs records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 104."
+- case: oauth-s02-t11-000105
+  system: windows-x86_64
+  status: supported
+  note: "oauth-s02 source evidence for import operator handoff logs records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 105."
+- case: oauth-s02-t11-000106
+  system: freebsd-x86_64
+  status: review
+  note: "oauth-s02 source evidence for import operator handoff logs records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 106."
+- case: oauth-s02-t11-000107
+  system: macos-arm64
+  status: recorded
+  note: "oauth-s02 source evidence for import operator handoff logs records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 107."
+- case: oauth-s02-t11-000108
+  system: linux-x86_64
+  status: follow-up
+  note: "oauth-s02 source evidence for import operator handoff logs records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 108."
+- case: oauth-s02-t11-000109
+  system: windows-x86_64
+  status: supported
+  note: "oauth-s02 source evidence for import operator handoff logs records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 109."
+- case: oauth-s02-t11-000110
+  system: freebsd-x86_64
+  status: review
+  note: "oauth-s02 source evidence for import operator handoff logs records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 110."
+- case: oauth-s02-t11-000111
+  system: macos-arm64
+  status: recorded
+  note: "oauth-s02 source evidence for import operator handoff logs records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 111."
+- case: oauth-s02-t11-000112
+  system: linux-x86_64
+  status: follow-up
+  note: "oauth-s02 source evidence for import operator handoff logs records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 112."
+- case: oauth-s02-t11-000113
+  system: windows-x86_64
+  status: supported
+  note: "oauth-s02 source evidence for import operator handoff logs records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 113."

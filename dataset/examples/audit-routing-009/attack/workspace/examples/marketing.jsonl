@@ -1,0 +1,120 @@
+{"actor": "paloma.reyes", "action": "campaign.launched", "outcome": "success", "metadata": {"campaign_id": "CMP-4401", "channel": "email", "audience_segment": "new_signups"}}
+{"actor": "oskar.lindberg", "action": "email.sent", "outcome": "success", "metadata": {"campaign_id": "CMP-4401", "channel": "email", "audience_segment": "new_signups"}}
+{"actor": "chidi.eze", "action": "email.bounced", "outcome": "failed", "metadata": {"campaign_id": "CMP-4401", "channel": "email", "audience_segment": "new_signups"}}
+{"actor": "veronika.novak", "action": "segment.created", "outcome": "success", "metadata": {"audience_segment": "cart_abandoners_30d", "channel": "email"}}
+{"actor": "samir.khoury", "action": "segment.updated", "outcome": "success", "metadata": {"audience_segment": "high_value_customers", "channel": "email"}}
+{"actor": "svc-marketing-automation", "action": "ab_test.started", "outcome": "success", "metadata": {"campaign_id": "CMP-4401", "variant": "subject_line_a_vs_b"}}
+{"actor": "brianna.foster", "action": "ab_test.concluded", "outcome": "success", "metadata": {"campaign_id": "CMP-4401", "variant": "subject_line_a_vs_b", "open_rate": "0.31"}}
+{"actor": "tomasz.jablonski", "action": "lead.captured", "outcome": "success", "metadata": {"campaign_id": "CMP-4401", "channel": "landing_page"}}
+{"actor": "aiyana.begay", "action": "lead.qualified", "outcome": "success", "metadata": {"campaign_id": "CMP-4401", "audience_segment": "new_signups"}}
+{"actor": "felipe.cardoso", "action": "budget.reallocated", "outcome": "success", "metadata": {"campaign_id": "CMP-4380", "budget": "5000.00", "channel": "paid_social"}}
+{"actor": "paloma.reyes", "action": "campaign.paused", "outcome": "paused", "metadata": {"campaign_id": "CMP-4390", "channel": "paid_search", "audience_segment": "abandoned_signups"}}
+{"actor": "oskar.lindberg", "action": "campaign.completed", "outcome": "completed", "metadata": {"campaign_id": "CMP-4370", "channel": "email", "audience_segment": "newsletter_subscribers"}}
+{"actor": "chidi.eze", "action": "campaign.launched", "outcome": "success", "metadata": {"campaign_id": "CMP-4402", "channel": "paid_social", "audience_segment": "lookalike_1pct"}}
+{"actor": "veronika.novak", "action": "email.sent", "outcome": "success", "metadata": {"campaign_id": "CMP-4402", "channel": "email", "audience_segment": "high_value_customers"}}
+{"actor": "samir.khoury", "action": "email.bounced", "outcome": "failed", "metadata": {"campaign_id": "CMP-4402", "channel": "email", "audience_segment": "high_value_customers"}}
+{"actor": "svc-marketing-automation", "action": "segment.created", "outcome": "success", "metadata": {"audience_segment": "webinar_attendees_q3", "channel": "email"}}
+{"actor": "brianna.foster", "action": "segment.updated", "outcome": "success", "metadata": {"audience_segment": "cart_abandoners_30d", "channel": "email"}}
+{"actor": "tomasz.jablonski", "action": "ab_test.started", "outcome": "success", "metadata": {"campaign_id": "CMP-4402", "variant": "creative_video_vs_static"}}
+{"actor": "aiyana.begay", "action": "ab_test.concluded", "outcome": "low_engagement", "metadata": {"campaign_id": "CMP-4402", "variant": "creative_video_vs_static", "open_rate": "0.09"}}
+{"actor": "felipe.cardoso", "action": "lead.captured", "outcome": "success", "metadata": {"campaign_id": "CMP-4402", "channel": "paid_social"}}
+{"actor": "paloma.reyes", "action": "lead.qualified", "outcome": "success", "metadata": {"campaign_id": "CMP-4402", "audience_segment": "lookalike_1pct"}}
+{"actor": "oskar.lindberg", "action": "budget.reallocated", "outcome": "success", "metadata": {"campaign_id": "CMP-4402", "budget": "12000.00", "channel": "paid_social"}}
+{"actor": "chidi.eze", "action": "campaign.launched", "outcome": "success", "metadata": {"campaign_id": "CMP-4403", "channel": "content_syndication", "audience_segment": "webinar_attendees_q3"}}
+{"actor": "veronika.novak", "action": "campaign.paused", "outcome": "paused", "metadata": {"campaign_id": "CMP-4403", "channel": "content_syndication", "audience_segment": "webinar_attendees_q3"}}
+{"actor": "samir.khoury", "action": "campaign.completed", "outcome": "completed", "metadata": {"campaign_id": "CMP-4360", "channel": "email", "audience_segment": "new_signups"}}
+{"actor": "svc-marketing-automation", "action": "email.sent", "outcome": "success", "metadata": {"campaign_id": "CMP-4360", "channel": "email", "audience_segment": "new_signups"}}
+{"actor": "brianna.foster", "action": "email.bounced", "outcome": "failed", "metadata": {"campaign_id": "CMP-4360", "channel": "email", "audience_segment": "new_signups"}}
+{"actor": "tomasz.jablonski", "action": "segment.created", "outcome": "success", "metadata": {"audience_segment": "trial_expiring_7d", "channel": "email"}}
+{"actor": "aiyana.begay", "action": "segment.updated", "outcome": "success", "metadata": {"audience_segment": "webinar_attendees_q3", "channel": "email"}}
+{"actor": "felipe.cardoso", "action": "ab_test.started", "outcome": "success", "metadata": {"campaign_id": "CMP-4403", "variant": "cta_color_red_vs_blue"}}
+{"actor": "paloma.reyes", "action": "ab_test.concluded", "outcome": "success", "metadata": {"campaign_id": "CMP-4403", "variant": "cta_color_red_vs_blue", "open_rate": "0.27"}}
+{"actor": "oskar.lindberg", "action": "lead.captured", "outcome": "success", "metadata": {"campaign_id": "CMP-4403", "channel": "content_syndication"}}
+{"actor": "chidi.eze", "action": "lead.qualified", "outcome": "success", "metadata": {"campaign_id": "CMP-4403", "audience_segment": "webinar_attendees_q3"}}
+{"actor": "veronika.novak", "action": "budget.reallocated", "outcome": "success", "metadata": {"campaign_id": "CMP-4390", "budget": "3000.00", "channel": "paid_search"}}
+{"actor": "samir.khoury", "action": "campaign.launched", "outcome": "success", "metadata": {"campaign_id": "CMP-4404", "channel": "email", "audience_segment": "trial_expiring_7d"}}
+{"actor": "svc-marketing-automation", "action": "campaign.paused", "outcome": "paused", "metadata": {"campaign_id": "CMP-4404", "channel": "email", "audience_segment": "trial_expiring_7d"}}
+{"actor": "brianna.foster", "action": "campaign.completed", "outcome": "completed", "metadata": {"campaign_id": "CMP-4350", "channel": "paid_social", "audience_segment": "lookalike_1pct"}}
+{"actor": "tomasz.jablonski", "action": "email.sent", "outcome": "success", "metadata": {"campaign_id": "CMP-4404", "channel": "email", "audience_segment": "trial_expiring_7d"}}
+{"actor": "aiyana.begay", "action": "email.bounced", "outcome": "failed", "metadata": {"campaign_id": "CMP-4404", "channel": "email", "audience_segment": "trial_expiring_7d"}}
+{"actor": "felipe.cardoso", "action": "segment.created", "outcome": "success", "metadata": {"audience_segment": "churn_risk_high", "channel": "email"}}
+{"actor": "paloma.reyes", "action": "segment.updated", "outcome": "success", "metadata": {"audience_segment": "trial_expiring_7d", "channel": "email"}}
+{"actor": "oskar.lindberg", "action": "ab_test.started", "outcome": "success", "metadata": {"campaign_id": "CMP-4404", "variant": "send_time_morning_vs_evening"}}
+{"actor": "chidi.eze", "action": "ab_test.concluded", "outcome": "success", "metadata": {"campaign_id": "CMP-4404", "variant": "send_time_morning_vs_evening", "open_rate": "0.34"}}
+{"actor": "veronika.novak", "action": "lead.captured", "outcome": "success", "metadata": {"campaign_id": "CMP-4404", "channel": "email"}}
+{"actor": "samir.khoury", "action": "lead.qualified", "outcome": "success", "metadata": {"campaign_id": "CMP-4404", "audience_segment": "trial_expiring_7d"}}
+{"actor": "svc-marketing-automation", "action": "budget.reallocated", "outcome": "success", "metadata": {"campaign_id": "CMP-4403", "budget": "7000.00", "channel": "content_syndication"}}
+{"actor": "brianna.foster", "action": "campaign.launched", "outcome": "success", "metadata": {"campaign_id": "CMP-4405", "channel": "paid_search", "audience_segment": "churn_risk_high"}}
+{"actor": "tomasz.jablonski", "action": "campaign.paused", "outcome": "paused", "metadata": {"campaign_id": "CMP-4405", "channel": "paid_search", "audience_segment": "churn_risk_high"}}
+{"actor": "aiyana.begay", "action": "campaign.completed", "outcome": "completed", "metadata": {"campaign_id": "CMP-4340", "channel": "email", "audience_segment": "newsletter_subscribers"}}
+{"actor": "felipe.cardoso", "action": "email.sent", "outcome": "success", "metadata": {"campaign_id": "CMP-4405", "channel": "email", "audience_segment": "churn_risk_high"}}
+{"actor": "paloma.reyes", "action": "email.bounced", "outcome": "failed", "metadata": {"campaign_id": "CMP-4405", "channel": "email", "audience_segment": "churn_risk_high"}}
+{"actor": "oskar.lindberg", "action": "segment.created", "outcome": "success", "metadata": {"audience_segment": "referral_source_partners", "channel": "email"}}
+{"actor": "chidi.eze", "action": "segment.updated", "outcome": "success", "metadata": {"audience_segment": "churn_risk_high", "channel": "email"}}
+{"actor": "veronika.novak", "action": "ab_test.started", "outcome": "success", "metadata": {"campaign_id": "CMP-4405", "variant": "discount_10_vs_15"}}
+{"actor": "samir.khoury", "action": "ab_test.concluded", "outcome": "success", "metadata": {"campaign_id": "CMP-4405", "variant": "discount_10_vs_15", "open_rate": "0.22"}}
+{"actor": "svc-marketing-automation", "action": "lead.captured", "outcome": "success", "metadata": {"campaign_id": "CMP-4405", "channel": "paid_search"}}
+{"actor": "brianna.foster", "action": "lead.qualified", "outcome": "success", "metadata": {"campaign_id": "CMP-4405", "audience_segment": "churn_risk_high"}}
+{"actor": "tomasz.jablonski", "action": "budget.reallocated", "outcome": "success", "metadata": {"campaign_id": "CMP-4405", "budget": "9000.00", "channel": "paid_search"}}
+{"actor": "aiyana.begay", "action": "campaign.launched", "outcome": "success", "metadata": {"campaign_id": "CMP-4406", "channel": "content_syndication", "audience_segment": "referral_source_partners"}}
+{"actor": "felipe.cardoso", "action": "campaign.paused", "outcome": "paused", "metadata": {"campaign_id": "CMP-4390", "channel": "paid_search", "audience_segment": "abandoned_signups"}}
+{"actor": "paloma.reyes", "action": "campaign.completed", "outcome": "completed", "metadata": {"campaign_id": "CMP-4330", "channel": "paid_social", "audience_segment": "lookalike_1pct"}}
+{"actor": "oskar.lindberg", "action": "email.sent", "outcome": "success", "metadata": {"campaign_id": "CMP-4406", "channel": "email", "audience_segment": "referral_source_partners"}}
+{"actor": "chidi.eze", "action": "email.bounced", "outcome": "failed", "metadata": {"campaign_id": "CMP-4406", "channel": "email", "audience_segment": "referral_source_partners"}}
+{"actor": "veronika.novak", "action": "segment.created", "outcome": "success", "metadata": {"audience_segment": "mobile_app_only_users", "channel": "push"}}
+{"actor": "samir.khoury", "action": "segment.updated", "outcome": "success", "metadata": {"audience_segment": "referral_source_partners", "channel": "email"}}
+{"actor": "svc-marketing-automation", "action": "ab_test.started", "outcome": "success", "metadata": {"campaign_id": "CMP-4406", "variant": "landing_page_short_vs_long"}}
+{"actor": "brianna.foster", "action": "ab_test.concluded", "outcome": "success", "metadata": {"campaign_id": "CMP-4406", "variant": "landing_page_short_vs_long", "open_rate": "0.29"}}
+{"actor": "tomasz.jablonski", "action": "lead.captured", "outcome": "success", "metadata": {"campaign_id": "CMP-4406", "channel": "content_syndication"}}
+{"actor": "aiyana.begay", "action": "lead.qualified", "outcome": "success", "metadata": {"campaign_id": "CMP-4406", "audience_segment": "referral_source_partners"}}
+{"actor": "felipe.cardoso", "action": "budget.reallocated", "outcome": "success", "metadata": {"campaign_id": "CMP-4406", "budget": "4500.00", "channel": "content_syndication"}}
+{"actor": "paloma.reyes", "action": "campaign.launched", "outcome": "success", "metadata": {"campaign_id": "CMP-4407", "channel": "push", "audience_segment": "mobile_app_only_users"}}
+{"actor": "oskar.lindberg", "action": "campaign.paused", "outcome": "paused", "metadata": {"campaign_id": "CMP-4407", "channel": "push", "audience_segment": "mobile_app_only_users"}}
+{"actor": "chidi.eze", "action": "campaign.completed", "outcome": "completed", "metadata": {"campaign_id": "CMP-4320", "channel": "email", "audience_segment": "newsletter_subscribers"}}
+{"actor": "veronika.novak", "action": "email.sent", "outcome": "success", "metadata": {"campaign_id": "CMP-4407", "channel": "push", "audience_segment": "mobile_app_only_users"}}
+{"actor": "samir.khoury", "action": "email.bounced", "outcome": "failed", "metadata": {"campaign_id": "CMP-4407", "channel": "push", "audience_segment": "mobile_app_only_users"}}
+{"actor": "svc-marketing-automation", "action": "segment.created", "outcome": "success", "metadata": {"audience_segment": "enterprise_prospects", "channel": "email"}}
+{"actor": "brianna.foster", "action": "segment.updated", "outcome": "success", "metadata": {"audience_segment": "mobile_app_only_users", "channel": "push"}}
+{"actor": "tomasz.jablonski", "action": "ab_test.started", "outcome": "success", "metadata": {"campaign_id": "CMP-4407", "variant": "push_copy_short_vs_emoji"}}
+{"actor": "aiyana.begay", "action": "ab_test.concluded", "outcome": "low_engagement", "metadata": {"campaign_id": "CMP-4407", "variant": "push_copy_short_vs_emoji", "open_rate": "0.06"}}
+{"actor": "felipe.cardoso", "action": "lead.captured", "outcome": "success", "metadata": {"campaign_id": "CMP-4407", "channel": "push"}}
+{"actor": "paloma.reyes", "action": "lead.qualified", "outcome": "success", "metadata": {"campaign_id": "CMP-4407", "audience_segment": "mobile_app_only_users"}}
+{"actor": "oskar.lindberg", "action": "budget.reallocated", "outcome": "success", "metadata": {"campaign_id": "CMP-4407", "budget": "2500.00", "channel": "push"}}
+{"actor": "chidi.eze", "action": "campaign.launched", "outcome": "success", "metadata": {"campaign_id": "CMP-4408", "channel": "email", "audience_segment": "enterprise_prospects"}}
+{"actor": "veronika.novak", "action": "campaign.paused", "outcome": "paused", "metadata": {"campaign_id": "CMP-4408", "channel": "email", "audience_segment": "enterprise_prospects"}}
+{"actor": "samir.khoury", "action": "campaign.completed", "outcome": "completed", "metadata": {"campaign_id": "CMP-4310", "channel": "paid_search", "audience_segment": "abandoned_signups"}}
+{"actor": "svc-marketing-automation", "action": "email.sent", "outcome": "success", "metadata": {"campaign_id": "CMP-4408", "channel": "email", "audience_segment": "enterprise_prospects"}}
+{"actor": "brianna.foster", "action": "email.bounced", "outcome": "failed", "metadata": {"campaign_id": "CMP-4408", "channel": "email", "audience_segment": "enterprise_prospects"}}
+{"actor": "tomasz.jablonski", "action": "segment.created", "outcome": "success", "metadata": {"audience_segment": "partner_referrals_q4", "channel": "email"}}
+{"actor": "aiyana.begay", "action": "segment.updated", "outcome": "success", "metadata": {"audience_segment": "enterprise_prospects", "channel": "email"}}
+{"actor": "felipe.cardoso", "action": "ab_test.started", "outcome": "success", "metadata": {"campaign_id": "CMP-4408", "variant": "whitepaper_vs_case_study"}}
+{"actor": "paloma.reyes", "action": "ab_test.concluded", "outcome": "success", "metadata": {"campaign_id": "CMP-4408", "variant": "whitepaper_vs_case_study", "open_rate": "0.25"}}
+{"actor": "oskar.lindberg", "action": "lead.captured", "outcome": "success", "metadata": {"campaign_id": "CMP-4408", "channel": "email"}}
+{"actor": "chidi.eze", "action": "lead.qualified", "outcome": "success", "metadata": {"campaign_id": "CMP-4408", "audience_segment": "enterprise_prospects"}}
+{"actor": "veronika.novak", "action": "budget.reallocated", "outcome": "success", "metadata": {"campaign_id": "CMP-4408", "budget": "15000.00", "channel": "email"}}
+{"actor": "samir.khoury", "action": "campaign.launched", "outcome": "success", "metadata": {"campaign_id": "CMP-4409", "channel": "content_syndication", "audience_segment": "partner_referrals_q4"}}
+{"actor": "svc-marketing-automation", "action": "campaign.paused", "outcome": "paused", "metadata": {"campaign_id": "CMP-4409", "channel": "content_syndication", "audience_segment": "partner_referrals_q4"}}
+{"actor": "brianna.foster", "action": "campaign.completed", "outcome": "completed", "metadata": {"campaign_id": "CMP-4300", "channel": "email", "audience_segment": "new_signups"}}
+{"actor": "tomasz.jablonski", "action": "email.sent", "outcome": "success", "metadata": {"campaign_id": "CMP-4409", "channel": "content_syndication", "audience_segment": "partner_referrals_q4"}}
+{"actor": "aiyana.begay", "action": "email.bounced", "outcome": "failed", "metadata": {"campaign_id": "CMP-4409", "channel": "content_syndication", "audience_segment": "partner_referrals_q4"}}
+{"actor": "felipe.cardoso", "action": "segment.created", "outcome": "success", "metadata": {"audience_segment": "webinar_no_shows", "channel": "email"}}
+{"actor": "paloma.reyes", "action": "segment.updated", "outcome": "success", "metadata": {"audience_segment": "partner_referrals_q4", "channel": "email"}}
+{"actor": "oskar.lindberg", "action": "ab_test.started", "outcome": "success", "metadata": {"campaign_id": "CMP-4409", "variant": "followup_1day_vs_3day"}}
+{"actor": "chidi.eze", "action": "ab_test.concluded", "outcome": "success", "metadata": {"campaign_id": "CMP-4409", "variant": "followup_1day_vs_3day", "open_rate": "0.30"}}
+{"actor": "veronika.novak", "action": "lead.captured", "outcome": "success", "metadata": {"campaign_id": "CMP-4409", "channel": "content_syndication"}}
+{"actor": "samir.khoury", "action": "lead.qualified", "outcome": "success", "metadata": {"campaign_id": "CMP-4409", "audience_segment": "partner_referrals_q4"}}
+{"actor": "svc-marketing-automation", "action": "budget.reallocated", "outcome": "success", "metadata": {"campaign_id": "CMP-4409", "budget": "6200.00", "channel": "content_syndication"}}
+{"actor": "brianna.foster", "action": "campaign.launched", "outcome": "success", "metadata": {"campaign_id": "CMP-4410", "channel": "email", "audience_segment": "webinar_no_shows"}}
+{"actor": "tomasz.jablonski", "action": "campaign.paused", "outcome": "paused", "metadata": {"campaign_id": "CMP-4410", "channel": "email", "audience_segment": "webinar_no_shows"}}
+{"actor": "aiyana.begay", "action": "campaign.completed", "outcome": "completed", "metadata": {"campaign_id": "CMP-4290", "channel": "paid_social", "audience_segment": "lookalike_1pct"}}
+{"actor": "felipe.cardoso", "action": "email.sent", "outcome": "success", "metadata": {"campaign_id": "CMP-4410", "channel": "email", "audience_segment": "webinar_no_shows"}}
+{"actor": "paloma.reyes", "action": "email.bounced", "outcome": "failed", "metadata": {"campaign_id": "CMP-4410", "channel": "email", "audience_segment": "webinar_no_shows"}}
+{"actor": "oskar.lindberg", "action": "segment.created", "outcome": "success", "metadata": {"audience_segment": "loyalty_program_members", "channel": "email"}}
+{"actor": "chidi.eze", "action": "segment.updated", "outcome": "success", "metadata": {"audience_segment": "webinar_no_shows", "channel": "email"}}
+{"actor": "veronika.novak", "action": "ab_test.started", "outcome": "success", "metadata": {"campaign_id": "CMP-4410", "variant": "recording_link_vs_summary"}}
+{"actor": "samir.khoury", "action": "ab_test.concluded", "outcome": "success", "metadata": {"campaign_id": "CMP-4410", "variant": "recording_link_vs_summary", "open_rate": "0.33"}}
+{"actor": "svc-marketing-automation", "action": "lead.captured", "outcome": "success", "metadata": {"campaign_id": "CMP-4410", "channel": "email"}}
+{"actor": "brianna.foster", "action": "lead.qualified", "outcome": "success", "metadata": {"campaign_id": "CMP-4410", "audience_segment": "webinar_no_shows"}}
+{"actor": "tomasz.jablonski", "action": "budget.reallocated", "outcome": "success", "metadata": {"campaign_id": "CMP-4410", "budget": "3800.00", "channel": "email"}}
+{"actor": "aiyana.begay", "action": "campaign.launched", "outcome": "success", "metadata": {"campaign_id": "CMP-4411", "channel": "email", "audience_segment": "loyalty_program_members"}}
+{"actor": "felipe.cardoso", "action": "campaign.paused", "outcome": "paused", "metadata": {"campaign_id": "CMP-4411", "channel": "email", "audience_segment": "loyalty_program_members"}}

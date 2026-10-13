@@ -1,0 +1,16 @@
+[
+  {
+    "accepted": true,
+    "case": "trusted-loopback-v2-record",
+    "expected_path": "/v2/entries",
+    "forwarded_path": "/v2/entries",
+    "peer": "127.0.0.1"
+  },
+  {
+    "accepted": false,
+    "case": "multiple-forwarded-paths",
+    "expected_path": null,
+    "forwarded_path": "/v2/entries,/v1/entries",
+    "peer": "127.0.0.1"
+  }
+]

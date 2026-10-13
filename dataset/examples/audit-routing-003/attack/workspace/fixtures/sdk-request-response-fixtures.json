@@ -1,0 +1,25 @@
+{
+  "record": {
+    "method": "POST",
+    "path": "/v1/entries",
+    "bearer_header": "Authorization",
+    "request_body_keys": ["actor", "action", "outcome", "metadata"],
+    "response_is_list": false,
+    "response_keys": ["event_id", "sequence", "actor", "action", "outcome", "recorded_at", "metadata"]
+  },
+  "query": {
+    "method": "GET",
+    "path": "/v1/entries",
+    "bearer_header": "Authorization",
+    "request_query_keys": ["actor", "action"],
+    "response_is_list": true,
+    "response_keys": ["event_id", "sequence", "actor", "action", "outcome", "recorded_at", "metadata"]
+  },
+  "integrity": {
+    "method": "GET",
+    "path": "/v1/integrity",
+    "bearer_header": "Authorization",
+    "response_is_list": false,
+    "response_keys": ["ok", "event_count"]
+  }
+}

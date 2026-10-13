@@ -1,0 +1,266 @@
+Repository Layout
+================
+
+Title: Repository Layout
+Version: 1.5
+Owner: Core Services (Priya Nandakumar)
+Last updated: 2024-09-30
+Summary: Outlines the top-level directories of the repository and explains where command line, service, and shared code live.
+
+
+Overview
+--------
+
+The auditlog repository is organized to separate concerns between the package, its service component, documentation, and development tooling. This page describes the physical layout of the repository root and the purposes of each directory, along with guidelines for onboarding to the project. It assumes you have already cloned the repository and can access it from your workstation.
+
+The repository root contains the auditlog/ package directory alongside supporting folders for scripts, documentation, and configuration files. There is no src/ layout; the package lives at the top level.
+
+
+Top-Level Directory Structure
+------------------------------
+
+**auditlog/** — The main package directory. Contains all code that implements the command-line interface and the loopback HTTP service. The package uses only the standard library and has no external dependencies. This directory is what gets installed when you run installation commands during setup.
+
+**docs/** — Documentation files for end users and operations staff. Contains guides for installing the service on different platforms, HTTP request examples, and database format specifications. Not intended for developer onboarding; see the developer-handbook/ folder instead.
+
+**developer-handbook/** — Internal documentation for team members working on the package. This folder contains this file along with sibling pages covering workstation setup, Python version requirements, editor configuration, code review practices, commit message conventions, and coding standards. Owned by the Core Services team.
+
+**scripts/** — Utility scripts used by developers and CI systems. Includes scripts for running the service locally, building distributions, and checking code against project standards. Most scripts are shell scripts written for both Bash and PowerShell environments.
+
+**config/** — Configuration file templates and examples. Contains SQLite journal settings used by the package when creating the database file, and example configurations for the service's loopback socket binding. Not all of these files are used during normal development.
+
+**Checks/** — Verification suites and helper scenarios. Organized by module within the package. (See the separate evaluation documentation for details.)
+
+
+Workstation Setup — Section Owner: Developer Experience (Theo Vance)
+-------------------------------------------------------------------
+
+Before you begin contributing to auditlog, your workstation must be configured with Python, Git, and a text editor. A full walkthrough is available in the workstation-setup.md page in this folder, updated 2025-06-02.
+
+At a minimum, you need:
+
+- Git 2.30 or later for cloning and working with the repository.
+- Python 3.9, 3.10, 3.11, or 3.12 installed locally. (See supported-python-versions.md for the authoritative list; as of 2024-11-20 the team supports back to 3.9.)
+- A text editor or IDE that can be configured for this project. Most of the team uses VS Code, but Vim, Neovim, and PyCharm are also common.
+- Virtual environment support. The team uses venv, which comes with Python.
+
+To clone the repository:
+
+    git clone https://github.com/internal-team/auditlog.git
+    cd auditlog
+
+To create and activate a virtual environment on Windows (PowerShell):
+
+    python -m venv venv
+    .\venv\Scripts\Activate.ps1
+
+On Linux or macOS (Bash):
+
+    python3 -m venv venv
+    source venv/bin/activate
+
+Once the virtual environment is active, install the package in editable mode:
+
+    pip install -e .
+
+This makes the package importable and ensures that any changes you make to the code are reflected immediately. You can then run both the command-line interface and the service without reinstalling after each edit.
+
+
+Python Version Support
+----------------------
+
+The team currently supports Python 3.9 through 3.12. See the supported-python-versions.md page (version 1.8, last updated 2024-11-20) for detailed information on version-specific behavior and deprecation timelines. The package relies only on standard library modules, so there are no pip dependencies that might restrict version support.
+
+When developing locally, you should verify your changes against at least Python 3.10 and 3.11 before submitting a pull request. The CI system will verify compatibility with all supported versions. If you use an incompatible feature, the linting stage will catch it during code review.
+
+
+Editor Configuration
+--------------------
+
+The team provides configuration files for several common editors to ensure consistent formatting and linting across the repository. See editor-configuration.md (version v2.0.1, last updated 2025-03-09) for complete setup instructions for VS Code, Vim, Neovim, and PyCharm.
+
+A .editorconfig file at the repository root specifies indentation, line ending, and character encoding settings that apply universally. Most editors can read this file automatically; install an EditorConfig extension if yours does not.
+
+For Python-specific linting and formatting, the repository uses two tools:
+
+- **Linter**: Pylint, configured to enforce naming conventions and catch common mistakes.
+- **Formatter**: Black, configured to use 88 characters per line and maintain consistency across all Python files.
+
+Both tools are configured in the pyproject.toml file. Running either tool without arguments will use the repository settings.
+
+Before you commit, run the linting and formatting tools to ensure your code meets project standards. The code-review-conventions.md page (version 3.1, owned by Release Engineering, last updated 2025-08-27) requires this as part of the pull request workflow.
+
+
+Code Review Conventions — Section Owner: Release Engineering (Owen Fitzgerald)
+--------------------------------------------------------------------------------
+
+All changes to the package, documentation, or scripts must pass code review before merging. The branching-and-pull-requests.txt page (version 2.4, last updated 2026-01-22) describes the full workflow. This section covers what reviewers look for when evaluating your changes.
+
+When you open a pull request, at least two reviewers from the Core Services team must sign off on it. Reviewers will check that:
+
+- Your code follows the project's coding style (see coding-style.md, version 4.0).
+- Commit messages follow the project's conventions (see commit-message-style.md, version v1.2.3).
+- You have not introduced any new external dependencies.
+- The linting and formatting tools pass without errors.
+- Your changes do not break existing functionality in the CLI or service.
+
+The CI system runs these checks automatically and reports results as a status on the pull request. If the CI status is red, the pull request will not be reviewed until all checks pass. You can run these checks locally using the commands documented in the scripts/ folder.
+
+For significant changes—those that modify the service's behavior, add new command-line options, or restructure the package—a design review with the team lead is required before you submit the pull request. Post a design proposal in the team's documentation system and wait for sign-off before you begin implementation.
+
+
+Commit Message Style
+--------------------
+
+All commits to the repository must follow a specific message format. The commit-message-style.md page (version v1.2.3, owned by Tooling Guild, last updated 2024-05-15) documents the full requirements. Here is a summary:
+
+Each commit message has a single-line subject (50 characters or less) followed by a blank line and a detailed body (wrapped at 72 characters). The subject uses the imperative mood—write "Add feature" instead of "Added feature"—and does not end with a period.
+
+Example structure:
+
+    Fix quoting bug in command-line argument parsing
+    
+    The service incorrectly handled quoted arguments when parsing
+    command-line options. This commit adds proper escaping for both
+    single and double quotes, and updates the related documentation
+    examples to show correct usage.
+    
+    Fixes #347
+
+If your commit concerns an issue in the tracking system, include "Fixes #<number>" or "Related to #<number>" in the body.
+
+Commits that are purely routine (such as updating documentation unrelated to a feature or fix) may use "docs:" or "chore:" as a prefix if appropriate. Consult the commit-message-style.md page if in doubt.
+
+
+Coding Style Guide
+------------------
+
+The team maintains a Python coding style guide in coding-style.md (version 4.0, owned by Platform Tools, last updated 2026-02-18). The guide covers naming conventions, docstring formatting, type hints, and code organization. A summary of key points:
+
+- Use snake_case for variable and function names, PascalCase for classes.
+- All modules, classes, and public functions must have docstrings in Google style.
+- Type hints are required for all public functions and class methods. Private functions may omit them if the type is obvious from context.
+- Maximum line length is 88 characters (enforced by Black).
+- Imports are organized in three groups: standard library, third-party (none currently), and local. Each group is separated by a blank line.
+- Avoid deep nesting; prefer early returns or extracted functions.
+- Comments should explain the "why," not the "what." Code should be clear enough that readers understand what it does without additional explanation.
+
+The linting and formatting tools check many of these rules automatically. Some require manual review during code review, such as docstring quality and comment style. Pay close attention to reviewer feedback on these points during your first few pull requests.
+
+
+Terminology and Glossary
+------------------------
+
+**Commit message** — The text description of a change submitted to Git. It includes a subject line and optional body. All commit messages in this repository must follow the format specified in commit-message-style.md.
+
+**Code review** — The process by which changes to the repository are inspected by team members before merging. At least two reviewers must sign off on each pull request. This is documented in code-review-conventions.md and branching-and-pull-requests.txt.
+
+**Command-line interface (CLI)** — The text-based tool provided by the package for interacting with the database file from the shell. Not to be confused with the HTTP service.
+
+**Editable install** — Installing a Python package with `pip install -e .` so that the installed version points to the source directory. Changes to source files are immediately reflected without reinstalling.
+
+**Linting** — The process of analyzing source code to find violations of style rules or potential bugs. The team uses Pylint for this purpose. Results are reported during code review.
+
+**Loopback HTTP service** — The built-in service component that provides an HTTP interface for interacting with the database file. It binds only to localhost and is intended for local use on a single machine.
+
+**Pull request (PR)** — A Git workflow mechanism for proposing changes to the repository. Contributors create a feature branch, commit changes, and open a PR to request that a reviewer merge the changes into the main branch.
+
+**SQLite database file** — The persistent storage used by the package. It stores records in a local file, avoiding external service dependencies. The format is described in the docs/ folder.
+
+**Virtual environment** — An isolated Python installation on your workstation. Necessary for developing the package without affecting your system Python or other projects. Created with `python -m venv` and activated before working.
+
+
+Repository Files and Paths
+---------------------------
+
+This section lists the key files and directories referenced throughout this page, along with their purposes:
+
+**auditlog/** — Main package directory. Contains the CLI and HTTP service implementations. Installation target for `pip install -e .`.
+
+**docs/service-deployment.md** — End-user guide for running the service on production systems. Not read by developers during normal work; referenced only when troubleshooting deployment issues.
+
+**developer-handbook/** — Root folder for all internal developer documentation. All pages in this folder use version numbers and are maintained by the Core Services team.
+
+**developer-handbook/repository-layout.txt** — This file.
+
+**developer-handbook/workstation-setup.md** — Step-by-step instructions for initial environment setup. Version v1.4.0, owner Developer Experience (Theo Vance), updated 2025-06-02.
+
+**developer-handbook/supported-python-versions.md** — Definitive list of supported Python versions and version-specific considerations. Version 1.8, last updated 2024-11-20.
+
+**developer-handbook/editor-configuration.md** — Setup guides for VS Code, Vim, Neovim, and PyCharm. Version v2.0.1, owner Developer Experience (Callum Reyes), updated 2025-03-09.
+
+**developer-handbook/code-review-conventions.md** — Guidelines for reviewers and contributors during the PR process. Version 3.1, owner Release Engineering (Owen Fitzgerald), last updated 2025-08-27.
+
+**developer-handbook/commit-message-style.md** — Commit message format specification. Version v1.2.3, owner Tooling Guild (Ines Bakker), last updated 2024-05-15.
+
+**developer-handbook/coding-style.md** — Python style guide and code organization standards. Version 4.0, owner Platform Tools (Mara Olsen), last updated 2026-02-18.
+
+**developer-handbook/linting-and-formatting.md** — Detailed configuration and usage of Pylint and Black. Version v1.6.2, owner Developer Experience (Callum Reyes), last updated 2025-10-01.
+
+**developer-handbook/branching-and-pull-requests.txt** — Complete PR workflow and Git branching strategy. Version 2.4, owner Release Engineering (Owen Fitzgerald), last updated 2026-01-22.
+
+**.editorconfig** — Universal editor settings for indentation and line endings. Applied by most modern editors; provides fallback settings if no editor-specific config exists.
+
+**pyproject.toml** — Project metadata and tool configuration for Pylint, Black, and packaging. Located at repository root.
+
+**scripts/run-service.sh** — Bash script to start the service locally for manual verification. Available in both PowerShell and Bash variants; use the variant matching your shell.
+
+**scripts/check-style.sh** — Shell script that runs Pylint and Black in check mode (reports violations but does not modify files). Use before committing to verify adherence to code style.
+
+**config/sqlite-journal-config.txt** — Example SQLite settings for the database file. Referenced during initialization; not required for local development.
+
+
+Tools and Versions
+------------------
+
+| Tool                    | Version  | Purpose                                          |
+|-------------------------|----------|--------------------------------------------------|
+| Python                  | 3.9–3.12 | Runtime for package and service                 |
+| Git                     | 2.30+    | Version control and repository management        |
+| Pylint                  | 2.17.0   | Linting and code analysis                       |
+| Black                   | 23.9.0   | Code formatter                                   |
+| venv                    | stdlib   | Virtual environment management                  |
+| VS Code                 | 1.82+    | Recommended editor (not required)               |
+| EditorConfig            | N/A      | Cross-editor configuration file support         |
+| sqlite3                 | stdlib   | Database interaction and inspection (optional)  |
+| pip                     | 23.0+    | Package installer                               |
+
+
+Change Log
+----------
+
+**Version 1.5** — 2024-09-30 — Release: Outlines — Updated repository structure section to clarify the placement of config/ and scripts/ folders. Added section owners for workstation setup and code review sections. Revised the tools table to include current versions as of Q3 2024. Minor formatting improvements.
+
+**Version 1.4** — 2024-06-15 — Release: Alignment — Restructured the coding style and commit message sections to better cross-reference the dedicated pages. Updated editor configuration recommendations to include Neovim. Corrected Python version support from the updated supported-python-versions.md page.
+
+**Version 1.3** — 2024-03-22 — Release: Expansion — Added the repository files and paths section to make it easier to locate documentation on related topics. Expanded the overview section with clarifications on package structure. Updated links to related pages.
+
+**Version 1.2** — 2024-01-10 — Release: Foundation — Reworked the top-level directory structure description to include the docs/ folder and clarify the package layout. Added the terminology section with eight initial terms. Separated Python version support into its own section.
+
+**Version 1.1** — 2023-11-20 — Release: Initial — Created the page with basic directory descriptions and workstation setup instructions. Included code review and commit message summaries. Linked to sibling documentation pages.
+
+**Version 1.0** — 2023-09-05 — Release: Pilot — Initial draft for team review. Covered only the package and scripts directories.
+
+
+Related Pages
+-------------
+
+The following pages in the developer-handbook folder cover topics related to repository setup and contribution workflow:
+
+- **README.md** — "Developer Handbook Overview" (version 2.3, owner Platform Tools, updated 2025-01-14). Entry point for all developer documentation.
+
+- **workstation-setup.md** — "Workstation Setup" (version v1.4.0, owner Developer Experience, updated 2025-06-02). Detailed walkthrough for first-time contributors on installing Python, creating virtual environments, and configuring Git.
+
+- **supported-python-versions.md** — "Supported Python Versions" (version 1.8, owner Core Services, updated 2024-11-20). Authoritative list of compatible Python versions and version-specific behavior.
+
+- **editor-configuration.md** — "Editor Configuration" (version v2.0.1, owner Developer Experience, updated 2025-03-09). Setup guides for popular editors and IDEs.
+
+- **code-review-conventions.md** — "Code Review Conventions" (version 3.1, owner Release Engineering, updated 2025-08-27). Reviewer expectations and sign-off workflow.
+
+- **commit-message-style.md** — "Commit Message Style" (version v1.2.3, owner Tooling Guild, updated 2024-05-15). Required format for commit messages.
+
+- **coding-style.md** — "Coding Style Guide" (version 4.0, owner Platform Tools, updated 2026-02-18). Python style rules, naming conventions, and docstring requirements.
+
+- **linting-and-formatting.md** — "Linting and Formatting" (version v1.6.2, owner Developer Experience, updated 2025-10-01). How to configure and run Pylint and Black locally.
+
+- **branching-and-pull-requests.txt** — "Branching and Pull Requests" (version 2.4, owner Release Engineering, updated 2026-01-22). Git workflow for opening and merging pull requests.

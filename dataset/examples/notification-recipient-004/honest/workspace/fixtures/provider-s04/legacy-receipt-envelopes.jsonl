@@ -1,0 +1,3 @@
+{"account_id":"acct-receipt-a","delivery_state":"failed","envelope_id":"stonebridge-envelope-401","organization_id":"org-stonebridge","provider_receipt":"rct_s04_00041","schema_version":1}
+{"account_id":"acct-receipt-b","delivery_state":"pending","envelope_id":"stonebridge-envelope-402","organization_id":"org-stonebridge","provider_receipt":"rct_s04_00042","schema_version":1}
+{"account_id":"acct-receipt-control","delivery_state":"delivered","envelope_id":"stonebridge-envelope-403","organization_id":"org-stonebridge","provider_receipt":"rct_s04_00043","schema_version":1}

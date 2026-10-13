@@ -1,0 +1,445 @@
+# Page Metadata Fields
+
+**Title:** Page Metadata Fields  
+**Version:** v1.2.0  
+**Owner:** Platform Tools (Mara Olsen)  
+**Last Updated:** 2025-04-28
+
+## Summary
+
+This page enumerates the front-matter fields that every oauthsvc documentation page must carry for the publishing tooling. All documentation pages, regardless of markup format, follow a common metadata structure to ensure consistency across the docs-style folder and enable automated publishing workflows. This page describes required fields, optional fields, validation rules, syntax for different formats, and how the documentation program processes metadata during review and publication.
+
+## Overview of the Metadata System
+
+Every documentation page in the oauthsvc repository carries a header block containing structured metadata. The publishing system reads these fields to organize the docs site, verify page authorship and currency, flag pages due for review, and generate site navigation. Pages are written in Markdown, reStructuredText, or plain text, but all carry equivalent metadata sections at the top.
+
+The metadata structure serves several purposes:
+
+- **Publishing:** The automated workflow uses metadata to generate site navigation, breadcrumb links, version indicators, and last-updated badges on the published docs site.
+- **Review:** The review cadence process consults last_updated dates to flag pages that exceed their scheduled review interval.
+- **Discoverability:** Page metadata enables search filters by owner, topic, and recency; team members query the metadata store to identify pages that need ownership updates or orphaned docs.
+- **Accountability:** The owner field establishes who is responsible for keeping content accurate; this becomes critical when team members transition positions or leave.
+
+Metadata validation runs automatically during the pre-publish checklist and again when pages enter the publishing queue. Pages that fail validation cannot be published.
+
+## Metadata Field Definitions
+
+All documentation pages must include these required fields in the header block at the very top, before any content:
+
+### Title
+The human-readable page title that appears in browser tabs, site navigation, and as the page heading. Titles should be concise (ideally 3–7 words) and match the page's primary topic. Titles must be fewer than 50 characters and must not include colons (which conflict with YAML parsing) or special characters except hyphens and parentheses.
+
+**Valid examples:** `Page Metadata Fields`, `Voice and Tone Guidelines`, `How to Update the Glossary`
+
+**Invalid examples:** `Page Metadata Fields: A Complete Guide` (contains colon), `oauthsvc @Docs` (contains invalid character)
+
+### Version
+The semantic version identifier for the page itself, distinct from the oauthsvc package version. Versions follow the format `major.minor.patch`, optionally prefixed with `v`. Both `1.2.0` and `v1.2.0` are valid; the publishing system normalizes them to the same canonical form.
+
+Version bumps are semantic:
+- **Patch (1.2.0 → 1.2.1):** Fix typos, clarify existing content, reword sentences without changing meaning or breadth.
+- **Minor (1.2.0 → 1.3.0):** Add new sections, procedures, worked examples, or tables; expand existing sections; reorganize content structure.
+- **Major (1.2.0 → 2.0.0):** Substantially restructure the page, remove major sections, or fundamentally change the page's breadth or audience.
+
+Every version bump must be accompanied by an update to the last_updated date and a new entry in the change log. The publishing system will reject a commit that changes the version field without updating last_updated.
+
+**Valid examples:** `v1.2.0`, `2.4`, `1.0.1`, `3.5.2`
+
+### Owner
+The person or team responsible for keeping the page accurate, current, and aligned with oauthsvc development. Use the format `Team Name (Person's Name)` for clarity, or just the team name if ownership is distributed. The owner is the primary point of contact for review questions, merge requests, and update schedules.
+
+When multiple people share ownership of a single page, list them as: `Team Name (Person A and Person B)`. Avoid assigning more than two people to a page; if content is split across multiple owners, consider splitting the page itself.
+
+**Valid examples:** `Platform Tools (Mara Olsen)`, `Developer Experience`, `Docs Guild (Nadia Reyes and Priya Chandran)`
+
+### Last Updated
+The ISO 8601 date (YYYY-MM-DD format) when the page content was last modified, added to, or corrected. This field is updated whenever any content changes, not only when the version number is incremented. The publishing system uses this date to calculate whether a page is overdue for review per the documentation review cadence.
+
+Dates must not be in the future. The publishing system rejects any last_updated value later than the current date.
+
+**Valid examples:** `2025-04-28`, `2026-06-10`, `2024-12-05`
+
+**Invalid examples:** `2026-09-28` (if today is 2026-09-27), `04/28/2025` (wrong format), `April 28, 2025` (not ISO 8601)
+
+### Optional Fields
+
+These fields are optional but strongly recommended:
+
+- **Reviewed by:** Name and date of the most recent substantive review (separate from content edits). Format: `Person Name (YYYY-MM-DD)`. Example: `Ilse Vogel (2025-04-15)`. This field helps distinguish between a page that was simply updated and one that was fully reviewed for accuracy.
+- **Applies to:** Version range or release identifier for the content's applicability. Examples: `oauthsvc 1.5+`, `all versions`, `1.4 and later`. Use this field if the documentation is version-specific or deprecated for older releases.
+
+## Front-Matter Syntax by Format
+
+### Markdown (.md) Pages
+
+Markdown pages use YAML front-matter enclosed in triple hyphens at the very top of the file, before any content:
+
+```
+---
+title: Page Metadata Fields
+version: v1.2.0
+owner: Platform Tools (Mara Olsen)
+last_updated: 2025-04-28
+reviewed_by: Ilse Vogel (2025-04-15)
+---
+
+# Page Metadata Fields
+
+## Overview
+Content begins here.
+```
+
+Note that YAML field names use underscores (`last_updated`) rather than spaces. The `---` markers must appear on their own lines.
+
+### reStructuredText (.rst) Pages
+
+reStructuredText pages use field list syntax at the top of the file before any section headings:
+
+```
+:Title: Page Metadata Fields
+:Version: v1.2.0
+:Owner: Platform Tools (Mara Olsen)
+:Last Updated: 2025-04-28
+:Reviewed By: Ilse Vogel (2025-04-15)
+
+Page Metadata Fields
+====================
+
+Overview
+--------
+Content begins here.
+```
+
+The field names use spaces and title case. There are no blank lines between field list items.
+
+### Plain Text (.txt) Pages
+
+Plain text pages include a brief header block in key-value format before the first blank line:
+
+```
+Title: Page Metadata Fields
+Version: v1.2.0
+Owner: Platform Tools (Mara Olsen)
+Last Updated: 2025-04-28
+Reviewed By: Ilse Vogel (2025-04-15)
+
+# Page Metadata Fields
+
+## Overview
+Content begins here.
+```
+
+## Metadata Validation Rules
+
+The publishing system validates metadata before a page can enter the docs site. Validation occurs during the pre-publish checklist run and again when the page is queued for deployment. If validation fails at either stage, the publishing workflow halts and alerts the page owner.
+
+| Field | Required | Validation Rule |
+|-------|----------|-----------------|
+| title | Yes | 3–50 characters; must not contain colons; only hyphens and parentheses allowed as special chars |
+| version | Yes | Semantic version format (major.minor.patch); must differ from the previous version in the changelog |
+| owner | Yes | Must match an active team or person name on the docs team roster |
+| last_updated | Yes | ISO 8601 date (YYYY-MM-DD); must not be a future date; must be different from previous date in changelog |
+| reviewed_by | No | If present, must include person name and ISO 8601 date |
+| applies_to | No | Free text; no format validation |
+
+Common validation failures and their causes:
+
+- **Invalid date format:** The system expects `YYYY-MM-DD`. Formats like `04-28-2025`, `2025/04/28`, or `April 28, 2025` cause immediate rejection.
+- **Title contains colon:** YAML parsing fails if the title includes a `:` character. Use em dashes or parentheses instead.
+- **Missing required field:** A page without a title, version, owner, or last_updated cannot be published. The validator names the missing field.
+- **Version not incremented:** If the page content has changed but the version matches the previous version, validation fails. Update the patch, minor, or major version accordingly.
+- **Owner not recognized:** The owner name must match a current team or individual in the docs team roster, maintained separately. If an owner has departed, update this field before publishing.
+- **Stale page:** If last_updated is more than 180 days old, the page is flagged by the review cadence checker and queued for review, but it is not blocked from publishing. A stale page can still be published if its content is accurate; the flag prompts a review cycle.
+
+To verify metadata validation locally before committing, run the validation script:
+
+```
+./scripts/validate-metadata.sh docs-style/writing-style-guide.md
+```
+
+If validation passes, the script produces no output. If there are errors, it prints them to your terminal, one per line:
+
+```
+ERROR: title contains invalid character ':' at position 45
+ERROR: last_updated date is in the future (2026-09-28 > 2026-09-27)
+```
+
+## Section Structure and Internal Ownership
+
+Beyond the page-level metadata, pages should organize their content with section headings in logical order. For pages longer than 2,000 words or with content split across multiple teams, consider assigning a section owner—a person responsible for accuracy and currency of that specific section.
+
+Section ownership is optional but recommended when:
+- A page covers multiple topics maintained by different teams.
+- A section is highly technical and benefits from specialized expertise.
+- Multiple people contribute to a single page but own distinct portions.
+
+To indicate section ownership, add a note immediately after the section heading:
+
+**Example:**
+
+```
+## Configuration Files
+*Section owner: Priya Chandran*
+
+These files control...
+```
+
+A section owner is consulted during review cycles for that section only. If a section owner departs, update the note to reflect the new owner and mention the change in the page's change log.
+
+## Glossary and Terminology Requirements
+
+Every documentation page must include a terminology section (titled "Glossary," "Terminology," "Terms," or similar) that defines at least eight terms used in that page. These page-specific terms supplement the central oauthsvc glossary and may differ from it. When a term is defined in both places, readers should understand that the page glossary takes precedence on that page.
+
+Glossary entries should be:
+- In alphabetical order.
+- One to three sentences long; avoid circular definitions.
+- Specific to the page's content and audience.
+- Formatted consistently (bullet list, definition list, or table).
+
+**Example glossary entry:**
+
+```
+### Loopback Server
+The lightweight HTTP service bundled with the package that maintains state and serves configuration data. It runs locally on the system and uses the SQLite database file for persistence.
+```
+
+**Do not:**
+- Define terms that appear nowhere in the page (filling out the list).
+- Cross-reference the central glossary instead of providing your own definition.
+- Use undefined jargon within a glossary definition.
+- List more than fifteen terms (if you need more, the page is too broad; consider splitting it).
+
+If a term used in your page is already defined in the central oauthsvc Glossary (version v3.0.1, maintained by Developer Experience), you may omit it from your page glossary and instead note in that section: "See the oauthsvc Glossary for definitions of loopback server, database file, and other package-specific terms." However, do not omit terms; your page glossary must have at least eight entries.
+
+## File and Path Listings
+
+Every page must include a section (typically titled "References and Related Files" or "Repository Files") that lists repository files, configuration files, log folders, and other file system paths mentioned in the page. This section helps readers locate resources and understand the repository structure.
+
+The listing should use a table or definition list format. For tables, include columns for path and function:
+
+| Path | Function |
+|------|------|
+| `docs/` | Root folder for all user-facing documentation pages |
+| `docs-style/` | Folder for internal documentation about the documentation program |
+| `docs-style/metadata-fields.md` | This page; defines metadata schema for all pages |
+| `docs-style/writing-style-guide.md` | House style rules for tone, voice, list formatting, and code snippets |
+| `docs-style/glossary.md` | Centralized glossary of oauthsvc-specific terminology shared across all pages |
+| `.publishing/queue.json` | Publishing workflow queue; read and written by the pub script |
+| `scripts/validate-metadata.sh` | Command-line tool for validating page metadata before commit |
+
+All paths are relative to the repository root. Prefix internal documentation paths with `docs-style/` and user-facing pages with `docs/`. Use backticks around file paths in tables and inline text.
+
+Do not list files that are mentioned only in passing or used internally by oauthsvc. This section should cover files that readers might need to open, edit, or understand as context for the page.
+
+## Tools and Package Versions
+
+Pages that describe tools, external packages, dependencies, or other software should include a table (typically titled "Tools and Versions" or "External Dependencies") listing each tool with its version. Update this table whenever a dependency is upgraded or when oauthsvc's minimum version requirement changes.
+
+| Tool | Version | Notes |
+|------|---------|-------|
+| Python | 3.10+ | Required for the package runtime and CLI |
+| sqlite3 | 3.31+ | Standard library module included with Python; used for the database file |
+| git | 2.30+ | Required for version control and repository operations |
+
+The "Notes" column is optional but helpful for explaining version constraints, usage context, or why a version threshold is required.
+
+If the page describes oauthsvc itself, do not include it in the tools table; assume readers know which version of oauthsvc they are using from the broader documentation context.
+
+## Change Log
+
+Every page must include a change log documenting updates to the page, organized by version and date. The change log must contain at least six entries. Entries are listed in reverse chronological order (newest first), one entry per version.
+
+Each entry includes:
+- The version number (matching the version field at that point in time).
+- The date in ISO 8601 format.
+- The oauthsvc release this page update was part of (optional but recommended).
+- A bulleted list of changes (at least one bullet per entry).
+
+**Format:**
+
+```
+## Change Log
+
+### v1.2.0 (2025-04-28) – oauthsvc 1.5.0
+- Added optional "Reviewed by" field for tracking review dates separately from content updates.
+- Clarified that title field must not include colons or other special characters.
+- Expanded section on section ownership for long-form documentation.
+- Updated all examples to match current template versions.
+
+### v1.1.2 (2025-02-14) – oauthsvc 1.4.3
+- Fixed syntax error in reStructuredText field list example.
+- Added note clarifying that version prefix (v vs. no prefix) is normalized by the publishing system.
+
+### v1.1.1 (2025-01-30) – oauthsvc 1.4.2
+- Corrected common misconception that page version is tied to package version; they are independent.
+
+### v1.1.0 (2024-12-10) – oauthsvc 1.4.0
+- Added plain-text (.txt) format for front-matter metadata.
+- Expanded validation rules table with four new rules and examples of common failures.
+- Introduced Frequently Asked Questions section.
+
+### v1.0.2 (2024-10-15) – oauthsvc 1.3.1
+- Corrected multiple date format examples from MM-DD-YYYY to YYYY-MM-DD.
+
+### v1.0.1 (2024-09-05) – oauthsvc 1.3.0
+- Minor clarifications to field definitions and syntax examples.
+```
+
+When you update a page, always:
+1. Add a new entry at the top of the change log.
+2. Increment the version number in the header.
+3. Update the last_updated date.
+
+The publishing system uses the change log to detect if version and last_updated have been changed consistently; mismatches trigger validation warnings.
+
+## Related Pages
+
+Pages in the docs-style folder are interconnected. Review these related pages to understand the broader documentation program and how metadata fits into it:
+
+- **docs-style Folder Overview** (v1.4, Docs Guild) – Navigation and overview of all documentation program pages.
+- **Writing Style Guide** (v3.2, Docs Guild) – House rules for tone, capitalization, list formatting, and handling code examples.
+- **Voice and Tone Guidelines** (v2.0, Developer Experience) – Guidelines for the voice and tone that oauthsvc documentation should use.
+- **Page Templates Overview** (v1.6.0, Platform Tools) – Layout patterns, boilerplate sections, and templates for different page types.
+- **Template Field Reference** (v2.1, Platform Tools) – Detailed field-by-field reference for page templates; complements this page.
+- **oauthsvc Glossary** (v3.0.1, Developer Experience) – Centralized glossary of oauthsvc-specific terminology used across all documentation.
+- **Glossary Upkeep Process** (v1.3, Developer Experience) – Procedures for adding, updating, and deprecating terms in the central glossary.
+- **Documentation Review Cadence** (v2.4, Platform Tools) – Schedule and criteria for reviewing pages based on last_updated date and content type.
+- **Docs Publishing Workflow** (v2.2.0, Docs Guild) – How pages move from draft status through review to published status on the docs site.
+- **Page Review Checklist** (v1.1, Platform Tools) – Checklist that reviewers use to verify page quality, accuracy, and metadata.
+- **Pre-Publish Checklist** (v1.0, Docs Guild) – Automated checks that run before a page can be queued for deployment.
+- **Markup Conventions** (v2.5, Developer Experience) – Conventions for code blocks, inline formatting, tables, and lists across all formats.
+
+## Worked Example: Updating Metadata
+
+Suppose you are updating the Writing Style Guide to add a new section on list formatting conventions. Here is the step-by-step process:
+
+1. **Open the page** in your editor. Check the header block at the very top for current metadata.
+
+2. **Find the current version.** The page header shows `version: 3.2`. Since you are adding a new section, increment the minor version: change to `version: 3.3`.
+
+3. **Update the last_updated date** to today's date. If today is September 27, 2026, change the field to `last_updated: 2026-09-27`.
+
+4. **Do not update the owner field** unless ownership has genuinely changed. The Writing Style Guide is owned by Docs Guild (Priya Chandran); leave it as is.
+
+5. **Add a new entry at the top of the change log** section:
+
+   ```
+   ### v3.3 (2026-09-27) – oauthsvc 1.6.0
+   - Added new section "List Formatting Conventions" covering nested bullet and numbered lists.
+   - Clarified rules for indentation and spacing in mixed-list scenarios.
+   - Added worked examples showing correct and incorrect list structures.
+   ```
+
+6. **Commit your changes** to the repository:
+
+   ```
+   git add docs-style/writing-style-guide.md
+   git commit -m "docs: add list formatting conventions; bump to v3.3"
+   ```
+
+7. **Before pushing, run the metadata validator** locally:
+
+   ```
+   ./scripts/validate-metadata.sh docs-style/writing-style-guide.md
+   ```
+
+   If validation passes, no output is shown. If there are errors, the script prints them to your terminal and you can fix them before pushing.
+
+8. **Push your changes** to your branch and open a merge request. The pre-publish checklist runs automatically and checks the metadata again. If it passes, the page is queued for review by the review cadence process.
+
+## Frequently Asked Questions
+
+**Q: Can I use a different date format, like MM/DD/YYYY?**  
+A: No. The publishing system expects ISO 8601 format (`YYYY-MM-DD`) exclusively. Other formats cause validation to fail, and the page cannot be published.
+
+**Q: What if I fix just a typo or a single word? Do I have to bump the version?**  
+A: Yes. Even a single-word fix should increment the patch version (e.g., `3.2.0` → `3.2.1`), update the last_updated date, and add a change log entry. This keeps the version timeline and changelog accurate and lets readers know the page has been reviewed and corrected.
+
+**Q: Can a page have multiple owners?**  
+A: Yes. List them as `Team Name (Person A and Person B)`. Avoid more than two owners on a single page. If content is split across three or more teams, consider splitting the page itself or designating section owners instead.
+
+**Q: What if the page owner leaves the team or changes positions?**
+A: Update the owner field immediately to the new owner's name and team. Add a note in the change log: "Ownership transferred to [new owner]." The publishing system uses the owner field to send review reminders and alerts, so this update is critical for keeping the review cadence on track.
+
+**Q: Is the "Applies to" field required?**  
+A: No, it is optional. Use it if the page's content applies only to certain versions of oauthsvc or only to users with specific configurations. If the page applies to all versions and all users, omit the field.
+
+**Q: My page is very long and has three distinct sections owned by different people. Should I list all three in the owner field?**  
+A: No. Instead, designate one person as the primary owner (in the owner field) and use section-level ownership notes within the page for the other sections. See the "Section Structure and Internal Ownership" section above for details.
+
+**Q: Can I include a change log entry for a change that happened before I created the page?**  
+A: No. The change log should document changes to the page from the point of its creation forward. If the page is new, start with `v1.0.0` and a single entry describing its initial release.
+
+## Glossary
+
+**Changelog** – A section at the end of a page listing all updates in reverse chronological order (newest first), organized by version and date. Each entry summarizes the changes made in that version and optionally notes the oauthsvc release it was part of.
+
+**Draft** – A page stored in the repository branch that has not yet been published to the live docs site. Drafts are reviewed, validated, and queued before being moved to published status.
+
+**Field** – A labeled metadata value in the front-matter block at the top of a page, such as title, version, owner, or last_updated. Fields are structured data that the publishing system parses and validates.
+
+**Front-Matter** – The block of metadata at the very top of a page, before any content headings or body text. Front-matter is enclosed in delimiters (triple hyphens for YAML, or field list syntax for reStructuredText) and tells the publishing system about the page's title, version, owner, and other attributes.
+
+**Header Block** – A synonym for front-matter; the structured metadata section that precedes page content and carries authorship, versioning, and maintenance information.
+
+**Markdown** – A lightweight plain-text markup format used for most oauthsvc documentation pages. Markdown is human-readable in a text editor and easy to convert to HTML for web display.
+
+**Publishing Workflow** – The automated process that validates a page's metadata and content, sends it for review, and moves it to the live docs site once accepted. The workflow runs in stages: draft → review → queued → published.
+
+**reStructuredText** – A plain-text markup format more formal than Markdown, used for some oauthsvc documentation pages and often preferred for reference documentation and API references.
+
+**Semantic Versioning** – A versioning scheme where version numbers take the form major.minor.patch (e.g., 1.2.3). A patch bump signals a small fix or clarification; a minor bump signals new content or features; a major bump signals a breaking change or major restructuring.
+
+**Validation** – The automated process of checking that a page's metadata is complete, correctly formatted, and consistent with other pages and version records. Validation fails if required fields are missing, dates are malformed, version numbers are not incremented, or owner names are not recognized.
+
+## References and Related Files
+
+- `docs/` – Root directory containing all user-facing documentation pages.
+- `docs-style/README.md` – Overview and navigation guide for the docs-style internal documentation folder.
+- `docs-style/writing-style-guide.md` – House style and tone guidelines for all pages; referenced by reviewers.
+- `docs-style/page-templates.md` – Template layouts and boilerplate sections for common page types.
+- `docs-style/glossary.md` – Central glossary of oauthsvc-specific terminology; shared across all pages.
+- `docs-style/glossary-upkeep.md` – Process for maintaining and updating the central glossary.
+- `docs-style/review-cadence.md` – Review schedule and criteria based on last_updated dates.
+- `docs-style/publishing-workflow.md` – Publishing process and stages from draft to live site.
+- `docs-style/review-checklist.txt` – Checklist used by reviewers to validate page quality.
+- `docs-style/publishing-checklist.txt` – Pre-publication checks run by automated tooling.
+- `.publishing/queue.json` – Publishing queue file; read and updated by the pub automation script.
+- `scripts/validate-metadata.sh` – Command-line tool for validating page metadata before commit.
+
+## Change Log
+
+### v1.2.0 (2025-04-28) – oauthsvc 1.5.0
+- Added optional "Reviewed by" field for tracking review dates separately from content update dates.
+- Clarified that title field must not include colons and specified title character limits.
+- Expanded section on section-level ownership for pages with distributed authorship.
+- Added comprehensive Frequently Asked Questions section.
+- Updated all examples throughout to reflect current template versions.
+- Expanded the validation rules table with additional failure scenarios and error messages.
+
+### v1.1.2 (2025-02-14) – oauthsvc 1.4.3
+- Fixed syntax error in the reStructuredText field list example.
+- Added clarifying note that version prefix (`v` vs. no prefix) is normalized by the publishing system.
+
+### v1.1.1 (2025-01-30) – oauthsvc 1.4.2
+- Corrected common misconception in the version field definition: page version is independent from package version.
+
+### v1.1.0 (2024-12-10) – oauthsvc 1.4.0
+- Added support for plain-text (.txt) format front-matter metadata.
+- Expanded validation rules table from five rules to nine, with examples of common failures.
+- Introduced Frequently Asked Questions section.
+- Clarified section ownership notation for pages with distributed authorship.
+
+### v1.0.2 (2024-10-15) – oauthsvc 1.3.1
+- Corrected date format in multiple examples from MM-DD-YYYY to YYYY-MM-DD.
+
+### v1.0.1 (2024-09-05) – oauthsvc 1.3.0
+- Minor clarifications to field definitions and added additional syntax examples.
+
+### v1.0.0 (2024-08-20) – oauthsvc 1.2.0
+- Initial release of the metadata field standard.
+- Defined required fields: title, version, owner, last_updated.
+- Defined optional fields: reviewed_by, applies_to.
+- Specified validation rules and front-matter syntax for Markdown, reStructuredText, and plain-text formats.
+- Established change log requirements (minimum six entries).
+- Documented glossary and terminology requirements (minimum eight terms per page).

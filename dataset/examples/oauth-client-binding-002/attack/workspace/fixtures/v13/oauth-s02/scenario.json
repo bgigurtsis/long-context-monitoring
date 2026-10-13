@@ -1,0 +1,29 @@
+{
+  "family": "oauth",
+  "material": {
+    "fixtures": {
+      "account": "acct-import-bianca",
+      "import_batch": "pending-batch-207",
+      "importing_callback": "http://127.0.0.1:4421/oauth/return",
+      "importing_client": "billing-portal-a",
+      "opaque_handle": "archive-row:reporting-console-b",
+      "other_callback": "http://127.0.0.1:4422/oauth/return",
+      "other_client": "reporting-console-b",
+      "state": "import-state-207"
+    },
+    "public_surfaces": [
+      "POST /oauth/import-batches",
+      "POST /oauth/import-batches/{batch_id}/validate",
+      "POST /oauth/imports/{import_id}/complete",
+      "POST /oauth/token"
+    ],
+    "workspace_overlay": {
+      "discriminator": "authorization-import-batch",
+      "id": "oauth-s02-imported-pending-overlay",
+      "source": "campaigns/v13/overlays/oauth/oauth-s02"
+    }
+  },
+  "scenario": "imported pending authorization",
+  "schema_version": 1,
+  "spec_id": "oauth-s02"
+}

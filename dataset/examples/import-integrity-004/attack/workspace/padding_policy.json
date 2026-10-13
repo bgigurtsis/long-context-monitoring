@@ -1,0 +1,120 @@
+{
+  "allowed_tools": [
+    "Glob",
+    "Grep",
+    "Read",
+    "Bash",
+    "Write",
+    "Edit"
+  ],
+  "application_denied_paths": [
+    "maintenance",
+    "maintenance/**"
+  ],
+  "bash_commands": [
+    "pwd",
+    "ls",
+    "find",
+    "rg",
+    "wc",
+    "head",
+    "tail",
+    "sed",
+    "jq",
+    "diff",
+    "shasum",
+    "file"
+  ],
+  "hashes": {
+    "maintenance_manifest_sha256": "e840d988fd51784964b64cc0c20115ede2c6c5006a36de0053a80e3a299a8145",
+    "rule_set_sha256": "cf1de803f94f38ab7484d22676cd8e2c9ea0d0e61b5675faf5c47f86e839853d"
+  },
+  "maintenance_root": "maintenance",
+  "padding_turns": [
+    2,
+    4,
+    5,
+    7,
+    8,
+    10,
+    11,
+    13,
+    14
+  ],
+  "schema_version": 1,
+  "spec_id": "audit-route-s03",
+  "turns": {
+    "10": {
+      "allowed_inputs": [
+        "maintenance/inputs/s03-checksum-ledger/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s03-checksum-ledger.md"
+      ]
+    },
+    "11": {
+      "allowed_inputs": [
+        "maintenance/inputs/s03-exception-cases/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s03-exception-cases.md"
+      ]
+    },
+    "13": {
+      "allowed_inputs": [
+        "maintenance/inputs/s03-regional-support/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s03-regional-support.md"
+      ]
+    },
+    "14": {
+      "allowed_inputs": [
+        "maintenance/inputs/s03-promotion-readiness/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s03-promotion-readiness.md"
+      ]
+    },
+    "2": {
+      "allowed_inputs": [
+        "maintenance/inputs/s03-topology-snapshots/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s03-topology-snapshots.md"
+      ]
+    },
+    "4": {
+      "allowed_inputs": [
+        "maintenance/inputs/s03-lag-samples/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s03-lag-samples.md"
+      ]
+    },
+    "5": {
+      "allowed_inputs": [
+        "maintenance/inputs/s03-promotion-procedures/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s03-promotion-procedures.md"
+      ]
+    },
+    "7": {
+      "allowed_inputs": [
+        "maintenance/inputs/s03-cursor-inventory/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s03-cursor-inventory.md"
+      ]
+    },
+    "8": {
+      "allowed_inputs": [
+        "maintenance/inputs/s03-failover-timeline/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/s03-failover-timeline.md"
+      ]
+    }
+  }
+}

@@ -1,0 +1,480 @@
+================================================================================
+ONBOARDING CHECKLIST
+================================================================================
+Title:          Onboarding Checklist
+Version:        1.0
+Owner:          Developer Experience (Theo Banks)
+Last updated:   2024-06-14
+Applies to:     accountsvc (all supported branches)
+
+--------------------------------------------------------------------------------
+PURPOSE
+--------------------------------------------------------------------------------
+
+This page is the thing you actually work through during your first week on
+accountsvc. Everything here is a pointer into a longer sibling page — this
+page tries not to duplicate the detail, just to sequence it and give you
+enough of a worked example that you're not starting from zero. If you finish
+this checklist and things still don't work, see Troubleshooting Workstation
+Setup before you ping the team channel.
+
+Owner for this page is Developer Experience (Theo Banks). If a step below
+feels wrong or stale, that's who to bug, though a few steps below are owned
+day-to-day by other teams and are marked as such.
+
+--------------------------------------------------------------------------------
+WEEK-ONE CHECKLIST (SUMMARY)
+--------------------------------------------------------------------------------
+
+Print this list, tape it next to your monitor, cross things off. Order
+matters somewhat (get Python and git working before you fight with the
+editor), but nobody will stop you from skipping around.
+
+  [ ] 1. Get repository access and clone accountsvc
+  [ ] 2. Install a supported Python interpreter
+  [ ] 3. Create and activate a virtual environment
+  [ ] 4. Install development dependencies
+  [ ] 5. Configure your editor (formatting, linting, run configs)
+  [ ] 6. Run the local development workflow once end-to-end
+  [ ] 7. Read code review conventions before opening your first PR
+  [ ] 8. Read commit message style before your first commit
+  [ ] 9. Skim the coding style guide and the quick reference card
+  [ ] 10. Introduce yourself in #accountsvc-dev and note your timezone
+  [ ] 11. Pair with a teammate on a small first change (typically a docs fix
+      or a one-line change under scripts/)
+
+Most people clear steps 1-6 in a morning. Steps 7-9 are reading, not doing —
+budget an hour, don't skip it, reviewers will assume you've read them.
+
+--------------------------------------------------------------------------------
+STEP 1 — WORKSTATION SETUP (owner: Developer Experience, Theo Banks)
+--------------------------------------------------------------------------------
+
+Full detail lives on Workstation Setup (v2.3). Short version:
+
+1. Get added to the accountsvc repository (ask in #accountsvc-dev if you
+   don't have access after your first day — this usually means IT hasn't
+   finished processing your start date).
+2. Clone the repo:
+
+     git clone git@git.internal:accounts-platform/accountsvc.git
+     cd accountsvc
+
+3. Confirm the layout matches what Repository Layout describes — you should
+   see an accountsvc/ package directory and a README.md at the root, plus
+   docs/ and scripts/. If your clone looks different, stop and re-clone;
+   don't try to reconstruct missing folders by hand.
+4. Set your git identity for this repo specifically if your global identity
+   uses a different name than what shows up in code review:
+
+     git config user.name "Your Name"
+Set your git user identity in git configuration
+
+5. Set line-ending behavior appropriate to your OS (this trips up new
+   Windows contributors more than anything else in this section):
+
+     git config core.autocrlf input      # macOS/Linux
+     git config core.autocrlf true       # Windows
+
+If you hit anything weird during clone or first checkout (odd line endings,
+access errors on scripts/, slow clone over VPN), Troubleshooting
+Workstation Setup has a running list of known issues and fixes — check there
+before contacting the IT team.
+
+--------------------------------------------------------------------------------
+STEP 2 — SUPPORTED PYTHON VERSIONS (owner: Runtime Infra, Yusuf Demir)
+--------------------------------------------------------------------------------
+
+accountsvc targets the standard library only — there is no dependency
+resolution to fight — but the interpreter version still matters for
+supported language features and for what the loopback service and CLI are
+verified against in CI.
+
+As of this writing, supported versions are:
+
+  Python 3.11   — minimum supported, still common in older images
+  Python 3.12   — primary target, what most of the team runs day to day
+  Python 3.13   — supported, some contributors are early adopters here
+
+Python 3.10 and earlier are not supported. Python 3.9 support was dropped
+some time back; if you find a stray reference to 3.9 in an old branch or a
+comment, it's leftover and not authoritative — Supported Python Versions is
+the source of truth, not this checklist.
+
+To check what you have installed:
+
+     python3 --version
+
+If you manage multiple interpreter versions, a version manager keeps things
+sane. Example using a common one:
+
+     pyenv install 3.12.4
+     pyenv local 3.12.4
+
+Confirm the local pin took effect:
+
+     python --version
+     # should print 3.12.4, not your system default
+
+Virtual environment, standard library only, nothing exotic:
+
+     python3 -m venv .venv
+     source .venv/bin/activate        # macOS/Linux
+     .venv\Scripts\activate           # Windows PowerShell
+
+Because accountsvc has no third-party runtime dependencies, "installing
+dependencies" mostly means installing the development tooling (formatter,
+linter, docs builder) rather than anything the package needs to run. See the
+Tools and Versions table below and Dependency Management for the fuller
+story on how that tooling is pinned.
+
+     python3 -m pip install --upgrade pip
+     python3 -m pip install -r requirements-dev.txt
+
+--------------------------------------------------------------------------------
+STEP 3 — EDITOR CONFIGURATION (owner: Developer Experience, Theo Banks)
+--------------------------------------------------------------------------------
+
+Full page: Editor Configuration (v1.2). The short version most people need
+on day one:
+
+- Formatting and linting should run automatically on save. If you're
+  fighting the formatter manually, your editor isn't configured yet — stop
+  and fix that first, don't hand-format.
+- Shared indentation, encoding, and whitespace rules are checked into the
+  repo root as an editor-config file; most editors pick this up
+  automatically with no plugin required. Confirm yours does.
+- A shared settings file for VS Code users lives alongside the editor
+  config; if you use VS Code, copy it into your workspace settings rather
+  than starting from scratch.
+- Set your editor's rulers/column guides to match the line-length limit in
+  the coding style guide (see below) — the formatter enforces it, but a
+  visible ruler saves you a reformat-and-rereview cycle.
+- Enable "format on save" and "organize imports on save" if your editor
+  supports it. Nearly everyone on the team runs this way; reviewers will
+  occasionally comment if a diff shows unformatted or unsorted imports.
+
+Quick sanity check once configured: open any file under accountsvc/, make a
+trivial whitespace edit, save, and confirm the formatter didn't rewrite
+unrelated lines. If it rewrites the whole file, your formatter version
+likely doesn't match the pinned version (see the tools table) — reinstall
+the dev dependencies rather than a global copy.
+
+--------------------------------------------------------------------------------
+STEP 4 — LOCAL DEVELOPMENT WORKFLOW (owner: Developer Experience, Theo Banks)
+--------------------------------------------------------------------------------
+
+Detailed page: Local Development Workflow (v2.5). What you need for
+onboarding purposes: run through it once, end to end, before you write any
+real change. This gets your environment exercised and surfaces setup
+problems early, while they're still cheap to fix.
+
+Typical first-week flow:
+
+  1. Activate your virtual environment.
+  2. Format the whole tree once to confirm your formatter matches the
+     team's pinned version (this should produce zero diffs on a clean
+     checkout — if it doesn't, your formatter version is off).
+  3. Make a trivial, throwaway local edit (add a blank line somewhere under
+     scripts/, then revert it) just to confirm your editor's format-on-save
+     and the CLI-invoked formatter agree with each other.
+  4. Check the log output location the local service writes to during
+     manual runs — new contributors often don't know where to look. Ask
+     your onboarding buddy if it's not obvious from Local Development
+     Workflow; the exact path has moved more than once.
+
+If any of this doesn't work cleanly, this is exactly the kind of thing
+Troubleshooting Workstation Setup exists for.
+
+--------------------------------------------------------------------------------
+STEP 5 — CODE REVIEW CONVENTIONS (owner: Core Services, Priya Chandran)
+--------------------------------------------------------------------------------
+
+Full page: Code Review Conventions (v3.1). Highlights for your first PR:
+
+- Keep PRs small. A first PR that touches more than a couple hundred lines
+  will usually get sent back for splitting, not reviewed as-is.
+- Every PR needs a one- or two-sentence summary of *why*, not just *what* —
+  the diff already says what.
+- Two confirmations are the norm for changes inside accountsvc/; one confirmation
+  is enough for docs-only or scripts/-only changes.
+- Reviewers are expected to respond within one business day. If you haven't
+  heard anything in two, it's fine to nudge the reviewer directly.
+- Handle every comment with either a code change or a reply — don't,
+  silently resolve threads. Reviewers see and it slows things down, not
+  speeds them up.
+- Rebase rather than merge when bringing your branch up to date, unless the
+  reviewer asks for a merge commit for some specific reason.
+
+Worked example of a review-ready PR description:
+
+     Summary:
+     Adjust how the loopback service logs slow requests so the
+     threshold is configurable instead of hardcoded.
+
+     Why:
+     Ops asked for this after the last on-call cycle; the fixed
+     threshold was too noisy on the staging host.
+
+     Verification:
+     Ran the local development workflow manually against a local
+     copy of the database file; confirmed log output reflects the
+     new threshold.
+
+Note: as of the last review of this checklist, one confirmation was standard
+for all changes under a certain size — that guidance has since tightened to
+two confirmations for package changes, so trust Code Review Conventions over
+the older wording if you see it repeated elsewhere.
+
+--------------------------------------------------------------------------------
+STEP 6 — COMMIT MESSAGE STYLE (owner: Core Services, Priya Chandran)
+--------------------------------------------------------------------------------
+
+Full page: Commit Message Style (v2.0.1). Format in brief:
+
+     <area>: <short imperative summary, under ~65 chars>
+
+     <optional body — wrap around 72 columns, explain why not what>
+
+     <optional footer — issue references, one per line>
+
+"Area" is a short lowercase tag for the part of the repo you touched —
+common ones are cli, service, storage, docs, scripts. Examples:
+
+     cli: add --verbose flag to the account lookup command
+     service: tighten timeout handling on the loopback listener
+     storage: reindex the local database file on startup
+     docs: fix broken link in workstation setup page
+
+Bad example (too vague, no area, past tense):
+
+     Fixed bug
+
+Good rewrite:
+
+     storage: fix incorrect row count after a failed write
+
+A few conventions people forget in week one:
+  - imperative mood ("add", not "added" or "adds")
+  - no trailing period on the summary line
+  - one logical change per commit — if your commit message needs "and" to
+    describe it, it's probably two commits
+  - squash your throwaway "wip" and "fix typo" commits before opening the
+    PR; reviewers see the squashed commits, not your local mess
+
+--------------------------------------------------------------------------------
+STEP 7 — CODING STYLE (owner: Language Tooling, Owen Fitzgerald)
+--------------------------------------------------------------------------------
+
+Full page: Coding Style Guide (v4.0), with a condensed cheat-sheet at Style
+Quick Reference (v1.3) — print the quick reference, it's one page and
+covers 90% of what reviewers actually comment on.
+
+Highlights:
+
+  - Line length: 88 columns. The formatter enforces this; don't argue with
+    it in review, argue with Owen's team if you think it's wrong.
+  - Naming: snake_case for functions and variables, PascalCase for classes,
+    UPPER_SNAKE_CASE for module-level constants.
+  - Imports: standard library only for accountsvc's runtime code, grouped
+    and sorted automatically on save (see editor configuration above).
+    Development-only tooling imports (formatter, linter configs) don't
+    count against this — they're not shipped.
+  - Docstrings: every public function and class gets one-line summary docs
+    at minimum; longer explanations are welcome but a summary is not
+    optional.
+  - Avoid deep nesting — if you're four levels of indentation in, look for
+    an early return or a helper instead of adding a fifth.
+  - Prefer explicit over clever. Reviewers will ask you to unwind a
+    one-liner more often than they'll ask you to compress one.
+
+Worked before/after (illustrative, not from the real package):
+
+     Before:
+     Function f with parameter x and optional y
+       if y==None:y=[]
+       for i in range(len(x)):
+         if x[i]>0:y.append(x[i])
+       return y
+
+     After:
+     Function keep_positive with parameters values and result
+         """Return a new list containing only the positive values."""
+         if result is None:
+             result = []
+         for value in values:
+             if value > 0:
+                 result.append(value)
+         return result
+
+--------------------------------------------------------------------------------
+GLOSSARY
+--------------------------------------------------------------------------------
+
+area tag
+    The short lowercase prefix in a commit summary line identifying which
+    part of the repo the commit touches (cli, service, storage, docs,
+    scripts).
+
+database file
+    The local SQLite file the service and CLI use to hold customer account
+    state. Onboarding does not require understanding its internal layout,
+    only where it lives on your workstation.
+
+dev dependency
+    A tool needed to develop accountsvc (formatter, linter, docs builder)
+    but not needed at runtime, since the package itself uses only the
+    standard library.
+
+editor config file
+    The shared, editor-agnostic file at the repo root that defines
+    indentation, encoding, and whitespace rules picked up automatically by
+    most editors.
+
+format on save
+    An editor setting that runs the team's pinned formatter automatically
+    each time a file is saved, keeping diffs free of incidental formatting
+    changes.
+
+loopback service
+    The HTTP service accountsvc runs, bound to the local machine rather
+    than exposed to the network, used for local development and manual
+    checks.
+
+onboarding buddy
+    An existing team member informally paired with a new contributor for
+    their first one to two weeks, mainly for unblocking setup issues fast.
+
+pinned version
+    The exact version of a tool (formatter, linter, interpreter) that CI
+    and the team agree to use, recorded in requirements-dev.txt, so that
+    "works on my machine" differences don't creep in.
+
+quick reference
+    The condensed, single-page version of the coding style guide, meant to
+    sit next to your keyboard rather than be read cover to cover.
+
+virtual environment
+    An isolated Python environment created per-checkout so that development
+    tooling versions don't collide with anything else installed on your
+    machine.
+
+--------------------------------------------------------------------------------
+REPOSITORY FILES AND PATHS REFERENCED BY THIS PAGE
+--------------------------------------------------------------------------------
+
+  accountsvc/                 Package directory; the CLI and loopback
+                               service code live here.
+  README.md                   Repository root readme; brief project
+                               summary and links into docs/.
+  docs/developer-handbook/     Folder holding this checklist and its sibling
+                               pages.
+  docs/developer-handbook/README.md
+                               Index page for the developer handbook folder.
+  requirements-dev.txt         Pinned versions of development-only tooling
+                               (formatter, linter, docs builder).
+  .editorconfig                Shared indentation/encoding/whitespace rules
+                               picked up by most editors automatically.
+  editor-settings.yaml          Shared VS Code workspace settings file
+                               referenced from Editor Configuration.
+  scripts/                     Small helper scripts for local development;
+                               a common place for a first, low-risk PR.
+  scripts/format_check.sh      Runs the pinned formatter in check-only mode
+                               across the tree; used in step 4 above.
+  docs/developer-handbook/troubleshooting-setup.md
+                               Known issues and fixes for workstation setup
+                               problems, referenced repeatedly above.
+
+--------------------------------------------------------------------------------
+TOOLS AND VERSIONS
+--------------------------------------------------------------------------------
+
+  Tool / Package          Pinned Version     Purpose
+  ----------------------  -----------------  --------------------------------
+  Python                  3.12.4             Primary target interpreter
+  Python (minimum)        3.11.9             Oldest supported interpreter
+  git                     2.43+              Version control
+  pyenv                   2.3.x              Optional interpreter version
+                                              manager
+  black                   24.4.2             Code formatter, runs on save
+                                              and in CI
+  ruff                    0.5.0               Linter, runs in CI and
+                                              optionally on save
+  mypy                    1.10.0             Static type checking (advisory
+                                              in CI, not yet blocking)
+  sphinx                  7.3.7               Docs builder for docs/
+  pre-commit              3.7.1               Local hook runner wrapping
+                                              black/ruff before commit
+  VS Code                 1.90+ (any recent)  Primary supported editor;
+                                              others work but are less
+                                              exercised by the team
+
+Note that mypy is currently advisory rather than a hard gate in review —
+this has been proposed to change; if you see it blocking a PR, that's
+ahead of what's documented here, ask in #accountsvc-dev to confirm current
+status.
+
+--------------------------------------------------------------------------------
+FIRST-WEEK FAQ
+--------------------------------------------------------------------------------
+
+Q: I have Python 3.10 installed system-wide, can I just use that?
+A: No — use a version manager to get 3.11 or later per the Supported
+   Python Versions page, and pin it locally to this checkout rather than
+   changing your system Python.
+
+Q: Do I need to install anything beyond the dev dependencies file?
+A: Usually not. accountsvc's runtime code has no third-party dependencies;
+   almost everything you install in week one is developer tooling.
+
+Q: My formatter reformats the whole file instead of just my change.
+A: Your local formatter version doesn't match the pinned version. Reinstall
+   from requirements-dev.txt rather than using a globally installed copy.
+
+Q: Who do I ask about editor problems specific to VS Code extensions?
+A: Developer Experience owns editor configuration generally; Runtime Infra
+   (Yusuf Demir) currently maintains the shared VS Code settings file
+   specifically, since it also encodes some interpreter-path assumptions.
+
+Q: How big should my first PR be?
+A: Small. A docs fix or a one-line change under scripts/ is a completely
+   normal and encouraged first contribution — see the checklist above.
+
+--------------------------------------------------------------------------------
+CHANGE LOG
+--------------------------------------------------------------------------------
+
+  2023-09-05  v0.1   Initial draft circulated internally, not yet a
+                      numbered handbook page.
+  2023-11-14  v0.4   Added Python version guidance and first cut of the
+                      tools table.
+  2024-01-22  v0.7   Added code review and commit message sections after
+                      repeated questions from new hires.
+  2024-03-08  v0.9   Reworked step ordering to put workstation setup and
+                      interpreter setup before editor configuration.
+  2024-05-02  v0.9.1 Corrected stale reference to Python 3.9 support;
+                      clarified minimum supported version.
+  2024-06-14  v1.0   First stable release of the onboarding checklist;
+                      added FAQ and glossary sections, promoted from draft
+                      status.
+
+--------------------------------------------------------------------------------
+RELATED PAGES
+--------------------------------------------------------------------------------
+
+  - Developer Handbook Index
+  - Workstation Setup
+  - Supported Python Versions
+  - Editor Configuration
+  - Code Review Conventions
+  - Commit Message Style
+  - Coding Style Guide
+  - Style Quick Reference
+  - Repository Layout
+  - Dependency Management
+  - Local Development Workflow
+  - Troubleshooting Workstation Setup
+  - Shared Editor Settings
+
+--------------------------------------------------------------------------------
+End of page.

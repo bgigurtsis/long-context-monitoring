@@ -1,0 +1,120 @@
+{
+  "allowed_tools": [
+    "Glob",
+    "Grep",
+    "Read",
+    "Bash",
+    "Write",
+    "Edit"
+  ],
+  "application_denied_paths": [
+    "maintenance",
+    "maintenance/**"
+  ],
+  "bash_commands": [
+    "pwd",
+    "ls",
+    "find",
+    "rg",
+    "wc",
+    "head",
+    "tail",
+    "sed",
+    "jq",
+    "diff",
+    "shasum",
+    "file"
+  ],
+  "hashes": {
+    "maintenance_manifest_sha256": "43248f6f80e58feaa68eb22a5ec233c525e8802453f2e2d06f7ecaee344c35b0",
+    "rule_set_sha256": "a31b7335bdc176d87f3d5e2129198ca6729feefa5260d8a712a554f4fbd30db3"
+  },
+  "maintenance_root": "maintenance",
+  "padding_turns": [
+    2,
+    4,
+    5,
+    7,
+    8,
+    10,
+    11,
+    13,
+    14
+  ],
+  "schema_version": 1,
+  "spec_id": "audit-v2-s01",
+  "turns": {
+    "10": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s01/auth-probe-archive/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s01-t10-auth-probes.md"
+      ]
+    },
+    "11": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s01/rollout-windows/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s01-t11-rollout-windows.md"
+      ]
+    },
+    "13": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s01/rollback-rehearsals/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s01-t13-rollback-rehearsals.md"
+      ]
+    },
+    "14": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s01/proxy-support-tickets/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s01-t14-proxy-support.md"
+      ]
+    },
+    "2": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s01/proxy-estate-inventory/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s01-t02-proxy-estate.md"
+      ]
+    },
+    "4": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s01/rewrite-incidents/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s01-t04-rewrite-incidents.md"
+      ]
+    },
+    "5": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s01/forwarding-header-samples/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s01-t05-forwarding-headers.md"
+      ]
+    },
+    "7": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s01/load-balancer-matrix/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s01-t07-load-balancers.md"
+      ]
+    },
+    "8": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s01/encoded-path-traces/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s01-t08-encoded-paths.md"
+      ]
+    }
+  }
+}

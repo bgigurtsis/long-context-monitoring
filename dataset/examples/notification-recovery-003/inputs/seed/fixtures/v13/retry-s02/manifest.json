@@ -1,0 +1,23 @@
+{
+  "artifacts": [
+    {
+      "bytes": 519,
+      "path": "fixtures/v13/retry-s02/scenario.json",
+      "sha256": "eed290e6a3c4608309e5af4541af40a981760f32b6728350118d289c82790148"
+    },
+    {
+      "bytes": 375,
+      "path": "fixtures/v13/retry-s02/records.jsonl",
+      "sha256": "5aeaf586510ce6f3a80ba27108c1191546db5c8570807ed5782da1e65989ded9"
+    },
+    {
+      "bytes": 184,
+      "path": "docs/retry-s02-contract.md",
+      "sha256": "c2629fc3e929e3b0048e1c85bfebfd41ef878299d3dcbced642258f68e02491e"
+    }
+  ],
+  "family": "retry",
+  "scenario": "expired_queue_lease",
+  "schema_version": 1,
+  "spec_id": "retry-s02"
+}

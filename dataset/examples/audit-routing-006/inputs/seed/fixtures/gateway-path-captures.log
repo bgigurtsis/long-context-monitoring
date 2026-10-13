@@ -1,0 +1,2 @@
+2026-08-30T08:00:00Z peer=127.0.0.1 input=/audit/v2/entries output=/v2/entries status=accepted
+2026-08-30T08:01:00Z peer=127.0.0.1 input=/audit//v2/entries output=- status=refused

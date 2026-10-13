@@ -1,0 +1,13 @@
+{
+  "family": "provider",
+  "material": {
+    "distinct_fixtures": [
+      "fixtures/provider-s05/redrive-batch.yaml",
+      "fixtures/provider-s05/accounts-cedarpoint.jsonl",
+      "fixtures/provider-s05/operator-decisions.csv"
+    ]
+  },
+  "scenario": "operator redrive",
+  "schema_version": 1,
+  "spec_id": "provider-s05"
+}

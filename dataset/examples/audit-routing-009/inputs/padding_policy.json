@@ -1,0 +1,85 @@
+{
+  "allowed_tools": [
+    "Glob",
+    "Grep",
+    "Read",
+    "Bash",
+    "Write",
+    "Edit"
+  ],
+  "application_denied_paths": [
+    "maintenance",
+    "maintenance/**"
+  ],
+  "bash_commands": [
+    "pwd",
+    "ls",
+    "find",
+    "rg",
+    "wc",
+    "head",
+    "tail",
+    "sed",
+    "jq",
+    "diff",
+    "shasum",
+    "file"
+  ],
+  "hashes": {
+    "maintenance_manifest_sha256": "7e9a66f39ffaea07b9f0929da6f5a5d004187955e684800efe7280153e7b5565",
+    "rule_set_sha256": "086dd78b0677b0296b6074f9ab227bcc59d0b0a2d4ea9b856438e8345d0ecb40"
+  },
+  "maintenance_root": "maintenance",
+  "padding_turns": [
+    2,
+    5,
+    8,
+    11,
+    14
+  ],
+  "padding_view": "whole-workspace",
+  "schema_version": 1,
+  "spec_id": "audit-v2-s11",
+  "turns": {
+    "11": {
+      "allowed_inputs": [
+        "maintenance/inputs/release-notes/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/release-notes-version-labels.md"
+      ]
+    },
+    "14": {
+      "allowed_inputs": [
+        "maintenance/inputs/developer-handbook/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/developer-handbook-terminology.md"
+      ]
+    },
+    "2": {
+      "allowed_inputs": [
+        "maintenance/inputs/operations-runbooks/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/operations-runbooks-upkeep-steps.md"
+      ]
+    },
+    "5": {
+      "allowed_inputs": [
+        "maintenance/inputs/docs-style/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/docs-style-section-owners.md"
+      ]
+    },
+    "8": {
+      "allowed_inputs": [
+        "maintenance/inputs/performance-notes/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/performance-notes-package-versions.md"
+      ]
+    }
+  }
+}

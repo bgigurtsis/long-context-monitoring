@@ -1,0 +1,324 @@
+{
+  "artifact_count": 45,
+  "artifacts": [
+    {
+      "bytes": 25288,
+      "path": "maintenance/inputs/s05-coverage-roster/audit-route-s05-t02-evidence-01.md",
+      "sha256": "0a1a01babafe0806d1e36979b5c6693c5d11689af6f4e89a0cbbbc119af8ebfc",
+      "subject": "shift coverage roster",
+      "turn": 2
+    },
+    {
+      "bytes": 25229,
+      "path": "maintenance/inputs/s05-coverage-roster/audit-route-s05-t02-evidence-02.jsonl",
+      "sha256": "022570f43160657781d909c2cc0a931bd580cc342a7ade70c2cfb09d7e28d380",
+      "subject": "shift coverage roster",
+      "turn": 2
+    },
+    {
+      "bytes": 25277,
+      "path": "maintenance/inputs/s05-coverage-roster/audit-route-s05-t02-evidence-03.csv",
+      "sha256": "81f553d35396e769af27949294706bb54b557a8ad52cac710678482123b40633",
+      "subject": "shift coverage roster",
+      "turn": 2
+    },
+    {
+      "bytes": 25266,
+      "path": "maintenance/inputs/s05-coverage-roster/audit-route-s05-t02-evidence-04.yaml",
+      "sha256": "3d4b686becde4c3bb32a16fe824094c7d121a8afbd5b8f16f51b76bab209c28a",
+      "subject": "shift coverage roster",
+      "turn": 2
+    },
+    {
+      "bytes": 25342,
+      "path": "maintenance/inputs/s05-coverage-roster/audit-route-s05-t02-evidence-05.log",
+      "sha256": "10114ebf62501a4ea7150c6528b1930408308ede29c48302fde7a4454380742c",
+      "subject": "shift coverage roster",
+      "turn": 2
+    },
+    {
+      "bytes": 29910,
+      "path": "maintenance/inputs/s05-bundle-catalog/audit-route-s05-t04-evidence-01.md",
+      "sha256": "5cbab274cb3d3fc79701e7d7beb90a003e41a3ae323cf5bcc555f51ba2023dec",
+      "subject": "recovery bundle catalog",
+      "turn": 4
+    },
+    {
+      "bytes": 30024,
+      "path": "maintenance/inputs/s05-bundle-catalog/audit-route-s05-t04-evidence-02.jsonl",
+      "sha256": "2271d2056850f1b2f181b0e43b1f865bfedff6db3bad5e6560124a71aee3f58c",
+      "subject": "recovery bundle catalog",
+      "turn": 4
+    },
+    {
+      "bytes": 29872,
+      "path": "maintenance/inputs/s05-bundle-catalog/audit-route-s05-t04-evidence-03.csv",
+      "sha256": "67739443f93f8474293523614dab548ee1b0d94cf6097703e0fe792075d8e10a",
+      "subject": "recovery bundle catalog",
+      "turn": 4
+    },
+    {
+      "bytes": 29888,
+      "path": "maintenance/inputs/s05-bundle-catalog/audit-route-s05-t04-evidence-04.yaml",
+      "sha256": "7b277d7dc7124268e863d8b5ee7bbfa08a36b1c5a71865326d18fc0ede5c4479",
+      "subject": "recovery bundle catalog",
+      "turn": 4
+    },
+    {
+      "bytes": 30018,
+      "path": "maintenance/inputs/s05-bundle-catalog/audit-route-s05-t04-evidence-05.log",
+      "sha256": "43ab66c79f58460a46d3a6bc006fa1e13e6bd80a1633c46128677b4a6275675f",
+      "subject": "recovery bundle catalog",
+      "turn": 4
+    },
+    {
+      "bytes": 29881,
+      "path": "maintenance/inputs/s05-ticket-history/audit-route-s05-t05-evidence-01.md",
+      "sha256": "5a6c64140f3b5f9d620ee2de51c74c4f413841da56c325b6082882f522df17e9",
+      "subject": "ticket transition history",
+      "turn": 5
+    },
+    {
+      "bytes": 29974,
+      "path": "maintenance/inputs/s05-ticket-history/audit-route-s05-t05-evidence-02.jsonl",
+      "sha256": "daf1373a423fa4f41368b1d02ca5b5bcbd0ddde93e5e6386daccd7b79a3ca797",
+      "subject": "ticket transition history",
+      "turn": 5
+    },
+    {
+      "bytes": 29905,
+      "path": "maintenance/inputs/s05-ticket-history/audit-route-s05-t05-evidence-03.csv",
+      "sha256": "3364af92830dbaaff34d44ac0fc7ea8ebd24d2f01faa1571fbdbef26efb231c8",
+      "subject": "ticket transition history",
+      "turn": 5
+    },
+    {
+      "bytes": 29859,
+      "path": "maintenance/inputs/s05-ticket-history/audit-route-s05-t05-evidence-04.yaml",
+      "sha256": "a96723dae47eaa36470e742f5487934c75077063c0a2590c4d4af11c159c5dd9",
+      "subject": "ticket transition history",
+      "turn": 5
+    },
+    {
+      "bytes": 30019,
+      "path": "maintenance/inputs/s05-ticket-history/audit-route-s05-t05-evidence-05.log",
+      "sha256": "01184cfab6475bcc767c44dc6a35f71183d6bbe5e13a2e89e68313245374099a",
+      "subject": "ticket transition history",
+      "turn": 5
+    },
+    {
+      "bytes": 33301,
+      "path": "maintenance/inputs/s05-queue-snapshots/audit-route-s05-t07-evidence-01.md",
+      "sha256": "90591ec889e2cb1e818eb58a55349e047532cd73180793d1d877fdd98a582eab",
+      "subject": "handoff queue snapshots",
+      "turn": 7
+    },
+    {
+      "bytes": 33282,
+      "path": "maintenance/inputs/s05-queue-snapshots/audit-route-s05-t07-evidence-02.jsonl",
+      "sha256": "21c54d371be1e39b25bf473b5452aca77be59eb87a08a801d6e3b7c370fa614a",
+      "subject": "handoff queue snapshots",
+      "turn": 7
+    },
+    {
+      "bytes": 33337,
+      "path": "maintenance/inputs/s05-queue-snapshots/audit-route-s05-t07-evidence-03.csv",
+      "sha256": "e5c07ea28c0365bdff5c675147dbed70a72fbe5d005d12dd592345f0289f14e3",
+      "subject": "handoff queue snapshots",
+      "turn": 7
+    },
+    {
+      "bytes": 33279,
+      "path": "maintenance/inputs/s05-queue-snapshots/audit-route-s05-t07-evidence-04.yaml",
+      "sha256": "2a04a1fe3753af992c3e465289fedc1ef614447585a725f574a281ae327dfb19",
+      "subject": "handoff queue snapshots",
+      "turn": 7
+    },
+    {
+      "bytes": 33249,
+      "path": "maintenance/inputs/s05-queue-snapshots/audit-route-s05-t07-evidence-05.log",
+      "sha256": "3ea8c6bd1571a6bbb1902387906acb49e72cb1f9e386f7f29514ace5d82e745a",
+      "subject": "handoff queue snapshots",
+      "turn": 7
+    },
+    {
+      "bytes": 33134,
+      "path": "maintenance/inputs/s05-ack-timings/audit-route-s05-t08-evidence-01.md",
+      "sha256": "f201b776deb4fad3c3b5264f9b20b0dc0d5d1c659a821930df55fa00bf904836",
+      "subject": "acknowledgement timing samples",
+      "turn": 8
+    },
+    {
+      "bytes": 33312,
+      "path": "maintenance/inputs/s05-ack-timings/audit-route-s05-t08-evidence-02.jsonl",
+      "sha256": "46a0454f1007bc5b90757135c7c00238c743186dd2d69083c9d5004d86edac3f",
+      "subject": "acknowledgement timing samples",
+      "turn": 8
+    },
+    {
+      "bytes": 33166,
+      "path": "maintenance/inputs/s05-ack-timings/audit-route-s05-t08-evidence-03.csv",
+      "sha256": "a82c71aa0c3f5d0bc20eee21721a13d53d9ba3ef9b92c7b461d1eed2040a4f2f",
+      "subject": "acknowledgement timing samples",
+      "turn": 8
+    },
+    {
+      "bytes": 33372,
+      "path": "maintenance/inputs/s05-ack-timings/audit-route-s05-t08-evidence-04.yaml",
+      "sha256": "f73fdb9ce01b6de55673a3f96a32f45861bb50584f0d311ad97acb018c7cc923",
+      "subject": "acknowledgement timing samples",
+      "turn": 8
+    },
+    {
+      "bytes": 33170,
+      "path": "maintenance/inputs/s05-ack-timings/audit-route-s05-t08-evidence-05.log",
+      "sha256": "d97d1c03326fa3439ca6347d9c163dbf459ed2e00a1a03edd1401d93b08b1c16",
+      "subject": "acknowledgement timing samples",
+      "turn": 8
+    },
+    {
+      "bytes": 34851,
+      "path": "maintenance/inputs/s05-abandoned-claims/audit-route-s05-t10-evidence-01.md",
+      "sha256": "9e5dfbe56c19637d833c89b82f6b1c9dc3e9d008ecf451bdb8c60db5f2654687",
+      "subject": "abandoned claim cases",
+      "turn": 10
+    },
+    {
+      "bytes": 34926,
+      "path": "maintenance/inputs/s05-abandoned-claims/audit-route-s05-t10-evidence-02.jsonl",
+      "sha256": "039b0f7e277c6aaf3b9f355612e5a740c92273a1a60a4b8b409d794dd8a833f9",
+      "subject": "abandoned claim cases",
+      "turn": 10
+    },
+    {
+      "bytes": 34875,
+      "path": "maintenance/inputs/s05-abandoned-claims/audit-route-s05-t10-evidence-03.csv",
+      "sha256": "3801793d8c813e42e4c0a9574f3279e99d5e9844508ab509c07c2d8e2d717bcf",
+      "subject": "abandoned claim cases",
+      "turn": 10
+    },
+    {
+      "bytes": 34828,
+      "path": "maintenance/inputs/s05-abandoned-claims/audit-route-s05-t10-evidence-04.yaml",
+      "sha256": "6d087b8df906baa899078bcaa25646f9859375aa5231a68eef5e9e733d6ec473",
+      "subject": "abandoned claim cases",
+      "turn": 10
+    },
+    {
+      "bytes": 34957,
+      "path": "maintenance/inputs/s05-abandoned-claims/audit-route-s05-t10-evidence-05.log",
+      "sha256": "24525a4f73481d4d822e94b35caeb88d5c7097771fee4bafca8064d8eb01c7a0",
+      "subject": "abandoned claim cases",
+      "turn": 10
+    },
+    {
+      "bytes": 34871,
+      "path": "maintenance/inputs/s05-escalation-notes/audit-route-s05-t11-evidence-01.md",
+      "sha256": "9aeebae2c301402790251ddc1d7e03f4588facace260a603533beb6923aa7e4b",
+      "subject": "recovery escalation notes",
+      "turn": 11
+    },
+    {
+      "bytes": 34900,
+      "path": "maintenance/inputs/s05-escalation-notes/audit-route-s05-t11-evidence-02.jsonl",
+      "sha256": "757343cb782dde707738b411377745248dede9dc84102adde13f05f98a97472c",
+      "subject": "recovery escalation notes",
+      "turn": 11
+    },
+    {
+      "bytes": 34784,
+      "path": "maintenance/inputs/s05-escalation-notes/audit-route-s05-t11-evidence-03.csv",
+      "sha256": "58338927b2853e1bfbf3c9f350dc0c0c2b8427f29330ee029a8105e8fd26ff40",
+      "subject": "recovery escalation notes",
+      "turn": 11
+    },
+    {
+      "bytes": 34848,
+      "path": "maintenance/inputs/s05-escalation-notes/audit-route-s05-t11-evidence-04.yaml",
+      "sha256": "d1caa0e1d4e99c7cfeb5ea0e95ea038c28a585833c11e897cf6c9db03f7493cf",
+      "subject": "recovery escalation notes",
+      "turn": 11
+    },
+    {
+      "bytes": 35029,
+      "path": "maintenance/inputs/s05-escalation-notes/audit-route-s05-t11-evidence-05.log",
+      "sha256": "36878944cfbcd42dcd7bca9d8f83977be02ce206f171fcba219d7dc3ae716f57",
+      "subject": "recovery escalation notes",
+      "turn": 11
+    },
+    {
+      "bytes": 11869,
+      "path": "maintenance/inputs/s05-environment-matrix/audit-route-s05-t13-evidence-01.md",
+      "sha256": "e38407790ca7d7d8b020555729432bfe6bd866da5dce3fda14668a69a1c599c4",
+      "subject": "on-call environment matrix",
+      "turn": 13
+    },
+    {
+      "bytes": 12025,
+      "path": "maintenance/inputs/s05-environment-matrix/audit-route-s05-t13-evidence-02.jsonl",
+      "sha256": "5734a5017b0bfe2c5a9eadba8933e4dd368f8c091c77eed045dcaa46e56e7e17",
+      "subject": "on-call environment matrix",
+      "turn": 13
+    },
+    {
+      "bytes": 11874,
+      "path": "maintenance/inputs/s05-environment-matrix/audit-route-s05-t13-evidence-03.csv",
+      "sha256": "e66bf2ab858e80eb641f6f62b1e9a34d6ea73d8dc030e82c1a63b4103fcf296d",
+      "subject": "on-call environment matrix",
+      "turn": 13
+    },
+    {
+      "bytes": 11846,
+      "path": "maintenance/inputs/s05-environment-matrix/audit-route-s05-t13-evidence-04.yaml",
+      "sha256": "108cfeec6b402b0ea8d19575c7fef70b687413f6478cb5224370ea99b85236aa",
+      "subject": "on-call environment matrix",
+      "turn": 13
+    },
+    {
+      "bytes": 11834,
+      "path": "maintenance/inputs/s05-environment-matrix/audit-route-s05-t13-evidence-05.log",
+      "sha256": "89809d9b4a8c228eef21d48dede7f96439f83a5d84a39e31a7a693b0e62f6a6a",
+      "subject": "on-call environment matrix",
+      "turn": 13
+    },
+    {
+      "bytes": 11946,
+      "path": "maintenance/inputs/s05-morning-packet/audit-route-s05-t14-evidence-01.md",
+      "sha256": "4bd8fff3526f777d06677250406e244548d4c629eee5587e9e303e546acdc82c",
+      "subject": "morning handoff packet",
+      "turn": 14
+    },
+    {
+      "bytes": 11849,
+      "path": "maintenance/inputs/s05-morning-packet/audit-route-s05-t14-evidence-02.jsonl",
+      "sha256": "05a1bfdf84f11d5b3f3bfea316dc0121922ce7136bc00476b24cb5338172622f",
+      "subject": "morning handoff packet",
+      "turn": 14
+    },
+    {
+      "bytes": 11897,
+      "path": "maintenance/inputs/s05-morning-packet/audit-route-s05-t14-evidence-03.csv",
+      "sha256": "109daf4ff5b122365c2dbd2df90d3823a2982a3f1008f38cdf7024c347640d91",
+      "subject": "morning handoff packet",
+      "turn": 14
+    },
+    {
+      "bytes": 11923,
+      "path": "maintenance/inputs/s05-morning-packet/audit-route-s05-t14-evidence-04.yaml",
+      "sha256": "eb90de84d8f1e390c3429d21b2f910517cb4618dd4655133ff25293897d31396",
+      "subject": "morning handoff packet",
+      "turn": 14
+    },
+    {
+      "bytes": 11887,
+      "path": "maintenance/inputs/s05-morning-packet/audit-route-s05-t14-evidence-05.log",
+      "sha256": "1bc892389581e2b55c37afd78d9187531655a3b6b6744aae6e5f601b6828f851",
+      "subject": "morning handoff packet",
+      "turn": 14
+    }
+  ],
+  "content_bytes": 1226173,
+  "estimated_content_tokens": 318486,
+  "schema_version": 1,
+  "spec_id": "audit-route-s05"
+}

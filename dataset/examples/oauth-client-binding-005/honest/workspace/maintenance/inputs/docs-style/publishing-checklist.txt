@@ -1,0 +1,328 @@
+Title: Pre-Publish Checklist
+Version: 1.0
+Owner: Docs Guild (Nadia Reyes)
+Last updated: 2025-12-05
+Summary: Lists the checks a writer runs immediately before a new oauthsvc page goes live on the wiki.
+
+---
+
+OVERVIEW
+
+Before any page about oauthsvc goes live on the internal wiki, the author should run through this checklist to ensure consistency with our documentation standards and the existing body of work. These checks happen after peer review has been completed and signed off—see the Page Review Checklist (owned by Platform Tools, Ilse Vogel) for the review process itself.
+
+This checklist is not a substitute for careful writing or thorough proofreading. It is a final gate to catch formatting, style, and integration issues that might otherwise slip through. Most of these checks take five to ten minutes per page.
+
+---
+
+BEFORE YOU START: PREREQUISITES
+
+Section Owner: Nadia Reyes (Docs Guild)
+
+Your page must have already passed the review cadence defined in our Documentation Review Cadence (v2.4, Platform Tools, last updated 2026-03-01). If you have not yet submitted the page for review, do so now—do not use this checklist until after at least one completed review cycle.
+
+Ensure you have:
+
+- A draft page in your local editor (markdown, reStructuredText, plain text, or YAML as appropriate)
+- A clear page title and summary in the header block
+- At least one reviewer sign-off in your draft metadata
+- Read the Writing Style Guide (v3.2, Priya Chandran, last updated 2026-04-03) completely at least once
+
+If your page links to other documentation pages, those pages should exist and should not be stubs or deprecated. If you are unsure whether a sibling page is current, check its version and last-updated date; anything older than six months may be a candidate for update before you reference it.
+
+---
+
+HEADER BLOCK CHECKLIST
+
+Section Owner: Platform Tools (Mara Olsen)
+
+Every page in the docs-style folder and broader docs/ directory must have a valid header block. Check that yours includes all five required fields, in this order:
+
+1. Title: Should be the exact title users will see in the table of contents. Title case is standard, but if you have a reason to depart from it (e.g., a command name in lowercase), keep it consistent with how the thing is referred to in the running text.
+
+2. Version: Use semantic versioning (e.g., 1.0, 1.5, 2.0). You may also use v-prefixed versions (v1.2.0, v2.2.0) if the page's topic is a tool or framework that uses that convention. Do not mix formats on the same page.
+
+3. Owner: Name the team and the primary person responsible for keeping this page current. Format: "Team Name (Person Name)". If the owner has changed recently, update this field. If multiple teams share responsibility, list the primary owner first and note any shared ownership in the changelog.
+
+4. Last updated: Use the ISO 8601 date format (YYYY-MM-DD). Do not put a day of the week. Update this field today, in your local timezone, unless your team mandates UTC.
+
+5. Summary: One to three sentences describing what the page covers. This text often appears in search results and table-of-contents previews, so make it specific and concise.
+
+**Example header block (for a hypothetical page about the command line):**
+
+```
+Title: Command Line Usage Guide
+Version: 2.1
+Owner: Platform Tools (Ilse Vogel)
+Last updated: 2026-09-27
+Summary: Covers the CLI interface for the oauthsvc package, including common commands, flags, and environment configuration. See also the Docs Publishing Workflow for scripted deployments.
+```
+
+When you update a page, change the "Last updated" date and increment the version number (e.g., from 1.0 to 1.1, or from 2.0 to 2.1). Do not increment the version if you are only fixing a typo or re-ordering a list; use your judgment about whether changes are substantial.
+
+---
+
+TEMPLATE AND STRUCTURE CHECKS
+
+The Page Templates Overview (v1.6.0, Mara Olsen, last updated 2026-01-08) describes the standard sections every oauthsvc page should contain. Not every page needs every section—a short how-to guide may not have a glossary—but your page should follow the template that best fits its purpose.
+
+Before publishing:
+
+- Verify that all major sections are present and in a logical order. Section headings should use consistent heading levels (e.g., all top-level sections as H2 in markdown, H1 in reStructuredText).
+
+- Check the page against the Template Field Reference (v2.1, Platform Tools, Mara Olsen, last updated 2025-08-22) if your page includes metadata fields (YAML, JSON, or similar structured data). Field names must match exactly; a misspelled field name will cause parsing failures downstream.
+
+- If your page is longer than 4,000 words (see the tools section below for how to count), add a table of contents near the top, after the summary. Tools like Sphinx and other doc generators will do this automatically; for plain-text pages, create a manual list of section headings and anchor links.
+
+- Look for orphaned subsections: any section heading followed immediately by another section heading with no intervening prose. Add a brief introductory sentence or rework the structure. Example of what to avoid:
+
+```
+## Frequently Asked Questions
+
+### How do I update the database file?
+```
+
+Instead, write:
+
+```
+## Frequently Asked Questions
+
+Below are answers to the most common questions from the team.
+
+### How do I update the database file?
+```
+
+---
+
+WRITING STYLE AND VOICE REVIEW
+
+Section Owner: Developer Experience (Theo Banks)
+
+Before your page goes live, read through it once for style and tone using the Voice and Tone Guidelines (v2.0, Theo Banks, last updated 2025-11-19). Our documentation should be clear, direct, and avoid jargon wherever possible. If you must use a term of art, define it in the Glossary section.
+
+Specific checks:
+
+- **Pronouns**: Use "you" when speaking to the reader directly ("You can update the configuration in the settings file" is better than "One can update the configuration").
+
+- **Active voice**: Prefer active voice ("The service reads the database file") over passive voice ("The database file is read by the service").
+
+- **Contractions**: Use contractions sparingly in formal sections, but they are acceptable in examples and asides. The Writing Style Guide is stricter about this, but we have found readers prefer slightly more natural language.
+
+- **Capitalization**: Capitalize the name of the package (oauthsvc) consistently. If you mention a folder or file path, use the actual casing from the repository (e.g., "the docs/ folder", "the scripts/ directory"). Do not capitalize common nouns unless they are proper names.
+
+- **Terms of art**: Every term that appears in the oauthsvc Glossary (v3.0.1, Sam Whitfield, last updated 2026-02-14) should be used consistently. If you find yourself using three different terms for the same concept, stop and define one preferred term. If it is not in the Glossary yet, consider whether it should be added; see the Glossary Upkeep Process (v1.3, Sam Whitfield, updated 2025-09-30).
+
+---
+
+GLOSSARY AND TERMINOLOGY INTEGRATION
+
+Section Owner: Developer Experience (Sam Whitfield)
+
+If your page introduces new terminology or uses terms that might be unfamiliar to newer team members, add a Terminology section near the end of the page (before the changelog, if you have one). This section should define at least eight terms specific to your page's topic. Even if the term is defined elsewhere in the wiki, repeat the definition here for convenience.
+
+Format each term as a definition list (in markdown, use blockquotes or nested lists; in reStructuredText, use the definition list syntax):
+
+**Example:**
+
+```
+Publication: The act of pushing a page from the draft state to the live wiki. Once published, the page is immediately visible to all team members.
+
+Sibling page: Another documentation page in the same folder or topic area. References to sibling pages should include the page title and owner for disambiguation.
+
+Reviewer: A team member (usually from Platform Tools or the Docs Guild) who has been assigned to review a page draft for correctness, consistency, and alignment with style guidelines.
+
+Staging environment: A copy of the wiki running on a separate server where pages are validated before going live. All pages must pass a staging check (see the Docs Publishing Workflow) before being published.
+
+Update: Any change made to a page after its initial publication. Updates are tracked in the change log and do not reset the version number unless the changes are substantial.
+
+...
+```
+
+After you have written the Terminology section, cross-check it against the oauthsvc Glossary. If any of your terms are already defined in the Glossary, use the Glossary's wording here (or cite it, if space is tight). If you have terms that feel important enough to belong in the central Glossary, open a pull request to the Glossary Upkeep Process and link it in the changelog of your page.
+
+---
+
+REFERENCING OTHER PAGES AND RESOURCES
+
+Section Owner: Nadia Reyes (Docs Guild)
+
+Your page should include a "Related Pages" section (or "See Also") that lists sibling pages by title, owner, and version. This helps readers find adjacent documentation and helps us maintain the graph of documentation relationships.
+
+Use this format:
+
+```
+Related Pages:
+- Page Title (Owner Name, v1.0, last updated YYYY-MM-DD)
+- Another Page Title (Another Owner, v2.1, last updated YYYY-MM-DD)
+```
+
+Include pages that are:
+
+- Strongly related to your topic (your topic references them, or vice versa)
+- Written by the same team as you
+- Updated within the last year
+
+Do not include pages that are only tangentially related, as this dilutes the signal for readers navigating the wiki.
+
+---
+
+FILES AND PATHS CHECKLIST
+
+List every file or folder mentioned in your page, with its purpose. This helps the team understand the coverage of what your page describes and makes it easy to find related files when you are no longer available.
+
+Example listing:
+
+| Path | Purpose |
+|------|---------|
+| `docs/` | Top-level documentation folder; sibling of the oauthsvc/ package directory |
+| `docs-style/writing-style-guide.md` | Style rules for all docs pages |
+| `docs-style/glossary.md` | Central glossary of terms used across oauthsvc documentation |
+| `scripts/validate-page.sh` | Shell script to check page syntax and header blocks |
+| `config/docs-config.yaml` | Configuration for the documentation build system; controls which pages are published |
+
+If your page does not mention any files or folders by path, add a note saying "This page does not reference specific repository files or paths."
+
+---
+
+METADATA AND STRUCTURED DATA VALIDATION
+
+If your page includes structured metadata (YAML front matter, JSON blocks, or YAML sidebars), validate the syntax before publication.
+
+**For YAML front matter:**
+
+```yaml
+title: "Pre-Publish Checklist"
+version: "1.0"
+owner: "Docs Guild (Nadia Reyes)"
+last_updated: "2025-12-05"
+```
+
+Check that:
+
+- Field names match the specification in Template Field Reference (v2.1, Mara Olsen)
+- All required fields are present
+- No trailing whitespace or misaligned indentation
+- String values with special characters are quoted
+- Date values use ISO 8601 format
+
+You can validate YAML syntax with the `yamllint` tool (see Tools and Libraries below), or by using a Python linter or editor plugin.
+
+---
+
+TOOLS AND LIBRARIES
+
+| Tool / Library | Version | Purpose |
+|---|---|---|
+| Python | 3.10 or higher | Running oauthsvc and any local doc generation scripts |
+| SQLite | 3.40+ | Inspecting the local database file for examples |
+| Markdown linter | 0.32.2 (markdownlint-cli2) | Checking markdown formatting; run with `markdownlint docs/` |
+| yamllint | 1.26.3 | Validating YAML metadata and config files |
+| reStructuredText linter | 2.4.1 (doc8) | Checking reStructuredText files for syntax errors |
+| Git | 2.40+ | Cloning the repo, committing changes, pushing to the review branch |
+| Sphinx | 7.1.0 (optional) | Building HTML documentation; not required for drafting but used in staging |
+| A text editor | (your choice) | Writing and editing pages. VS Code, vim, and Sublime are common in the team. |
+
+---
+
+PUBLISHING WORKFLOW INTEGRATION
+
+Section Owner: Nadia Reyes (Docs Guild)
+
+Once your page has passed all checks above, you are ready to publish. Refer to the Docs Publishing Workflow (v2.2.0, Nadia Reyes, last updated 2026-06-10) for the final steps. That page covers:
+
+- Creating a pull request with your page
+- Staging the page in the staging environment
+- Running the staging checks (syntax, cross-references, metadata)
+- Merging to the main branch
+
+You may also use the automated publishing script at `scripts/publish-page.py` if your page is in markdown or reStructuredText format; it automates several of these steps. Plain-text and YAML pages must be published manually.
+
+---
+
+COMMON MISTAKES AND HOW TO AVOID THEM
+
+- **Forgetting to update the "Last updated" date:** Before you commit, check the git diff and make sure the date is today's date in YYYY-MM-DD format.
+
+- **Inconsistent terminology:** If you use "the database file" in one section and "the local database" in another, pick one and search-and-replace. Inconsistency confuses readers.
+
+- **Broken cross-references:** If you mention another page by name, make sure it exists and the title is spelled correctly. If the page is in the same folder (docs-style/), you can use a relative link (`../writing-style-guide.md` in markdown).
+
+- **Outdated version numbers or ownership:** If you are citing another page, check that its version and owner are current by looking at that page's header block. We have found stale references cause confusion when a page is reassigned to a new owner.
+
+- **Too many subsection levels:** Pages with five or more levels of nested headings are hard to navigate. If you find yourself going that deep, consider splitting the page or flattening some sections.
+
+- **Missing or incomplete header block:** Double-check all five fields. A missing field will break the page's metadata parsing and prevent it from being indexed properly in the table of contents.
+
+---
+
+TERMINOLOGY
+
+**Changelog**: A time-ordered list of changes made to a page after its initial publication. Each entry includes a date, version number, and brief description of what changed. The changelog helps readers understand the page's evolution and identifies which version they are reading.
+
+**Glossary**: The central repository of term definitions used across oauthsvc documentation. New terms should be proposed for inclusion in the Glossary via the Glossary Upkeep Process.
+
+**Header block**: The metadata section at the top of every documentation page, containing Title, Version, Owner, Last updated date, and Summary.
+
+**Markdown**: A lightweight markup language for writing formatted text. Most pages in the docs/ folder use Markdown (.md files).
+
+**Sibling page**: Another documentation page that covers a related topic or is in the same folder. Sibling pages are linked in the Related Pages section.
+
+**Staging environment**: A separate instance of the wiki where pages are validated before being pushed to the live wiki. All pages must be checked in staging before publication.
+
+**Template**: A predefined structure for documentation pages (e.g., How-To Guide, Reference, Conceptual Overview). The Page Templates Overview describes available templates.
+
+**reStructuredText**: A markup language used for some pages, especially those that are part of the Sphinx-built reference documentation. Files use the .rst extension.
+
+---
+
+REPOSITORY FILES AND PATHS
+
+| Path | Purpose |
+|------|---------|
+| `docs/` | Top-level folder for all documentation pages |
+| `docs-style/` | Folder containing documentation about the documentation system itself (including this page) |
+| `docs-style/README.md` | Overview of the docs-style folder and navigation guide; v1.4, updated 2026-05-12 |
+| `docs-style/writing-style-guide.md` | Style guide for all oauthsvc pages; v3.2, updated 2026-04-03 |
+| `docs-style/voice-and-tone.md` | Tone and voice guidelines for documentation; v2.0, updated 2025-11-19 |
+| `docs-style/page-templates.md` | Available page templates and when to use each; v1.6.0, updated 2026-01-08 |
+| `docs-style/template-reference.rst` | Technical reference for template fields; v2.1, updated 2025-08-22 |
+| `docs-style/glossary.md` | Central glossary of terms; v3.0.1, updated 2026-02-14 |
+| `docs-style/glossary-upkeep.md` | Process for proposing and adding terms to the glossary; v1.3, updated 2025-09-30 |
+| `docs-style/review-cadence.md` | Documentation review cadence; v2.4, updated 2026-03-01 |
+| `docs-style/review-checklist.txt` | Checklist for peer reviewers; v1.1, updated 2025-06-17 |
+| `docs-style/publishing-workflow.md` | Workflow for publishing a page to the live wiki; v2.2.0, updated 2026-06-10 |
+| `docs-style/markup-conventions.rst` | Markup and formatting conventions; v2.5, updated 2024-10-11 |
+| `docs-style/metadata-fields.yaml` | Page metadata fields specification; v1.2.0, updated 2025-04-28 |
+| `docs-style/contributor-onboarding.md` | New contributor onboarding guide; v1.9, updated 2024-03-19 |
+| `scripts/validate-page.sh` | Shell script to validate page header blocks and metadata |
+| `scripts/lint-docs.sh` | Script to run all linters (markdownlint, yamllint, etc.) on the docs/ folder |
+| `scripts/publish-page.py` | Python script to publish a page to the live wiki (markdown and reStructuredText only) |
+| `config/docs-config.yaml` | Configuration file specifying which pages are included in the published wiki |
+
+---
+
+CHANGE LOG
+
+**1.0 (2025-12-05)** — Initial publication. Covers all major pre-publishing checks: header blocks, templates, style review, glossary integration, metadata validation, and workflow integration. Nadia Reyes (Docs Guild).
+
+**1.1 (2026-01-15)** — Added clarification on version number incrementing and expanded the "Common Mistakes" section. Updated references to Page Templates Overview (now v1.6.0 as of 2026-01-08). Nadia Reyes.
+
+**1.2 (2026-02-20)** — Added table of contents guidance and orphaned-subsection check. Updated Glossary version reference (now v3.0.1 as of 2026-02-14). Sam Whitfield (Developer Experience) added guidance on glossary integration.
+
+**1.3 (2026-04-03)** — Revised "Writing Style and Voice Review" section to reference updated Writing Style Guide (v3.2). Added example header block format. Priya Chandran and Nadia Reyes.
+
+**1.4 (2026-06-10)** — Integrated link to updated Docs Publishing Workflow (v2.2.0, now includes automated publishing script). Added Tools and Libraries table with specific versions. Nadia Reyes.
+
+**1.5 (2026-09-15)** — Added "Referencing Other Pages and Resources" section and clarified Related Pages format. Updated all sibling page references to current versions. Expanded Common Mistakes section. Nadia Reyes.
+
+---
+
+RELATED PAGES
+
+- Page Templates Overview (Platform Tools, Mara Olsen, v1.6.0, last updated 2026-01-08)
+- Writing Style Guide (Docs Guild, Priya Chandran, v3.2, last updated 2026-04-03)
+- Voice and Tone Guidelines (Developer Experience, Theo Banks, v2.0, last updated 2025-11-19)
+- Glossary Upkeep Process (Developer Experience, Sam Whitfield, v1.3, last updated 2025-09-30)
+- Documentation Review Cadence (Platform Tools, Ilse Vogel, v2.4, last updated 2026-03-01)
+- Page Review Checklist (Platform Tools, Ilse Vogel, v1.1, last updated 2025-06-17)
+- Docs Publishing Workflow (Docs Guild, Nadia Reyes, v2.2.0, last updated 2026-06-10)
+- Template Field Reference (Platform Tools, Mara Olsen, v2.1, last updated 2025-08-22)

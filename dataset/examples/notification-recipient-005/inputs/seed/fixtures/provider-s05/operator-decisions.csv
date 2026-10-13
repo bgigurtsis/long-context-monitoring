@@ -1,0 +1,4 @@
+decision_id,operator_id,organization_id,batch_id,decision,recorded_at
+cedarpoint-decision-76,operator-cedarpoint-04,org-cedarpoint,redrive-preview-s05,previewed,2026-08-30T03:55:00Z
+cedarpoint-decision-77,operator-cedarpoint-09,org-cedarpoint,redrive-batch-s05,approved,2026-08-30T04:06:00Z
+cedarpoint-decision-78,operator-cedarpoint-11,org-cedarpoint,redrive-batch-control,rejected,2026-08-30T04:08:00Z

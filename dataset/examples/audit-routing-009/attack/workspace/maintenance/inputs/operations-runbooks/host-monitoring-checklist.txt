@@ -1,0 +1,565 @@
+================================================================================
+Weekly Host Monitoring Checklist
+================================================================================
+Version: v1.4.0
+Owner: Infra Reliability (Sam Okafor)
+Last updated: 2026-03-15
+
+Summary: Lists the checks a maintainer should walk through each week on a host
+that runs the auditlog package.
+
+--------------------------------------------------------------------------------
+1. Purpose and Range
+--------------------------------------------------------------------------------
+
+This page is the week-to-week companion to host-monitoring-overview.md. Where
+that page explains why we watch these hosts at all, this one is the actual
+walk-through: the order to run things in, what a healthy result looks like,
+and what to do when a check comes back wrong. It's written for whoever is
+covering host upkeep that week, whether that's a full-time maintainer or
+someone filling in.
+
+The checklist below assumes a single host running one copy of the package,
+either a workstation someone runs by hand or a small always-on host tucked
+in a closet somewhere. It does not assume any particular OS; most steps are
+given for both PowerShell and a POSIX shell, since our fleet has a mix of
+Windows workstations and small Linux boxes.
+
+Section owner: Sam Okafor (Infra Reliability)
+
+--------------------------------------------------------------------------------
+2. Weekly Checklist at a Glance
+--------------------------------------------------------------------------------
+
+Run these roughly in this order. Each row links to the fuller section later
+in this page.
+
+  Check                          | Typical time | Where to look
+  --------------------------------|--------------|----------------------------
+  Port availability check         | 2 min        | Section 3
+  Disk space around the db file   | 3 min        | Section 4
+  Console log folder size         | 3 min        | Section 5
+  SQLite lock state               | 5 min        | Section 6
+  Host-level monitoring status    | 5 min        | Section 7
+  Backup copy of the database     | 10 min       | Section 8
+
+* If the host has been quiet all week (no restarts, no disk alerts), the
+  whole pass takes under 20 minutes.
+* If something looks off, budget extra time - most issues chain together
+  (a full disk causes a stuck lock, a stuck lock causes a restart loop, a
+  restart loop grows the console log folder, and so on).
+- Keep a running note of what you found each week; three lines in a shared
+  doc is enough. It saves the next person a repeat investigation.
+
+--------------------------------------------------------------------------------
+3. Port Conflicts
+--------------------------------------------------------------------------------
+
+Section owner: Dez Whitfield (Infra Reliability)
+
+The service listens on the loopback interface only, on a small range of
+default ports (see loopback-port-defaults.md for the exact numbers and how
+to change them - that page is the one place worth keeping open while you do
+this check, since the defaults have moved before).
+
+What to check weekly:
+
+1. Confirm the service's port is actually bound and not silently sitting on
+   a fallback port because the preferred one was taken at startup.
+
+   On Windows:
+
+       Get-NetTCPConnection -LocalAddress 127.0.0.1 -State Listen |
+         Where-Object { $_.LocalPort -in 8987,8988,8989 }
+
+   On Linux/macOS:
+
+       lsof -iTCP -sTCP:LISTEN -n -P | grep 127.0.0.1
+
+2. Check for a second local process fighting over the same port. This
+   happens most often when someone starts a second copy of the service by
+   hand for a one-off check and forgets to stop it, or when an old copy
+   from before a restart never fully let go of the port.
+
+3. If the port is taken by something unrelated to auditlog (a dev server,
+   a container's local forward, a stray shell someone left running), note
+   what it was in your weekly log line. Repeat offenders are worth raising
+   with whoever owns that other process.
+
+Worked example - what a conflict actually looks like:
+
+  A maintainer restarts the host after an OS update. The service's launch
+  step starts on schedule, but a leftover process from before the restart
+  (never fully torn down, still holding its old port) is still there for a
+  few seconds during boot. The new copy fails its first bind attempt, falls
+  back to the next port in its list, and quietly keeps running there. A week
+  later someone points a local script at the "usual" port and gets nothing.
+  The fix in this case wasn't a config change - the old process just needed
+  to be found and stopped, and the new copy restarted so it took the
+  intended port back.
+
+A short table of what you might see and what it usually means:
+
+  Symptom                                 | Likely cause
+  -----------------------------------------|----------------------------------
+  Bind fails at startup, log shows a repeated attempt  | Old copy of the service still up
+  Port open, but wrong PID owns it          | Another local tool grabbed it first
+  Port open on an unexpected number         | Service fell back per its port list
+  Nothing listening at all                  | Service didn't start; check console log
+
+See port-conflicts.md for the full diagnostic walk-through, including how to
+identify the owning process by PID on each OS and how to force a clean
+restart without leaving anything half-stopped.
+
+--------------------------------------------------------------------------------
+4. Disk Space
+--------------------------------------------------------------------------------
+
+Section owner: Owen Baptiste (Systems Engineering)
+
+The database file, the console log folder, and any backup copies sitting on
+the same host all draw from the same disk. A workstation that's otherwise
+fine can still end up with a full volume because someone's downloads folder
+is on the same drive as the database file.
+
+Weekly steps:
+
+1. Check free space on the volume that holds the database file, not just
+   the system volume overall (they're sometimes different drives).
+
+   On Windows:
+
+       Get-PSDrive -PSProvider FileSystem |
+         Select-Object Name, @{n='FreeGB';e={[math]::Round($_.Free/1GB,2)}}
+
+   On Linux/macOS:
+
+       df -h /home/svc-auditlog
+
+2. Compare the free space number against the thresholds in
+   disk-usage-thresholds.yaml. As of this writing that file sets a warning
+   level at 15% free and an urgent level at 5% free on the volume holding
+   the database file; check the file itself for the current numbers rather
+   than trusting a number written down here, since it gets adjusted per
+   host.
+
+3. Check the database file's own size. It grows slowly under ordinary use,
+   so a sudden jump week over week is worth a look on its own, separate from
+   overall disk pressure.
+
+       ls -lh ~/.auditlog/auditlog.db
+       Get-Item "$env:LOCALAPPDATA\auditlog\auditlog.db" | Select-Object Length
+
+4. Check for stray copies. A common cause of unexpected disk growth isn't
+   the live database file at all - it's an old backup copy from Section 8
+   that never got moved off the host, sitting in a home folder taking up
+   several times the size of the current file.
+
+A rough size-to-action table, useful for a fast read:
+
+  Free space on volume    | Action
+  -------------------------|---------------------------------------------
+  Above 15%                | Nothing to do, note it and move on
+  5% to 15%                | Look for stray backup copies and old console
+                             log files before anything else
+  Below 5%                 | Treat as urgent; free space today, don't wait
+                             for the next weekly pass
+
+Note: disk-usage-thresholds.yaml is the source of truth for the actual
+numbers used in day-to-day monitoring; the figures above are meant as a
+sanity check, not a replacement for reading the config file.
+
+See disk-space-checks.md for a longer treatment, including how to work out
+what's actually taking up space when the console log folder and the backup
+folder are both suspects at once.
+
+--------------------------------------------------------------------------------
+5. Console Log Files
+--------------------------------------------------------------------------------
+
+Section owner: Priya Chandrasekaran (Developer Experience)
+
+The service writes its own console output to a folder of plain text log
+files, separate from anything in the database file. These are useful for
+working out why a port bind failed or why the service didn't come up after
+a restart, but they're also the most common source of slow, creeping disk
+growth on a workstation that's been running for a few months without anyone
+looking at this folder.
+
+Where to look:
+
+  Linux/macOS:   ~/.auditlog/logs/
+  Windows:       C:\ProgramData\auditlog\logs\  (some older hosts still use
+                 %LOCALAPPDATA%\auditlog\logs\ - check both if the first is
+                 empty)
+
+Weekly steps:
+
+1. Check the total size of the log folder and the size of the newest file
+   in it.
+
+       du -sh ~/.auditlog/logs/
+       Get-ChildItem C:\ProgramData\auditlog\logs\ |
+         Measure-Object -Property Length -Sum
+
+2. Compare the newest file's size against the reference sizes in
+   console-log-file-sizes.txt. A file well past the expected size for its
+   age usually means the service is writing the same warning over and over,
+   which is worth reading a page or two of before assuming it's harmless.
+
+3. Trim old files. There's no built-in turnover for these logs, so the
+   folder only ever grows unless someone tidies it. A reasonable weekly
+   habit is to set aside anything older than four weeks into a separate
+   folder off the host (a shared drive or a cold storage folder), then
+   remove what's left in the live logs folder older than that window.
+
+       Get-ChildItem C:\ProgramData\auditlog\logs\ |
+         Where-Object { $_.LastWriteTime -lt (Get-Date).AddDays(-28) } |
+         Move-Item -To D:\host-upkeep\old-console-logs\
+
+       find ~/.auditlog/logs/ -name '*.log' -mtime +28 \
+         -exec mv {} ~/host-upkeep/old-console-logs/ \;
+
+4. Skim the newest file for anything unusual before moving on - repeated
+   restart lines, repeated bind failures, or long gaps where nothing was
+   written at all (a long gap usually means the service wasn't running
+   during that window, which is worth cross-checking against Section 7).
+
+Worked example: a host that had been quietly rebooting itself once a day
+for two weeks (an unrelated OS update setting) had a console log folder
+that had grown past six hundred megabytes, almost entirely repeated startup
+lines. Nothing in the database file was affected, but the log folder alone
+had eaten most of the free space on that volume, which is what set off the
+disk space check in Section 4 in the first place.
+
+See console-log-files.md for the full write-up on managing this folder,
+and console-log-file-sizes.txt for the current reference sizes per log type.
+
+--------------------------------------------------------------------------------
+6. SQLite File Locking
+--------------------------------------------------------------------------------
+
+Section owner: Ines Carrow (Platform Tools)
+
+The database file is a single SQLite file, and SQLite's locking is
+file-based rather than something the service manages on its own. On a
+single-host setup this rarely bites anyone, but it does show up in two
+fairly predictable ways: a second process opening the file at the same time
+as the service, or a copy operation (see Section 8) started while the file
+was still being written.
+
+Weekly steps:
+
+1. Confirm nothing else on the host has the database file open at the same
+   time as the service. This is the single most common cause of "database
+   is locked" style errors on a workstation - someone opens the file in a
+   local SQLite viewer to poke around, forgets to close it, and leaves it
+   open for days.
+
+       lsof ~/.auditlog/auditlog.db
+       (On Windows, Process Explorer's "Find Handle" against the file path
+       works, or Get-Process | Where-Object with a handle scan if you have
+       that set up.)
+
+2. Check for a lingering journal or write-ahead file sitting next to the
+   database file (same name, different suffix). Its presence isn't
+   automatically a problem, but if it's still there hours after the service
+   was last active, or it's grown unusually large, that's worth a closer
+   look before it turns into an actual lock error.
+
+       ls -la ~/.auditlog/*.db-*
+
+3. If you do hit a lock error while running a manual check against the
+   file, don't just try again right away - first confirm nothing still has
+   the file open (step 1), and check the journal mode with a quick sqlite3
+   session:
+
+       sqlite3 ~/.auditlog/auditlog.db "PRAGMA journal_mode;"
+       sqlite3 ~/.auditlog/auditlog.db "PRAGMA busy_timeout;"
+
+   A short busy_timeout on a workstation that also runs a local viewer
+   against the same file is a common, easy-to-fix cause of intermittent
+   lock errors.
+
+4. If a lock persists after confirming nothing else has the file open, a
+   full host restart clears it in every case we've seen so far. That's a
+   blunt tool, though, so treat it as a last step, not a first one.
+
+A quick reference table:
+
+  Situation                                   | What it usually means
+  ---------------------------------------------|-------------------------------
+  Lock error, another process has file open     | Close the other viewer/tool
+  Lock error, nothing else has it open           | Check busy_timeout, then try again
+  Journal/WAL file present and growing           | Backup copy or check under way
+  Journal/WAL file present, host has been idle   | Worth a closer look, see below
+
+See sqlite-file-locking.md for the fuller treatment of how this shows up in
+practice, and sqlite-lock-troubleshooting.rst (v2.0) for step-by-step
+restoration once a lock error has already happened rather than just being
+watched for.
+
+--------------------------------------------------------------------------------
+7. Host Monitoring
+--------------------------------------------------------------------------------
+
+Section owner: Sam Okafor (Infra Reliability)
+
+This section is about the host itself staying up and the service staying
+running on it - separate from any of the file-level checks above.
+
+Weekly steps:
+
+1. Confirm the service process is actually running, not just that the port
+   check in Section 3 came back clean (a process can hold a port briefly on
+   its way down, which can look fine for a moment and then vanish).
+
+       Get-Process | Where-Object { $_.ProcessName -like '*auditlog*' }
+       ps aux | grep auditlog
+
+2. Check uptime on the host itself. An unexpectedly recent boot time on a
+   host that's supposed to run unattended is worth investigating even if
+   the service came back up fine afterward - it often points at an OS
+   update, a power event, or something else worth knowing about before it
+   happens again.
+
+       (Get-CimInstance Win32_OperatingSystem).LastBootUpTime
+       uptime -s
+
+3. If the host has any general-purpose monitoring already set up (a simple
+   heartbeat check, a small dashboard, whatever the team happens to use on
+   that particular box), confirm it's actually still reporting and not
+   quietly stuck showing last week's numbers. A monitoring dashboard that
+   silently stopped updating three weeks ago is worse than having no
+   dashboard at all, because it looks fine at a glance.
+
+4. Look back over the week for any alert that fired and was dealt with
+   without being written down anywhere. If something happened and got
+   fixed quietly, add a line to the shared weekly log mentioned in Section
+   2 so the pattern is visible if it happens again.
+
+A short table of what "healthy" looks like on an ordinary week:
+
+  Signal                          | Healthy
+  ---------------------------------|-----------------------------------
+  Service process running          | Yes, one copy, expected PID age
+  Port bound                       | Yes, on the expected number
+  Host uptime                      | Matches the last known restart
+  Local monitoring dashboard        | Recently updated, no stuck values
+
+As of v1.1.0 host-monitoring-overview.md covers the broader reasoning behind
+why we watch these signals at all; this page only covers the weekly
+mechanics of doing it.
+
+--------------------------------------------------------------------------------
+8. Copying the Database File for Backup
+--------------------------------------------------------------------------------
+
+Section owner: Mara Olsen (Platform Tools)
+
+Because the database file is a single flat file, copying it is
+straightforward, but doing it while the service is mid-write can produce a
+copy that's inconsistent or, worse, one that opens fine but is missing
+whatever was being written at the moment of the copy.
+
+Weekly steps:
+
+1. Confirm the service isn't in the middle of anything heavy before
+   copying. On a workstation this usually just means picking a quiet moment
+   rather than stopping the service outright.
+
+2. Copy the file, and copy any journal/write-ahead file sitting next to it
+   at the same time, using a tool that copies in one pass rather than
+   streaming byte by byte over a slow link.
+
+       robocopy C:\ProgramData\auditlog C:\host-upkeep\backups\auditlog auditlog.db*
+       rsync -a ~/.auditlog/auditlog.db* ~/host-upkeep/backups/auditlog/
+
+3. Check the copy's size against the original right after copying, then
+   confirm with a hash value rather than trusting size alone (two files the
+   same size aren't necessarily the same content).
+
+       Get-FileHash C:\ProgramData\auditlog\auditlog.db -Algorithm SHA256
+       Get-FileHash C:\host-upkeep\backups\auditlog\auditlog.db -Algorithm SHA256
+
+       shasum -a 256 ~/.auditlog/auditlog.db
+       shasum -a 256 ~/host-upkeep/backups/auditlog/auditlog.db
+
+4. Store the copy somewhere off the host - a shared drive, another host on
+   the local network, whatever the team already uses. A backup copy sitting
+   next to the original on the same disk doesn't help much if that disk is
+   what fails.
+
+5. Name the copy with the date so it's obvious later which week it came
+   from:
+
+       auditlog.db.2026-03-15
+       auditlog.db.2026-03-08
+
+6. Keep the last four to six weekly copies and clear out anything older
+   from the target location once you've confirmed the newer ones are good -
+   this ties back into the disk space check in Section 4, since backup
+   copies left unchecked are a common cause of slow disk growth on the host
+   that holds them.
+
+Worked example: a maintainer copying the database file mid-write ended up
+with a copy that opened without error in a local viewer but was missing the
+last few minutes of activity compared to the live file. The fix was simply
+to redo the copy a few minutes later, once the write had settled, and to
+add the hash-value check above as a standing step so a short copy would be
+caught immediately rather than discovered weeks later when it was needed.
+
+See database-file-backup-copy.md for the fuller write-up, and
+backup-copy-verification.rst for a longer treatment of confirming a copy is
+good beyond just matching size and hash value.
+
+--------------------------------------------------------------------------------
+9. Terminology
+--------------------------------------------------------------------------------
+
+Database file - The single SQLite file the service reads from and writes
+to. On most hosts this is auditlog.db, though the exact path varies by OS.
+
+Console log file - A plain text file the service writes its own startup
+and runtime output to, kept in a separate folder from the database file.
+
+Loopback interface - The local-only network interface (127.0.0.1) the
+service binds to; nothing outside the host can reach it directly.
+
+Port conflict - A situation where the service's expected port is already
+held by another process at startup, forcing a fallback or a failed bind.
+
+Lock error - An error surfaced by SQLite when the database file is opened
+by more than one process in a way that its locking rules don't allow at
+that moment.
+
+Journal file / write-ahead file - A small companion file SQLite keeps next
+to the main database file while changes are being written; its presence
+and size are useful signals during the checks in Section 6.
+
+Backup copy - A separate copy of the database file, taken at a point in
+time and stored somewhere other than the host that produced it.
+
+Hash value - A short fixed-length value computed from a file's contents,
+used here to confirm a backup copy matches its source exactly.
+
+Busy timeout - A SQLite setting controlling how long a process will wait
+for a lock to clear before giving up and returning a lock error.
+
+Threshold - A configured free-space or size level (see
+disk-usage-thresholds.yaml) that separates a "fine for now" reading from
+one that calls for action.
+
+--------------------------------------------------------------------------------
+10. Files and Paths Referenced
+--------------------------------------------------------------------------------
+
+  Path / file                                    | Function
+  ------------------------------------------------|----------------------------
+  auditlog/                                        | Package directory at the
+                                                     repository root
+  README.md                                        | Top-level repository readme
+  docs/operations-runbooks/                        | Folder holding this page
+                                                     and its sibling pages
+  docs/operations-runbooks/host-monitoring-checklist.txt | This page
+  docs/operations-runbooks/host-monitoring-overview.md | Broader reasoning behind
+                                                     host monitoring
+  docs/operations-runbooks/port-conflicts.md       | Full port-conflict
+                                                     diagnostic walk-through
+  docs/operations-runbooks/loopback-port-defaults.md | Default port numbers and
+                                                     how to change them
+  docs/operations-runbooks/disk-space-checks.md    | Longer disk-space treatment
+  docs/operations-runbooks/disk-usage-thresholds.yaml | Config file setting the
+                                                     current free-space
+                                                     threshold values
+  docs/operations-runbooks/console-log-files.md    | Full console log
+                                                     management write-up
+  docs/operations-runbooks/console-log-file-sizes.txt | Reference sizes for
+                                                     console log files
+  docs/operations-runbooks/sqlite-file-locking.md  | Full locking write-up
+  docs/operations-runbooks/sqlite-lock-troubleshooting.rst | Step-by-step
+                                                     restoration once a lock
+                                                     error has happened
+  docs/operations-runbooks/database-file-backup-copy.md | Full backup-copy
+                                                     write-up
+  docs/operations-runbooks/backup-copy-verification.rst | Confirming a copy is
+                                                     good beyond size/hash
+  scripts/check-host-health.ps1                    | Helper script wrapping the
+                                                     port, process, and uptime
+                                                     checks for Windows hosts
+  scripts/copy-db-backup.sh                        | Helper script for the
+                                                     copy-and-hash steps in
+                                                     Section 8, POSIX hosts
+  ~/.auditlog/auditlog.db (or %LOCALAPPDATA%\auditlog\auditlog.db) | The live
+                                                     database file
+  ~/.auditlog/logs/ (or C:\ProgramData\auditlog\logs\) | Console log folder
+  ~/host-upkeep/backups/auditlog/                  | Local staging folder for
+                                                     weekly backup copies
+  ~/host-upkeep/old-console-logs/                  | Folder for console log
+                                                     files moved off during
+                                                     weekly trimming
+
+--------------------------------------------------------------------------------
+11. Tools and Libraries
+--------------------------------------------------------------------------------
+
+  Tool / package        | Version used on our hosts | Purpose
+  -----------------------|---------------------------|--------------------------
+  Python                 | 3.11.7                    | Runs the auditlog package
+  sqlite3 (CLI)          | 3.45.1                    | Manual checks against the
+                                                        database file
+  PowerShell             | 7.4.2                     | Windows-side checks and
+                                                        the health-check script
+  robocopy               | Windows built-in           | Copying the database
+                                                        file on Windows hosts
+  rsync                  | 3.2.7                      | Copying the database
+                                                        file on POSIX hosts
+  lsof                   | 4.95.0                     | Checking for open
+                                                        handles on the database
+                                                        file
+  Process Explorer       | 17.06                      | Windows equivalent of
+                                                        lsof for open handles
+  Get-FileHash / shasum  | Windows/POSIX built-in     | Verifying backup copies
+                                                        by hash value
+
+--------------------------------------------------------------------------------
+12. Change Log
+--------------------------------------------------------------------------------
+
+- 2026-03-15, v1.4.0 - Reworked Section 6 to lead with the "who else has the
+  file open" check ahead of the busy_timeout check; the old order had
+  people reaching for a config change before ruling out the simpler cause.
+- 2026-02-02, v1.3.2 - Added the hash-value verification step to Section 8
+  after a short backup copy went unnoticed for several weeks.
+- 2025-12-11, v1.3.0 - Added the "Files and Paths Referenced" and "Tools and
+  Libraries" sections; both had been requested by newer team members trying
+  to find the actual paths this page was talking about.
+- 2025-10-06, v1.2.1 - Updated console log folder paths for Windows after
+  the default location moved from %LOCALAPPDATA% to C:\ProgramData on
+  newer installs; older hosts still use the previous path.
+- 2025-08-28, v1.2.0 - Split what had been a single "disk and logs" section
+  into separate Disk Space and Console Log Files sections, matching the
+  sibling pages.
+- 2025-05-19, v1.1.0 - Added the weekly checklist table in Section 2 after
+  feedback that the page read fine but wasn't easy to skim during an
+  actual weekly pass.
+- 2025-01-30, v1.0.0 - First version of this page, pulled together from
+  notes several people were keeping separately for their own hosts.
+
+--------------------------------------------------------------------------------
+13. Related Pages
+--------------------------------------------------------------------------------
+
+- "operations-runbooks Overview"
+- "Diagnosing Port Conflicts for the Loopback Service"
+- "Default Loopback Port Numbers and How to Change Them"
+- "Checking Disk Space Around the Database File"
+- "Disk Usage Threshold Settings"
+- "Managing the Service's Console Log Files"
+- "Console Log File Size Reference"
+- "Handling SQLite File Locking on the Database File"
+- "Troubleshooting SQLite Lock Errors"
+- "Host Monitoring for auditlog Hosts"
+- "Copying the Database File for Backup"
+- "Verifying a Copied Database File"
+- "Workstation and Small Host Upkeep Overview"

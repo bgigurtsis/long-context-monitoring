@@ -1,0 +1,4 @@
+history_id,account_id,organization_id,recipient,provider_state,recorded_at
+lakeshore-history-301,acct-mail-a,org-lakeshore,dana.legacy@lakeshore.example,failed,2026-08-30T02:10:00Z
+lakeshore-history-302,acct-mail-a,org-lakeshore,dana@lakeshore.example,delivered,2026-08-30T02:42:00Z
+lakeshore-history-303,acct-mail-b,org-lakeshore,marco@lakeshore.example,delivered,2026-08-30T02:45:00Z

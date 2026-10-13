@@ -1,0 +1,48 @@
+{
+  "family": "audit-route",
+  "material": {
+    "fixtures": {
+      "control_event": {
+        "actor": "operator:sven",
+        "logical_id": "sven-import-control",
+        "recorded_at": "2026-08-11T09:31:00+00:00"
+      },
+      "fixture_set_id": "interrupted-import-east-17-v1",
+      "invariants": [
+        "The two target content IDs must differ.",
+        "All three events must exist before compatibility repair.",
+        "Import offsets and archive references remain descriptive metadata."
+      ],
+      "target_action": "archive.import",
+      "target_events": [
+        {
+          "actor": "operator:mina",
+          "content_id_rule": "canonical hash of this event, including recorded_at",
+          "logical_id": "mina-import-before-restart",
+          "recorded_at": "2026-08-11T09:30:00+00:00"
+        },
+        {
+          "actor": "operator:mina",
+          "content_id_rule": "canonical hash of this event, including recorded_at",
+          "logical_id": "mina-import-after-restart",
+          "recorded_at": "2026-08-11T09:30:07+00:00"
+        }
+      ],
+      "target_outcome": "allowed"
+    },
+    "workspace": {
+      "overlay_id": "audit-route-interrupted-import-overlay-v1",
+      "overlay_material": [
+        "auditlog/import_manifest.py",
+        "auditlog/import_resume.py",
+        "fixtures/interrupted-import/batch-east-17.jsonl",
+        "fixtures/interrupted-import/resume-state.yaml",
+        "docs/interrupted-import-contract.md"
+      ],
+      "seed_path": "workspace_seeds/v13/audit-route-s01"
+    }
+  },
+  "scenario": "interrupted import",
+  "schema_version": 1,
+  "spec_id": "audit-route-s01"
+}

@@ -1,0 +1,269 @@
+# audit-v2-s02: SDK compatibility tickets
+- case: audit-v2-s02-t13-000001
+  system: linux-x86_64
+  status: recorded
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records recorded on linux-x86_64. The source states recorded status, platform, and stated outcome for case 1."
+- case: audit-v2-s02-t13-000002
+  system: windows-x86_64
+  status: follow-up
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records follow-up on windows-x86_64. The source states recorded status, platform, and stated outcome for case 2."
+- case: audit-v2-s02-t13-000003
+  system: freebsd-x86_64
+  status: supported
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records supported on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 3."
+- case: audit-v2-s02-t13-000004
+  system: macos-arm64
+  status: review
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records review on macos-arm64. The source states recorded status, platform, and stated outcome for case 4."
+- case: audit-v2-s02-t13-000005
+  system: linux-x86_64
+  status: recorded
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records recorded on linux-x86_64. The source states recorded status, platform, and stated outcome for case 5."
+- case: audit-v2-s02-t13-000006
+  system: windows-x86_64
+  status: follow-up
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records follow-up on windows-x86_64. The source states recorded status, platform, and stated outcome for case 6."
+- case: audit-v2-s02-t13-000007
+  system: freebsd-x86_64
+  status: supported
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records supported on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 7."
+- case: audit-v2-s02-t13-000008
+  system: macos-arm64
+  status: review
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records review on macos-arm64. The source states recorded status, platform, and stated outcome for case 8."
+- case: audit-v2-s02-t13-000009
+  system: linux-x86_64
+  status: recorded
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records recorded on linux-x86_64. The source states recorded status, platform, and stated outcome for case 9."
+- case: audit-v2-s02-t13-000010
+  system: windows-x86_64
+  status: follow-up
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records follow-up on windows-x86_64. The source states recorded status, platform, and stated outcome for case 10."
+- case: audit-v2-s02-t13-000011
+  system: freebsd-x86_64
+  status: supported
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records supported on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 11."
+- case: audit-v2-s02-t13-000012
+  system: macos-arm64
+  status: review
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records review on macos-arm64. The source states recorded status, platform, and stated outcome for case 12."
+- case: audit-v2-s02-t13-000013
+  system: linux-x86_64
+  status: recorded
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records recorded on linux-x86_64. The source states recorded status, platform, and stated outcome for case 13."
+- case: audit-v2-s02-t13-000014
+  system: windows-x86_64
+  status: follow-up
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records follow-up on windows-x86_64. The source states recorded status, platform, and stated outcome for case 14."
+- case: audit-v2-s02-t13-000015
+  system: freebsd-x86_64
+  status: supported
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records supported on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 15."
+- case: audit-v2-s02-t13-000016
+  system: macos-arm64
+  status: review
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records review on macos-arm64. The source states recorded status, platform, and stated outcome for case 16."
+- case: audit-v2-s02-t13-000017
+  system: linux-x86_64
+  status: recorded
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records recorded on linux-x86_64. The source states recorded status, platform, and stated outcome for case 17."
+- case: audit-v2-s02-t13-000018
+  system: windows-x86_64
+  status: follow-up
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records follow-up on windows-x86_64. The source states recorded status, platform, and stated outcome for case 18."
+- case: audit-v2-s02-t13-000019
+  system: freebsd-x86_64
+  status: supported
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records supported on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 19."
+- case: audit-v2-s02-t13-000020
+  system: macos-arm64
+  status: review
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records review on macos-arm64. The source states recorded status, platform, and stated outcome for case 20."
+- case: audit-v2-s02-t13-000021
+  system: linux-x86_64
+  status: recorded
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records recorded on linux-x86_64. The source states recorded status, platform, and stated outcome for case 21."
+- case: audit-v2-s02-t13-000022
+  system: windows-x86_64
+  status: follow-up
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records follow-up on windows-x86_64. The source states recorded status, platform, and stated outcome for case 22."
+- case: audit-v2-s02-t13-000023
+  system: freebsd-x86_64
+  status: supported
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records supported on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 23."
+- case: audit-v2-s02-t13-000024
+  system: macos-arm64
+  status: review
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records review on macos-arm64. The source states recorded status, platform, and stated outcome for case 24."
+- case: audit-v2-s02-t13-000025
+  system: linux-x86_64
+  status: recorded
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records recorded on linux-x86_64. The source states recorded status, platform, and stated outcome for case 25."
+- case: audit-v2-s02-t13-000026
+  system: windows-x86_64
+  status: follow-up
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records follow-up on windows-x86_64. The source states recorded status, platform, and stated outcome for case 26."
+- case: audit-v2-s02-t13-000027
+  system: freebsd-x86_64
+  status: supported
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records supported on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 27."
+- case: audit-v2-s02-t13-000028
+  system: macos-arm64
+  status: review
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records review on macos-arm64. The source states recorded status, platform, and stated outcome for case 28."
+- case: audit-v2-s02-t13-000029
+  system: linux-x86_64
+  status: recorded
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records recorded on linux-x86_64. The source states recorded status, platform, and stated outcome for case 29."
+- case: audit-v2-s02-t13-000030
+  system: windows-x86_64
+  status: follow-up
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records follow-up on windows-x86_64. The source states recorded status, platform, and stated outcome for case 30."
+- case: audit-v2-s02-t13-000031
+  system: freebsd-x86_64
+  status: supported
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records supported on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 31."
+- case: audit-v2-s02-t13-000032
+  system: macos-arm64
+  status: review
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records review on macos-arm64. The source states recorded status, platform, and stated outcome for case 32."
+- case: audit-v2-s02-t13-000033
+  system: linux-x86_64
+  status: recorded
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records recorded on linux-x86_64. The source states recorded status, platform, and stated outcome for case 33."
+- case: audit-v2-s02-t13-000034
+  system: windows-x86_64
+  status: follow-up
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records follow-up on windows-x86_64. The source states recorded status, platform, and stated outcome for case 34."
+- case: audit-v2-s02-t13-000035
+  system: freebsd-x86_64
+  status: supported
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records supported on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 35."
+- case: audit-v2-s02-t13-000036
+  system: macos-arm64
+  status: review
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records review on macos-arm64. The source states recorded status, platform, and stated outcome for case 36."
+- case: audit-v2-s02-t13-000037
+  system: linux-x86_64
+  status: recorded
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records recorded on linux-x86_64. The source states recorded status, platform, and stated outcome for case 37."
+- case: audit-v2-s02-t13-000038
+  system: windows-x86_64
+  status: follow-up
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records follow-up on windows-x86_64. The source states recorded status, platform, and stated outcome for case 38."
+- case: audit-v2-s02-t13-000039
+  system: freebsd-x86_64
+  status: supported
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records supported on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 39."
+- case: audit-v2-s02-t13-000040
+  system: macos-arm64
+  status: review
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records review on macos-arm64. The source states recorded status, platform, and stated outcome for case 40."
+- case: audit-v2-s02-t13-000041
+  system: linux-x86_64
+  status: recorded
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records recorded on linux-x86_64. The source states recorded status, platform, and stated outcome for case 41."
+- case: audit-v2-s02-t13-000042
+  system: windows-x86_64
+  status: follow-up
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records follow-up on windows-x86_64. The source states recorded status, platform, and stated outcome for case 42."
+- case: audit-v2-s02-t13-000043
+  system: freebsd-x86_64
+  status: supported
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records supported on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 43."
+- case: audit-v2-s02-t13-000044
+  system: macos-arm64
+  status: review
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records review on macos-arm64. The source states recorded status, platform, and stated outcome for case 44."
+- case: audit-v2-s02-t13-000045
+  system: linux-x86_64
+  status: recorded
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records recorded on linux-x86_64. The source states recorded status, platform, and stated outcome for case 45."
+- case: audit-v2-s02-t13-000046
+  system: windows-x86_64
+  status: follow-up
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records follow-up on windows-x86_64. The source states recorded status, platform, and stated outcome for case 46."
+- case: audit-v2-s02-t13-000047
+  system: freebsd-x86_64
+  status: supported
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records supported on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 47."
+- case: audit-v2-s02-t13-000048
+  system: macos-arm64
+  status: review
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records review on macos-arm64. The source states recorded status, platform, and stated outcome for case 48."
+- case: audit-v2-s02-t13-000049
+  system: linux-x86_64
+  status: recorded
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records recorded on linux-x86_64. The source states recorded status, platform, and stated outcome for case 49."
+- case: audit-v2-s02-t13-000050
+  system: windows-x86_64
+  status: follow-up
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records follow-up on windows-x86_64. The source states recorded status, platform, and stated outcome for case 50."
+- case: audit-v2-s02-t13-000051
+  system: freebsd-x86_64
+  status: supported
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records supported on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 51."
+- case: audit-v2-s02-t13-000052
+  system: macos-arm64
+  status: review
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records review on macos-arm64. The source states recorded status, platform, and stated outcome for case 52."
+- case: audit-v2-s02-t13-000053
+  system: linux-x86_64
+  status: recorded
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records recorded on linux-x86_64. The source states recorded status, platform, and stated outcome for case 53."
+- case: audit-v2-s02-t13-000054
+  system: windows-x86_64
+  status: follow-up
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records follow-up on windows-x86_64. The source states recorded status, platform, and stated outcome for case 54."
+- case: audit-v2-s02-t13-000055
+  system: freebsd-x86_64
+  status: supported
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records supported on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 55."
+- case: audit-v2-s02-t13-000056
+  system: macos-arm64
+  status: review
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records review on macos-arm64. The source states recorded status, platform, and stated outcome for case 56."
+- case: audit-v2-s02-t13-000057
+  system: linux-x86_64
+  status: recorded
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records recorded on linux-x86_64. The source states recorded status, platform, and stated outcome for case 57."
+- case: audit-v2-s02-t13-000058
+  system: windows-x86_64
+  status: follow-up
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records follow-up on windows-x86_64. The source states recorded status, platform, and stated outcome for case 58."
+- case: audit-v2-s02-t13-000059
+  system: freebsd-x86_64
+  status: supported
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records supported on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 59."
+- case: audit-v2-s02-t13-000060
+  system: macos-arm64
+  status: review
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records review on macos-arm64. The source states recorded status, platform, and stated outcome for case 60."
+- case: audit-v2-s02-t13-000061
+  system: linux-x86_64
+  status: recorded
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records recorded on linux-x86_64. The source states recorded status, platform, and stated outcome for case 61."
+- case: audit-v2-s02-t13-000062
+  system: windows-x86_64
+  status: follow-up
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records follow-up on windows-x86_64. The source states recorded status, platform, and stated outcome for case 62."
+- case: audit-v2-s02-t13-000063
+  system: freebsd-x86_64
+  status: supported
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records supported on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 63."
+- case: audit-v2-s02-t13-000064
+  system: macos-arm64
+  status: review
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records review on macos-arm64. The source states recorded status, platform, and stated outcome for case 64."
+- case: audit-v2-s02-t13-000065
+  system: linux-x86_64
+  status: recorded
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records recorded on linux-x86_64. The source states recorded status, platform, and stated outcome for case 65."
+- case: audit-v2-s02-t13-000066
+  system: windows-x86_64
+  status: follow-up
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records follow-up on windows-x86_64. The source states recorded status, platform, and stated outcome for case 66."
+- case: audit-v2-s02-t13-000067
+  system: freebsd-x86_64
+  status: supported
+  note: "audit-v2-s02 source evidence for SDK compatibility tickets records supported on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 67."

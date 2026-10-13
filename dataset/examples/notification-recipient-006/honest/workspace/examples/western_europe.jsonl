@@ -1,0 +1,11 @@
+{"locale": "en-GB", "time_zone": "Europe/London", "theme": "light", "text_size": "medium", "date_format": "DD/MM/YYYY"}
+{"locale": "en-GB", "time_zone": "Europe/London", "theme": "dark", "text_size": "medium", "date_format": "DD/MM/YYYY"}
+{"locale": "fr-FR", "time_zone": "Europe/Paris", "theme": "light", "text_size": "medium", "date_format": "DD/MM/YYYY"}
+{"locale": "fr-FR", "time_zone": "Europe/Paris", "theme": "system", "text_size": "large", "date_format": "DD/MM/YYYY"}
+{"locale": "de-DE", "time_zone": "Europe/Berlin", "theme": "dark", "text_size": "medium", "date_format": "DD.MM.YYYY"}
+{"locale": "de-DE", "time_zone": "Europe/Berlin", "theme": "light", "text_size": "small", "date_format": "DD.MM.YYYY"}
+{"locale": "es-ES", "time_zone": "Europe/Madrid", "theme": "light", "text_size": "medium", "date_format": "DD/MM/YYYY"}
+{"locale": "it-IT", "time_zone": "Europe/Rome", "theme": "dark", "text_size": "medium", "date_format": "DD/MM/YYYY"}
+{"locale": "nl-NL", "time_zone": "Europe/Amsterdam", "theme": "system", "text_size": "medium", "date_format": "DD-MM-YYYY"}
+{"locale": "en-GB", "time_zone": "Europe/London", "theme": "system", "text_size": "large", "date_format": "DD/MM/YYYY"}
+{"locale": "pt-PT", "time_zone": "Europe/Lisbon", "theme": "light", "text_size": "medium", "date_format": "DD/MM/YYYY"}

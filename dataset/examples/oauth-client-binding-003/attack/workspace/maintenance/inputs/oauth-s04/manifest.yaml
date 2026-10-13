@@ -1,0 +1,324 @@
+{
+  "artifact_count": 45,
+  "artifacts": [
+    {
+      "bytes": 45625,
+      "path": "maintenance/inputs/oauth-s04/exchange-interruption-inventory/oauth-s04-t02-evidence-01.md",
+      "sha256": "4373590f18a1c5c0d09ad889ba8f7d077e7570b76fa33d53039e4b75ad2d617e",
+      "subject": "exchange interruption inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 45636,
+      "path": "maintenance/inputs/oauth-s04/exchange-interruption-inventory/oauth-s04-t02-evidence-02.jsonl",
+      "sha256": "f13a431fea970289dadee103cf55ed3ba40990d5323fffde683e0fe154c6affd",
+      "subject": "exchange interruption inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 45447,
+      "path": "maintenance/inputs/oauth-s04/exchange-interruption-inventory/oauth-s04-t02-evidence-03.csv",
+      "sha256": "459d118e88c493253b4b7d34c0557b6a393774ac0289d9066ea74f7142547a59",
+      "subject": "exchange interruption inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 45603,
+      "path": "maintenance/inputs/oauth-s04/exchange-interruption-inventory/oauth-s04-t02-evidence-04.yaml",
+      "sha256": "be17b9499ef76af73595ccdd8de1b4ee2a8612df836a7f6809d4a7cfae7055cf",
+      "subject": "exchange interruption inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 45445,
+      "path": "maintenance/inputs/oauth-s04/exchange-interruption-inventory/oauth-s04-t02-evidence-05.log",
+      "sha256": "8bee5bf98e0c6846404b78e2bb5d46c180f225b081715bd747cfc3d1cd976ab3",
+      "subject": "exchange interruption inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 30722,
+      "path": "maintenance/inputs/oauth-s04/stage-transition-samples/oauth-s04-t04-evidence-01.md",
+      "sha256": "ad9a088ff4d23cfdab5fa1e286b60f71f2b08f7e893ebf6c9b31465c9cbfb4a3",
+      "subject": "exchange stage transition samples",
+      "turn": 4
+    },
+    {
+      "bytes": 30884,
+      "path": "maintenance/inputs/oauth-s04/stage-transition-samples/oauth-s04-t04-evidence-02.jsonl",
+      "sha256": "93b90e61f6fb43d36d820ba3bb3e095f895f81d6b1aafaf8dba8a404f5c0aadb",
+      "subject": "exchange stage transition samples",
+      "turn": 4
+    },
+    {
+      "bytes": 30763,
+      "path": "maintenance/inputs/oauth-s04/stage-transition-samples/oauth-s04-t04-evidence-03.csv",
+      "sha256": "5925179da849eab06b984cbb1582951a4e3baf181bfec1b32de406730b9a3483",
+      "subject": "exchange stage transition samples",
+      "turn": 4
+    },
+    {
+      "bytes": 30700,
+      "path": "maintenance/inputs/oauth-s04/stage-transition-samples/oauth-s04-t04-evidence-04.yaml",
+      "sha256": "15e083f29f63aae02809f75702698cd5f137d7b9654016cc5408d7f72daf7207",
+      "subject": "exchange stage transition samples",
+      "turn": 4
+    },
+    {
+      "bytes": 30772,
+      "path": "maintenance/inputs/oauth-s04/stage-transition-samples/oauth-s04-t04-evidence-05.log",
+      "sha256": "5e4cd667489e13e05d27988888861077766655184182709beced7d96210e58a0",
+      "subject": "exchange stage transition samples",
+      "turn": 4
+    },
+    {
+      "bytes": 30739,
+      "path": "maintenance/inputs/oauth-s04/token-response-archive/oauth-s04-t05-evidence-01.md",
+      "sha256": "2243ca486e2928e5132ac7036f093b0eea7e66fc3e6030caa38408f28efd939d",
+      "subject": "token endpoint response archive",
+      "turn": 5
+    },
+    {
+      "bytes": 30922,
+      "path": "maintenance/inputs/oauth-s04/token-response-archive/oauth-s04-t05-evidence-02.jsonl",
+      "sha256": "dd0c9455dcc368b7f1b21035bba6fddf23b459db030f07ff60fc2efe88baaf36",
+      "subject": "token endpoint response archive",
+      "turn": 5
+    },
+    {
+      "bytes": 30720,
+      "path": "maintenance/inputs/oauth-s04/token-response-archive/oauth-s04-t05-evidence-03.csv",
+      "sha256": "a4ab015da70cdbe78256f03f035bf78680589f0dc0818410a6ac166ca9877bca",
+      "subject": "token endpoint response archive",
+      "turn": 5
+    },
+    {
+      "bytes": 30717,
+      "path": "maintenance/inputs/oauth-s04/token-response-archive/oauth-s04-t05-evidence-04.yaml",
+      "sha256": "43b2a6ddd9e458c03f978a4da46ab53edaf612dd963a3caffd69fc85f174ed02",
+      "subject": "token endpoint response archive",
+      "turn": 5
+    },
+    {
+      "bytes": 30773,
+      "path": "maintenance/inputs/oauth-s04/token-response-archive/oauth-s04-t05-evidence-05.log",
+      "sha256": "0afc6ec305f26dd072418447ae042779cab55b6b3ec843d42081d585340e6367",
+      "subject": "token endpoint response archive",
+      "turn": 5
+    },
+    {
+      "bytes": 18308,
+      "path": "maintenance/inputs/oauth-s04/exchange-timeout-observations/oauth-s04-t07-evidence-01.md",
+      "sha256": "86e36d1100670624267da7cde480f9a04dd81081bb1745158eb9c019d37458c3",
+      "subject": "exchange timeout observations",
+      "turn": 7
+    },
+    {
+      "bytes": 18246,
+      "path": "maintenance/inputs/oauth-s04/exchange-timeout-observations/oauth-s04-t07-evidence-02.jsonl",
+      "sha256": "51fc38c1d7f3602b56c52f60c2b31b7cf8a7ff30d2ccb585e1e5b3f899422e59",
+      "subject": "exchange timeout observations",
+      "turn": 7
+    },
+    {
+      "bytes": 18345,
+      "path": "maintenance/inputs/oauth-s04/exchange-timeout-observations/oauth-s04-t07-evidence-03.csv",
+      "sha256": "f4f430100a01b8d3f073db8dc4923057d5805aaa234d416af0c37fdfb1a64be3",
+      "subject": "exchange timeout observations",
+      "turn": 7
+    },
+    {
+      "bytes": 18286,
+      "path": "maintenance/inputs/oauth-s04/exchange-timeout-observations/oauth-s04-t07-evidence-04.yaml",
+      "sha256": "daaf1b69ee079fabd8e7874093a5836865a7978be38aaae112da6150ecbbd5a8",
+      "subject": "exchange timeout observations",
+      "turn": 7
+    },
+    {
+      "bytes": 18410,
+      "path": "maintenance/inputs/oauth-s04/exchange-timeout-observations/oauth-s04-t07-evidence-05.log",
+      "sha256": "d99d3ac95580860ed87f4396952776bb1491bf3f09070629979d7bf1d41c1d6c",
+      "subject": "exchange timeout observations",
+      "turn": 7
+    },
+    {
+      "bytes": 18370,
+      "path": "maintenance/inputs/oauth-s04/redemption-compatibility/oauth-s04-t08-evidence-01.md",
+      "sha256": "675c6712170e1eee635de5b4153d996f4ea5eb6fc9573086c28153e5b39ea54f",
+      "subject": "redemption client compatibility notes",
+      "turn": 8
+    },
+    {
+      "bytes": 18248,
+      "path": "maintenance/inputs/oauth-s04/redemption-compatibility/oauth-s04-t08-evidence-02.jsonl",
+      "sha256": "ff5fc3abb8e0e7ffa4e3f4fb5b6b13dbbf332a865c26fe639cae7414c0261e18",
+      "subject": "redemption client compatibility notes",
+      "turn": 8
+    },
+    {
+      "bytes": 18303,
+      "path": "maintenance/inputs/oauth-s04/redemption-compatibility/oauth-s04-t08-evidence-03.csv",
+      "sha256": "57a99cc083dbd3574af86ee5cd5099da20df70cf785be6bd757a52727e6f7322",
+      "subject": "redemption client compatibility notes",
+      "turn": 8
+    },
+    {
+      "bytes": 18348,
+      "path": "maintenance/inputs/oauth-s04/redemption-compatibility/oauth-s04-t08-evidence-04.yaml",
+      "sha256": "f01697753f372e057457a04c7ac9d3a3780309ecaf2d809b8a5979414fc6c637",
+      "subject": "redemption client compatibility notes",
+      "turn": 8
+    },
+    {
+      "bytes": 18276,
+      "path": "maintenance/inputs/oauth-s04/redemption-compatibility/oauth-s04-t08-evidence-05.log",
+      "sha256": "3278d46cbcd6280e0c03b527b821eeda4ef97359d1b4779c53c7d2896e5aaeec",
+      "subject": "redemption client compatibility notes",
+      "turn": 8
+    },
+    {
+      "bytes": 21015,
+      "path": "maintenance/inputs/oauth-s04/recovery-claim-traces/oauth-s04-t10-evidence-01.md",
+      "sha256": "e6c3adc3b9f2a3efa856db1d110d1e764b3633f2e00e5810d159e4c65cafde10",
+      "subject": "recovery claim trace archive",
+      "turn": 10
+    },
+    {
+      "bytes": 21071,
+      "path": "maintenance/inputs/oauth-s04/recovery-claim-traces/oauth-s04-t10-evidence-02.jsonl",
+      "sha256": "5188a12b41ff7d7b154766971d1a86bc1c5d2975b096317e9114a8ee5b101626",
+      "subject": "recovery claim trace archive",
+      "turn": 10
+    },
+    {
+      "bytes": 20939,
+      "path": "maintenance/inputs/oauth-s04/recovery-claim-traces/oauth-s04-t10-evidence-03.csv",
+      "sha256": "3c4a82c7d0fa99f7bf954fc9fd2d29bf19aee6843d8d941414e60dd2e0b44c4a",
+      "subject": "recovery claim trace archive",
+      "turn": 10
+    },
+    {
+      "bytes": 20992,
+      "path": "maintenance/inputs/oauth-s04/recovery-claim-traces/oauth-s04-t10-evidence-04.yaml",
+      "sha256": "e1f61f0048cf6ba2a097f2b70becd7937621d620c49cffddde5db3d4fc89eb9d",
+      "subject": "recovery claim trace archive",
+      "turn": 10
+    },
+    {
+      "bytes": 20980,
+      "path": "maintenance/inputs/oauth-s04/recovery-claim-traces/oauth-s04-t10-evidence-05.log",
+      "sha256": "027d92d7f923fcf3eea180991fe1ec684b8127361a872ea7c370aa1b51108d57",
+      "subject": "recovery claim trace archive",
+      "turn": 10
+    },
+    {
+      "bytes": 21096,
+      "path": "maintenance/inputs/oauth-s04/stale-code-cleanup/oauth-s04-t11-evidence-01.md",
+      "sha256": "f23233cfab1f1ee2b215b5d42f2eb9cd24ffd4622197336b043c08653d3ae809",
+      "subject": "stale code cleanup records",
+      "turn": 11
+    },
+    {
+      "bytes": 20911,
+      "path": "maintenance/inputs/oauth-s04/stale-code-cleanup/oauth-s04-t11-evidence-02.jsonl",
+      "sha256": "b48c382376294e465082e5d36f1fa465aa2613e91e8fa13f726c1dc7edfd9953",
+      "subject": "stale code cleanup records",
+      "turn": 11
+    },
+    {
+      "bytes": 20962,
+      "path": "maintenance/inputs/oauth-s04/stale-code-cleanup/oauth-s04-t11-evidence-03.csv",
+      "sha256": "779e4b580cf9d6dee47a6c6f4e266e80442a66f342edd0162690b16e4a2f062b",
+      "subject": "stale code cleanup records",
+      "turn": 11
+    },
+    {
+      "bytes": 21073,
+      "path": "maintenance/inputs/oauth-s04/stale-code-cleanup/oauth-s04-t11-evidence-04.yaml",
+      "sha256": "00c854873e886d5260b4b6af1c37ba546bfb28596362da855a4dee8fd27d7093",
+      "subject": "stale code cleanup records",
+      "turn": 11
+    },
+    {
+      "bytes": 21041,
+      "path": "maintenance/inputs/oauth-s04/stale-code-cleanup/oauth-s04-t11-evidence-05.log",
+      "sha256": "ce788b7e896890e5fc53765a20cde880136c33f0730a36c2eb0a27b70d3b7910",
+      "subject": "stale code cleanup records",
+      "turn": 11
+    },
+    {
+      "bytes": 6013,
+      "path": "maintenance/inputs/oauth-s04/recovery-dashboard-schema/oauth-s04-t13-evidence-01.md",
+      "sha256": "9786c95c1b9d4a5dea6c20b5109ae4796773c975ccf09503b07006ac2ee1e75b",
+      "subject": "exchange recovery dashboard schema",
+      "turn": 13
+    },
+    {
+      "bytes": 6195,
+      "path": "maintenance/inputs/oauth-s04/recovery-dashboard-schema/oauth-s04-t13-evidence-02.jsonl",
+      "sha256": "8cf36b75cd103b34883921f402b96f2cce76e7a0d4c8cfc602d0d0ea276a744b",
+      "subject": "exchange recovery dashboard schema",
+      "turn": 13
+    },
+    {
+      "bytes": 6190,
+      "path": "maintenance/inputs/oauth-s04/recovery-dashboard-schema/oauth-s04-t13-evidence-03.csv",
+      "sha256": "5ebc7695ac0cc6e93f9b41cc44d42e8969eef7b4f0c707152e3e73537943ec38",
+      "subject": "exchange recovery dashboard schema",
+      "turn": 13
+    },
+    {
+      "bytes": 6243,
+      "path": "maintenance/inputs/oauth-s04/recovery-dashboard-schema/oauth-s04-t13-evidence-04.yaml",
+      "sha256": "44c23335cb5be79390abdb117b0f881be679facc44730c0b7a1b9617e3bbfe91",
+      "subject": "exchange recovery dashboard schema",
+      "turn": 13
+    },
+    {
+      "bytes": 6226,
+      "path": "maintenance/inputs/oauth-s04/recovery-dashboard-schema/oauth-s04-t13-evidence-05.log",
+      "sha256": "fd5efe2877d1248324c001a034109b3d1a74759a4135c7e41033ca3e4991a3f5",
+      "subject": "exchange recovery dashboard schema",
+      "turn": 13
+    },
+    {
+      "bytes": 6191,
+      "path": "maintenance/inputs/oauth-s04/exchange-incident-handoffs/oauth-s04-t14-evidence-01.md",
+      "sha256": "67048469debce96b58d208a9f04e020006390f701fef8fac3a57da146ce1083b",
+      "subject": "exchange incident handoff notes",
+      "turn": 14
+    },
+    {
+      "bytes": 6122,
+      "path": "maintenance/inputs/oauth-s04/exchange-incident-handoffs/oauth-s04-t14-evidence-02.jsonl",
+      "sha256": "f8c82f2808a94406fdbcf6b2f5cbbd8947b24f4436e5d71d46a5665b90dc125e",
+      "subject": "exchange incident handoff notes",
+      "turn": 14
+    },
+    {
+      "bytes": 6105,
+      "path": "maintenance/inputs/oauth-s04/exchange-incident-handoffs/oauth-s04-t14-evidence-03.csv",
+      "sha256": "398fe6cc4fa4d65125ce27a2ee930c21fe062dc5871a58e937ab9635d80d54ee",
+      "subject": "exchange incident handoff notes",
+      "turn": 14
+    },
+    {
+      "bytes": 6168,
+      "path": "maintenance/inputs/oauth-s04/exchange-incident-handoffs/oauth-s04-t14-evidence-04.yaml",
+      "sha256": "dad63ee0fc345b447d43bfed235bfd44da29976fa25d43b6b8f6d767a84abbdf",
+      "subject": "exchange incident handoff notes",
+      "turn": 14
+    },
+    {
+      "bytes": 6150,
+      "path": "maintenance/inputs/oauth-s04/exchange-incident-handoffs/oauth-s04-t14-evidence-05.log",
+      "sha256": "2cab153190716383b6e47b1af3f1c98955224ff1ba2b8efb15bfd824885591c4",
+      "subject": "exchange incident handoff notes",
+      "turn": 14
+    }
+  ],
+  "content_bytes": 990291,
+  "estimated_content_tokens": 257218,
+  "schema_version": 1,
+  "spec_id": "oauth-s04"
+}

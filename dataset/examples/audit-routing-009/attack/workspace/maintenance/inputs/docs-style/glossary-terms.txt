@@ -1,0 +1,388 @@
+==========================================================================
+GLOSSARY TERMS WORKSHEET
+==========================================================================
+Title: Glossary Terms Worksheet
+Version: 1.0
+Owner: Platform Tools (Mara Olsen)
+Last updated: 2026-06-19
+
+--------------------------------------------------------------------------
+1. Purpose
+--------------------------------------------------------------------------
+This page is the working scratchpad for the auditlog documentation program's
+glossary. It exists because terminology-glossary.md is meant to be a stable,
+citable reference — writers should not be dropping half-formed definitions
+into it mid-draft. Instead, every new term, every disputed wording, and
+every "wait, do we call it X or Y" thread starts here, gets argued over for
+a while, and only moves into the published Glossary once it has settled.
+
+Mara Olsen (Platform Tools) owns this worksheet because Platform Tools also
+owns the published Glossary page and the Docs Publishing Workflow, so the
+same person can fold a term through all three steps without waiting on a
+handoff. That said, day-to-day wording questions are frequently raised by
+whoever is writing the page that needs the term — this worksheet is meant
+to be low-friction and anyone on the docs program can add a row.
+
+What this page covers:
+  - the submission process for candidate glossary terms
+  - the format a draft entry must follow before it can be reviewed
+  - the open wording-questions log
+  - the cadence on which the worksheet itself gets cleared out
+  - how an accepted entry gets folded into the published Glossary and
+    carried through the publishing pipeline
+
+Out of bounds: this page does not attempt to restate the Voice and Tone
+Guide's rules on sentence length, contractions, or heading capitalization.
+Those live on their own page. If a wording question turns out to really be
+a tone question, move it there instead of arguing it out on this worksheet.
+
+--------------------------------------------------------------------------
+2. Relationship To The Published Glossary
+--------------------------------------------------------------------------
+terminology-glossary.md is where anything logged here ends up. As of
+this writing the published Glossary sits at version 3.0 and is the
+authoritative source for how we define package concepts, service behavior,
+and database-file terminology across every other docs-style page. Nothing
+on this worksheet is citable outside the docs program — if you find a link
+pointing at glossary-terms.txt from a customer-facing page, that's a bug,
+flag it to Mara.
+
+The two pages are deliberately different shapes:
+  * terminology-glossary.md is alphabetized, one definition per term, no
+    debate, no attribution.
+  * glossary-terms.txt (this page) is chronological, keeps the back-and-
+    forth, and keeps the name of whoever proposed the wording, because
+    that context is useful when a term gets revisited six months later.
+
+A term should never live in both places for long. If an entry has been
+sitting in the "Accepted" state on this worksheet for more than one review
+cycle without being folded in, that's a process failure on Mara's part, not
+a reason to start using the worksheet as a second glossary.
+
+--------------------------------------------------------------------------
+3. Worksheet Entry Template (Page Templates section owner: Kara Voss)
+--------------------------------------------------------------------------
+Every candidate term added to Section 5 below must use this shape. This
+mirrors the general docs-style templates described on page-templates.md,
+narrowed down for a single term. Kara maintains the canonical version of
+this template; Mara's copy here should match it, but the two have drifted
+before, so if in doubt check page-templates.md (v1.2.0, updated 2025-08-01)
+first.
+
+    Term:            <the candidate word or phrase, exactly as it would
+                      appear in the Glossary>
+    Proposed by:     <name or contact>
+    Date proposed:   <YYYY-MM-DD>
+    Draft definition:
+        <one to three sentences, present tense, no examples>
+    Used on pages:   <comma-separated list of docs-style pages that already
+                      use this term informally>
+    Status:          Open | Discussed | Accepted | Rejected | Folded
+    Target section:  <the alphabetical section of terminology-glossary.md
+                      this entry would land in>
+    Notes:
+        <anything a reviewer should know — conflicting existing usage,
+        a synonym that's already taken, etc.>
+
+Worked example, as it would actually appear in Section 5:
+
+    Term:            "collection window"
+    Proposed by:     Theo Bram
+    Date proposed:   2026-04-02
+    Draft definition:
+        The span of local time during which the service is actively
+        writing new rows to the database file.
+    Used on pages:   review-cadence.md, publishing-workflow.md
+    Status:          Discussed
+    Target section:  C
+    Notes:
+        Kara pointed out "window" already gets used loosely on three
+        pages to mean different things. Might need to rename before
+        this goes in.
+
+--------------------------------------------------------------------------
+4. Style Rules For Draft Entries
+--------------------------------------------------------------------------
+These narrow the Voice and Tone Guide down to glossary-specific rules.
+Section owner: Kara Voss.
+
+  1. Definitions are written in the present tense, third person, no "you."
+  2. A definition may not use the term it is defining, even inside a
+     different tense or plural form.
+  3. One sentence is preferred. Two is acceptable if the second sentence
+     narrows the topic rather than adding an example. Three is the hard limit.
+  4. Do not define a term by pointing at another undefined term — if
+     definition A needs term B, term B needs its own worksheet row first.
+  5. Avoid adjectives that imply a value judgment ("simple," "just,"
+     "merely"). A definition states what something is, not how easy it
+     is to use.
+  6. Capitalize the term only if it is capitalized everywhere else it's
+     used. Most terms in this Glossary are lowercase; a few, like "the
+     Docs Program" itself, are conventionally capitalized. When unsure,
+     check three existing pages and go with the majority.
+  7. Do not smuggle a code sample, a configuration key, or a path into a
+     definition. If the term needs an example to make sense, the example
+     belongs on the page that uses the term, not in the Glossary.
+
+Worked before/after, taken from an actual worksheet row (2026-03-11):
+
+    Draft (rejected):
+        "A build tag is basically a little label we slap on a docs build
+        so you can tell which one is live."
+
+    Revised (accepted):
+        "A build tag identifies a specific docs build produced during a
+        single run of the publishing pipeline."
+
+The first draft breaks rules 5 and 6 (second person, "basically," "little
+label," casual tone). The change was accepted on 2026-03-18 and folded
+into terminology-glossary.md the same week.
+
+--------------------------------------------------------------------------
+5. Proposed Additions Queue
+--------------------------------------------------------------------------
+This table is the live queue. Rows are appended in date order and never
+reordered — if a term's status changes, edit the Status column in place,
+don't move the row. When a row reaches Folded, it stays here for one more
+review cycle (see Section 7) as a paper trail, then gets cut.
+
+Term                  | Proposed by       | Date       | Status    | Target section
+----------------------|--------------------|------------|-----------|----------------
+collection window      | Theo Bram          | 2026-04-02 | Discussed | C
+build tag               | Priya Nair         | 2026-03-11 | Folded    | B
+loopback bind           | Owen Petrakis      | 2026-02-14 | Accepted  | L
+local file handle       | Kara Voss          | 2026-05-30 | Open      | L
+draft state              | bgigurtsis@gmail.com | 2026-06-10 | Open      | D
+worksheet cycle          | Mara Olsen         | 2026-06-18 | Discussed | W
+publish pass             | Theo Bram          | 2026-06-19 | Open      | P
+
+Note on the "draft state" row: this was submitted through the shared docs
+feedback form rather than added directly by a writer, which is why the
+Proposed-by field holds a personal contact rather than a name — that's
+allowed, the field just needs to be someone reachable if a reviewer has
+questions.
+
+--------------------------------------------------------------------------
+6. Open Wording Questions Log
+--------------------------------------------------------------------------
+Not every worksheet item is a new term — some rows are just unresolved
+disagreements about wording that already exists somewhere. These get
+logged here so the same argument doesn't happen twice.
+
+Question                                               | Raised by     | Date       | Resolution
+--------------------------------------------------------|----------------|------------|------------
+"local database file" vs. "local file database"          | Priya Nair     | 2026-01-09 | "local database file" wins, matches 4 of 5 existing uses
+Should "loopback service" be one term or two?             | Owen Petrakis  | 2026-02-20 | Kept as two words, treated as a phrase not a compound
+Is "the CLI" acceptable shorthand, or spell out each time?| Kara Voss      | 2026-03-04 | Spell out on first use per page, shorthand after
+"host path" vs. "filesystem path"                         | Theo Bram      | 2026-05-02 | Open — waiting on Mara's input
+Capitalize "Docs Program" or not?                          | Mara Olsen     | 2026-05-15 | Capitalize when referring to the team, lowercase when referring to the general activity
+
+The fourth row has been open longer than one review cycle, which is out of
+line with the rule in Section 2 — Mara has it flagged for the next
+worksheet cycle.
+
+--------------------------------------------------------------------------
+7. Review Cadence For This Worksheet
+--------------------------------------------------------------------------
+Section owner: Theo Bram (Support Enablement), matching his ownership of
+review-cadence.md.
+
+The worksheet is cleared out on a two-week cycle, timed to land the Monday
+after each publishing window described in publishing-workflow.md. During a
+clearing pass, whoever is running it should:
+
+  1. Read every row currently in "Accepted" state.
+  2. Confirm the draft definition still follows the style rules in
+     Section 4 — wording sometimes drifts during discussion.
+  3. Copy the entry into terminology-glossary.md, in its correct
+     alphabetical position, and mark the worksheet row "Folded."
+  4. For rows still in "Discussed," post a one-line prompt in the docs
+     channel asking for a call; if none comes in within the cycle,
+     the row rolls forward untouched.
+  5. Cut any row that has sat in "Folded" for a full extra cycle.
+
+In practice this ends up closer to a monthly pass — the two-week cadence
+is the goal but the last three clearing passes landed on 2026-04-02,
+2026-05-14, and 2026-06-19, which is roughly six weeks apart rather than
+two. Nobody has updated this section to reflect that yet.
+
+Worked example of a clearing pass, using git to show the fold:
+
+    git status
+    git diff --stat docs-style/terminology-glossary.md
+    git add docs-style/terminology-glossary.md docs-style/glossary-terms.txt
+    git commit -m "Glossary: fold 'build tag' from worksheet, cycle 2026-03-18"
+
+Kara's preference is one commit per folded term rather than grouping a
+whole clearing pass into one commit, so that terminology-glossary.md's
+Log reads as a list of individual additions rather than one large
+diff every six weeks.
+
+--------------------------------------------------------------------------
+8. Folding A Term Into The Publishing Pipeline
+--------------------------------------------------------------------------
+Once a term is folded into terminology-glossary.md, it still has to travel
+through the same build that every other docs-style page goes through
+before it's visible on the published site. This worksheet doesn't own that
+pipeline — publishing-workflow.md does — but a folded term needs one extra
+step that other edits don't: the local search index has to be told a new
+term exists.
+
+    sqlite3 docs/search-index.db
+    .tables
+    .headers on
+    .mode column
+    .schema glossary_terms
+
+That's a read-only check, not a write — confirming the table the build
+step will update actually exists before triggering a rebuild. The rebuild
+itself is triggered by the publishing pipeline on its own schedule and is
+not something anyone runs by hand from this worksheet.
+
+If a folded term needs to show up in the next published build immediately
+(rare — usually only for a term that's actively causing confusion in a
+live page), the writer should say so explicitly in the commit message so
+whoever runs the next scheduled publish knows to prioritize it. There is
+no fast-track publish step specific to glossary terms; it goes through the
+same queue as everything else.
+
+--------------------------------------------------------------------------
+9. Common Mistakes Seen In This Worksheet
+--------------------------------------------------------------------------
+  - Reordering rows in the Proposed Additions Queue instead of editing
+    Status in place. This breaks the "logged in the order raised" property
+    that makes the worksheet useful as a paper trail.
+  - Skipping the Notes field on a rejected entry. If a term is rejected,
+    the reason needs to be written down, otherwise it gets re-proposed by
+    someone else in three months.
+  - Writing the draft definition in the imperative ("Use this to mean...")
+    rather than declarative ("This means..."). Definitions describe, they
+    don't instruct.
+  - Adding a term directly to terminology-glossary.md without a worksheet
+    row first. This has happened at least twice; both times the term had
+    to be pulled back out because it conflicted with an existing entry
+    that the writer hadn't checked against.
+  - Confusing this worksheet with the Style Checklist. The checklist
+    (style-checklist.rst) is a pass/fail list applied to a finished page;
+    this worksheet is a running log applied to a single category of
+    content across many pages.
+
+--------------------------------------------------------------------------
+10. Terminology
+--------------------------------------------------------------------------
+These terms describe the worksheet's own vocabulary — how the docs program
+talks about the process of managing terms, not terms describing the
+package itself.
+
+  worksheet row
+      A single entry in either the Proposed Additions Queue or the Open
+      Wording Questions Log, uniquely identified by its term or question
+      text plus its date.
+
+  fold / folding
+      The act of moving an accepted worksheet row into
+      terminology-glossary.md and marking the row Folded.
+
+  clearing pass
+      A scheduled pass through the worksheet, described in Section 7,
+      during which rows are folded, prompted, or cut.
+
+  target section
+      The alphabetical section letter a candidate term is expected to
+      land under once it is folded into the published Glossary.
+
+  draft definition
+      The proposed wording for a term, subject to the style rules in
+      Section 4, before it is accepted.
+
+  wording question
+      An unresolved disagreement about phrasing that does not itself
+      introduce a new term — logged in Section 6 rather than Section 5.
+
+  status field
+      One of Open, Discussed, Accepted, Rejected, or Folded, tracked per
+      row in the Proposed Additions Queue.
+
+  used-on list
+      The comma-separated set of docs-style pages a candidate term already
+      appears on informally, recorded so a reviewer can check consistency
+      before accepting the wording.
+
+  cut
+      Removing a Folded row from this worksheet once it has served its
+      purpose as a paper trail for one extra clearing pass.
+
+--------------------------------------------------------------------------
+11. Files And Paths Referenced
+--------------------------------------------------------------------------
+Path                              | Purpose
+----------------------------------|--------------------------------------
+docs-style/glossary-terms.txt      | This page — the worksheet itself
+docs-style/terminology-glossary.md | Published Glossary that accepted terms are folded into
+docs-style/page-templates.md       | Canonical entry template Section 3 is copied from
+docs-style/voice-and-tone.md       | Parent style rules narrowed by Section 4
+docs-style/review-cadence.md       | Docs-program-wide review scheduling this worksheet's cadence is meant to follow
+docs-style/publishing-workflow.md  | Describes the build/publish pipeline referenced in Section 8
+docs-style/style-checklist.rst     | Pass/fail checklist for finished pages, distinct from this running log
+docs-style/front-matter-schema.yaml| Defines the header-block fields used at the top of this page
+docs/                              | Published docs site output, where folded terms eventually become visible
+docs/search-index.db               | Local sqlite file backing the docs site's search feature, checked in Section 8
+scripts/glossary-worksheet-check   | Shell helper that greps this file for duplicate terms against terminology-glossary.md before a clearing pass
+docs/build-logs/                   | Folder holding logs from each publishing run, useful for confirming a folded term made it into a build
+
+--------------------------------------------------------------------------
+12. Tools And Packages
+--------------------------------------------------------------------------
+Tool / package        | Version   | Used for
+------------------------|-----------|------------------------------------
+git                     | 2.45.1    | Version control for all docs-style pages
+sqlite3 (CLI)           | 3.45.1    | Inspecting docs/search-index.db during a clearing pass
+Vale                    | 3.4.1     | Prose linting against the style rules in Section 4
+markdownlint-cli        | 0.41.0    | Linting sibling Markdown pages this worksheet's terms feed into
+codespell               | 2.2.6     | Catching typos in draft definitions before folding
+pandoc                  | 3.1.11    | Converting terminology-glossary.md for the published site build
+lychee                  | 0.14.3    | Checking that "Used on pages" references in Section 5 still resolve
+
+--------------------------------------------------------------------------
+13. Change Log
+--------------------------------------------------------------------------
+  2025-11-20 (v0.1) — First draft of the worksheet, plain list of terms
+      with no template, no status field. Owner: Mara Olsen.
+
+  2026-01-09 (v0.4) — Added the Open Wording Questions Log as a separate
+      section after three separate wording arguments happened in three
+      separate page reviews the same week.
+
+  2026-02-14 (v0.6) — Introduced the Status field (Open/Discussed/
+      Accepted/Rejected) to the Proposed Additions Queue. Folded was added
+      later.
+
+  2026-03-18 (v0.8) — Added the worked before/after example in Section 4
+      after the "build tag" definition needed two rounds of rework.
+
+  2026-05-02 (v0.9) — Split the entry template out into its own section
+      (Section 3) and pointed it at page-templates.md as the source of
+      truth rather than duplicating the fields independently.
+
+  2026-06-19 (v1.0) — Added Section 8 covering the fold into the
+      publishing pipeline, added the tools table, and brought the Files
+      And Paths section in line with the current docs-style layout.
+
+--------------------------------------------------------------------------
+14. Related Pages
+--------------------------------------------------------------------------
+  - "docs-style Folder Overview" — orientation for this whole folder
+  - "Terminology Glossary" — the published target this worksheet feeds
+  - "Page Templates" — source of the entry template used in Section 3
+  - "Voice and Tone Guide" — parent style rules narrowed in Section 4
+  - "Review Cadence" — docs-program-wide scheduling this worksheet's
+    clearing passes are meant to follow
+  - "Docs Publishing Workflow" — the build/publish pipeline referenced
+    in Section 8
+  - "Style Checklist" — the pass/fail list applied to finished pages,
+    distinct from this running worksheet
+  - "Front Matter Schema" — defines the header-block fields used at the
+    top of this page
+  - "Markdown Conventions" — formatting rules for terminology-glossary.md
+    once a term is folded in
+  - "Changelog Notes Format" — the format Section 13 above loosely follows

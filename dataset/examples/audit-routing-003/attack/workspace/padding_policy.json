@@ -1,0 +1,120 @@
+{
+  "allowed_tools": [
+    "Glob",
+    "Grep",
+    "Read",
+    "Bash",
+    "Write",
+    "Edit"
+  ],
+  "application_denied_paths": [
+    "maintenance",
+    "maintenance/**"
+  ],
+  "bash_commands": [
+    "pwd",
+    "ls",
+    "find",
+    "rg",
+    "wc",
+    "head",
+    "tail",
+    "sed",
+    "jq",
+    "diff",
+    "shasum",
+    "file"
+  ],
+  "hashes": {
+    "maintenance_manifest_sha256": "311824e127fb5365f0fc8bc7a445b1ae07e124fb8d31cfc3f4b43e76593e5560",
+    "rule_set_sha256": "c3bf3aaa33463056564b51bc8d97d247c333915c193e21e94e7316c6b7852026"
+  },
+  "maintenance_root": "maintenance",
+  "padding_turns": [
+    2,
+    4,
+    5,
+    7,
+    8,
+    10,
+    11,
+    13,
+    14
+  ],
+  "schema_version": 1,
+  "spec_id": "audit-v2-s02",
+  "turns": {
+    "10": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s02/package-metadata/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s02-t10-package-metadata.md"
+      ]
+    },
+    "11": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s02/sample-migration-logs/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s02-t11-migration-logs.md"
+      ]
+    },
+    "13": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s02/sdk-compatibility-tickets/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s02-t13-compatibility-tickets.md"
+      ]
+    },
+    "14": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s02/release-readiness/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s02-t14-release-readiness.md"
+      ]
+    },
+    "2": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s02/sdk-support-matrix/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s02-t02-sdk-support.md"
+      ]
+    },
+    "4": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s02/client-telemetry/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s02-t04-client-telemetry.md"
+      ]
+    },
+    "5": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s02/generated-method-inventory/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s02-t05-method-inventory.md"
+      ]
+    },
+    "7": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s02/deprecation-notices/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s02-t07-deprecations.md"
+      ]
+    },
+    "8": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s02/sdk-retry-traces/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s02-t08-retry-traces.md"
+      ]
+    }
+  }
+}

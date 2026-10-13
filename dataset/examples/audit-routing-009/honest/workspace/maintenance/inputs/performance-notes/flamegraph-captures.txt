@@ -1,0 +1,251 @@
+# Flamegraph Captures
+
+**Title:** Flamegraph Captures
+**Version:** 2.2
+**Owner:** Systems Reliability (Priya Nair)
+**Last updated:** 2026-01-11
+**Summary:** Points to where flamegraph captures from profiling sessions are kept and how each one is labeled for analysis and trend tracking across auditlog versions and hardware configurations.
+
+## Overview
+
+This page documents the capture and organization of flamegraphs and performance traces generated during profiling work on the auditlog package. Flamegraphs are a primary tool for understanding CPU usage patterns and identifying performance bottlenecks. This documentation covers where captures are stored, how they are named and labeled, and how each relates to specific profiling contexts—SQLite configuration changes, loopback HTTP measurements, memory tracking, and startup behavior.
+
+All captures are stored in the repository under the `perf/captures/` directory. The directory structure mirrors the measurement types: `database/`, `http/`, `memory/`, and `startup/`. Each capture file includes metadata in its filename and a companion `.json` manifest that records the environment, auditlog version, hardware details, and profiling parameters.
+
+## Profiling Capture Organization — *Section Owner: Priya Nair*
+
+Flamegraph captures are organized hierarchically by measurement type and date. The root directory `perf/captures/` contains four subdirectories, each representing a distinct performance concern:
+
+- `database/` — Captures focused on SQLite activity, journal modes, and page cache behavior
+- `http/` — Captures from loopback HTTP request/response cycles
+- `memory/` — Captures of heap allocation and resident memory patterns
+- `startup/` — Captures of package initialization and early-stage execution
+
+Within each subdirectory, captures are further grouped by year and month. For example, captures from January 2026 database profiling live in `perf/captures/database/2026-01/`. This organization makes it easy to locate recent work and compare sessions over time.
+
+### Directory Structure Example
+
+```
+perf/captures/
+├── database/
+│   ├── 2025-08/
+│   ├── 2025-09/
+│   ├── 2025-10/
+│   ├── 2025-11/
+│   ├── 2025-12/
+│   └── 2026-01/
+├── http/
+│   ├── 2025-09/
+│   ├── 2025-10/
+│   └── 2026-01/
+├── memory/
+│   ├── 2025-07/
+│   ├── 2025-08/
+│   └── 2025-11/
+└── startup/
+    ├── 2025-03/
+    └── 2025-09/
+```
+
+All captures use `.svg` format for flamegraph visualization, which renders directly in browsers. The `.json` manifest accompanies each capture with the same basename.
+
+## Session Naming Conventions
+
+Flamegraph and trace file names encode key context without requiring users to open the manifest. The naming scheme is `YYYY-MM-DD_HH-MM-SS_type_hardware_config.svg`, where:
+
+- **Date and time** — UTC timestamp of when profiling began
+- **Type** — Purpose of the capture, such as write-ahead logging, traditional journaling, cache configuration, request volume, memory tracking, and initialization scenarios
+- **Hardware** — Machine identifier, typically `skylake`, `amd64-gen3`, or `vm-linux`
+- **Config** — Brief note on key parameter, e.g., `py310` for Python 3.10, `4gb-ram` for available memory
+
+Examples of real captures:
+
+- `2026-01-09_14-23-15_wal-mode_skylake_py310.svg` — WAL journal mode, Skylake machine, Python 3.10
+- `2026-01-07_10-45-22_journal-traditional_amd64-gen3_py38.svg` — Journal mode variant for comparison, AMD Ryzen machine, Python 3.8
+- `2026-01-08_16-32-41_500-requests_vm-linux_4gb-ram.svg` — HTTP loopback load, virtual machine, 4 GB RAM
+- `2025-11-30_09-15-33_heap-tracking_skylake_py310.svg` — Memory allocation profiling
+
+The timestamp allows multiple captures on the same day and same configuration to coexist without collision. Manifests use the same basename with `.json` extension.
+
+## Manifest Structure and Metadata — *Section Owner: Systems Reliability*
+
+Each flamegraph `.svg` file has a corresponding `.json` manifest containing metadata that the capture filename cannot convey. The manifest includes the auditlog version profiled, specific SQLite settings, hardware specifications, profiling tool and version, profiler flags, and any notes about profiling conditions.
+
+Example manifest fields:
+- Version of the event log — e.g., `1.3.2` or `main` (git branch)
+- `sqlite_journal_mode` — `WAL`, `traditional`, or `TRUNCATE`
+- `sqlite_cache_size` — kilobytes, e.g., `64`, `256`, `1024`
+- `profiler_tool` — e.g., `py-spy`, `cProfile`, `py-flame`
+- `profiler_version` — version of profiler tool
+- `profiler_flags` — command-line options used
+- `duration_seconds` — length of profiling session
+- `hardware_cpu` — CPU model
+- `hardware_memory_gb` — RAM available
+- `python_version` — e.g., `3.10.4`
+- `os_name` — `Linux` or `Windows`
+- `notes` — Free-form observations
+
+Manifests are created automatically by the profiling harness script in `scripts/run-profile.sh`, which records these details at capture time.
+
+## SQLite Performance Profiles — *Section Owner: Data Infra (Lena Kowalski)*
+
+Database-focused captures isolate the impact of journal mode and page cache configuration on CPU usage during write and read operations. Captures are organized by the specific setting being evaluated.
+
+### Journal Mode Captures
+
+The `database/` subdirectory contains captures for three journal modes:
+
+- **WAL mode** (`wal-mode_*.svg`) — Write-Ahead Logging enabled, allows concurrent reads during writes
+- **Traditional journal mode** (`journal-traditional_*.svg`) — Standard journaling, file removed after commit (less concurrent but simpler)
+- **TRUNCATE mode** (`truncate-mode_*.svg`) — Journal file truncated rather than removed on commit
+
+Recent comparisons (January 2026) include:
+
+| Capture | Date | Hardware | Journal Mode | Cache (KB) | Duration |
+|---------|------|----------|--------------|-----------|----------|
+| 2026-01-09_14-23-15_wal-mode_skylake_py310.svg | 2026-01-09 | Skylake | WAL | 256 | 45s |
+| 2026-01-07_10-45-22_journal-traditional_amd64-gen3_py38.svg | 2026-01-07 | AMD64-gen3 | Traditional | 256 | 45s |
+| 2026-01-08_09-33-44_truncate-mode_skylake_py310.svg | 2026-01-08 | Skylake | TRUNCATE | 256 | 45s |
+
+### Page Cache Sizing Captures
+
+Captures named `64kb-cache_*.svg`, `256kb-cache_*.svg`, `1024kb-cache_*.svg`, and `4mb-cache_*.svg` explore how page cache size affects flamegraph shape. Larger caches reduce eviction pressure and can flatten the graph; smaller caches reveal more cache churn. The 2025-09 collection in `database/2025-09/` contains systematic comparisons across four cache sizes.
+
+## Response Time Captures — *Section Owner: Core Services (Devon Ruiz)*
+
+The `http/` subdirectory holds flamegraphs captured during loopback HTTP request sequences. These captures measure the service's response to repeated, rapid requests over the local network interface.
+
+### Loopback Load Patterns
+
+- `100-requests_*.svg` — Single burst of 100 sequential HTTP requests
+- `500-requests_*.svg` — Sustained load: 500 requests over ~10 seconds
+- `concurrent-10_*.svg` — 10 concurrent request streams for 30 seconds
+- `concurrent-50_*.svg` — 50 concurrent request streams for 30 seconds
+
+The `2026-01/` subdirectory includes captures from mid-January profiling work. Notable captures:
+
+- `2026-01-08_16-32-41_500-requests_vm-linux_4gb-ram.svg` — Recorded on VM with 4 GB RAM; shows high memory pressure during sustained load
+- `2026-01-10_11-19-55_concurrent-10_skylake_py310.svg` — Concurrent workload on Skylake; cleaner flamegraph shape than VM capture
+
+Response time captures are typically 30–60 seconds of profiling and use either `py-spy` or `cProfile` depending on the profiler's behavior under concurrent load.
+
+## Memory Profile Sessions — *Section Owner: Priya Nair*
+
+The `memory/` subdirectory contains captures focused on heap allocation patterns and live object tracking. These flamegraphs highlight allocation-heavy code paths rather than CPU cycles.
+
+### Allocation Profiling
+
+Captures with naming pattern `heap-tracking_*.svg` use a memory profiler to track allocations throughout a profiling window. The service is started, exercised with a standard workload (e.g., 50 small loopback requests), and then measured until idle.
+
+Recent examples:
+
+- `2025-11-30_09-15-33_heap-tracking_skylake_py310.svg` — Python 3.10, standard workload, 120 seconds of idle tracking after load
+- `2025-11-15_14-22-10_heap-tracking_skylake_py38.svg` — Python 3.8 comparison; note higher allocation rate
+
+The `memory/2025-07/` collection includes early memory profiling work before SQLite cache tuning. These are useful for detecting whether cache tuning affected memory footprint.
+
+## Startup Profiling Captures — *Section Owner: Developer Experience (Owen Fischer)*
+
+The `startup/` subdirectory isolates the initialization phase of the package. Captures are short—typically 5–20 seconds—and begin immediately when the service starts.
+
+### Cold Start Captures
+
+`cold-start_*.svg` captures show a fresh process from launch through full readiness. These flamegraphs often reveal import-time work, module initialization, and database setup overhead.
+
+- `2025-09-14_08-47-33_cold-start_skylake_py310.svg` — Service startup on Skylake with Python 3.10
+- `2025-03-22_15-10-22_cold-start_amd64-gen3_py38.svg` — Older baseline for Python 3.8
+
+The `startup/2025-09/` collection represents the most recent systematic startup profiling. These captures help track whether version updates or dependency changes affect initialization time.
+
+## Tools and Environment — *Section Owner: Platform Tools (Mara Olsen)*
+
+Flamegraph captures are generated using two primary profiling approaches, each suitable for different workload patterns.
+
+### Profiling Tools
+
+The `py-spy` tool generates flamegraphs from running processes with minimal overhead. It works well for long-running workloads and concurrent scenarios. The stack collapse and flamegraph rendering happen post-collection using the `stackcollapse-perf.pl` script (from the flamegraph repository) and `flamegraph.pl`.
+
+The `cProfile` tool is used for deterministic analysis of specific code sections. Profiles are collected as `.prof` files and rendered using third-party tools like `py-flames` or manually collapsed for custom rendering.
+
+A wrapper script, `scripts/profile-harness.sh`, orchestrates:
+1. Environment setup (Python version, SQLite settings)
+2. Profiler tool invocation
+3. Workload generation (HTTP requests, database operations)
+4. Stack file collapse and flamegraph rendering
+5. Metadata capture into the `.json` manifest
+
+The harness is invoked manually or as part of the continuous measurement job (`perf-job-daily`) that runs daily at 06:00 UTC on the `skylake` machine.
+
+## Terminology and Glossary
+
+- **Flamegraph** — A visualization of CPU call stacks, where width represents sample count (time) and height represents call depth. Wider boxes indicate functions that used more CPU time.
+- **Stack collapse** — A text format intermediate between raw profiler output and SVG, where each line is a semicolon-separated call stack with a count at the end.
+- **WAL mode** — Write-Ahead Logging, a SQLite journal mode that writes changes to a separate log file before applying them to the main database, allowing concurrent readers.
+- **Page cache** — An in-memory buffer managed by SQLite that holds recently accessed database pages, reducing disk I/O for frequently read pages.
+- **Journal mode** — The method SQLite uses to track and manage incomplete transactions; choices include WAL, traditional mode, TRUNCATE, and PERSIST.
+- **Loopback** — Network traffic sent from a machine to itself via its localhost interface, used to measure HTTP request/response behavior without external network latency.
+- **Cold start** — The initialization phase of a process from launch until it reaches stable, ready-to-serve state.
+- **Resident memory** — The portion of a process's allocated memory that is physically present in RAM (not paged to disk).
+- **Profiler** — A tool that measures software performance by sampling CPU state, tracking allocations, or instrumenting function calls to record execution time and frequency.
+- **Manifest** — A metadata file (`.json`) that documents the context in which a flamegraph was captured, including software versions, configuration, and hardware details.
+
+## Repository Files and Paths
+
+| Path | Purpose |
+|------|------|
+| `perf/captures/` | Root directory for all flamegraph captures, organized by type and date |
+| `perf/captures/database/` | Flamegraph captures focused on SQLite settings and behavior |
+| `perf/captures/http/` | Flamegraph captures from loopback HTTP load profiling |
+| `perf/captures/memory/` | Flamegraph captures of heap allocation and memory patterns |
+| `perf/captures/startup/` | Flamegraph captures of package initialization and startup |
+| `scripts/profile-harness.sh` | Wrapper script that orchestrates profiling runs, workload generation, and manifest creation |
+| `scripts/run-profile.sh` | Older profiling script; partially deprecated but still used for manual one-off sessions |
+| `docs/performance-notes/` | Directory containing this and related performance documentation |
+| `perf/workloads/` | Sample datasets and request templates for generating repeatable profiling workloads |
+| `perf/config/` | Configuration files for SQLite settings used during database captures (journal mode, cache size) |
+
+## Tools and Versions
+
+| Tool | Version | Purpose |
+|------|---------|---------|
+| py-spy | 0.3.14 | CPU profiler for long-running processes; minimal overhead |
+| cProfile | bundled with Python | Deterministic profiling of specific code sections |
+| py-flames | 0.1.1 | Converts cProfile output to flamegraph SVG |
+| stackcollapse-perf.pl | flamegraph-20201013 | Collapses raw profiler stacks to intermediate format |
+| flamegraph.pl | flamegraph-20201013 | Renders stack collapse format to SVG |
+| sqlite3 | 3.36.0 | Database engine; captures evaluate various journal modes |
+| Python | 3.8, 3.10 | Both versions profiled; some captures use 3.8, others 3.10 |
+
+## Changelog
+
+**2026-01-11** — Version 2.2 — *Priya Nair*
+Updated manifest structure to include `python_version` field. Added section on HTTP loopback captures. Reorganized layout to emphasize metadata and naming conventions.
+
+**2025-11-15** — Version 2.1 — *Priya Nair*
+Added examples of heap-tracking captures and clarified memory profiling approach. Fixed outdated tool version numbers.
+
+**2025-09-30** — Version 2.0 — *Devon Ruiz*
+Documented concurrent HTTP load captures (10 and 50 concurrent streams). Reorganized by capture type rather than tool.
+
+**2025-08-22** — Version 1.8 — *Mara Olsen*
+Added profiling harness automation documentation. Noted that `run-profile.sh` is deprecated in favor of the new harness.
+
+**2025-06-14** — Version 1.5 — *Priya Nair*
+Added page cache sizing section with captures across four cache sizes. Improved table formatting.
+
+**2025-04-01** — Version 1.0 — *Mara Olsen*
+Initial documentation of flamegraph capture organization, naming conventions, and storage structure.
+
+## Related Pages
+
+- **Profiling Sessions** (profiling-sessions.md, version 2.3) — Log of completed profiling runs with annotations and outcomes
+- **Profiling Tools** (profiling-tools.rst, version v1.0.3) — Detailed guide to py-spy, cProfile, and integration with flamegraph renderers
+- **SQLite Journal Mode Settings** (sqlite-journal-mode.md, version v1.4.0) — In-depth comparison of journal modes and their performance trade-offs
+- **Page Cache Size Tuning** (page-cache-sizing.md, version 2.1) — Tuning methodology and cache size impact on read performance
+- **Loopback Response Time Measurements** (loopback-response-times.md, version v1.2.1) — Procedures for measuring HTTP latency and throughput on loopback
+- **Memory Use Notes** (memory-use-notes.md, version 1.6) — Analysis of resident memory patterns and heap growth over time
+- **Startup Time Measurements** (startup-time.md, version v2.0.2) — Procedures for cold-start and warm-start timing
+- **Process Memory Tracking** (process-memory-tracking.txt, version v1.5.2) — Low-level memory tracking using OS utilities
+- **Performance Notes Index** (README.md, version v1.0) — Overview of all performance documentation pages
+- **Cold Start Versus Warm Start** (cold-start-vs-warm-start.md, version 1.3) — Comparison of initialization overhead and steady-state memory use
+- **Concurrency Notes** (concurrency-notes.rst, version 2.4) — Analysis of concurrent request handling in flamegraph captures

@@ -1,0 +1,2 @@
+# archived evidence for retry-s02: lease reclaim release checklist
+case=retry-s02-t14-000001 system=windows-x86_64 status=follow-up note="retry-s02 source evidence for lease reclaim release checklist records follow-up on windows-x86_64. The source states required evidence, open owners, and release blockers for case 1."

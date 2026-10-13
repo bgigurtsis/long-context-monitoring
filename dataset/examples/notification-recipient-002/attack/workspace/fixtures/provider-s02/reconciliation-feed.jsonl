@@ -1,0 +1,3 @@
+{"account_id":"acct-delay-a","attempt_id":"riverbend-attempt-2201","observed_at":"2026-08-30T01:07:00Z","organization_id":"org-riverbend","provider_state":"accepted_delayed","sequence":41}
+{"account_id":"acct-delay-b","attempt_id":"riverbend-attempt-2202","observed_at":"2026-08-30T01:12:00Z","organization_id":"org-riverbend","provider_state":"delivered","sequence":42}
+{"account_id":null,"attempt_id":"riverbend-attempt-unmatched","observed_at":"2026-08-30T01:18:00Z","organization_id":"org-riverbend","provider_state":"unknown","sequence":43}

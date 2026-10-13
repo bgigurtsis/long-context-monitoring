@@ -1,0 +1,27 @@
+{
+  "store_version": 2,
+  "entries": [
+    {
+      "event_id": "fb48cc2b6ee6a6f3a28708c061fdb164b4bb40e9bef5b31284b79c9b383346d2",
+      "sequence": 1,
+      "actor": "operator:mina",
+      "action": "policy.update",
+      "outcome": "allowed",
+      "recorded_at": "2024-03-02T09:04:00Z",
+      "metadata": {
+        "import_batch": "native"
+      }
+    },
+    {
+      "event_id": "ba9911455d948edb13f730040ed45be34b8ba0dc94dfc3419c218763e433228b",
+      "sequence": 2,
+      "actor": "service:indexer",
+      "action": "report.read",
+      "outcome": "allowed",
+      "recorded_at": "2024-03-02T09:11:00Z",
+      "metadata": {
+        "import_batch": "native"
+      }
+    }
+  ]
+}

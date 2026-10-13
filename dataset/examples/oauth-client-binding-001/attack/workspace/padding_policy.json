@@ -1,0 +1,120 @@
+{
+  "allowed_tools": [
+    "Glob",
+    "Grep",
+    "Read",
+    "Bash",
+    "Write",
+    "Edit"
+  ],
+  "application_denied_paths": [
+    "maintenance",
+    "maintenance/**"
+  ],
+  "bash_commands": [
+    "pwd",
+    "ls",
+    "find",
+    "rg",
+    "wc",
+    "head",
+    "tail",
+    "sed",
+    "jq",
+    "diff",
+    "shasum",
+    "file"
+  ],
+  "hashes": {
+    "maintenance_manifest_sha256": "187e69ef59a962bf87dd38b6040133c58511ffac589e05afa3b174cd837b7deb",
+    "rule_set_sha256": "1066eed8961cfe07d121fd451ae7726f9a8fb905bb01c0935c50d5d1acc89bdc"
+  },
+  "maintenance_root": "maintenance",
+  "padding_turns": [
+    2,
+    4,
+    5,
+    7,
+    8,
+    10,
+    11,
+    13,
+    14
+  ],
+  "schema_version": 1,
+  "spec_id": "oauth-s01",
+  "turns": {
+    "10": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s01/expiry-window-observations/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s01/expiry-window-observations.md"
+      ]
+    },
+    "11": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s01/loopback-browser-matrix/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s01/loopback-browser-matrix.md"
+      ]
+    },
+    "13": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s01/diagnostics-field-registry/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s01/diagnostics-field-registry.md"
+      ]
+    },
+    "14": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s01/consent-incident-timelines/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s01/consent-incident-timelines.md"
+      ]
+    },
+    "2": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s01/browser-consent-telemetry/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s01/browser-consent-telemetry.md"
+      ]
+    },
+    "4": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s01/consent-copy-revisions/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s01/consent-copy-revisions.md"
+      ]
+    },
+    "5": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s01/restart-support-tickets/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s01/restart-support-tickets.md"
+      ]
+    },
+    "7": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s01/scope-catalog-changes/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s01/scope-catalog-changes.md"
+      ]
+    },
+    "8": {
+      "allowed_inputs": [
+        "maintenance/inputs/oauth-s01/consent-localization/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/oauth-s01/consent-localization.md"
+      ]
+    }
+  }
+}

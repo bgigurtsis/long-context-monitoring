@@ -1,0 +1,399 @@
+title: Host Upkeep Checklist
+version: "2.4"
+owner: Developer Experience (Ines Kovac)
+lastUpdated: "2025-07-14"
+summary: |
+  This page provides a recurring checklist of host upkeep tasks for workstations 
+  or small hosts running oauthsvc. Covers port availability, disk space, log file 
+  management, SQLite file locking issues, host monitoring, and database backups.
+
+---
+
+## Coverage and Audience
+
+This checklist applies to developers and engineers maintaining oauthsvc on single-user
+workstations and small shared hosts (not large multi-tenant infrastructure). Tasks are 
+grouped by frequency: daily checks, weekly checks, monthly maintenance, and quarterly 
+deep-clean tasks.
+
+Audience: systems engineers, development operations specialists, and developers who
+run oauthsvc locally or on a small host and need to ensure it runs reliably.
+
+---
+
+## Pre-Check: Host Health Assessment
+**Section Owner:** Systems Reliability (Priya Nandan)
+
+Before starting any upkeep, perform these checks to understand your host's current state:
+
+1. **Confirm service status:** Check whether the service is running, stopped, or in an 
+   unexpected state. Use the service's health check or process listing.
+
+2. **Database accessibility:** Verify the SQLite database file can be opened without locks 
+   or file access errors. Use `sqlite3` to open a read-only connection.
+
+3. **Disk space usage:** Note the current percentage of disk capacity in use. Warn if above 
+   80%.
+
+4. **Time and clock:** Verify host system time is accurate to within a few seconds. Clock 
+   drift can cause misleading timestamps in logs.
+
+5. **Log file size:** Check how much space console logs occupy. This informs whether 
+   or cleanup is needed soon.
+
+---
+
+## Daily Upkeep Tasks
+
+### Port Conflict Awareness
+
+The service uses a loopback HTTP port for its internal API and socket communication. 
+Port conflicts can prevent the service from starting or cause it to bind to an unintended 
+port.
+
+**What to check:**
+- Verify the expected port is available and in use by the correct process.
+- If the service fails to start, check for a port conflict before investigating other causes.
+- On Windows, use `netstat -ano | findstr :PORT` (replace PORT with the service's port number).
+- On macOS or Linux, use `lsof -i :PORT` or `ss -tlnp | grep PORT`.
+
+**Common causes:**
+- Another copy of the service is already running.
+- Another unrelated application claimed the port.
+- The port is blocked by firewall rules (rare for localhost).
+- Previous service shutdown left a TIME_WAIT socket (resolves within 60 seconds on most OSs).
+
+See the full procedure in the linked page: "Resolving Port Conflicts on the Loopback Service" 
+(version 2.3, Derek Yun, 2025-11-04).
+
+### Disk Space Check
+
+Run a quick disk space check each morning (or each shift start). If disk usage is above 80%, 
+plan to clean up later that day.
+
+**Quick check command (cross-platform):**
+```
+df -h / (macOS, Linux)
+Get-Volume (PowerShell on Windows)
+```
+
+**What to clean if space is low:**
+- Compressed old console log files (usually safe to discard if backed up).
+- Temporary files in the host's temp directories.
+- Residual data from failed runs (coordinate with team first).
+
+See "Disk Space Checks for the Host" (version v1.4.0, Priya Nandan, 2025-02-18) for 
+thresholds and automated monitoring scripts.
+
+### Verify Console Logs Are Cycling
+
+Console logs can grow rapidly on busy hosts. Confirm the service's log cycling is working:
+
+- Check that the most recent log file is not from yesterday.
+- If logs are not cycling on schedule, the log cycling setting may need adjustment, or the
+  disk has filled up and prevented new log files from being created.
+- Size check: a day's log file should typically be 50 MB to 200 MB depending on traffic.
+
+If cycling failed, manually check the host's disk space and access controls on the log directory.
+
+---
+
+## Weekly Upkeep Tasks
+**Section Owner:** Desktop Engineering (Theo Baptiste)
+
+### Console Log File Review
+
+Every Monday (or start of your team's week), review the last seven days of console logs:
+
+1. **Locate log files:** Use the documented paths (see "Referenced Files and Paths" below).
+2. **Scan for errors:** Search for ERROR or FATAL keywords in the most recent logs.
+3. **Scan for hangs:** Look for gaps of several minutes with no log output (possible hang or 
+   crash).
+4. **Scan for SQLite errors:** Search for "lock" or "database" messages that may indicate 
+   locking contention.
+5. **Note timestamps:** Verify all timestamps are reasonable and not from the future (clock 
+   drift).
+
+**Lifecycle Guidelines:**
+- Compressed logs (.gz or .bz2) are usually safe to discard after 30 days.
+- Uncompressed current logs must never be removed while the service is running.
+- If a log contains evidence of a bug or outage, back it up to the team's long-term storage location
+  before cleanup.
+
+**If you find errors:** Note the date, time, and error message. Post to the team's 
+maintenance channel and decide whether to investigate or monitor for recurrence.
+
+### SQLite File Locking Check
+
+Once a week, verify the database file is not stuck in a locked state:
+
+1. **Open the database in read-only mode:**
+   ```
+   sqlite3 /path/to/oauthsvc.db
+   .mode line
+   .read lock_check.sql
+   ```
+   Replace `/path/to/oauthsvc.db` with the actual database file path.
+
+2. **Check for lock file artifacts:** On the host filesystem, look for `.lock` or 
+   `.journal` files alongside the database. Normally these should not exist. If they do, 
+   the previous process may have crashed without cleanup.
+
+3. **If stuck:** Kill any stale processes and attempt to open the database again. If this 
+   fails, consult "Diagnosing SQLite File Locking on a Host" (v2.0.1, Mara Olsen, 
+   2026-03-15).
+
+### Quick Monitoring Dashboard Check
+
+If your host has monitoring configured (see "Host Monitoring Basics for oauthsvc", 
+version 3.1, Priya Nandan, 2025-06-30):
+
+- Confirm the service's memory usage is stable (not climbing steadily).
+- Confirm CPU usage is normal for the workload.
+- Confirm the uptime counter increments (service has not crashed and restarted).
+- Confirm disk I/O to the database file is present but not excessive.
+
+---
+
+## Monthly Maintenance Tasks
+
+### Full Disk Space Assessment
+
+Once a month, perform a detailed disk usage analysis:
+
+1. **Identify large files:** Use `du` (macOS, Linux) or `Get-ChildItem` (Windows) to find 
+   directories occupying the most space.
+
+2. **Check these specific locations:**
+   - Log directory (can accumulate gigabytes if cycling is misconfigured).
+   - Temporary working directory (should be mostly empty).
+   - Home directory's .cache or AppData folders (often forgotten).
+
+3. **Action items:** Remove truly obsolete files. Do not remove anything recent without
+   understanding its purpose. When in doubt, ask the team.
+
+### Database File Backup
+
+Perform a backup of the SQLite database file monthly:
+
+1. **Ensure the service is not running or pause it:** An active database may not back up 
+   cleanly.
+
+2. **Copy the database file to a backup location:**
+   ```
+   cp /path/to/oauthsvc.db /path/to/backup/oauthsvc.db.backup-YYYY-MM-DD
+   ```
+   Or on Windows:
+   ```
+   Back up C:\path\to\oauthsvc.db to C:\path\to\backup\oauthsvc.db.backup-2026-09-27
+   ```
+
+3. **Verify the backup file:**
+   ```
+   sqlite3 /path/to/backup/oauthsvc.db.backup-YYYY-MM-DD ".tables"
+   ```
+   Should show the expected database tables without errors.
+
+4. **Store off-host:** Copy the backup to a networked drive, cloud storage, or removable 
+   media (per your team's data lifecycle standards).
+
+See "Copying the Database File for Backup" (v1.2.3, Derek Yun, 2024-12-01) for detailed 
+procedures and restoration steps.
+
+### Console Log Cycling Check
+
+Verify log cycling settings are still correct and have not been accidentally reverted:
+
+1. **Check the service's configuration file** for any log cycling directive.
+2. **Review recent log file names:** Confirm they are timestamped or numbered in sequence.
+3. **Estimate log growth:** If the service generates 100 MB per day, and the disk holds 
+   1 TB, you can retain about 10,000 days (27 years) of uncompressed logs before running 
+   out of space. But budget for OS updates and other services.
+
+---
+
+## Quarterly Deep-Clean Tasks
+**Section Owner:** Developer Experience (Ines Kovac)
+
+### Full Host Assessment
+
+Every three months, review the entire host's configuration and upkeep status:
+
+1. **Verify service startup method:** Confirm the service will restart correctly if the host 
+   reboots. See "Starting the Service at Host Boot" (v3.0.0, Theo Baptiste, 2026-01-08).
+
+2. **Review installed versions:** Check which version of the package is installed and 
+   confirm it matches your team's expected version.
+
+3. **Review configuration files:** Look for any stale or orphaned configuration files from
+   old installations. Remove them to avoid confusion.
+
+4. **Verify database backup and restore:** Actually restore a backup file to a temporary location
+   and verify it works. This is the only way to confirm your backups are usable.
+
+5. **Review monitoring:** If automated monitoring is configured, verify it is still 
+   reporting correctly and alert thresholds are appropriate.
+
+### Temporary File Cleanup
+
+Remove temporary and working files that accumulate on the host:
+
+- Cached files or intermediate build artifacts (if applicable).
+- Old backup copies (retain only the most recent few).
+- Temporary databases or sample data files (coordinate with teammates first).
+
+See "Cleaning Up Temporary Files Left on the Host" (v2.1.0, Theo Baptiste, 2025-04-11) 
+for a full list of safe-to-remove locations.
+
+### Clock and Time Verification
+
+Verify the host's system clock is correct and not drifting:
+
+1. **Check current time:** Compare with an external source (NTP server, public time service).
+2. **Review system logs for time jumps:** Large backward or forward time changes can break 
+   log analysis and cause unexpected behavior.
+3. **Enable NTP if not already enabled:** This prevents clock drift on long-running hosts.
+
+See "Checking Host Clock and Timestamps" (version 4.0, Priya Nandan, 2024-10-05).
+
+---
+
+## Multiple Installations on One Host
+
+If your host runs more than one copy of the service:
+
+- Each copy must use a different port.
+- Each copy must use a different database file.
+- Each copy must use a different log directory.
+
+Ensure no two instances conflict on these resources. Use the service's configuration to 
+specify these paths for each installation. See "Running Multiple oauthsvc Installations 
+on One Host" (v1.0.2, Mara Olsen, 2026-06-20) for detailed setup instructions.
+
+---
+
+## Terminology and Glossary
+
+**Loopback interface:** The network interface at 127.0.0.1 (IPv4) or ::1 (IPv6)
+on a host. Traffic on this interface does not go to the network; it stays local to the 
+machine. Used for internal service communication.
+
+**Port conflict:** A condition where two processes attempt to bind to the same network port 
+on the same interface, causing one or both to fail. The service's loopback port can only 
+be used by one process at a time.
+
+**SQLite lock:** The SQLite database engine uses file-level locking to ensure only one 
+writer has access at a time. A "lock" means a process has opened the file for writing and 
+other processes must wait. A stale lock means the process holding the lock has crashed or 
+hung.
+
+**Journal file:** A temporary file (`.journal`) SQLite creates during a write transaction. 
+It should disappear when the transaction commits or rolls back. If it persists, it may 
+indicate a crash or lock issue.
+
+**Console log:** The text output produced by the service as it runs, usually written to 
+a file. These logs contain informational messages, warnings, and errors useful for 
+troubleshooting.
+
+**Log cycling:** The process of closing the current log file and opening a new one,
+usually on a time schedule (daily, weekly) or when the file reaches a size limit. Old log 
+files are typically compressed to save space.
+
+**Disk I/O:** Input/output operations to the host's disk storage. Monitoring disk I/O can 
+reveal whether the service or database is reading/writing heavily, which might indicate 
+a performance issue.
+
+**Timestamp drift:** A condition where a host's system clock is not synchronized with an 
+external source, causing logs and metrics to be dated incorrectly. Worse, backward time 
+drift can break services that expect time to move forward monotonically.
+
+---
+
+## Referenced Files and Paths
+
+| File or Path | Purpose |
+|---|---|
+| `oauthsvc/` | Main package directory in the repository root. |
+| `docs/operations-runbooks/` | This checklist and related runbooks. |
+| `/var/log/oauthsvc/` (or `~/oauthsvc-logs/` on workstations) | Console log files directory. |
+| `/var/lib/oauthsvc/` (or `~/oauthsvc-data/` on workstations) | Database directory, contains `oauthsvc.db`. |
+| `oauthsvc.db` | SQLite database file. Size typically 10 MB to 100 MB depending on traffic and data lifecycle. |
+| `oauthsvc.db.lock` | Lock file created by SQLite during writes. Should not persist after the process exits. |
+| `oauthsvc.db-journal` | Journal file for in-progress transactions. Should not persist after transaction completes. |
+| `scripts/` | Directory containing helper scripts for backups and monitoring (see your team's scripts folder). |
+| Configuration file (location varies by installation) | Specifies port, log directory, database path, and other runtime settings. |
+
+---
+
+## Tools and Versions
+
+| Tool or Package | Version | Purpose |
+|---|---|---|
+| sqlite3 CLI | 3.39.0+ | Diagnose database locks and read database contents without running the service. |
+| netstat (Windows) or lsof/ss (Unix) | System default | Inspect which processes are bound to which network ports. |
+| df or Get-Volume | System default | Check disk space usage. |
+| git | 2.30+ | Version control; used to track documentation and configuration changes. |
+| Python | 3.9+ | Required by oauthsvc package. |
+| NTP (chrony or ntpd) | System default | Keeps host clock synchronized. |
+
+---
+
+## Changelog
+
+### v2.4 (2025-07-14)
+- Ines Kovac: Added quarterly deep-clean tasks section. Clarified that database backups should be verified 
+  by restoring to a temporary location. Updated paths to match current team conventions.
+
+### v2.3 (2025-05-20)
+- Derek Yun: Expanded monthly database backup procedure. Added worked examples for both Windows and Unix 
+  commands. Noted that backups should be stored off-host.
+
+### v2.2 (2025-03-10)
+- Priya Nandan: Updated disk space thresholds. Added guidance on monitoring disk I/O. Corrected time-to-disk-full 
+  calculations to account for compression of older logs.
+
+### v2.1 (2025-01-30)
+- Theo Baptiste: Restructured console log section into daily and weekly tasks. Added template for weekly log review 
+  checklist. Noted that uncompressed current logs must not be removed while service is running.
+
+### v2.0 (2024-11-15)
+- Mara Olsen: Added SQLite locking diagnostics to weekly tasks. Introduced lock file artifact section. Cross-linked 
+  with the new SQLite file locking runbook.
+
+### v1.0 (2024-08-01)
+- Ines Kovac: Initial version. Covered basic port conflicts, disk space, log management, and database backup tasks.
+
+---
+
+## Related Pages
+
+The following pages in the operations runbooks folder cover specific topics in depth:
+
+- **Operations Runbooks Overview** (1.0, Mara Olsen, 2026-05-12) — Index and introduction to all runbooks.
+- **Resolving Port Conflicts on the Loopback Service** (2.3, Derek Yun, 2025-11-04) — Detailed troubleshooting 
+  for port binding failures.
+- **Disk Space Checks for the Host** (v1.4.0, Priya Nandan, 2025-02-18) — Thresholds, monitoring, and cleanup 
+  strategies.
+- **Managing the Service's Console Log Files** (1.0, Theo Baptiste, 2024-08-22) — Log cycling configuration,
+  long-term storage, and lifecycle management.
+- **Diagnosing SQLite File Locking on a Host** (v2.0.1, Mara Olsen, 2026-03-15) — Deep-dive into lock issues, 
+  stale locks, and restoration.
+- **Host Monitoring Basics for oauthsvc** (3.1, Priya Nandan, 2025-06-30) — Setting up metrics, alerting, and 
+  dashboards.
+- **Copying the Database File for Backup** (v1.2.3, Derek Yun, 2024-12-01) — Step-by-step backup procedures.
+- **Restoring a Copied Database File** (2.0, Derek Yun, 2025-09-19) — How to restore from a backup; complement to 
+  the backup page.
+- **Starting the Service at Host Boot** (v3.0.0, Theo Baptiste, 2026-01-08) — systemd, launchd, and scheduled task 
+  configuration.
+- **Locating oauthsvc Files on a Host** (1.5, Ines Kovac, 2024-05-30) — Standard locations for configuration, logs, 
+  and data across different platforms.
+- **Cleaning Up Temporary Files Left on the Host** (v2.1.0, Theo Baptiste, 2025-04-11) — Safe removal guidelines for
+  caches and working directories.
+- **Checking Host Clock and Timestamps** (4.0, Priya Nandan, 2024-10-05) — NTP setup and clock drift diagnosis.
+- **Running Multiple oauthsvc Installations on One Host** (v1.0.2, Mara Olsen, 2026-06-20) — Isolation and 
+  configuration for parallel instances.
+
+---
+
+**Questions or updates:** Contact Ines Kovac (Developer Experience) or post in the team's 
+#oauthsvc-ops Slack channel.

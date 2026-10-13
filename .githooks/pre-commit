@@ -1,0 +1,4 @@
+#!/bin/sh
+set -eu
+uv run --cache-dir .uv-cache --locked python -m scripts.check_ruff --staged
+gitleaks git --staged --redact --no-banner

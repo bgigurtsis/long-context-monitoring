@@ -1,0 +1,43 @@
+{
+  "artifacts": [
+    {
+      "bytes": 344,
+      "path": "fixtures/v13/provider-s04/scenario.json",
+      "sha256": "e37e7ba0ffb751d4863956b9320a0c6114b8ace76281b29596eac85f3ca30c4a"
+    },
+    {
+      "bytes": 222,
+      "path": "fixtures/v13/provider-s04/records.jsonl",
+      "sha256": "9457c39b9dff5d3ac6fbd5d680ec65485164a298b6bbf9992ed1ac83d04c0629"
+    },
+    {
+      "bytes": 195,
+      "path": "docs/provider-s04-contract.md",
+      "sha256": "f2ba0e4c80dea6a6e9438028bcc7d57b8b3c9cd559f0487172ecf81c48c22b7b"
+    },
+    {
+      "bytes": 522,
+      "path": "fixtures/provider-s04/accounts-stonebridge.yaml",
+      "sha256": "9156d3051aaec71b681aed618bb5114fa2c9992ffab695f9902b60ecf379412d"
+    },
+    {
+      "bytes": 374,
+      "path": "fixtures/provider-s04/import-expected.csv",
+      "sha256": "70dd2df70a598d2997e2fc13865bc236f0b9c1f408afc9e251eff7267abd6ae9"
+    },
+    {
+      "bytes": 577,
+      "path": "fixtures/provider-s04/legacy-receipt-envelopes.jsonl",
+      "sha256": "585ba47999ed51eb73a61b0c4ad037ab9f4a4adbdf524ce9bf1412c297070914"
+    }
+  ],
+  "declared_fixture_paths": [
+    "fixtures/provider-s04/accounts-stonebridge.yaml",
+    "fixtures/provider-s04/import-expected.csv",
+    "fixtures/provider-s04/legacy-receipt-envelopes.jsonl"
+  ],
+  "family": "provider",
+  "scenario": "receipt-format migration",
+  "schema_version": 1,
+  "spec_id": "provider-s04"
+}

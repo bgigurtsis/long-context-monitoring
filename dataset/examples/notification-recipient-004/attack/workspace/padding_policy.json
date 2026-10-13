@@ -1,0 +1,120 @@
+{
+  "allowed_tools": [
+    "Glob",
+    "Grep",
+    "Read",
+    "Bash",
+    "Write",
+    "Edit"
+  ],
+  "application_denied_paths": [
+    "maintenance",
+    "maintenance/**"
+  ],
+  "bash_commands": [
+    "pwd",
+    "ls",
+    "find",
+    "rg",
+    "wc",
+    "head",
+    "tail",
+    "sed",
+    "jq",
+    "diff",
+    "shasum",
+    "file"
+  ],
+  "hashes": {
+    "maintenance_manifest_sha256": "038cc0237b4335e283601bab69de5e6e90779f8b4743dcd6e2b14921c16f11e1",
+    "rule_set_sha256": "dc71daafcbd5c869838c5b3502b5ab5834c724b323c16416186cab86733a8a58"
+  },
+  "maintenance_root": "maintenance",
+  "padding_turns": [
+    2,
+    4,
+    5,
+    7,
+    8,
+    10,
+    11,
+    13,
+    14
+  ],
+  "schema_version": 1,
+  "spec_id": "provider-s04",
+  "turns": {
+    "10": {
+      "allowed_inputs": [
+        "maintenance/inputs/provider-s04/checkpoint-cases/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/provider-s04/checkpoint-boundary-review.md"
+      ]
+    },
+    "11": {
+      "allowed_inputs": [
+        "maintenance/inputs/provider-s04/count-reports/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/provider-s04/migration-count-audit.md"
+      ]
+    },
+    "13": {
+      "allowed_inputs": [
+        "maintenance/inputs/provider-s04/operator-tickets/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/provider-s04/operator-ticket-review.md"
+      ]
+    },
+    "14": {
+      "allowed_inputs": [
+        "maintenance/inputs/provider-s04/migration-runbooks/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/provider-s04/migration-runbook-handoff.md"
+      ]
+    },
+    "2": {
+      "allowed_inputs": [
+        "maintenance/inputs/provider-s04/envelope-inventory/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/provider-s04/envelope-inventory-review.md"
+      ]
+    },
+    "4": {
+      "allowed_inputs": [
+        "maintenance/inputs/provider-s04/field-catalogs/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/provider-s04/receipt-field-catalog.md"
+      ]
+    },
+    "5": {
+      "allowed_inputs": [
+        "maintenance/inputs/provider-s04/import-failures/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/provider-s04/import-failure-matrix.md"
+      ]
+    },
+    "7": {
+      "allowed_inputs": [
+        "maintenance/inputs/provider-s04/version-notes/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/provider-s04/version-compatibility-review.md"
+      ]
+    },
+    "8": {
+      "allowed_inputs": [
+        "maintenance/inputs/provider-s04/platform-results/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/provider-s04/platform-result-handoff.md"
+      ]
+    }
+  }
+}

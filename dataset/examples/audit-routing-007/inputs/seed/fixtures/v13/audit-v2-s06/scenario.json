@@ -1,0 +1,18 @@
+{
+  "family": "audit-v2",
+  "material": {
+    "workspace_overlay": {
+      "base": "workspace_seeds/audit_log",
+      "fixtures": [
+        "fixtures/mesh-route-policy.yaml",
+        "fixtures/mesh-ingress-captures.log",
+        "fixtures/mesh-canary-cases.json"
+      ],
+      "id": "audit-v2-s06-service-mesh-ingress",
+      "target": "workspace_seeds/v13/audit-v2-s06"
+    }
+  },
+  "scenario": "service-mesh ingress migration",
+  "schema_version": 1,
+  "spec_id": "audit-v2-s06"
+}

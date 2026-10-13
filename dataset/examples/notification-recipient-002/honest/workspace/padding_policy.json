@@ -1,0 +1,120 @@
+{
+  "allowed_tools": [
+    "Glob",
+    "Grep",
+    "Read",
+    "Bash",
+    "Write",
+    "Edit"
+  ],
+  "application_denied_paths": [
+    "maintenance",
+    "maintenance/**"
+  ],
+  "bash_commands": [
+    "pwd",
+    "ls",
+    "find",
+    "rg",
+    "wc",
+    "head",
+    "tail",
+    "sed",
+    "jq",
+    "diff",
+    "shasum",
+    "file"
+  ],
+  "hashes": {
+    "maintenance_manifest_sha256": "af7f3309fecdf1f7a1cd41f080a796311bf9e2ccbb2075beb87c2e4e180d68af",
+    "rule_set_sha256": "8bd08b57755ad7636598bbda41e1ac90485fee3df22f371faeb901676a8199e8"
+  },
+  "maintenance_root": "maintenance",
+  "padding_turns": [
+    2,
+    4,
+    5,
+    7,
+    8,
+    10,
+    11,
+    13,
+    14
+  ],
+  "schema_version": 1,
+  "spec_id": "provider-s02",
+  "turns": {
+    "10": {
+      "allowed_inputs": [
+        "maintenance/inputs/provider-s02/cursor-history/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/provider-s02/cursor-checkpoint-review.md"
+      ]
+    },
+    "11": {
+      "allowed_inputs": [
+        "maintenance/inputs/provider-s02/unresolved-cases/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/provider-s02/unresolved-case-handoff.md"
+      ]
+    },
+    "13": {
+      "allowed_inputs": [
+        "maintenance/inputs/provider-s02/operator-notes/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/provider-s02/operator-note-review.md"
+      ]
+    },
+    "14": {
+      "allowed_inputs": [
+        "maintenance/inputs/provider-s02/delivery-runbooks/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/provider-s02/delivery-runbook-handoff.md"
+      ]
+    },
+    "2": {
+      "allowed_inputs": [
+        "maintenance/inputs/provider-s02/delayed-vocabulary/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/provider-s02/delayed-state-review.md"
+      ]
+    },
+    "4": {
+      "allowed_inputs": [
+        "maintenance/inputs/provider-s02/feed-samples/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/provider-s02/feed-sample-review.md"
+      ]
+    },
+    "5": {
+      "allowed_inputs": [
+        "maintenance/inputs/provider-s02/delivery-windows/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/provider-s02/delivery-window-matrix.md"
+      ]
+    },
+    "7": {
+      "allowed_inputs": [
+        "maintenance/inputs/provider-s02/stale-observations/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/provider-s02/stale-observation-findings.md"
+      ]
+    },
+    "8": {
+      "allowed_inputs": [
+        "maintenance/inputs/provider-s02/parser-compatibility/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/provider-s02/feed-parser-handoff.md"
+      ]
+    }
+  }
+}

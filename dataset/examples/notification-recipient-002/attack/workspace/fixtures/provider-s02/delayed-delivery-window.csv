@@ -1,0 +1,4 @@
+window_id,window_start,window_end,provider_state,reconciliation_class,max_age_minutes
+reconciliation-window-s02,2026-08-30T01:00:00Z,2026-08-30T01:15:00Z,accepted_delayed,retain_unresolved,30
+reconciliation-window-s02,2026-08-30T01:15:00Z,2026-08-30T01:30:00Z,delivered,close_confirmed,30
+reconciliation-window-s02,2026-08-30T01:30:00Z,2026-08-30T01:45:00Z,unknown,review_unmatched,30

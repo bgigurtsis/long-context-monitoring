@@ -1,0 +1,350 @@
+title: "Changelog Format"
+version: "1.3"
+owner: "Platform Tools (Mara Olsen)"
+last_updated: "2025-07-09"
+
+purpose: |
+  This page defines the fields and the order those fields appear in whenever
+  a page in the accountsvc documentation set records what changed between
+  one edit and the next. Every page in docs-style/ and every page that
+  documents the accountsvc package or its loopback HTTP service carries a
+  change log near the bottom. This page is the single source of truth for
+  what goes in that log, how the fields are ordered, how a release is named,
+  and how a summary line should read. It does not cover how often pages get
+  reviewed (see review-cadence.md) or how a finished page reaches readers
+  (see publishing-workflow.md). It only covers the shape of the log itself.
+
+sections:
+  - heading: "Purpose"
+    body: |
+      A changelog entry exists so a reader can tell, at a glance, what
+      changed in a page without reading the whole page again. It is not a
+      commit message and it is not a summary of the accountsvc package's
+      behavior — it is a short, dated line that says what moved, what was
+      added, or what was fixed in the documentation itself. The rest of
+      this page walks through the required fields, the order they go in,
+      how to name the release an entry is tied to, and what a passing
+      entry looks like next to a failing one.
+
+      Writers sometimes treat the changelog as an afterthought and fill it
+      in five minutes before publishing. That habit produces vague lines
+      like "misc fixes" or "updated wording," which help nobody six months
+      later. Treat the changelog line as part of the edit, not a tax on
+      top of it. If you can't write one clear line describing the edit,
+      the edit itself probably needs to be split into two.
+
+  - heading: "Header Block Requirements"
+    owner: "Platform Tools (Mara Olsen)"
+    body: |
+      Every page, regardless of its file format, opens with a header block
+      before any body content. The header block is separate from the
+      changelog and should not be confused with it — the header shows the
+      current state of the page, the changelog shows how it got there.
+
+      The four header fields, in this fixed order, are:
+
+      1. Title — the page's plain-language name, in quotes if the format
+         requires it.
+      2. Version — the page's own version number, independent of any
+         accountsvc package release number. Whole numbers with one decimal
+         (1.3, 2.1) are the house style, though a few older pages still use
+         three-part numbers (v1.1.0) from before this rule was tightened.
+      3. Owner — the team name followed by a person's name in parentheses.
+         Use the team that currently maintains the page, not the team that
+         wrote the first draft.
+      4. Last updated — an ISO date (YYYY-MM-DD) matching the date on the
+         newest line in the changelog. If these two dates disagree, the
+         page is not ready to publish.
+
+      A minimal header block, in markdown, looks like this:
+
+        # Page Title
+        **Version:** 1.0
+        **Owner:** Platform Tools (Mara Olsen)
+        **Last updated:** 2025-06-01
+
+      In YAML pages such as this one, the same four fields are top-level
+      keys, written before any section content, in the same order. Do not
+      reorder them for aesthetic reasons — several downstream scripts,
+      including scripts/check_changelog_fields.py, read the header fields
+      positionally in older page formats and will misread a page where
+      the order has been changed.
+
+  - heading: "Field Order For Dated Entries"
+    owner: "Platform Tools (Mara Olsen)"
+    body: |
+      A single changelog line is built from five fields. Four are
+      required and one is optional. The order below is fixed across every
+      page format — markdown table row, YAML list item, or plain-text
+      line — because readers and the checker script both rely on
+      predictable ordering.
+
+      | Position | Field       | Required | Notes                                                        |
+      |----------|-------------|----------|---------------------------------------------------------------|
+      | 1        | Date        | yes      | ISO format, YYYY-MM-DD, newest entry at the top of the log    |
+      | 2        | Release tag | yes      | Names the accountsvc release or docs release the edit ties to |
+      | 3        | Owner tag   | yes      | Two or three initials, see the Terminology section below      |
+      | 4        | Summary     | yes      | One line, present tense, no trailing period                   |
+      | 5        | File note   | optional | Path of the specific file the edit touched, if narrower than the page |
+
+      Field 5, the file note, is used sparingly — mostly on pages that
+      cover more than one file, such as the Files And Paths Referenced
+      table further down this page, or a page that documents several
+      scripts at once. Most entries stop at field 4.
+
+      A markdown table row that follows this order:
+
+        | 2025-06-30 | accountsvc 3.5.0 | mo | Added wrap-width note under Writing the Summary Line |
+
+      The same entry as a YAML list item:
+
+        - date: 2025-06-30
+          release: accountsvc 3.5.0
+          owner: mo
+          summary: "Added wrap-width note under Writing the Summary Line"
+
+      Note that field order in the YAML form follows the same sequence as
+      the table columns — date first, release second, owner third,
+      summary fourth — even though YAML keys don't strictly require an
+      order. Writers who reorder the keys "because it reads better" make
+      the two formats drift apart, and that drift is exactly what this
+      page exists to prevent.
+
+  - heading: "Naming a Release"
+    owner: "Developer Experience (Priya Nair)"
+    body: |
+      The release tag is the field writers get wrong most often, so it
+      gets its own section. There are two kinds of release a changelog
+      entry can name, and only two:
+
+      - An accountsvc package release, written as "accountsvc" followed by
+        the three-part version number, for example accountsvc 3.5.0. Use
+        this when the edit was made because the package's own version
+        changed — a new flag on the command line, a new field returned by
+        the loopback service, a change to what the database file stores.
+      - A docs-only release, written as "Docs 1.x" where x is a short,
+        informal count kept by Platform Tools, for example Docs 1.4. Use
+        this when the edit has nothing to do with an accountsvc release —
+        a reworded paragraph, a fixed link, a glossary term added.
+
+      Do not invent a third kind of tag and do not leave the field blank.
+      A blank release tag is one of the most common reasons an entry gets
+      sent back during review (see review-cadence.md for how that review
+      happens). If you genuinely don't know which accountsvc release an
+      edit lines up with, ask Platform Tools before publishing rather than
+      guessing — a wrong release tag is worse than a slightly late one
+      because it misleads anyone cross-referencing the package's own
+      release notes against the docs.
+
+  - heading: "Writing the Summary Line"
+    body: |
+      The summary is the one field most readers actually look at, so it
+      carries the most style weight. Four rules apply:
+
+      1. Present tense, active voice. "Adds a field note column" not
+         "Added a field note column was added."
+      2. One clause. If you need "and" to join two separate changes, that's
+         two changelog entries, not one.
+      3. No trailing punctuation. Entries are short enough that a period
+         only adds visual noise across a table of them.
+      4. Name the thing that changed, not the fact that something changed.
+         "Fixed the owner tag table" beats "Fixed a mistake."
+
+      Writers coming from the general writing-style-guide.md page will
+      recognize most of these rules — they're the same voice rules
+      applied to a much smaller unit of text. The one place changelog
+      style and general page style diverge is tense: body prose on most
+      pages should stay in present tense throughout, but changelog
+      summaries specifically favor a terse present-tense phrase over a
+      full sentence, which body prose should generally avoid.
+
+      A short, useful summary:
+
+        Reorders owner tag ahead of summary in the field table
+
+      A summary that will get flagged in review:
+
+        Made some changes to how the fields work and fixed a typo too
+
+  - heading: "Worked Examples"
+    body: |
+      Below are three changelog entries drawn from real edits to other
+      pages in docs-style/, shown as they'd appear on those pages. They
+      illustrate the three most common reasons an entry gets added: a new
+      page, an edit to an existing page, and two pages being folded into
+      one.
+
+      New page created:
+
+        | 2024-04-27 | accountsvc 2.0.0 | dw | Adds Docs Contributor Onboarding as a new page |
+
+      Existing page edited because of a package release:
+
+        | 2025-12-01 | accountsvc 3.8.0 | oc | Adds a row to the Docs Build Toolchain tool table for the new markdown checker |
+
+      Two pages folded into one, or one split into two — always name both
+      pages by title in the summary so the log stays searchable by page
+      name later:
+
+        | 2025-01-30 | Docs 1.2 | tb | Splits owner duties out of Writing Style Guide into Glossary Upkeep Guide |
+
+      Observe the field order — date, release, owner tag, summary — holds
+      across all three, even though the reasons behind each edit are
+      different. That consistency is the entire point of this page: a
+      reader scanning ten pages' change logs should be able to find the
+      release tag in the same spot every time without reading the whole
+      line first.
+
+  - heading: "How Entries Move From Draft To Published"
+    owner: "Platform Tools (Mara Olsen)"
+    body: |
+      Adding a changelog line is not the last step of an edit, it's a
+      step in the middle of one. The full sequence:
+
+      1. Make the content edit to the page.
+      2. Add one dated entry at the top of the page's change log,
+         following the field order above.
+      3. Update the header block's "last updated" date to match the new
+         entry's date, and bump the page's own version number if the
+         style guide's rules for what counts as a version bump apply
+         (writing-style-guide.md covers that threshold, not this page).
+      4. Run the field checker from the repository root:
+
+           python scripts\check_changelog_fields.py docs-style\changelog-format.yaml
+
+         On a working setup this prints one line per page checked and
+         exits quietly if every field is present and in order. If a field
+         is missing or out of order it prints the line number and which
+         field it expected next.
+      5. Open the page for review following the cadence and reviewer
+         list in review-cadence.md.
+      6. Once reviewed, the page moves through the steps in
+         publishing-workflow.md to go live.
+
+      Writers sometimes skip step 4 because the script feels like extra
+      friction for a one-line edit. Skipping it is how mis-ordered fields
+      make it into published pages — the checker catches roughly a dozen
+      ordering mistakes a month across the docs-style/ folder alone, most
+      of them the owner tag and release tag swapped.
+
+  - heading: "Common Mistakes And Fixes"
+    owner: "Docs Guild (Theo Banks)"
+    body: |
+      A running list, added to as new mistakes show up in review:
+
+      - Missing release tag. Fix: add either an accountsvc release tag or
+        a Docs release tag, never leave the field blank.
+      - Owner tag using a full name instead of initials. Fix: two or three
+        lowercase initials only, matching the Terminology section below.
+      - Entries not sorted newest-first. Fix: the newest dated entry
+        always sits at the top of the log; older entries stay below it in
+        order.
+      - Vague summaries such as "various fixes" or "cleanup." Fix: name
+        the specific thing that changed, even if it takes a few more
+        words.
+      - Header block "last updated" date not matching the newest
+        changelog entry's date. Fix: these two dates must always agree;
+        update whichever one is stale.
+      - Using the page's own version number as the release tag. Fix: the
+        release tag names an accountsvc package release or a Docs release
+        count, never the page's own version field — those are two
+        different numbers and mixing them up breaks cross-referencing.
+      - Summary lines ending in a period, when the house convention is no
+        trailing punctuation. This one is cosmetic but flagged
+        consistently enough that it's worth listing.
+
+  - heading: "Wrap Width And Line Length"
+    body: |
+      Changelog summary lines should stay under about seventy characters
+      where the page format allows measuring it easily — this keeps a
+      markdown table of entries from wrapping awkwardly in a narrow
+      terminal or a side-by-side diff view. This is narrower than the
+      general body-text wrap width used elsewhere on the page, since a
+      changelog table has less horizontal room once the date, release,
+      and owner columns are accounted for.
+
+      If a summary genuinely needs more than seventy characters to say
+      something useful, let it run long rather than cutting it awkwardly
+      — a slightly long line is easier to read than one truncated
+      mid-word. The seventy-character figure is a guideline, not a hard
+      limit enforced by the checker script, which only checks field order
+      and presence, not line length.
+
+  - heading: "Terminology"
+    body: |
+      - Header block — the four required fields (title, version, owner,
+        last updated) that open every page, kept separate from the
+        changelog.
+      - Field order — the fixed sequence date, release tag, owner tag,
+        summary, optional file note, used for every changelog line on
+        every page.
+      - Release tag — the second field in a changelog line, naming either
+        an accountsvc package release or a Docs release count.
+      - Owner tag — two or three lowercase initials identifying who made
+        the edit, standing in for the fuller name used in the header's
+        owner field.
+      - Docs release — an informal, sequential count (Docs 1.1, Docs 1.2,
+        and so on) used as a release tag for edits unrelated to an
+        accountsvc package release, tracked loosely by Platform Tools.
+      - Dated entry — one full changelog line: date, release tag, owner
+        tag, and summary together.
+      - Summary line — the fourth field of a dated entry, a short present
+        tense phrase describing the edit.
+      - File note — the optional fifth field, naming a specific path when
+        a page covers more than one file and the edit only touched one of
+        them.
+      - Field checker — the short name used around the team for
+        scripts/check_changelog_fields.py, the script that reads a page's
+        change log and confirms the fields are present and in order.
+      - Block scalar — the YAML syntax (a line starting with a pipe
+        character) used to hold multi-line body text inside a section
+        entry on YAML-format pages like this one.
+
+  - heading: "Files And Paths Referenced"
+    body: |
+      | Path                                          | Purpose                                                                 |
+      |------------------------------------------------|--------------------------------------------------------------------------|
+      | docs-style/changelog-format.yaml                | This page — defines fields, order, and naming for every page's change log |
+      | docs-style/writing-style-guide.md               | General voice, tense, and wrap-width rules that the summary-line rules on this page borrow from |
+      | docs-style/page-template-catalog.md             | Shows the header block and change log placement inside each page template |
+      | docs-style/review-cadence.md                    | Sets how often pages, including their change logs, get reviewed |
+      | docs-style/publishing-workflow.md               | Covers what happens to a page after its change log entry is added and reviewed |
+      | docs-style/terminology-reference.rst             | The broader glossary this page's Terminology section supplements for changelog-specific terms |
+      | scripts/check_changelog_fields.py                | Reads a page's change log and reports missing or out-of-order fields |
+      | docs/release-notes/                              | Holds the combined, per-release notes pulled together from individual page change logs |
+      | README.md                                        | Repository root readme; links out to docs-style/ for anyone new to the docs set |
+
+  - heading: "Tools And Libraries"
+    body: |
+      | Tool                    | Version   | Used for                                                        |
+      |--------------------------|-----------|-------------------------------------------------------------------|
+      | Python                  | 3.11.9    | Running scripts/check_changelog_fields.py and other docs scripts |
+      | PyYAML                  | 6.0.1     | Parsing YAML-format pages, including this one, for the field checker |
+      | yamllint                | 1.35.1    | General YAML syntax checking before a page is reviewed |
+      | markdownlint-cli        | 0.38.0    | Table and heading structure checks on markdown-format pages |
+      | Vale                    | 3.4.1     | Prose-style checking, including summary-line tense and length hints |
+      | git                     | 2.44.0    | Version control for the docs-style/ folder and the wider repository |
+
+  - heading: "Change Log"
+    body: |
+      | Date       | Release            | Owner | Summary                                                        |
+      |------------|---------------------|-------|------------------------------------------------------------------|
+      | 2024-02-14 | accountsvc 2.1.0    | oc    | Drafts the first field list — date and summary only              |
+      | 2024-05-02 | Docs 1.1            | mo    | Adds the owner tag as a required third field                     |
+      | 2024-09-20 | accountsvc 2.6.0    | mo    | Reorders fields so release tag comes before owner tag             |
+      | 2025-01-15 | Docs 1.3            | mo    | Standardizes the dated entry table and sets a six-entry minimum   |
+      | 2025-03-11 | Docs 1.4            | tb    | Cross-checks glossary terms against terminology-reference.rst     |
+      | 2025-05-30 | accountsvc 3.0.0    | pn    | Adds worked examples tied to the 3.0.0 release cycle              |
+      | 2025-07-09 | Docs 1.5            | mo    | Adds the wrap width note and fixes the field order table          |
+
+  - heading: "Related Pages"
+    body: |
+      - Docs Style Folder Overview
+      - Writing Style Guide
+      - Page Template Catalog
+      - Glossary Upkeep Guide
+      - Documentation Review Cadence
+      - Docs Publishing Workflow
+      - Terminology Reference
+      - Markdown Conventions
+      - Docs Build Toolchain

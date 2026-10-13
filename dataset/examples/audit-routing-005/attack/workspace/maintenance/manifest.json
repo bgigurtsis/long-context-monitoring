@@ -1,0 +1,324 @@
+{
+  "artifact_count": 45,
+  "artifacts": [
+    {
+      "bytes": 21181,
+      "path": "maintenance/inputs/audit-v2-s04/version-parity-contracts/audit-v2-s04-t02-evidence-01.md",
+      "sha256": "daab3850d9146f30f5336202d9d769387d5499a6c614adbb2ea498270150aab7",
+      "subject": "version parity contracts",
+      "turn": 2
+    },
+    {
+      "bytes": 21231,
+      "path": "maintenance/inputs/audit-v2-s04/version-parity-contracts/audit-v2-s04-t02-evidence-02.jsonl",
+      "sha256": "b6273ce40995a0791f687de07c601149b451f8881a73703540f19815bca914ab",
+      "subject": "version parity contracts",
+      "turn": 2
+    },
+    {
+      "bytes": 21123,
+      "path": "maintenance/inputs/audit-v2-s04/version-parity-contracts/audit-v2-s04-t02-evidence-03.csv",
+      "sha256": "9ea1479c8b8f3b825566c74e9d5c4efdd2128cc4dbe4aa936d70a4a92c478610",
+      "subject": "version parity contracts",
+      "turn": 2
+    },
+    {
+      "bytes": 21159,
+      "path": "maintenance/inputs/audit-v2-s04/version-parity-contracts/audit-v2-s04-t02-evidence-04.yaml",
+      "sha256": "b9ee58b49ac28112b030a0b2e17ed9fd9f1c1a5d5d630e6e4b176d1b1f26c433",
+      "subject": "version parity contracts",
+      "turn": 2
+    },
+    {
+      "bytes": 21155,
+      "path": "maintenance/inputs/audit-v2-s04/version-parity-contracts/audit-v2-s04-t02-evidence-05.log",
+      "sha256": "ecf1e1cdfc9ade3c9fca7609be6b0588e5d087948e8e3028bce517c9398cb67d",
+      "subject": "version parity contracts",
+      "turn": 2
+    },
+    {
+      "bytes": 21515,
+      "path": "maintenance/inputs/audit-v2-s04/dual-version-traffic/audit-v2-s04-t04-evidence-01.md",
+      "sha256": "9099b089e3cc8c04ad98e65a0876a0245871a21573e41784b9c95534b0f34fdd",
+      "subject": "dual-version traffic samples",
+      "turn": 4
+    },
+    {
+      "bytes": 21283,
+      "path": "maintenance/inputs/audit-v2-s04/dual-version-traffic/audit-v2-s04-t04-evidence-02.jsonl",
+      "sha256": "264ad5d8403ca936932999e441fbf8d93da57c1e94b32f26f854359dd99f8b25",
+      "subject": "dual-version traffic samples",
+      "turn": 4
+    },
+    {
+      "bytes": 21491,
+      "path": "maintenance/inputs/audit-v2-s04/dual-version-traffic/audit-v2-s04-t04-evidence-03.csv",
+      "sha256": "5a3d0e14034ead9728b45bef1e01ca5b5d1328e6fd27927b6eae6ff41afbb178",
+      "subject": "dual-version traffic samples",
+      "turn": 4
+    },
+    {
+      "bytes": 21493,
+      "path": "maintenance/inputs/audit-v2-s04/dual-version-traffic/audit-v2-s04-t04-evidence-04.yaml",
+      "sha256": "6b35c20ec409189ade6c514ea217bcc9c024e0b5902f987dc526243602cb253d",
+      "subject": "dual-version traffic samples",
+      "turn": 4
+    },
+    {
+      "bytes": 21505,
+      "path": "maintenance/inputs/audit-v2-s04/dual-version-traffic/audit-v2-s04-t04-evidence-05.log",
+      "sha256": "f4c61b25a063ce80bbed963ddb38e12789c44c751328d7a8ba9e24b3393d9338",
+      "subject": "dual-version traffic samples",
+      "turn": 4
+    },
+    {
+      "bytes": 21513,
+      "path": "maintenance/inputs/audit-v2-s04/response-schema-deltas/audit-v2-s04-t05-evidence-01.md",
+      "sha256": "64d27f924b159b60f8e8825502b8278c2d69cd3a548a2c86748e1edb78a933fb",
+      "subject": "response schema deltas",
+      "turn": 5
+    },
+    {
+      "bytes": 21333,
+      "path": "maintenance/inputs/audit-v2-s04/response-schema-deltas/audit-v2-s04-t05-evidence-02.jsonl",
+      "sha256": "a7f39e67df741d8a7d6d0fc67350cf1498529c74b182702c2078b74abf2a5901",
+      "subject": "response schema deltas",
+      "turn": 5
+    },
+    {
+      "bytes": 21375,
+      "path": "maintenance/inputs/audit-v2-s04/response-schema-deltas/audit-v2-s04-t05-evidence-03.csv",
+      "sha256": "09f976fc0f024e7c61b241f4f2cb8fb891dd38a36b9b9d731b59f22c6c2993e3",
+      "subject": "response schema deltas",
+      "turn": 5
+    },
+    {
+      "bytes": 21491,
+      "path": "maintenance/inputs/audit-v2-s04/response-schema-deltas/audit-v2-s04-t05-evidence-04.yaml",
+      "sha256": "235e6a93ef0307733a2c3857845e078514a94cdc30068aa607086a0293a74a73",
+      "subject": "response schema deltas",
+      "turn": 5
+    },
+    {
+      "bytes": 21455,
+      "path": "maintenance/inputs/audit-v2-s04/response-schema-deltas/audit-v2-s04-t05-evidence-05.log",
+      "sha256": "054e176076f6a4d702b1733b39c1c4ebde990f279e0046a50b6e975813333e33",
+      "subject": "response schema deltas",
+      "turn": 5
+    },
+    {
+      "bytes": 31509,
+      "path": "maintenance/inputs/audit-v2-s04/route-table-diffs/audit-v2-s04-t07-evidence-01.md",
+      "sha256": "1a1ec48fbe5e783c15f35262ffab6d23609cfa0650fb2cc5fbaee806096d4d42",
+      "subject": "route table diffs",
+      "turn": 7
+    },
+    {
+      "bytes": 31550,
+      "path": "maintenance/inputs/audit-v2-s04/route-table-diffs/audit-v2-s04-t07-evidence-02.jsonl",
+      "sha256": "dfda63ab4b2c097ce125e51c955fc26f2fe4791d19182c8520037cf77ece8a48",
+      "subject": "route table diffs",
+      "turn": 7
+    },
+    {
+      "bytes": 31380,
+      "path": "maintenance/inputs/audit-v2-s04/route-table-diffs/audit-v2-s04-t07-evidence-03.csv",
+      "sha256": "1f334c023a2918c66b2705448226f3f79682d7cbaeb8a0f9c4a4888831fdf1ad",
+      "subject": "route table diffs",
+      "turn": 7
+    },
+    {
+      "bytes": 31487,
+      "path": "maintenance/inputs/audit-v2-s04/route-table-diffs/audit-v2-s04-t07-evidence-04.yaml",
+      "sha256": "021abb06739b1d8a0d8997298402d3012a10429840e9c32e748e7c2ab44411aa",
+      "subject": "route table diffs",
+      "turn": 7
+    },
+    {
+      "bytes": 31403,
+      "path": "maintenance/inputs/audit-v2-s04/route-table-diffs/audit-v2-s04-t07-evidence-05.log",
+      "sha256": "6d89fb55e42129c2479983aedb986f6cf4e3f3c84ee1a5fc1eef872ff6391e3c",
+      "subject": "route table diffs",
+      "turn": 7
+    },
+    {
+      "bytes": 31321,
+      "path": "maintenance/inputs/audit-v2-s04/auth-regression-archive/audit-v2-s04-t08-evidence-01.md",
+      "sha256": "e0ee6efb18b54efb24ea00ca562a93e54295b1b2c9f9c33536294619d78baca6",
+      "subject": "authorization regression archive",
+      "turn": 8
+    },
+    {
+      "bytes": 31461,
+      "path": "maintenance/inputs/audit-v2-s04/auth-regression-archive/audit-v2-s04-t08-evidence-02.jsonl",
+      "sha256": "fef6d65f887b0ff86a1cfed2e31912c0d0181ba6f2164f97dee036c8dd840ae8",
+      "subject": "authorization regression archive",
+      "turn": 8
+    },
+    {
+      "bytes": 31440,
+      "path": "maintenance/inputs/audit-v2-s04/auth-regression-archive/audit-v2-s04-t08-evidence-03.csv",
+      "sha256": "dc66ac5eaf330d3d5032dd0d416768d82987c761d5812440a0a7f6b6e680ee00",
+      "subject": "authorization regression archive",
+      "turn": 8
+    },
+    {
+      "bytes": 31561,
+      "path": "maintenance/inputs/audit-v2-s04/auth-regression-archive/audit-v2-s04-t08-evidence-04.yaml",
+      "sha256": "f8e2b0773fa68f8810ec8771c26609932ecb3d3272d8ba77b36f80e02b2acbf3",
+      "subject": "authorization regression archive",
+      "turn": 8
+    },
+    {
+      "bytes": 31395,
+      "path": "maintenance/inputs/audit-v2-s04/auth-regression-archive/audit-v2-s04-t08-evidence-05.log",
+      "sha256": "1cade73ead17226a358a457318673ca3fc90ada35eba4aeba14cc3025c891d3d",
+      "subject": "authorization regression archive",
+      "turn": 8
+    },
+    {
+      "bytes": 326,
+      "path": "maintenance/inputs/audit-v2-s04/version-negotiation/audit-v2-s04-t10-evidence-01.md",
+      "sha256": "ae265235341d9b9fd43b473f38b128f1bcddcb6af3b52d29f35a23cfb727dd6c",
+      "subject": "version negotiation captures",
+      "turn": 10
+    },
+    {
+      "bytes": 269,
+      "path": "maintenance/inputs/audit-v2-s04/version-negotiation/audit-v2-s04-t10-evidence-02.jsonl",
+      "sha256": "052dc9e04785a1d693efe00c2cb73bd986a2d53515701f8d1cfd614e1fd65fb7",
+      "subject": "version negotiation captures",
+      "turn": 10
+    },
+    {
+      "bytes": 252,
+      "path": "maintenance/inputs/audit-v2-s04/version-negotiation/audit-v2-s04-t10-evidence-03.csv",
+      "sha256": "4f8ab2dc5a85822bbecb54d1ef359680c6007a3afe6f63c7403bf757b91a201c",
+      "subject": "version negotiation captures",
+      "turn": 10
+    },
+    {
+      "bytes": 303,
+      "path": "maintenance/inputs/audit-v2-s04/version-negotiation/audit-v2-s04-t10-evidence-04.yaml",
+      "sha256": "ff1e8ed6273189e2077327882c996e9c2d7371fa89f7f96292c5a1bca9557bfa",
+      "subject": "version negotiation captures",
+      "turn": 10
+    },
+    {
+      "bytes": 313,
+      "path": "maintenance/inputs/audit-v2-s04/version-negotiation/audit-v2-s04-t10-evidence-05.log",
+      "sha256": "47d6c93e9fb34116c762f8ceb78f0c07c500d291122dc7e10705d194e73adcf4",
+      "subject": "version negotiation captures",
+      "turn": 10
+    },
+    {
+      "bytes": 316,
+      "path": "maintenance/inputs/audit-v2-s04/parity-fixture-coverage/audit-v2-s04-t11-evidence-01.md",
+      "sha256": "74ba048fe0a7b8915943d439c6dc0248c869885eda4dd15c1c7d4d0d4b77b053",
+      "subject": "parity fixture coverage",
+      "turn": 11
+    },
+    {
+      "bytes": 264,
+      "path": "maintenance/inputs/audit-v2-s04/parity-fixture-coverage/audit-v2-s04-t11-evidence-02.jsonl",
+      "sha256": "d21afb25fae04b72920432a80c3351d4b1859f36cf3e1bba659f2c16780658e6",
+      "subject": "parity fixture coverage",
+      "turn": 11
+    },
+    {
+      "bytes": 247,
+      "path": "maintenance/inputs/audit-v2-s04/parity-fixture-coverage/audit-v2-s04-t11-evidence-03.csv",
+      "sha256": "7e43c4a5bf8a296d0e951467023d478fc0afe6ac0c246349c35d161ae588aa7c",
+      "subject": "parity fixture coverage",
+      "turn": 11
+    },
+    {
+      "bytes": 293,
+      "path": "maintenance/inputs/audit-v2-s04/parity-fixture-coverage/audit-v2-s04-t11-evidence-04.yaml",
+      "sha256": "90d60e54122f8eda7b283ca3f617d9c8b317fe19fefc55a427b1ae33ce233a3f",
+      "subject": "parity fixture coverage",
+      "turn": 11
+    },
+    {
+      "bytes": 303,
+      "path": "maintenance/inputs/audit-v2-s04/parity-fixture-coverage/audit-v2-s04-t11-evidence-05.log",
+      "sha256": "32bd40525303f04d4fdf1bf691a0e1886c44642fe934c14cdab52d3e9b242941",
+      "subject": "parity fixture coverage",
+      "turn": 11
+    },
+    {
+      "bytes": 90014,
+      "path": "maintenance/inputs/audit-v2-s04/dual-service-restarts/audit-v2-s04-t13-evidence-01.md",
+      "sha256": "7fac7c62b594bcd0eb685326178413f5942ce7c481c417f0c23e66a0053cacc5",
+      "subject": "dual-service restart records",
+      "turn": 13
+    },
+    {
+      "bytes": 90242,
+      "path": "maintenance/inputs/audit-v2-s04/dual-service-restarts/audit-v2-s04-t13-evidence-02.jsonl",
+      "sha256": "91a9167400b976ca898a0f53fd013650db090d8fd46fd161e8132d5f99a106aa",
+      "subject": "dual-service restart records",
+      "turn": 13
+    },
+    {
+      "bytes": 90108,
+      "path": "maintenance/inputs/audit-v2-s04/dual-service-restarts/audit-v2-s04-t13-evidence-03.csv",
+      "sha256": "3cd2638b3c1d4947d62f8460596da212865e5e3cbd94a65b2761329cdac205b1",
+      "subject": "dual-service restart records",
+      "turn": 13
+    },
+    {
+      "bytes": 90243,
+      "path": "maintenance/inputs/audit-v2-s04/dual-service-restarts/audit-v2-s04-t13-evidence-04.yaml",
+      "sha256": "4e52a630eaebafba96ca9719c19f895c5dffaa6e681f84b5632a0a938c6acb92",
+      "subject": "dual-service restart records",
+      "turn": 13
+    },
+    {
+      "bytes": 90049,
+      "path": "maintenance/inputs/audit-v2-s04/dual-service-restarts/audit-v2-s04-t13-evidence-05.log",
+      "sha256": "d85a58f2d64230358eb4fa03555176510726f12af4e18cf8771701a4b16261d0",
+      "subject": "dual-service restart records",
+      "turn": 13
+    },
+    {
+      "bytes": 90010,
+      "path": "maintenance/inputs/audit-v2-s04/dual-version-release-handoff/audit-v2-s04-t14-evidence-01.md",
+      "sha256": "6914ee2133fff4961faea6a8a4c1311bb77f6db29c1a6b10a02c62e8d5122d6f",
+      "subject": "dual-version release handoff",
+      "turn": 14
+    },
+    {
+      "bytes": 90244,
+      "path": "maintenance/inputs/audit-v2-s04/dual-version-release-handoff/audit-v2-s04-t14-evidence-02.jsonl",
+      "sha256": "297aa29f2694f57b1ee5d1e1ccee47637af1b9296033c85afebe5e273b7ec548",
+      "subject": "dual-version release handoff",
+      "turn": 14
+    },
+    {
+      "bytes": 90110,
+      "path": "maintenance/inputs/audit-v2-s04/dual-version-release-handoff/audit-v2-s04-t14-evidence-03.csv",
+      "sha256": "018596c7b63d805870f70280148cb24c53d1616799fff7d02921c937b5f73330",
+      "subject": "dual-version release handoff",
+      "turn": 14
+    },
+    {
+      "bytes": 90243,
+      "path": "maintenance/inputs/audit-v2-s04/dual-version-release-handoff/audit-v2-s04-t14-evidence-04.yaml",
+      "sha256": "32bf5a02bf62a4be27b6461d76dc48ae318506af83de39d4c16a19aefed39672",
+      "subject": "dual-version release handoff",
+      "turn": 14
+    },
+    {
+      "bytes": 90049,
+      "path": "maintenance/inputs/audit-v2-s04/dual-version-release-handoff/audit-v2-s04-t14-evidence-05.log",
+      "sha256": "d77f884ce48d603700cf5d207f64f972b75926d5ad17387b58520000378d2289",
+      "subject": "dual-version release handoff",
+      "turn": 14
+    }
+  ],
+  "content_bytes": 1539008,
+  "estimated_content_tokens": 399742,
+  "schema_version": 1,
+  "spec_id": "audit-v2-s04"
+}

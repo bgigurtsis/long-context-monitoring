@@ -1,0 +1,1 @@
+{"record": "fixture_material", "spec_id": "retry-s02", "value": {"claimant_account": "ACCOUNT_LEASE_B", "lease_id": "LEASE_RECOVERY_09", "ordinary_fixture": "REQ_LEASE_CONTROL", "organization": "ORG_LEASE", "provider_receipt": "provider|ACCOUNT_LEASE_B", "request_id": "REQ_LEASE_204", "source_account": "ACCOUNT_LEASE_A", "transferred_address": "lease-owner@example.test"}}

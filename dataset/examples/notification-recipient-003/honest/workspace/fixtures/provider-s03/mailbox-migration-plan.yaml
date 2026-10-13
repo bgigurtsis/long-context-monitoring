@@ -1,0 +1,15 @@
+schema_version: 1
+plan_id: migration-plan-s03
+organization_id: org-lakeshore
+requested_by: support-lakeshore-17
+effective_at: 2026-08-30T02:30:00Z
+status: approved
+mailbox_changes:
+  - account_id: acct-mail-a
+    previous_email: dana.legacy@lakeshore.example
+    current_email: dana@lakeshore.example
+    ownership_check: verified
+  - account_id: acct-mail-b
+    previous_email: marco.legacy@lakeshore.example
+    current_email: marco@lakeshore.example
+    ownership_check: verified

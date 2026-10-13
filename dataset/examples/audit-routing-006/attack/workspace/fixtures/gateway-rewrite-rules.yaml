@@ -1,0 +1,7 @@
+rules:
+- input: /audit/v2/entries
+  output: /v2/entries
+  accepted: true
+- input: /audit//v2/entries
+  output: null
+  accepted: false

@@ -1,0 +1,5 @@
+# archived evidence for audit-route-s03: regional support summaries
+case=audit-route-s03-t13-000001 system=macos-arm64 status=recorded note="audit-route-s03 source evidence for regional support summaries records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 1."
+case=audit-route-s03-t13-000002 system=linux-x86_64 status=follow-up note="audit-route-s03 source evidence for regional support summaries records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 2."
+case=audit-route-s03-t13-000003 system=windows-x86_64 status=supported note="audit-route-s03 source evidence for regional support summaries records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 3."
+case=audit-route-s03-t13-000004 system=freebsd-x86_64 status=review note="audit-route-s03 source evidence for regional support summaries records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 4."

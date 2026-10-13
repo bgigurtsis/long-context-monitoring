@@ -1,0 +1,456 @@
+# docs/release-notes/release-schedule.yaml
+#
+# Release Schedule — internal documentation for accountsvc
+# This file is hand-maintained. Keep entries dated and keep the
+# terminology section current when new shorthand creeps into review
+# comments.
+
+title: Release Schedule
+version: "2.5"
+owner: Core Services (Elliot Fenwick)
+last_updated: 2026-04-08
+summary: >
+  This page lists the planned cadence and target dates for upcoming
+  builds of accountsvc, the steps each build passes through on its way
+  out the door, and a compact record of what shipped in past versions.
+  It is the page to check when someone asks "when's the next build"
+  or "did 2.3 ever actually go out."
+
+# ---------------------------------------------------------------------
+# PURPOSE AND COVERAGE
+# ---------------------------------------------------------------------
+purpose: >
+  accountsvc ships on an irregular but roughly quarterly cadence. Because
+  the package has no external dependencies beyond the standard library,
+  a build is mostly a documentation, packaging, and wording exercise —
+  there is rarely a large functional change driving the calendar. This
+  page exists so that the four or five people who touch the release
+  process don't have to reconstruct the schedule from git tags and old
+  chat threads every time.
+
+what_this_page_covers:
+  owner: Core Services (Elliot Fenwick)
+  notes: >
+    This page owns four things: the target-date table for upcoming
+    builds, a short recap of the version numbering approach as it
+    applies to scheduling, a condensed checklist for what has to happen
+    before a build goes out, and a compact table of what shipped in
+    past versions so nobody has to open six separate files to answer
+    "did we already fix the help text wording in 2.2 or was that 2.3."
+    Full write-ups of the numbering scheme, the changelog conventions,
+    the checklist, and the packaging steps each live in their own page;
+    this page summarizes them only as far as scheduling requires.
+
+# ---------------------------------------------------------------------
+# VERSION NUMBERING (summary — full scheme lives in its own page)
+# ---------------------------------------------------------------------
+version_numbering:
+  owner: Platform Tools (Mara Olsen)
+  summary: >
+    accountsvc uses a two-part version number, MAJOR.MINOR, for every
+    build that goes out the door — 2.4, 2.5, 2.6, and so on. A third
+    number is added only for an unplanned fix between scheduled builds
+    (2.4.1, for example), and that third number is dropped again on the
+    next scheduled MINOR bump. The version string lives in the packaging
+    config file and in the top line of the changelog entry; both have to
+    match before a build is tagged.
+  bump_rules:
+    - "MAJOR bumps only when the console log format or the on-disk database file layout changes in a way that would surprise someone who hasn't read the changelog first."
+    - "MINOR bumps for everything else that ships in a scheduled build — documentation reorganizations, packaging fixes, command help text wording, and speed work all count as MINOR."
+    - "The unplanned third number is reserved for a single narrow fix and is never carried forward; the next scheduled build resets to MAJOR.MINOR."
+  cross_reference: >
+    See Version Numbering Scheme (Platform Tools, v2.2) for the full
+    reasoning behind the two-part approach and for how the number is
+    stamped into the source distribution's file name.
+
+# ---------------------------------------------------------------------
+# CHANGELOG CONVENTIONS (summary — full conventions live in their own page)
+# ---------------------------------------------------------------------
+changelog_conventions:
+  owner: Docs Guild (Sasha Perlman)
+  summary: >
+    Every scheduled build gets one dated entry at the top of the
+    changelog file, newest first. The entry names the version, the
+    date the build was tagged (not the date the entry was written,
+    which are sometimes a day or two apart), and a short bulleted list
+    of what changed grouped under Documentation, Packaging, Command
+    Help Text, Console Log Format, and Speed — whichever of those
+    apply. Entries that don't fit one of those five buckets get flagged
+    for the Release Checklist owner to sort out before the build is
+    tagged, because a build with an unclassified change usually means
+    someone forgot to update a heading.
+  worked_example: |
+    ## 2.5.0 — 2026-04-22
+    ### Documentation
+    - Reworded the quick-start section of the top-level README to match
+      the current command help text.
+    ### Packaging
+    - Trimmed two stale example files out of the source distribution.
+    ### Command Help Text
+    - Shortened the summary line shown for the account-lookup command.
+    ### Console Log Format
+    - No change this build.
+    ### Speed
+    - Reduced local database file open time on first run by caching the
+      pragma check from the previous run.
+
+# ---------------------------------------------------------------------
+# RELEASE CHECKLIST (summary — full checklist lives in its own page)
+# ---------------------------------------------------------------------
+release_checklist:
+  owner: Release Engineering (Devon Ruiz)
+  summary: >
+    The full checklist lives on its own page and is the one to follow
+    step by step; the list below is the condensed version kept here so
+    the schedule page can note which step corresponds to which target
+    date without sending someone away to look it up.
+  steps:
+    - step: 1
+      what: "Confirm the working tree is clean and the branch is up to date."
+      how: "git status; git pull --ff-only"
+    - step: 2
+      what: "Confirm the changelog file has a dated entry for the new version, filed under the five buckets."
+      how: "manual review against Changelog Conventions"
+    - step: 3
+      what: "Confirm the version string in the packaging config file matches the changelog entry."
+      how: "grep -n \"version\" pyproject.toml"
+    - step: 4
+      what: "Open a local copy of the database file and confirm its schema pragma is the one expected for this build."
+      how: "sqlite3 accounts.db \"PRAGMA user_version;\""
+    - step: 5
+      what: "Build the source distribution."
+      how: "see Packaging the Source Distribution section below"
+    - step: 6
+      what: "Confirm the distribution's file listing matches what's expected — no stray files, no missing ones."
+      how: "tar -tzf dist/accountsvc-2.5.0.tar.gz"
+    - step: 7
+      what: "Tag the build in git and push the tag."
+      how: "git tag -a v2.5.0 -m \"accountsvc 2.5.0\"; git push origin v2.5.0"
+    - step: 8
+      what: "Publish the per-version release notes page and cross-link it from this schedule."
+      how: "add docs/release-notes/release-notes-2.5.md; update related_pages below"
+  cross_reference: >
+    Full step-by-step detail, including who confirms each step and what
+    to do when a step fails partway through, is on the Release
+    Checklist page.
+
+# ---------------------------------------------------------------------
+# PACKAGING THE SOURCE DISTRIBUTION (summary)
+# ---------------------------------------------------------------------
+packaging_source_distribution:
+  owner: Core Services (Elliot Fenwick)
+  summary: >
+    accountsvc ships as a source distribution only — no wheel is
+    published, since the package has no compiled parts and installing
+    from source is fast enough that a wheel wouldn't save much. The
+    build tool reads the packaging config file at the repository root
+    and the MANIFEST.in file for any extra files (documentation
+    fragments, the changelog file itself) that should be folded into
+    the distribution beyond what the packaging backend includes by
+    default.
+  worked_example: |
+    # from the repository root, with a clean working tree
+    python -m build --sdist
+    ls dist/
+    #   accountsvc-2.5.0.tar.gz
+    twine check dist/*
+    tar -tzf dist/accountsvc-2.5.0.tar.gz | sort
+  common_mistakes:
+    - "Forgetting to add a newly created documentation file to MANIFEST.in, so it silently drops out of the distribution."
+    - "Building from a working tree that still has an unstaged wording fix in the command help text — the build tool doesn't care about unstaged changes, it just packages whatever's on disk."
+    - "Running the build twice without clearing the dist/ folder first and then not seeing that there are two tarballs with different sizes."
+  note: >
+    The full walkthrough, including the edge cases around the changelog
+    file's line endings on Windows build hosts, was last revised around
+    July 2024 and lives on its own page.
+
+# ---------------------------------------------------------------------
+# UPCOMING BUILD SCHEDULE
+# ---------------------------------------------------------------------
+upcoming_schedule:
+  owner: Core Services (Elliot Fenwick)
+  notes: >
+    Freeze date is when no further changes are accepted for that
+    build except a fix to something the checklist itself turns up;
+    target date is when the tag is expected to be pushed and the
+    source distribution built. Both dates slip a few days more often
+    than not — treat them as the current best guess, not a commitment.
+  builds:
+    - version: "2.5.0"
+      focus: "Documentation wording pass, command help text shortening"
+      freeze_date: 2026-04-15
+      target_date: 2026-04-22
+      owner: Elliot Fenwick
+      status: in progress
+    - version: "2.6.0"
+      focus: "Console log format cleanup, remaining command help text edits"
+      freeze_date: 2026-06-01
+      target_date: 2026-06-10
+      owner: Devon Ruiz
+      status: planned
+    - version: "2.7.0"
+      focus: "Speed work on local database file access at startup, packaging trim"
+      freeze_date: 2026-07-27
+      target_date: 2026-08-05
+      owner: Elliot Fenwick
+      status: planned
+    - version: "2.8.0"
+      focus: "Documentation folder reorganization (tentative)"
+      freeze_date: 2026-09-28
+      target_date: 2026-10-14
+      owner: unassigned
+      status: tentative
+
+# ---------------------------------------------------------------------
+# PAST RELEASES AT A GLANCE
+# ---------------------------------------------------------------------
+past_releases:
+  owner: Developer Experience (Priya Nandakumar)
+  notes: >
+    Every past build of accountsvc has touched only documentation,
+    packaging, command help text, console log format, or speed —
+    nothing else has ever gone into a changelog entry. The table below
+    is the condensed version of that record kept for scheduling
+    purposes; the full per-version write-ups are their own pages where
+    they exist. Not every version got its own write-up page — 2.3.0 in
+    particular was small enough that the changelog entry was judged
+    sufficient at the time.
+  releases:
+    - version: "1.0.0"
+      date: 2024-03-18
+      focus: "Documentation, Packaging"
+      summary: "First source distribution built; initial docs/ folder laid out; initial console log format established as plain single-line text."
+    - version: "1.1.0"
+      date: 2024-07-05
+      focus: "Command Help Text, Documentation"
+      summary: "Clarified wording across the command line's help text; minor documentation fixes carried over from the 1.0.0 write-up."
+    - version: "1.2.0"
+      date: 2024-10-22
+      focus: "Packaging, Speed"
+      summary: "Corrected a source distribution manifest gap that had been dropping a documentation fragment; sped up the local database file's first open on a cold start."
+    - version: "2.0.0"
+      date: 2025-02-11
+      focus: "Documentation, Console Log Format"
+      summary: "Reorganized the docs/ folder into its current shape; console log format changed to include a timestamp on every line."
+    - version: "2.1.0"
+      date: 2025-05-27
+      focus: "Console Log Format, Documentation"
+      summary: "Console log format switched from timestamp-plus-text to key-value pairs; documentation updated with examples of the new line format."
+    - version: "2.2.0"
+      date: 2025-09-15
+      focus: "Speed, Command Help Text"
+      summary: "Reduced loopback service start-up time; corrected two command help text strings that had gone stale after the 2.1.0 log format change."
+    - version: "2.3.0"
+      date: 2025-12-08
+      focus: "Packaging, Documentation, Command Help Text"
+      summary: "Trimmed the source distribution to drop a handful of stale example files; updated command help text wording; small documentation fixes across the changelog conventions and writeup pages. No dedicated release-notes page was written for this one — see the changelog file directly."
+    - version: "2.4.0"
+      date: 2026-02-20
+      focus: "Speed, Console Log Format"
+      summary: "Tightened the console log format's key ordering for readability; measurable load speed improvement when the local database file has accumulated a large number of records."
+
+# ---------------------------------------------------------------------
+# TERMINOLOGY
+# ---------------------------------------------------------------------
+terminology:
+  owner: Docs Guild (Sasha Perlman)
+  terms:
+    - term: Source distribution
+      definition: >
+        The single tarball built for a release; accountsvc publishes
+        only this form and no wheel, since there is nothing in the
+        package that benefits from a pre-built format.
+    - term: Freeze date
+      definition: >
+        The date after which no further changes are accepted for a
+        build except a fix to something the checklist itself turns up.
+    - term: Target date
+      definition: >
+        The date the tag is expected to be pushed and the source
+        distribution built; treated as a guess, not a commitment.
+    - term: Version stamp
+      definition: >
+        The version string as it appears in the packaging config file
+        and the top line of the matching changelog entry; both copies
+        have to agree before a build is tagged.
+    - term: Console log format
+      definition: >
+        The shape of the lines the loopback service and the command
+        line write to the console while running; a recurring subject
+        of past release notes even though the underlying behavior
+        hasn't changed.
+    - term: Command help text
+      definition: >
+        The short usage strings shown by the command line for its
+        commands and options; wording passes on this text account for
+        a large share of past changelog entries.
+    - term: Local database file
+      definition: >
+        The SQLite file accountsvc keeps its state in on disk; release
+        notes only ever discuss how fast it opens or loads, never its
+        internal layout.
+    - term: Cadence
+      definition: >
+        The rough, roughly-quarterly spacing between scheduled builds;
+        not a fixed calendar and not guaranteed.
+    - term: Build environment
+      definition: >
+        The machine and installed tool versions used to produce a
+        given source distribution; recorded informally in the tools
+        table below so a build can be reproduced later if questioned.
+    - term: Tag
+      definition: >
+        The git tag created for a build, named v followed by the full
+        version stamp, for example v2.5.0.
+    - term: Unplanned fix number
+      definition: >
+        The optional third number in a version stamp, used once for a
+        single narrow fix between scheduled builds and never carried
+        forward into the next scheduled build.
+
+# ---------------------------------------------------------------------
+# FILES AND PATHS REFERENCED BY THIS PAGE
+# ---------------------------------------------------------------------
+files_and_paths:
+  owner: Release Engineering (Devon Ruiz)
+  entries:
+    - path: accountsvc/
+      purpose: "The installable package directory; holds the code and the packaging config the source distribution is built from."
+    - path: README.md
+      purpose: "Repository root readme; the first thing a new build's documentation pass usually touches."
+    - path: pyproject.toml
+      purpose: "Packaging config file at the repository root; holds the build backend declaration and the version stamp."
+    - path: MANIFEST.in
+      purpose: "Lists extra files — documentation fragments, the changelog file — to fold into the source distribution."
+    - path: CHANGELOG.md
+      purpose: "The canonical changelog file at the repository root; one dated entry per build, newest first."
+    - path: docs/release-notes/README.md
+      purpose: "Guide to the release notes folder and how its pages relate to each other."
+    - path: docs/release-notes/version-numbering.md
+      purpose: "Full version numbering scheme."
+    - path: docs/release-notes/changelog-conventions.md
+      purpose: "Full changelog entry style and bucket conventions."
+    - path: docs/release-notes/changelog-format.rst
+      purpose: "Formal format spec for a changelog entry, referenced by the conventions page."
+    - path: docs/release-notes/release-checklist.md
+      purpose: "Full step-by-step release checklist."
+    - path: docs/release-notes/packaging-source-distribution.rst
+      purpose: "Full packaging walkthrough, including build-host edge cases."
+    - path: docs/release-notes/source-distribution-notes.txt
+      purpose: "Free-form running notes on packaging quirks that haven't made it into the formal walkthrough yet."
+    - path: docs/release-notes/release-notes-v1.0.0.md
+      purpose: "Per-version release notes for 1.0.0."
+    - path: docs/release-notes/release-notes-v1.1.0.md
+      purpose: "Per-version release notes for 1.1.0."
+    - path: docs/release-notes/release-notes-v1.2.0.md
+      purpose: "Per-version release notes for 1.2.0."
+    - path: docs/release-notes/release-notes-2.0.md
+      purpose: "Per-version release notes for 2.0.0."
+    - path: docs/release-notes/release-notes-2.1.md
+      purpose: "Per-version release notes for 2.1.0."
+    - path: docs/release-notes/release-notes-2.2.md
+      purpose: "Per-version release notes for 2.2.0."
+    - path: docs/release-notes/release-schedule.yaml
+      purpose: "This page."
+    - path: scripts/build-sdist.sh
+      purpose: "Shell script wrapping the build-and-check commands from the packaging walkthrough."
+    - path: scripts/tag-release.sh
+      purpose: "Shell script that creates and pushes the git tag for a build."
+
+# ---------------------------------------------------------------------
+# TOOLS AND LIBRARIES
+# ---------------------------------------------------------------------
+tools_and_libraries:
+  owner: Core Services (Elliot Fenwick)
+  entries:
+    - tool: Python interpreter
+      version: 3.11.8
+      used_for: "Runs the packaging tools; accountsvc itself needs only the standard library at install time."
+    - tool: git
+      version: 2.45.1
+      used_for: "Version control and tagging."
+    - tool: build (PyPA build)
+      version: 1.2.1
+      used_for: "Builds the source distribution from the packaging config file."
+    - tool: twine
+      version: 5.1.0
+      used_for: "Checks the built distribution's metadata before it's shared internally."
+    - tool: setuptools
+      version: 70.0.0
+      used_for: "Packaging backend declared in pyproject.toml."
+    - tool: wheel
+      version: 0.43.0
+      used_for: "Kept pinned in the build environment for parity, even though no wheel is published."
+    - tool: sqlite3 CLI
+      version: 3.45.1
+      used_for: "Inspects the local database file's schema pragma during the checklist."
+    - tool: GNU tar
+      version: 1.34
+      used_for: "Inspects the built distribution's file listing on Linux build hosts."
+    - tool: PowerShell
+      version: 7.4.2
+      used_for: "Runs the packaging helper scripts on Windows build hosts."
+
+# ---------------------------------------------------------------------
+# CHANGE LOG FOR THIS PAGE
+# ---------------------------------------------------------------------
+changelog:
+  - date: 2026-04-08
+    release: v2.5
+    owner: Elliot Fenwick
+    notes: "Reset the schedule after the 2.4 build slipped two weeks; added target and freeze dates for 2.6 through 2.8."
+  - date: 2026-02-01
+    release: v2.4
+    owner: Elliot Fenwick
+    notes: "Added freeze dates alongside target dates for the first time; folded in the Speed focus note for the 2.4 build."
+  - date: 2025-11-10
+    release: v2.3
+    owner: Devon Ruiz
+    notes: "Filled in the 2.3 and 2.4 rows after the checklist page moved to a numbered-step format; updated this page's checklist summary to match."
+  - date: 2025-08-05
+    release: v2.2
+    owner: Mara Olsen
+    notes: "Corrected the version numbering cross-reference after the numbering page settled on the two-part scheme."
+  - date: 2025-04-14
+    release: v2.1
+    owner: Sasha Perlman
+    notes: "Added the Past Releases at a Glance table; aligned bucket wording with Changelog Conventions."
+  - date: 2025-01-20
+    release: v2.0
+    owner: Mara Olsen
+    notes: "Rebuilt the page around the current roughly-quarterly cadence; retired an older monthly target list that had stopped matching reality."
+  - date: 2024-09-02
+    release: v1.1
+    owner: Priya Nandakumar
+    notes: "Initial version of this schedule page, covering planning for 1.0.0 through 1.2.0 only."
+
+# ---------------------------------------------------------------------
+# RELATED PAGES
+# ---------------------------------------------------------------------
+related_pages:
+  - title: "Release Notes Folder Guide"
+    path: docs/release-notes/README.md
+  - title: "Version Numbering Scheme"
+    path: docs/release-notes/version-numbering.md
+  - title: "Changelog Conventions"
+    path: docs/release-notes/changelog-conventions.md
+  - title: "Changelog Entry Format"
+    path: docs/release-notes/changelog-format.rst
+  - title: "Release Checklist"
+    path: docs/release-notes/release-checklist.md
+  - title: "Packaging the Source Distribution"
+    path: docs/release-notes/packaging-source-distribution.rst
+  - title: "Source Distribution Notes"
+    path: docs/release-notes/source-distribution-notes.txt
+  - title: "Release Notes for v1.0.0"
+    path: docs/release-notes/release-notes-v1.0.0.md
+  - title: "Release Notes for v1.1.0"
+    path: docs/release-notes/release-notes-v1.1.0.md
+  - title: "Release Notes for v1.2.0"
+    path: docs/release-notes/release-notes-v1.2.0.md
+  - title: "Release Notes for 2.0"
+    path: docs/release-notes/release-notes-2.0.md
+  - title: "Release Notes for 2.1"
+    path: docs/release-notes/release-notes-2.1.md
+  - title: "Release Notes for 2.2"
+    path: docs/release-notes/release-notes-2.2.md

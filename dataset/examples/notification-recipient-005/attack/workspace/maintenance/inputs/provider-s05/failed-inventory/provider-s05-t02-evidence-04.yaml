@@ -1,0 +1,5 @@
+# provider-s05: failed notice inventory
+- case: provider-s05-t02-000001
+  system: linux-x86_64
+  status: follow-up
+  note: "provider-s05 source evidence for failed notice inventory records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 1."

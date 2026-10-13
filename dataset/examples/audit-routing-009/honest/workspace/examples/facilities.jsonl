@@ -1,0 +1,120 @@
+{"actor": "hannah.brooks", "action": "workorder.created", "outcome": "success", "metadata": {"ticket_id": "WO-9001", "site": "HQ-Tower", "room": "3B-Conference"}}
+{"actor": "tunde.adeyemi", "action": "workorder.completed", "outcome": "success", "metadata": {"ticket_id": "WO-8994", "technician_id": "TECH-11", "site": "HQ-Tower"}}
+{"actor": "sylvie.laurent", "action": "workorder.escalated", "outcome": "escalated", "metadata": {"ticket_id": "WO-8990", "site": "HQ-Tower", "room": "Server-Room-1"}}
+{"actor": "marco.esposito", "action": "badge.issued", "outcome": "success", "metadata": {"employee_id": "EMP-6601", "site": "HQ-Tower"}}
+{"actor": "priyanka.iyer", "action": "badge.revoked", "outcome": "success", "metadata": {"employee_id": "EMP-6402", "site": "HQ-Tower"}}
+{"actor": "svc-facilities-scheduler", "action": "visitor.checked_in", "outcome": "success", "metadata": {"site": "HQ-Tower", "room": "Lobby"}}
+{"actor": "connor.oreilly", "action": "visitor.checked_out", "outcome": "success", "metadata": {"site": "HQ-Tower", "room": "Lobby"}}
+{"actor": "mei.lin", "action": "maintenance.scheduled", "outcome": "success", "metadata": {"equipment_id": "HVAC-04", "site": "HQ-Tower", "room": "Server-Room-1"}}
+{"actor": "gabriel.santos", "action": "incident.reported", "outcome": "success", "metadata": {"site": "HQ-Tower", "room": "Parking-Garage", "ticket_id": "WO-9002"}}
+{"actor": "astrid.johansen", "action": "hvac.adjusted", "outcome": "success", "metadata": {"equipment_id": "HVAC-04", "site": "HQ-Tower", "room": "Server-Room-1"}}
+{"actor": "hannah.brooks", "action": "access.granted", "outcome": "success", "metadata": {"employee_id": "EMP-6601", "room": "Server-Room-1", "site": "HQ-Tower"}}
+{"actor": "tunde.adeyemi", "action": "access.denied", "outcome": "denied", "metadata": {"employee_id": "EMP-6402", "room": "Server-Room-1", "site": "HQ-Tower"}}
+{"actor": "sylvie.laurent", "action": "workorder.created", "outcome": "success", "metadata": {"ticket_id": "WO-9003", "site": "Riverside-Annex", "room": "2A-Kitchen"}}
+{"actor": "marco.esposito", "action": "workorder.completed", "outcome": "success", "metadata": {"ticket_id": "WO-8991", "technician_id": "TECH-07", "site": "Riverside-Annex"}}
+{"actor": "priyanka.iyer", "action": "workorder.escalated", "outcome": "escalated", "metadata": {"ticket_id": "WO-9002", "site": "HQ-Tower", "room": "Parking-Garage"}}
+{"actor": "svc-facilities-scheduler", "action": "badge.issued", "outcome": "success", "metadata": {"employee_id": "EMP-6650", "site": "Riverside-Annex"}}
+{"actor": "connor.oreilly", "action": "badge.revoked", "outcome": "success", "metadata": {"employee_id": "EMP-6210", "site": "Riverside-Annex"}}
+{"actor": "mei.lin", "action": "visitor.checked_in", "outcome": "success", "metadata": {"site": "Riverside-Annex", "room": "Lobby"}}
+{"actor": "gabriel.santos", "action": "visitor.checked_out", "outcome": "success", "metadata": {"site": "Riverside-Annex", "room": "Lobby"}}
+{"actor": "astrid.johansen", "action": "maintenance.scheduled", "outcome": "success", "metadata": {"equipment_id": "ELEV-02", "site": "Riverside-Annex", "room": "Lobby"}}
+{"actor": "hannah.brooks", "action": "incident.reported", "outcome": "success", "metadata": {"site": "Riverside-Annex", "room": "2A-Kitchen", "ticket_id": "WO-9004"}}
+{"actor": "tunde.adeyemi", "action": "hvac.adjusted", "outcome": "success", "metadata": {"equipment_id": "HVAC-11", "site": "Riverside-Annex", "room": "2A-Kitchen"}}
+{"actor": "sylvie.laurent", "action": "access.granted", "outcome": "success", "metadata": {"employee_id": "EMP-6650", "room": "Server-Room-2", "site": "Riverside-Annex"}}
+{"actor": "marco.esposito", "action": "access.denied", "outcome": "denied", "metadata": {"employee_id": "EMP-6210", "room": "Server-Room-2", "site": "Riverside-Annex"}}
+{"actor": "priyanka.iyer", "action": "workorder.created", "outcome": "success", "metadata": {"ticket_id": "WO-9005", "site": "West-Campus", "room": "Loading-Dock"}}
+{"actor": "svc-facilities-scheduler", "action": "workorder.completed", "outcome": "success", "metadata": {"ticket_id": "WO-8988", "technician_id": "TECH-03", "site": "West-Campus"}}
+{"actor": "connor.oreilly", "action": "workorder.escalated", "outcome": "escalated", "metadata": {"ticket_id": "WO-9004", "site": "Riverside-Annex", "room": "2A-Kitchen"}}
+{"actor": "mei.lin", "action": "badge.issued", "outcome": "success", "metadata": {"employee_id": "EMP-6702", "site": "West-Campus"}}
+{"actor": "gabriel.santos", "action": "badge.revoked", "outcome": "success", "metadata": {"employee_id": "EMP-6055", "site": "West-Campus"}}
+{"actor": "astrid.johansen", "action": "visitor.checked_in", "outcome": "success", "metadata": {"site": "West-Campus", "room": "Lobby"}}
+{"actor": "hannah.brooks", "action": "visitor.checked_out", "outcome": "success", "metadata": {"site": "West-Campus", "room": "Lobby"}}
+{"actor": "tunde.adeyemi", "action": "maintenance.scheduled", "outcome": "success", "metadata": {"equipment_id": "GEN-01", "site": "West-Campus", "room": "Generator-Room"}}
+{"actor": "sylvie.laurent", "action": "incident.reported", "outcome": "success", "metadata": {"site": "West-Campus", "room": "Loading-Dock", "ticket_id": "WO-9005"}}
+{"actor": "marco.esposito", "action": "hvac.adjusted", "outcome": "success", "metadata": {"equipment_id": "HVAC-22", "site": "West-Campus", "room": "Open-Office-2F"}}
+{"actor": "priyanka.iyer", "action": "access.granted", "outcome": "success", "metadata": {"employee_id": "EMP-6702", "room": "Generator-Room", "site": "West-Campus"}}
+{"actor": "svc-facilities-scheduler", "action": "access.denied", "outcome": "denied", "metadata": {"employee_id": "EMP-6055", "room": "Generator-Room", "site": "West-Campus"}}
+{"actor": "connor.oreilly", "action": "workorder.created", "outcome": "success", "metadata": {"ticket_id": "WO-9006", "site": "HQ-Tower", "room": "4F-Restroom"}}
+{"actor": "mei.lin", "action": "workorder.completed", "outcome": "success", "metadata": {"ticket_id": "WO-9003", "technician_id": "TECH-07", "site": "Riverside-Annex"}}
+{"actor": "gabriel.santos", "action": "workorder.escalated", "outcome": "escalated", "metadata": {"ticket_id": "WO-9005", "site": "West-Campus", "room": "Loading-Dock"}}
+{"actor": "astrid.johansen", "action": "badge.issued", "outcome": "success", "metadata": {"employee_id": "EMP-6720", "site": "HQ-Tower"}}
+{"actor": "hannah.brooks", "action": "badge.revoked", "outcome": "success", "metadata": {"employee_id": "EMP-6118", "site": "HQ-Tower"}}
+{"actor": "tunde.adeyemi", "action": "visitor.checked_in", "outcome": "success", "metadata": {"site": "HQ-Tower", "room": "Lobby"}}
+{"actor": "sylvie.laurent", "action": "visitor.checked_out", "outcome": "success", "metadata": {"site": "HQ-Tower", "room": "Lobby"}}
+{"actor": "marco.esposito", "action": "maintenance.scheduled", "outcome": "success", "metadata": {"equipment_id": "ELEV-01", "site": "HQ-Tower", "room": "Lobby"}}
+{"actor": "priyanka.iyer", "action": "incident.reported", "outcome": "success", "metadata": {"site": "HQ-Tower", "room": "4F-Restroom", "ticket_id": "WO-9006"}}
+{"actor": "svc-facilities-scheduler", "action": "hvac.adjusted", "outcome": "success", "metadata": {"equipment_id": "HVAC-04", "site": "HQ-Tower", "room": "Server-Room-1"}}
+{"actor": "connor.oreilly", "action": "access.granted", "outcome": "success", "metadata": {"employee_id": "EMP-6720", "room": "Server-Room-1", "site": "HQ-Tower"}}
+{"actor": "mei.lin", "action": "access.denied", "outcome": "denied", "metadata": {"employee_id": "EMP-6118", "room": "Server-Room-1", "site": "HQ-Tower"}}
+{"actor": "gabriel.santos", "action": "workorder.created", "outcome": "success", "metadata": {"ticket_id": "WO-9007", "site": "Riverside-Annex", "room": "Server-Room-2"}}
+{"actor": "astrid.johansen", "action": "workorder.completed", "outcome": "success", "metadata": {"ticket_id": "WO-9006", "technician_id": "TECH-11", "site": "HQ-Tower"}}
+{"actor": "hannah.brooks", "action": "workorder.escalated", "outcome": "escalated", "metadata": {"ticket_id": "WO-9007", "site": "Riverside-Annex", "room": "Server-Room-2"}}
+{"actor": "tunde.adeyemi", "action": "badge.issued", "outcome": "success", "metadata": {"employee_id": "EMP-6741", "site": "Riverside-Annex"}}
+{"actor": "sylvie.laurent", "action": "badge.revoked", "outcome": "success", "metadata": {"employee_id": "EMP-6033", "site": "Riverside-Annex"}}
+{"actor": "marco.esposito", "action": "visitor.checked_in", "outcome": "success", "metadata": {"site": "Riverside-Annex", "room": "Lobby"}}
+{"actor": "priyanka.iyer", "action": "visitor.checked_out", "outcome": "success", "metadata": {"site": "Riverside-Annex", "room": "Lobby"}}
+{"actor": "svc-facilities-scheduler", "action": "maintenance.scheduled", "outcome": "success", "metadata": {"equipment_id": "HVAC-11", "site": "Riverside-Annex", "room": "2A-Kitchen"}}
+{"actor": "connor.oreilly", "action": "incident.reported", "outcome": "success", "metadata": {"site": "Riverside-Annex", "room": "Server-Room-2", "ticket_id": "WO-9007"}}
+{"actor": "mei.lin", "action": "hvac.adjusted", "outcome": "success", "metadata": {"equipment_id": "HVAC-11", "site": "Riverside-Annex", "room": "2A-Kitchen"}}
+{"actor": "gabriel.santos", "action": "access.granted", "outcome": "success", "metadata": {"employee_id": "EMP-6741", "room": "Server-Room-2", "site": "Riverside-Annex"}}
+{"actor": "astrid.johansen", "action": "access.denied", "outcome": "denied", "metadata": {"employee_id": "EMP-6033", "room": "Server-Room-2", "site": "Riverside-Annex"}}
+{"actor": "hannah.brooks", "action": "workorder.created", "outcome": "success", "metadata": {"ticket_id": "WO-9008", "site": "West-Campus", "room": "Open-Office-2F"}}
+{"actor": "tunde.adeyemi", "action": "workorder.completed", "outcome": "success", "metadata": {"ticket_id": "WO-9005", "technician_id": "TECH-03", "site": "West-Campus"}}
+{"actor": "sylvie.laurent", "action": "workorder.escalated", "outcome": "escalated", "metadata": {"ticket_id": "WO-9008", "site": "West-Campus", "room": "Open-Office-2F"}}
+{"actor": "marco.esposito", "action": "badge.issued", "outcome": "success", "metadata": {"employee_id": "EMP-6780", "site": "West-Campus"}}
+{"actor": "priyanka.iyer", "action": "badge.revoked", "outcome": "success", "metadata": {"employee_id": "EMP-6099", "site": "West-Campus"}}
+{"actor": "svc-facilities-scheduler", "action": "visitor.checked_in", "outcome": "success", "metadata": {"site": "West-Campus", "room": "Lobby"}}
+{"actor": "connor.oreilly", "action": "visitor.checked_out", "outcome": "success", "metadata": {"site": "West-Campus", "room": "Lobby"}}
+{"actor": "mei.lin", "action": "maintenance.scheduled", "outcome": "success", "metadata": {"equipment_id": "GEN-01", "site": "West-Campus", "room": "Generator-Room"}}
+{"actor": "gabriel.santos", "action": "incident.reported", "outcome": "success", "metadata": {"site": "West-Campus", "room": "Open-Office-2F", "ticket_id": "WO-9008"}}
+{"actor": "astrid.johansen", "action": "hvac.adjusted", "outcome": "success", "metadata": {"equipment_id": "HVAC-22", "site": "West-Campus", "room": "Open-Office-2F"}}
+{"actor": "hannah.brooks", "action": "access.granted", "outcome": "success", "metadata": {"employee_id": "EMP-6780", "room": "Generator-Room", "site": "West-Campus"}}
+{"actor": "tunde.adeyemi", "action": "access.denied", "outcome": "denied", "metadata": {"employee_id": "EMP-6099", "room": "Generator-Room", "site": "West-Campus"}}
+{"actor": "sylvie.laurent", "action": "workorder.created", "outcome": "success", "metadata": {"ticket_id": "WO-9009", "site": "HQ-Tower", "room": "5F-Break-Room"}}
+{"actor": "marco.esposito", "action": "workorder.completed", "outcome": "success", "metadata": {"ticket_id": "WO-9007", "technician_id": "TECH-11", "site": "Riverside-Annex"}}
+{"actor": "priyanka.iyer", "action": "workorder.escalated", "outcome": "escalated", "metadata": {"ticket_id": "WO-9009", "site": "HQ-Tower", "room": "5F-Break-Room"}}
+{"actor": "svc-facilities-scheduler", "action": "badge.issued", "outcome": "success", "metadata": {"employee_id": "EMP-6811", "site": "HQ-Tower"}}
+{"actor": "connor.oreilly", "action": "badge.revoked", "outcome": "success", "metadata": {"employee_id": "EMP-6144", "site": "HQ-Tower"}}
+{"actor": "mei.lin", "action": "visitor.checked_in", "outcome": "success", "metadata": {"site": "HQ-Tower", "room": "Lobby"}}
+{"actor": "gabriel.santos", "action": "visitor.checked_out", "outcome": "success", "metadata": {"site": "HQ-Tower", "room": "Lobby"}}
+{"actor": "astrid.johansen", "action": "maintenance.scheduled", "outcome": "success", "metadata": {"equipment_id": "ELEV-01", "site": "HQ-Tower", "room": "Lobby"}}
+{"actor": "hannah.brooks", "action": "incident.reported", "outcome": "success", "metadata": {"site": "HQ-Tower", "room": "5F-Break-Room", "ticket_id": "WO-9009"}}
+{"actor": "tunde.adeyemi", "action": "hvac.adjusted", "outcome": "success", "metadata": {"equipment_id": "HVAC-04", "site": "HQ-Tower", "room": "Server-Room-1"}}
+{"actor": "sylvie.laurent", "action": "access.granted", "outcome": "success", "metadata": {"employee_id": "EMP-6811", "room": "Server-Room-1", "site": "HQ-Tower"}}
+{"actor": "marco.esposito", "action": "access.denied", "outcome": "denied", "metadata": {"employee_id": "EMP-6144", "room": "Server-Room-1", "site": "HQ-Tower"}}
+{"actor": "priyanka.iyer", "action": "workorder.created", "outcome": "success", "metadata": {"ticket_id": "WO-9010", "site": "Riverside-Annex", "room": "1A-Storage"}}
+{"actor": "svc-facilities-scheduler", "action": "workorder.completed", "outcome": "success", "metadata": {"ticket_id": "WO-9009", "technician_id": "TECH-07", "site": "HQ-Tower"}}
+{"actor": "connor.oreilly", "action": "workorder.escalated", "outcome": "escalated", "metadata": {"ticket_id": "WO-9010", "site": "Riverside-Annex", "room": "1A-Storage"}}
+{"actor": "mei.lin", "action": "badge.issued", "outcome": "success", "metadata": {"employee_id": "EMP-6850", "site": "Riverside-Annex"}}
+{"actor": "gabriel.santos", "action": "badge.revoked", "outcome": "success", "metadata": {"employee_id": "EMP-6200", "site": "Riverside-Annex"}}
+{"actor": "astrid.johansen", "action": "visitor.checked_in", "outcome": "success", "metadata": {"site": "Riverside-Annex", "room": "Lobby"}}
+{"actor": "hannah.brooks", "action": "visitor.checked_out", "outcome": "success", "metadata": {"site": "Riverside-Annex", "room": "Lobby"}}
+{"actor": "tunde.adeyemi", "action": "maintenance.scheduled", "outcome": "success", "metadata": {"equipment_id": "HVAC-11", "site": "Riverside-Annex", "room": "2A-Kitchen"}}
+{"actor": "sylvie.laurent", "action": "incident.reported", "outcome": "success", "metadata": {"site": "Riverside-Annex", "room": "1A-Storage", "ticket_id": "WO-9010"}}
+{"actor": "marco.esposito", "action": "hvac.adjusted", "outcome": "success", "metadata": {"equipment_id": "HVAC-11", "site": "Riverside-Annex", "room": "2A-Kitchen"}}
+{"actor": "priyanka.iyer", "action": "access.granted", "outcome": "success", "metadata": {"employee_id": "EMP-6850", "room": "1A-Storage", "site": "Riverside-Annex"}}
+{"actor": "svc-facilities-scheduler", "action": "access.denied", "outcome": "denied", "metadata": {"employee_id": "EMP-6200", "room": "1A-Storage", "site": "Riverside-Annex"}}
+{"actor": "connor.oreilly", "action": "workorder.created", "outcome": "success", "metadata": {"ticket_id": "WO-9011", "site": "West-Campus", "room": "Cafeteria"}}
+{"actor": "mei.lin", "action": "workorder.completed", "outcome": "success", "metadata": {"ticket_id": "WO-9008", "technician_id": "TECH-03", "site": "West-Campus"}}
+{"actor": "gabriel.santos", "action": "workorder.escalated", "outcome": "escalated", "metadata": {"ticket_id": "WO-9011", "site": "West-Campus", "room": "Cafeteria"}}
+{"actor": "astrid.johansen", "action": "badge.issued", "outcome": "success", "metadata": {"employee_id": "EMP-6890", "site": "West-Campus"}}
+{"actor": "hannah.brooks", "action": "badge.revoked", "outcome": "success", "metadata": {"employee_id": "EMP-6230", "site": "West-Campus"}}
+{"actor": "tunde.adeyemi", "action": "visitor.checked_in", "outcome": "success", "metadata": {"site": "West-Campus", "room": "Lobby"}}
+{"actor": "sylvie.laurent", "action": "visitor.checked_out", "outcome": "success", "metadata": {"site": "West-Campus", "room": "Lobby"}}
+{"actor": "marco.esposito", "action": "maintenance.scheduled", "outcome": "success", "metadata": {"equipment_id": "GEN-01", "site": "West-Campus", "room": "Generator-Room"}}
+{"actor": "priyanka.iyer", "action": "incident.reported", "outcome": "success", "metadata": {"site": "West-Campus", "room": "Cafeteria", "ticket_id": "WO-9011"}}
+{"actor": "svc-facilities-scheduler", "action": "hvac.adjusted", "outcome": "success", "metadata": {"equipment_id": "HVAC-22", "site": "West-Campus", "room": "Open-Office-2F"}}
+{"actor": "connor.oreilly", "action": "access.granted", "outcome": "success", "metadata": {"employee_id": "EMP-6890", "room": "Generator-Room", "site": "West-Campus"}}
+{"actor": "mei.lin", "action": "access.denied", "outcome": "denied", "metadata": {"employee_id": "EMP-6230", "room": "Generator-Room", "site": "West-Campus"}}
+{"actor": "gabriel.santos", "action": "workorder.created", "outcome": "success", "metadata": {"ticket_id": "WO-9012", "site": "HQ-Tower", "room": "Data-Closet-B"}}
+{"actor": "astrid.johansen", "action": "workorder.completed", "outcome": "success", "metadata": {"ticket_id": "WO-9010", "technician_id": "TECH-07", "site": "Riverside-Annex"}}
+{"actor": "hannah.brooks", "action": "workorder.escalated", "outcome": "escalated", "metadata": {"ticket_id": "WO-9012", "site": "HQ-Tower", "room": "Data-Closet-B"}}
+{"actor": "tunde.adeyemi", "action": "badge.issued", "outcome": "success", "metadata": {"employee_id": "EMP-6920", "site": "HQ-Tower"}}
+{"actor": "sylvie.laurent", "action": "badge.revoked", "outcome": "success", "metadata": {"employee_id": "EMP-6260", "site": "HQ-Tower"}}
+{"actor": "marco.esposito", "action": "visitor.checked_in", "outcome": "success", "metadata": {"site": "HQ-Tower", "room": "Lobby"}}
+{"actor": "priyanka.iyer", "action": "visitor.checked_out", "outcome": "success", "metadata": {"site": "HQ-Tower", "room": "Lobby"}}
+{"actor": "svc-facilities-scheduler", "action": "maintenance.scheduled", "outcome": "success", "metadata": {"equipment_id": "HVAC-04", "site": "HQ-Tower", "room": "Data-Closet-B"}}
+{"actor": "connor.oreilly", "action": "incident.reported", "outcome": "success", "metadata": {"site": "HQ-Tower", "room": "Data-Closet-B", "ticket_id": "WO-9012"}}
+{"actor": "mei.lin", "action": "hvac.adjusted", "outcome": "failed", "metadata": {"equipment_id": "HVAC-04", "site": "HQ-Tower", "room": "Data-Closet-B"}}
+{"actor": "gabriel.santos", "action": "access.granted", "outcome": "success", "metadata": {"employee_id": "EMP-6920", "room": "Data-Closet-B", "site": "HQ-Tower"}}
+{"actor": "astrid.johansen", "action": "access.denied", "outcome": "denied", "metadata": {"employee_id": "EMP-6260", "room": "Data-Closet-B", "site": "HQ-Tower"}}

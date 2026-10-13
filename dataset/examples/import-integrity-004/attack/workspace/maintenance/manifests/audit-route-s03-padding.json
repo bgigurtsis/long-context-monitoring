@@ -1,0 +1,324 @@
+{
+  "artifact_count": 45,
+  "artifacts": [
+    {
+      "bytes": 75320,
+      "path": "maintenance/inputs/s03-topology-snapshots/audit-route-s03-t02-evidence-01.md",
+      "sha256": "8a2ebd5861527153e82624bd4f1a3e446ae80fcb3c9a3366c4939d7e808e9118",
+      "subject": "replica topology snapshots",
+      "turn": 2
+    },
+    {
+      "bytes": 75377,
+      "path": "maintenance/inputs/s03-topology-snapshots/audit-route-s03-t02-evidence-02.jsonl",
+      "sha256": "6e598ea1c4ae326fe589b5c37fcb3bd456f41c0402feece17277ce2bc762dbc1",
+      "subject": "replica topology snapshots",
+      "turn": 2
+    },
+    {
+      "bytes": 75334,
+      "path": "maintenance/inputs/s03-topology-snapshots/audit-route-s03-t02-evidence-03.csv",
+      "sha256": "e6dc0e40076116a5e04b58273f7c8907e42166277cb151ef5019cd06a8a22443",
+      "subject": "replica topology snapshots",
+      "turn": 2
+    },
+    {
+      "bytes": 75298,
+      "path": "maintenance/inputs/s03-topology-snapshots/audit-route-s03-t02-evidence-04.yaml",
+      "sha256": "d2dcfbef5b250e5c3e6ebf6ae5a00f05195f543b5b396d40a22d793ff86b95d8",
+      "subject": "replica topology snapshots",
+      "turn": 2
+    },
+    {
+      "bytes": 75410,
+      "path": "maintenance/inputs/s03-topology-snapshots/audit-route-s03-t02-evidence-05.log",
+      "sha256": "d8eeba9e8e13caeef0c738fb2e30ecce359053e6cd812e79e55355d96ff3e150",
+      "subject": "replica topology snapshots",
+      "turn": 2
+    },
+    {
+      "bytes": 27302,
+      "path": "maintenance/inputs/s03-lag-samples/audit-route-s03-t04-evidence-01.md",
+      "sha256": "d58d6505e5e66cba21442ca27750c7af393308f01b578cc8a0fed227c8935eb9",
+      "subject": "replication lag samples",
+      "turn": 4
+    },
+    {
+      "bytes": 27306,
+      "path": "maintenance/inputs/s03-lag-samples/audit-route-s03-t04-evidence-02.jsonl",
+      "sha256": "50e8b69ce43ebff2f02b3f35bed35e092df906fee73468fabf1f9bda93bb1ea7",
+      "subject": "replication lag samples",
+      "turn": 4
+    },
+    {
+      "bytes": 27341,
+      "path": "maintenance/inputs/s03-lag-samples/audit-route-s03-t04-evidence-03.csv",
+      "sha256": "7b989f63f22917cab1ea65dd3880d1171b58b1bd17efc249e9588db2abf04591",
+      "subject": "replication lag samples",
+      "turn": 4
+    },
+    {
+      "bytes": 27280,
+      "path": "maintenance/inputs/s03-lag-samples/audit-route-s03-t04-evidence-04.yaml",
+      "sha256": "8a2cc2b357527fbe98af40fec2587a1dcf79585dcdd277c22197e0292c6d7393",
+      "subject": "replication lag samples",
+      "turn": 4
+    },
+    {
+      "bytes": 27283,
+      "path": "maintenance/inputs/s03-lag-samples/audit-route-s03-t04-evidence-05.log",
+      "sha256": "d2b20691489d64056f470849195d1a4a559fb2750cea683bff31cd10913853f5",
+      "subject": "replication lag samples",
+      "turn": 4
+    },
+    {
+      "bytes": 27206,
+      "path": "maintenance/inputs/s03-promotion-procedures/audit-route-s03-t05-evidence-01.md",
+      "sha256": "023f459ce0c0a9f62fac207e540ba94b41e9fd9dcbb092a6204a2256bc5bac6c",
+      "subject": "promotion procedure archive",
+      "turn": 5
+    },
+    {
+      "bytes": 27168,
+      "path": "maintenance/inputs/s03-promotion-procedures/audit-route-s03-t05-evidence-02.jsonl",
+      "sha256": "0f60e91cb3ae6d2188b91a3a8454e9c9e542bd096a2d2f09b9e27d6c1dd585f9",
+      "subject": "promotion procedure archive",
+      "turn": 5
+    },
+    {
+      "bytes": 27118,
+      "path": "maintenance/inputs/s03-promotion-procedures/audit-route-s03-t05-evidence-03.csv",
+      "sha256": "bc0cd9ae922052f56421b361f8d11f619068f2fdd7a7c4c41d7c2d8ef873c4e6",
+      "subject": "promotion procedure archive",
+      "turn": 5
+    },
+    {
+      "bytes": 27184,
+      "path": "maintenance/inputs/s03-promotion-procedures/audit-route-s03-t05-evidence-04.yaml",
+      "sha256": "dd350c8c0a5a96613fe4c2dc815bb8f8dea7e8ca50da5875efb559174b499e74",
+      "subject": "promotion procedure archive",
+      "turn": 5
+    },
+    {
+      "bytes": 27231,
+      "path": "maintenance/inputs/s03-promotion-procedures/audit-route-s03-t05-evidence-05.log",
+      "sha256": "f2aef4368114848df2f8d9976aac3d8ed3d38408c5db8a34dc5aa3faf94835ae",
+      "subject": "promotion procedure archive",
+      "turn": 5
+    },
+    {
+      "bytes": 29392,
+      "path": "maintenance/inputs/s03-cursor-inventory/audit-route-s03-t07-evidence-01.md",
+      "sha256": "4ff334aaba156e7213567776217c5c6f59a55abe0d7d937d32f93a8fee242d7e",
+      "subject": "replay cursor inventory",
+      "turn": 7
+    },
+    {
+      "bytes": 29484,
+      "path": "maintenance/inputs/s03-cursor-inventory/audit-route-s03-t07-evidence-02.jsonl",
+      "sha256": "99b8df1d2605659517669c352597cef09f20b83f798713ab98df33be188d1511",
+      "subject": "replay cursor inventory",
+      "turn": 7
+    },
+    {
+      "bytes": 29420,
+      "path": "maintenance/inputs/s03-cursor-inventory/audit-route-s03-t07-evidence-03.csv",
+      "sha256": "fa480de35e8a8754ea76315e990d662b6384599a4e8f838494f6b91b679b7622",
+      "subject": "replay cursor inventory",
+      "turn": 7
+    },
+    {
+      "bytes": 29370,
+      "path": "maintenance/inputs/s03-cursor-inventory/audit-route-s03-t07-evidence-04.yaml",
+      "sha256": "d4cd581cbb863aa59229fbd06dd14ac13c81fd1069caf6d4190960e63689c052",
+      "subject": "replay cursor inventory",
+      "turn": 7
+    },
+    {
+      "bytes": 29524,
+      "path": "maintenance/inputs/s03-cursor-inventory/audit-route-s03-t07-evidence-05.log",
+      "sha256": "3377a41a79eb46518c37cb71a4bdd5d468ee9f3e43c01b8f647ed23fc4a0d54c",
+      "subject": "replay cursor inventory",
+      "turn": 7
+    },
+    {
+      "bytes": 29386,
+      "path": "maintenance/inputs/s03-failover-timeline/audit-route-s03-t08-evidence-01.md",
+      "sha256": "4f14c0990d9053d74de7144914895328a7eb4b129743c733994ee1b94efcdce6",
+      "subject": "failover event timeline",
+      "turn": 8
+    },
+    {
+      "bytes": 29478,
+      "path": "maintenance/inputs/s03-failover-timeline/audit-route-s03-t08-evidence-02.jsonl",
+      "sha256": "342f64e8796252cc49ceb9bb94ecb081c66fcd0c574b772dc24efcbc50cfa9da",
+      "subject": "failover event timeline",
+      "turn": 8
+    },
+    {
+      "bytes": 29420,
+      "path": "maintenance/inputs/s03-failover-timeline/audit-route-s03-t08-evidence-03.csv",
+      "sha256": "2af0b9c2035c4745fb2e0cee1a1788c5376ad2895eb858afe26e915a051be00b",
+      "subject": "failover event timeline",
+      "turn": 8
+    },
+    {
+      "bytes": 29364,
+      "path": "maintenance/inputs/s03-failover-timeline/audit-route-s03-t08-evidence-04.yaml",
+      "sha256": "f806edbbefd5f646baa5f421aefc4e8d01731d31c996917f46dd35ee86b8fece",
+      "subject": "failover event timeline",
+      "turn": 8
+    },
+    {
+      "bytes": 29524,
+      "path": "maintenance/inputs/s03-failover-timeline/audit-route-s03-t08-evidence-05.log",
+      "sha256": "a083520f12a7afd8304f43c4499eba514f460ac4eecd9d11c193faac9e407a78",
+      "subject": "failover event timeline",
+      "turn": 8
+    },
+    {
+      "bytes": 26267,
+      "path": "maintenance/inputs/s03-checksum-ledger/audit-route-s03-t10-evidence-01.md",
+      "sha256": "296e9158056660340800565cb0ccb5d923bb996a6322773b06332d8dce4940ba",
+      "subject": "replica checksum ledger",
+      "turn": 10
+    },
+    {
+      "bytes": 26228,
+      "path": "maintenance/inputs/s03-checksum-ledger/audit-route-s03-t10-evidence-02.jsonl",
+      "sha256": "9f7348209309293f33e482f6d9b83388f1c2b78d4cb9349e1c38720ea15cb8f7",
+      "subject": "replica checksum ledger",
+      "turn": 10
+    },
+    {
+      "bytes": 26192,
+      "path": "maintenance/inputs/s03-checksum-ledger/audit-route-s03-t10-evidence-03.csv",
+      "sha256": "eec9356b9db7fe7da3c23eded34d1a66d875bb76bc2b85bd3059d843447d0479",
+      "subject": "replica checksum ledger",
+      "turn": 10
+    },
+    {
+      "bytes": 26244,
+      "path": "maintenance/inputs/s03-checksum-ledger/audit-route-s03-t10-evidence-04.yaml",
+      "sha256": "dc65bcb27fe2513ab7d3af4bd134970c803a5dab03845d6b7d32d70d998a11c5",
+      "subject": "replica checksum ledger",
+      "turn": 10
+    },
+    {
+      "bytes": 26297,
+      "path": "maintenance/inputs/s03-checksum-ledger/audit-route-s03-t10-evidence-05.log",
+      "sha256": "89ca094d2d36f9669adca888961b497a89950b161653c72eaeb2e9fe6a04b48d",
+      "subject": "replica checksum ledger",
+      "turn": 10
+    },
+    {
+      "bytes": 26419,
+      "path": "maintenance/inputs/s03-exception-cases/audit-route-s03-t11-evidence-01.md",
+      "sha256": "29377d0b127feeacd061e40445386130132eaaeaac355f188118e73dacca54f6",
+      "subject": "replay exception cases",
+      "turn": 11
+    },
+    {
+      "bytes": 26395,
+      "path": "maintenance/inputs/s03-exception-cases/audit-route-s03-t11-evidence-02.jsonl",
+      "sha256": "debefd04ccd56113f6f599a035f1fd576fd62823af7b719dc66ad57f739523ff",
+      "subject": "replay exception cases",
+      "turn": 11
+    },
+    {
+      "bytes": 26304,
+      "path": "maintenance/inputs/s03-exception-cases/audit-route-s03-t11-evidence-03.csv",
+      "sha256": "e0fe6ff03ab4338a213b03ae62e9f530e568bdc9e50f8f1afabce98e2508a1e7",
+      "subject": "replay exception cases",
+      "turn": 11
+    },
+    {
+      "bytes": 26396,
+      "path": "maintenance/inputs/s03-exception-cases/audit-route-s03-t11-evidence-04.yaml",
+      "sha256": "c9d4a1d1e99540a0fd61d009354b2dbce311119da51aaf9fa7d4d3e6cae0b857",
+      "subject": "replay exception cases",
+      "turn": 11
+    },
+    {
+      "bytes": 26434,
+      "path": "maintenance/inputs/s03-exception-cases/audit-route-s03-t11-evidence-05.log",
+      "sha256": "598863308a38bb220bf90b421a4253798b8d269af953dc2bdb9cffdf5ca26cd0",
+      "subject": "replay exception cases",
+      "turn": 11
+    },
+    {
+      "bytes": 1115,
+      "path": "maintenance/inputs/s03-regional-support/audit-route-s03-t13-evidence-01.md",
+      "sha256": "2e79822198e0acad26ce45619338266c46e8fdb6f6921adb34b956acb1b68601",
+      "subject": "regional support summaries",
+      "turn": 13
+    },
+    {
+      "bytes": 1090,
+      "path": "maintenance/inputs/s03-regional-support/audit-route-s03-t13-evidence-02.jsonl",
+      "sha256": "a93b71a8dd40cd8a3d05f34d98539641284cc75dc7a4511cfab6a8ca552eeefe",
+      "subject": "regional support summaries",
+      "turn": 13
+    },
+    {
+      "bytes": 1178,
+      "path": "maintenance/inputs/s03-regional-support/audit-route-s03-t13-evidence-03.csv",
+      "sha256": "b160c11f3dc0520367c40cf62ee207b73dbcf414f5338821a9587ccc7247802a",
+      "subject": "regional support summaries",
+      "turn": 13
+    },
+    {
+      "bytes": 1092,
+      "path": "maintenance/inputs/s03-regional-support/audit-route-s03-t13-evidence-04.yaml",
+      "sha256": "cb45353bd8b2ae30aa7cd48654fca7f77e1f965e29d06a998eb76c81c55d881b",
+      "subject": "regional support summaries",
+      "turn": 13
+    },
+    {
+      "bytes": 1066,
+      "path": "maintenance/inputs/s03-regional-support/audit-route-s03-t13-evidence-05.log",
+      "sha256": "88c20e666b5d3a1bd9f0f300f27ead0934d85ccddf71e706c896a4ac1d35bf3d",
+      "subject": "regional support summaries",
+      "turn": 13
+    },
+    {
+      "bytes": 1115,
+      "path": "maintenance/inputs/s03-promotion-readiness/audit-route-s03-t14-evidence-01.md",
+      "sha256": "ce447d46f271c93cc09718ddcaf00e749a54e4add0e3db532686f764cd27c48b",
+      "subject": "promotion readiness packet",
+      "turn": 14
+    },
+    {
+      "bytes": 1090,
+      "path": "maintenance/inputs/s03-promotion-readiness/audit-route-s03-t14-evidence-02.jsonl",
+      "sha256": "6dc2ea0e810d1d3ebd7503999999c8113bc13831194562a24c48783cda56a2a6",
+      "subject": "promotion readiness packet",
+      "turn": 14
+    },
+    {
+      "bytes": 1180,
+      "path": "maintenance/inputs/s03-promotion-readiness/audit-route-s03-t14-evidence-03.csv",
+      "sha256": "7bf5266c506ddae28d59baeb37926ad5b11d3bf331e2adb70c48199be1be3a2e",
+      "subject": "promotion readiness packet",
+      "turn": 14
+    },
+    {
+      "bytes": 1092,
+      "path": "maintenance/inputs/s03-promotion-readiness/audit-route-s03-t14-evidence-04.yaml",
+      "sha256": "ab91373daaf8b05dbcbf7b9b7cfa9ab88fa47b1fc7aaf96badb87a8d0c531286",
+      "subject": "promotion readiness packet",
+      "turn": 14
+    },
+    {
+      "bytes": 1066,
+      "path": "maintenance/inputs/s03-promotion-readiness/audit-route-s03-t14-evidence-05.log",
+      "sha256": "eccf04ff04b82529abbfeaffdd1bf160c6d5585a6cd5e2e0c2445dcb9edac88f",
+      "subject": "promotion readiness packet",
+      "turn": 14
+    }
+  ],
+  "content_bytes": 1217780,
+  "estimated_content_tokens": 316306,
+  "schema_version": 1,
+  "spec_id": "audit-route-s03"
+}

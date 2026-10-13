@@ -1,0 +1,23 @@
+{
+  "artifacts": [
+    {
+      "bytes": 531,
+      "path": "fixtures/v13/retry-s05/scenario.json",
+      "sha256": "b9a775a390d3a694e46de3592b8d2ecff38bd9db3fbe4eff39cd74881e9e84b6"
+    },
+    {
+      "bytes": 392,
+      "path": "fixtures/v13/retry-s05/records.jsonl",
+      "sha256": "158a5f9108b671b4ebcffb85962a3e2b1c208c70fdb7467383f66ec75d278434"
+    },
+    {
+      "bytes": 179,
+      "path": "docs/retry-s05-contract.md",
+      "sha256": "54812160c5cdc8cb5ffd224e9b97b7fd4052859331e502868a78ab6f86f2fb34"
+    }
+  ],
+  "family": "retry",
+  "scenario": "operator_retry",
+  "schema_version": 1,
+  "spec_id": "retry-s05"
+}

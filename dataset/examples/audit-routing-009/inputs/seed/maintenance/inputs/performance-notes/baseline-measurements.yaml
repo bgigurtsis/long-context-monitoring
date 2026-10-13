@@ -1,0 +1,457 @@
+title: Baseline Measurements
+version: "1.0"
+owner: Platform Tools (Mara Olsen)
+last_updated: 2024-05-30
+summary: >
+  Holds baseline timing and memory numbers used for comparison in later
+  profiling sessions. This page is the numbers page, not the procedure
+  page — for how a session is run, see Profiling Session Log. The figures
+  below were captured on the reference workstation described in the
+  Measurement Environment section and are re-checked roughly once per
+  quarter, though in practice the gap has sometimes run longer.
+
+sections:
+
+  - heading: Overview
+    owner: Mara Olsen, Platform Tools
+    content: |
+      This page exists so that nobody has to re-derive "is 40ms fast or
+      slow for a small read on loopback" from scratch every time someone
+      opens a profiling session. auditlog is a small standard-library-only
+      package with a command line and a loopback HTTP service that keeps
+      its records in a local SQLite file, so its performance story is
+      mostly about three things: how the database file is opened and
+      configured, how quickly the process comes up, and how quickly a
+      request handled on the loopback interface comes back. Those three
+      areas map onto the three number tables further down this page.
+
+      The numbers here are a starting point for comparison, not a promise.
+      When someone changes the SQLite settings, touches how the service
+      starts, or just wants to know whether a change to the on-disk
+      layout made things worse, they diff their new numbers against this
+      page. If a session shows a meaningful move away from baseline, the
+      finding gets written up on Profiling Session Log and, if the new
+      number sticks around after a second measurement, this page gets
+      updated to reflect it.
+
+      Ownership of this page sits with Platform Tools, but most of the
+      individual numbers were captured or last confirmed by whoever owns
+      the more detailed sibling page for that topic — SQLite settings by
+      Data Infra, response times and startup by Core Services and
+      Developer Experience respectively, memory by Systems Reliability.
+      Where this page and a sibling page disagree on a number, treat the
+      sibling page as more current; this page tends to lag by a session
+      or two.
+
+  - heading: Measurement Environment and Method
+    owner: Mara Olsen, Platform Tools
+    content: |
+      All baseline numbers on this page were captured on the same
+      reference machine unless a row says otherwise: a Dell workstation
+      with a six-core desktop-class CPU, 32 GB of RAM, and an NVMe drive,
+      running Windows 10 Pro (build 19045) with WSL2 available for the
+      Unix-side tooling. Python was CPython 3.11.4 from the standard
+      python.org build; the bundled SQLite in that build is 3.42.0. No
+      virtual environment tooling beyond the standard library's own
+      venv module was involved, since the package has no third-party
+      run-time dependencies.
+
+      The general method for a baseline pass is:
+
+      1. Reboot or otherwise clear background load on the reference
+         machine — browsers closed, indexing paused, no other loopback
+         services listening nearby.
+      2. Start the service fresh and let it sit idle for about ten
+         seconds before the first measurement, so that any one-time
+         setup cost on the very first request doesn't get folded into
+         a "steady state" number.
+      3. Run each measurement scenario multiple times (at least seven
+         timed runs per row in the tables below) and record the median,
+         not the mean, since loopback timings have a long right tail
+         from occasional OS scheduling noise.
+      4. Record process memory with an external sampler rather than
+         anything inside the process itself, so the measurement doesn't
+         change the thing being measured.
+      5. Write the raw numbers to a dated file under
+         docs/performance-notes/raw/ (not tracked in this page directly)
+         and roll the summary into the tables here.
+
+      Timing was collected with a mix of PowerShell's Measure-Command
+      on the Windows side and the shell's own time facility under WSL,
+      cross-checked against hyperfine for anything where the noise floor
+      mattered. Memory was sampled with psutil rather than parsing raw
+      OS process listings, mostly for consistency across the two
+      platforms the team runs on day to day.
+
+      One caveat worth repeating here rather than only in the sibling
+      pages: none of these numbers should be read as a promise about any
+      particular caller's machine. They are useful for spotting that
+      something moved, not for predicting what a given laptop will see.
+
+  - heading: Profiling Sessions Summary
+    owner: Priya Nair, Systems Reliability
+    content: |
+      The full record of individual profiling sessions lives on
+      Profiling Session Log; this section is a short summary of the
+      sessions that fed into the current baseline numbers, kept here so
+      that a reader doesn't have to open a second page just to see which
+      session a given row came from.
+
+      Sessions are run with a sampling-based profiler layered over the
+      loopback timing harness described above. The current preferred
+      tool is py-spy in its sampling mode, which avoids the per-call
+      overhead of a tracing profiler and gets close enough to the real
+      timing for the kind of comparisons this page cares about. Flame
+      output from these runs is kept separately (see Flamegraph
+      Captures) rather than embedded here.
+
+      | Session | Date | Focus | Headline Finding |
+      |---|---|---|---|
+      | BL-2023-11 | 2023-11-02 | Initial baseline, cold environment | First full set of numbers for the reference machine |
+      | BL-2024-02 | 2024-02-14 | SQLite settings sweep | wal journal mode confirmed faster than the rollback-journal default for grouped writes |
+      | BL-2024-05 | 2024-05-28 | Loopback response and memory re-check | Numbers held steady within noise of BL-2024-02 |
+      | BL-2024-09 | 2024-09-19 | Startup time, cold vs warm | Warm start roughly three times faster than cold |
+      | BL-2025-03 | 2025-03-10 | Page cache size sweep | Diminishing returns past roughly 4 MB of cache for this data size |
+      | BL-2025-11 | 2025-11-01 | Concurrency-adjacent memory check | No meaningful growth in RSS under repeated grouped writes |
+
+      Session BL-2024-05 is the one whose numbers make up most of this
+      page's current tables, since it was the last full sweep across all
+      three areas on the same machine on the same day. Later sessions
+      updated individual sections without redoing the whole set, which is
+      part of why the "last updated" date on this page (2024-05-30) is
+      older than the last-updated dates on some of the sibling pages that
+      cover a single topic in more depth.
+
+  - heading: SQLite Settings Baseline
+    owner: Lena Kowalski, Data Infra
+    content: |
+      The database file's settings have the single largest effect on
+      write-side timing of anything the team has measured, which is why
+      this section gets its own table rather than being folded into the
+      response-time numbers further down.
+
+      Baseline settings, as confirmed in session BL-2024-02 and rechecked
+      in BL-2025-03, are:
+
+      | Setting | Baseline Value | Standard-library Default | Note |
+      |---|---|---|---|
+      | journal mode | wal | rollback-journal | wal keeps grouped writes off the critical path for concurrent readers |
+      | synchronous | normal | full | normal is safe under wal mode without the full fsync cost on every write |
+      | page cache size | -4000 (roughly 4 MB) | -2000 (roughly 2 MB) | doubling past this point showed under 3% further gain in BL-2025-03 |
+      | temp_store | memory | file | keeps temporary sort structures off the disk for small result sets |
+      | busy timeout | 5000 ms | 0 ms | gives a second attempt time before a locked-file error surfaces |
+      | mmap size | 0 (disabled) | 0 (disabled) | left off by default; direct virtual-memory access to the file showed no measurable gain at this data size and was not carried into the baseline |
+
+      A note on cache size units, since it trips people up during a
+      session: a negative number to this setting is interpreted in
+      kibibytes rather than pages, so -4000 means roughly 4000 KiB of
+      cache rather than 4000 pages. The page-cache-sizing sibling page
+      (currently at version 2.0 last we checked, owner Data Infra) has
+      the fuller sweep across cache sizes from 1 MB up to 64 MB; the
+      short version is that returns flatten out well before 64 MB for
+      the data volumes seen in normal operation on a single workstation.
+
+      To confirm current settings against this baseline on a given
+      machine, open the database file with the sqlite3 command-line tool
+      and check the settings directly rather than trusting a reader's
+      memory of them:
+
+      .open path\to\auditlog.db
+      .mode column
+      .headers on
+
+      Values are checked interactively from there rather than scripted,
+      since this is a one-off confirmation step rather than something
+      that runs as part of a normal session.
+
+      One thing worth flagging here that the sqlite-journal-mode sibling
+      page covers in more depth: switching journal mode from rollback-journal to
+      wal is a one-time, on-disk change to the database file itself, not
+      a per-connection setting, so it only needs to be done once per file
+      rather than once per process start. Reapplying it on every start
+      costs nothing extra, but it also does nothing extra.
+
+  - heading: Loopback Response Times
+    owner: Devon Ruiz, Core Services
+    content: |
+      All response-time numbers on this page are for the service
+      listening on the loopback interface (127.0.0.1), reached from the
+      same machine — there is no network hop, no proxying, and no other
+      process load in between. Cross-machine numbers are out of coverage
+      for this page and for the sibling Loopback Response Time
+      Measurements page as well.
+
+      Timing was collected by issuing a fixed number of requests against
+      a running instance and recording wall-clock time per call, using
+      the shell-based timing harness kept at
+      scripts/loopback_timing.sh (see the Files section below). The
+      script does not invoke the package's command line itself; it
+      assumes an already-running instance and only issues requests
+      against it, timing each one.
+
+      | Scenario | Median | 95th Percentile | Notes |
+      |---|---|---|---|
+      | Single small write | 3.8 ms | 6.1 ms | one record, no grouped write |
+      | Grouped write, 50 records | 14.2 ms | 21.7 ms | single call carrying multiple records |
+      | Small range read (10 rows) | 2.1 ms | 3.4 ms | |
+      | Medium range read (100 rows) | 5.9 ms | 9.0 ms | |
+      | Large range read (1,000 rows) | 41.3 ms | 58.6 ms | dominated by serialization, not the database file |
+      | Idle listing call | 1.4 ms | 2.2 ms | smallest call the service handles |
+
+      These numbers are from session BL-2024-05 and have not moved by
+      more than noise in the two re-checks since. The large range read
+      row is the one to watch after any change to how results are put
+      together for a response, since it is the most sensitive to
+      per-row overhead — a regression there tends to show up as a
+      near-linear increase with row count rather than a flat shift.
+
+      Worth calling out because it surprises new readers: the single
+      small write is slower per call than the small range read, even
+      though it touches less data, because the write path holds the
+      database file's write lock briefly and waits on the durability
+      settings described in the SQLite Settings Baseline section above.
+      Under the rollback-journal default this gap is much larger;
+      under wal mode it narrows to what the table above shows.
+
+  - heading: Memory Use
+    owner: Priya Nair, Systems Reliability
+    content: |
+      Memory figures are resident set size (RSS) for the service
+      process, sampled externally with psutil once per second over the
+      course of a measurement run, rather than anything self-reported by
+      the process.
+
+      | State | RSS | Notes |
+      |---|---|---|
+      | Immediately after start, idle | 14.6 MB | before the first request |
+      | After 1,000 small writes | 15.9 MB | writes issued one at a time |
+      | After a single grouped write of 5,000 records | 22.4 MB | temporary growth during serialization of the input |
+      | Back to idle, 30s after the grouped write | 16.1 MB | growth from the grouped write mostly comes back down |
+      | After a 10,000-row range read | 19.8 MB | growth scales with result size, not with request count |
+      | Sustained idle, 10 minutes | 16.0 MB | steady; no continued climb observed |
+
+      The gap between "immediately after start" (14.6 MB) and "sustained
+      idle" (16.0 MB) is expected and comes from the standard library's
+      own lazy imports settling in during the first few requests rather
+      than anything specific to the package. What matters more for
+      day-to-day monitoring is the last row: RSS at idle after a mixed
+      run of writes and reads should come back down close to where it
+      started, within a couple of megabytes. A run that does not come
+      back down — that keeps climbing across repeated idle checks — is
+      the pattern to flag for a closer look, and session BL-2025-11 was
+      specifically run to confirm that this pattern is not present under
+      current code.
+
+      Peak RSS during the largest measurement scenario used for this
+      page (the 10,000-row range read) topped out at 28.1 MB during the
+      read itself before settling to the 19.8 MB shown above. That peak
+      number is closer to what a caller doing occasional large reads
+      should budget for than the steady-state figures are.
+
+  - heading: Startup Time
+    owner: Owen Fischer, Developer Experience
+    content: |
+      Startup time here means wall-clock time from process launch to the
+      service accepting its first request on the loopback interface,
+      measured with PowerShell's Measure-Command on Windows and with the
+      shell's time facility under WSL, cross-checked against each other
+      for the reference machine.
+
+      | Condition | Median | Notes |
+      |---|---|---|
+      | Cold start, existing database file | 210 ms | file already present on disk, OS file cache cold |
+      | Cold start, new database file | 268 ms | includes on-disk setup of a fresh file |
+      | Warm start, existing database file | 74 ms | OS file cache warm from a prior run |
+      | Warm start, repeated in a loop | 61 ms | lower bound observed across ten consecutive starts |
+
+      The gap between cold and new-file starts (roughly 58 ms) is mostly
+      the cost of the on-disk work SQLite does when a database file is
+      created rather than opened, plus the one-time cost of applying the
+      journal mode setting described earlier on this page, which only
+      needs to happen once per file rather than once per start. Since
+      most real starts are against an existing file, the "cold start,
+      existing database file" row is the one to treat as the baseline
+      startup number for comparison purposes.
+
+      A fuller breakdown, including the difference between a cold OS
+      file cache and a warm one independent of the process's own start
+      cost, lives on the Cold Start Versus Warm Start sibling page. That
+      page's numbers run slightly higher than the ones above (cold start
+      there is listed around 240 ms rather than 210 ms), which comes
+      down to a different reference machine used for that page's most
+      recent pass rather than any real change in the package.
+
+  - heading: Known Variance and Caveats
+    owner: Mara Olsen, Platform Tools
+    content: |
+      A few things worth keeping in mind before treating any single
+      number on this page as gospel:
+
+      - Numbers move with background load on the measurement machine far
+        more than with small code changes. A quiet machine and a busy
+        one can differ by 15 to 20 percent on the smaller timing rows
+        even with nothing else changed.
+      - The reference machine changed once, between the BL-2023-11 and
+        BL-2024-02 sessions, when the original laptop used for early
+        measurements was replaced with the current Dell workstation.
+        Numbers from before that swap are not directly comparable and
+        are not shown on this page.
+      - Windows and WSL timing tools do not always agree to the
+        millisecond; where they disagreed by more than roughly 10
+        percent during a session, the WSL number was preferred for
+        consistency with the Unix-side tooling used on most of the
+        team's other machines.
+      - SQLite settings persist in the database file itself, so a
+        measurement run against a database file left over from a prior
+        session with different settings will produce numbers that don't
+        match this page until the settings are confirmed and, if needed,
+        reapplied.
+      - None of the timing here accounts for concurrent callers hitting
+        the loopback interface at once; that is covered separately, see
+        Concurrency Notes.
+
+  - heading: Terminology
+    owner: Mara Olsen, Platform Tools
+    content: |
+      Terms used across this page and the sibling pages in this folder,
+      collected here since not every sibling page repeats them.
+
+      - Baseline — the set of reference numbers on this page, used as
+        the comparison point for later measurement sessions.
+      - Loopback interface — the local network interface (127.0.0.1)
+        the service listens on when reached from the same machine, with
+        no external network hop involved.
+      - Journal mode — the SQLite setting that controls how the database
+        file records in-progress changes before they are made durable;
+        this page's baseline uses wal mode.
+      - WAL — Write-Ahead Log, the journal mode under which changes are
+        first written to a separate file and later folded back into the
+        main database file.
+      - WAL merge — the process by which entries in the WAL file are
+        folded back into the main database file; this is distinct from
+        the write itself and happens on its own timing.
+      - Page cache size — the amount of memory SQLite reserves for
+        holding recently used pages of the database file, set as either
+        a page count or, with a negative value, an amount of memory.
+      - RSS — resident set size, the portion of a process's memory that
+        is currently held in physical RAM, as opposed to memory that has
+        been reserved but not yet touched.
+      - Cold start — starting the service when neither the OS file cache
+        nor any part of the process has been warmed by a prior run.
+      - Warm start — starting the service again shortly after a prior
+        run, so that the OS file cache for the database file is already
+        populated.
+      - Grouped write — a single call to the service that carries more
+        than one record to be written in one pass, as distinct from
+        repeated single-record writes.
+      - Sampling profiler — a profiling tool, such as py-spy, that
+        periodically records where a running process is rather than
+        tracing every call, which keeps its own overhead low enough to
+        use for timing-sensitive measurement.
+      - Median vs mean — this page reports medians for timing rows
+        because loopback timing has a long right tail; a mean would be
+        pulled upward by occasional slow outliers that are not
+        representative of normal operation.
+
+  - heading: Files Referenced
+    owner: Mara Olsen, Platform Tools
+    content: |
+      Paths below are relative to the repository root unless noted.
+
+      - auditlog/ — the package directory itself; no files inside it are
+        described on this page beyond what is needed for measurement
+        context.
+      - docs/performance-notes/README.md — index page for this folder,
+        with short summaries and links to every sibling page.
+      - docs/performance-notes/baseline-measurements.yaml — this page.
+      - docs/performance-notes/profiling-sessions.md — the fuller record
+        of individual profiling sessions summarized in this page.
+      - docs/performance-notes/sqlite-journal-mode.md — detail on the
+        journal mode setting and the reasoning behind the wal baseline.
+      - docs/performance-notes/page-cache-sizing.md — the fuller sweep
+        across page cache sizes referenced in the SQLite Settings
+        Baseline section.
+      - docs/performance-notes/loopback-response-times.md — the fuller
+        set of response-time scenarios and their timing method.
+      - docs/performance-notes/memory-use-notes.md — detail on memory
+        sampling method and additional scenarios not repeated here.
+      - docs/performance-notes/startup-time.md — the fuller startup
+        timing breakdown, including additional conditions not shown on
+        this page.
+      - docs/performance-notes/cold-start-vs-warm-start.md — a closer
+        look at OS file-cache state as a separate variable from process
+        start cost.
+      - docs/performance-notes/write-throughput.md — write-side timing
+        under sustained, repeated writes rather than the single-call
+        scenarios shown on this page.
+      - docs/performance-notes/concurrency-notes.rst — timing under
+        multiple callers reaching the loopback interface at once.
+      - docs/performance-notes/profiling-tools.rst — the list of
+        profiling tools kept current and how each one is normally used.
+      - docs/performance-notes/process-memory-tracking.txt — the method
+        for external memory sampling referenced in the Memory Use
+        section.
+      - docs/performance-notes/flamegraph-captures.txt — where flame
+        output from profiling sessions is stored and how it is named.
+      - docs/performance-notes/raw/ — dated raw output from individual
+        measurement runs; not tracked page by page, referenced by
+        session ID in the Profiling Sessions Summary table above.
+      - scripts/loopback_timing.sh — the shell harness used to issue
+        timed requests against an already-running instance for the
+        Loopback Response Times section.
+
+tools:
+  - name: Python (CPython)
+    version: "3.11.4"
+  - name: SQLite (bundled with CPython build)
+    version: "3.42.0"
+  - name: sqlite3 command-line tool
+    version: "3.42.0"
+  - name: py-spy
+    version: "0.3.14"
+  - name: psutil
+    version: "5.9.5"
+  - name: hyperfine
+    version: "1.16.1"
+  - name: PowerShell
+    version: "7.4"
+  - name: WSL2 (Ubuntu)
+    version: "22.04"
+
+changelog:
+  - date: 2023-11-02
+    release: auditlog 0.3.0
+    change: Initial baseline captured on the (now retired) laptop reference machine; superseded by the 2024-02-14 pass.
+  - date: 2024-02-14
+    release: auditlog 0.4.0
+    change: Full re-baseline on the current Dell reference workstation; wal journal mode adopted as the baseline setting after the SQLite settings sweep.
+  - date: 2024-05-28
+    release: auditlog 0.4.2
+    change: Loopback response time and memory tables updated; numbers held within noise of the 2024-02-14 run and were folded into this page as the current baseline.
+  - date: 2024-05-30
+    release: auditlog 0.4.2
+    change: Page reorganized into its current section order and owners assigned per section; no numbers changed.
+  - date: 2024-09-19
+    release: auditlog 0.5.0
+    change: Startup time table updated after a change to how the database file is opened on first start; cold-start numbers moved down by roughly 15 ms.
+  - date: 2025-03-10
+    release: auditlog 0.6.0
+    change: Page cache size row updated to reflect the diminishing-returns finding from the cache size sweep; baseline value left unchanged at roughly 4 MB.
+  - date: 2025-11-01
+    release: auditlog 0.7.0
+    change: Memory table's grouped-write scenario re-run after a concurrency-adjacent change; no meaningful growth in RSS found, table numbers left as-is.
+
+related_pages:
+  - Performance Notes Index
+  - Profiling Session Log
+  - SQLite Journal Mode Settings
+  - Page Cache Size Tuning
+  - Loopback Response Time Measurements
+  - Memory Use Notes
+  - Startup Time Measurements
+  - Cold Start Versus Warm Start
+  - Write Throughput on the Database File
+  - Concurrency Notes
+  - Profiling Tools
+  - Process Memory Tracking
+  - Flamegraph Captures

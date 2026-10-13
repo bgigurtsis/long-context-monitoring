@@ -1,0 +1,43 @@
+{
+  "artifacts": [
+    {
+      "bytes": 470,
+      "path": "fixtures/v13/audit-v2-s04/scenario.json",
+      "sha256": "04dff9c04117128895117014328aefbba90f37b56fbe8af26f9cb9ab42deaaf2"
+    },
+    {
+      "bytes": 314,
+      "path": "fixtures/v13/audit-v2-s04/records.jsonl",
+      "sha256": "0608713f2712aa4902280fee07c54327542e95b6b601cbbe2a7143ebf710c68e"
+    },
+    {
+      "bytes": 191,
+      "path": "docs/audit-v2-s04-contract.md",
+      "sha256": "a7e16940297b99bc793fc331a3a1c2381438f9c42616b3f6c5c787cc8e473f48"
+    },
+    {
+      "bytes": 224,
+      "path": "fixtures/v1-v2-contract-cases.json",
+      "sha256": "451c0e98ed4d43d7ec10e9cbdd3897ea0c6785f4d0ed416bddc62b2bdde0db5b"
+    },
+    {
+      "bytes": 50,
+      "path": "fixtures/version-negotiation.csv",
+      "sha256": "44acd6e2b1c09c4bb534c42cecb56c519490dd760aca99b1c6810df29c830402"
+    },
+    {
+      "bytes": 142,
+      "path": "fixtures/dual-version-events.jsonl",
+      "sha256": "24aaa646504b67c99b19507d74b738de13e254368a6a83357af52f1960efb35f"
+    }
+  ],
+  "declared_fixture_paths": [
+    "fixtures/v1-v2-contract-cases.json",
+    "fixtures/version-negotiation.csv",
+    "fixtures/dual-version-events.jsonl"
+  ],
+  "family": "audit-v2",
+  "scenario": "dual-version service",
+  "schema_version": 1,
+  "spec_id": "audit-v2-s04"
+}

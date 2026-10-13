@@ -1,0 +1,448 @@
+---
+title: Shared Editor Settings
+version: v1.0.2
+owner: Runtime Infra (Yusuf Demir)
+last_updated: 2026-04-08
+
+purpose: |-
+  This page is the source of truth for the small set of editor values that keep
+  formatting consistent across contributions to accountsvc. It exists because the
+  accountsvc repository carries no dedicated formatting or lint step of its own —
+  the package only depends on the Python standard library, and nothing runs
+  against a contributor's editor automatically — so consistency has to come from
+  each person's own editor rather than from anything invoked on save or on push.
+  Contributors are expected to import these values into whichever editor they use
+  before opening the accountsvc repository for the first time, and again whenever
+  this page's version number changes. The values here are considered shared
+  defaults, not requirements enforced by any running check; treat them as the
+  agreed-upon starting point rather than the only correct configuration.
+
+workstation_setup:
+  owner: Runtime Infra (Yusuf Demir), condensed from Developer Experience material
+  body: |-
+    Full workstation setup — cloning the repository, choosing a shell, arranging
+    a virtual environment — is covered on its own page. This section only lists
+    the parts of workstation setup that feed directly into editor configuration,
+    since a misconfigured interpreter path or a missing extension is the single
+    most common reason the shared settings below appear to do nothing.
+
+    1. Clone the repository to a short, ASCII-only path. On Windows this
+       matters more than people expect: paths with spaces or non-ASCII
+       characters have caused several contributors' format-on-save hooks to
+       silently fail rather than error, because the extension host could not
+       resolve the working directory. `C:\dev\accountsvc` or `~/dev/accountsvc`
+       both work well.
+    2. Create a virtual environment inside the repository at `.venv/` (this
+       folder is already excluded from version control). accountsvc has no
+       runtime dependencies outside the standard library, so the virtual
+       environment exists mainly to give your editor an interpreter to point
+       at and a place to install optional developer tooling such as a
+       formatter or a static checker, not to satisfy an install step.
+    3. Point your editor's Python interpreter setting at that virtual
+       environment, not at a system Python. Several of the values in this
+       page (notably the import-ordering convention) are only applied
+       correctly when the editor knows which interpreter — and therefore
+       which standard library version — it is working against.
+    4. Install the editor extension bundle listed under Tools and Versions
+       below. On a fresh workstation this takes under five minutes; on a
+       workstation that already has a personal, heavily customized editor
+       profile, budget closer to twenty, since conflicting global settings
+       are the usual culprit when someone reports that "the accountsvc
+       settings aren't applying."
+
+    Workstation setup is otherwise identical for accountsvc contributors as
+    for any other repository on the team's tooling; nothing about running the
+    package's command line or its loopback service changes how you set up a
+    workstation.
+
+supported_python_versions:
+  owner: Runtime Infra (Yusuf Demir)
+  body: |-
+    accountsvc targets Python 3.11 as its primary development version, with
+    3.10 kept as a secondary target for one older host still in limited use.
+    Editors should be configured to lint and format against 3.11 syntax; do
+    not enable any 3.12-only syntax hints, since a contributor on the 3.10 host
+    will otherwise see false warnings for perfectly valid code.
+
+    The practical effect on editor settings is narrow but worth stating
+    plainly: the "Python: Analysis" language server setting (or its
+    equivalent in your editor) should be set to 3.11, and the formatter's
+    target version, where the formatter accepts one, should match. Mixing
+    these — for example, an analysis version of 3.11 with a formatter target
+    of 3.9 — has previously produced diffs where the formatter rewrote
+    dictionary or set literals in a way the language server then flagged as
+    unnecessary, producing a noisy loop of undoing each other's changes.
+
+    Interpreter version is selected per virtual environment as described in
+    Workstation Setup; this page assumes that step is already done and only
+    covers the editor-side setting that must agree with it.
+
+editor_configuration:
+  owner: Developer Experience (Theo Banks)
+  body: |-
+    This is the core of the page: the actual values contributors should apply.
+    They are expressed twice below — once as an `.editorconfig` block that any
+    EditorConfig-aware editor will pick up automatically, and once as the
+    equivalent VS Code `settings.json` fragment, since VS Code is what most of
+    the team uses day to day and its defaults do not always match
+    EditorConfig even when the extension is installed.
+
+    ### `.editorconfig` (place at the repository root, alongside README.md)
+
+    ```
+    root = true
+
+    [*]
+    charset = utf-8
+    end_of_line = lf
+    insert_final_newline = true
+    trim_trailing_whitespace = true
+
+    [*.py]
+    indent_style = space
+    indent_size = 4
+    max_line_length = 88
+
+    [*.{yaml,yml}]
+    indent_style = space
+    indent_size = 2
+
+    [*.{md,rst,txt}]
+    trim_trailing_whitespace = false
+    ```
+
+    A few of these deserve explanation rather than being taken on faith:
+
+    - `end_of_line = lf` is set even though several contributors work on
+      Windows workstations. Git's `core.autocrlf` should be left at `input`
+      or `false` for this repository; letting Git convert line endings on
+      checkout has previously produced diffs that were entirely whitespace,
+      obscuring the real change in a pull request.
+    - `trim_trailing_whitespace = false` for prose files is intentional.
+      Markdown's line-break convention (two trailing spaces) and reST's field
+      list continuations both rely on trailing whitespace that a blanket trim
+      rule would quietly destroy.
+    - `max_line_length = 88` matches the coding style guide's wrapping column
+      for Python source. Earlier drafts of this page used 79, which is now
+      out of date; 88 has been the agreed column since late 2025.
+
+    ### VS Code `settings.json` (workspace-level, under `.vscode/settings.json`)
+
+    ```json
+    {
+      "editor.rulers": [88],
+      "editor.tabSize": 4,
+      "editor.insertSpaces": true,
+      "editor.detectIndentation": false,
+      "files.trimTrailingWhitespace": true,
+      "files.insertFinalNewline": true,
+      "files.trimFinalNewlines": true,
+      "editor.formatOnSave": true,
+      "python.analysis.typeCheckingMode": "basic",
+      "[python]": {
+        "editor.wordBasedSuggestions": "off",
+        "editor.rulers": [88]
+      }
+    }
+    ```
+
+    `editor.detectIndentation` is turned off deliberately. Auto-detection has
+    a habit of reading a single tab-indented file — usually something pasted
+    in from outside the repository — and switching the whole workspace to
+    tabs, which then shows up as an enormous, unreviewable diff the next time
+    someone saves an unrelated file.
+
+    For editors other than VS Code (Vim, Emacs, PyCharm, Sublime Text), the
+    `.editorconfig` block above is sufficient on its own provided the
+    relevant EditorConfig plugin is installed; PyCharm and recent Sublime
+    Text builds read it without any plugin at all.
+
+    Table: shared indent and wrap values by file type
+
+    | file type            | indent | wrap column | trailing newline |
+    |-----------------------|--------|-------------|-------------------|
+    | Python (`*.py`)       | 4      | 88          | required          |
+    | YAML (`*.yaml/.yml`)  | 2      | none        | required          |
+    | reST (`*.rst`)        | 3      | 79          | required          |
+    | Markdown (`*.md`)     | 4      | none        | required          |
+    | plain text (`*.txt`)  | n/a    | none        | required          |
+
+    Note that reST's indent of 3 is not a typo; it follows the convention
+    already established in `local-development-workflow.rst` and should not
+    be "corrected" to 4 to match Python, since reST directive bodies are
+    conventionally indented by 3 spaces in this repository's existing docs.
+
+code_review_conventions:
+  owner: Core Services (Priya Chandran), editor-settings excerpt only
+  body: |-
+    The full review conventions live on their own page; this section covers
+    only the parts that intersect with editor settings, since that is where
+    most avoidable review friction comes from.
+
+    - Reviewers should treat a pull request that mixes a real code change
+      with a whitespace-only reformat as a request to split the change, not
+      as something to sign off on as-is. The usual cause is a contributor
+      whose editor settings drifted from the values above — most often
+      `insertSpaces` toggled off, or a personal ruler at 100 columns instead
+      of 88.
+    - Before requesting review, run your diff through `git diff --check`,
+      which flags trailing whitespace and mixed line endings without needing
+      any extra tooling installed. A clean `git diff --check` is treated as
+      a minimum bar, the same way a clean status is treated as a minimum bar
+      for opening a pull request at all.
+    - Reviewers are not expected to comment on indentation or wrap column by
+      hand. If a diff shows a formatting drift, the expectation is that the
+      author re-applies the shared settings and re-pushes, rather than the
+      reviewer listing every affected line.
+    - Two contributors have historically shared review duty for changes
+      under `accountsvc/`; for changes confined to `docs/` a single sign-off
+      is enough. This threshold is set on the Code Review Conventions page
+      and repeated here only because it affects whether a formatting-only
+      follow-up commit needs its own review cycle (it does not, provided the
+      original change already had its sign-off).
+    - Turnaround target for a first look is one working day. This is a soft
+      target, not a hard rule, and has been missed often enough around
+      quarter boundaries that nobody treats it as a real number anymore.
+
+commit_message_style:
+  owner: Core Services (Priya Chandran)
+  body: |-
+    Commit messages for accountsvc follow a short, conventional-prefix style:
+    a type, a colon, and an imperative summary under about fifty characters,
+    followed by a blank line and an optional wrapped body.
+
+    ```
+    fix: correct indent handling for nested account records
+
+    The prior formatting pass left an inconsistent indent on nested
+    literals inside the loopback handler module. This commit re-applies
+    the shared editor settings and re-wraps the affected lines at the
+    88-column mark; no functional change.
+    ```
+
+    Accepted type prefixes are `feat`, `fix`, `docs`, `style`, `refactor`,
+    and `chore`. `style` is used specifically for commits whose only content
+    is a formatting or whitespace change driven by the values on this page —
+    for example, a contributor who joins the project, imports the settings
+    above for the first time, and re-saves a file that had drifted under an
+    older personal configuration. Bundling a `style` commit with a `feat` or
+    `fix` commit is discouraged for the same reason mixed-content pull
+    requests are discouraged in the review conventions above: it hides the
+    real change inside noise.
+
+    Bodies wrap at 72 columns, not 88 — this is one of the few places where
+    the wrap column intentionally differs from the Python source wrap
+    column, following the long-standing convention that commit bodies stay
+    narrower than code so they render cleanly in terminal-based Git tools
+    that don't soft-wrap.
+
+    Summary lines are written in the imperative ("fix", not "fixed" or
+    "fixes"), and do not end with a full stop. Referencing a task by number
+    in the summary line is optional; if used, it goes in parentheses at the
+    end, for example `fix: correct indent handling (accsvc-1042)`.
+
+coding_style:
+  owner: Language Tooling (Owen Fitzgerald), editor-settings excerpt only
+  body: |-
+    The full coding style guide is its own page and covers naming, layout,
+    and typing conventions in depth. What belongs here is the subset that an
+    editor can actually enforce mechanically rather than the subset that
+    requires human judgment:
+
+    - Four-space indentation, no tabs, for all Python source. This is the
+      single most load-bearing value on this page, since a single
+      tab-indented file has previously broken `diff` output for an entire
+      pull request.
+    - An 88-column soft wrap, applied as a visual ruler rather than a hard
+      limit. Lines that run slightly past 88 to keep a string literal or a
+      URL intact are acceptable; lines that run past 88 purely because of
+      deep nesting are treated as a sign the function should be restructured,
+      which is a style guide concern rather than an editor setting.
+    - A blank final line at the end of every file, and no blank lines at the
+      very start of a file. Both are enforced by the `files.insertFinalNewline`
+      and `files.trimFinalNewlines` settings above, so in practice no one has
+      to remember this by hand.
+    - Import statements grouped in three blocks — standard library, then
+      nothing else, since accountsvc has no third-party runtime imports, then
+      local package imports — separated by a single blank line. Editors with
+      an import-sorting extension can automate this; the shared settings
+      above do not force a particular extension, only the target grouping.
+    - Double quotes are the default string delimiter, with single quotes
+      reserved for strings that themselves contain a double quote. This is a
+      convention rather than something the editor settings above enforce
+      directly, since no formatter is mandated by this page — contributors
+      who prefer to install one are free to, provided its output matches the
+      88-column wrap and four-space indent already agreed on.
+
+    Where this section and the full coding style guide disagree on a detail
+    not mentioned here, the coding style guide's version is the one to
+    follow; this page only restates the mechanically enforceable parts.
+
+glossary:
+  owner: Runtime Infra (Yusuf Demir)
+  terms:
+    - term: EditorConfig
+      definition: >-
+        A plain-text file, `.editorconfig`, read by many editors and plugins
+        to apply per-file-type formatting values such as indent size and
+        line-ending style without requiring any project-specific extension
+        configuration.
+    - term: indent size
+      definition: >-
+        The number of spaces a single level of indentation occupies. Set to
+        4 for Python source and 2 for YAML in this repository.
+    - term: wrap column
+      definition: >-
+        The character column at which a line is expected to be broken,
+        shown in an editor as a vertical ruler. Treated as a guideline for
+        Python source, not a hard limit.
+    - term: format on save
+      definition: >-
+        An editor setting that triggers a formatter automatically whenever
+        a file is saved, reducing the chance that a contributor forgets to
+        apply the shared settings before committing.
+    - term: trailing whitespace
+      definition: >-
+        Space or tab characters left at the end of a line with no visible
+        content after them. Trimmed automatically for source files by this
+        page's settings, but preserved for Markdown line breaks.
+    - term: final newline
+      definition: >-
+        A single newline character at the very end of a file. Its presence
+        or absence is often invisible in an editor but shows up as a diff
+        line when it changes, which is why it is enforced consistently here.
+    - term: language server
+      definition: >-
+        A background process, separate from the editor itself, that
+        provides code understanding such as analysis and inline hints; its
+        target Python version must match the one set for the project.
+    - term: soft wrap
+      definition: >-
+        A display-only line break that an editor shows without inserting an
+        actual newline character into the file, distinct from the wrap
+        column used for formatting.
+    - term: workspace settings
+      definition: >-
+        Editor configuration values stored inside the repository, under
+        `.vscode/settings.json` for VS Code, that apply only while that
+        repository is open, as opposed to a contributor's global settings.
+
+files_referenced:
+  owner: Platform Tools (Mara Olsen)
+  entries:
+    - path: .editorconfig
+      kind: >-
+        Repository-root file holding the shared indent, line-ending, and
+        trailing-whitespace values described in this page; read
+        automatically by most editors without any extension.
+    - path: .vscode/settings.json
+      kind: >-
+        Workspace-level VS Code settings matching the `.editorconfig`
+        values, plus VS Code-specific settings such as rulers and
+        format-on-save that EditorConfig alone does not cover.
+    - path: .vscode/extensions.json
+      kind: >-
+        Lists the recommended VS Code extension bundle referenced under
+        Tools and Versions below, shown to contributors as a suggestion
+        the first time they open the repository in VS Code.
+    - path: docs/developer-handbook/editor-settings.yaml
+      kind: This page.
+    - path: docs/developer-handbook/editor-configuration.md
+      kind: >-
+        The fuller editor configuration page; this page's editor_configuration
+        section restates only the values, not the setup procedure covered there.
+    - path: docs/developer-handbook/coding-style-guide.md
+      kind: >-
+        The full coding style guide; this page's coding_style section is a
+        deliberately short excerpt of the mechanically enforceable parts.
+    - path: docs/developer-handbook/code-review-conventions.md
+      kind: Full review process and threshold checks referenced above.
+    - path: docs/developer-handbook/commit-message-style.md
+      kind: Full commit message conventions referenced above.
+    - path: docs/developer-handbook/workstation-setup.md
+      kind: Full workstation setup procedure referenced above.
+    - path: docs/developer-handbook/supported-python-versions.md
+      kind: Full version support statement referenced above.
+    - path: accountsvc/
+      kind: >-
+        The package directory itself; referenced here only as the folder
+        whose Python files the settings above apply to.
+    - path: README.md
+      kind: Repository root readme, sitting alongside `.editorconfig`.
+
+tools_and_versions:
+  owner: Runtime Infra (Yusuf Demir)
+  table:
+    - name: Python
+      version: 3.11.9 (3.10.14 on the secondary host)
+      notes: Set as the language server's target version.
+    - name: VS Code
+      version: 1.94.2
+      notes: Primary editor for most of the team.
+    - name: EditorConfig for VS Code (extension)
+      version: 0.16.4
+      notes: Reads `.editorconfig` when the built-in support is disabled.
+    - name: Pylance
+      version: 2026.4.100
+      notes: Language server backing `python.analysis.*` settings above.
+    - name: PyCharm Community
+      version: "2026.1"
+      notes: Reads `.editorconfig` natively; no plugin required.
+    - name: Vim
+      version: "9.1"
+      notes: Requires the `editorconfig-vim` plugin for equivalent behavior.
+    - name: Git
+      version: 2.46.0
+      notes: "`core.autocrlf` should be `input` or `false`, not `true`."
+
+changelog:
+  owner: Runtime Infra (Yusuf Demir)
+  entries:
+    - date: 2024-02-11
+      version: v0.1.0
+      note: >-
+        Initial page created, covering only the `.editorconfig` block; no
+        VS Code section yet.
+    - date: 2024-09-03
+      version: v0.4.0
+      note: >-
+        Added the VS Code `settings.json` fragment and the extension bundle
+        recommendation.
+    - date: 2025-01-22
+      version: v0.7.0
+      note: >-
+        Wrap column changed from 79 to 88 to match the coding style guide's
+        then-current update; reST left at 79 intentionally.
+    - date: 2025-06-30
+      version: v0.9.0
+      note: >-
+        Added the code review conventions excerpt after several pull
+        requests mixed formatting drift with real changes.
+    - date: 2025-10-14
+      version: v1.0.0
+      note: >-
+        First version treated as stable; added the commit message excerpt
+        and the glossary section.
+    - date: 2026-01-05
+      version: v1.0.1
+      note: Added PyCharm and Vim rows to the tools table; minor wording pass.
+    - date: 2026-04-08
+      version: v1.0.2
+      note: >-
+        Clarified that `trim_trailing_whitespace` is disabled for prose
+        file types after a Markdown line-break was silently trimmed by a
+        contributor's editor.
+
+related_pages:
+  owner: Developer Experience (Theo Banks)
+  links:
+    - Developer Handbook Index
+    - Workstation Setup
+    - Supported Python Versions
+    - Editor Configuration
+    - Code Review Conventions
+    - Commit Message Style
+    - Coding Style Guide
+    - Repository Layout
+    - Local Development Workflow
+    - Style Quick Reference

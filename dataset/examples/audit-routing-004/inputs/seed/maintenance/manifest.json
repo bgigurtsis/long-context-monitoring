@@ -1,0 +1,324 @@
+{
+  "artifact_count": 45,
+  "artifacts": [
+    {
+      "bytes": 33387,
+      "path": "maintenance/inputs/audit-v2-s03/upgrade-phase-plan/audit-v2-s03-t02-evidence-01.md",
+      "sha256": "5e07a4527aa76e4d6f567b4baeeb7034417f60df02a6414df87e97dbbaa6cc42",
+      "subject": "upgrade phase plan",
+      "turn": 2
+    },
+    {
+      "bytes": 33497,
+      "path": "maintenance/inputs/audit-v2-s03/upgrade-phase-plan/audit-v2-s03-t02-evidence-02.jsonl",
+      "sha256": "4cebeb9cdfc4126231caf9ae45a2b33527ff4b398d97471ebecd2b3249ad9be3",
+      "subject": "upgrade phase plan",
+      "turn": 2
+    },
+    {
+      "bytes": 33500,
+      "path": "maintenance/inputs/audit-v2-s03/upgrade-phase-plan/audit-v2-s03-t02-evidence-03.csv",
+      "sha256": "a178d89e5f20766b3c085edc77bad2177269c52ded91ef731c23934c883a29c5",
+      "subject": "upgrade phase plan",
+      "turn": 2
+    },
+    {
+      "bytes": 33365,
+      "path": "maintenance/inputs/audit-v2-s03/upgrade-phase-plan/audit-v2-s03-t02-evidence-04.yaml",
+      "sha256": "30f0723f8bb7681882b81ad5849807f6074a06bc0ece0ecb9bf3d98db402e68c",
+      "subject": "upgrade phase plan",
+      "turn": 2
+    },
+    {
+      "bytes": 33437,
+      "path": "maintenance/inputs/audit-v2-s03/upgrade-phase-plan/audit-v2-s03-t02-evidence-05.log",
+      "sha256": "300159975c51d72f8d4f649ba6e1557716179317a05f7ebf50f5ad3718fbee96",
+      "subject": "upgrade phase plan",
+      "turn": 2
+    },
+    {
+      "bytes": 33691,
+      "path": "maintenance/inputs/audit-v2-s03/cohort-inventory/audit-v2-s03-t04-evidence-01.md",
+      "sha256": "10c2941c082f4694ac4d74473cb6adeffc468fe025d65b5a49960629314b2ab0",
+      "subject": "cohort inventory snapshots",
+      "turn": 4
+    },
+    {
+      "bytes": 33720,
+      "path": "maintenance/inputs/audit-v2-s03/cohort-inventory/audit-v2-s03-t04-evidence-02.jsonl",
+      "sha256": "290ea6aa3d6645de1f89c1d018e1b4941327f19222786291b13dde5ef80a4df7",
+      "subject": "cohort inventory snapshots",
+      "turn": 4
+    },
+    {
+      "bytes": 33586,
+      "path": "maintenance/inputs/audit-v2-s03/cohort-inventory/audit-v2-s03-t04-evidence-03.csv",
+      "sha256": "9fb14e2a4eebea7d0a8025e97fee553186e822d345722bbd53690f92b5ee1786",
+      "subject": "cohort inventory snapshots",
+      "turn": 4
+    },
+    {
+      "bytes": 33669,
+      "path": "maintenance/inputs/audit-v2-s03/cohort-inventory/audit-v2-s03-t04-evidence-04.yaml",
+      "sha256": "a181dcced5c259b65858aa7bde0d4114224bc33448f169645c21460ac65929c6",
+      "subject": "cohort inventory snapshots",
+      "turn": 4
+    },
+    {
+      "bytes": 33585,
+      "path": "maintenance/inputs/audit-v2-s03/cohort-inventory/audit-v2-s03-t04-evidence-05.log",
+      "sha256": "a2088edff5b14d981eadce8752ffa0fbd9e66dfbca4de2cec5ed89fec9587dc6",
+      "subject": "cohort inventory snapshots",
+      "turn": 4
+    },
+    {
+      "bytes": 33520,
+      "path": "maintenance/inputs/audit-v2-s03/canary-request-logs/audit-v2-s03-t05-evidence-01.md",
+      "sha256": "3aea501d57c1a4b2f29b8dfb4add781dd0004b6fe8d7d8b648b4a2345d1a5ac0",
+      "subject": "canary request logs",
+      "turn": 5
+    },
+    {
+      "bytes": 33624,
+      "path": "maintenance/inputs/audit-v2-s03/canary-request-logs/audit-v2-s03-t05-evidence-02.jsonl",
+      "sha256": "27351b6aae5f888366f47777c942182845c87834413f902ef614e0166d624950",
+      "subject": "canary request logs",
+      "turn": 5
+    },
+    {
+      "bytes": 33651,
+      "path": "maintenance/inputs/audit-v2-s03/canary-request-logs/audit-v2-s03-t05-evidence-03.csv",
+      "sha256": "18ca3eda9947f8fca78f39b13bdc9587b0162d5203e52707ab26a67917a89d7f",
+      "subject": "canary request logs",
+      "turn": 5
+    },
+    {
+      "bytes": 33753,
+      "path": "maintenance/inputs/audit-v2-s03/canary-request-logs/audit-v2-s03-t05-evidence-04.yaml",
+      "sha256": "4fbeeda730935e37cddeb56be27b7ff84ea7d56b8dcbf6fe67acfd6ec6df9cec",
+      "subject": "canary request logs",
+      "turn": 5
+    },
+    {
+      "bytes": 33577,
+      "path": "maintenance/inputs/audit-v2-s03/canary-request-logs/audit-v2-s03-t05-evidence-05.log",
+      "sha256": "aba559d12341bfcce245ec4609734f52ad3f2500ac09a0223957c24a619e71c0",
+      "subject": "canary request logs",
+      "turn": 5
+    },
+    {
+      "bytes": 37182,
+      "path": "maintenance/inputs/audit-v2-s03/proxy-config-archive/audit-v2-s03-t07-evidence-01.md",
+      "sha256": "b542a650b3134df2be286a676d9e8073ea65dfaaffced89a96d7d98e16f88abe",
+      "subject": "proxy configuration archive",
+      "turn": 7
+    },
+    {
+      "bytes": 37082,
+      "path": "maintenance/inputs/audit-v2-s03/proxy-config-archive/audit-v2-s03-t07-evidence-02.jsonl",
+      "sha256": "fcfdb3c5eb27e1bf3db2a8656af71b232dccc17d7af9983c3d49154882ae52ee",
+      "subject": "proxy configuration archive",
+      "turn": 7
+    },
+    {
+      "bytes": 37163,
+      "path": "maintenance/inputs/audit-v2-s03/proxy-config-archive/audit-v2-s03-t07-evidence-03.csv",
+      "sha256": "e39d24b89249fd65563ba9d92bb0caeabf9f3b68c96355dbc88ce54110a173c4",
+      "subject": "proxy configuration archive",
+      "turn": 7
+    },
+    {
+      "bytes": 37160,
+      "path": "maintenance/inputs/audit-v2-s03/proxy-config-archive/audit-v2-s03-t07-evidence-04.yaml",
+      "sha256": "77031fac05ccd6fba1e4e27c47bc8b369b0120b240ad4be1f7c6064b3219d55a",
+      "subject": "proxy configuration archive",
+      "turn": 7
+    },
+    {
+      "bytes": 37181,
+      "path": "maintenance/inputs/audit-v2-s03/proxy-config-archive/audit-v2-s03-t07-evidence-05.log",
+      "sha256": "983550b12f3e9060f1509aab062b49868dc1256e50d1fa6ddd5c7234f3f694bd",
+      "subject": "proxy configuration archive",
+      "turn": 7
+    },
+    {
+      "bytes": 37182,
+      "path": "maintenance/inputs/audit-v2-s03/canary-error-budgets/audit-v2-s03-t08-evidence-01.md",
+      "sha256": "bfddfd4e5df8011d133f674734c351bf104ec053b88ed71863e4d427f75e7b51",
+      "subject": "canary error-budget records",
+      "turn": 8
+    },
+    {
+      "bytes": 37080,
+      "path": "maintenance/inputs/audit-v2-s03/canary-error-budgets/audit-v2-s03-t08-evidence-02.jsonl",
+      "sha256": "6f13d9dae87b3920bc808fa8e56ad0c64aa46d5bd4bb8a5915cec84bfe51f402",
+      "subject": "canary error-budget records",
+      "turn": 8
+    },
+    {
+      "bytes": 37163,
+      "path": "maintenance/inputs/audit-v2-s03/canary-error-budgets/audit-v2-s03-t08-evidence-03.csv",
+      "sha256": "5c1cdfe8d855f3a6a89217af4e44232adba2500e2ef67f53eb4903d36e9fb538",
+      "subject": "canary error-budget records",
+      "turn": 8
+    },
+    {
+      "bytes": 37160,
+      "path": "maintenance/inputs/audit-v2-s03/canary-error-budgets/audit-v2-s03-t08-evidence-04.yaml",
+      "sha256": "6c0b325ce01b49ae69b443f3cd44cfeaf400b53ad8452e15aab14a9365c4b554",
+      "subject": "canary error-budget records",
+      "turn": 8
+    },
+    {
+      "bytes": 37181,
+      "path": "maintenance/inputs/audit-v2-s03/canary-error-budgets/audit-v2-s03-t08-evidence-05.log",
+      "sha256": "f75f6a5ace7b0a40f309ec2dfd24bc6315153babcd686e9fdcc17c1cab045a3f",
+      "subject": "canary error-budget records",
+      "turn": 8
+    },
+    {
+      "bytes": 24584,
+      "path": "maintenance/inputs/audit-v2-s03/route-parity-observations/audit-v2-s03-t10-evidence-01.md",
+      "sha256": "8897ff63d1c2c216f6e9653366d04d2be3c2a08b9821ab7b8d66c076387e3776",
+      "subject": "route parity observations",
+      "turn": 10
+    },
+    {
+      "bytes": 24776,
+      "path": "maintenance/inputs/audit-v2-s03/route-parity-observations/audit-v2-s03-t10-evidence-02.jsonl",
+      "sha256": "474c514009824f72ca5d98f10920148167d215696b2df2462c4e15e74cef5370",
+      "subject": "route parity observations",
+      "turn": 10
+    },
+    {
+      "bytes": 24605,
+      "path": "maintenance/inputs/audit-v2-s03/route-parity-observations/audit-v2-s03-t10-evidence-03.csv",
+      "sha256": "b9ec2a98262204526a1b86e4478dd633610793e157fa3cc6cb20c0148bf43fd1",
+      "subject": "route parity observations",
+      "turn": 10
+    },
+    {
+      "bytes": 24817,
+      "path": "maintenance/inputs/audit-v2-s03/route-parity-observations/audit-v2-s03-t10-evidence-04.yaml",
+      "sha256": "f88a9a46fb3eda2950dfbd4bbd2439bb34d9981267d35d99a2f5a5db71eb251d",
+      "subject": "route parity observations",
+      "turn": 10
+    },
+    {
+      "bytes": 24651,
+      "path": "maintenance/inputs/audit-v2-s03/route-parity-observations/audit-v2-s03-t10-evidence-05.log",
+      "sha256": "d046b5f4cca3b63831718884951ac2217fe68a056178f6e68afcb97fcbf57ea7",
+      "subject": "route parity observations",
+      "turn": 10
+    },
+    {
+      "bytes": 24698,
+      "path": "maintenance/inputs/audit-v2-s03/phase-rollback-drills/audit-v2-s03-t11-evidence-01.md",
+      "sha256": "f66994f58e1b0dff210f1cbec376e1e50244a85aab6b383775bc70fc2d0e0e7c",
+      "subject": "phase rollback drills",
+      "turn": 11
+    },
+    {
+      "bytes": 24665,
+      "path": "maintenance/inputs/audit-v2-s03/phase-rollback-drills/audit-v2-s03-t11-evidence-02.jsonl",
+      "sha256": "6d5a76fe278ee9c517eeb82f221e3335976553c96149f3a5ed9a04a724f5f38d",
+      "subject": "phase rollback drills",
+      "turn": 11
+    },
+    {
+      "bytes": 24615,
+      "path": "maintenance/inputs/audit-v2-s03/phase-rollback-drills/audit-v2-s03-t11-evidence-03.csv",
+      "sha256": "c158f17783a78fa8bf39f1b638754fa7660b2dad5b761a4f4c3840f04861fe63",
+      "subject": "phase rollback drills",
+      "turn": 11
+    },
+    {
+      "bytes": 24675,
+      "path": "maintenance/inputs/audit-v2-s03/phase-rollback-drills/audit-v2-s03-t11-evidence-04.yaml",
+      "sha256": "5f5048516aded87b0bb0f88e0d7e0954b709498d7a9b31174791dfd37c79f478",
+      "subject": "phase rollback drills",
+      "turn": 11
+    },
+    {
+      "bytes": 24725,
+      "path": "maintenance/inputs/audit-v2-s03/phase-rollback-drills/audit-v2-s03-t11-evidence-05.log",
+      "sha256": "cf862832043d9266daed42a795019d6c35e873a73039381fd0f07b676163b792",
+      "subject": "phase rollback drills",
+      "turn": 11
+    },
+    {
+      "bytes": 16603,
+      "path": "maintenance/inputs/audit-v2-s03/auth-matrix-history/audit-v2-s03-t13-evidence-01.md",
+      "sha256": "cd4b0adb524fcedee929c4b4547d2de9a090b66bc6a71f518dcea70c43b7f34c",
+      "subject": "authorization matrix history",
+      "turn": 13
+    },
+    {
+      "bytes": 16703,
+      "path": "maintenance/inputs/audit-v2-s03/auth-matrix-history/audit-v2-s03-t13-evidence-02.jsonl",
+      "sha256": "5659827650fc3cefd41940e31ceaaf232410e450b3cdf814f724a87e2fe9c1f7",
+      "subject": "authorization matrix history",
+      "turn": 13
+    },
+    {
+      "bytes": 16694,
+      "path": "maintenance/inputs/audit-v2-s03/auth-matrix-history/audit-v2-s03-t13-evidence-03.csv",
+      "sha256": "5f322ad9c4609f85028b4b419aad2cf7711011ceff5aa786471811d43bf56e47",
+      "subject": "authorization matrix history",
+      "turn": 13
+    },
+    {
+      "bytes": 16580,
+      "path": "maintenance/inputs/audit-v2-s03/auth-matrix-history/audit-v2-s03-t13-evidence-04.yaml",
+      "sha256": "40126896520951893c4c0e6747b42f6b7253481e0f6446637bb0a28411598cfc",
+      "subject": "authorization matrix history",
+      "turn": 13
+    },
+    {
+      "bytes": 16581,
+      "path": "maintenance/inputs/audit-v2-s03/auth-matrix-history/audit-v2-s03-t13-evidence-05.log",
+      "sha256": "192fc39ec78a9681fe26d86e0d2d2b9a7a4aabe712bfe0ec06dea8cb35e33b10",
+      "subject": "authorization matrix history",
+      "turn": 13
+    },
+    {
+      "bytes": 16723,
+      "path": "maintenance/inputs/audit-v2-s03/upgrade-change-handoff/audit-v2-s03-t14-evidence-01.md",
+      "sha256": "631ff354c3649d549cbe27584b051ef181d104fcffe70c9302c7624245fbc7e5",
+      "subject": "upgrade change handoff",
+      "turn": 14
+    },
+    {
+      "bytes": 16595,
+      "path": "maintenance/inputs/audit-v2-s03/upgrade-change-handoff/audit-v2-s03-t14-evidence-02.jsonl",
+      "sha256": "55b5e35a34ddde091f19c83560dbaa3e3f6cdf1a935b2ee7c62dcb9077999f49",
+      "subject": "upgrade change handoff",
+      "turn": 14
+    },
+    {
+      "bytes": 16485,
+      "path": "maintenance/inputs/audit-v2-s03/upgrade-change-handoff/audit-v2-s03-t14-evidence-03.csv",
+      "sha256": "1a223148fd8b42fa88c10f041a1957e4d06bc037e6c5f95ba57e68a6d8faf1ec",
+      "subject": "upgrade change handoff",
+      "turn": 14
+    },
+    {
+      "bytes": 16700,
+      "path": "maintenance/inputs/audit-v2-s03/upgrade-change-handoff/audit-v2-s03-t14-evidence-04.yaml",
+      "sha256": "d22357745331aa3d676d209624ef2b1693b75203f4c90d905d5bcf7dc3623eb6",
+      "subject": "upgrade change handoff",
+      "turn": 14
+    },
+    {
+      "bytes": 16647,
+      "path": "maintenance/inputs/audit-v2-s03/upgrade-change-handoff/audit-v2-s03-t14-evidence-05.log",
+      "sha256": "f1d8ee763f9cbf3ff0fa013147a91da460665caa6b2e55f0030896431026957b",
+      "subject": "upgrade change handoff",
+      "turn": 14
+    }
+  ],
+  "content_bytes": 1288218,
+  "estimated_content_tokens": 334602,
+  "schema_version": 1,
+  "spec_id": "audit-v2-s03"
+}

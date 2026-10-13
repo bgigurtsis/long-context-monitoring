@@ -1,0 +1,360 @@
+Title: Changelog Snippet Format
+Version: 1.0
+Owner: Docs Guild (Elena Petrova)
+Last updated: 2024-06-18
+
+## Overview
+
+The changelog snippet format is the plain-text markup that contributors and maintainers paste into the main changelog when preparing a release of the auditlog package. This document defines the exact structure, field names, tags, and conventions for these snippets so that both human readers and the documentation build system can parse and process them consistently.
+
+All changes going into a release must be represented as a snippet, even if that change spans multiple commits or involves coordination across the team. The snippet becomes the canonical source of what changed in a given release from a user-facing perspective.
+
+Snippets are lightweight: they require no special tooling or syntax beyond plain text and square brackets. A contributor can create a snippet in any text editor and place it in the shared folder without any build steps.
+
+## Snippet Structure and Format
+
+Each snippet occupies one or more lines in the plain-text format. The minimal structure is:
+
+- One line declaring the **type** (using square brackets like `[doc]`, `[packaging]`, etc.)
+- One line stating the **summary** (a short, imperative-mood description)
+- An optional **body** section for additional detail (indented with spaces)
+- An optional **issue reference** (using the `refs:` prefix)
+
+### Type Tags
+
+The type tag appears at the start of the snippet and must be one of the following:
+
+- `[doc]` — documentation or README changes
+- `[packaging]` — package metadata, distribution configuration, or dependency changes
+- `[cmd-help]` — command-line help text or usage message modifications
+- `[console-format]` — changes to the console output format or log line structure
+- `[speed]` — performance improvements or optimizations
+
+Do **not** create type tags for anything related to new features, bug fixes in core behavior, system stability, quality improvements, or modules. Those belong in a separate supplementary release-notes document (see the broader release-notes pages). If you are unsure whether your change belongs in a snippet, consult the owner of your change's category or refer to the changelog-conventions.md document.
+
+### Type Tag Details (Owner: Release Engineering, Priya Chandran)
+
+**[doc]** includes:
+- Changes to the README.md in the repository root
+- Modifications to any Markdown, reStructuredText, or plain-text files in the docs/ folder
+- Improvements or clarifications to existing documentation
+- Addition of new documentation files within the docs/ folder
+- Updates to inline code comments that are meant to be read by end users (not internal developer notes)
+- Changes to the structure or layout of existing documentation
+
+**[packaging]** covers:
+- Updates to the package's setup configuration
+- Changes to declared dependencies or their version ranges
+- Adjustments to package metadata such as author, version string, or homepage
+- Build or distribution script modifications in the scripts/ folder
+- Creation or removal of configuration files at the repository root
+- Changes to the build process or release tooling that affect how the package is distributed
+
+**[cmd-help]** applies to:
+- Rewording of the help text that appears when users run the package's command-line interface
+- Modifications to usage messages, option descriptions, or error messages
+- Clarifications of argument syntax or behavior in the command output
+- Addition or removal of command-line flags and their descriptions
+- Changes to any text the user sees when they request help (such as `--help` or `-h` output)
+
+**[console-format]** applies when:
+- The loopback HTTP service's output format changes (for example, timestamp precision, field order, or coloring)
+- The package's standard output or standard error format is altered
+- Log line structure or field names visible to users change
+- Whitespace, delimiters, or line breaks in the output are modified
+- New fields are added to the console output or existing fields are removed
+
+**[speed]** describes:
+- Optimizations that reduce memory footprint or execution time,
+- Caching or algorithmic improvements
+- Elimination of redundant operations visible to end users (not internal refactoring)
+- Measurable performance gains in common usage patterns
+- Reductions in startup time, query time, or response time
+
+### Summary Line
+
+The summary line must be a short, present-tense, imperative description of what changed. It should fit on a single line, typically 50–70 characters. The imperative mood means you are giving a command or instruction:
+
+Correct examples:
+```
+Increase SQLite query timeout from 5s to 10s
+```
+
+```
+Add --json output mode to command interface
+```
+
+```
+Reorder console output fields for readability
+```
+
+```
+Document the --database argument in help text
+```
+
+```
+Cache prepared statements in HTTP service
+```
+
+Incorrect examples (do not use these):
+- "Added --json output mode" (past tense)
+- "New --json output mode feature" (noun-based, not imperative)
+- "Query timeout increased to 10s" (passive voice)
+
+Do not include the type tag on the summary line itself; it goes on the preceding line.
+
+### Optional Body and References
+
+If a change requires more explanation, add a blank line after the summary and then indented paragraphs (using at least two spaces):
+
+```
+  This change was prompted by user feedback that the previous
+  timeout was too short for large datasets. The new default
+  accommodates up to 500k records without timing out.
+```
+
+The body section can span multiple paragraphs if needed. Each paragraph should be separated by a blank line, and all content should be indented.
+
+To reference an internal tracking system or GitHub issue, add a line starting with `refs:` at the end of the snippet (after the body, if present, or after the summary if there is no body):
+
+```
+refs: PROJ-3412
+```
+
+or
+
+```
+refs: github.com/example/auditlog/issues/42
+```
+
+You may include multiple references if the snippet covers several related issues:
+
+```
+refs: PROJ-3412, PROJ-3413
+```
+
+## Examples and Worked Examples
+
+### Example 1: Documentation change
+
+```
+[doc]
+Update the README to describe the new --verbose output flag
+
+  The command-line help text now includes an example of how to use
+  --verbose mode when debugging a SQLite database issue.
+  
+refs: PROJ-2891
+```
+
+### Example 2: Console output format change (minimal)
+
+```
+[console-format]
+Print timestamp in microsecond precision instead of millisecond
+```
+
+This snippet is short and complete without a body section.
+
+### Example 3: Packaging with impact note
+
+```
+[packaging]
+Raise minimum Python version to 3.9 in setup configuration
+
+  Previous releases supported Python 3.7+, but 3.7 and 3.8 are now
+  beyond their support window. Developers targeting those versions
+  should pin the package to v1.1.x or earlier.
+
+refs: PROJ-3056
+```
+
+### Example 4: Command help text change
+
+```
+[cmd-help]
+Clarify the --database argument to indicate it accepts a file path
+
+  The help text previously read "database location" which was ambiguous.
+  It now reads "database file path" with an example showing a full path.
+```
+
+### Example 5: Speed improvement with metric
+
+```
+[speed]
+Cache compiled SQL statements to avoid re-parsing on each request
+
+  The loopback HTTP service now reuses prepared statements, which
+  reduces CPU overhead by approximately 12 percent in typical usage
+  patterns.
+```
+
+### Example 6: Multi-area change (two snippets, not one)
+
+When a single commit affects multiple categories, create separate snippets. For instance, if you improve the help text AND optimize a command, write two snippets:
+
+```
+[cmd-help]
+Expand --verbose flag description with examples
+```
+
+```
+[speed]
+Skip redundant SQL parsing when loading cached configuration
+```
+
+These are two distinct user-facing changes and deserve two entries.
+
+### Example 7: Documentation fix for packaging change
+
+```
+[doc]
+Add section on Python 3.9+ requirement to the setup guide
+
+refs: PROJ-3056
+```
+
+```
+[packaging]
+Require Python 3.9 or later in package metadata
+```
+
+Again, the documentation change and the configuration change are separate snippets, even though they are related.
+
+## Integration with Version Numbering and Changelog Conventions
+
+Snippets fit into the broader release workflow. The version-numbering.md page (version 1.3, updated 2024-05-02) defines how snippet categories influence version bumps. A release with only `[doc]` or `[packaging]` snippets might trigger a patch-level increment, while new `[cmd-help]` or `[console-format]` changes could justify a minor version bump depending on the scale and user impact.
+
+The changelog-conventions.md document (version 1.1, last updated 2024-08-19) specifies how snippets are aggregated into a human-readable changelog. Snippets are grouped by type, sorted chronologically within each type, and presented under release headings. The order of type sections in the final changelog follows the order: `[doc]`, `[packaging]`, `[cmd-help]`, `[console-format]`, `[speed]`.
+
+When a release is being prepared, the Release Engineering team (led by Priya Chandran) reviews all unreleased snippets, checks them against the release-checklist.md (version 2.0, updated 2025-01-10) to ensure completeness, and copies them into the main changelog grouped by type. The snippets are then moved into the appropriate previous release-notes file (for example, release-notes-v1.2.md) for future reference.
+
+The release-checklist-template.yaml (version 1.0, updated 2025-01-12) now provides YAML automation for parts of this workflow. Teams may run a script that reads all snippet files in the changelog-snippets/ folder and generates the initial grouped structure, which a human then reviews and edits.
+
+## Submission Workflow
+
+1. Write a snippet for each distinct change you are making. If your commit spans multiple categories, create multiple snippets.
+2. Place all snippets intended for the next release in the `docs/changelog-snippets/` folder using the naming convention `YYYYMMDD-description.txt`. For example: `20240618-console-timestamp-precision.txt`.
+3. The description part of the filename should be lowercase and use hyphens instead of spaces. It should briefly name the change but does not need to match the snippet summary exactly.
+4. Commit your snippet file(s) to git. The Release Engineering team tracks these as part of their release branch.
+5. When releasing a new version, the Release Engineering team will use the release-checklist.md (version 2.0) to aggregate snippets into the main changelog file.
+6. Snippets are then moved to a legacy folder (usually `docs/changelog-snippets/released/`) or simply removed from the unreleased folder once the version is tagged.
+7. The corresponding release-notes file for that version (e.g., release-notes-v1.2.md) is updated to include the aggregated snippets and any additional technical details.
+
+Note: The naming convention uses date prefixes, but the order of inclusion in the changelog is managed by the Release Checklist Template (version 1.0, updated 2025-01-12), which sorts snippets by type and then by date, not by file system sort order.
+
+## Common Mistakes and Tips
+
+### Mistake: Over-scoping a snippet
+
+Snippets should describe a single, user-facing change. If your commit includes both a documentation fix and a command-line output format change, write two snippets. Combining them into one makes it harder for readers to understand what changed, and it blurs the distinction between unrelated areas. A user reading the changelog might look for the output format change in the `[doc]` section and miss it.
+
+### Mistake: Using future or past tense
+
+Snippets use imperative mood (present tense, command form). Write "Add --json flag" not "Added --json flag" or "Will add --json flag". The imperative mood makes the snippet feel like a direct statement of what the release does for the user.
+
+### Mistake: Creating a type tag that does not exist
+
+The five allowed tags are `[doc]`, `[packaging]`, `[cmd-help]`, `[console-format]`, and `[speed]`. Do not invent new tags such as `[feature]`, `[bugfix]`, `[internal]`, or `[refactor]` in snippets intended for submission. Internal-only notes or team discussions may use informal tags, but they will not be included in release documentation. If you are uncertain whether your change fits one of the five categories, ask the Release Engineering team or the owner of the change's area.
+
+### Mistake: Forgetting to indent the body
+
+The body of a snippet must be indented with at least two spaces. If you use only one space or no indentation, the documentation build system may fail to parse it correctly, and the changelog will be malformed. Always use consistent indentation throughout the body (two or more spaces; tabs work too but are less common in this repository).
+
+### Mistake: Referencing internal implementation details
+
+Snippet summaries and bodies should refer to what the user experiences, not how it works internally. Write "Increase SQLite query timeout" not "Bump the SQLite timeout constant from 5 to 10 in the database module". Users do not care about module names or constants; they care about behavior.
+
+### Tip: Include context in the body when the summary is ambiguous
+
+If "Improve help text formatting" could mean multiple things, add a sentence explaining which flags or sections are affected. If you are unsure whether your summary is clear, assume readers are not familiar with the code and add a sentence or two.
+
+### Tip: Use refs: for traceability
+
+Even informal changes benefit from a reference number. It helps the Release Engineering team backtrack to the original discussion or requirement. If your change is not tracked in a formal system, you can omit the refs line, but including it is encouraged.
+
+### Tip: Keep summaries short
+
+If your summary is longer than 70 characters, you may need to move some detail into the body section. Short summaries are easier to scan in the final changelog.
+
+### Tip: Validate your snippet in a text editor
+
+If you are unsure whether your indentation or formatting is correct, copy the snippet and paste it into a plain-text editor. Make sure blank lines are truly blank (no trailing spaces) and body content is consistently indented.
+
+## Terminology
+
+**Changelog** — The main human-readable document listing all released versions of the package and their changes, grouped by version number and category. Stored in the repository root or in docs/CHANGELOG.md (depending on the release cycle).
+
+**Changelog Snippet** — A plain-text block representing a single user-facing change. Contributors write snippets; the Release Engineering team aggregates them into the Changelog.
+
+**Console Output** — Text printed by the loopback HTTP service or the command-line interface to the user's terminal (standard output or standard error, excluding file writes to the SQLite database).
+
+**Imperative Mood** — A grammatical form used for commands or instructions. In changelog snippets, all summary lines use imperative mood: "Add support for", "Fix the", "Improve performance of", etc.
+
+**Package Metadata** — Information about the package itself: name, version, author, homepage, license, and declared dependencies. Stored in the package's configuration file at the repository root.
+
+**Release** — A tagged, versioned distribution of the package intended for end users. Releases are numbered according to the version-numbering.md guidelines and documented in release-notes files.
+
+**SQLite Database** — The local file used by the package to store records. Referred to generically as "the database file" in user-facing documentation.
+
+**Type Tag** — One of the five square-bracket labels (`[doc]`, `[packaging]`, `[cmd-help]`, `[console-format]`, `[speed]`) that categorizes a snippet and signals which kind of change it describes.
+
+**User-Facing Change** — Any modification that affects what an end user sees or experiences when using the package, including help text, console output, performance, and documentation. Internal refactoring or code reorganization that does not change user behavior is not user-facing.
+
+## Related Files and Paths
+
+| File or Path | Purpose |
+|---|---|
+| `docs/changelog-snippets/` | Directory where contributors place snippets staged for release. Each file is named `YYYYMMDD-description.txt`. This is the source of truth for unreleased changes. |
+| `docs/changelog-snippets/released/` | Optional legacy folder for snippets that have already been included in a release. Some teams skip this folder and simply remove snippets once they are merged into the main changelog. |
+| `docs/CHANGELOG.md` or `docs/changelog.rst` | Main changelog file (the format may vary by branch). Aggregated from snippets by the Release Engineering team. This is the human-facing summary of all releases. |
+| `README.md` | Package overview at the repository root; changes to this file should have an accompanying `[doc]` snippet. |
+| `docs/` | General documentation folder; Markdown and reStructuredText files here often correspond to `[doc]` snippets. |
+| `scripts/` | Build, release, or utility scripts; changes here should have a `[packaging]` snippet if they affect the distribution. |
+| `.gitignore`, `setup.py`, `setup.cfg`, `pyproject.toml` | Configuration files at the repository root; modifications require a `[packaging]` snippet if they affect users. |
+| `auditlog/` | The main package directory; internal changes are not documented via snippets. Only user-facing output changes (like `[console-format]` or `[cmd-help]`) require snippets. |
+
+## Tools, Packages, and Dependencies
+
+| Tool or Package | Version | Purpose |
+|---|---|---|
+| Python | 3.9 or later | Runtime environment for the package and build scripts. The package supports no earlier versions as of v1.2.0. |
+| sqlite3 | bundled with Python | Database library used by the package (no external dependency). |
+| setuptools | 45.0 or later | Build and packaging tool for creating source distributions. Version 45.0+ is required for modern `setup.cfg` syntax. |
+| git | 2.30 or later | Version control; used to tag releases and manage snippet files. |
+| grep or similar | any recent | Optional; used by some teams to quickly locate snippets of a particular type before aggregating them. |
+
+(This page assumes the package uses only the Python standard library; no external runtime dependencies are declared.)
+
+## Changelog
+
+**2024-06-18 (v1.0)** — Initial release of the Changelog Snippet Format specification. Defined the five type tags (`[doc]`, `[packaging]`, `[cmd-help]`, `[console-format]`, `[speed]`) and the plain-text structure for snippets. Established the submission workflow for the changelog-snippets/ folder and naming conventions. *Owner: Docs Guild (Elena Petrova).*
+
+**2024-07-12 (v1.0 patch)** — Clarified that the naming convention for snippet files uses date prefixes (YYYYMMDD) but does not determine sort order in the final changelog. The Release Checklist Template will perform the sorting. Updated the integration section to reference version 2.0 of the Release Checklist. Added a note that moved snippets may be stored in a `released/` subfolder. *Owner: Release Engineering (Priya Chandran).*
+
+**2024-08-19 (v1.1)** — Synchronized with changelog-conventions.md version 1.1 release. Added the "Common Mistakes and Tips" section based on feedback from the v1.1.0 release cycle. Corrected the list of allowed type tags (removed the deprecated `[internal]` tag that had been suggested in earlier drafts). Expanded body indentation requirements to clarify that two or more spaces are required. *Owner: Docs Guild (Elena Petrova).*
+
+**2024-11-03 (v1.2)** — Updated "Related Files and Paths" to reflect the repository structure documented in packaging-source-distribution.rst version 1.4. Added a note that some build steps may use grep or similar tools to filter snippets during aggregation. Clarified that changes to setup.cfg and pyproject.toml require `[packaging]` snippets. *Owner: Platform Tools (Mara Olsen).*
+
+**2025-01-10 (v1.3)** — Realigned with release-checklist.md version 2.0. The Release Checklist Template (version 1.0, released 2025-01-12) now provides YAML automation for snippet aggregation. Removed manual example of changelog file paths; snippets no longer need to reference specific file locations outside the changelog-snippets/ folder. Added cross-reference to version-numbering.md version 1.3. *Owner: Release Engineering (Priya Chandran).*
+
+**2025-06-30 (v1.4)** — Expanded the `[cmd-help]` type tag definition to be more explicit about command-line usage messages and option descriptions. Added "Example 3" and "Example 6" showing multi-area changes and the two-snippet pattern for coordinated changes. Expanded the Common Mistakes section with additional guidance on body indentation and avoiding implementation details. *Owner: Developer Experience (Theo Banks).*
+
+**2025-09-14 (v1.5)** — Added clarification to the `[console-format]` section distinguishing between whitespace, delimiter, and field structure changes. Updated the tools table to specify setuptools version 45.0+. Added an example of multiple refs on a single snippet. Corrected the date on the README.md sibling page reference (it was listed as 2024-06-15 but should be 2026-06-15). *Owner: Core Runtime (Sam Okafor).*
+
+## Related Pages
+
+- **README.md** ("Release Notes Folder Overview" v1.0, updated 2026-06-15) — High-level overview of all release-related documentation; start here if you are new to the release process.
+- **version-numbering.md** ("Version Numbering for the Package" v1.3, updated 2024-05-02) — Explains how version numbers are assigned and how snippet categories influence version bumps.
+- **changelog-conventions.md** ("Changelog Writing Conventions" v1.1, updated 2024-08-19) — Details on how snippets are formatted and aggregated into the final changelog file for a release.
+- **release-checklist.md** ("Release Checklist" v2.0, updated 2025-01-10) — Step-by-step instructions for performing a release, including snippet aggregation and version tagging.
+- **release-checklist-template.yaml** ("Release Checklist Template (YAML)" v1.0, updated 2025-01-12) — Automated checklist in YAML format for the Release Engineering team.
+- **packaging-source-distribution.rst** ("Packaging the Source Distribution" v1.4, updated 2024-11-03) — Detailed technical guide to building and distributing the source package.
+- **build-environment-notes.rst** ("Build Environment Notes" v1.0, updated 2025-03-21) — Information on Python versions, virtual environments, and build tooling for contributors.
+- **command-help-text-changes.md** ("Command Help Text Changes Across Releases" v1.2, updated 2025-06-30) — Previous record of changes to the command-line help text; consult this when deciding if a help text change warrants a snippet.
+- **console-log-format-changes.md** ("Console Log Format Changes Across Releases" v1.1, updated 2025-09-14) — Previous record of console output format changes; reference this for context on `[console-format]` snippets.
+- **speed-notes.md** ("Speed Notes Across Releases" v1.0, updated 2025-11-02) — Previous performance improvements and measurements; reference when writing `[speed]` snippets to ensure you understand the context of prior optimizations.
+- **release-notes-v1.0.md** ("Release Notes: v1.0.0" v1.0.0, updated 2024-04-01) — Previous snippets and release details for version 1.0.0.
+- **release-notes-v1.1.md** ("Release Notes: v1.1.0" v1.1.0, updated 2024-09-05) — Previous snippets and release details for version 1.1.0.
+- **release-notes-v1.2.md** ("Release Notes: v1.2.0" v1.2.0, updated 2025-02-20) — Previous snippets and release details for version 1.2.0; the most recent release at the time of this page's last update.

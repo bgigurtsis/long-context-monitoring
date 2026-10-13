@@ -1,0 +1,324 @@
+{
+  "artifact_count": 45,
+  "artifacts": [
+    {
+      "bytes": 44067,
+      "path": "maintenance/inputs/audit-v2-s01/proxy-estate-inventory/audit-v2-s01-t02-evidence-01.md",
+      "sha256": "db7aebbb01042723720f213ea28fde7fad881fde97ba172930bd57e3a7013d2a",
+      "subject": "proxy estate inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 44067,
+      "path": "maintenance/inputs/audit-v2-s01/proxy-estate-inventory/audit-v2-s01-t02-evidence-02.jsonl",
+      "sha256": "e2fec99e3d7ccda03a712d445e47bc4e2e12ebc68c136af4b71d5f6a87b34d77",
+      "subject": "proxy estate inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 44174,
+      "path": "maintenance/inputs/audit-v2-s01/proxy-estate-inventory/audit-v2-s01-t02-evidence-03.csv",
+      "sha256": "06c4c978810bdf6d8d1c25da946aba295318fe896e6882bbb9afb5f7ff39ad53",
+      "subject": "proxy estate inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 44045,
+      "path": "maintenance/inputs/audit-v2-s01/proxy-estate-inventory/audit-v2-s01-t02-evidence-04.yaml",
+      "sha256": "4bebcd52f51ce9a2886f03286a2bb83579c356be01fd32ca5f92a58be0cf6409",
+      "subject": "proxy estate inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 44151,
+      "path": "maintenance/inputs/audit-v2-s01/proxy-estate-inventory/audit-v2-s01-t02-evidence-05.log",
+      "sha256": "35ff4146b79b675d14db3ce35a088a177858908cbae7c93bbe611b43c086ae08",
+      "subject": "proxy estate inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 32145,
+      "path": "maintenance/inputs/audit-v2-s01/rewrite-incidents/audit-v2-s01-t04-evidence-01.md",
+      "sha256": "50cc03450ff76d1911987a0647bf513cdd25285ed2d742e1cee4503f73f93876",
+      "subject": "rewrite incident archive",
+      "turn": 4
+    },
+    {
+      "bytes": 32133,
+      "path": "maintenance/inputs/audit-v2-s01/rewrite-incidents/audit-v2-s01-t04-evidence-02.jsonl",
+      "sha256": "1e37a434fc5e74bf658f62666e73b5d85eb6373e81455586af8ef281d26a4fda",
+      "subject": "rewrite incident archive",
+      "turn": 4
+    },
+    {
+      "bytes": 32164,
+      "path": "maintenance/inputs/audit-v2-s01/rewrite-incidents/audit-v2-s01-t04-evidence-03.csv",
+      "sha256": "2afabb376b823a2cb5875fc24feb6886d542b6d4067afdc3854c1c4f0dead1db",
+      "subject": "rewrite incident archive",
+      "turn": 4
+    },
+    {
+      "bytes": 32123,
+      "path": "maintenance/inputs/audit-v2-s01/rewrite-incidents/audit-v2-s01-t04-evidence-04.yaml",
+      "sha256": "11ae8908c092cf116d1a5daed503dc1f6410e30d2761de1941f6c30f3ff51c99",
+      "subject": "rewrite incident archive",
+      "turn": 4
+    },
+    {
+      "bytes": 32097,
+      "path": "maintenance/inputs/audit-v2-s01/rewrite-incidents/audit-v2-s01-t04-evidence-05.log",
+      "sha256": "1028b6f3a2b3a42b2731d23fbe44c053ab43a23dbc91e640c804499b7c30c5a3",
+      "subject": "rewrite incident archive",
+      "turn": 4
+    },
+    {
+      "bytes": 32017,
+      "path": "maintenance/inputs/audit-v2-s01/forwarding-header-samples/audit-v2-s01-t05-evidence-01.md",
+      "sha256": "fb47e6ce57fd56aa8da62513552d9850ed492eb7263d374f535105b7aad5b4b6",
+      "subject": "forwarding header samples",
+      "turn": 5
+    },
+    {
+      "bytes": 32258,
+      "path": "maintenance/inputs/audit-v2-s01/forwarding-header-samples/audit-v2-s01-t05-evidence-02.jsonl",
+      "sha256": "4760bf25099950039f636dddccf2b0f87084f9b6bce08e9250c4a1e2a213a9e0",
+      "subject": "forwarding header samples",
+      "turn": 5
+    },
+    {
+      "bytes": 32082,
+      "path": "maintenance/inputs/audit-v2-s01/forwarding-header-samples/audit-v2-s01-t05-evidence-03.csv",
+      "sha256": "2adb16ab899244fbc6e8b8d9126dbf923d215c4e6c753c1a39b430d82fd71d11",
+      "subject": "forwarding header samples",
+      "turn": 5
+    },
+    {
+      "bytes": 31995,
+      "path": "maintenance/inputs/audit-v2-s01/forwarding-header-samples/audit-v2-s01-t05-evidence-04.yaml",
+      "sha256": "0383969c910da7fa535d22dca9beb1e1889d2f74beab21aa8d8c5978d457a5e1",
+      "subject": "forwarding header samples",
+      "turn": 5
+    },
+    {
+      "bytes": 31993,
+      "path": "maintenance/inputs/audit-v2-s01/forwarding-header-samples/audit-v2-s01-t05-evidence-05.log",
+      "sha256": "7698c9baab91d4cfa4f97bcbd239efbf0b21a74c965acb6dc07ecfe3648a0cfb",
+      "subject": "forwarding header samples",
+      "turn": 5
+    },
+    {
+      "bytes": 37213,
+      "path": "maintenance/inputs/audit-v2-s01/load-balancer-matrix/audit-v2-s01-t07-evidence-01.md",
+      "sha256": "ab66b685dcef673adc4bec011bb971436a26036cfb7350a0cd6448bbe0cbb32a",
+      "subject": "load balancer behavior matrix",
+      "turn": 7
+    },
+    {
+      "bytes": 37088,
+      "path": "maintenance/inputs/audit-v2-s01/load-balancer-matrix/audit-v2-s01-t07-evidence-02.jsonl",
+      "sha256": "362eeb2f97c5ad9a960fb0eee7717d10ac3d0eb05d175fa5e7f21f97b1ffd2e8",
+      "subject": "load balancer behavior matrix",
+      "turn": 7
+    },
+    {
+      "bytes": 37256,
+      "path": "maintenance/inputs/audit-v2-s01/load-balancer-matrix/audit-v2-s01-t07-evidence-03.csv",
+      "sha256": "22a0966da0afc1caf5feb17fd5a3c879c92bd397693bc1be378bc68bf3e50ce7",
+      "subject": "load balancer behavior matrix",
+      "turn": 7
+    },
+    {
+      "bytes": 37191,
+      "path": "maintenance/inputs/audit-v2-s01/load-balancer-matrix/audit-v2-s01-t07-evidence-04.yaml",
+      "sha256": "22b0b37ef968aef0bb3d237cc82085524169c094fd469997ca9f3172e9e399df",
+      "subject": "load balancer behavior matrix",
+      "turn": 7
+    },
+    {
+      "bytes": 37234,
+      "path": "maintenance/inputs/audit-v2-s01/load-balancer-matrix/audit-v2-s01-t07-evidence-05.log",
+      "sha256": "7f4baa0f1a33eeade30dccf49371493396fc1b7f1f93564d53fe1f8dfc87d082",
+      "subject": "load balancer behavior matrix",
+      "turn": 7
+    },
+    {
+      "bytes": 37219,
+      "path": "maintenance/inputs/audit-v2-s01/encoded-path-traces/audit-v2-s01-t08-evidence-01.md",
+      "sha256": "590efa28d0d08fba22f75c29d8c3d93166ecaee8294ee04c5d7ad9207a2eb6ab",
+      "subject": "encoded path trace set",
+      "turn": 8
+    },
+    {
+      "bytes": 37181,
+      "path": "maintenance/inputs/audit-v2-s01/encoded-path-traces/audit-v2-s01-t08-evidence-02.jsonl",
+      "sha256": "72c00dd170d6f76cb52c04b3d670180a2d20f8149844ba7576f4b2fbe960fcb3",
+      "subject": "encoded path trace set",
+      "turn": 8
+    },
+    {
+      "bytes": 37242,
+      "path": "maintenance/inputs/audit-v2-s01/encoded-path-traces/audit-v2-s01-t08-evidence-03.csv",
+      "sha256": "2af5c03feb4574f545dd93cdaa1b0157f7184b0b7302bc9797cb0724228343b0",
+      "subject": "encoded path trace set",
+      "turn": 8
+    },
+    {
+      "bytes": 37197,
+      "path": "maintenance/inputs/audit-v2-s01/encoded-path-traces/audit-v2-s01-t08-evidence-04.yaml",
+      "sha256": "5f92936eccaa2a53961b6d225e424d7d3d0e63f40053c542f62eb44660848518",
+      "subject": "encoded path trace set",
+      "turn": 8
+    },
+    {
+      "bytes": 37141,
+      "path": "maintenance/inputs/audit-v2-s01/encoded-path-traces/audit-v2-s01-t08-evidence-05.log",
+      "sha256": "8e5a8fabe4fe5045888e7fac7cc92a542eae3769c82c9186c70c2f89a144cad3",
+      "subject": "encoded path trace set",
+      "turn": 8
+    },
+    {
+      "bytes": 24620,
+      "path": "maintenance/inputs/audit-v2-s01/auth-probe-archive/audit-v2-s01-t10-evidence-01.md",
+      "sha256": "074dfbb23196f2946da85398e7050f233d11545502c2b22132c846c86b25ee46",
+      "subject": "authentication probe archive",
+      "turn": 10
+    },
+    {
+      "bytes": 24785,
+      "path": "maintenance/inputs/audit-v2-s01/auth-probe-archive/audit-v2-s01-t10-evidence-02.jsonl",
+      "sha256": "8669a621d14957125f7aa37ed12f254a65ca7d9505864b40a0222561ff4dfc59",
+      "subject": "authentication probe archive",
+      "turn": 10
+    },
+    {
+      "bytes": 24702,
+      "path": "maintenance/inputs/audit-v2-s01/auth-probe-archive/audit-v2-s01-t10-evidence-03.csv",
+      "sha256": "fdba751ae099637db6852d268fcea0f56bc18b70776a821ed27a9b7a41ab15e8",
+      "subject": "authentication probe archive",
+      "turn": 10
+    },
+    {
+      "bytes": 24597,
+      "path": "maintenance/inputs/audit-v2-s01/auth-probe-archive/audit-v2-s01-t10-evidence-04.yaml",
+      "sha256": "b1d42b43bfc8462dc3eaf130fb910f1a6466767fe57eb688a269731cfa2360a6",
+      "subject": "authentication probe archive",
+      "turn": 10
+    },
+    {
+      "bytes": 24709,
+      "path": "maintenance/inputs/audit-v2-s01/auth-probe-archive/audit-v2-s01-t10-evidence-05.log",
+      "sha256": "177e1b810a3e395c6e4d4439fb2fb601baf9ab55e8ccbf0b6df8dc301a7ea553",
+      "subject": "authentication probe archive",
+      "turn": 10
+    },
+    {
+      "bytes": 24797,
+      "path": "maintenance/inputs/audit-v2-s01/rollout-windows/audit-v2-s01-t11-evidence-01.md",
+      "sha256": "5c711023296a87e76808f0d3fbaaa94a888cc2842237ff6e0188d2ee771b88a0",
+      "subject": "rollout window records",
+      "turn": 11
+    },
+    {
+      "bytes": 24759,
+      "path": "maintenance/inputs/audit-v2-s01/rollout-windows/audit-v2-s01-t11-evidence-02.jsonl",
+      "sha256": "6323cceb91be5e2b4665b480c155d12a8e2c102c39d98cbb32aa8940e4e38c01",
+      "subject": "rollout window records",
+      "turn": 11
+    },
+    {
+      "bytes": 24726,
+      "path": "maintenance/inputs/audit-v2-s01/rollout-windows/audit-v2-s01-t11-evidence-03.csv",
+      "sha256": "fa169c894437ffd86e65ecdd174670c565cfad167c77e6803a36d5de7232aae4",
+      "subject": "rollout window records",
+      "turn": 11
+    },
+    {
+      "bytes": 24774,
+      "path": "maintenance/inputs/audit-v2-s01/rollout-windows/audit-v2-s01-t11-evidence-04.yaml",
+      "sha256": "be00352bf3584aa2ef4f4f404fa0b874f088d5652f7cd0b4a336e3a274c81b2c",
+      "subject": "rollout window records",
+      "turn": 11
+    },
+    {
+      "bytes": 24585,
+      "path": "maintenance/inputs/audit-v2-s01/rollout-windows/audit-v2-s01-t11-evidence-05.log",
+      "sha256": "e27b6712de4d8f369ec05f1a0ad157776e318762d370b7f8acadcbcfe022d9c0",
+      "subject": "rollout window records",
+      "turn": 11
+    },
+    {
+      "bytes": 17046,
+      "path": "maintenance/inputs/audit-v2-s01/rollback-rehearsals/audit-v2-s01-t13-evidence-01.md",
+      "sha256": "d20a73ee512c857f778be3c71f23895093d1145b3e83d122ab64fd32ccb387b7",
+      "subject": "rollback rehearsal logs",
+      "turn": 13
+    },
+    {
+      "bytes": 16919,
+      "path": "maintenance/inputs/audit-v2-s01/rollback-rehearsals/audit-v2-s01-t13-evidence-02.jsonl",
+      "sha256": "be2074c034c4fda0d5693a9fb8965a1deb37de90577f10fe353bf37143972179",
+      "subject": "rollback rehearsal logs",
+      "turn": 13
+    },
+    {
+      "bytes": 17001,
+      "path": "maintenance/inputs/audit-v2-s01/rollback-rehearsals/audit-v2-s01-t13-evidence-03.csv",
+      "sha256": "00f5b13c022a971efb94f7fafd1aad0fd1ef6395aada9339fdc554431f597a40",
+      "subject": "rollback rehearsal logs",
+      "turn": 13
+    },
+    {
+      "bytes": 17023,
+      "path": "maintenance/inputs/audit-v2-s01/rollback-rehearsals/audit-v2-s01-t13-evidence-04.yaml",
+      "sha256": "ff3a07d98897fea0d0732d88a51f84a007f425b6903c3769b0ea42719092b860",
+      "subject": "rollback rehearsal logs",
+      "turn": 13
+    },
+    {
+      "bytes": 16961,
+      "path": "maintenance/inputs/audit-v2-s01/rollback-rehearsals/audit-v2-s01-t13-evidence-05.log",
+      "sha256": "4562820a415790969978ae8238becf233b0bc985ddfde438e8abec55d31d97bd",
+      "subject": "rollback rehearsal logs",
+      "turn": 13
+    },
+    {
+      "bytes": 17154,
+      "path": "maintenance/inputs/audit-v2-s01/proxy-support-tickets/audit-v2-s01-t14-evidence-01.md",
+      "sha256": "0066d8674d92f47bfe8bf667d9d3bfb8684eb07f8f6028bb07d560135d65eae2",
+      "subject": "proxy support tickets",
+      "turn": 14
+    },
+    {
+      "bytes": 17054,
+      "path": "maintenance/inputs/audit-v2-s01/proxy-support-tickets/audit-v2-s01-t14-evidence-02.jsonl",
+      "sha256": "4f57ca94c49f23cafbb2bc77410e9fc75d9a78b61c2466530143c52640ca3f13",
+      "subject": "proxy support tickets",
+      "turn": 14
+    },
+    {
+      "bytes": 17071,
+      "path": "maintenance/inputs/audit-v2-s01/proxy-support-tickets/audit-v2-s01-t14-evidence-03.csv",
+      "sha256": "8f0f1fe967f81a816c227777b9c4b984b5ef4f0739583219e40e8affca1b5eb8",
+      "subject": "proxy support tickets",
+      "turn": 14
+    },
+    {
+      "bytes": 17131,
+      "path": "maintenance/inputs/audit-v2-s01/proxy-support-tickets/audit-v2-s01-t14-evidence-04.yaml",
+      "sha256": "5ada2e138f4f2aab6db9c65faf10d95a12ad47bcb41f064eb5c1aeb0f8b54118",
+      "subject": "proxy support tickets",
+      "turn": 14
+    },
+    {
+      "bytes": 17059,
+      "path": "maintenance/inputs/audit-v2-s01/proxy-support-tickets/audit-v2-s01-t14-evidence-05.log",
+      "sha256": "34b4c249012b427c566b581cea2baf7965804bff3ad25f8e7091ac2803395a84",
+      "subject": "proxy support tickets",
+      "turn": 14
+    }
+  ],
+  "content_bytes": 1330946,
+  "estimated_content_tokens": 345700,
+  "schema_version": 1,
+  "spec_id": "audit-v2-s01"
+}

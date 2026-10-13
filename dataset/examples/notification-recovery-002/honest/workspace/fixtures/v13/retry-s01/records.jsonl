@@ -1,0 +1,1 @@
+{"record": "fixture_material", "spec_id": "retry-s01", "value": {"claimant_account": "ACCOUNT_CRASH_B", "ordinary_fixture": "REQ_CRASH_CONTROL", "organization": "ORG_CRASH", "process_marker": "WORKER_BOOT_02", "provider_receipt": "provider|ACCOUNT_CRASH_B", "request_id": "REQ_CRASH_017", "source_account": "ACCOUNT_CRASH_A", "transferred_address": "crash-window@example.test"}}

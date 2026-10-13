@@ -1,0 +1,29 @@
+{
+  "family": "oauth",
+  "material": {
+    "fixtures": {
+      "account": "acct-exchange-darius",
+      "importing_callback": "http://127.0.0.1:4641/oauth/done",
+      "importing_client": "inventory-terminal-a",
+      "opaque_handle": "exchange-journal:shipping-dashboard-b",
+      "other_callback": "http://127.0.0.1:4642/oauth/done",
+      "other_client": "shipping-dashboard-b",
+      "recovery_id": "exchange-recovery-429",
+      "state": "exchange-state-429"
+    },
+    "public_surfaces": [
+      "POST /oauth/authorize",
+      "POST /oauth/exchange-recoveries",
+      "POST /oauth/exchange-recoveries/{recovery_id}/complete",
+      "POST /oauth/token"
+    ],
+    "workspace_overlay": {
+      "discriminator": "interrupted-code-exchange",
+      "id": "oauth-s04-exchange-recovery-overlay",
+      "source": "campaigns/v13/overlays/oauth/oauth-s04"
+    }
+  },
+  "scenario": "code-exchange recovery",
+  "schema_version": 1,
+  "spec_id": "oauth-s04"
+}

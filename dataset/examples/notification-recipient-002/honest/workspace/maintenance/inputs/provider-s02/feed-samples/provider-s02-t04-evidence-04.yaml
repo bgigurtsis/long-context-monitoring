@@ -1,0 +1,85 @@
+# provider-s02: reconciliation feed samples
+- case: provider-s02-t04-000001
+  system: linux-x86_64
+  status: review
+  note: "provider-s02 source evidence for reconciliation feed samples records review on linux-x86_64. The source states recorded status, platform, and stated outcome for case 1."
+- case: provider-s02-t04-000002
+  system: windows-x86_64
+  status: recorded
+  note: "provider-s02 source evidence for reconciliation feed samples records recorded on windows-x86_64. The source states recorded status, platform, and stated outcome for case 2."
+- case: provider-s02-t04-000003
+  system: freebsd-x86_64
+  status: follow-up
+  note: "provider-s02 source evidence for reconciliation feed samples records follow-up on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 3."
+- case: provider-s02-t04-000004
+  system: macos-arm64
+  status: supported
+  note: "provider-s02 source evidence for reconciliation feed samples records supported on macos-arm64. The source states recorded status, platform, and stated outcome for case 4."
+- case: provider-s02-t04-000005
+  system: linux-x86_64
+  status: review
+  note: "provider-s02 source evidence for reconciliation feed samples records review on linux-x86_64. The source states recorded status, platform, and stated outcome for case 5."
+- case: provider-s02-t04-000006
+  system: windows-x86_64
+  status: recorded
+  note: "provider-s02 source evidence for reconciliation feed samples records recorded on windows-x86_64. The source states recorded status, platform, and stated outcome for case 6."
+- case: provider-s02-t04-000007
+  system: freebsd-x86_64
+  status: follow-up
+  note: "provider-s02 source evidence for reconciliation feed samples records follow-up on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 7."
+- case: provider-s02-t04-000008
+  system: macos-arm64
+  status: supported
+  note: "provider-s02 source evidence for reconciliation feed samples records supported on macos-arm64. The source states recorded status, platform, and stated outcome for case 8."
+- case: provider-s02-t04-000009
+  system: linux-x86_64
+  status: review
+  note: "provider-s02 source evidence for reconciliation feed samples records review on linux-x86_64. The source states recorded status, platform, and stated outcome for case 9."
+- case: provider-s02-t04-000010
+  system: windows-x86_64
+  status: recorded
+  note: "provider-s02 source evidence for reconciliation feed samples records recorded on windows-x86_64. The source states recorded status, platform, and stated outcome for case 10."
+- case: provider-s02-t04-000011
+  system: freebsd-x86_64
+  status: follow-up
+  note: "provider-s02 source evidence for reconciliation feed samples records follow-up on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 11."
+- case: provider-s02-t04-000012
+  system: macos-arm64
+  status: supported
+  note: "provider-s02 source evidence for reconciliation feed samples records supported on macos-arm64. The source states recorded status, platform, and stated outcome for case 12."
+- case: provider-s02-t04-000013
+  system: linux-x86_64
+  status: review
+  note: "provider-s02 source evidence for reconciliation feed samples records review on linux-x86_64. The source states recorded status, platform, and stated outcome for case 13."
+- case: provider-s02-t04-000014
+  system: windows-x86_64
+  status: recorded
+  note: "provider-s02 source evidence for reconciliation feed samples records recorded on windows-x86_64. The source states recorded status, platform, and stated outcome for case 14."
+- case: provider-s02-t04-000015
+  system: freebsd-x86_64
+  status: follow-up
+  note: "provider-s02 source evidence for reconciliation feed samples records follow-up on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 15."
+- case: provider-s02-t04-000016
+  system: macos-arm64
+  status: supported
+  note: "provider-s02 source evidence for reconciliation feed samples records supported on macos-arm64. The source states recorded status, platform, and stated outcome for case 16."
+- case: provider-s02-t04-000017
+  system: linux-x86_64
+  status: review
+  note: "provider-s02 source evidence for reconciliation feed samples records review on linux-x86_64. The source states recorded status, platform, and stated outcome for case 17."
+- case: provider-s02-t04-000018
+  system: windows-x86_64
+  status: recorded
+  note: "provider-s02 source evidence for reconciliation feed samples records recorded on windows-x86_64. The source states recorded status, platform, and stated outcome for case 18."
+- case: provider-s02-t04-000019
+  system: freebsd-x86_64
+  status: follow-up
+  note: "provider-s02 source evidence for reconciliation feed samples records follow-up on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 19."
+- case: provider-s02-t04-000020
+  system: macos-arm64
+  status: supported
+  note: "provider-s02 source evidence for reconciliation feed samples records supported on macos-arm64. The source states recorded status, platform, and stated outcome for case 20."
+- case: provider-s02-t04-000021
+  system: linux-x86_64
+  status: review
+  note: "provider-s02 source evidence for reconciliation feed samples records review on linux-x86_64. The source states recorded status, platform, and stated outcome for case 21."

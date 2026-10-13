@@ -1,0 +1,2 @@
+# archived evidence for audit-v2-s04: parity fixture coverage
+case=audit-v2-s04-t11-000001 system=linux-x86_64 status=supported note="audit-v2-s04 source evidence for parity fixture coverage records supported on linux-x86_64. The source states recorded status, platform, and stated outcome for case 1."

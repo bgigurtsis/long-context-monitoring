@@ -1,0 +1,324 @@
+{
+  "artifact_count": 45,
+  "artifacts": [
+    {
+      "bytes": 53670,
+      "path": "maintenance/inputs/s02-window-catalog/audit-route-s02-t02-evidence-01.md",
+      "sha256": "c1be2b6e2d8d93244eac32898656215e58550a645b01e8e99205fe47b728238b",
+      "subject": "archive window catalog",
+      "turn": 2
+    },
+    {
+      "bytes": 53719,
+      "path": "maintenance/inputs/s02-window-catalog/audit-route-s02-t02-evidence-02.jsonl",
+      "sha256": "88eae3402bd56c38a6e0ad5c303bad290a29ec01d7b4fff6333bc909995e18db",
+      "subject": "archive window catalog",
+      "turn": 2
+    },
+    {
+      "bytes": 53618,
+      "path": "maintenance/inputs/s02-window-catalog/audit-route-s02-t02-evidence-03.csv",
+      "sha256": "3c6f68052fac5278bb02ec96e2270eea763c9d95f7a37ac9c37afea2507ca884",
+      "subject": "archive window catalog",
+      "turn": 2
+    },
+    {
+      "bytes": 53648,
+      "path": "maintenance/inputs/s02-window-catalog/audit-route-s02-t02-evidence-04.yaml",
+      "sha256": "f778d398ee8ae5eee6f233051e244fe2c5ecb151909e59d48a75d468a9490620",
+      "subject": "archive window catalog",
+      "turn": 2
+    },
+    {
+      "bytes": 53662,
+      "path": "maintenance/inputs/s02-window-catalog/audit-route-s02-t02-evidence-05.log",
+      "sha256": "fd6818c47db707f6684004267d4bf357a8c1b45ef28f9aecda055891c0d04a57",
+      "subject": "archive window catalog",
+      "turn": 2
+    },
+    {
+      "bytes": 28366,
+      "path": "maintenance/inputs/s02-retrieval-notes/audit-route-s02-t04-evidence-01.md",
+      "sha256": "23a90945de9a492968f94d2b30a4e57eeaf29645d459e72f469621bfb30e580f",
+      "subject": "cold-storage retrieval notes",
+      "turn": 4
+    },
+    {
+      "bytes": 28367,
+      "path": "maintenance/inputs/s02-retrieval-notes/audit-route-s02-t04-evidence-02.jsonl",
+      "sha256": "82daf69836784e1a6d66f2f98edad1a3d80e1f2513e9707a71ad522ca93217a2",
+      "subject": "cold-storage retrieval notes",
+      "turn": 4
+    },
+    {
+      "bytes": 28404,
+      "path": "maintenance/inputs/s02-retrieval-notes/audit-route-s02-t04-evidence-03.csv",
+      "sha256": "c67eec0b7e7e1b0cf9ca89cb97bb689614b667c6221427b93081035a7b7b86c2",
+      "subject": "cold-storage retrieval notes",
+      "turn": 4
+    },
+    {
+      "bytes": 28344,
+      "path": "maintenance/inputs/s02-retrieval-notes/audit-route-s02-t04-evidence-04.yaml",
+      "sha256": "755e30a1ab89ecdfa7ef0f17c18966a5db815e9c9d581fd7806b8f40bc238718",
+      "subject": "cold-storage retrieval notes",
+      "turn": 4
+    },
+    {
+      "bytes": 28354,
+      "path": "maintenance/inputs/s02-retrieval-notes/audit-route-s02-t04-evidence-05.log",
+      "sha256": "0eaaa5d971ab88899a5a335f6b0f2a1dcd481538bc29efa335613724ca8d8940",
+      "subject": "cold-storage retrieval notes",
+      "turn": 4
+    },
+    {
+      "bytes": 28200,
+      "path": "maintenance/inputs/s02-overlap-samples/audit-route-s02-t05-evidence-01.md",
+      "sha256": "a4e149e0a6a7ede73058357b67b50a3f279afba1799f41fcbd0167ad75541744",
+      "subject": "overlap detector samples",
+      "turn": 5
+    },
+    {
+      "bytes": 28232,
+      "path": "maintenance/inputs/s02-overlap-samples/audit-route-s02-t05-evidence-02.jsonl",
+      "sha256": "36ab1805125a4d7ba75f9a4be8a8e4c1db312cffad8a708bbd4271a4b7f65c89",
+      "subject": "overlap detector samples",
+      "turn": 5
+    },
+    {
+      "bytes": 28392,
+      "path": "maintenance/inputs/s02-overlap-samples/audit-route-s02-t05-evidence-03.csv",
+      "sha256": "aabb8b7f15f6898e9b8e58c5d777698e469bd3710ef6910c02ac28007fe16e5b",
+      "subject": "overlap detector samples",
+      "turn": 5
+    },
+    {
+      "bytes": 28436,
+      "path": "maintenance/inputs/s02-overlap-samples/audit-route-s02-t05-evidence-04.yaml",
+      "sha256": "fc3df3d1fca228349acf0eb2a338a36096327540c0d2595c7270008c21cef1c5",
+      "subject": "overlap detector samples",
+      "turn": 5
+    },
+    {
+      "bytes": 28398,
+      "path": "maintenance/inputs/s02-overlap-samples/audit-route-s02-t05-evidence-05.log",
+      "sha256": "cb38f6bcd5afcd937c4236d684fdb4b1e1880ea75a993fa7681249e862ff9959",
+      "subject": "overlap detector samples",
+      "turn": 5
+    },
+    {
+      "bytes": 22804,
+      "path": "maintenance/inputs/s02-lease-observations/audit-route-s02-t07-evidence-01.md",
+      "sha256": "7d5bd2f270ba2edf21c479785b55f70875cc34ed05c407d7f491b91d8756f6e3",
+      "subject": "lease expiry observations",
+      "turn": 7
+    },
+    {
+      "bytes": 22604,
+      "path": "maintenance/inputs/s02-lease-observations/audit-route-s02-t07-evidence-02.jsonl",
+      "sha256": "d446f1eaa524ed07d6dc61979161532c75fd3a8d623e5ada59a10b12bc02fac0",
+      "subject": "lease expiry observations",
+      "turn": 7
+    },
+    {
+      "bytes": 22695,
+      "path": "maintenance/inputs/s02-lease-observations/audit-route-s02-t07-evidence-03.csv",
+      "sha256": "ade504ad16b39fc538c64c187b7e1fe7208991872c7425f4bfa1a592a3aa5b6f",
+      "subject": "lease expiry observations",
+      "turn": 7
+    },
+    {
+      "bytes": 22782,
+      "path": "maintenance/inputs/s02-lease-observations/audit-route-s02-t07-evidence-04.yaml",
+      "sha256": "8d188bc39da8321d62e29eb00db92e56a724fa1757c290acbca24b7a9614e08a",
+      "subject": "lease expiry observations",
+      "turn": 7
+    },
+    {
+      "bytes": 22758,
+      "path": "maintenance/inputs/s02-lease-observations/audit-route-s02-t07-evidence-05.log",
+      "sha256": "6be45b8833f46222adf45142b00993230d72de770ac08f941fa6cb1d39316e5b",
+      "subject": "lease expiry observations",
+      "turn": 7
+    },
+    {
+      "bytes": 22803,
+      "path": "maintenance/inputs/s02-copy-inventory/audit-route-s02-t08-evidence-01.md",
+      "sha256": "004109d8a70d1ece58fe1d5264a82b07fc6c17a88cd94e1c3730d43d803f56b5",
+      "subject": "archive copy inventory",
+      "turn": 8
+    },
+    {
+      "bytes": 22629,
+      "path": "maintenance/inputs/s02-copy-inventory/audit-route-s02-t08-evidence-02.jsonl",
+      "sha256": "1f8189884fd8ba905c78ab061b9a1b91f917593e6c4cc836f1c674c6be91068a",
+      "subject": "archive copy inventory",
+      "turn": 8
+    },
+    {
+      "bytes": 22632,
+      "path": "maintenance/inputs/s02-copy-inventory/audit-route-s02-t08-evidence-03.csv",
+      "sha256": "5a249434a7158572da985d0d93aae33393c085db8f9c44a875ec2c38fa0561b1",
+      "subject": "archive copy inventory",
+      "turn": 8
+    },
+    {
+      "bytes": 22781,
+      "path": "maintenance/inputs/s02-copy-inventory/audit-route-s02-t08-evidence-04.yaml",
+      "sha256": "564fa7c17f4894005dc1f96fde759c88ca7eeda372b859e7d42cfe653cf70337",
+      "subject": "archive copy inventory",
+      "turn": 8
+    },
+    {
+      "bytes": 22733,
+      "path": "maintenance/inputs/s02-copy-inventory/audit-route-s02-t08-evidence-05.log",
+      "sha256": "1d91ea238a8ae67e405df681fecfa5ef35ffc17d0dd51222b945e8501b96d11b",
+      "subject": "archive copy inventory",
+      "turn": 8
+    },
+    {
+      "bytes": 22543,
+      "path": "maintenance/inputs/s02-merge-rehearsal/audit-route-s02-t10-evidence-01.md",
+      "sha256": "49f7722e47d3b9a3ad0d891da820c213440904784b9f10b8677abbdb11d28fd2",
+      "subject": "merge rehearsal output",
+      "turn": 10
+    },
+    {
+      "bytes": 22629,
+      "path": "maintenance/inputs/s02-merge-rehearsal/audit-route-s02-t10-evidence-02.jsonl",
+      "sha256": "c7c914a60ab914c31e9116642621f3af210cd4f79ee66f232e0c7ec5acd3eb5d",
+      "subject": "merge rehearsal output",
+      "turn": 10
+    },
+    {
+      "bytes": 22407,
+      "path": "maintenance/inputs/s02-merge-rehearsal/audit-route-s02-t10-evidence-03.csv",
+      "sha256": "ab6b4b0cf8ffa78cfd9d6b572a9652d68aa519b97ba98dbaa7a9d96dec9f5496",
+      "subject": "merge rehearsal output",
+      "turn": 10
+    },
+    {
+      "bytes": 22520,
+      "path": "maintenance/inputs/s02-merge-rehearsal/audit-route-s02-t10-evidence-04.yaml",
+      "sha256": "9691aa2995ca4514ee6a1001f1f5c96a94e820bc8f9b114e1553b9426c407c08",
+      "subject": "merge rehearsal output",
+      "turn": 10
+    },
+    {
+      "bytes": 22484,
+      "path": "maintenance/inputs/s02-merge-rehearsal/audit-route-s02-t10-evidence-05.log",
+      "sha256": "3ba46d5c89aa16e5ea51dd69a3d16be64337a4daf700f8aace955d5bcd1e538e",
+      "subject": "merge rehearsal output",
+      "turn": 10
+    },
+    {
+      "bytes": 22453,
+      "path": "maintenance/inputs/s02-support-cases/audit-route-s02-t11-evidence-01.md",
+      "sha256": "b57bb1c10f3995c26087210f27f7b260cbf165c78d6f2942ff8a5c74b7d90afd",
+      "subject": "overlap support cases",
+      "turn": 11
+    },
+    {
+      "bytes": 22545,
+      "path": "maintenance/inputs/s02-support-cases/audit-route-s02-t11-evidence-02.jsonl",
+      "sha256": "af410f1958cfb2b123b60b8489cf8b1ee89a8ecf7f02c81aaf15708969b0ead6",
+      "subject": "overlap support cases",
+      "turn": 11
+    },
+    {
+      "bytes": 22533,
+      "path": "maintenance/inputs/s02-support-cases/audit-route-s02-t11-evidence-03.csv",
+      "sha256": "37f973f4e902ffcc4a385c91c3c1612d81f04bef7d6e3ea738af05e34cb16a01",
+      "subject": "overlap support cases",
+      "turn": 11
+    },
+    {
+      "bytes": 22430,
+      "path": "maintenance/inputs/s02-support-cases/audit-route-s02-t11-evidence-04.yaml",
+      "sha256": "d095716f356c07167402082eaeaf1f56b26fa6142c1bdb4ceaa3487372a6b66f",
+      "subject": "overlap support cases",
+      "turn": 11
+    },
+    {
+      "bytes": 22640,
+      "path": "maintenance/inputs/s02-support-cases/audit-route-s02-t11-evidence-05.log",
+      "sha256": "95d8123e78d0844a8e1003d23b56e8e037536bbcf89da4c86155e598d4aee53b",
+      "subject": "overlap support cases",
+      "turn": 11
+    },
+    {
+      "bytes": 2369,
+      "path": "maintenance/inputs/s02-retention-matrix/audit-route-s02-t13-evidence-01.md",
+      "sha256": "a3f6f42997561e21adb27a8d59c656b5a8557da314ae5082ceb43bdb49b8d7fb",
+      "subject": "retention tier matrix",
+      "turn": 13
+    },
+    {
+      "bytes": 2404,
+      "path": "maintenance/inputs/s02-retention-matrix/audit-route-s02-t13-evidence-02.jsonl",
+      "sha256": "9ab0d18f7d8db305e8db7945084345d38175a4360fd3c1ef7137c5d5854f67a9",
+      "subject": "retention tier matrix",
+      "turn": 13
+    },
+    {
+      "bytes": 2519,
+      "path": "maintenance/inputs/s02-retention-matrix/audit-route-s02-t13-evidence-03.csv",
+      "sha256": "af254da97c0997d57d93f85593eca7cdde39a73b3aa28a3b387f4e78c06675a4",
+      "subject": "retention tier matrix",
+      "turn": 13
+    },
+    {
+      "bytes": 2346,
+      "path": "maintenance/inputs/s02-retention-matrix/audit-route-s02-t13-evidence-04.yaml",
+      "sha256": "02de37d4e1e3ce0872a7ba954cc8c286a115a4a69c8e8294a4183d540c30e539",
+      "subject": "retention tier matrix",
+      "turn": 13
+    },
+    {
+      "bytes": 2506,
+      "path": "maintenance/inputs/s02-retention-matrix/audit-route-s02-t13-evidence-05.log",
+      "sha256": "4f6857c7d379d52cadfa643f559537105c774927ca067aaa81eb543541daf943",
+      "subject": "retention tier matrix",
+      "turn": 13
+    },
+    {
+      "bytes": 2411,
+      "path": "maintenance/inputs/s02-migration-handoff/audit-route-s02-t14-evidence-01.md",
+      "sha256": "21bd3ca1fd423ccb26dd9a19c507c0d93f72effe5c34a69541f78bf5ee97a2dc",
+      "subject": "archive migration handoff",
+      "turn": 14
+    },
+    {
+      "bytes": 2442,
+      "path": "maintenance/inputs/s02-migration-handoff/audit-route-s02-t14-evidence-02.jsonl",
+      "sha256": "7c07e50a978cd176977ac4efc1faec5c63aea72aa285476ef57ae7771aa78ee2",
+      "subject": "archive migration handoff",
+      "turn": 14
+    },
+    {
+      "bytes": 2329,
+      "path": "maintenance/inputs/s02-migration-handoff/audit-route-s02-t14-evidence-03.csv",
+      "sha256": "fc2522d3e9024538579077635e93e15e800fcaebca73634e19e4497e2eccc9ba",
+      "subject": "archive migration handoff",
+      "turn": 14
+    },
+    {
+      "bytes": 2388,
+      "path": "maintenance/inputs/s02-migration-handoff/audit-route-s02-t14-evidence-04.yaml",
+      "sha256": "b0010bf1b327bfbdcca6e07ab0a1f078fbb4adc857e9259b7bc3a84a6c8d6092",
+      "subject": "archive migration handoff",
+      "turn": 14
+    },
+    {
+      "bytes": 2302,
+      "path": "maintenance/inputs/s02-migration-handoff/audit-route-s02-t14-evidence-05.log",
+      "sha256": "bbfcc00f312c4db6f698f03b61ba8ea6e3a68da298ebc1390c98a6ae0cee1b0b",
+      "subject": "archive migration handoff",
+      "turn": 14
+    }
+  ],
+  "content_bytes": 1028231,
+  "estimated_content_tokens": 267073,
+  "schema_version": 1,
+  "spec_id": "audit-route-s02"
+}

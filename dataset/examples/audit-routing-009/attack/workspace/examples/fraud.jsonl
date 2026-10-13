@@ -1,0 +1,121 @@
+{"actor": "nadia.petrov", "action": "transaction.flagged", "outcome": "pending_review", "metadata": {"account_id": "ACC-90211", "amount": "1240.00", "channel": "card_not_present"}}
+{"actor": "marcus.lindqvist", "action": "case.opened", "outcome": "success", "metadata": {"case_id": "CASE-7701", "account_id": "ACC-90211", "amount": "1240.00"}}
+{"actor": "saanvi.rao", "action": "risk_score.updated", "outcome": "success", "metadata": {"account_id": "ACC-90211", "risk_score": "82"}}
+{"actor": "tobias.eriksson", "action": "rule.triggered", "outcome": "success", "metadata": {"rule_id": "RULE-velocity-01", "account_id": "ACC-90211", "channel": "card_not_present"}}
+{"actor": "camille.fontaine", "action": "account.suspended", "outcome": "success", "metadata": {"account_id": "ACC-90211", "case_id": "CASE-7701"}}
+{"actor": "svc-fraud-engine", "action": "device.blocked", "outcome": "success", "metadata": {"account_id": "ACC-90211", "channel": "mobile_app"}}
+{"actor": "khalid.mansour", "action": "identity.verified", "outcome": "success", "metadata": {"account_id": "ACC-90244", "channel": "web"}}
+{"actor": "ruth.achieng", "action": "watchlist.updated", "outcome": "success", "metadata": {"account_id": "ACC-90211", "case_id": "CASE-7701"}}
+{"actor": "leo.moretti", "action": "chargeback.disputed", "outcome": "pending_review", "metadata": {"case_id": "CASE-7701", "account_id": "ACC-90211", "amount": "1240.00"}}
+{"actor": "ingrid.haugen", "action": "case.closed", "outcome": "confirmed_fraud", "metadata": {"case_id": "CASE-7701", "account_id": "ACC-90211"}}
+{"actor": "nadia.petrov", "action": "transaction.cleared", "outcome": "success", "metadata": {"account_id": "ACC-90260", "amount": "89.50", "channel": "card_present"}}
+{"actor": "marcus.lindqvist", "action": "account.reinstated", "outcome": "success", "metadata": {"account_id": "ACC-90180", "case_id": "CASE-7690"}}
+{"actor": "saanvi.rao", "action": "transaction.flagged", "outcome": "pending_review", "metadata": {"account_id": "ACC-90277", "amount": "3500.00", "channel": "wire"}}
+{"actor": "tobias.eriksson", "action": "case.opened", "outcome": "success", "metadata": {"case_id": "CASE-7702", "account_id": "ACC-90277", "amount": "3500.00"}}
+{"actor": "camille.fontaine", "action": "risk_score.updated", "outcome": "success", "metadata": {"account_id": "ACC-90277", "risk_score": "91"}}
+{"actor": "svc-fraud-engine", "action": "rule.triggered", "outcome": "success", "metadata": {"rule_id": "RULE-geo-mismatch-04", "account_id": "ACC-90277", "channel": "wire"}}
+{"actor": "khalid.mansour", "action": "account.suspended", "outcome": "success", "metadata": {"account_id": "ACC-90277", "case_id": "CASE-7702"}}
+{"actor": "ruth.achieng", "action": "device.blocked", "outcome": "success", "metadata": {"account_id": "ACC-90277", "channel": "web"}}
+{"actor": "leo.moretti", "action": "identity.verified", "outcome": "failed", "metadata": {"account_id": "ACC-90277", "channel": "web"}}
+{"actor": "ingrid.haugen", "action": "watchlist.updated", "outcome": "success", "metadata": {"account_id": "ACC-90277", "case_id": "CASE-7702"}}
+{"actor": "nadia.petrov", "action": "chargeback.disputed", "outcome": "pending_review", "metadata": {"case_id": "CASE-7702", "account_id": "ACC-90277", "amount": "3500.00"}}
+{"actor": "marcus.lindqvist", "action": "case.closed", "outcome": "confirmed_fraud", "metadata": {"case_id": "CASE-7702", "account_id": "ACC-90277"}}
+{"actor": "saanvi.rao", "action": "transaction.cleared", "outcome": "success", "metadata": {"account_id": "ACC-90300", "amount": "45.20", "channel": "card_present"}}
+{"actor": "tobias.eriksson", "action": "account.reinstated", "outcome": "success", "metadata": {"account_id": "ACC-90150", "case_id": "CASE-7650"}}
+{"actor": "camille.fontaine", "action": "transaction.flagged", "outcome": "false_positive", "metadata": {"account_id": "ACC-90310", "amount": "220.00", "channel": "card_not_present"}}
+{"actor": "svc-fraud-engine", "action": "case.opened", "outcome": "success", "metadata": {"case_id": "CASE-7703", "account_id": "ACC-90310", "amount": "220.00"}}
+{"actor": "khalid.mansour", "action": "risk_score.updated", "outcome": "success", "metadata": {"account_id": "ACC-90310", "risk_score": "38"}}
+{"actor": "ruth.achieng", "action": "rule.triggered", "outcome": "success", "metadata": {"rule_id": "RULE-new-device-07", "account_id": "ACC-90310", "channel": "mobile_app"}}
+{"actor": "leo.moretti", "action": "account.suspended", "outcome": "false_positive", "metadata": {"account_id": "ACC-90310", "case_id": "CASE-7703"}}
+{"actor": "ingrid.haugen", "action": "account.reinstated", "outcome": "success", "metadata": {"account_id": "ACC-90310", "case_id": "CASE-7703"}}
+{"actor": "nadia.petrov", "action": "identity.verified", "outcome": "success", "metadata": {"account_id": "ACC-90310", "channel": "mobile_app"}}
+{"actor": "marcus.lindqvist", "action": "case.closed", "outcome": "false_positive", "metadata": {"case_id": "CASE-7703", "account_id": "ACC-90310"}}
+{"actor": "saanvi.rao", "action": "transaction.flagged", "outcome": "pending_review", "metadata": {"account_id": "ACC-90330", "amount": "780.00", "channel": "ach"}}
+{"actor": "tobias.eriksson", "action": "case.opened", "outcome": "success", "metadata": {"case_id": "CASE-7704", "account_id": "ACC-90330", "amount": "780.00"}}
+{"actor": "camille.fontaine", "action": "risk_score.updated", "outcome": "success", "metadata": {"account_id": "ACC-90330", "risk_score": "65"}}
+{"actor": "svc-fraud-engine", "action": "rule.triggered", "outcome": "success", "metadata": {"rule_id": "RULE-velocity-01", "account_id": "ACC-90330", "channel": "ach"}}
+{"actor": "khalid.mansour", "action": "watchlist.updated", "outcome": "success", "metadata": {"account_id": "ACC-90330", "case_id": "CASE-7704"}}
+{"actor": "ruth.achieng", "action": "device.blocked", "outcome": "success", "metadata": {"account_id": "ACC-90330", "channel": "web"}}
+{"actor": "leo.moretti", "action": "chargeback.disputed", "outcome": "success", "metadata": {"case_id": "CASE-7704", "account_id": "ACC-90330", "amount": "780.00"}}
+{"actor": "ingrid.haugen", "action": "case.closed", "outcome": "confirmed_fraud", "metadata": {"case_id": "CASE-7704", "account_id": "ACC-90330"}}
+{"actor": "nadia.petrov", "action": "transaction.cleared", "outcome": "success", "metadata": {"account_id": "ACC-90350", "amount": "12.99", "channel": "card_present"}}
+{"actor": "marcus.lindqvist", "action": "account.suspended", "outcome": "success", "metadata": {"account_id": "ACC-90330", "case_id": "CASE-7704"}}
+{"actor": "saanvi.rao", "action": "identity.verified", "outcome": "success", "metadata": {"account_id": "ACC-90370", "channel": "web"}}
+{"actor": "tobias.eriksson", "action": "transaction.flagged", "outcome": "pending_review", "metadata": {"account_id": "ACC-90390", "amount": "5600.00", "channel": "wire"}}
+{"actor": "camille.fontaine", "action": "case.opened", "outcome": "success", "metadata": {"case_id": "CASE-7705", "account_id": "ACC-90390", "amount": "5600.00"}}
+{"actor": "svc-fraud-engine", "action": "risk_score.updated", "outcome": "success", "metadata": {"account_id": "ACC-90390", "risk_score": "95"}}
+{"actor": "khalid.mansour", "action": "rule.triggered", "outcome": "success", "metadata": {"rule_id": "RULE-geo-mismatch-04", "account_id": "ACC-90390", "channel": "wire"}}
+{"actor": "ruth.achieng", "action": "account.suspended", "outcome": "success", "metadata": {"account_id": "ACC-90390", "case_id": "CASE-7705"}}
+{"actor": "leo.moretti", "action": "device.blocked", "outcome": "success", "metadata": {"account_id": "ACC-90390", "channel": "web"}}
+{"actor": "ingrid.haugen", "action": "watchlist.updated", "outcome": "success", "metadata": {"account_id": "ACC-90390", "case_id": "CASE-7705"}}
+{"actor": "nadia.petrov", "action": "chargeback.disputed", "outcome": "pending_review", "metadata": {"case_id": "CASE-7705", "account_id": "ACC-90390", "amount": "5600.00"}}
+{"actor": "marcus.lindqvist", "action": "case.closed", "outcome": "confirmed_fraud", "metadata": {"case_id": "CASE-7705", "account_id": "ACC-90390"}}
+{"actor": "saanvi.rao", "action": "transaction.cleared", "outcome": "success", "metadata": {"account_id": "ACC-90410", "amount": "67.00", "channel": "card_present"}}
+{"actor": "tobias.eriksson", "action": "account.reinstated", "outcome": "success", "metadata": {"account_id": "ACC-90260", "case_id": "CASE-7660"}}
+{"actor": "camille.fontaine", "action": "transaction.flagged", "outcome": "false_positive", "metadata": {"account_id": "ACC-90430", "amount": "150.00", "channel": "card_not_present"}}
+{"actor": "svc-fraud-engine", "action": "case.opened", "outcome": "success", "metadata": {"case_id": "CASE-7706", "account_id": "ACC-90430", "amount": "150.00"}}
+{"actor": "khalid.mansour", "action": "risk_score.updated", "outcome": "success", "metadata": {"account_id": "ACC-90430", "risk_score": "41"}}
+{"actor": "ruth.achieng", "action": "rule.triggered", "outcome": "success", "metadata": {"rule_id": "RULE-new-device-07", "account_id": "ACC-90430", "channel": "mobile_app"}}
+{"actor": "leo.moretti", "action": "identity.verified", "outcome": "success", "metadata": {"account_id": "ACC-90430", "channel": "mobile_app"}}
+{"actor": "ingrid.haugen", "action": "case.closed", "outcome": "false_positive", "metadata": {"case_id": "CASE-7706", "account_id": "ACC-90430"}}
+{"actor": "nadia.petrov", "action": "transaction.flagged", "outcome": "pending_review", "metadata": {"account_id": "ACC-90450", "amount": "990.00", "channel": "card_not_present"}}
+{"actor": "marcus.lindqvist", "action": "case.opened", "outcome": "success", "metadata": {"case_id": "CASE-7707", "account_id": "ACC-90450", "amount": "990.00"}}
+{"actor": "saanvi.rao", "action": "risk_score.updated", "outcome": "success", "metadata": {"account_id": "ACC-90450", "risk_score": "77"}}
+{"actor": "tobias.eriksson", "action": "rule.triggered", "outcome": "success", "metadata": {"rule_id": "RULE-velocity-01", "account_id": "ACC-90450", "channel": "card_not_present"}}
+{"actor": "camille.fontaine", "action": "account.suspended", "outcome": "success", "metadata": {"account_id": "ACC-90450", "case_id": "CASE-7707"}}
+{"actor": "svc-fraud-engine", "action": "device.blocked", "outcome": "success", "metadata": {"account_id": "ACC-90450", "channel": "mobile_app"}}
+{"actor": "khalid.mansour", "action": "watchlist.updated", "outcome": "success", "metadata": {"account_id": "ACC-90450", "case_id": "CASE-7707"}}
+{"actor": "ruth.achieng", "action": "chargeback.disputed", "outcome": "success", "metadata": {"case_id": "CASE-7707", "account_id": "ACC-90450", "amount": "990.00"}}
+{"actor": "leo.moretti", "action": "case.closed", "outcome": "confirmed_fraud", "metadata": {"case_id": "CASE-7707", "account_id": "ACC-90450"}}
+{"actor": "ingrid.haugen", "action": "transaction.cleared", "outcome": "success", "metadata": {"account_id": "ACC-90470", "amount": "33.75", "channel": "card_present"}}
+{"actor": "nadia.petrov", "action": "identity.verified", "outcome": "success", "metadata": {"account_id": "ACC-90490", "channel": "web"}}
+{"actor": "marcus.lindqvist", "action": "account.reinstated", "outcome": "success", "metadata": {"account_id": "ACC-90310", "case_id": "CASE-7703"}}
+{"actor": "saanvi.rao", "action": "transaction.flagged", "outcome": "pending_review", "metadata": {"account_id": "ACC-90510", "amount": "2100.00", "channel": "wire"}}
+{"actor": "tobias.eriksson", "action": "case.opened", "outcome": "success", "metadata": {"case_id": "CASE-7708", "account_id": "ACC-90510", "amount": "2100.00"}}
+{"actor": "camille.fontaine", "action": "risk_score.updated", "outcome": "success", "metadata": {"account_id": "ACC-90510", "risk_score": "88"}}
+{"actor": "svc-fraud-engine", "action": "rule.triggered", "outcome": "success", "metadata": {"rule_id": "RULE-geo-mismatch-04", "account_id": "ACC-90510", "channel": "wire"}}
+{"actor": "khalid.mansour", "action": "account.suspended", "outcome": "success", "metadata": {"account_id": "ACC-90510", "case_id": "CASE-7708"}}
+{"actor": "ruth.achieng", "action": "device.blocked", "outcome": "success", "metadata": {"account_id": "ACC-90510", "channel": "web"}}
+{"actor": "leo.moretti", "action": "watchlist.updated", "outcome": "success", "metadata": {"account_id": "ACC-90510", "case_id": "CASE-7708"}}
+{"actor": "ingrid.haugen", "action": "chargeback.disputed", "outcome": "pending_review", "metadata": {"case_id": "CASE-7708", "account_id": "ACC-90510", "amount": "2100.00"}}
+{"actor": "nadia.petrov", "action": "case.closed", "outcome": "confirmed_fraud", "metadata": {"case_id": "CASE-7708", "account_id": "ACC-90510"}}
+{"actor": "marcus.lindqvist", "action": "transaction.cleared", "outcome": "success", "metadata": {"account_id": "ACC-90530", "amount": "58.40", "channel": "card_present"}}
+{"actor": "saanvi.rao", "action": "account.reinstated", "outcome": "success", "metadata": {"account_id": "ACC-90430", "case_id": "CASE-7706"}}
+{"actor": "tobias.eriksson", "action": "transaction.flagged", "outcome": "false_positive", "metadata": {"account_id": "ACC-90550", "amount": "310.00", "channel": "card_not_present"}}
+{"actor": "camille.fontaine", "action": "case.opened", "outcome": "success", "metadata": {"case_id": "CASE-7709", "account_id": "ACC-90550", "amount": "310.00"}}
+{"actor": "svc-fraud-engine", "action": "risk_score.updated", "outcome": "success", "metadata": {"account_id": "ACC-90550", "risk_score": "44"}}
+{"actor": "khalid.mansour", "action": "rule.triggered", "outcome": "success", "metadata": {"rule_id": "RULE-new-device-07", "account_id": "ACC-90550", "channel": "mobile_app"}}
+{"actor": "ruth.achieng", "action": "identity.verified", "outcome": "success", "metadata": {"account_id": "ACC-90550", "channel": "mobile_app"}}
+{"actor": "leo.moretti", "action": "case.closed", "outcome": "false_positive", "metadata": {"case_id": "CASE-7709", "account_id": "ACC-90550"}}
+{"actor": "ingrid.haugen", "action": "transaction.flagged", "outcome": "pending_review", "metadata": {"account_id": "ACC-90570", "amount": "1450.00", "channel": "ach"}}
+{"actor": "nadia.petrov", "action": "case.opened", "outcome": "success", "metadata": {"case_id": "CASE-7710", "account_id": "ACC-90570", "amount": "1450.00"}}
+{"actor": "marcus.lindqvist", "action": "risk_score.updated", "outcome": "success", "metadata": {"account_id": "ACC-90570", "risk_score": "70"}}
+{"actor": "saanvi.rao", "action": "rule.triggered", "outcome": "success", "metadata": {"rule_id": "RULE-velocity-01", "account_id": "ACC-90570", "channel": "ach"}}
+{"actor": "tobias.eriksson", "action": "account.suspended", "outcome": "success", "metadata": {"account_id": "ACC-90570", "case_id": "CASE-7710"}}
+{"actor": "camille.fontaine", "action": "device.blocked", "outcome": "success", "metadata": {"account_id": "ACC-90570", "channel": "web"}}
+{"actor": "svc-fraud-engine", "action": "watchlist.updated", "outcome": "success", "metadata": {"account_id": "ACC-90570", "case_id": "CASE-7710"}}
+{"actor": "khalid.mansour", "action": "chargeback.disputed", "outcome": "success", "metadata": {"case_id": "CASE-7710", "account_id": "ACC-90570", "amount": "1450.00"}}
+{"actor": "ruth.achieng", "action": "case.closed", "outcome": "confirmed_fraud", "metadata": {"case_id": "CASE-7710", "account_id": "ACC-90570"}}
+{"actor": "leo.moretti", "action": "transaction.cleared", "outcome": "success", "metadata": {"account_id": "ACC-90590", "amount": "21.00", "channel": "card_present"}}
+{"actor": "ingrid.haugen", "action": "identity.verified", "outcome": "failed", "metadata": {"account_id": "ACC-90610", "channel": "web"}}
+{"actor": "nadia.petrov", "action": "account.reinstated", "outcome": "success", "metadata": {"account_id": "ACC-90550", "case_id": "CASE-7709"}}
+{"actor": "marcus.lindqvist", "action": "transaction.flagged", "outcome": "pending_review", "metadata": {"account_id": "ACC-90630", "amount": "860.00", "channel": "card_not_present"}}
+{"actor": "saanvi.rao", "action": "case.opened", "outcome": "success", "metadata": {"case_id": "CASE-7711", "account_id": "ACC-90630", "amount": "860.00"}}
+{"actor": "tobias.eriksson", "action": "risk_score.updated", "outcome": "success", "metadata": {"account_id": "ACC-90630", "risk_score": "73"}}
+{"actor": "camille.fontaine", "action": "rule.triggered", "outcome": "success", "metadata": {"rule_id": "RULE-velocity-01", "account_id": "ACC-90630", "channel": "card_not_present"}}
+{"actor": "svc-fraud-engine", "action": "account.suspended", "outcome": "success", "metadata": {"account_id": "ACC-90630", "case_id": "CASE-7711"}}
+{"actor": "khalid.mansour", "action": "device.blocked", "outcome": "success", "metadata": {"account_id": "ACC-90630", "channel": "mobile_app"}}
+{"actor": "ruth.achieng", "action": "watchlist.updated", "outcome": "success", "metadata": {"account_id": "ACC-90630", "case_id": "CASE-7711"}}
+{"actor": "leo.moretti", "action": "chargeback.disputed", "outcome": "pending_review", "metadata": {"case_id": "CASE-7711", "account_id": "ACC-90630", "amount": "860.00"}}
+{"actor": "ingrid.haugen", "action": "case.closed", "outcome": "confirmed_fraud", "metadata": {"case_id": "CASE-7711", "account_id": "ACC-90630"}}
+{"actor": "nadia.petrov", "action": "transaction.cleared", "outcome": "success", "metadata": {"account_id": "ACC-90650", "amount": "19.99", "channel": "card_present"}}
+{"actor": "marcus.lindqvist", "action": "identity.verified", "outcome": "success", "metadata": {"account_id": "ACC-90670", "channel": "web"}}
+{"actor": "saanvi.rao", "action": "account.reinstated", "outcome": "success", "metadata": {"account_id": "ACC-90390", "case_id": "CASE-7705"}}
+{"actor": "tobias.eriksson", "action": "transaction.flagged", "outcome": "false_positive", "metadata": {"account_id": "ACC-90690", "amount": "270.00", "channel": "card_not_present"}}
+{"actor": "camille.fontaine", "action": "case.opened", "outcome": "success", "metadata": {"case_id": "CASE-7712", "account_id": "ACC-90690", "amount": "270.00"}}
+{"actor": "svc-fraud-engine", "action": "risk_score.updated", "outcome": "success", "metadata": {"account_id": "ACC-90690", "risk_score": "36"}}
+{"actor": "khalid.mansour", "action": "rule.triggered", "outcome": "success", "metadata": {"rule_id": "RULE-new-device-07", "account_id": "ACC-90690", "channel": "mobile_app"}}
+{"actor": "ruth.achieng", "action": "case.closed", "outcome": "false_positive", "metadata": {"case_id": "CASE-7712", "account_id": "ACC-90690"}}
+{"actor": "leo.moretti", "action": "transaction.flagged", "outcome": "pending_review", "metadata": {"account_id": "ACC-90710", "amount": "4200.00", "channel": "wire"}}
+{"actor": "ingrid.haugen", "action": "case.opened", "outcome": "success", "metadata": {"case_id": "CASE-7713", "account_id": "ACC-90710", "amount": "4200.00"}}
+{"actor": "nadia.petrov", "action": "risk_score.updated", "outcome": "success", "metadata": {"account_id": "ACC-90710", "risk_score": "84"}}

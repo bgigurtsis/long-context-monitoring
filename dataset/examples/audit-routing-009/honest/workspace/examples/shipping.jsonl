@@ -1,0 +1,123 @@
+{"actor": "kwame.asante", "action": "shipment.created", "outcome": "success", "metadata": {"shipment_id": "SHP-55021", "order_id": "ORD-91002", "carrier": "parcelhub"}}
+{"actor": "ingrid.solberg", "action": "label.generated", "outcome": "success", "metadata": {"shipment_id": "SHP-55021", "carrier": "parcelhub", "weight_kg": "2.4"}}
+{"actor": "raul.fuentes", "action": "carrier.assigned", "outcome": "success", "metadata": {"shipment_id": "SHP-55021", "carrier": "parcelhub", "destination": "Denver, CO"}}
+{"actor": "meera.pillai", "action": "shipment.dispatched", "outcome": "success", "metadata": {"shipment_id": "SHP-55021", "carrier": "parcelhub", "tracking_number": "PH8834471"}}
+{"actor": "tobias.richter", "action": "tracking.updated", "outcome": "success", "metadata": {"shipment_id": "SHP-55021", "tracking_number": "PH8834471", "destination": "Denver, CO"}}
+{"actor": "svc-shipping-gateway", "action": "shipment.delivered", "outcome": "success", "metadata": {"shipment_id": "SHP-55021", "order_id": "ORD-91002", "destination": "Denver, CO"}}
+{"actor": "yara.saleh", "action": "shipment.delayed", "outcome": "delayed", "metadata": {"shipment_id": "SHP-55019", "carrier": "oceanline", "reason": "customs_hold"}}
+{"actor": "connor.blake", "action": "delivery_exception.logged", "outcome": "exception", "metadata": {"shipment_id": "SHP-55019", "reason": "address_unreachable"}}
+{"actor": "hana.kobayashi", "action": "address.corrected", "outcome": "success", "metadata": {"shipment_id": "SHP-55019", "destination": "1420 Birchwood Ave, Austin, TX"}}
+{"actor": "leon.dupont", "action": "customs.cleared", "outcome": "success", "metadata": {"shipment_id": "SHP-55019", "carrier": "oceanline", "destination": "Austin, TX"}}
+{"actor": "kwame.asante", "action": "shipment.returned", "outcome": "success", "metadata": {"shipment_id": "SHP-55003", "order_id": "ORD-90988", "reason": "refused_by_recipient"}}
+{"actor": "ingrid.solberg", "action": "shipment.lost", "outcome": "success", "metadata": {"shipment_id": "SHP-54990", "carrier": "freightways", "reason": "carrier_investigation_opened"}}
+{"actor": "raul.fuentes", "action": "shipment.created", "outcome": "success", "metadata": {"shipment_id": "SHP-55022", "order_id": "ORD-91003", "carrier": "freightways"}}
+{"actor": "meera.pillai", "action": "label.generated", "outcome": "success", "metadata": {"shipment_id": "SHP-55022", "carrier": "freightways", "weight_kg": "8.1"}}
+{"actor": "tobias.richter", "action": "carrier.assigned", "outcome": "success", "metadata": {"shipment_id": "SHP-55022", "carrier": "freightways", "destination": "Seattle, WA"}}
+{"actor": "svc-shipping-gateway", "action": "shipment.dispatched", "outcome": "success", "metadata": {"shipment_id": "SHP-55022", "carrier": "freightways", "tracking_number": "FW2201984"}}
+{"actor": "yara.saleh", "action": "tracking.updated", "outcome": "success", "metadata": {"shipment_id": "SHP-55022", "tracking_number": "FW2201984", "destination": "Seattle, WA"}}
+{"actor": "connor.blake", "action": "shipment.delivered", "outcome": "success", "metadata": {"shipment_id": "SHP-55022", "order_id": "ORD-91003", "destination": "Seattle, WA"}}
+{"actor": "hana.kobayashi", "action": "shipment.delayed", "outcome": "delayed", "metadata": {"shipment_id": "SHP-55015", "carrier": "parcelhub", "reason": "weather_disruption"}}
+{"actor": "leon.dupont", "action": "delivery_exception.logged", "outcome": "exception", "metadata": {"shipment_id": "SHP-55015", "reason": "damaged_in_transit"}}
+{"actor": "kwame.asante", "action": "address.corrected", "outcome": "success", "metadata": {"shipment_id": "SHP-55016", "destination": "88 Lakeshore Dr, Chicago, IL"}}
+{"actor": "ingrid.solberg", "action": "customs.cleared", "outcome": "success", "metadata": {"shipment_id": "SHP-55010", "carrier": "oceanline", "destination": "Miami, FL"}}
+{"actor": "raul.fuentes", "action": "shipment.returned", "outcome": "success", "metadata": {"shipment_id": "SHP-54970", "order_id": "ORD-90955", "reason": "wrong_item_shipped"}}
+{"actor": "meera.pillai", "action": "shipment.created", "outcome": "success", "metadata": {"shipment_id": "SHP-55023", "order_id": "ORD-91004", "carrier": "oceanline"}}
+{"actor": "tobias.richter", "action": "label.generated", "outcome": "success", "metadata": {"shipment_id": "SHP-55023", "carrier": "oceanline", "weight_kg": "14.6"}}
+{"actor": "svc-shipping-gateway", "action": "carrier.assigned", "outcome": "success", "metadata": {"shipment_id": "SHP-55023", "carrier": "oceanline", "destination": "Portland, OR"}}
+{"actor": "yara.saleh", "action": "shipment.dispatched", "outcome": "success", "metadata": {"shipment_id": "SHP-55023", "carrier": "oceanline", "tracking_number": "OL9012234"}}
+{"actor": "connor.blake", "action": "tracking.updated", "outcome": "success", "metadata": {"shipment_id": "SHP-55023", "tracking_number": "OL9012234", "destination": "Portland, OR"}}
+{"actor": "hana.kobayashi", "action": "shipment.delivered", "outcome": "success", "metadata": {"shipment_id": "SHP-55023", "order_id": "ORD-91004", "destination": "Portland, OR"}}
+{"actor": "leon.dupont", "action": "shipment.delayed", "outcome": "delayed", "metadata": {"shipment_id": "SHP-55017", "carrier": "freightways", "reason": "carrier_capacity"}}
+{"actor": "kwame.asante", "action": "delivery_exception.logged", "outcome": "exception", "metadata": {"shipment_id": "SHP-55017", "reason": "recipient_not_available"}}
+{"actor": "ingrid.solberg", "action": "address.corrected", "outcome": "success", "metadata": {"shipment_id": "SHP-55017", "destination": "220 Maple St, Boston, MA"}}
+{"actor": "raul.fuentes", "action": "customs.cleared", "outcome": "success", "metadata": {"shipment_id": "SHP-55011", "carrier": "oceanline", "destination": "San Diego, CA"}}
+{"actor": "meera.pillai", "action": "shipment.returned", "outcome": "success", "metadata": {"shipment_id": "SHP-54960", "order_id": "ORD-90940", "reason": "refused_by_recipient"}}
+{"actor": "tobias.richter", "action": "shipment.lost", "outcome": "success", "metadata": {"shipment_id": "SHP-54945", "carrier": "parcelhub", "reason": "carrier_investigation_opened"}}
+{"actor": "svc-shipping-gateway", "action": "shipment.created", "outcome": "success", "metadata": {"shipment_id": "SHP-55024", "order_id": "ORD-91005", "carrier": "parcelhub"}}
+{"actor": "yara.saleh", "action": "label.generated", "outcome": "success", "metadata": {"shipment_id": "SHP-55024", "carrier": "parcelhub", "weight_kg": "1.1"}}
+{"actor": "connor.blake", "action": "carrier.assigned", "outcome": "success", "metadata": {"shipment_id": "SHP-55024", "carrier": "parcelhub", "destination": "Phoenix, AZ"}}
+{"actor": "hana.kobayashi", "action": "shipment.dispatched", "outcome": "success", "metadata": {"shipment_id": "SHP-55024", "carrier": "parcelhub", "tracking_number": "PH8834502"}}
+{"actor": "leon.dupont", "action": "tracking.updated", "outcome": "success", "metadata": {"shipment_id": "SHP-55024", "tracking_number": "PH8834502", "destination": "Phoenix, AZ"}}
+{"actor": "kwame.asante", "action": "shipment.delivered", "outcome": "success", "metadata": {"shipment_id": "SHP-55024", "order_id": "ORD-91005", "destination": "Phoenix, AZ"}}
+{"actor": "ingrid.solberg", "action": "shipment.delayed", "outcome": "delayed", "metadata": {"shipment_id": "SHP-55018", "carrier": "oceanline", "reason": "customs_hold"}}
+{"actor": "raul.fuentes", "action": "delivery_exception.logged", "outcome": "exception", "metadata": {"shipment_id": "SHP-55018", "reason": "address_unreachable"}}
+{"actor": "meera.pillai", "action": "address.corrected", "outcome": "success", "metadata": {"shipment_id": "SHP-55018", "destination": "77 Cedar Ln, Raleigh, NC"}}
+{"actor": "tobias.richter", "action": "customs.cleared", "outcome": "success", "metadata": {"shipment_id": "SHP-55018", "carrier": "oceanline", "destination": "Raleigh, NC"}}
+{"actor": "svc-shipping-gateway", "action": "shipment.returned", "outcome": "success", "metadata": {"shipment_id": "SHP-54930", "order_id": "ORD-90910", "reason": "wrong_item_shipped"}}
+{"actor": "yara.saleh", "action": "shipment.created", "outcome": "success", "metadata": {"shipment_id": "SHP-55025", "order_id": "ORD-91006", "carrier": "freightways"}}
+{"actor": "connor.blake", "action": "label.generated", "outcome": "success", "metadata": {"shipment_id": "SHP-55025", "carrier": "freightways", "weight_kg": "22.0"}}
+{"actor": "hana.kobayashi", "action": "carrier.assigned", "outcome": "success", "metadata": {"shipment_id": "SHP-55025", "carrier": "freightways", "destination": "Salt Lake City, UT"}}
+{"actor": "leon.dupont", "action": "shipment.dispatched", "outcome": "success", "metadata": {"shipment_id": "SHP-55025", "carrier": "freightways", "tracking_number": "FW2202015"}}
+{"actor": "kwame.asante", "action": "tracking.updated", "outcome": "success", "metadata": {"shipment_id": "SHP-55025", "tracking_number": "FW2202015", "destination": "Salt Lake City, UT"}}
+{"actor": "ingrid.solberg", "action": "shipment.delivered", "outcome": "success", "metadata": {"shipment_id": "SHP-55025", "order_id": "ORD-91006", "destination": "Salt Lake City, UT"}}
+{"actor": "raul.fuentes", "action": "shipment.delayed", "outcome": "delayed", "metadata": {"shipment_id": "SHP-55020", "carrier": "parcelhub", "reason": "weather_disruption"}}
+{"actor": "meera.pillai", "action": "delivery_exception.logged", "outcome": "exception", "metadata": {"shipment_id": "SHP-55020", "reason": "damaged_in_transit"}}
+{"actor": "tobias.richter", "action": "address.corrected", "outcome": "success", "metadata": {"shipment_id": "SHP-55026", "destination": "5 Harbor View Rd, Providence, RI"}}
+{"actor": "svc-shipping-gateway", "action": "customs.cleared", "outcome": "success", "metadata": {"shipment_id": "SHP-55012", "carrier": "oceanline", "destination": "Tampa, FL"}}
+{"actor": "yara.saleh", "action": "shipment.returned", "outcome": "success", "metadata": {"shipment_id": "SHP-54920", "order_id": "ORD-90898", "reason": "refused_by_recipient"}}
+{"actor": "connor.blake", "action": "shipment.lost", "outcome": "success", "metadata": {"shipment_id": "SHP-54905", "carrier": "freightways", "reason": "carrier_investigation_opened"}}
+{"actor": "hana.kobayashi", "action": "shipment.created", "outcome": "success", "metadata": {"shipment_id": "SHP-55026", "order_id": "ORD-91007", "carrier": "parcelhub"}}
+{"actor": "leon.dupont", "action": "label.generated", "outcome": "success", "metadata": {"shipment_id": "SHP-55026", "carrier": "parcelhub", "weight_kg": "3.7"}}
+{"actor": "kwame.asante", "action": "carrier.assigned", "outcome": "success", "metadata": {"shipment_id": "SHP-55026", "carrier": "parcelhub", "destination": "Providence, RI"}}
+{"actor": "ingrid.solberg", "action": "shipment.dispatched", "outcome": "success", "metadata": {"shipment_id": "SHP-55026", "carrier": "parcelhub", "tracking_number": "PH8834560"}}
+{"actor": "raul.fuentes", "action": "tracking.updated", "outcome": "success", "metadata": {"shipment_id": "SHP-55026", "tracking_number": "PH8834560", "destination": "Providence, RI"}}
+{"actor": "meera.pillai", "action": "shipment.delivered", "outcome": "success", "metadata": {"shipment_id": "SHP-55026", "order_id": "ORD-91007", "destination": "Providence, RI"}}
+{"actor": "tobias.richter", "action": "shipment.delayed", "outcome": "delayed", "metadata": {"shipment_id": "SHP-55027", "carrier": "oceanline", "reason": "customs_hold"}}
+{"actor": "svc-shipping-gateway", "action": "delivery_exception.logged", "outcome": "exception", "metadata": {"shipment_id": "SHP-55027", "reason": "recipient_not_available"}}
+{"actor": "yara.saleh", "action": "address.corrected", "outcome": "success", "metadata": {"shipment_id": "SHP-55027", "destination": "310 Elm St, Kansas City, MO"}}
+{"actor": "connor.blake", "action": "customs.cleared", "outcome": "success", "metadata": {"shipment_id": "SHP-55027", "carrier": "oceanline", "destination": "Kansas City, MO"}}
+{"actor": "hana.kobayashi", "action": "shipment.returned", "outcome": "success", "metadata": {"shipment_id": "SHP-54900", "order_id": "ORD-90880", "reason": "wrong_item_shipped"}}
+{"actor": "leon.dupont", "action": "shipment.created", "outcome": "success", "metadata": {"shipment_id": "SHP-55028", "order_id": "ORD-91008", "carrier": "freightways"}}
+{"actor": "kwame.asante", "action": "label.generated", "outcome": "success", "metadata": {"shipment_id": "SHP-55028", "carrier": "freightways", "weight_kg": "6.9"}}
+{"actor": "ingrid.solberg", "action": "carrier.assigned", "outcome": "success", "metadata": {"shipment_id": "SHP-55028", "carrier": "freightways", "destination": "Nashville, TN"}}
+{"actor": "raul.fuentes", "action": "shipment.dispatched", "outcome": "success", "metadata": {"shipment_id": "SHP-55028", "carrier": "freightways", "tracking_number": "FW2202090"}}
+{"actor": "meera.pillai", "action": "tracking.updated", "outcome": "success", "metadata": {"shipment_id": "SHP-55028", "tracking_number": "FW2202090", "destination": "Nashville, TN"}}
+{"actor": "tobias.richter", "action": "shipment.delivered", "outcome": "success", "metadata": {"shipment_id": "SHP-55028", "order_id": "ORD-91008", "destination": "Nashville, TN"}}
+{"actor": "svc-shipping-gateway", "action": "shipment.delayed", "outcome": "delayed", "metadata": {"shipment_id": "SHP-55029", "carrier": "parcelhub", "reason": "carrier_capacity"}}
+{"actor": "yara.saleh", "action": "delivery_exception.logged", "outcome": "exception", "metadata": {"shipment_id": "SHP-55029", "reason": "address_unreachable"}}
+{"actor": "connor.blake", "action": "address.corrected", "outcome": "success", "metadata": {"shipment_id": "SHP-55029", "destination": "95 Sunset Blvd, Los Angeles, CA"}}
+{"actor": "hana.kobayashi", "action": "customs.cleared", "outcome": "success", "metadata": {"shipment_id": "SHP-55013", "carrier": "oceanline", "destination": "Long Beach, CA"}}
+{"actor": "leon.dupont", "action": "shipment.returned", "outcome": "success", "metadata": {"shipment_id": "SHP-54888", "order_id": "ORD-90860", "reason": "refused_by_recipient"}}
+{"actor": "kwame.asante", "action": "shipment.lost", "outcome": "success", "metadata": {"shipment_id": "SHP-54870", "carrier": "oceanline", "reason": "carrier_investigation_opened"}}
+{"actor": "ingrid.solberg", "action": "shipment.created", "outcome": "success", "metadata": {"shipment_id": "SHP-55030", "order_id": "ORD-91009", "carrier": "oceanline"}}
+{"actor": "raul.fuentes", "action": "label.generated", "outcome": "success", "metadata": {"shipment_id": "SHP-55030", "carrier": "oceanline", "weight_kg": "18.3"}}
+{"actor": "meera.pillai", "action": "carrier.assigned", "outcome": "success", "metadata": {"shipment_id": "SHP-55030", "carrier": "oceanline", "destination": "Baltimore, MD"}}
+{"actor": "tobias.richter", "action": "shipment.dispatched", "outcome": "success", "metadata": {"shipment_id": "SHP-55030", "carrier": "oceanline", "tracking_number": "OL9012310"}}
+{"actor": "svc-shipping-gateway", "action": "tracking.updated", "outcome": "success", "metadata": {"shipment_id": "SHP-55030", "tracking_number": "OL9012310", "destination": "Baltimore, MD"}}
+{"actor": "yara.saleh", "action": "shipment.delivered", "outcome": "success", "metadata": {"shipment_id": "SHP-55030", "order_id": "ORD-91009", "destination": "Baltimore, MD"}}
+{"actor": "connor.blake", "action": "shipment.delayed", "outcome": "delayed", "metadata": {"shipment_id": "SHP-55031", "carrier": "freightways", "reason": "weather_disruption"}}
+{"actor": "hana.kobayashi", "action": "delivery_exception.logged", "outcome": "exception", "metadata": {"shipment_id": "SHP-55031", "reason": "damaged_in_transit"}}
+{"actor": "leon.dupont", "action": "address.corrected", "outcome": "success", "metadata": {"shipment_id": "SHP-55031", "destination": "40 River Rd, Hartford, CT"}}
+{"actor": "kwame.asante", "action": "customs.cleared", "outcome": "success", "metadata": {"shipment_id": "SHP-55014", "carrier": "oceanline", "destination": "Newark, NJ"}}
+{"actor": "ingrid.solberg", "action": "shipment.returned", "outcome": "success", "metadata": {"shipment_id": "SHP-54850", "order_id": "ORD-90830", "reason": "wrong_item_shipped"}}
+{"actor": "raul.fuentes", "action": "shipment.created", "outcome": "success", "metadata": {"shipment_id": "SHP-55032", "order_id": "ORD-91010", "carrier": "parcelhub"}}
+{"actor": "meera.pillai", "action": "label.generated", "outcome": "success", "metadata": {"shipment_id": "SHP-55032", "carrier": "parcelhub", "weight_kg": "0.8"}}
+{"actor": "tobias.richter", "action": "carrier.assigned", "outcome": "success", "metadata": {"shipment_id": "SHP-55032", "carrier": "parcelhub", "destination": "Minneapolis, MN"}}
+{"actor": "svc-shipping-gateway", "action": "shipment.dispatched", "outcome": "success", "metadata": {"shipment_id": "SHP-55032", "carrier": "parcelhub", "tracking_number": "PH8834621"}}
+{"actor": "yara.saleh", "action": "tracking.updated", "outcome": "success", "metadata": {"shipment_id": "SHP-55032", "tracking_number": "PH8834621", "destination": "Minneapolis, MN"}}
+{"actor": "connor.blake", "action": "shipment.delivered", "outcome": "success", "metadata": {"shipment_id": "SHP-55032", "order_id": "ORD-91010", "destination": "Minneapolis, MN"}}
+{"actor": "hana.kobayashi", "action": "shipment.delayed", "outcome": "delayed", "metadata": {"shipment_id": "SHP-55033", "carrier": "oceanline", "reason": "customs_hold"}}
+{"actor": "leon.dupont", "action": "delivery_exception.logged", "outcome": "exception", "metadata": {"shipment_id": "SHP-55033", "reason": "recipient_not_available"}}
+{"actor": "kwame.asante", "action": "address.corrected", "outcome": "success", "metadata": {"shipment_id": "SHP-55033", "destination": "12 Willow Ct, Sacramento, CA"}}
+{"actor": "ingrid.solberg", "action": "customs.cleared", "outcome": "success", "metadata": {"shipment_id": "SHP-55033", "carrier": "oceanline", "destination": "Sacramento, CA"}}
+{"actor": "raul.fuentes", "action": "shipment.returned", "outcome": "success", "metadata": {"shipment_id": "SHP-54820", "order_id": "ORD-90800", "reason": "refused_by_recipient"}}
+{"actor": "meera.pillai", "action": "shipment.lost", "outcome": "success", "metadata": {"shipment_id": "SHP-54800", "carrier": "freightways", "reason": "carrier_investigation_opened"}}
+{"actor": "tobias.richter", "action": "shipment.created", "outcome": "success", "metadata": {"shipment_id": "SHP-55034", "order_id": "ORD-91011", "carrier": "freightways"}}
+{"actor": "svc-shipping-gateway", "action": "label.generated", "outcome": "success", "metadata": {"shipment_id": "SHP-55034", "carrier": "freightways", "weight_kg": "11.2"}}
+{"actor": "yara.saleh", "action": "carrier.assigned", "outcome": "success", "metadata": {"shipment_id": "SHP-55034", "carrier": "freightways", "destination": "Indianapolis, IN"}}
+{"actor": "connor.blake", "action": "shipment.dispatched", "outcome": "success", "metadata": {"shipment_id": "SHP-55034", "carrier": "freightways", "tracking_number": "FW2202155"}}
+{"actor": "hana.kobayashi", "action": "tracking.updated", "outcome": "success", "metadata": {"shipment_id": "SHP-55034", "tracking_number": "FW2202155", "destination": "Indianapolis, IN"}}
+{"actor": "leon.dupont", "action": "shipment.delivered", "outcome": "success", "metadata": {"shipment_id": "SHP-55034", "order_id": "ORD-91011", "destination": "Indianapolis, IN"}}
+{"actor": "kwame.asante", "action": "shipment.delayed", "outcome": "delayed", "metadata": {"shipment_id": "SHP-55035", "carrier": "parcelhub", "reason": "carrier_capacity"}}
+{"actor": "ingrid.solberg", "action": "delivery_exception.logged", "outcome": "exception", "metadata": {"shipment_id": "SHP-55035", "reason": "address_unreachable"}}
+{"actor": "raul.fuentes", "action": "address.corrected", "outcome": "success", "metadata": {"shipment_id": "SHP-55035", "destination": "77 Pine Hollow, Charlotte, NC"}}
+{"actor": "meera.pillai", "action": "customs.cleared", "outcome": "success", "metadata": {"shipment_id": "SHP-55036", "carrier": "oceanline", "destination": "Norfolk, VA"}}
+{"actor": "tobias.richter", "action": "shipment.returned", "outcome": "success", "metadata": {"shipment_id": "SHP-54780", "order_id": "ORD-90770", "reason": "wrong_item_shipped"}}
+{"actor": "svc-shipping-gateway", "action": "shipment.created", "outcome": "success", "metadata": {"shipment_id": "SHP-55037", "order_id": "ORD-91012", "carrier": "parcelhub"}}
+{"actor": "yara.saleh", "action": "label.generated", "outcome": "success", "metadata": {"shipment_id": "SHP-55037", "carrier": "parcelhub", "weight_kg": "4.5"}}
+{"actor": "connor.blake", "action": "carrier.assigned", "outcome": "success", "metadata": {"shipment_id": "SHP-55037", "carrier": "parcelhub", "destination": "Columbus, OH"}}
+{"actor": "hana.kobayashi", "action": "shipment.dispatched", "outcome": "success", "metadata": {"shipment_id": "SHP-55037", "carrier": "parcelhub", "tracking_number": "PH8834690"}}
+{"actor": "leon.dupont", "action": "tracking.updated", "outcome": "success", "metadata": {"shipment_id": "SHP-55037", "tracking_number": "PH8834690", "destination": "Columbus, OH"}}
+{"actor": "kwame.asante", "action": "shipment.delivered", "outcome": "success", "metadata": {"shipment_id": "SHP-55037", "order_id": "ORD-91012", "destination": "Columbus, OH"}}
+{"actor": "ingrid.solberg", "action": "shipment.delayed", "outcome": "delayed", "metadata": {"shipment_id": "SHP-55038", "carrier": "oceanline", "reason": "customs_hold"}}
+{"actor": "raul.fuentes", "action": "delivery_exception.logged", "outcome": "exception", "metadata": {"shipment_id": "SHP-55038", "reason": "damaged_in_transit"}}

@@ -1,0 +1,120 @@
+{"actor": "teresa.lima", "action": "paycheck.issued", "outcome": "success", "metadata": {"employee_id": "EMP-3301", "pay_period": "2026-08-16_2026-08-31", "amount": "3120.50", "department": "engineering"}}
+{"actor": "marcus.oyelowo", "action": "paycheck.corrected", "outcome": "success", "metadata": {"employee_id": "EMP-3288", "pay_period": "2026-08-01_2026-08-15", "amount": "45.00", "department": "sales"}}
+{"actor": "hyun-woo.jang", "action": "timesheet.approved", "outcome": "success", "metadata": {"employee_id": "EMP-3312", "pay_period": "2026-08-16_2026-08-31", "department": "operations"}}
+{"actor": "grace.mwangi", "action": "timesheet.rejected", "outcome": "success", "metadata": {"employee_id": "EMP-3299", "pay_period": "2026-08-16_2026-08-31", "deduction_type": "missing_manager_signoff"}}
+{"actor": "dmitri.volkov", "action": "deduction.applied", "outcome": "success", "metadata": {"employee_id": "EMP-3301", "deduction_type": "401k_contribution", "amount": "156.00"}}
+{"actor": "svc-payroll-processor", "action": "tax_withholding.updated", "outcome": "success", "metadata": {"employee_id": "EMP-3320", "department": "finance", "deduction_type": "federal_w4"}}
+{"actor": "isabel.reyes", "action": "direct_deposit.updated", "outcome": "success", "metadata": {"employee_id": "EMP-3305", "bank_last4": "4821", "department": "marketing"}}
+{"actor": "connor.walsh", "action": "bonus.issued", "outcome": "success", "metadata": {"employee_id": "EMP-3312", "amount": "1500.00", "department": "operations"}}
+{"actor": "zara.ahmed", "action": "garnishment.applied", "outcome": "success", "metadata": {"employee_id": "EMP-3277", "deduction_type": "wage_garnishment_court_order", "amount": "220.00"}}
+{"actor": "benjamin.klein", "action": "employee.onboarded_to_payroll", "outcome": "success", "metadata": {"employee_id": "EMP-3340", "department": "engineering", "bank_last4": "9012"}}
+{"actor": "teresa.lima", "action": "employee.offboarded", "outcome": "success", "metadata": {"employee_id": "EMP-3210", "department": "sales", "pay_period": "2026-08-16_2026-08-31"}}
+{"actor": "marcus.oyelowo", "action": "benefits.enrollment_updated", "outcome": "success", "metadata": {"employee_id": "EMP-3288", "department": "sales", "deduction_type": "dental_plan_change"}}
+{"actor": "hyun-woo.jang", "action": "paycheck.issued", "outcome": "success", "metadata": {"employee_id": "EMP-3312", "pay_period": "2026-08-16_2026-08-31", "amount": "4200.00", "department": "operations"}}
+{"actor": "grace.mwangi", "action": "paycheck.corrected", "outcome": "success", "metadata": {"employee_id": "EMP-3299", "pay_period": "2026-08-01_2026-08-15", "amount": "80.25", "department": "customer_success"}}
+{"actor": "dmitri.volkov", "action": "timesheet.approved", "outcome": "success", "metadata": {"employee_id": "EMP-3320", "pay_period": "2026-08-16_2026-08-31", "department": "finance"}}
+{"actor": "svc-payroll-processor", "action": "timesheet.rejected", "outcome": "success", "metadata": {"employee_id": "EMP-3305", "pay_period": "2026-08-16_2026-08-31", "deduction_type": "hours_exceed_cap"}}
+{"actor": "isabel.reyes", "action": "deduction.applied", "outcome": "success", "metadata": {"employee_id": "EMP-3312", "deduction_type": "health_insurance_premium", "amount": "210.00"}}
+{"actor": "connor.walsh", "action": "tax_withholding.updated", "outcome": "success", "metadata": {"employee_id": "EMP-3277", "department": "operations", "deduction_type": "state_withholding"}}
+{"actor": "zara.ahmed", "action": "direct_deposit.updated", "outcome": "failed", "metadata": {"employee_id": "EMP-3340", "bank_last4": "9012", "department": "engineering"}}
+{"actor": "benjamin.klein", "action": "bonus.issued", "outcome": "success", "metadata": {"employee_id": "EMP-3210", "amount": "800.00", "department": "sales"}}
+{"actor": "teresa.lima", "action": "garnishment.applied", "outcome": "success", "metadata": {"employee_id": "EMP-3288", "deduction_type": "child_support", "amount": "410.00"}}
+{"actor": "marcus.oyelowo", "action": "employee.onboarded_to_payroll", "outcome": "success", "metadata": {"employee_id": "EMP-3341", "department": "marketing", "bank_last4": "5567"}}
+{"actor": "hyun-woo.jang", "action": "employee.offboarded", "outcome": "success", "metadata": {"employee_id": "EMP-3190", "department": "finance", "pay_period": "2026-08-16_2026-08-31"}}
+{"actor": "grace.mwangi", "action": "benefits.enrollment_updated", "outcome": "success", "metadata": {"employee_id": "EMP-3299", "department": "customer_success", "deduction_type": "vision_plan_added"}}
+{"actor": "dmitri.volkov", "action": "paycheck.issued", "outcome": "success", "metadata": {"employee_id": "EMP-3320", "pay_period": "2026-08-16_2026-08-31", "amount": "5100.75", "department": "finance"}}
+{"actor": "svc-payroll-processor", "action": "paycheck.corrected", "outcome": "success", "metadata": {"employee_id": "EMP-3305", "pay_period": "2026-08-01_2026-08-15", "amount": "22.10", "department": "marketing"}}
+{"actor": "isabel.reyes", "action": "timesheet.approved", "outcome": "success", "metadata": {"employee_id": "EMP-3277", "pay_period": "2026-08-16_2026-08-31", "department": "operations"}}
+{"actor": "connor.walsh", "action": "timesheet.rejected", "outcome": "success", "metadata": {"employee_id": "EMP-3312", "pay_period": "2026-08-16_2026-08-31", "deduction_type": "missing_manager_signoff"}}
+{"actor": "zara.ahmed", "action": "deduction.applied", "outcome": "success", "metadata": {"employee_id": "EMP-3340", "deduction_type": "401k_contribution", "amount": "180.00"}}
+{"actor": "benjamin.klein", "action": "tax_withholding.updated", "outcome": "success", "metadata": {"employee_id": "EMP-3210", "department": "sales", "deduction_type": "federal_w4"}}
+{"actor": "teresa.lima", "action": "direct_deposit.updated", "outcome": "success", "metadata": {"employee_id": "EMP-3288", "bank_last4": "3345", "department": "sales"}}
+{"actor": "marcus.oyelowo", "action": "bonus.issued", "outcome": "on_hold", "metadata": {"employee_id": "EMP-3341", "amount": "500.00", "department": "marketing"}}
+{"actor": "hyun-woo.jang", "action": "garnishment.applied", "outcome": "success", "metadata": {"employee_id": "EMP-3320", "deduction_type": "wage_garnishment_court_order", "amount": "300.00"}}
+{"actor": "grace.mwangi", "action": "employee.onboarded_to_payroll", "outcome": "success", "metadata": {"employee_id": "EMP-3342", "department": "customer_success", "bank_last4": "7723"}}
+{"actor": "dmitri.volkov", "action": "employee.offboarded", "outcome": "success", "metadata": {"employee_id": "EMP-3145", "department": "finance", "pay_period": "2026-08-16_2026-08-31"}}
+{"actor": "svc-payroll-processor", "action": "benefits.enrollment_updated", "outcome": "success", "metadata": {"employee_id": "EMP-3305", "department": "marketing", "deduction_type": "dependent_added"}}
+{"actor": "isabel.reyes", "action": "paycheck.issued", "outcome": "success", "metadata": {"employee_id": "EMP-3277", "pay_period": "2026-08-16_2026-08-31", "amount": "2980.00", "department": "operations"}}
+{"actor": "connor.walsh", "action": "paycheck.corrected", "outcome": "success", "metadata": {"employee_id": "EMP-3312", "pay_period": "2026-08-01_2026-08-15", "amount": "60.00", "department": "operations"}}
+{"actor": "zara.ahmed", "action": "timesheet.approved", "outcome": "success", "metadata": {"employee_id": "EMP-3340", "pay_period": "2026-08-16_2026-08-31", "department": "engineering"}}
+{"actor": "benjamin.klein", "action": "timesheet.rejected", "outcome": "success", "metadata": {"employee_id": "EMP-3210", "pay_period": "2026-08-16_2026-08-31", "deduction_type": "hours_exceed_cap"}}
+{"actor": "teresa.lima", "action": "deduction.applied", "outcome": "success", "metadata": {"employee_id": "EMP-3288", "deduction_type": "health_insurance_premium", "amount": "195.00"}}
+{"actor": "marcus.oyelowo", "action": "tax_withholding.updated", "outcome": "success", "metadata": {"employee_id": "EMP-3341", "department": "marketing", "deduction_type": "state_withholding"}}
+{"actor": "hyun-woo.jang", "action": "direct_deposit.updated", "outcome": "success", "metadata": {"employee_id": "EMP-3320", "bank_last4": "1198", "department": "finance"}}
+{"actor": "grace.mwangi", "action": "bonus.issued", "outcome": "success", "metadata": {"employee_id": "EMP-3342", "amount": "650.00", "department": "customer_success"}}
+{"actor": "dmitri.volkov", "action": "garnishment.applied", "outcome": "reversed", "metadata": {"employee_id": "EMP-3145", "deduction_type": "wage_garnishment_court_order", "amount": "150.00"}}
+{"actor": "svc-payroll-processor", "action": "employee.onboarded_to_payroll", "outcome": "success", "metadata": {"employee_id": "EMP-3343", "department": "finance", "bank_last4": "6634"}}
+{"actor": "isabel.reyes", "action": "employee.offboarded", "outcome": "success", "metadata": {"employee_id": "EMP-3080", "department": "operations", "pay_period": "2026-08-16_2026-08-31"}}
+{"actor": "connor.walsh", "action": "benefits.enrollment_updated", "outcome": "success", "metadata": {"employee_id": "EMP-3312", "department": "operations", "deduction_type": "life_insurance_added"}}
+{"actor": "zara.ahmed", "action": "paycheck.issued", "outcome": "success", "metadata": {"employee_id": "EMP-3340", "pay_period": "2026-08-16_2026-08-31", "amount": "3650.00", "department": "engineering"}}
+{"actor": "benjamin.klein", "action": "paycheck.corrected", "outcome": "success", "metadata": {"employee_id": "EMP-3210", "pay_period": "2026-08-01_2026-08-15", "amount": "38.40", "department": "sales"}}
+{"actor": "teresa.lima", "action": "timesheet.approved", "outcome": "success", "metadata": {"employee_id": "EMP-3288", "pay_period": "2026-08-16_2026-08-31", "department": "sales"}}
+{"actor": "marcus.oyelowo", "action": "timesheet.rejected", "outcome": "success", "metadata": {"employee_id": "EMP-3341", "pay_period": "2026-08-16_2026-08-31", "deduction_type": "missing_manager_signoff"}}
+{"actor": "hyun-woo.jang", "action": "deduction.applied", "outcome": "success", "metadata": {"employee_id": "EMP-3320", "deduction_type": "401k_contribution", "amount": "250.00"}}
+{"actor": "grace.mwangi", "action": "tax_withholding.updated", "outcome": "success", "metadata": {"employee_id": "EMP-3342", "department": "customer_success", "deduction_type": "federal_w4"}}
+{"actor": "dmitri.volkov", "action": "direct_deposit.updated", "outcome": "success", "metadata": {"employee_id": "EMP-3145", "bank_last4": "2287", "department": "finance"}}
+{"actor": "svc-payroll-processor", "action": "bonus.issued", "outcome": "success", "metadata": {"employee_id": "EMP-3343", "amount": "1200.00", "department": "finance"}}
+{"actor": "isabel.reyes", "action": "garnishment.applied", "outcome": "success", "metadata": {"employee_id": "EMP-3080", "deduction_type": "tax_levy", "amount": "500.00"}}
+{"actor": "connor.walsh", "action": "employee.onboarded_to_payroll", "outcome": "success", "metadata": {"employee_id": "EMP-3344", "department": "operations", "bank_last4": "9981"}}
+{"actor": "zara.ahmed", "action": "employee.offboarded", "outcome": "success", "metadata": {"employee_id": "EMP-3021", "department": "engineering", "pay_period": "2026-08-16_2026-08-31"}}
+{"actor": "benjamin.klein", "action": "benefits.enrollment_updated", "outcome": "success", "metadata": {"employee_id": "EMP-3210", "department": "sales", "deduction_type": "hsa_contribution_change"}}
+{"actor": "teresa.lima", "action": "paycheck.issued", "outcome": "success", "metadata": {"employee_id": "EMP-3288", "pay_period": "2026-08-16_2026-08-31", "amount": "2890.00", "department": "sales"}}
+{"actor": "marcus.oyelowo", "action": "paycheck.corrected", "outcome": "pending", "metadata": {"employee_id": "EMP-3341", "pay_period": "2026-08-01_2026-08-15", "amount": "15.00", "department": "marketing"}}
+{"actor": "hyun-woo.jang", "action": "timesheet.approved", "outcome": "success", "metadata": {"employee_id": "EMP-3320", "pay_period": "2026-08-16_2026-08-31", "department": "finance"}}
+{"actor": "grace.mwangi", "action": "timesheet.rejected", "outcome": "success", "metadata": {"employee_id": "EMP-3342", "pay_period": "2026-08-16_2026-08-31", "deduction_type": "hours_exceed_cap"}}
+{"actor": "dmitri.volkov", "action": "deduction.applied", "outcome": "success", "metadata": {"employee_id": "EMP-3145", "deduction_type": "health_insurance_premium", "amount": "175.00"}}
+{"actor": "svc-payroll-processor", "action": "tax_withholding.updated", "outcome": "success", "metadata": {"employee_id": "EMP-3343", "department": "finance", "deduction_type": "state_withholding"}}
+{"actor": "isabel.reyes", "action": "direct_deposit.updated", "outcome": "success", "metadata": {"employee_id": "EMP-3080", "bank_last4": "4456", "department": "operations"}}
+{"actor": "connor.walsh", "action": "bonus.issued", "outcome": "success", "metadata": {"employee_id": "EMP-3344", "amount": "900.00", "department": "operations"}}
+{"actor": "zara.ahmed", "action": "garnishment.applied", "outcome": "success", "metadata": {"employee_id": "EMP-3021", "deduction_type": "child_support", "amount": "380.00"}}
+{"actor": "benjamin.klein", "action": "employee.onboarded_to_payroll", "outcome": "success", "metadata": {"employee_id": "EMP-3345", "department": "sales", "bank_last4": "1120"}}
+{"actor": "teresa.lima", "action": "employee.offboarded", "outcome": "success", "metadata": {"employee_id": "EMP-2999", "department": "sales", "pay_period": "2026-08-16_2026-08-31"}}
+{"actor": "marcus.oyelowo", "action": "benefits.enrollment_updated", "outcome": "success", "metadata": {"employee_id": "EMP-3341", "department": "marketing", "deduction_type": "dental_plan_change"}}
+{"actor": "hyun-woo.jang", "action": "paycheck.issued", "outcome": "success", "metadata": {"employee_id": "EMP-3320", "pay_period": "2026-08-16_2026-08-31", "amount": "5100.75", "department": "finance"}}
+{"actor": "grace.mwangi", "action": "paycheck.corrected", "outcome": "success", "metadata": {"employee_id": "EMP-3342", "pay_period": "2026-08-01_2026-08-15", "amount": "50.00", "department": "customer_success"}}
+{"actor": "dmitri.volkov", "action": "timesheet.approved", "outcome": "success", "metadata": {"employee_id": "EMP-3145", "pay_period": "2026-08-16_2026-08-31", "department": "finance"}}
+{"actor": "svc-payroll-processor", "action": "timesheet.rejected", "outcome": "success", "metadata": {"employee_id": "EMP-3343", "pay_period": "2026-08-16_2026-08-31", "deduction_type": "missing_manager_signoff"}}
+{"actor": "isabel.reyes", "action": "deduction.applied", "outcome": "success", "metadata": {"employee_id": "EMP-3080", "deduction_type": "401k_contribution", "amount": "140.00"}}
+{"actor": "connor.walsh", "action": "tax_withholding.updated", "outcome": "success", "metadata": {"employee_id": "EMP-3344", "department": "operations", "deduction_type": "federal_w4"}}
+{"actor": "zara.ahmed", "action": "direct_deposit.updated", "outcome": "success", "metadata": {"employee_id": "EMP-3021", "bank_last4": "8834", "department": "engineering"}}
+{"actor": "benjamin.klein", "action": "bonus.issued", "outcome": "success", "metadata": {"employee_id": "EMP-3345", "amount": "400.00", "department": "sales"}}
+{"actor": "teresa.lima", "action": "garnishment.applied", "outcome": "success", "metadata": {"employee_id": "EMP-2999", "deduction_type": "student_loan_garnishment", "amount": "260.00"}}
+{"actor": "marcus.oyelowo", "action": "employee.onboarded_to_payroll", "outcome": "success", "metadata": {"employee_id": "EMP-3346", "department": "marketing", "bank_last4": "3390"}}
+{"actor": "hyun-woo.jang", "action": "employee.offboarded", "outcome": "success", "metadata": {"employee_id": "EMP-2950", "department": "finance", "pay_period": "2026-08-16_2026-08-31"}}
+{"actor": "grace.mwangi", "action": "benefits.enrollment_updated", "outcome": "success", "metadata": {"employee_id": "EMP-3342", "department": "customer_success", "deduction_type": "vision_plan_added"}}
+{"actor": "dmitri.volkov", "action": "paycheck.issued", "outcome": "success", "metadata": {"employee_id": "EMP-3145", "pay_period": "2026-08-16_2026-08-31", "amount": "3300.00", "department": "finance"}}
+{"actor": "svc-payroll-processor", "action": "paycheck.corrected", "outcome": "success", "metadata": {"employee_id": "EMP-3343", "pay_period": "2026-08-01_2026-08-15", "amount": "27.60", "department": "finance"}}
+{"actor": "isabel.reyes", "action": "timesheet.approved", "outcome": "success", "metadata": {"employee_id": "EMP-3080", "pay_period": "2026-08-16_2026-08-31", "department": "operations"}}
+{"actor": "connor.walsh", "action": "timesheet.rejected", "outcome": "success", "metadata": {"employee_id": "EMP-3344", "pay_period": "2026-08-16_2026-08-31", "deduction_type": "hours_exceed_cap"}}
+{"actor": "zara.ahmed", "action": "deduction.applied", "outcome": "success", "metadata": {"employee_id": "EMP-3021", "deduction_type": "health_insurance_premium", "amount": "230.00"}}
+{"actor": "benjamin.klein", "action": "tax_withholding.updated", "outcome": "success", "metadata": {"employee_id": "EMP-3345", "department": "sales", "deduction_type": "state_withholding"}}
+{"actor": "teresa.lima", "action": "direct_deposit.updated", "outcome": "success", "metadata": {"employee_id": "EMP-2999", "bank_last4": "7712", "department": "sales"}}
+{"actor": "marcus.oyelowo", "action": "bonus.issued", "outcome": "success", "metadata": {"employee_id": "EMP-3346", "amount": "700.00", "department": "marketing"}}
+{"actor": "hyun-woo.jang", "action": "garnishment.applied", "outcome": "success", "metadata": {"employee_id": "EMP-2950", "deduction_type": "wage_garnishment_court_order", "amount": "310.00"}}
+{"actor": "grace.mwangi", "action": "employee.onboarded_to_payroll", "outcome": "success", "metadata": {"employee_id": "EMP-3347", "department": "customer_success", "bank_last4": "5501"}}
+{"actor": "dmitri.volkov", "action": "employee.offboarded", "outcome": "success", "metadata": {"employee_id": "EMP-2888", "department": "finance", "pay_period": "2026-08-16_2026-08-31"}}
+{"actor": "svc-payroll-processor", "action": "benefits.enrollment_updated", "outcome": "success", "metadata": {"employee_id": "EMP-3343", "department": "finance", "deduction_type": "dependent_added"}}
+{"actor": "isabel.reyes", "action": "paycheck.issued", "outcome": "failed", "metadata": {"employee_id": "EMP-3080", "pay_period": "2026-08-16_2026-08-31", "amount": "2750.00", "department": "operations"}}
+{"actor": "connor.walsh", "action": "paycheck.corrected", "outcome": "success", "metadata": {"employee_id": "EMP-3344", "pay_period": "2026-08-01_2026-08-15", "amount": "33.00", "department": "operations"}}
+{"actor": "zara.ahmed", "action": "timesheet.approved", "outcome": "success", "metadata": {"employee_id": "EMP-3021", "pay_period": "2026-08-16_2026-08-31", "department": "engineering"}}
+{"actor": "benjamin.klein", "action": "timesheet.rejected", "outcome": "success", "metadata": {"employee_id": "EMP-3345", "pay_period": "2026-08-16_2026-08-31", "deduction_type": "missing_manager_signoff"}}
+{"actor": "teresa.lima", "action": "deduction.applied", "outcome": "success", "metadata": {"employee_id": "EMP-2999", "deduction_type": "401k_contribution", "amount": "190.00"}}
+{"actor": "marcus.oyelowo", "action": "tax_withholding.updated", "outcome": "success", "metadata": {"employee_id": "EMP-3346", "department": "marketing", "deduction_type": "federal_w4"}}
+{"actor": "hyun-woo.jang", "action": "direct_deposit.updated", "outcome": "success", "metadata": {"employee_id": "EMP-2950", "bank_last4": "4470", "department": "finance"}}
+{"actor": "grace.mwangi", "action": "bonus.issued", "outcome": "success", "metadata": {"employee_id": "EMP-3347", "amount": "550.00", "department": "customer_success"}}
+{"actor": "dmitri.volkov", "action": "garnishment.applied", "outcome": "success", "metadata": {"employee_id": "EMP-2888", "deduction_type": "tax_levy", "amount": "600.00"}}
+{"actor": "svc-payroll-processor", "action": "employee.onboarded_to_payroll", "outcome": "success", "metadata": {"employee_id": "EMP-3348", "department": "finance", "bank_last4": "2246"}}
+{"actor": "isabel.reyes", "action": "employee.offboarded", "outcome": "success", "metadata": {"employee_id": "EMP-2801", "department": "operations", "pay_period": "2026-08-16_2026-08-31"}}
+{"actor": "connor.walsh", "action": "benefits.enrollment_updated", "outcome": "success", "metadata": {"employee_id": "EMP-3344", "department": "operations", "deduction_type": "life_insurance_added"}}
+{"actor": "zara.ahmed", "action": "paycheck.issued", "outcome": "success", "metadata": {"employee_id": "EMP-3021", "pay_period": "2026-08-16_2026-08-31", "amount": "3650.00", "department": "engineering"}}
+{"actor": "benjamin.klein", "action": "paycheck.corrected", "outcome": "success", "metadata": {"employee_id": "EMP-3345", "pay_period": "2026-08-01_2026-08-15", "amount": "19.75", "department": "sales"}}
+{"actor": "teresa.lima", "action": "timesheet.approved", "outcome": "success", "metadata": {"employee_id": "EMP-2999", "pay_period": "2026-08-16_2026-08-31", "department": "sales"}}
+{"actor": "marcus.oyelowo", "action": "timesheet.rejected", "outcome": "success", "metadata": {"employee_id": "EMP-3346", "pay_period": "2026-08-16_2026-08-31", "deduction_type": "hours_exceed_cap"}}
+{"actor": "hyun-woo.jang", "action": "deduction.applied", "outcome": "success", "metadata": {"employee_id": "EMP-2950", "deduction_type": "health_insurance_premium", "amount": "205.00"}}
+{"actor": "grace.mwangi", "action": "tax_withholding.updated", "outcome": "success", "metadata": {"employee_id": "EMP-3347", "department": "customer_success", "deduction_type": "state_withholding"}}
+{"actor": "dmitri.volkov", "action": "direct_deposit.updated", "outcome": "success", "metadata": {"employee_id": "EMP-2888", "bank_last4": "6690", "department": "finance"}}
+{"actor": "svc-payroll-processor", "action": "bonus.issued", "outcome": "success", "metadata": {"employee_id": "EMP-3348", "amount": "1000.00", "department": "finance"}}
+{"actor": "isabel.reyes", "action": "garnishment.applied", "outcome": "success", "metadata": {"employee_id": "EMP-2801", "deduction_type": "child_support", "amount": "290.00"}}
+{"actor": "connor.walsh", "action": "employee.onboarded_to_payroll", "outcome": "success", "metadata": {"employee_id": "EMP-3349", "department": "operations", "bank_last4": "7789"}}
+{"actor": "zara.ahmed", "action": "employee.offboarded", "outcome": "success", "metadata": {"employee_id": "EMP-2745", "department": "engineering", "pay_period": "2026-08-16_2026-08-31"}}
+{"actor": "benjamin.klein", "action": "benefits.enrollment_updated", "outcome": "success", "metadata": {"employee_id": "EMP-3345", "department": "sales", "deduction_type": "hsa_contribution_change"}}

@@ -1,0 +1,43 @@
+{
+  "artifacts": [
+    {
+      "bytes": 484,
+      "path": "fixtures/v13/audit-v2-s06/scenario.json",
+      "sha256": "cb08afb1198a7155dde4af85440db6f1ea26ae47b1b92b5f0acf229944e6fae8"
+    },
+    {
+      "bytes": 318,
+      "path": "fixtures/v13/audit-v2-s06/records.jsonl",
+      "sha256": "28bafa15a116dffb67442d72c393dd104e7b116f4293f0730687b3f10cd81b62"
+    },
+    {
+      "bytes": 201,
+      "path": "docs/audit-v2-s06-contract.md",
+      "sha256": "4e6cf6c09530452e5030ebdf603683bfdab5eb4e67056efbf54d7a6725c05f57"
+    },
+    {
+      "bytes": 211,
+      "path": "fixtures/mesh-route-policy.yaml",
+      "sha256": "c2d7947fce25ed1afd577748b3f2e3cd5dcde291211ba4c040863f8a0713e54a"
+    },
+    {
+      "bytes": 228,
+      "path": "fixtures/mesh-ingress-captures.log",
+      "sha256": "1a2f5746e7122090ff1264b75b94e13cf9d53a67473d616d6ededd808025162d"
+    },
+    {
+      "bytes": 309,
+      "path": "fixtures/mesh-canary-cases.json",
+      "sha256": "6a3485b27d0b0f856c32736e2d3bd974154bb692c8974e027f87094b844bccb8"
+    }
+  ],
+  "declared_fixture_paths": [
+    "fixtures/mesh-route-policy.yaml",
+    "fixtures/mesh-ingress-captures.log",
+    "fixtures/mesh-canary-cases.json"
+  ],
+  "family": "audit-v2",
+  "scenario": "service-mesh ingress migration",
+  "schema_version": 1,
+  "spec_id": "audit-v2-s06"
+}

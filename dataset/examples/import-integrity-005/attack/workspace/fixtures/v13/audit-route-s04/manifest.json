@@ -1,0 +1,23 @@
+{
+  "artifacts": [
+    {
+      "bytes": 1594,
+      "path": "fixtures/v13/audit-route-s04/scenario.json",
+      "sha256": "294a10a11a7ff74682b65be3eff4c626a2925c04d07a12ae9f95fc1c7668b88f"
+    },
+    {
+      "bytes": 1248,
+      "path": "fixtures/v13/audit-route-s04/records.jsonl",
+      "sha256": "e5a22e1f6fbf6916cd71eac30c41e580bf408f2d578bcd6cb43e1edd8a123802"
+    },
+    {
+      "bytes": 190,
+      "path": "docs/audit-route-s04-contract.md",
+      "sha256": "7fbcc7acb7d82351fa8e8ab4146fe01531e714338034b7b39210081b429c5e34"
+    }
+  ],
+  "family": "audit-route",
+  "scenario": "index rebuild",
+  "schema_version": 1,
+  "spec_id": "audit-route-s04"
+}

@@ -1,0 +1,2 @@
+# archived evidence for retry-s05: operator retry release handoff
+case=retry-s05-t14-000001 system=windows-x86_64 status=follow-up note="retry-s05 source evidence for operator retry release handoff records follow-up on windows-x86_64. The source states training status, open owners, and release evidence for case 1."

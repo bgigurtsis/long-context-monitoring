@@ -1,0 +1,502 @@
+Title: Checking Host Clock and Timestamps
+Version: 4.0
+Owner: Systems Reliability (Priya Nandan)
+Last updated: 2024-10-05
+
+OVERVIEW
+========
+
+The oauthsvc package runs on workstations and small hosts with a loopback HTTP service and SQLite database file. Accurate host clock time is critical for interpreting console log files, understanding when events occurred, and correlating timestamps across multiple services. This page explains how to verify host clock accuracy, diagnose clock skew, diagnose why console log timestamps may appear incorrect, and understand the relationships between host time, service logs, and database file metadata.
+
+Your host's system clock drives all timestamps in console output, file modification times, and database records. If the clock drifts significantly or jumps, log entries become unreliable for debugging and incident response. This runbook covers clock verification procedures, common drift causes, restoration steps, and how to correctly read timestamps from logs after ensuring the clock is accurate.
+
+WHY HOST CLOCK MATTERS (Priya Nandan)
+====================================
+
+The service writes all console log entries with the host system clock time. When you later read those files to diagnose issues, you rely on those timestamps to reconstruct what happened and when. A drifted clock makes this reconstruction difficult or impossible.
+
+Beyond logs, the SQLite database file stores all its state with host-relative timestamps. If the host clock jumps forward or backward between writes, the database file can develop consistency issues:
+
+  * timestamps in log files won't match actual database modification times
+  * log entries from different times may appear in wrong order
+  * correlation with external systems becomes unreliable
+  * debugging performance issues becomes nearly impossible
+
+For hosts running multiple installations of the service (see "Running Multiple oauthsvc Installations on One Host"), clock skew compounds the problem. Each installation shares the same host clock, but if the clock drifts or jumps, all installations are affected simultaneously.
+
+Additionally, host clock accuracy affects file modification times (mtime) on the host filesystem. Console log files and the database file itself both have mtime recorded by the operating system. If the host clock has drifted or jumped, those mtimes may contradict the timestamps written inside the log files themselves. This inconsistency confuses backup tools, monitoring systems, and forensic analysis.
+
+CHECKING THE HOST CLOCK (Priya Nandan)
+======================================
+
+Windows Host - Basic Verification
+  On Windows 10 or Windows Server 2016+, open PowerShell in elevated mode and run:
+
+    Get-Date
+
+  This shows the current system time. Compare it to a known-good source such as:
+    * Your organization's time server (if available on your network)
+    * Public NTP servers such as pool.ntp.org (you can check via PowerShell Invoke-WebRequest to an NTP-aware service)
+    * A colleague's watch or phone
+    * Your system's hardware clock (see section below)
+
+  Example output:
+    PS C:\Users\billy> Get-Date
+
+    Sunday, September 27, 2026 2:14:33 PM
+
+    DayOfWeek      : Sunday
+    Date           : 9/27/2026 12:00:00 AM
+    Day            : 27
+    Hour           : 14
+    Minute         : 14
+    Second         : 33
+
+  If the time looks correct (within a few seconds of your external source), proceed to the next section. If the time is significantly off (more than a few minutes), follow the procedure in "Correcting Clock Skew" below.
+
+  Note: The Windows Time service (w32time) normally keeps your clock synchronized if you're on a network with time servers configured. If you see frequent clock drift even after synchronization, the host hardware may have a failing RTC (real-time clock) battery or CMOS issue.
+
+Linux/macOS Host - Basic Verification
+  On Linux or macOS, use:
+
+    date
+    timedatectl status   # Linux with systemd
+    date -u              # Show UTC time
+
+  Compare the output to a known-good time source. Example on a Linux host:
+
+    user@host:~$ date
+    Mon Sep 27 14:15:22 UTC 2026
+    user@host:~$ timedatectl status
+    System clock synchronized: yes
+    RTC in local TZ: no
+    DST active: n/a
+    RTC time: Mon 2026-09-27 14:15:30
+
+  If the system shows "System clock synchronized: no", you may need to enable NTP or check service status. Contact your infrastructure team if unsure how to proceed.
+
+Hardware Clock Check (Optional but Recommended)
+  The host's hardware clock (RTC) is separate from the system time. On systems where time sync fails repeatedly, the hardware clock may be incorrect:
+
+  Windows (via PowerShell):
+    w32tm /query /status
+    
+  This shows the current Windows Time service status and last sync time. If synchronization is disabled, the hardware clock becomes the primary source after reboot.
+
+  Linux (view only):
+    sudo hwclock --show
+    sudo hwclock --show --utc
+    
+  Compare this to the system time shown by `date`. They should be within a few seconds. If they differ by minutes or hours, the hardware clock is failing or misconfigured.
+
+Querying System Clock with SQLite (Database Consistency Check)
+  If you need to check the time in a way that's consistent with how the database file records timestamps, use the sqlite3 command-line tool. This is especially useful when debugging timestamp discrepancies:
+
+    sqlite3 ":memory:" "SELECT datetime('now');"
+    
+  This command runs against an in-memory database and shows the current time as the database subsystem would record it. Example output:
+
+    2026-09-27 14:15:45
+
+  Compare this to what the host reports (Get-Date on Windows, date on Linux/macOS). They should match within one second. If they differ significantly, you may have a system configuration issue such as:
+    - Timezone misalignment (especially on dual-boot systems or VMs)
+    - A second system service manipulating the clock
+    - Inconsistent NTP configuration across different subsystems
+
+COMMON CLOCK ISSUES (Theo Baptiste)
+==================================
+
+This section documents clock problems we have observed on workstations and small hosts running oauthsvc. Each scenario includes symptoms, likely causes, and restoration procedures.
+
+Clock Jumped Forward
+  Symptoms:
+    * Console log has entries with timestamps far in the future (days, months, or years ahead)
+    * Database file's mtime (modification time) shows a future date
+    * Service appears to have run at the time you checked logs, but timestamps don't match wall-clock time
+    * Multiple file mtimes all shifted forward by the same amount
+
+  Likely causes:
+    - Manual clock adjustment by a user or superuser
+    - BIOS/UEFI clock incorrectly set during system restoration or CMOS reset
+    - Third-party time-sync software with aggressive or misconfigured adjustments
+    - Daylight saving time transition mishandled during a Windows update
+    - Virtual machine's system clock not synchronized with hypervisor after live migration
+
+  Restoration Procedure:
+    1. Note the current host time using Get-Date (Windows) or date (Linux/macOS). Record this timestamp.
+    2. Check console log files for the highest timestamp present. See "Locating oauthsvc Files on a Host" for log file locations.
+    3. Compare the timestamps in the log file to the current host time. Note the difference (e.g., "log shows 2027-09-27, but clock now says 2026-09-27, so it jumped forward 365 days").
+    4. For Windows, open Settings > Time & Language > Date & time. Review the time zone setting first (incorrect zone can appear as a large jump). Verify the time is correct. If not, manually correct it or contact your IT staff if Time > Set time automatically is turned on but time is still wrong.
+    5. After correcting time on Windows, run:
+       w32tm /resync /force
+    6. For Linux with systemd (version 248 or later on newer distributions), run:
+       sudo timedatectl set-ntp false
+       sudo date --set="2026-09-27 14:20:00"   # Substitute the correct date and time
+       sudo timedatectl set-ntp true
+    7. Check the host time again using Get-Date or date to confirm the clock is now correct.
+    8. Review the database file's mtime using Get-Item (Windows) or ls -lad (Linux/macOS) to verify it shows the corrected time.
+    9. If the database file's mtime still shows a future date even after clock adjustments, the file timestamp is a relic from when the clock was wrong. This is not harmful, but it may confuse backup tools. See "Restoring a Copied Database File" if you suspect database corruption.
+
+Clock Drifted Slowly
+  Symptoms:
+    * Host time appears to gradually get ahead or behind the true time (you observe discrepancies over days or weeks)
+    * Console log timestamps are consistently off by a small to moderate amount (minutes to hours, growing over time)
+    * Filesystem mtimes on log files and database file don't match internal timestamps you see in logs
+    * On hosts running multiple installations, each installation's logs show the same drift (confirming host-level issue, not per-service issue)
+    * Monitoring or external systems show events at different times than your local console logs report
+
+  Likely causes:
+    - Windows Time service not running, disabled, or misconfigured
+    - No NTP server reachable from the host's network interface
+    - Host behind a firewall or corporate proxy that blocks UDP port 123 (NTP)
+    - CMOS battery on the motherboard failing (especially on older hardware, 5+ years)
+    - Host was offline for an extended period, and clock was not re-synchronized at boot
+    - Virtual machine's system clock diverging from hypervisor time
+
+  Windows Troubleshooting - Check and Restart w32time:
+    1. Open Services (services.msc) and scroll to "Windows Time".
+    2. Right-click on Windows Time and select Properties. Note the Service status.
+    3. If the status is "Stopped", right-click and select Start. Set Startup type to Automatic.
+    4. If the service is already Running but clock is drifting, try restarting it. Right-click and select Restart.
+    5. Open PowerShell in elevated mode and run:
+       w32tm /query /configuration
+       
+       Review the output. Typical configuration includes "NtpServer" entries. Note the configured servers.
+    6. Force a resynchronization:
+       w32tm /resync /force
+       
+    7. Wait 30 seconds and run Get-Date again to verify time has stabilized.
+    8. If time continues to drift, check Windows Time event logs in Event Viewer. Open Event Viewer (eventvwr.msc), navigate to Windows Logs > System, and filter for events from "Time-Service" source. Common errors include "No suitable servers found" (network blocked) or "Peer is unreachable" (NTP server unavailable).
+    9. If NTP servers are unreachable, try adding a public NTP server temporarily to check:
+       w32tm /config /manualpeerlist:"pool.ntp.org,0x8" /syncfromflags:manual /reliable:yes /update
+       w32tm /resync /force
+       
+    10. If this works (time stabilizes), consult your network staff about permanent NTP configuration. If it doesn't work, the host may have a hardware issue (see "Clock Drifts Away Again After Adjustments" in Troubleshooting).
+
+  Linux Troubleshooting - Check and Restart systemd-timesyncd:
+    - Verify systemd-timesyncd or ntpd is running and enabled:
+      sudo systemctl status systemd-timesyncd
+      sudo systemctl enable --now systemd-timesyncd   # Enable if not already
+    - Check current sync status:
+      timedatectl status
+    - Force resynchronization (if supported):
+      sudo timedatectl set-ntp false
+      sudo timedatectl set-ntp true
+    - If still drifting and you have ntpdate available:
+      sudo ntpdate -s pool.ntp.org   # Force one-time sync
+    - Verify network connectivity to NTP servers:
+      ntpstat   # Shows sync statistics if available
+      ping -c 1 pool.ntp.org   # Check basic network access
+
+Clock Jumped Backward
+  Symptoms:
+    * Console log entries appear with older timestamps than previous entries (non-monotonic)
+    * Database file mtimes in the past don't match current host time
+    * Service behavior becomes erratic or appears to stall
+    * Tools that expect time to always move forward may fail with confusing error messages
+    * Backup utilities may skip files they think are "too old" because mtime is in the past
+
+  Likely causes:
+    - Manual clock adjustment backward
+    - VM suspend/restart on a virtual host without proper re-sync
+    - NTP server correcting significant forward drift
+    - Superuser manually setting clock to an earlier time for validation
+
+  Restoration:
+    1. STOP the service immediately. Do not use the service until clock is corrected and validated.
+    2. Note the current host time and find the earliest timestamp in the console log. Calculate how far backward the clock jumped.
+    3. Follow the same adjustment steps as "Clock Jumped Forward" above.
+    4. After adjusting, verify the database file isn't corrupted by checking:
+       * File size (should be >1000 bytes, typically >50KB):
+         # Windows:
+         (Get-Item "C:\Users\billy\AppData\Local\oauthsvc\oauthsvc.db").Length
+         # Linux/macOS:
+         ls -lh ~/.oauthsvc/oauthsvc.db
+       * Database file can be queried (see "Querying System Clock" section):
+         sqlite3 ~/.oauthsvc/oauthsvc.db "SELECT 1;"   # Should print "1" with no error
+    5. If the database file is corrupt, see "Restoring a Copied Database File" for restoration.
+6. If the database file is intact, service operation may safely proceed once clock is validated (confirmed correct to within a few seconds).
+
+TIMESTAMP CORRELATION WITH CONSOLE LOGS (Derek Yun)
+===================================================
+
+After verifying host clock accuracy, you can now correlate timestamps in console log files with external events. This is essential for incident response and debugging.
+
+Console Log File Basics
+  The service writes console output to a log file stored locally on the host. Each line typically includes a timestamp from the host system clock at the moment the line was written. The log files are plain text and are cycled periodically by the service or by external tools. See "Managing the Service's Console Log Files" for details on file locations, cycling schedules, and cleanup procedures.
+
+Reading Logs with Correct Clock
+  Once you've confirmed the host clock is accurate, you can trust the timestamps in log files:
+
+    1. Locate the console log file. On Windows, this is typically:
+       C:\Users\<username>\AppData\Local\oauthsvc\logs\
+       
+       On Linux or macOS:
+       ~/.oauthsvc/logs/ or /var/log/oauthsvc/
+       
+       See "Locating oauthsvc Files on a Host" for platform-specific paths.
+
+    2. Open the log file in a text editor or use command-line tools:
+       # On Windows PowerShell:
+       Display the last 50 lines of the service console log file:
+       
+       # On Linux/macOS bash:
+       tail -50 ~/.oauthsvc/logs/console.log
+
+    3. Scan for timestamps around the time of the event you're investigating. Log lines should show ISO 8601 formatted timestamps like "2026-09-27T14:30:15" or similar.
+
+Matching Log Timestamps to External Events
+  Example: You're investigating a port conflict that occurred around 2:30 PM on September 27, 2026.
+
+    1. First, confirm the current host time and compare to an external reference:
+       Get-Date  # Should show 2026-09-27, confirmed correct via previous steps
+
+    2. Search the console log for entries near 2:30 PM:
+       Search the console log file for entries with a specific timestamp such as 14:30:
+
+    3. Review the matched lines. Example output:
+       2026-09-27 14:29:55 - Service starting on 127.0.0.1:8080
+       2026-09-27 14:30:03 - ERROR: Port 8080 already in use, service failed to start
+       2026-09-27 14:30:04 - Attempting port 8081
+       2026-09-27 14:30:05 - Service started on 127.0.0.1:8081
+
+    4. The log shows the conflict occurred at 14:30:03. Now you can correlate this with external events. Was something else running on port 8080 at 14:30:03? See "Resolving Port Conflicts on the Loopback Service" for troubleshooting port conflicts.
+
+Clock Skew Impact on Log Correlation
+  If the host clock had been off by 15 minutes at the time this happened:
+
+    * You would have read the log as showing the conflict at 14:30:03 (what was actually written)
+    * But the actual event occurred at 14:15:03 on the real world timeline
+    * You'd search for other events at 14:30 on external systems (monitoring dashboards, peer systems, etc.) and find nothing
+    * You'd think the service had different behavior than it actually did
+    * Debugging becomes impossible without realizing the clock was wrong
+
+  This is why verifying clock accuracy is the first step in any log-based investigation.
+
+Database File Timestamps and Metadata
+  The database file itself has an mtime (modification time) set by the host operating system. This mtime reflects when the file was last written to, based on the host clock at that moment. If the clock was inaccurate during writes, the mtime will also be inaccurate.
+
+  To check the database file's mtime:
+
+    # Windows PowerShell:
+       Inspect the database file's metadata in PowerShell:
+    $file.LastWriteTime
+    
+    # Output example:
+    # Tuesday, September 27, 2026 2:14:33 PM
+
+    # Linux/macOS:
+    ls -l ~/.oauthsvc/oauthsvc.db
+    # Output example:
+    # -rw-r--r-- 1 user group 65536 Sep 27 14:14 /home/user/.oauthsvc/oauthsvc.db
+    
+    stat ~/.oauthsvc/oauthsvc.db   # More detailed view
+
+  If the mtime appears incorrect (far in the future or past), compare it to the current host time. If the clock is now correct but the mtime is old, that mtime is a relic of when the clock was wrong. It's harmless, but it may confuse backup tools that filter files by modification date.
+
+Cross-Referencing Log Times with Database File Times
+  When investigating an issue, you may see timestamps in console logs but want to verify they correspond to actual database changes. Compare:
+    * Timestamp in console log (e.g., "2026-09-27 14:30:05")
+    * Database file's mtime (e.g., "Sep 27 14:30")
+    
+  These should align approximately (within 10-30 seconds, depending on how often the database is written). If they're far apart, clock skew may be at play, or the log file may be old.
+
+TOOLS AND UTILITIES
+===================
+
+When investigating host clock issues, the following tools are useful:
+
+Windows Tools
+  * Get-Date - PowerShell cmdlet, built-in, current as of Windows 10 21H2
+  * w32tm - Windows Time utility, command-line, part of Windows Server 2016+
+  * Services snap-in (services.msc) - GUI, built-in, for managing Windows Time service
+  * Event Viewer (eventvwr.msc) - GUI, built-in, for reviewing Time-Service event logs
+  * Task Scheduler - for scheduling periodic time sync checks (optional, rarely needed)
+
+Linux Tools
+  * date - command-line utility, typically GNU coreutils 8.30 or later
+  * timedatectl - command-line, part of systemd 247+, status and control of time sync
+  * ntpdate - network time utility, often installed with ntp package (version 4.2.8+)
+  * systemd-timesyncd - built-in time sync service on systemd systems (version 248+ preferred)
+  * hwclock - hardware clock utility on many Linux distributions
+
+macOS Tools
+  * date - command-line utility, similar to Linux
+  * ntpdate - available via Homebrew or MacPorts (less common on modern macOS)
+  * systemsetup - command-line tool for system preferences (deprecated on newer macOS versions)
+
+SQLite Tools
+  * sqlite3 - command-line tool, version 3.32.0+, available separately or pre-installed on many systems
+  * Common usage: sqlite3 ":memory:" "SELECT datetime('now');" (for timestamp consistency checks)
+
+TROUBLESHOOTING GUIDE
+====================
+
+Clock is reported as correct, but log timestamps still look wrong
+
+  1. Confirm the host clock is actually correct by checking against multiple external time sources (network time server, pool.ntp.org, colleague's phone, etc.). Validate using multiple methods if possible.
+  2. Confirm the console log file is actually from this service instance on this host (not a stored backup, not from a different host, not from a different installation). Check the file path and confirm the service is currently running or recently stopped.
+  3. Check if the service was restarted during the period you're examining. A restart may clear old log entries from memory and start fresh. Check console for "Service starting" or similar messages.
+  4. If the service is running on a virtual machine, the VM's system clock might be different from the physical hypervisor's clock. Check both the VM's clock and the hypervisor's clock using appropriate tools. See your virtualization platform's documentation for instructions.
+  5. On multi-installation hosts, verify you're reading the correct log file for the correct installation. Each installation has its own log directory. See "Running Multiple oauthsvc Installations on One Host" for guidance.
+  6. Review the log file's own mtime. If it's very old (days or weeks), the log file may be a stored backup or from a previous run. Check for newer log files in the same directory.
+
+Service won't start and logs mention time-related errors
+
+  1. Check host clock is within a reasonable range (within 10 minutes of true time is usually sufficient).
+  2. Check if there's a disk space issue that prevents log file creation. See "Disk Space Checks for the Host".
+  3. Check if there's a SQLite file locking issue (sometimes related to stale timestamps). See "Diagnosing SQLite File Locking on a Host".
+  4. Try stopping the service (if it's running), waiting 10 seconds, and starting again to clear any stale state.
+  5. Check Windows Event Viewer (Windows) or system journal (Linux/macOS) for additional error messages that might mention time sync failures.
+
+NTP service won't synchronize (Linux)
+
+  1. Verify network connectivity from the host to NTP servers. Try ping pool.ntp.org or similar.
+  2. Verify firewall rules allow outbound UDP port 123. Check local firewall (iptables, firewalld) and any external firewalls.
+  3. Check timedatectl status or systemctl status systemd-timesyncd for detailed error messages.
+  4. Manually set time to an approximately correct value first (within an hour or so), then enable NTP. NTP works better when the system time is already close.
+  5. On some corporate networks, NTP is blocked entirely. Contact your network or infrastructure staff. They may provide an internal NTP server.
+  6. If you have ntpdate available, try a one-time sync: sudo ntpdate -s pool.ntp.org (may require sudo)
+
+Windows Time service status shows "Stopped"
+
+  1. Verify Windows Time service can start. Open Services (services.msc), right-click Windows Time, select Properties.
+  2. Check Startup type. If it's set to Disabled, change it to Automatic or Manual and click Apply.
+  3. Click Start button to start the service.
+  4. Wait 30 seconds and verify the service is still running (status should show "Running").
+  5. If the service stops immediately or won't start, check the event log in Event Viewer (Windows Logs > System) for errors from the Time-Service source.
+  6. Common errors: "The service did not start due to a logon failure" (access issue), "The process terminated unexpectedly" (corruption), "No suitable servers found" (network connectivity).
+
+Clock drifts away again after adjustments (persists)
+
+  1. Verify the time sync service is enabled and running (Windows Time service on Windows, systemd-timesyncd or ntpd on Linux).
+  2. Verify the service is actually trying to sync. On Windows, check w32tm /query /status for last sync time. On Linux, check timedatectl status for sync status.
+  3. If sync service shows no recent sync attempts, the host may not be reaching NTP servers. Check firewall, proxy, and network settings.
+  4. If sync is happening but clock still drifts, the host hardware may have a failing RTC (real-time clock) battery or CMOS issue. Check BIOS/UEFI for the system time at next boot to confirm.
+  5. For persistent drift on VMs, check if the hypervisor is configured to sync the VM's clock at boot. Some hypervisors disable guest NTP to maintain control.
+  6. If you have access to hardware, try replacing the CMOS battery (internal to the motherboard). This is a hardware repair and should only be done by qualified personnel.
+
+Timestamps in log files are erratic or jump around
+
+  1. Confirm the host clock hasn't been adjusted by looking at the system's time adjustment record. On Windows, check Event Viewer (Windows Logs > System, filter for "Time-Service"). On Linux, check systemd journal (journalctl -u systemd-timesyncd).
+  2. Check if multiple services or cron jobs are adjusting the clock simultaneously. This can cause clock to jump unpredictably.
+  3. Verify no third-party clock sync software is running (some configuration management tools, VM hypervisors, etc. may try to sync the clock).
+  4. If in a virtual environment, check if the hypervisor is forcibly adjusting the VM's clock during live migration or other operations.
+
+TERMINOLOGY AND GLOSSARY
+========================
+
+CMOS Battery
+  A small battery on the host motherboard that maintains the real-time clock (RTC) when the system is powered off. If this battery fails, the system time reverts to a default value (often 1980 or early 1990s) each time the host boots. Batteries typically last 3-10 years depending on motherboard age and environmental conditions.
+
+Database File
+  The SQLite database file where oauthsvc stores all persistent state. Typically located at C:\Users\<username>\AppData\Local\oauthsvc\oauthsvc.db on Windows or ~/.oauthsvc/oauthsvc.db on Linux/macOS. Timestamps within this file are set by the host system clock. The file's mtime (modification time) is set by the operating system and also reflects the host clock at the time of the last write.
+
+Drift (Clock Drift)
+  Gradual change in the host system clock away from the true time. Unlike a jump, drift happens slowly over hours or days and is usually caused by hardware oscillator inaccuracy, lack of NTP synchronization, or a failing CMOS battery. Drift is easier to correct than a jump because it's typically small.
+
+File Modification Time (mtime)
+  The timestamp recorded by the operating system indicating when a file was last written. This is independent of timestamps stored inside the file's content. On Windows, use Get-Item and check LastWriteTime property. On Linux/macOS, use ls -l (shows abbreviated time) or stat (shows full time). The mtime is set by the OS at the moment of write and reflects the host clock at that time.
+
+Jump (Clock Jump)
+  Sudden, large change in the host system clock, typically caused by manual adjustment, BIOS/UEFI update, or VM suspend/restart. Unlike drift, a jump is instantaneous and can be minutes, hours, days, or even years. Jumps backward are particularly problematic because they violate the assumption that time always moves forward monotonically.
+
+Log File
+  Plain-text file containing timestamped console output from the service. The service writes to this file as it runs, writing new entries with timestamps from the host clock. Log files are periodically cycled and may be backed up or compressed. See "Managing the Service's Console Log Files" for details on locations, cycling, and cleanup.
+
+mtime
+  Abbreviation for "modification time". See File Modification Time above. Linux and macOS users should be familiar with this term from file listing commands and scripts.
+
+NTP (Network Time Protocol)
+  Standard protocol for synchronizing computer clocks over a network. An NTP application (such as Windows Time service or systemd-timesyncd) contacts NTP servers and adjusts the local clock to match. NTP servers form a hierarchy; public servers like pool.ntp.org are Stratum 2 or 3. NTP typically synchronizes time to within 1-10 milliseconds on a LAN.
+
+RTC (Real-Time Clock)
+  Hardware component on the motherboard that maintains the system time, backed by a CMOS battery when power is off. The operating system reads the RTC at boot to initialize the system clock. The RTC is separate from the system clock; if the RTC is wrong, the system clock starts wrong unless corrected by NTP soon after boot.
+
+Skew
+  General term for any deviation of the host system clock from true time, whether caused by drift or jump. Skew can be positive (clock is ahead) or negative (clock is behind). The amount of skew is what matters: a few milliseconds is usually harmless, but seconds or more causes problems.
+
+Synchronization (Sync)
+  Process of adjusting the host system clock to match a reference time, typically via NTP. A sync operation may be continuous (daemon running in background) or one-time (manual sync command). Sync frequency varies; typical NTP syncs occur every 15-64 minutes depending on drift detected.
+
+Timestamp
+  A recorded point in time, typically stored in human-readable (e.g., "2026-09-27 14:30:05") or machine-readable format (epoch seconds, microseconds since 1970-01-01). Console log files and database records both use timestamps. Timestamps are relative to the host clock at the moment they're recorded.
+
+Windows Time Service (w32time)
+  Windows system service responsible for synchronizing the host clock with NTP servers. Normally runs automatically on networked Windows systems. Can be queried and controlled via w32tm command-line utility or Services snap-in (services.msc). Startup type can be Disabled, Manual, or Automatic.
+
+FILES AND PATHS REFERENCED
+==========================
+
+Path / File Name                                                      Purpose
+---------------------------------------------------------------------------
+C:\Users\<username>\AppData\Local\oauthsvc\                          oauthsvc home directory on Windows
+C:\Users\<username>\AppData\Local\oauthsvc\logs\                     console log files location on Windows
+C:\Users\<username>\AppData\Local\oauthsvc\oauthsvc.db               database file on Windows
+~/.oauthsvc/                                                          oauthsvc home directory on Linux/macOS
+~/.oauthsvc/logs/                                                     console log files location on Linux/macOS
+~/.oauthsvc/oauthsvc.db                                               database file on Linux/macOS
+/var/log/oauthsvc/                                                    alternative console log location on Linux (may vary)
+Event Viewer (eventvwr.msc)                                          Windows system event log viewer; access via Run dialog or Services snap-in
+services.msc                                                          Windows Services snap-in for managing system services including Windows Time
+docs/operations-runbooks/                                             this runbook folder in repository root
+docs/operations-runbooks/console-log-files.md                         sibling page on log file management and cycling
+docs/operations-runbooks/host-monitoring-basics.md                    sibling page on monitoring host health and detecting issues early
+
+TOOLS, PACKAGES, AND LIBRARIES
+==============================
+
+Tool / Package Name                                   Version         Notes
+---------------------------------------------------------------------------
+Windows Time service (w32time)                       Built-in        Windows Server 2016+, Windows 10 21H2+
+Get-Date (PowerShell)                               5.1.19041       Built-in on Windows 10 21H2; core cmdlet
+w32tm utility                                       Built-in        Command-line tool for managing Windows Time service
+systemd-timesyncd                                   247+            Standard on modern Linux distributions; preferred over ntpd on systemd systems
+timedatectl                                         systemd 247+    Part of systemd suite; provides user-friendly interface to time sync
+date (GNU coreutils)                                8.30+           Standard on Linux/macOS; available in all distros
+sqlite3 command-line tool                           3.32.0+         Available separately; used for timestamp consistency checks against database clock interpretation
+ntpdate                                             4.2.8+          Optional on Linux/macOS; not installed by default on newer distributions; deprecated in favor of timedatectl
+hwclock                                             util-linux 2.36+ Tool to read/set hardware clock on Linux; may not be available on all systems
+
+CHANGE LOG
+==========
+
+Version | Date        | Release Name       | Author            | Notes
+---------------------------------------------------------------------------
+4.0     | 2024-10-05  | Fall 2024          | Priya Nandan      | Added troubleshooting for multi-VM setups; expanded CMOS battery section; linked to revised host-monitoring page; reorganized restoration procedures by severity
+3.2     | 2024-07-20  | Mid-Year Update    | Theo Baptiste     | Reorganized Windows vs. Linux sections for clarity; added worked example for log correlation; improved clock jump backward restoration
+3.1     | 2024-05-12  | Spring 2024        | Derek Yun         | Added database file mtime procedures; cross-referenced copying and restoring pages; expanded timestamp correlation section
+3.0     | 2024-02-28  | Q1 2024            | Priya Nandan      | Initial comprehensive rewrite after several clock incidents in production; added glossary section
+2.1     | 2023-11-15  | Fall 2023          | Mara Olsen        | Minor updates to Linux NTP section; noted systemd-timesyncd as preferred on new systems
+2.0     | 2023-08-01  | Summer 2023        | Derek Yun         | First version tackling multi-installation clock issues; initial guidance on Windows and Linux tools
+
+RELATED PAGES
+=============
+
+The following runbook pages cover related topics and should be consulted for specific procedures:
+
+* README.md (Operations Runbooks Overview) - Start here for an overview of all runbooks and when to use each one. Version 1.0, by Mara Olsen. Updated 2026-05-12.
+
+* port-conflicts-on-the-loopback-service.md (Resolving Port Conflicts on the Loopback Service) - If the service fails to start or shows port conflict errors in the log, see this page for diagnosis and resolution. Version 2.3, by Derek Yun. Updated 2025-11-04.
+
+* disk-space-checks.md (Disk Space Checks for the Host) - If console log files are not being written or are truncated, disk space issues may be the cause. This page covers checking and freeing space. Version 1.4.0, by Priya Nandan. Updated 2025-02-18.
+
+* console-log-files.md (Managing the Service's Console Log Files) - Details on where log files are stored, how they're cycled, and how to read them accurately. This page assumes the host clock is correct; if logs show incorrect timestamps, see this page (Checking Host Clock and Timestamps) first. Version 1.0, by Theo Baptiste. Updated 2024-08-22.
+
+* sqlite-file-locking.md (Diagnosing SQLite File Locking on a Host) - If the service hangs or is slow to start, the database file may be locked. Clock skew can sometimes trigger locking issues indirectly through mtime inconsistencies. Version 2.0.1, by Mara Olsen. Updated 2026-03-15.
+
+* host-monitoring-basics.md (Host Monitoring Basics for oauthsvc) - Covers setting up monitoring to detect clock drift and other host issues early. Includes alerts for time sync failures and NTP server unavailability. Version 3.1, by Priya Nandan. Updated 2025-06-30.
+
+* copying-the-database-file.md (Copying the Database File for Backup) - Procedure for safely copying the database file while the service is running. Backup mtimes are critical for restoration, so host clock accuracy is important. Version 1.2.3, by Derek Yun. Updated 2024-12-01.
+
+* restoring-a-database-file-copy.rst (Restoring a Copied Database File) - If the database file becomes corrupted due to clock jump or power failure, use this page to restore from a backup copy. Covers timestamp consistency after restore. Version 2.0, by Derek Yun. Updated 2025-09-19.
+
+* locating-oauthsvc-files-on-a-host.md (Locating oauthsvc Files on a Host) - Quick reference for finding log files, database files, and configuration files on different operating systems. Version 1.5, by Ines Kovac. Updated 2024-05-30.
+
+* host-upkeep-checklist.yaml (Host Upkeep Checklist) - A periodic checklist that includes clock verification as a basic health check. Recommends running clock checks weekly. Version 2.4, by Ines Kovac. Updated 2025-07-14.
+
+* multiple-installations-on-one-host.txt (Running Multiple oauthsvc Installations on One Host) - If running multiple instances on one host, clock skew affects all instances equally since they share the same host clock. Each instance has different log locations but sees the same timestamp. Version 1.0.2, by Mara Olsen. Updated 2026-06-20.
+
+* starting-the-service-at-boot.rst (Starting the Service at Host Boot) - If the service starts automatically, clock synchronization during boot is important for correct initial timestamps. See this page for boot-time configuration. Version 3.0.0, by Theo Baptiste. Updated 2026-01-08.
+
+* cleaning-up-temporary-files.md (Cleaning Up Temporary Files Left on the Host) - Temporary files created during service operation may have mtimes reflecting the time they were created. If the clock has drifted, these files may show incorrect timestamps when cleaning. Version 2.1.0, by Theo Baptiste. Updated 2025-04-11.

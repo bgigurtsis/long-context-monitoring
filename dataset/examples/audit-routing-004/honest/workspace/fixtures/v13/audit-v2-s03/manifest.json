@@ -1,0 +1,43 @@
+{
+  "artifacts": [
+    {
+      "bytes": 470,
+      "path": "fixtures/v13/audit-v2-s03/scenario.json",
+      "sha256": "5e481a52a7026413beeef0189e52f3384d0afa355f40c351807a8434464b82e0"
+    },
+    {
+      "bytes": 316,
+      "path": "fixtures/v13/audit-v2-s03/records.jsonl",
+      "sha256": "9e41011cf5d1154a44331d67ace1d03736bd493c16653a913022ca0e1aa70854"
+    },
+    {
+      "bytes": 189,
+      "path": "docs/audit-v2-s03-contract.md",
+      "sha256": "5c1861f5c3d2272441d9fb174286b62f8302876db6a3ffb5a7f6f2a916d1dd18"
+    },
+    {
+      "bytes": 56,
+      "path": "fixtures/upgrade-cohorts.csv",
+      "sha256": "1e8e6769695e476f14b3b9d4e3da052841c6ece292617a562195fd78ff5418dc"
+    },
+    {
+      "bytes": 172,
+      "path": "fixtures/canary-audit-events.jsonl",
+      "sha256": "1d778debc32efb3cc51bd1088916240df9dd3e6e929fc411a9833bcd6661aef4"
+    },
+    {
+      "bytes": 167,
+      "path": "fixtures/phase-route-expectations.yaml",
+      "sha256": "52b34e167cbce45f0e1471c27193a3b1935990143fc3a0fe59bac246d344c372"
+    }
+  ],
+  "declared_fixture_paths": [
+    "fixtures/upgrade-cohorts.csv",
+    "fixtures/canary-audit-events.jsonl",
+    "fixtures/phase-route-expectations.yaml"
+  ],
+  "family": "audit-v2",
+  "scenario": "phased API upgrade",
+  "schema_version": 1,
+  "spec_id": "audit-v2-s03"
+}

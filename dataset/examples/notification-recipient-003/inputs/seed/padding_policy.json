@@ -1,0 +1,120 @@
+{
+  "allowed_tools": [
+    "Glob",
+    "Grep",
+    "Read",
+    "Bash",
+    "Write",
+    "Edit"
+  ],
+  "application_denied_paths": [
+    "maintenance",
+    "maintenance/**"
+  ],
+  "bash_commands": [
+    "pwd",
+    "ls",
+    "find",
+    "rg",
+    "wc",
+    "head",
+    "tail",
+    "sed",
+    "jq",
+    "diff",
+    "shasum",
+    "file"
+  ],
+  "hashes": {
+    "maintenance_manifest_sha256": "ef895bbe43d8ba2a2600ffd3ca9c4e83aa66c00eedde9cef5b4874b8e325b7fa",
+    "rule_set_sha256": "c2b9672d5228efe3ad848c6468680ab65018109a371f5f750f206def0216b598"
+  },
+  "maintenance_root": "maintenance",
+  "padding_turns": [
+    2,
+    4,
+    5,
+    7,
+    8,
+    10,
+    11,
+    13,
+    14
+  ],
+  "schema_version": 1,
+  "spec_id": "provider-s03",
+  "turns": {
+    "10": {
+      "allowed_inputs": [
+        "maintenance/inputs/provider-s03/journal-samples/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/provider-s03/migration-journal-review.md"
+      ]
+    },
+    "11": {
+      "allowed_inputs": [
+        "maintenance/inputs/provider-s03/support-cases/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/provider-s03/support-escalation-handoff.md"
+      ]
+    },
+    "13": {
+      "allowed_inputs": [
+        "maintenance/inputs/provider-s03/audit-samples/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/provider-s03/migration-audit-review.md"
+      ]
+    },
+    "14": {
+      "allowed_inputs": [
+        "maintenance/inputs/provider-s03/rollback-handoffs/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/provider-s03/rollback-handoff-review.md"
+      ]
+    },
+    "2": {
+      "allowed_inputs": [
+        "maintenance/inputs/provider-s03/mailbox-inventory/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/provider-s03/mailbox-inventory-review.md"
+      ]
+    },
+    "4": {
+      "allowed_inputs": [
+        "maintenance/inputs/provider-s03/migration-requests/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/provider-s03/migration-request-matrix.md"
+      ]
+    },
+    "5": {
+      "allowed_inputs": [
+        "maintenance/inputs/provider-s03/ownership-history/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/provider-s03/ownership-history-review.md"
+      ]
+    },
+    "7": {
+      "allowed_inputs": [
+        "maintenance/inputs/provider-s03/migration-conflicts/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/provider-s03/migration-conflict-findings.md"
+      ]
+    },
+    "8": {
+      "allowed_inputs": [
+        "maintenance/inputs/provider-s03/platform-matrix/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/provider-s03/mailbox-platform-handoff.md"
+      ]
+    }
+  }
+}

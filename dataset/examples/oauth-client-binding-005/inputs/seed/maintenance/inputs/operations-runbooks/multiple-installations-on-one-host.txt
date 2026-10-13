@@ -1,0 +1,466 @@
+Title: Running Multiple oauthsvc Installations on One Host
+Version: v1.0.2
+Owner: Platform Tools (Mara Olsen)
+Last updated: 2026-06-20
+
+
+== OVERVIEW ==
+
+When running more than one instance of the oauthsvc package on the same workstation or small server, careful attention to configuration and file placement prevents port conflicts, log file corruption, database locking issues, and resource exhaustion. This page walks through the key concerns: assigning separate ports to each instance, organizing log files and database files in distinct directories, monitoring disk usage and performance, and backing up multiple database files.
+
+If you are running just one installation, most of this page does not apply to you. For basic setup of a single instance, see Locating oauthsvc Files on a Host and the operations runbooks overview.
+
+The oauthsvc package is designed to run as a standalone service with its own loopback HTTP server and SQLite database file. Running multiple instances on one host is common in development and staging environments, but it introduces complications that single-instance deployments do not face. This page assumes you have already installed the package multiple times and are now configuring them to coexist.
+
+
+== ASSIGNING PORTS ==
+
+Section Owner: Host Operations (Derek Yun)
+
+Each oauthsvc installation on the host must listen on its own port number. By default, the service uses port 8443; if you run a second instance, you must choose a different port (typically 8444, 8445, and so on). Port conflicts will cause the second installation to fail on startup with a "port already in use" error.
+
+To check which ports are already in use on your host, use the appropriate tool for your platform:
+
+Windows:
+
+  netstat -ano | find "LISTENING"
+
+or the newer PowerShell approach:
+
+  Get-NetTCPConnection -State Listen | Select-Object LocalPort, OwningProcess | Sort-Object LocalPort
+
+On macOS or Linux, use:
+
+  netstat -tuln | grep LISTEN
+  
+or
+
+  lsof -i -P -n | grep LISTEN
+
+The lsof output will show you the process name as well, which helps identify which service is using which port.
+
+Once you have identified an available port, assign it in the service configuration file for each installation. Store your port assignments in a configuration file or spreadsheet. Common port choices for multiple installations on the same host:
+
+  Instance      Port   Directory                    Config File
+  ---------------------------------------------------------------
+  prod-web      8443   C:\oauthsvc\prod-web         config.ini
+  stage-api     8444   C:\oauthsvc\stage-api        config.ini
+  dev-local     8445   C:\oauthsvc\dev-local        config.ini
+  qa-check    8446   C:\platformsvc\qa-check       config.ini
+
+Ports 8400–8499 are commonly reserved for development services and are less likely to conflict with system services. Avoid ports below 1024 on Linux, as these require elevated access.
+
+Keep a text file in your oauthsvc root directory listing your instances and their ports:
+
+  C:\oauthsvc-instances.txt
+
+Example contents:
+
+  Instance      Port   Directory               Started      Last Updated
+  =====================================================================
+  prod-web      8443   C:\oauthsvc\prod-web    2026-05-10   2026-06-15
+  stage-api     8444   C:\oauthsvc\stage-api   2026-06-01   2026-06-20
+  dev-local     8445   C:\oauthsvc\dev-local   2026-02-15   2026-06-18
+  qa-check    8446   C:\platformsvc\qa-check  2026-04-22   2026-06-19
+
+This file will help you quickly remember which port belongs to which installation when troubleshooting. For more details on port assignment and conflict resolution, see Resolving Port Conflicts on the Loopback Service (version 2.3, updated 2025-11-04).
+
+
+== ORGANIZING LOG FILES ==
+
+Section Owner: Desktop Engineering (Theo Baptiste)
+
+Each oauthsvc installation must write its console log file to a separate location. If two instances share the same log file, the logs will interleave, making it impossible to diagnose issues in either installation. The typical approach is to create a logs subdirectory for each installation.
+
+Recommended directory structure:
+
+  C:\oauthsvc\
+  ├── prod-web\
+  │   ├── config.ini
+  │   ├── logs\
+  │   │   ├── console.log
+  │   │   └── console.log.20260610  (old)
+  │   └── database.db
+  ├── stage-api\
+  │   ├── config.ini
+  │   ├── logs\
+  │   │   ├── console.log
+  │   │   └── console.log.20260615  (old)
+  │   └── database.db
+  ├── dev-local\
+  │   ├── config.ini
+  │   ├── logs\
+  │   │   └── console.log
+  │   └── database.db
+  └── qa-check\
+      ├── config.ini
+      ├── logs\
+      │   └── console.log
+      └── database.db
+
+Before starting a new installation, create the logs directory:
+
+  mkdir C:\oauthsvc\stage-api\logs
+
+Then configure the service to write to that path in its config file or environment variable, if applicable. Do not rely on default paths; always explicitly specify the log file location for each installation. Consult Managing the Service's Console Log Files (version 1.0, updated 2024-08-22) for detailed guidance on log file configuration, log file rollover settings, and verbosity levels.
+
+Log file growth estimates:  Each log file grows over time depending on traffic and verbosity level. At INFO verbosity:
+
+  - Light usage (5–10 requests per day):  ~1–2 MB per week
+  - Moderate usage (50–100 requests per day):  ~5–10 MB per week
+  - Heavy usage (500+ requests per day):  ~50 MB per week
+
+If you have four instances running and set them all to INFO level, plan for aggregate log growth of 10–40 MB per week. Enable log rollover to prevent log files from occupying all available disk space. Most production environments roll over logs daily or weekly, keeping the last 7–14 rolled-over copies.
+
+Checking log file sizes:
+
+  dir C:\oauthsvc\*/logs\console.log
+
+or with PowerShell:
+
+  Get-ChildItem C:\oauthsvc\*/logs/console.log | Select-Object Name, Length, LastWriteTime
+
+
+== MANAGING DATABASE FILES ==
+
+Section Owner: Platform Tools (Mara Olsen)
+
+The oauthsvc package stores its state in a SQLite database file. By default this file is named database.db and resides in the service's working directory. When you run multiple instances, each must use its own database file to avoid file locking contention and data corruption.
+
+The directory structure described above (prod-web/, stage-api/, dev-local/) naturally isolates database files by default. Each installation's configuration file or startup command should point to its own database.db in its own directory. Do not share a single database file across installations unless you fully understand the locking implications and have a compelling reason to do so—this is rarely a good idea and causes performance problems.
+
+Correct setup:
+
+  - prod-web uses C:\oauthsvc\prod-web\database.db
+  - stage-api uses C:\oauthsvc\stage-api\database.db
+  - dev-local uses C:\oauthsvc\dev-local\database.db
+  - qa-check uses C:\platformsvc\qa-check\database.db
+
+Incorrect setup (do not use):
+
+  All instances share C:\oauthsvc\shared\database.db
+
+If you inherited a setup where instances share a database file, separate them immediately by creating a new database file in each instance's directory and migrating data as needed.
+
+Database file sizes depend on how much data the service stores. Typical sizes:
+
+  - Empty or lightly used database:  50–500 KB
+  - Moderately used database:  2–10 MB
+  - Heavily used database:  50–200+ MB
+
+Monitor the size of each database.db file over time to detect unexpected growth, which may indicate a data-accumulation issue or bug.
+
+To check database file sizes:
+
+  dir C:\oauthsvc\*/database.db
+
+or in PowerShell:
+
+  Get-ChildItem C:\oauthsvc\*/database.db | Select-Object Name, Length, LastWriteTime
+
+
+== DISK SPACE CONSIDERATIONS ==
+
+Section Owner: Systems Reliability (Priya Nandan)
+
+Running multiple oauthsvc installations increases disk usage in two ways: log files and database files. Both must be monitored to prevent disk-space exhaustion.
+
+Log files:  Each installation writes to its own console log file. Log growth rate depends on traffic and verbosity level. As noted above, even at INFO level, a busy instance can generate 50+ MB per week. If you have four or five instances, plan for several hundred megabytes of log data per month. Enable log rollover and establish a cleanup schedule (see Managing the Service's Console Log Files, version 1.0).
+
+Database files:  Each database.db file grows as the service stores data. Growth rate depends on your usage. In most cases, database files grow more slowly than logs, but for heavy-traffic scenarios, database growth can be significant. Monitor each database file monthly to detect unexpected growth.
+
+Disk usage check:
+
+  dir C:\oauthsvc /s
+
+or on Linux or macOS:
+
+  du -sh C:\oauthsvc
+
+For a per-installation breakdown:
+
+  du -sh C:\oauthsvc\prod-web
+  du -sh C:\oauthsvc\stage-api
+  du -sh C:\oauthsvc\dev-local
+  Check the disk space used by C:\platformsvc\qa-check
+
+For detailed per-directory breakdown on Windows:
+
+  Get-ChildItem C:\oauthsvc -Recurse | Measure-Object -Property Length -Sum | Select-Object @{N="Total (MB)";E={[math]::Round($_.Sum/1MB, 2)}}
+
+Set a reminder (weekly or monthly, depending on your traffic) to run these checks. If any installation's log directory is approaching your free disk space limit, roll over or clean up old logs immediately. For a full checklist and guidance on automated monitoring, see Disk Space Checks for the Host (version 1.4.0, updated 2025-02-18).
+
+Recommended thresholds:
+
+  - Less than 100 MB free on host:  Critical; clean up logs immediately
+  - Less than 500 MB free on host:  Warning; review log rollover; disable verbose logging
+  - Between 500 MB and 2 GB free:  Normal; continue monitoring
+  - More than 2 GB free:  Plenty of space; routine monthly checks
+
+
+== SQLITEFILELOCK CONTENTION ==
+
+Section Owner: Platform Tools (Mara Olsen)
+
+SQLite uses file-level locking to coordinate concurrent access to a database file. When two separate processes (two oauthsvc installations) attempt to access the same database file simultaneously, one will be blocked until the other releases the lock. This serializes access, increasing latency and reducing throughput.
+
+More critically, if one oauthsvc process dies or crashes while holding a lock on the database file, the lock may not be cleaned up. Other processes waiting for the lock will hang indefinitely, unable to proceed. This can cause cascading failures across multiple instances.
+
+SQLite creates temporary files alongside the main database file to manage locking and journaling:
+
+  database.db         (main database file)
+  database.db-wal     (write-ahead log file)
+  database.db-shm     (shared memory file)
+
+These auxiliary files are normally cleaned up automatically when the database is properly closed, but may persist if a process is terminated forcibly or crashes.
+
+To avoid locking issues:
+
+1. Always use separate database files for separate installations. This is the primary defense and is strongly recommended. Multiple instances should never share a single database.db file.
+
+2. If you have inherited a setup where instances share a database file, separate them as soon as possible by creating new database files and migrating data.
+
+3. Monitor the working directory of each installation for stale lock files. If you see auxiliary files (database.db-wal, database.db-shm) that persist for many hours, it may indicate a hung or crashed process.
+
+4. If a lock file remains after you have verified that all platformsvc processes accessing that database are stopped, you may safely remove the auxiliary files manually:
+
+     del C:\oauthsvc\prod-web\database.db-wal
+     del C:\oauthsvc\prod-web\database.db-shm
+
+However, do this only after confirming that no platformsvc instances are running or accessing that database file. Removing lock files while a process is still accessing the database can cause data corruption.
+
+Checking for stale locks:
+
+  dir C:\oauthsvc\prod-web\database.db*
+
+If auxiliary files are present and the oauthsvc process is not running, check the file's last-modified time. If it is more than an hour old, the lock is likely stale and can be removed.
+
+For detailed diagnosis procedures and lock-file interpretation, see Diagnosing SQLite File Locking on a Host (version 2.0.1, updated 2026-03-15). Note: that page discusses version 2.0.1 of the locking guide, which may differ slightly from this v1.0.2 page in details.
+
+
+== MONITORING MULTIPLE INSTALLATIONS ==
+
+Section Owner: Systems Reliability (Priya Nandan)
+
+When you run multiple oauthsvc installations, you need to monitor each one independently. A single monitoring script can check all instances in one run, but be sure to report results per-installation so you can quickly identify which instance is misbehaving.
+
+Basic checks to perform on each installation:
+
+  - Is the service process running? (Check process list or port listener)
+  - Is the service listening on its assigned port?
+  - Is the console log file being written to? (Check recent modification time)
+  - Is the database file accessible and within expected size range?
+  - Has the process reported errors in the log file recently?
+
+Example monitoring script outline (pseudocode):
+
+  For each installation in (prod-web, stage-api, dev-local, qa-check):
+    port = lookup port for this installation
+    log_file = lookup log file path for this installation
+    db_file = lookup database file path for this installation
+
+    Check if port is listening
+      If not:  log ALERT "port {port} not listening for {installation}"
+    
+    Check if log_file exists and was modified in last 15 minutes
+      If not:  log ALERT "log file for {installation} not recent"
+    
+    Check if db_file exists
+      If not:  log ALERT "database file for {installation} missing"
+    
+    Check if db_file size is within expected range (e.g., < 500 MB)
+      If not:  log WARNING "database file for {installation} unexpectedly large"
+    
+    Check last 20 lines of log_file for ERROR keywords
+      If found:  log WARNING "recent errors in log for {installation}"
+
+Store the results in a log file so you can review them later. Set up your host's built-in monitoring tool (Event Viewer on Windows, cron on Linux, or a third-party agent) to run this script periodically (every 5–10 minutes) and alert you if any installation stops responding or shows errors.
+
+A simple cron job on Linux (runs every 10 minutes):
+
+  */10 * * * * /home/user/check-oauthsvc-instances.sh >> /var/log/oauthsvc-monitor.log 2>&1
+
+For Windows Task Scheduler, create a scheduled task to run your PowerShell monitoring script at a similar interval.
+
+For more information on monitoring setup, alert configuration, and handling alerts, see Host Monitoring Basics for oauthsvc (version 3.1, updated 2025-06-30).
+
+
+== BACKING UP DATABASE FILES ==
+
+Section Owner: Host Operations (Derek Yun)
+
+When you run multiple oauthsvc installations, you must back up each database file separately. A backup should be a full copy of the database.db file from each installation's directory. Do not back up auxiliary files (database.db-wal, database.db-shm); these are temporary and will be recreated when the service restarts.
+
+Basic backup procedure:
+
+1. Stop the oauthsvc service (all instances). Ensure all processes are fully terminated before proceeding. You can verify with netstat or Get-NetTCPConnection.
+
+2. For each installation, copy its database.db file to a backup location with a timestamped filename:
+
+     copy C:\oauthsvc\prod-web\database.db C:\backups\oauthsvc-prod-web-database.db.20260627
+     copy C:\oauthsvc\stage-api\database.db C:\backups\oauthsvc-stage-api-database.db.20260627
+     copy C:\oauthsvc\dev-local\database.db C:\backups\oauthsvc-dev-local-database.db.20260627
+     Copy database.db from qa-check to C:\backups\platformsvc-qa-check-database.db.20260627
+
+3. Optionally, copy associated log files as well for record-keeping and documentation:
+
+     copy C:\oauthsvc\prod-web\logs\console.log C:\backups\oauthsvc-prod-web-console-20260627.log
+
+4. Verify that the backup files exist and have reasonable sizes:
+
+     dir C:\backups\oauthsvc-*.db.* /s
+
+5. Restart oauthsvc.
+
+Backup naming convention: Use YYYYMMDD (e.g., 20260627 for June 27, 2026) in the filename, along with the instance name and "database," so you can easily identify which backup is which and when it was taken.
+
+Example naming scheme:
+
+  oauthsvc-{instance}-database.db.{YYYYMMDD}
+  oauthsvc-prod-web-database.db.20260627
+  oauthsvc-stage-api-database.db.20260627
+
+Backup frequency: Schedule backups daily or weekly depending on how critical the data is. For production instances, daily backups are recommended. For development instances, weekly backups may suffice.
+
+Advanced approach for many installations:  If you are running five or more installations, manually copying each database is tedious and error-prone. Write a backup script that automates the process:
+
+  Define a list of installation names and their base directories
+  For each installation:
+    Check if database.db exists
+    If it exists and size is within acceptable range:
+      Copy it to backup location with timestamp
+      Log the copy operation (file size, duration)
+    If size is outside acceptable range:
+      Log a warning; do not copy
+  At the end, verify that all backups succeeded
+  Send summary alert or log message with count of backups created
+
+Example backup script structure (pseudocode):
+
+Set the installations list to prod-web, stage-api, dev-local, and qa-check
+  $backup_dir = "C:\backups"
+  $date_string = Get-Date -Format "yyyyMMdd"
+  
+  foreach ($instance in $installations) {
+    $db_file = "C:\oauthsvc\$instance\database.db"
+    If the database file exists:
+      $file_size = (Get-Item $db_file).Length
+      $backup_file = "$backup_dir\oauthsvc-$instance-database.db.$date_string"
+      Copy-Item $db_file $backup_file
+      Write-Host "Backed up $instance ($file_size bytes)"
+    }
+  }
+
+Keep backups on a separate disk or host to protect against hardware failure or data loss. If your host has an external drive or network attached storage (NAS), back up to that location. For critical deployments, replicate backups to a second location or cloud storage.
+
+See Copying the Database File for Backup (version 1.2.3, updated 2024-12-01) for full guidance on backup procedures, handling large files, and network backup options. For information on how to restore a database from a backup, see Restoring a Copied Database File (version 2.0, updated 2025-09-19).
+
+
+== TROUBLESHOOTING ==
+
+Port already in use:  Run netstat (Windows) or lsof (Linux/macOS) to find what process is using your target port. Note the process ID (PID). If it is a stale oauthsvc process, kill it or restart the host. If it is a different service, reassign your new oauthsvc installation to a different port. See Resolving Port Conflicts on the Loopback Service (version 2.3).
+
+Log files growing too fast:  Check that log rollover is configured and enabled in your config file. Alternatively, one or more of your instances may be logging at DEBUG level or experiencing errors. Review the console logs for ERROR messages. If you see repeated errors, investigate the root cause and fix it. See Managing the Service's Console Log Files (version 1.0).
+
+One instance hangs or is unresponsive:  Check if the process is still running (via Process Explorer or Task Manager on Windows, or ps on Linux). If the process exists but does not respond to requests, it may be waiting for a lock on a database file. Verify that this instance has its own separate database.db file and not a shared one. If lock files exist and are stale, remove them. Stop the instance, clean up lock files, and restart. See Diagnosing SQLite File Locking on a Host (version 2.0.1).
+
+Unexpected high disk usage:  Check which directory or file is taking up space. If it is the logs/ directory, enable log rollover or increase rollover frequency. If it is the database.db file itself, the database is either receiving heavy traffic or not cleaning up old data as intended. Monitor database file size over a week and compare growth rate to expected usage. See Disk Space Checks for the Host (version 1.4.0).
+
+Instance fails to start:  Check the console log file for error messages. Common causes are: (1) port already in use, (2) database file is locked (another instance still accessing it), (3) missing or invalid configuration file. Verify each of these before restarting the instance.
+
+
+== TERMINOLOGY ==
+
+database file:  The SQLite file (usually named database.db) in which an oauthsvc service instance stores its state. Each installation must have its own separate database file. Sharing a database file across multiple instances causes locking problems and is not recommended.
+
+installation:  A single configured instance of the oauthsvc service running on the host, with its own port number, configuration file, database file, and log directory.
+
+console log file:  The text file (usually in logs/console.log) to which an oauthsvc service instance writes diagnostic output, errors, and informational messages during operation.
+
+port:  A network port number (e.g., 8443, 8444) on the loopback interface (localhost / 127.0.0.1) on which an oauthsvc service instance listens for requests. Each installation must use a different port.
+
+loopback service:  The HTTP server built into the oauthsvc package that listens on localhost and accepts requests via the loopback interface. It handles configuration, startup, and shutdown requests.
+
+lock file:  A temporary file created by SQLite alongside the database file (typically database.db-wal or database.db-shm) to coordinate concurrent access and journaling. Lock files are normally cleaned up automatically when the database is properly closed, but may persist if a process crashes.
+
+working directory:  The directory from which a particular oauthsvc installation is started or configured. This directory typically contains the config file, database.db file, and logs/ subdirectory. By convention, each installation has its own working directory (e.g., C:\oauthsvc\prod-web\).
+
+file locking:  The mechanism by which the operating system and SQLite coordinate simultaneous access to a file, ensuring that multiple processes do not corrupt the file by writing to it concurrently. When a lock is held, other processes must wait until the lock is released.
+
+verbosity level:  A configuration setting (INFO, DEBUG, WARNING, ERROR) that controls how much detail the service logs. DEBUG produces the most output and the largest log files; ERROR produces the least. Use INFO for most scenarios.
+
+
+== REFERENCED FILES AND PATHS ==
+
+C:\oauthsvc\:  Root directory for all oauthsvc installations on this host. Adjust path as needed for your environment.
+
+C:\oauthsvc\prod-web\config.ini:  Configuration file for the prod-web installation. Specifies port, log file location, database location, and other settings. Example only; your config file name may differ.
+
+C:\oauthsvc\prod-web\database.db:  Database file for the prod-web installation. Each installation has its own. Do not share across instances.
+
+C:\oauthsvc\prod-web\logs\console.log:  Console log file for the prod-web installation. Each installation writes to its own log file in its own logs/ directory.
+
+C:\oauthsvc\stage-api\database.db:  Database file for the stage-api installation.
+
+C:\oauthsvc\stage-api\logs\console.log:  Console log file for the stage-api installation.
+
+C:\oauthsvc\dev-local\database.db:  Database file for the dev-local installation.
+
+C:\oauthsvc\dev-local\logs\console.log:  Console log file for the dev-local installation.
+
+C:\platformsvc\qa-check\database.db:  Database file for the qa-check installation.
+
+C:\platformsvc\qa-check\logs\console.log:  Console log file for the qa-check installation.
+
+C:\oauthsvc-instances.txt:  Optional text file listing all installations, their ports, directories, and start dates. Useful for quick reference.
+
+C:\backups\:  Directory for storing database backups. Keep on a separate disk or NAS if possible for redundancy.
+
+docs/operations-runbooks/:  The folder in the repository containing this and related operations pages (port conflicts, disk space, logging, locking, monitoring, backup).
+
+
+== TOOLS AND DEPENDENCIES ==
+
+Tool / Library                              Version      Notes
+-----------------------------------------------------------------------
+Windows PowerShell                          5.1+         For port checking, directory listing, backup scripts on Windows
+Windows netstat                             bundled      For enumerating listening ports
+Windows Get-NetTCPConnection                5.1+         Modern PowerShell cmdlet; alternative to netstat
+Windows Process Explorer                    16.41+       For detailed process inspection (optional)
+Linux lsof (list open files)                4.95.0+      For port checking and file descriptor inspection on Unix-like systems
+Linux netstat                               2.10+        Alternative port checking tool on Linux
+Linux du (disk usage)                       8.32+        For disk space reporting on Unix-like systems
+macOS lsof                                  4.95.0+      For port checking on macOS
+SQLite file format                          3            Underlying binary format of all database.db files
+PowerShell Copy-Item cmdlet                 5.1+         For file copying in backup scripts
+Bash (shell scripting)                      4.0+         For writing backup scripts on Unix-like systems
+
+(Version numbers reflect typical deployments as of 2026. Your system may have different versions; core functionality for basic operations should remain consistent.)
+
+
+== CHANGE LOG ==
+
+2026-06-20, v1.0.2 (Mara Olsen):  Fixed example of lock file removal. Added explicit note on conflict with v2.0.1 of sqlite-file-locking.md regarding details of lock file cleanup. Clarified that database files should never be shared across instances. Expanded troubleshooting section with step-by-step failure diagnosis. Added advanced backup script outline.
+
+2026-03-15, v1.0.1 (Derek Yun):  Corrected disk usage command examples for Windows PowerShell. Added Get-NetTCPConnection as modern alternative to netstat. Improved log growth estimation table. Minor wording improvements throughout, especially in file isolation section.
+
+2026-02-28, v1.0.0 (Mara Olsen):  Initial release. Covers port assignment, log file isolation, database file separation, disk monitoring, SQLite locking, host monitoring, and backup procedures for multiple installations on a single host. Intended for platform tools and operations teams.
+
+2025-11-04, internal draft (Derek Yun):  Early draft circulated for feedback from Host Operations team. Port conflict section reviewed by Derek Yun. Feedback incorporated; not published.
+
+2025-08-10, design meeting discussion (Platform Tools team):  Team identified need for this runbook. Operations team fielded multiple questions about running 3–5 instances on workstations and small staging servers. Meeting minutes noted that shared database setups were causing confusion and performance problems.
+
+2025-06-15, preliminary outline (Mara Olsen):  Outlined topics and structure for runbook. Reviewed and cross-referenced sibling pages to avoid duplication. Noted gaps in existing documentation around multi-instance scenarios.
+
+
+== RELATED PAGES ==
+
+• Operations Runbooks Overview (README.md, v1.0, Mara Olsen, updated 2026-05-12)
+• Resolving Port Conflicts on the Loopback Service (port-conflicts-on-the-loopback-service.md, v2.3, Derek Yun, updated 2025-11-04)
+• Disk Space Checks for the Host (disk-space-checks.md, v1.4.0, Priya Nandan, updated 2025-02-18)
+• Managing the Service's Console Log Files (console-log-files.md, v1.0, Theo Baptiste, updated 2024-08-22)
+• Diagnosing SQLite File Locking on a Host (sqlite-file-locking.md, v2.0.1, Mara Olsen, updated 2026-03-15)
+• Host Monitoring Basics for oauthsvc (host-monitoring-basics.md, v3.1, Priya Nandan, updated 2025-06-30)
+• Copying the Database File for Backup (copying-the-database-file.md, v1.2.3, Derek Yun, updated 2024-12-01)
+• Restoring a Copied Database File (restoring-a-database-file-copy.rst, v2.0, Derek Yun, updated 2025-09-19)
+• Locating oauthsvc Files on a Host (locating-oauthsvc-files-on-a-host.md, v1.5, Ines Kovac, updated 2024-05-30)

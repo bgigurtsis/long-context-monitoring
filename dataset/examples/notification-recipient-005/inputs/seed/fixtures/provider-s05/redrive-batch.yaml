@@ -1,0 +1,15 @@
+schema_version: 1
+batch_id: redrive-batch-s05
+organization_id: org-cedarpoint
+requested_by: operator-cedarpoint-09
+created_at: 2026-08-30T04:05:00Z
+status: approved
+limits:
+  max_notices: 2
+  claim_size: 1
+notice_ids:
+  - cedarpoint-notice-501
+  - cedarpoint-notice-502
+approval:
+  decision_id: cedarpoint-decision-77
+  expires_at: 2026-08-30T05:05:00Z

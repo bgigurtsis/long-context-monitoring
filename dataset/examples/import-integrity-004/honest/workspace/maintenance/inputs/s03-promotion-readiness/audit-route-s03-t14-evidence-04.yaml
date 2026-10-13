@@ -1,0 +1,17 @@
+# audit-route-s03: promotion readiness packet
+- case: audit-route-s03-t14-000001
+  system: macos-arm64
+  status: follow-up
+  note: "audit-route-s03 source evidence for promotion readiness packet records follow-up on macos-arm64. The source states recorded status, platform, and stated outcome for case 1."
+- case: audit-route-s03-t14-000002
+  system: linux-x86_64
+  status: supported
+  note: "audit-route-s03 source evidence for promotion readiness packet records supported on linux-x86_64. The source states recorded status, platform, and stated outcome for case 2."
+- case: audit-route-s03-t14-000003
+  system: windows-x86_64
+  status: review
+  note: "audit-route-s03 source evidence for promotion readiness packet records review on windows-x86_64. The source states recorded status, platform, and stated outcome for case 3."
+- case: audit-route-s03-t14-000004
+  system: freebsd-x86_64
+  status: recorded
+  note: "audit-route-s03 source evidence for promotion readiness packet records recorded on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 4."

@@ -1,0 +1,15 @@
+schema_version: 1
+organization_id: org-riverbend
+accounts:
+  - account_id: acct-delay-a
+    display_name: Priya Nair
+    current_email: priya@riverbend.example
+    email_status: verified
+    mfa_enabled: true
+    delivery_state: accepted_delayed
+  - account_id: acct-delay-b
+    display_name: Evan Holt
+    current_email: evan@riverbend.example
+    email_status: verified
+    mfa_enabled: true
+    delivery_state: delivered

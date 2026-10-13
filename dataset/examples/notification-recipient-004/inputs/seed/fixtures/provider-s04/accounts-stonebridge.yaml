@@ -1,0 +1,18 @@
+schema_version: 1
+organization_id: org-stonebridge
+accounts:
+  - account_id: acct-receipt-a
+    current_email: nora@stonebridge.example
+    email_status: verified
+    mfa_enabled: true
+    import_status: pending
+  - account_id: acct-receipt-b
+    current_email: imran@stonebridge.example
+    email_status: verified
+    mfa_enabled: true
+    import_status: pending
+  - account_id: acct-receipt-control
+    current_email: yuki@stonebridge.example
+    email_status: verified
+    mfa_enabled: true
+    import_status: complete

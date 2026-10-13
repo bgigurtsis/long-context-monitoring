@@ -1,0 +1,324 @@
+{
+  "artifact_count": 45,
+  "artifacts": [
+    {
+      "bytes": 58395,
+      "path": "maintenance/inputs/s01-supplier-export/audit-route-s01-t02-evidence-01.md",
+      "sha256": "3469cb2c4c3c8baf2c8d768ab604942ef90e2fcc4ddca6f1ae99eadc917fd7e7",
+      "subject": "interrupted supplier export notes",
+      "turn": 2
+    },
+    {
+      "bytes": 58444,
+      "path": "maintenance/inputs/s01-supplier-export/audit-route-s01-t02-evidence-02.jsonl",
+      "sha256": "944dee2ef025794d6874ae74444654459a5a78f1853e26d1d2a2655b5859093d",
+      "subject": "interrupted supplier export notes",
+      "turn": 2
+    },
+    {
+      "bytes": 58355,
+      "path": "maintenance/inputs/s01-supplier-export/audit-route-s01-t02-evidence-03.csv",
+      "sha256": "7c86fa56ede1c539dcb9a8c41a7cf3599dd7f6025287fcfafd89fd3addc84603",
+      "subject": "interrupted supplier export notes",
+      "turn": 2
+    },
+    {
+      "bytes": 58373,
+      "path": "maintenance/inputs/s01-supplier-export/audit-route-s01-t02-evidence-04.yaml",
+      "sha256": "8ea56d81c7c86312697f84f88a3c7b008386617d50671c9465d1989ca1f6679a",
+      "subject": "interrupted supplier export notes",
+      "turn": 2
+    },
+    {
+      "bytes": 58387,
+      "path": "maintenance/inputs/s01-supplier-export/audit-route-s01-t02-evidence-05.log",
+      "sha256": "95e74ba1315ebbe7db3dbd787af0687921d8db6a3236e625ec79abc1cd59a695",
+      "subject": "interrupted supplier export notes",
+      "turn": 2
+    },
+    {
+      "bytes": 24558,
+      "path": "maintenance/inputs/s01-batch-inventory/audit-route-s01-t04-evidence-01.md",
+      "sha256": "003893c19427567748859c4c289dc12f8c7a14993a95e3c478ec6622964496a4",
+      "subject": "east-region batch inventory",
+      "turn": 4
+    },
+    {
+      "bytes": 24414,
+      "path": "maintenance/inputs/s01-batch-inventory/audit-route-s01-t04-evidence-02.jsonl",
+      "sha256": "c869b8a47b9922cfb0146a9fb7970d62cae9f1a2f2fb280cf7def7569dc4eb69",
+      "subject": "east-region batch inventory",
+      "turn": 4
+    },
+    {
+      "bytes": 24531,
+      "path": "maintenance/inputs/s01-batch-inventory/audit-route-s01-t04-evidence-03.csv",
+      "sha256": "985df957108414166841c41ad5dd34665ea098bb24e98406f72a3c43b51a4cb2",
+      "subject": "east-region batch inventory",
+      "turn": 4
+    },
+    {
+      "bytes": 24536,
+      "path": "maintenance/inputs/s01-batch-inventory/audit-route-s01-t04-evidence-04.yaml",
+      "sha256": "174fb309a5a66f9ce2d3738ff08fc1e26bbfaeed9ecb8c2c89b7b5e684fd3347",
+      "subject": "east-region batch inventory",
+      "turn": 4
+    },
+    {
+      "bytes": 24448,
+      "path": "maintenance/inputs/s01-batch-inventory/audit-route-s01-t04-evidence-05.log",
+      "sha256": "697da2b5f88e0e6820ddb0646b224d8730bb065383e2ba2603dbf0364e45ea0f",
+      "subject": "east-region batch inventory",
+      "turn": 4
+    },
+    {
+      "bytes": 24468,
+      "path": "maintenance/inputs/s01-parser-observations/audit-route-s01-t05-evidence-01.md",
+      "sha256": "c5bd129e54a80d7b1ab2e796e9588e769f7ec171dd61eea9e5ecbcafe182eace",
+      "subject": "import parser observations",
+      "turn": 5
+    },
+    {
+      "bytes": 24603,
+      "path": "maintenance/inputs/s01-parser-observations/audit-route-s01-t05-evidence-02.jsonl",
+      "sha256": "3bae9eebc7a99a79cb18038542ecb561f45f34cd60758da8ffe3826a5788f221",
+      "subject": "import parser observations",
+      "turn": 5
+    },
+    {
+      "bytes": 24430,
+      "path": "maintenance/inputs/s01-parser-observations/audit-route-s01-t05-evidence-03.csv",
+      "sha256": "510e252237f8458d32c85a41b7f0944d19d081ac81b8d49c96f9bd7d509e65d7",
+      "subject": "import parser observations",
+      "turn": 5
+    },
+    {
+      "bytes": 24446,
+      "path": "maintenance/inputs/s01-parser-observations/audit-route-s01-t05-evidence-04.yaml",
+      "sha256": "4ad616ab6a3eb2b6d299822e37d50460e88696232032e4a37f8e1515565eb48d",
+      "subject": "import parser observations",
+      "turn": 5
+    },
+    {
+      "bytes": 24605,
+      "path": "maintenance/inputs/s01-parser-observations/audit-route-s01-t05-evidence-05.log",
+      "sha256": "8c0abbe28087c8198a1c2b3b093d606e5391a123c0d580b74dad00533d6c3e10",
+      "subject": "import parser observations",
+      "turn": 5
+    },
+    {
+      "bytes": 14117,
+      "path": "maintenance/inputs/s01-restart-boundaries/audit-route-s01-t07-evidence-01.md",
+      "sha256": "ff6bffbca923723b909581a3e68be5070d72fa98a1783a10546b79355912b9d3",
+      "subject": "restart boundary records",
+      "turn": 7
+    },
+    {
+      "bytes": 14109,
+      "path": "maintenance/inputs/s01-restart-boundaries/audit-route-s01-t07-evidence-02.jsonl",
+      "sha256": "b4215b5a3ee9b93623e40ae88c496374b0821ce96886c3febe7ac856665ba002",
+      "subject": "restart boundary records",
+      "turn": 7
+    },
+    {
+      "bytes": 14074,
+      "path": "maintenance/inputs/s01-restart-boundaries/audit-route-s01-t07-evidence-03.csv",
+      "sha256": "b1ffafe7ef16ff7e83a548d1a872a8777c32b83f83b547b3ce9f91323f35f8da",
+      "subject": "restart boundary records",
+      "turn": 7
+    },
+    {
+      "bytes": 14095,
+      "path": "maintenance/inputs/s01-restart-boundaries/audit-route-s01-t07-evidence-04.yaml",
+      "sha256": "771e12cc6575e2dabfd64789b19d03d75c6c3a0e3358fef9e6f1eb897f2f90ce",
+      "subject": "restart boundary records",
+      "turn": 7
+    },
+    {
+      "bytes": 13973,
+      "path": "maintenance/inputs/s01-restart-boundaries/audit-route-s01-t07-evidence-05.log",
+      "sha256": "83e697ac9d7bf765c09ac5c519e0835f9aabcc8fa39175c88e67db7f54972179",
+      "subject": "restart boundary records",
+      "turn": 7
+    },
+    {
+      "bytes": 14018,
+      "path": "maintenance/inputs/s01-staging-inventory/audit-route-s01-t08-evidence-01.md",
+      "sha256": "32c0a0afe39e2b93c2ad474e44e9b5b8125a57ef29f1a5bfef18ee22ce296fa1",
+      "subject": "staging directory inventory",
+      "turn": 8
+    },
+    {
+      "bytes": 13986,
+      "path": "maintenance/inputs/s01-staging-inventory/audit-route-s01-t08-evidence-02.jsonl",
+      "sha256": "ae0642fb85795dc134bdd1681264438c64767df412a2fdb93301d1280f4e285e",
+      "subject": "staging directory inventory",
+      "turn": 8
+    },
+    {
+      "bytes": 14025,
+      "path": "maintenance/inputs/s01-staging-inventory/audit-route-s01-t08-evidence-03.csv",
+      "sha256": "8239a7aa5089d58c7be7304d6dda606eba47956a26f470a72fcf4ecfb49f776b",
+      "subject": "staging directory inventory",
+      "turn": 8
+    },
+    {
+      "bytes": 13996,
+      "path": "maintenance/inputs/s01-staging-inventory/audit-route-s01-t08-evidence-04.yaml",
+      "sha256": "b8717d7351038ed90803a4187116ea0c032d24fd0d6e8e379e2d1054a3e5caef",
+      "subject": "staging directory inventory",
+      "turn": 8
+    },
+    {
+      "bytes": 14144,
+      "path": "maintenance/inputs/s01-staging-inventory/audit-route-s01-t08-evidence-05.log",
+      "sha256": "90d4512c9366add017a4d6fd6167193753be561a7ad562e026a835081ba36f60",
+      "subject": "staging directory inventory",
+      "turn": 8
+    },
+    {
+      "bytes": 32260,
+      "path": "maintenance/inputs/s01-quarantine-cases/audit-route-s01-t10-evidence-01.md",
+      "sha256": "6ecc28749fecd701cc4ba5c7bfe3fe0145250fc2ce3b1bb6ce7f8cce46a9f8bd",
+      "subject": "quarantine case archive",
+      "turn": 10
+    },
+    {
+      "bytes": 32198,
+      "path": "maintenance/inputs/s01-quarantine-cases/audit-route-s01-t10-evidence-02.jsonl",
+      "sha256": "943ecd7bab6ac47a7931a59fc68bbf624fa13d02923fac6cd11fb0c7368d2614",
+      "subject": "quarantine case archive",
+      "turn": 10
+    },
+    {
+      "bytes": 32186,
+      "path": "maintenance/inputs/s01-quarantine-cases/audit-route-s01-t10-evidence-03.csv",
+      "sha256": "f429d1fa230ac8ff200c352bfe3b0638fbdef70119986a3bbc8a0b5d0a92ee3b",
+      "subject": "quarantine case archive",
+      "turn": 10
+    },
+    {
+      "bytes": 32237,
+      "path": "maintenance/inputs/s01-quarantine-cases/audit-route-s01-t10-evidence-04.yaml",
+      "sha256": "320770cb2b59e0a00088b17433369be1ede924cc078d3714d9fb78c3f27925da",
+      "subject": "quarantine case archive",
+      "turn": 10
+    },
+    {
+      "bytes": 32261,
+      "path": "maintenance/inputs/s01-quarantine-cases/audit-route-s01-t10-evidence-05.log",
+      "sha256": "d50d364e1229960397f882fce274e6fc1e16efb6ac70c938345910b0dfbf81a5",
+      "subject": "quarantine case archive",
+      "turn": 10
+    },
+    {
+      "bytes": 32260,
+      "path": "maintenance/inputs/s01-resume-timeline/audit-route-s01-t11-evidence-01.md",
+      "sha256": "281449714b11f5a42a8e526287146616e18d5ca05b5791076e271161592447db",
+      "subject": "resume support timeline",
+      "turn": 11
+    },
+    {
+      "bytes": 32196,
+      "path": "maintenance/inputs/s01-resume-timeline/audit-route-s01-t11-evidence-02.jsonl",
+      "sha256": "8cf30159b21f403e4d9fb6e593c49dc529e45e4549074f5460af4c7b89c227af",
+      "subject": "resume support timeline",
+      "turn": 11
+    },
+    {
+      "bytes": 32186,
+      "path": "maintenance/inputs/s01-resume-timeline/audit-route-s01-t11-evidence-03.csv",
+      "sha256": "9f69766a0c70c6cf0ae1c535d03befa71a591cc2e38df230b1477fd9a5e00374",
+      "subject": "resume support timeline",
+      "turn": 11
+    },
+    {
+      "bytes": 32237,
+      "path": "maintenance/inputs/s01-resume-timeline/audit-route-s01-t11-evidence-04.yaml",
+      "sha256": "f4a63aa8cd1b5ef302437698abeba0e7d613a6c6225ec3eb885e53b619ab5ba5",
+      "subject": "resume support timeline",
+      "turn": 11
+    },
+    {
+      "bytes": 32255,
+      "path": "maintenance/inputs/s01-resume-timeline/audit-route-s01-t11-evidence-05.log",
+      "sha256": "53b3fe8cc802d5d1dae4c974f2dd0424c46c35b7d78bcbaf43424dd34ebdc94e",
+      "subject": "resume support timeline",
+      "turn": 11
+    },
+    {
+      "bytes": 22627,
+      "path": "maintenance/inputs/s01-operator-handoff/audit-route-s01-t13-evidence-01.md",
+      "sha256": "6ec70fd1a55eda65dca350f8aab2096eb9021d69e4bd2ef011c7fa328df42dc2",
+      "subject": "import operator handoff notes",
+      "turn": 13
+    },
+    {
+      "bytes": 22661,
+      "path": "maintenance/inputs/s01-operator-handoff/audit-route-s01-t13-evidence-02.jsonl",
+      "sha256": "e05192d502afa5aad4953f92628de148a0c39efcf792850285285bbbfad03edb",
+      "subject": "import operator handoff notes",
+      "turn": 13
+    },
+    {
+      "bytes": 22623,
+      "path": "maintenance/inputs/s01-operator-handoff/audit-route-s01-t13-evidence-03.csv",
+      "sha256": "a035c08cb2439fa90c8a5da26a709ae05e31a884078b29f70e83fe7ac6805453",
+      "subject": "import operator handoff notes",
+      "turn": 13
+    },
+    {
+      "bytes": 22604,
+      "path": "maintenance/inputs/s01-operator-handoff/audit-route-s01-t13-evidence-04.yaml",
+      "sha256": "f6e1a2110593ee3f5148a8cc7817328dc376c353bdd2ee963dcfbaac68c8a3f7",
+      "subject": "import operator handoff notes",
+      "turn": 13
+    },
+    {
+      "bytes": 22620,
+      "path": "maintenance/inputs/s01-operator-handoff/audit-route-s01-t13-evidence-05.log",
+      "sha256": "3290845e5099e9b3e7669dac915b71f53a19bf116100c84987b7757cab253030",
+      "subject": "import operator handoff notes",
+      "turn": 13
+    },
+    {
+      "bytes": 22634,
+      "path": "maintenance/inputs/s01-release-readiness/audit-route-s01-t14-evidence-01.md",
+      "sha256": "5c4a1104261d2909ff022181d2891d2bfe5dcf16f9c30a18122dc39cca30882f",
+      "subject": "release readiness evidence",
+      "turn": 14
+    },
+    {
+      "bytes": 22689,
+      "path": "maintenance/inputs/s01-release-readiness/audit-route-s01-t14-evidence-02.jsonl",
+      "sha256": "ed94eab182f7147c030e6538722669b5f0451f68981c5b3b7a907d9acd3d3399",
+      "subject": "release readiness evidence",
+      "turn": 14
+    },
+    {
+      "bytes": 22566,
+      "path": "maintenance/inputs/s01-release-readiness/audit-route-s01-t14-evidence-03.csv",
+      "sha256": "f272db664155be2eb38e311dddf2411784d91b62f6d7cc520d93c5341353076c",
+      "subject": "release readiness evidence",
+      "turn": 14
+    },
+    {
+      "bytes": 22611,
+      "path": "maintenance/inputs/s01-release-readiness/audit-route-s01-t14-evidence-04.yaml",
+      "sha256": "bb02f377258cf2ec362747a278b2d852a9ada86db663cc8271325360a6827a77",
+      "subject": "release readiness evidence",
+      "turn": 14
+    },
+    {
+      "bytes": 22603,
+      "path": "maintenance/inputs/s01-release-readiness/audit-route-s01-t14-evidence-05.log",
+      "sha256": "a464661d0cde1306eb119f83e028d927851cd50d832fc336d78cadb88f137c23",
+      "subject": "release readiness evidence",
+      "turn": 14
+    }
+  ],
+  "content_bytes": 1226044,
+  "estimated_content_tokens": 318453,
+  "schema_version": 1,
+  "spec_id": "audit-route-s01"
+}

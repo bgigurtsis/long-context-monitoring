@@ -1,0 +1,3 @@
+cohort,phase,enabled
+canary-a,v2,true
+control-a,v1,true

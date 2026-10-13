@@ -1,0 +1,313 @@
+TITLE: Style Quick Reference
+VERSION: 1.3
+OWNER: Language Tooling (Owen Fitzgerald)
+LAST UPDATED: 2025-12-29
+SUMMARY: Summarizes the coding style guide into a compact one-page reference, with enough surrounding context on workstation setup, supported Python versions, editor configuration, code review conventions, and commit message style that a new contributor to accountsvc can get productive without opening every sibling page first.
+
+================================================================================
+PURPOSE AND COVERAGE
+================================================================================
+
+This page exists because new contributors to accountsvc kept asking the same six questions in their first week, and the full onboarding set (thirteen pages as of this writing) is a lot to read before your first change lands. Treat this as the "cheat sheet" — if something here conflicts with a sibling page in detail, the sibling page wins, but in practice the two are supposed to agree and any drift you spot is worth flagging to the owner named in that section.
+
+accountsvc is a small standard-library-only Python package: a command line surface and a loopback HTTP service for customer accounts, backed by a local SQLite file for state. Nothing here describes how those commands, requests, or the stored data actually work — this page is strictly about how we write and review code, not what the code does.
+
+================================================================================
+WORKSTATION SETUP (Owner: Developer Experience — Theo Banks)
+================================================================================
+
+Full instructions live in Workstation Setup; this is the condensed version people actually follow.
+
+1. Clone the repository. There is no src/ layout — the package directory `accountsvc/` sits directly under the repository root next to `README.md`.
+
+       git clone git@git.internal:accountsvc/accountsvc.git
+       cd accountsvc
+
+2. Create an isolated Python environment. We do not install accountsvc's dependencies into a shared interpreter, even though the package itself has none beyond the standard library — the isolation is for the dev tooling (formatter, linter, etc.), not the package.
+
+       python -m venv .venv
+       .venv\Scripts\Activate.ps1        # PowerShell, Windows
+       source .venv/bin/activate         # bash/zsh, macOS or Linux
+
+3. Install the dev tooling group. There is no runtime dependency group to install, since accountsvc is standard-library-only; you're only ever installing tools that check or format your own code.
+
+       pip install -r requirements-dev.txt
+
+4. Confirm your shell is picking up the right interpreter:
+
+       python -c "import sys; print(sys.version)"
+
+   You should see 3.11.x or 3.12.x. If you see 3.9 or 3.10, your PATH is probably picking up a system Python — see Troubleshooting Workstation Setup.
+
+5. Copy the shared editor defaults onto your machine (details below in the Editor Configuration section).
+
+One inconsistency worth knowing about up front: Workstation Setup (v2.3) still shows a `virtualenv`-based setup rather than the built-in `venv` module in its worked example. Either approach is fine; `venv` is what most of the team actually uses today.
+
+================================================================================
+SUPPORTED PYTHON VERSIONS (Owner: Runtime Infra — Yusuf Demir)
+================================================================================
+
+| Version | Status | Notes |
+|---|---|---|
+| 3.9 | Not supported | Removed from onboarding images in early 2025 |
+| 3.10 | Supported, discouraged for new setups | Still runs in the loopback service host image |
+| 3.11 | Supported, minimum for new setups | Recommended baseline |
+| 3.12 | Supported, recommended | Matches the developer workstation image |
+| 3.13 | Not yet validated | Do not target this for local development |
+
+Because accountsvc only uses the standard library, version support here is mostly about which interpreter you develop and run the tooling with, not about any third-party compatibility matrix. The one thing that does matter across versions is the standard library's SQLite driver — behavior around type coercion and text encoding has shifted slightly release to release, so pin your interpreter to 3.11 or 3.12 unless you have a specific reason not to.
+
+To check what's active in your environment:
+
+       python --version
+       where python        # PowerShell
+       which python         # bash/zsh
+
+If you manage multiple interpreters, `py -0p` on Windows or `pyenv versions` on macOS/Linux will list what's installed.
+
+================================================================================
+EDITOR CONFIGURATION (Owner: Developer Experience — Theo Banks)
+================================================================================
+
+The team ships a shared `.editorconfig` at the repository root plus a small set of editor-specific settings files. Full detail is in Editor Configuration (v1.3) and the machine-readable Shared Editor Settings file, but the essentials:
+
+- Indentation: 4 spaces, never tabs, in all Python files.
+- Line endings: LF, even on Windows checkouts. Git's `core.autocrlf` should be set to `input`:
+
+       git config core.autocrlf input
+
+- Trailing whitespace is trimmed on save. Trailing newline at end of file is required.
+- Max line length is enforced by the formatter (see Coding Style below), not by your editor, but most editors are configured to show a ruler at 88 characters so you're not surprised at review time.
+
+A minimal `.editorconfig` stanza looks like this:
+
+       [*.py]
+       indent_style = space
+       indent_size = 4
+       end_of_line = lf
+       insert_final_newline = true
+       trim_trailing_whitespace = true
+
+If you use VS Code, install the "EditorConfig for VS Code" extension and the workspace-recommended Python extension pack; both are listed in `.vscode/extensions.json`. If you use a JetBrains editor, editorconfig support is built in — just confirm it's enabled under Editor > Code Style.
+
+================================================================================
+CODE REVIEW CONVENTIONS (Owner: Core Services — Priya Chandran)
+================================================================================
+
+accountsvc reviews are conversational, not gatekeeping. A few conventions that keep them fast:
+
+- Keep changes small. A change that touches the command-line surface and the loopback service in the same diff is a sign it should be split.
+- Every change needs at least one other contributor's sign-off before merging. Two sign-offs are expected if the change touches the state file's on-disk layout in any way — even a change that just adjusts how a value is written, not what's stored.
+- Use inline comments on the diff for anything that needs a specific fix before merge; use a general comment on the change as a whole for style preferences or "consider this for later."
+- If you disagree with a reviewer's comment, respond in the thread rather than silently reverting the suggestion — either explain your reasoning or make the change, but don't do neither.
+- Draft changes should be marked clearly as drafts (most of us prefix the title with `WIP:`) so reviewers don't spend time on something still in motion.
+
+A typical review turnaround is same-day for anything under roughly 200 changed lines; larger changes should be flagged to the person on call for Core Services ahead of time so review bandwidth can be planned.
+
+Worked example of a good review comment:
+
+       Line 42: this loop rebuilds the same lookup structure on every
+       call. Consider building it once outside the loop and passing it
+       in — happy to pair on this if useful.
+
+versus a less useful one:
+
+       this is slow
+
+Both point at the same problem; only the first gives the other person somewhere to go.
+
+================================================================================
+COMMIT MESSAGE STYLE (Owner: Core Services — Priya Chandran)
+================================================================================
+
+Full detail lives in Commit Message Style; the shape we actually enforce:
+
+       <type>(<area>): <short summary, imperative mood, no trailing period>
+
+       <optional body, wrapped at ~72 characters>
+
+       <optional trailers>
+
+Types in common use: `feat`, `fix`, `refactor`, `docs`, `chore`, `style`. Area is usually `cli`, `service`, or `storage`, matching the rough shape of the package, though we're not strict about inventing new areas when nothing existing fits.
+
+Examples:
+
+       fix(storage): close the connection handle on early return
+
+       refactor(cli): extract shared argument parsing into one place
+
+       docs(handbook): update onboarding page links
+
+A commit message we'd ask you to redo:
+
+       fixed stuff
+
+The imperative mood matters: write "fix the unclosed handle in the write path" rather than "fixed" or "fixes" — think of it as an instruction the commit carries out, not a note about something already done. (Also, we still describe an unclosed resource this way, e.g., a file or connection handle that never gets closed — nothing to do with exposed data.)
+
+Trailers, when used, go at the very end, one per line:
+
+       Co-authored-by: Jane Wu <jwu@internal>
+       Relates-to: internal issue 4021
+
+We do not require a strict 50-character subject limit — 72 characters is the practical ceiling before a subject line starts getting truncated in most log viewers, and that's the number people actually aim for.
+
+================================================================================
+CODING STYLE (Owner: Language Tooling — Owen Fitzgerald)
+================================================================================
+
+This is the section that gives this page its name, and it's the condensed version of Coding Style Guide (v4.0). If the two disagree on a specific rule, the full guide is correct — this page is a summary written for speed of reference, not a substitute.
+
+Formatting
+----------
+- Line length: 88 characters, enforced by the formatter, not by hand-wrapping.
+- Quote style: double quotes by default; single quotes only to avoid escaping a double quote inside a literal.
+- Trailing commas: use them in multi-line collection literals and multi-line call argument lists — it keeps diffs small when a new item is added later.
+- Blank lines: two blank lines between top-level definitions, one blank line between grouped statements inside a definition, none at the very start or end of a block.
+
+Naming
+------
+- Modules and files: `lower_snake_case`.
+- Ordinary identifiers (variables, most callables): `lower_snake_case`.
+- Constants: `UPPER_SNAKE_CASE`, defined near the top of the file that uses them.
+- Type names: `PascalCase`.
+- A leading underscore marks something as internal to its containing file — not a hard boundary, just a signal to reviewers and to yourself six months later.
+- Avoid single-letter identifiers outside of very short loop counters (`i`, `j`) and well-established short forms (`fh` for a file handle is fine; `d` for a lookup structure is not).
+
+Imports
+-------
+Group and order imports in three parts, separated by one blank line each:
+
+       1. standard library
+       2. (nothing — accountsvc has no third-party runtime dependencies)
+       3. local imports, relative to the package
+
+Within a group, sort alphabetically. Since accountsvc is standard-library-only at runtime, the middle group is usually empty in the package itself; it only appears in the dev tooling and documentation scripts under `scripts/`.
+
+Docstrings and comments
+------------------------
+- Every public callable and every public type gets a one-line summary docstring; add a longer body only if the one line genuinely isn't enough.
+- Comments explain *why*, not *what* — if a comment just restates the line below it, remove the comment or rewrite the line to be clearer.
+- Keep a comment near any code that looks wrong on first read but is that way for a specific reason (a particular ordering, a workaround for a standard-library quirk, etc.) so nobody "fixes" it later.
+
+Error handling
+--------------
+- Catch the narrowest exception type that's actually possible at that point, not a broad catch-all, unless you're at a boundary where the program must not crash regardless of cause (the top of the command-line surface and the top of each loopback service handler are the two accepted places for that).
+- Never swallow an exception silently — either log something useful, re-raise, or wrap it with context and re-raise.
+- Prefer early returns over deep nesting: check the failure condition first and return, rather than wrapping the success path in a long conditional.
+
+Comparisons and boolean symbols
+--------------------------------
+- Compare against `None` with identity comparison, not equality.
+- Prefer the direct truthiness of a collection or string over comparing its length to zero.
+- Keep boolean symbols (`and`, `or`, `not`) left-aligned when a condition wraps across lines, so the logical shape reads top to bottom.
+
+A short worked example of the difference between a change that would pass review cleanly and one that would come back with comments (described in prose, since actual code isn't reproduced on this page): a function that opens a file handle, does some work, and returns early on a failure condition without closing the handle first will get flagged every time — the fix is either a context-managed block or an explicit close on every exit path, not just the success path.
+
+Formatting and linting tools quick table
+-----------------------------------------
+
+| Tool | Purpose | Run from |
+|---|---|---|
+| formatter (black-style) | Enforces line length, quote style, blank lines | `scripts/format.ps1` or `scripts/format.sh` |
+| linter (flake8-style) | Flags unused identifiers, overly broad excepts, shadowed names | `scripts/lint.ps1` or `scripts/lint.sh` |
+| import sorter | Enforces the three-group import order above | run as part of the formatter script |
+| type checker | Optional locally, required before merge on anything touching the storage layer | `scripts/typecheck.ps1` |
+
+Typical local loop before opening a change for review:
+
+       scripts\format.ps1
+       scripts\lint.ps1
+       scripts\typecheck.ps1
+       git add -p
+       git commit
+
+================================================================================
+TERMINOLOGY
+================================================================================
+
+Working tree — the checked-out copy of the repository on your machine, as opposed to the git commit log or a remote copy.
+
+Pinned dependency — a dependency version fixed to an exact number rather than a range; used for the dev tooling group since the package itself has no runtime dependencies to pin.
+
+Loopback service — the local-only HTTP service accountsvc exposes for account operations; "loopback" here just means it listens only on the local host, nothing about how it processes requests.
+
+State file — the local SQLite file accountsvc uses to hold its data between runs; not part of source control and not something this page describes further.
+
+Linter — a tool that checks code for likely problems (unused names, overly broad exception handling, shadowed identifiers) without changing the code itself.
+
+Formatter — a tool that rewrites code to a single agreed layout (line length, quote style, spacing) so that layout is never a point of discussion in review.
+
+Docstring — the string literal placed immediately inside a callable or type definition that documents its purpose; distinct from an ordinary comment.
+
+Trailing comma — a comma left after the last item in a multi-line collection or argument list, used so future additions produce a one-line diff instead of a two-line one.
+
+Commit trailer — a `Key: value` line at the very end of a commit message, such as `Co-authored-by` or `Relates-to`, kept separate from the body.
+
+Diff hunk — one contiguous block of changed lines shown in a code review or in `git diff` output, bounded by unchanged context lines on either side.
+
+Editorconfig stanza — one `[pattern]` block inside an `.editorconfig` file that applies a set of formatting rules to files matching that pattern.
+
+================================================================================
+REPOSITORY FILES AND PATHS REFERENCED
+================================================================================
+
+| Path | Purpose |
+|---|---|
+| `accountsvc/` | The package directory; sits at the repository root, no `src/` layout |
+| `README.md` | Repository-root readme; points into `docs/developer-handbook/` for everything else |
+| `docs/developer-handbook/` | Folder holding this page and its twelve siblings |
+| `.editorconfig` | Root-level shared editor formatting rules |
+| `editor-settings.yaml` | Machine-readable settings some editor extensions read directly, mirrors `.editorconfig` |
+| `requirements-dev.txt` | Pinned versions for the formatter, linter, import sorter, and type checker |
+| `scripts/format.ps1`, `scripts/format.sh` | Wrapper scripts that run the formatter and import sorter across the package |
+| `scripts/lint.ps1`, `scripts/lint.sh` | Wrapper scripts that run the linter across the package |
+| `scripts/typecheck.ps1` | Wrapper script for the optional local type checker |
+| `.vscode/extensions.json` | Recommended VS Code extension list, including the EditorConfig extension |
+| local state file (path varies by machine, not tracked in source control) | Holds accountsvc's data between runs; mentioned here only as something to exclude from your `.gitignore` review, not described further on this page |
+
+================================================================================
+TOOLS AND VERSIONS
+================================================================================
+
+| Tool / package | Version | Notes |
+|---|---|---|
+| Python | 3.11.7 (baseline), 3.12.6 (recommended) | See Supported Python Versions for the full matrix |
+| git | 2.43.x | Set `core.autocrlf=input` on Windows |
+| PowerShell | 7.4.x | Used for the `.ps1` wrapper scripts |
+| sqlite3 CLI | 3.44.x | Handy for poking at the state file directly during local development |
+| formatter (black-style) | 24.4.2 | Pinned in `requirements-dev.txt` |
+| linter (flake8-style) | 7.1.1 | Pinned in `requirements-dev.txt` |
+| import sorter | 5.13.2 | Pinned in `requirements-dev.txt` |
+| type checker | 1.11.1 | Optional locally, required before merge for storage-layer changes |
+| VS Code | 1.94.x | Team default editor, not mandatory |
+| EditorConfig for VS Code extension | 0.16.4 | Reads `.editorconfig` at the repository root |
+
+================================================================================
+CHANGE LOG
+================================================================================
+
+- 2025-12-29 — v1.3 — Clarified that the formatter, not the editor, is the source of truth for line length; added the worked review-comment example.
+- 2025-11-02 — v1.2 — Updated tool version table after the linter moved from 7.0.x to 7.1.1; noted the type checker as required for storage-layer changes.
+- 2025-08-18 — v1.1 — Added the Commit Message Style condensed section and the trailers example.
+- 2025-05-06 — v1.0 — Initial condensed page split out of Coding Style Guide at reviewer request; previously this material lived as an appendix on that page.
+- 2025-02-14 — v0.3 (pre-release) — Draft circulated to Core Services and Developer Experience for comment before first publish.
+- 2024-12-01 — v0.2 (pre-release) — Added the naming conventions table.
+- 2024-10-09 — v0.1 (pre-release) — First outline, covering only formatting rules.
+
+================================================================================
+RELATED PAGES
+================================================================================
+
+- Developer Handbook Index — the top-level page for this folder; start there if this is your first time in the handbook.
+- Workstation Setup — full walkthrough for getting a machine ready to develop accountsvc.
+- Supported Python Versions — the authoritative version support matrix.
+- Editor Configuration — full detail behind the condensed section above.
+- Code Review Conventions — full detail behind the condensed section above.
+- Commit Message Style — full detail behind the condensed section above, including trailer conventions we don't repeat here.
+- Coding Style Guide — the authoritative source this page summarizes; consult it directly for anything not covered above.
+- Repository Layout — describes the top-level folder structure referenced in the paths table above.
+- Dependency Management — how the dev tooling group's pinned versions are updated.
+- Local Development Workflow — day-to-day loop of change, format, lint, review, merge.
+- Troubleshooting Workstation Setup — fixes for the common "wrong Python on PATH" problem and similar.
+- Onboarding Checklist — the ordered list a new contributor works through, referencing most of the pages above.
+- Shared Editor Settings — the machine-readable settings file mentioned in the paths table.

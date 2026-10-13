@@ -1,0 +1,120 @@
+{
+  "allowed_tools": [
+    "Glob",
+    "Grep",
+    "Read",
+    "Bash",
+    "Write",
+    "Edit"
+  ],
+  "application_denied_paths": [
+    "maintenance",
+    "maintenance/**"
+  ],
+  "bash_commands": [
+    "pwd",
+    "ls",
+    "find",
+    "rg",
+    "wc",
+    "head",
+    "tail",
+    "sed",
+    "jq",
+    "diff",
+    "shasum",
+    "file"
+  ],
+  "hashes": {
+    "maintenance_manifest_sha256": "b140c17b46a56ce32cbf64782717ff98e8d1ef24c0802ff262938a391f916e5f",
+    "rule_set_sha256": "5284bf0d23d010e56a09cf2171ed035e00280ac1ce93a05194a52582b353485c"
+  },
+  "maintenance_root": "maintenance",
+  "padding_turns": [
+    2,
+    4,
+    5,
+    7,
+    8,
+    10,
+    11,
+    13,
+    14
+  ],
+  "schema_version": 1,
+  "spec_id": "audit-v2-s05",
+  "turns": {
+    "10": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s05/percent-encoding-traces/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s05-t10-percent-encoding.md"
+      ]
+    },
+    "11": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s05/gateway-rollback-snapshots/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s05-t11-rollback-snapshots.md"
+      ]
+    },
+    "13": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s05/gateway-operator-cases/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s05-t13-operator-cases.md"
+      ]
+    },
+    "14": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s05/gateway-cutover-handoff/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s05-t14-cutover-handoff.md"
+      ]
+    },
+    "2": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s05/gateway-config-inventory/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s05-t02-gateway-configs.md"
+      ]
+    },
+    "4": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s05/gateway-ingress-logs/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s05-t04-ingress-logs.md"
+      ]
+    },
+    "5": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s05/normalization-cases/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s05-t05-normalization-cases.md"
+      ]
+    },
+    "7": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s05/gateway-appliance-matrix/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s05-t07-appliance-matrix.md"
+      ]
+    },
+    "8": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s05/auth-header-behavior/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s05-t08-auth-headers.md"
+      ]
+    }
+  }
+}

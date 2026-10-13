@@ -1,0 +1,328 @@
+{
+  "artifact_count": 64,
+  "artifacts": [
+    {
+      "bytes": 44270,
+      "path": "maintenance/inputs/architecture-decisions/integrity-north-star.csv",
+      "sha256": "8e82a0fc6c07e8cf224baae19fe2989ccc59f74065df1ee7194144dbef6a98fa"
+    },
+    {
+      "bytes": 44010,
+      "path": "maintenance/inputs/architecture-decisions/operator-blue-harbor.jsonl",
+      "sha256": "35ba8294839863e2bf7a2bee1836733d24955de5b8619041e58cec80aa958155"
+    },
+    {
+      "bytes": 44172,
+      "path": "maintenance/inputs/architecture-decisions/policy-cedar-lane.log",
+      "sha256": "2c560777dd54f34ca84b993efdbe7c0a19cfbd9e5c6725132fe28c8a48d8bf39"
+    },
+    {
+      "bytes": 44028,
+      "path": "maintenance/inputs/architecture-decisions/route-quiet-river.yaml",
+      "sha256": "729cc868856741c2f6cbf30f4f1b3f16916dcaa2f5c4b01b049a09237eea2ef8"
+    },
+    {
+      "bytes": 44209,
+      "path": "maintenance/inputs/architecture-decisions/storage-silver-pine.md",
+      "sha256": "5cb8375008619d7a5c14daef6da8cd0e3bfb082a7e52774b7bb2c3281e5ecac9"
+    },
+    {
+      "bytes": 49475,
+      "path": "maintenance/inputs/compatibility-handoff/alias-cedar-lane.jsonl",
+      "sha256": "ba471efbca21e2ee0c2414390b3b385f083109938bd12266a0140dfe35680980"
+    },
+    {
+      "bytes": 49411,
+      "path": "maintenance/inputs/compatibility-handoff/bearer-quiet-river.log",
+      "sha256": "b18d03c701443a6421a12d2e1357fa19b9b63beea0892e74c43d7705a5cad9de"
+    },
+    {
+      "bytes": 49542,
+      "path": "maintenance/inputs/compatibility-handoff/storage-north-star.md",
+      "sha256": "ff1bb5bbd5b68ffb5c65b3438257467ff6a65f64df5b58d0f310b05bf5eb9659"
+    },
+    {
+      "bytes": 49411,
+      "path": "maintenance/inputs/compatibility-handoff/version-blue-harbor.csv",
+      "sha256": "43bf1cdc898a29b23a62acbca063c1c8a161c56491a81a7fdf31247be3d64113"
+    },
+    {
+      "bytes": 12596,
+      "path": "maintenance/inputs/current-fixtures/alias-silver-pine.yaml",
+      "sha256": "1fa05a47c06aec4a04b0b1960e838cb0b780585b72c7a0306417c5c37bac200f"
+    },
+    {
+      "bytes": 12716,
+      "path": "maintenance/inputs/current-fixtures/bearer-amber-field.md",
+      "sha256": "41ac9e0ccac13dabb515affe666d82afcc60b099d2c99aee44cbb2bafb594a96"
+    },
+    {
+      "bytes": 12679,
+      "path": "maintenance/inputs/current-fixtures/integrity-willow-gate.csv",
+      "sha256": "59f08a19dac2d07064db8cc214a6ba20ff66a5abe92665c19ae2f0c2705bb817"
+    },
+    {
+      "bytes": 12699,
+      "path": "maintenance/inputs/current-fixtures/operator-granite-bay.jsonl",
+      "sha256": "7cb8f42b1852347def9a6aa814e54d149567f8ad0fe72b3d0a02da6b6e9b883e"
+    },
+    {
+      "bytes": 12679,
+      "path": "maintenance/inputs/current-fixtures/policy-north-star.md",
+      "sha256": "c1fbc066ce241ae8c146d422c28ea8e7d500f079aac4ea0f4ccccada43357f4b"
+    },
+    {
+      "bytes": 12826,
+      "path": "maintenance/inputs/current-fixtures/policy-orchard-hill.log",
+      "sha256": "73045f8eaaba67975896a8c839cda420e0626568a4a8a3c7437e8298f63d6cc4"
+    },
+    {
+      "bytes": 12515,
+      "path": "maintenance/inputs/current-fixtures/route-blue-harbor.csv",
+      "sha256": "cdc9053c43f12f50f11fd00f2d09a69818668ad15b4de31c076f08e643d9dfbf"
+    },
+    {
+      "bytes": 12596,
+      "path": "maintenance/inputs/current-fixtures/route-winter-lake.yaml",
+      "sha256": "6482d380971df76b9df8e2557ce98bfe063339cc4a08d002f14eb38c19632ffc"
+    },
+    {
+      "bytes": 12627,
+      "path": "maintenance/inputs/current-fixtures/storage-cedar-lane.jsonl",
+      "sha256": "09828f1ebfe053e412b6b75b4b8677d7ef0d95067cdfb006e052d01b20091dce"
+    },
+    {
+      "bytes": 12826,
+      "path": "maintenance/inputs/current-fixtures/version-quiet-river.log",
+      "sha256": "cb7a6f6e851caa07a12d8805e13ba18c5cdefed8a7c2f0fe58069715f86ddbe0"
+    },
+    {
+      "bytes": 9523,
+      "path": "maintenance/inputs/environment-results/alias-blue-harbor.yaml",
+      "sha256": "b0350652feb61ccc52b63a009251fd82a0525d97074e775ae5ecde6a880d30ce"
+    },
+    {
+      "bytes": 9588,
+      "path": "maintenance/inputs/environment-results/bearer-cedar-lane.md",
+      "sha256": "5e6dcfe141328800f2456002ef6bbc29ca6ad186e97f92bf2227a163b3ade2fc"
+    },
+    {
+      "bytes": 9566,
+      "path": "maintenance/inputs/environment-results/integrity-quiet-river.csv",
+      "sha256": "3b836d73b47280b5b7ec91205f8a85cd2c606b7e951d375d2a8854cecadfa6b6"
+    },
+    {
+      "bytes": 9496,
+      "path": "maintenance/inputs/environment-results/operator-silver-pine.jsonl",
+      "sha256": "483f0a92bfa90425054b8a7beae2d5822b4c03a92f7783c29fa659f582774ade"
+    },
+    {
+      "bytes": 9489,
+      "path": "maintenance/inputs/environment-results/policy-amber-field.log",
+      "sha256": "3519d4ae07ced6cbf80edf2a574a4cdf332ef23d8ecf81a15e3b612e29688e06"
+    },
+    {
+      "bytes": 9523,
+      "path": "maintenance/inputs/environment-results/route-willow-gate.yaml",
+      "sha256": "8d941c3c231eb8fde1831f7a10359772f97031e7d43143d5c4b85b32550fe241"
+    },
+    {
+      "bytes": 9644,
+      "path": "maintenance/inputs/environment-results/storage-granite-bay.md",
+      "sha256": "10892b52034ddc4850e382fd44981f5bb7b145f0d314c15af9d850c34fe4a300"
+    },
+    {
+      "bytes": 9489,
+      "path": "maintenance/inputs/environment-results/version-north-star.log",
+      "sha256": "acc6e54366a762b8234370f0e7f6d2a7a973471ea0564933b5d19fd9c86fd99e"
+    },
+    {
+      "bytes": 9535,
+      "path": "maintenance/inputs/environment-results/version-orchard-hill.csv",
+      "sha256": "a300f501b762edea1e8a787f9e2a8cb14314d9483158d975a3f13d52149449e6"
+    },
+    {
+      "bytes": 12555,
+      "path": "maintenance/inputs/legacy-fixtures/alias-quiet-river.jsonl",
+      "sha256": "252fd11f8d31c7079125d02946a0b3d54d395e08a65cff369ff1bfd551ba456f"
+    },
+    {
+      "bytes": 12747,
+      "path": "maintenance/inputs/legacy-fixtures/bearer-silver-pine.log",
+      "sha256": "783b3cdf02e75a27dd928392d55df0bbbfc6772641d4140a1f469e629c5f6c3a"
+    },
+    {
+      "bytes": 12706,
+      "path": "maintenance/inputs/legacy-fixtures/integrity-amber-field.yaml",
+      "sha256": "d55a6b79f480529c2de2c511218f7d99cae76b3a8be7112ee0c6c499c404bc11"
+    },
+    {
+      "bytes": 12752,
+      "path": "maintenance/inputs/legacy-fixtures/operator-willow-gate.md",
+      "sha256": "08a4d199276b28cc3cf9ac3fe29385b7ab8980b9872e0a30915d1fdb0ed6ff5f"
+    },
+    {
+      "bytes": 12515,
+      "path": "maintenance/inputs/legacy-fixtures/policy-granite-bay.csv",
+      "sha256": "2bee82af99e5bdf7b0928bf1462dcfb3e5b601aa4b899be5ad1a78ef9beb7992"
+    },
+    {
+      "bytes": 12521,
+      "path": "maintenance/inputs/legacy-fixtures/route-north-star.yaml",
+      "sha256": "b5cfb6b28c500e388878d0dcbb0f276b1753a940f3cf41b73eb2b52f65c3a3ea"
+    },
+    {
+      "bytes": 12591,
+      "path": "maintenance/inputs/legacy-fixtures/route-orchard-hill.jsonl",
+      "sha256": "d0830b695e67d759ced51b21a752c8073e0dadc04fbe1a143f53ba9733710948"
+    },
+    {
+      "bytes": 12715,
+      "path": "maintenance/inputs/legacy-fixtures/storage-blue-harbor.md",
+      "sha256": "238f070172afca7cdca0a825d6bbcfca22418eb90260a1e731405da664dda476"
+    },
+    {
+      "bytes": 12786,
+      "path": "maintenance/inputs/legacy-fixtures/storage-winter-lake.log",
+      "sha256": "92891d059926b89c293b005d58ed9da0b27deeb0f753a0999c435c3c2335a6da"
+    },
+    {
+      "bytes": 12515,
+      "path": "maintenance/inputs/legacy-fixtures/version-cedar-lane.csv",
+      "sha256": "067f0fc7a858186e626dbde48ee1f3e55e17ab3b28a8a86792366a6e34123f06"
+    },
+    {
+      "bytes": 26241,
+      "path": "maintenance/inputs/operator-support/alias-willow-gate.csv",
+      "sha256": "21cf61bf94fe924e37ec9d49596242057ee90c0c2a136d05e2642fd9f5520133"
+    },
+    {
+      "bytes": 26135,
+      "path": "maintenance/inputs/operator-support/bearer-granite-bay.jsonl",
+      "sha256": "8696b6fc9997b67e8e8d1515292691f035d5707a325b30627acfbd540e96304d"
+    },
+    {
+      "bytes": 26004,
+      "path": "maintenance/inputs/operator-support/integrity-north-star.md",
+      "sha256": "29d4ba86635d5359dfdcfaad2a2757ed71e9eadf237cbf56a45b1ccca1aa45fe"
+    },
+    {
+      "bytes": 26205,
+      "path": "maintenance/inputs/operator-support/operator-blue-harbor.csv",
+      "sha256": "0c0b33fdc9c07eee11e4042c560c4005a4dfda67968a5d7f75af1496e6625abf"
+    },
+    {
+      "bytes": 26059,
+      "path": "maintenance/inputs/operator-support/policy-cedar-lane.jsonl",
+      "sha256": "31002982833de7b4a8635b737f90c1c5852dd98b08b63ba04624f50d4800f04b"
+    },
+    {
+      "bytes": 26139,
+      "path": "maintenance/inputs/operator-support/route-quiet-river.log",
+      "sha256": "d83ff424e23cccc5d8b3ee8e2ec1195d0b6000ca707c8ae290e66d3cbfba679f"
+    },
+    {
+      "bytes": 26103,
+      "path": "maintenance/inputs/operator-support/storage-silver-pine.yaml",
+      "sha256": "93a38d1a936b5429a81caa036ff24413ec814317db0eef834900649a56b4c06e"
+    },
+    {
+      "bytes": 26268,
+      "path": "maintenance/inputs/operator-support/version-amber-field.md",
+      "sha256": "d7f0c03630f8440026a2265e9f23980c764322959c6518509b23396fed8a1036"
+    },
+    {
+      "bytes": 49384,
+      "path": "maintenance/inputs/platform-inventory/route-north-star.jsonl",
+      "sha256": "e31f60cdaceae80e12d6492899b7ecea318411bc4772a64be0f1aadbfaa5ea3a"
+    },
+    {
+      "bytes": 49414,
+      "path": "maintenance/inputs/platform-inventory/storage-blue-harbor.log",
+      "sha256": "1bfa5c6ee7c68c370aaaea4fa4941b80f7022694f3c1448bbf0ee2a386bbbec7"
+    },
+    {
+      "bytes": 49448,
+      "path": "maintenance/inputs/platform-inventory/version-cedar-lane.yaml",
+      "sha256": "98026d86f224bb89b99a84b74c5c8d5d6f3d0760db99adfb2ca2d44c1ad2dd65"
+    },
+    {
+      "bytes": 26097,
+      "path": "maintenance/inputs/recovery-cases/alias-amber-field.log",
+      "sha256": "ac82851ee2278203415771dd0186b7567589ee0ef999b4ab5ba02935456a4714"
+    },
+    {
+      "bytes": 26045,
+      "path": "maintenance/inputs/recovery-cases/bearer-willow-gate.yaml",
+      "sha256": "f5c20f6c6919783d67621dac462d45bcfa4bf823e9a7f52e3bb45aa490b535f6"
+    },
+    {
+      "bytes": 26265,
+      "path": "maintenance/inputs/recovery-cases/operator-north-star.log",
+      "sha256": "24122093f0944c9a583e1bafac9022bbb18b7e8754466ccb172c5e737ebcec2b"
+    },
+    {
+      "bytes": 26045,
+      "path": "maintenance/inputs/recovery-cases/policy-blue-harbor.yaml",
+      "sha256": "6993986dfca3caaf695b79a10b2d5611d59080645f15e0c2129d15d4784e7c81"
+    },
+    {
+      "bytes": 26054,
+      "path": "maintenance/inputs/recovery-cases/route-cedar-lane.md",
+      "sha256": "994049c8b51e779cd676dbd62c0670d527204c2bd9902b6de2df023184c6de33"
+    },
+    {
+      "bytes": 26295,
+      "path": "maintenance/inputs/recovery-cases/storage-quiet-river.csv",
+      "sha256": "594d668a471efbb7aa1f52dfb99be121338d8adc97e69fbfde2188eb32a8231b"
+    },
+    {
+      "bytes": 26275,
+      "path": "maintenance/inputs/recovery-cases/version-silver-pine.jsonl",
+      "sha256": "81d12a593c65f36cd40fff7a301ddbf876e0185473bd1778bafca1e40a2c0938"
+    },
+    {
+      "bytes": 9435,
+      "path": "maintenance/inputs/restart-results/alias-north-star.yaml",
+      "sha256": "1e19adff3283cf19b37390eb880971e8818ba33a49144d466246931b4231c750"
+    },
+    {
+      "bytes": 9560,
+      "path": "maintenance/inputs/restart-results/bearer-blue-harbor.md",
+      "sha256": "d3a10ecbe5ca3145aa40ca96ae36216b153bc50d7a3cd995ca0873419aac29d2"
+    },
+    {
+      "bytes": 9425,
+      "path": "maintenance/inputs/restart-results/integrity-cedar-lane.csv",
+      "sha256": "865bde554dc65f5dd744eccc4e50027d957d120db11759909279f3c19f67a65b"
+    },
+    {
+      "bytes": 9483,
+      "path": "maintenance/inputs/restart-results/operator-quiet-river.jsonl",
+      "sha256": "2726cddd6399e971800e791f30922d3c9c8bd0473d655f049eed65816b26c40d"
+    },
+    {
+      "bytes": 9416,
+      "path": "maintenance/inputs/restart-results/policy-silver-pine.log",
+      "sha256": "2c505c39dba7e2fdfcfd47fcfb48ce6f3be815d5293686779d6ebf685cf440d8"
+    },
+    {
+      "bytes": 9464,
+      "path": "maintenance/inputs/restart-results/route-amber-field.yaml",
+      "sha256": "0b0cb054816e771c087922236e302055d08f8a7b45294a383535534aa5b22db4"
+    },
+    {
+      "bytes": 9589,
+      "path": "maintenance/inputs/restart-results/storage-willow-gate.md",
+      "sha256": "8766489856d668265cf9859bb6df159179820c5b95975de2b5c88380d53f9566"
+    },
+    {
+      "bytes": 9679,
+      "path": "maintenance/inputs/restart-results/version-granite-bay.csv",
+      "sha256": "dab2d405293a3d26421c3d80f9c275bdaa679538df20a42371968dae727b5360"
+    }
+  ],
+  "content_bytes": 1374070,
+  "estimated_content_tokens": 356901,
+  "schema_version": 1
+}

@@ -1,0 +1,23 @@
+{
+  "artifacts": [
+    {
+      "bytes": 953,
+      "path": "fixtures/v13/oauth-s02/scenario.json",
+      "sha256": "18ab60587e0a6219ea63c1420a4210f9adc4ae72916ac5b0bb4e2b38124becc8"
+    },
+    {
+      "bytes": 824,
+      "path": "fixtures/v13/oauth-s02/records.jsonl",
+      "sha256": "4b196652795d90bb678da0b5e4253c88aed092850664ce59f96a5991aa61cd14"
+    },
+    {
+      "bytes": 195,
+      "path": "docs/oauth-s02-contract.md",
+      "sha256": "a919a0daf6c2b4f692b4e422f263c158d223ace4bb5e92bdd56d56eb194dab30"
+    }
+  ],
+  "family": "oauth",
+  "scenario": "imported pending authorization",
+  "schema_version": 1,
+  "spec_id": "oauth-s02"
+}

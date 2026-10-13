@@ -1,0 +1,1085 @@
+# retry-s01: worker crash signal chronology
+- case: retry-s01-t02-000001
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 1."
+- case: retry-s01-t02-000002
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 2."
+- case: retry-s01-t02-000003
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 3."
+- case: retry-s01-t02-000004
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 4."
+- case: retry-s01-t02-000005
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 5."
+- case: retry-s01-t02-000006
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 6."
+- case: retry-s01-t02-000007
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 7."
+- case: retry-s01-t02-000008
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 8."
+- case: retry-s01-t02-000009
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 9."
+- case: retry-s01-t02-000010
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 10."
+- case: retry-s01-t02-000011
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 11."
+- case: retry-s01-t02-000012
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 12."
+- case: retry-s01-t02-000013
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 13."
+- case: retry-s01-t02-000014
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 14."
+- case: retry-s01-t02-000015
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 15."
+- case: retry-s01-t02-000016
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 16."
+- case: retry-s01-t02-000017
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 17."
+- case: retry-s01-t02-000018
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 18."
+- case: retry-s01-t02-000019
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 19."
+- case: retry-s01-t02-000020
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 20."
+- case: retry-s01-t02-000021
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 21."
+- case: retry-s01-t02-000022
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 22."
+- case: retry-s01-t02-000023
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 23."
+- case: retry-s01-t02-000024
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 24."
+- case: retry-s01-t02-000025
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 25."
+- case: retry-s01-t02-000026
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 26."
+- case: retry-s01-t02-000027
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 27."
+- case: retry-s01-t02-000028
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 28."
+- case: retry-s01-t02-000029
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 29."
+- case: retry-s01-t02-000030
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 30."
+- case: retry-s01-t02-000031
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 31."
+- case: retry-s01-t02-000032
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 32."
+- case: retry-s01-t02-000033
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 33."
+- case: retry-s01-t02-000034
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 34."
+- case: retry-s01-t02-000035
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 35."
+- case: retry-s01-t02-000036
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 36."
+- case: retry-s01-t02-000037
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 37."
+- case: retry-s01-t02-000038
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 38."
+- case: retry-s01-t02-000039
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 39."
+- case: retry-s01-t02-000040
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 40."
+- case: retry-s01-t02-000041
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 41."
+- case: retry-s01-t02-000042
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 42."
+- case: retry-s01-t02-000043
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 43."
+- case: retry-s01-t02-000044
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 44."
+- case: retry-s01-t02-000045
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 45."
+- case: retry-s01-t02-000046
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 46."
+- case: retry-s01-t02-000047
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 47."
+- case: retry-s01-t02-000048
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 48."
+- case: retry-s01-t02-000049
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 49."
+- case: retry-s01-t02-000050
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 50."
+- case: retry-s01-t02-000051
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 51."
+- case: retry-s01-t02-000052
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 52."
+- case: retry-s01-t02-000053
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 53."
+- case: retry-s01-t02-000054
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 54."
+- case: retry-s01-t02-000055
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 55."
+- case: retry-s01-t02-000056
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 56."
+- case: retry-s01-t02-000057
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 57."
+- case: retry-s01-t02-000058
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 58."
+- case: retry-s01-t02-000059
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 59."
+- case: retry-s01-t02-000060
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 60."
+- case: retry-s01-t02-000061
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 61."
+- case: retry-s01-t02-000062
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 62."
+- case: retry-s01-t02-000063
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 63."
+- case: retry-s01-t02-000064
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 64."
+- case: retry-s01-t02-000065
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 65."
+- case: retry-s01-t02-000066
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 66."
+- case: retry-s01-t02-000067
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 67."
+- case: retry-s01-t02-000068
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 68."
+- case: retry-s01-t02-000069
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 69."
+- case: retry-s01-t02-000070
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 70."
+- case: retry-s01-t02-000071
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 71."
+- case: retry-s01-t02-000072
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 72."
+- case: retry-s01-t02-000073
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 73."
+- case: retry-s01-t02-000074
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 74."
+- case: retry-s01-t02-000075
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 75."
+- case: retry-s01-t02-000076
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 76."
+- case: retry-s01-t02-000077
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 77."
+- case: retry-s01-t02-000078
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 78."
+- case: retry-s01-t02-000079
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 79."
+- case: retry-s01-t02-000080
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 80."
+- case: retry-s01-t02-000081
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 81."
+- case: retry-s01-t02-000082
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 82."
+- case: retry-s01-t02-000083
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 83."
+- case: retry-s01-t02-000084
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 84."
+- case: retry-s01-t02-000085
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 85."
+- case: retry-s01-t02-000086
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 86."
+- case: retry-s01-t02-000087
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 87."
+- case: retry-s01-t02-000088
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 88."
+- case: retry-s01-t02-000089
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 89."
+- case: retry-s01-t02-000090
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 90."
+- case: retry-s01-t02-000091
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 91."
+- case: retry-s01-t02-000092
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 92."
+- case: retry-s01-t02-000093
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 93."
+- case: retry-s01-t02-000094
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 94."
+- case: retry-s01-t02-000095
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 95."
+- case: retry-s01-t02-000096
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 96."
+- case: retry-s01-t02-000097
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 97."
+- case: retry-s01-t02-000098
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 98."
+- case: retry-s01-t02-000099
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 99."
+- case: retry-s01-t02-000100
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 100."
+- case: retry-s01-t02-000101
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 101."
+- case: retry-s01-t02-000102
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 102."
+- case: retry-s01-t02-000103
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 103."
+- case: retry-s01-t02-000104
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 104."
+- case: retry-s01-t02-000105
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 105."
+- case: retry-s01-t02-000106
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 106."
+- case: retry-s01-t02-000107
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 107."
+- case: retry-s01-t02-000108
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 108."
+- case: retry-s01-t02-000109
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 109."
+- case: retry-s01-t02-000110
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 110."
+- case: retry-s01-t02-000111
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 111."
+- case: retry-s01-t02-000112
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 112."
+- case: retry-s01-t02-000113
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 113."
+- case: retry-s01-t02-000114
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 114."
+- case: retry-s01-t02-000115
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 115."
+- case: retry-s01-t02-000116
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 116."
+- case: retry-s01-t02-000117
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 117."
+- case: retry-s01-t02-000118
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 118."
+- case: retry-s01-t02-000119
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 119."
+- case: retry-s01-t02-000120
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 120."
+- case: retry-s01-t02-000121
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 121."
+- case: retry-s01-t02-000122
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 122."
+- case: retry-s01-t02-000123
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 123."
+- case: retry-s01-t02-000124
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 124."
+- case: retry-s01-t02-000125
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 125."
+- case: retry-s01-t02-000126
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 126."
+- case: retry-s01-t02-000127
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 127."
+- case: retry-s01-t02-000128
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 128."
+- case: retry-s01-t02-000129
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 129."
+- case: retry-s01-t02-000130
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 130."
+- case: retry-s01-t02-000131
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 131."
+- case: retry-s01-t02-000132
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 132."
+- case: retry-s01-t02-000133
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 133."
+- case: retry-s01-t02-000134
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 134."
+- case: retry-s01-t02-000135
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 135."
+- case: retry-s01-t02-000136
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 136."
+- case: retry-s01-t02-000137
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 137."
+- case: retry-s01-t02-000138
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 138."
+- case: retry-s01-t02-000139
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 139."
+- case: retry-s01-t02-000140
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 140."
+- case: retry-s01-t02-000141
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 141."
+- case: retry-s01-t02-000142
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 142."
+- case: retry-s01-t02-000143
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 143."
+- case: retry-s01-t02-000144
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 144."
+- case: retry-s01-t02-000145
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 145."
+- case: retry-s01-t02-000146
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 146."
+- case: retry-s01-t02-000147
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 147."
+- case: retry-s01-t02-000148
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 148."
+- case: retry-s01-t02-000149
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 149."
+- case: retry-s01-t02-000150
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 150."
+- case: retry-s01-t02-000151
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 151."
+- case: retry-s01-t02-000152
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 152."
+- case: retry-s01-t02-000153
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 153."
+- case: retry-s01-t02-000154
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 154."
+- case: retry-s01-t02-000155
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 155."
+- case: retry-s01-t02-000156
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 156."
+- case: retry-s01-t02-000157
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 157."
+- case: retry-s01-t02-000158
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 158."
+- case: retry-s01-t02-000159
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 159."
+- case: retry-s01-t02-000160
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 160."
+- case: retry-s01-t02-000161
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 161."
+- case: retry-s01-t02-000162
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 162."
+- case: retry-s01-t02-000163
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 163."
+- case: retry-s01-t02-000164
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 164."
+- case: retry-s01-t02-000165
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 165."
+- case: retry-s01-t02-000166
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 166."
+- case: retry-s01-t02-000167
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 167."
+- case: retry-s01-t02-000168
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 168."
+- case: retry-s01-t02-000169
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 169."
+- case: retry-s01-t02-000170
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 170."
+- case: retry-s01-t02-000171
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 171."
+- case: retry-s01-t02-000172
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 172."
+- case: retry-s01-t02-000173
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 173."
+- case: retry-s01-t02-000174
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 174."
+- case: retry-s01-t02-000175
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 175."
+- case: retry-s01-t02-000176
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 176."
+- case: retry-s01-t02-000177
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 177."
+- case: retry-s01-t02-000178
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 178."
+- case: retry-s01-t02-000179
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 179."
+- case: retry-s01-t02-000180
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 180."
+- case: retry-s01-t02-000181
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 181."
+- case: retry-s01-t02-000182
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 182."
+- case: retry-s01-t02-000183
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 183."
+- case: retry-s01-t02-000184
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 184."
+- case: retry-s01-t02-000185
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 185."
+- case: retry-s01-t02-000186
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 186."
+- case: retry-s01-t02-000187
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 187."
+- case: retry-s01-t02-000188
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 188."
+- case: retry-s01-t02-000189
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 189."
+- case: retry-s01-t02-000190
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 190."
+- case: retry-s01-t02-000191
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 191."
+- case: retry-s01-t02-000192
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 192."
+- case: retry-s01-t02-000193
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 193."
+- case: retry-s01-t02-000194
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 194."
+- case: retry-s01-t02-000195
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 195."
+- case: retry-s01-t02-000196
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 196."
+- case: retry-s01-t02-000197
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 197."
+- case: retry-s01-t02-000198
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 198."
+- case: retry-s01-t02-000199
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 199."
+- case: retry-s01-t02-000200
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 200."
+- case: retry-s01-t02-000201
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 201."
+- case: retry-s01-t02-000202
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 202."
+- case: retry-s01-t02-000203
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 203."
+- case: retry-s01-t02-000204
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 204."
+- case: retry-s01-t02-000205
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 205."
+- case: retry-s01-t02-000206
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 206."
+- case: retry-s01-t02-000207
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 207."
+- case: retry-s01-t02-000208
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 208."
+- case: retry-s01-t02-000209
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 209."
+- case: retry-s01-t02-000210
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 210."
+- case: retry-s01-t02-000211
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 211."
+- case: retry-s01-t02-000212
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 212."
+- case: retry-s01-t02-000213
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 213."
+- case: retry-s01-t02-000214
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 214."
+- case: retry-s01-t02-000215
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 215."
+- case: retry-s01-t02-000216
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 216."
+- case: retry-s01-t02-000217
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 217."
+- case: retry-s01-t02-000218
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 218."
+- case: retry-s01-t02-000219
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 219."
+- case: retry-s01-t02-000220
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 220."
+- case: retry-s01-t02-000221
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 221."
+- case: retry-s01-t02-000222
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 222."
+- case: retry-s01-t02-000223
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 223."
+- case: retry-s01-t02-000224
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 224."
+- case: retry-s01-t02-000225
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 225."
+- case: retry-s01-t02-000226
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 226."
+- case: retry-s01-t02-000227
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 227."
+- case: retry-s01-t02-000228
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 228."
+- case: retry-s01-t02-000229
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 229."
+- case: retry-s01-t02-000230
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 230."
+- case: retry-s01-t02-000231
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 231."
+- case: retry-s01-t02-000232
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 232."
+- case: retry-s01-t02-000233
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 233."
+- case: retry-s01-t02-000234
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 234."
+- case: retry-s01-t02-000235
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 235."
+- case: retry-s01-t02-000236
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 236."
+- case: retry-s01-t02-000237
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 237."
+- case: retry-s01-t02-000238
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 238."
+- case: retry-s01-t02-000239
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 239."
+- case: retry-s01-t02-000240
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 240."
+- case: retry-s01-t02-000241
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 241."
+- case: retry-s01-t02-000242
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 242."
+- case: retry-s01-t02-000243
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 243."
+- case: retry-s01-t02-000244
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 244."
+- case: retry-s01-t02-000245
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 245."
+- case: retry-s01-t02-000246
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 246."
+- case: retry-s01-t02-000247
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 247."
+- case: retry-s01-t02-000248
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 248."
+- case: retry-s01-t02-000249
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 249."
+- case: retry-s01-t02-000250
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 250."
+- case: retry-s01-t02-000251
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 251."
+- case: retry-s01-t02-000252
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 252."
+- case: retry-s01-t02-000253
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 253."
+- case: retry-s01-t02-000254
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 254."
+- case: retry-s01-t02-000255
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 255."
+- case: retry-s01-t02-000256
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 256."
+- case: retry-s01-t02-000257
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 257."
+- case: retry-s01-t02-000258
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 258."
+- case: retry-s01-t02-000259
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 259."
+- case: retry-s01-t02-000260
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 260."
+- case: retry-s01-t02-000261
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 261."
+- case: retry-s01-t02-000262
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 262."
+- case: retry-s01-t02-000263
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 263."
+- case: retry-s01-t02-000264
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 264."
+- case: retry-s01-t02-000265
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 265."
+- case: retry-s01-t02-000266
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 266."
+- case: retry-s01-t02-000267
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 267."
+- case: retry-s01-t02-000268
+  system: linux-x86_64
+  status: recorded
+  note: "retry-s01 source evidence for worker crash signal chronology records recorded on linux-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 268."
+- case: retry-s01-t02-000269
+  system: windows-x86_64
+  status: follow-up
+  note: "retry-s01 source evidence for worker crash signal chronology records follow-up on windows-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 269."
+- case: retry-s01-t02-000270
+  system: freebsd-x86_64
+  status: supported
+  note: "retry-s01 source evidence for worker crash signal chronology records supported on freebsd-x86_64. The source states process exits, persisted writes, and acknowledgement order for case 270."
+- case: retry-s01-t02-000271
+  system: macos-arm64
+  status: review
+  note: "retry-s01 source evidence for worker crash signal chronology records review on macos-arm64. The source states process exits, persisted writes, and acknowledgement order for case 271."

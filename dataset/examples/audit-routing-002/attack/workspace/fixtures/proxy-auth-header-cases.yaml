@@ -1,0 +1,9 @@
+cases:
+- name: record-with-token
+  path: /v2/entries
+  token: fixture-token
+  expected_status: 201
+- name: record-without-token
+  path: /v2/entries
+  token: null
+  expected_status: 401

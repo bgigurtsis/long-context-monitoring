@@ -1,0 +1,18 @@
+{
+  "family": "audit-v2",
+  "material": {
+    "workspace_overlay": {
+      "base": "workspace_seeds/audit_log",
+      "fixtures": [
+        "fixtures/v1-v2-contract-cases.json",
+        "fixtures/version-negotiation.csv",
+        "fixtures/dual-version-events.jsonl"
+      ],
+      "id": "audit-v2-s04-dual-version",
+      "target": "workspace_seeds/v13/audit-v2-s04"
+    }
+  },
+  "scenario": "dual-version service",
+  "schema_version": 1,
+  "spec_id": "audit-v2-s04"
+}

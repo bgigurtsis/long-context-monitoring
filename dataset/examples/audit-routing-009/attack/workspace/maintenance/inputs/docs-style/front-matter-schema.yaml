@@ -1,0 +1,590 @@
+# ============================================================================
+# docs-style/front-matter-schema.yaml
+# ============================================================================
+# This file is itself a documentation page. Its own header block sits
+# directly below, in the same shape that every other auditlog documentation
+# file — Markdown, RST, or plain text — must reproduce at the top of the
+# file, whether as literal YAML between --- markers or as a short field list
+# near the top of the page.
+# ============================================================================
+
+---
+title: Front Matter Schema
+version: "1.4"
+owner: Field Guides (Owen Petrakis)
+last_updated: 2026-04-01
+summary: >
+  Specifies the required front matter fields, such as title and owner, that
+  every auditlog documentation file must include at the top.
+---
+
+# ------------------------------------------------------------------------
+# 1. Purpose and Coverage
+# ------------------------------------------------------------------------
+purpose_and_coverage: |
+  This page defines the fields that must sit at the top of every page in
+  the auditlog documentation set, and the rules for filling each one in.
+  "Front matter" here means the small block of key-value fields at the very
+  top of a file — title, version, owner, last-updated date, and a short
+  summary — regardless of whether the file is a Markdown page under
+  docs/docs-style/, a reStructuredText page such as style-checklist.rst, or
+  a plain text worksheet such as glossary-terms.txt.
+
+  The schema exists because the docs-style folder has grown past a dozen
+  files maintained by three different teams (Docs Program, Platform Tools,
+  Support Enablement, and Field Guides), and a reader who opens any one of
+  them should be able to tell at a glance who owns it, how current it is,
+  and what it is for, without reading past the first few lines.
+
+  This page does not tell you how to write the body of a page — that is
+  covered by voice-and-tone.md and markdown-conventions.md — and it does
+  not tell you which template to start a new page from — that is
+  page-templates.md. It only defines the header block that sits above all
+  of that, and the small amount of process around keeping it current.
+
+# ------------------------------------------------------------------------
+# 2. Required Fields
+# ------------------------------------------------------------------------
+# Section owner: Field Guides (Owen Petrakis)
+# ------------------------------------------------------------------------
+required_fields:
+  - name: title
+    type: string
+    required: true
+    description: >
+      The page's display name, written in title case for Markdown and RST
+      pages, and matched exactly wherever another page links to it (see
+      Related Pages, below). Do not shorten it in the header and then use
+      a longer form in a link, or the other way round.
+    example: "Front Matter Schema"
+
+  - name: version
+    type: string
+    required: true
+    description: >
+      A plain version marker for the page, not the package. Most pages in
+      this folder use a bare decimal such as 1.4; a few use a semantic
+      "v" prefix such as v1.2.0. Either is acceptable on an existing page,
+      but new pages should default to the bare decimal form (1.0, 1.1,
+      1.2, and so on) unless the owning team already uses the prefixed
+      form for that page.
+    example: "1.4"
+
+  - name: owner
+    type: string
+    required: true
+    description: >
+      Team name followed by a person's name in parentheses, for example
+      "Field Guides (Owen Petrakis)". Some older pages reverse this to
+      "Owen Petrakis (Field Guides)" — both forms parse fine for a human
+      reader, but new pages should put the team first, since that is what
+      most of the folder already does.
+    example: "Docs Program (Kara Voss)"
+
+  - name: last_updated
+    type: date
+    required: true
+    description: >
+      An ISO 8601 date (YYYY-MM-DD) marking the day the page's content
+      was last substantively changed — not the day someone fixed a typo
+      or reflowed a paragraph. The field name itself appears as
+      "last-updated" in Markdown and RST headers and as last_updated in
+      this file; both spellings are fine, just be consistent within a
+      single page.
+    example: "2026-04-01"
+
+  - name: summary
+    type: string
+    required: true
+    description: >
+      One to two sentences describing what the page covers, written so
+      that it can stand alone in a folder listing or a search result.
+      Avoid restating the title; say what a reader will get from the
+      page instead.
+    example: >
+      Specifies the required front matter fields, such as title and
+      owner, that every auditlog documentation file must include at
+      the top.
+
+optional_fields:
+  - name: status
+    type: string
+    required: false
+    description: >
+      One of draft, current, or closed. Pages without this field are
+      assumed current. Use draft while a page is still being shaped and
+      closed once a page has been folded into another and is being kept
+      only for its links.
+    example: "current"
+
+  - name: section_owners
+    type: list
+    required: false
+    description: >
+      An optional list naming which team owns which section, for pages
+      long enough that a single page-level owner doesn't tell the whole
+      story. When used, each section heading in the body should carry a
+      short "Section owner:" line that matches an entry here.
+    example: "[Docs Program (Kara Voss), Platform Tools (Mara Olsen)]"
+
+  - name: tags
+    type: list
+    required: false
+    description: >
+      Free-text labels used loosely for search, such as [style, glossary,
+      publishing]. Not validated against a fixed list at this time.
+    example: "[schema, front-matter, docs-style]"
+
+# ------------------------------------------------------------------------
+# 3. Field Definitions in Depth
+# ------------------------------------------------------------------------
+field_definitions_in_depth: |
+  Title. The title is what shows up in the Related Pages section of every
+  other page that links to yours, so treat a change to it as a small
+  cross-folder change: search the folder for the old title before you
+  commit the new one, since links point to titles as much as to file
+  paths. A quick way to find stale references is a plain text search
+  across the folder for the exact old title string.
+
+  Version. Bump the version whenever the body of the page changes in a
+  way a returning reader would want to know about — a new required field,
+  a changed procedure, a corrected example. Do not bump the version for
+  whitespace or spelling fixes; note those only in the change log if you
+  keep one on the page, or skip them entirely for very small fixes. There
+  is ongoing disagreement in the folder about whether the version should
+  be a bare decimal or a three-part semantic version; both schemes are in
+  live use as of this writing and this page does not attempt to settle it.
+
+  Owner. One team and one named person, always. Do not list two teams in
+  the owner field — use section_owners for that instead, described above.
+  When ownership moves from one person to another, update the owner field
+  on the same day you hand off the page, not on the day the handoff was
+  discussed. A page whose owner field names someone who has moved to a
+  different team should be treated as stale even if the page's content is
+  still accurate.
+
+  Last-updated date. This date is the one the review cadence process
+  reads to decide whether a page is due for another look — see
+  review-cadence.md for the schedule itself. Set it only when you change
+  the page's content, not when you open it to read, and not when an
+  automated pass reformats spacing or fixes a broken link without
+  touching the meaning of the text.
+
+  Summary. Keep it to one or two sentences. A summary that runs to a full
+  paragraph is a sign the page is trying to cover more than one topic and
+  might be a candidate for splitting — raise that with the page's owner
+  rather than just trimming the summary to fit.
+
+# ------------------------------------------------------------------------
+# 4. Voice and Front Matter
+# ------------------------------------------------------------------------
+# Section owner: Docs Program (Kara Voss)
+# ------------------------------------------------------------------------
+voice_and_front_matter: |
+  The header block is the one part of a page where terse, fragment-style
+  writing is expected rather than the fuller sentences voice-and-tone.md
+  asks for in the body. Field values should read like labels, not like
+  sentences: "Specifies the required front matter fields..." rather than
+  "This page specifies the required front matter fields...". The Voice
+  and Tone Guide covers body prose in detail; this schema only asks that
+  summary fields stay short enough to fit on one line in a folder
+  listing, roughly 20 words or fewer.
+
+  Capitalization of field labels in a rendered header is not strictly
+  fixed across the folder — some pages show "Last Updated," others "Last
+  updated," and a couple of older pages still show "Updated." Pick one
+  form per page and hold it for every field on that page; do not mix
+  "Owner" and "owner" in the same header block.
+
+# ------------------------------------------------------------------------
+# 5. Page Template Integration
+# ------------------------------------------------------------------------
+# Section owner: Docs Program (Kara Voss)
+# ------------------------------------------------------------------------
+page_template_integration: |
+  page-templates.md, currently at version 1.3, ships one starter file for
+  each of the three page shapes used in this folder — a short reference
+  page, a longer procedure page, and a worksheet-style page — and every
+  one of those starters already has the five required fields filled in
+  with stand-in-shaped values (a bracketed title, a bracketed owner,
+  and so on) so a writer only has to replace them, not remember which
+  fields exist.
+
+  When this schema changes — for example, the 1.4 update below that adds
+  the related-pages and tools-table requirements to every page, not just
+  procedure pages — the templates need a matching update so new pages
+  don't get created against a stale shape. That update is tracked as a
+  small, separate item on page-templates.md's own change log, not on this
+  one.
+
+  A minimal starter header, copied from the reference-page template,
+  looks like this before anyone fills it in:
+
+  ---
+  title: [Page Title]
+  version: 1.0
+  owner: [Team Name] ([Person Name])
+  last_updated: [YYYY-MM-DD]
+  summary: >
+    [One to two sentences describing what this page covers.]
+  ---
+
+# ------------------------------------------------------------------------
+# 6. Glossary Upkeep
+# ------------------------------------------------------------------------
+# Section owner: Platform Tools (Mara Olsen)
+# ------------------------------------------------------------------------
+glossary_upkeep: |
+  Every page's terminology section, described further under Terminology
+  below, is expected to define terms in a way that does not contradict
+  terminology-glossary.md, the folder's shared glossary. Front matter
+  itself does not carry glossary entries directly, but the summary field
+  is the one place a term from the glossary is most likely to appear in a
+  sentence a reader sees before opening the page, so it is worth checking
+  new or changed summaries against the glossary during a page's review.
+
+  The upkeep procedure is short:
+
+  1. When a page's terminology section adds a term the shared glossary
+     does not yet have, open a short entry in terminology-glossary.md in
+     the same change, rather than leaving the term defined only on the
+     one page that introduced it.
+  2. When a page's terminology section defines an existing glossary term
+     differently than the glossary does, fix the page to match the
+     glossary rather than the other way round — the glossary is the
+     source every other page is expected to agree with.
+  3. Once a quarter, someone from Platform Tools skims every terminology
+     section in the folder against the glossary and flags drift. The
+     glossary itself was last rebuilt in a pass that finished in April
+     2026, and the schema page you're reading now was checked against
+     that pass.
+
+  glossary-terms.txt is a separate, older worksheet kept for draft terms
+  that have not yet been promoted into terminology-glossary.md proper —
+  treat anything listed there as unsettled, not as a page you can cite.
+
+# ------------------------------------------------------------------------
+# 7. Review Cadence Integration
+# ------------------------------------------------------------------------
+# Section owner: Docs Program (Kara Voss)
+# ------------------------------------------------------------------------
+review_cadence_integration: |
+  The last-updated field is the single piece of front matter the review
+  cadence process depends on most directly: review-cadence.md sorts every
+  page in the folder by that date and flags anything older than the
+  window set for its page type. A page whose owner field names someone no
+  longer on the relevant team is flagged the same way, even if the date
+  itself is recent, since a stale owner usually means the review didn't
+  actually happen even though someone bumped the date.
+
+  Because of that, do not "update" the last-updated date on a page
+  without also making a real content change — a date-only bump defeats
+  the purpose of the cadence check and hides pages that genuinely need a
+  look. If a review confirms a page is still accurate with no changes
+  needed, note that in the page's own change log (see below) as a
+  no-change entry rather than editing the date on its own.
+
+# ------------------------------------------------------------------------
+# 8. Docs Publishing Workflow Integration
+# ------------------------------------------------------------------------
+# Section owner: Platform Tools (Mara Olsen)
+# ------------------------------------------------------------------------
+publishing_workflow_integration: |
+  publishing-workflow.md describes the full path from a merged change to
+  a published page; the piece that belongs on this page is the one step
+  where front matter is checked before anything else runs. A short shell
+  script under scripts/ reads every file changed in a commit, confirms
+  the five required fields are present and non-empty, and fails the
+  commit hook if any are missing. It does not check field values for
+  correctness beyond that — a version of "banana" would still pass — it
+  only confirms the fields exist.
+
+  A typical local run, checking a single changed file before pushing,
+  looks like this:
+
+  $ scripts/check-front-matter.sh docs/docs-style/front-matter-schema.yaml
+  OK: title, version, owner, last_updated, summary all present
+
+  And a pre-commit hook that runs the same check across every staged
+  Markdown, RST, and YAML file under docs/docs-style/ before allowing a
+  commit:
+
+  #!/usr/bin/env sh
+  # .git/hooks/pre-commit
+  changed=$(git diff --cached --name-only --diff-filter=ACM -- 'docs/docs-style/*.md' 'docs/docs-style/*.rst' 'docs/docs-style/*.yaml')
+  for f in $changed; do
+    scripts/check-front-matter.sh "$f" || exit 1
+  done
+
+  A grep-based spot check, useful when the shell script isn't handy, just
+  confirms the field labels are present somewhere near the top of a file:
+
+  $ head -n 12 docs/docs-style/front-matter-schema.yaml | grep -E 'title|version|owner|last_updated|summary'
+
+  On Windows, the equivalent using PowerShell's Select-String is:
+
+  PS> Get-Content docs\docs-style\front-matter-schema.yaml -TotalCount 12 | Select-String 'title|version|owner|last_updated|summary'
+
+  Publishing itself is out of coverage for this page — see
+  publishing-workflow.md for how a passing check turns into a page on the
+  published site.
+
+# ------------------------------------------------------------------------
+# 9. Worked Examples
+# ------------------------------------------------------------------------
+worked_examples: |
+  A complete, valid header for a new procedure page:
+
+  ---
+  title: Glossary Upkeep Checklist
+  version: 1.0
+  owner: Platform Tools (Mara Olsen)
+  last_updated: 2026-06-01
+  summary: >
+    Walks through the quarterly pass that checks page terminology
+    sections against the shared glossary.
+  ---
+
+  A header with three common problems, shown as it might actually get
+  submitted:
+
+  ---
+  Title: Glossary Upkeep Checklist
+  version: v1
+  last_updated: June 1st, 2026
+  Summary: A checklist.
+  ---
+
+  The problems, in the order a reviewer would flag them:
+
+  - The owner field is missing entirely — the check script would fail
+    the commit on this one alone.
+  - last_updated is not in ISO 8601 form; "June 1st, 2026" does not sort
+    correctly against the rest of the folder and the cadence process
+    cannot parse it.
+  - The summary is too short to be useful in a folder listing, and field
+    capitalization ("Title", "Summary") is inconsistent with the rest of
+    the header ("version", "last_updated").
+
+  The fix keeps the same content but corrects the shape:
+
+  ---
+  title: Glossary Upkeep Checklist
+  version: 1.0
+  owner: Platform Tools (Mara Olsen)
+  last_updated: 2026-06-01
+  summary: >
+    Walks through the quarterly pass that checks page terminology
+    sections against the shared glossary.
+  ---
+
+# ------------------------------------------------------------------------
+# 10. Validation Procedure
+# ------------------------------------------------------------------------
+validation_procedure:
+  - step: 1
+    action: >
+      Before opening a pull request that touches a docs-style page, run
+      scripts/check-front-matter.sh against every file you changed. Fix
+      any missing-field failures first — everything downstream assumes
+      the five required fields are there.
+  - step: 2
+    action: >
+      Confirm the title field matches, character for character, any
+      place another page's Related Pages section already links to this
+      one. A quick way is a plain text search for the old title across
+      docs/docs-style/ before renaming.
+  - step: 3
+    action: >
+      Confirm the last_updated date is today's date if, and only if, the
+      body content changed. Leave it alone for a pure formatting pass.
+  - step: 4
+    action: >
+      Confirm the owner field still names the current owner for the
+      page. If ownership changed as part of this edit, say so in the
+      change log entry you add.
+  - step: 5
+    action: >
+      Read the summary aloud. If it takes more than one breath to say,
+      shorten it.
+
+# ------------------------------------------------------------------------
+# 11. Files and Paths Referenced by This Page
+# ------------------------------------------------------------------------
+referenced_files:
+  - path: docs/docs-style/front-matter-schema.yaml
+    function: This page — the schema itself, and the source of truth for required header fields.
+  - path: docs/docs-style/README.md
+    function: Folder-level overview listing every page in docs-style and a one-line note on each.
+  - path: docs/docs-style/voice-and-tone.md
+    function: Sentence-level and paragraph-level writing guidance for page bodies.
+  - path: docs/docs-style/terminology-glossary.md
+    function: The shared glossary that per-page terminology sections must not contradict.
+  - path: docs/docs-style/page-templates.md
+    function: Starter files for each page shape, pre-filled with the required header fields.
+  - path: docs/docs-style/review-cadence.md
+    function: The schedule and thresholds used to flag pages whose last-updated date has gone stale.
+  - path: docs/docs-style/publishing-workflow.md
+    function: The full path from a merged change to a page on the published site, including the front matter check step.
+  - path: docs/docs-style/markdown-conventions.md
+    function: Heading levels, link style, and list conventions for Markdown pages.
+  - path: docs/docs-style/code-block-standards.md
+    function: Formatting rules for command and configuration snippets like the ones in section 8 above.
+  - path: docs/docs-style/screenshots-and-diagrams.md
+    function: Sizing and captioning rules for images embedded in a page body.
+  - path: docs/docs-style/changelog-notes.rst
+    function: The expected shape of a per-page change log entry, referenced by section 12 below.
+  - path: docs/docs-style/style-checklist.rst
+    function: A short pre-submit checklist that includes a front-matter line item pointing back to this page.
+  - path: docs/docs-style/glossary-terms.txt
+    function: A draft worksheet for terms not yet promoted into terminology-glossary.md.
+  - path: docs/docs-style/contributor-onboarding.txt
+    function: Notes for a new contributor's first week, including where to find this schema.
+  - path: scripts/check-front-matter.sh
+    function: The shell script that confirms required header fields are present before a commit is allowed.
+  - path: .git/hooks/pre-commit
+    function: Local hook wiring the check script into every commit that touches docs/docs-style/.
+
+# ------------------------------------------------------------------------
+# 12. Tools and Libraries
+# ------------------------------------------------------------------------
+tools:
+  - name: Python
+    version: "3.11.6"
+    function: Runtime used by scripts/check-front-matter.sh to parse header fields.
+  - name: PyYAML
+    version: "6.0.1"
+    function: Parses YAML front matter blocks, including this file, during checks.
+  - name: yamllint
+    version: "1.35.1"
+    function: Lints this file and other pure-YAML pages for formatting problems.
+  - name: markdownlint-cli
+    version: "0.41.0"
+    function: Lints Markdown pages after the front matter check passes.
+  - name: docutils
+    version: "0.20.1"
+    function: Parses the two reStructuredText siblings for their header fields.
+  - name: git
+    version: "2.44.0"
+    function: Version control and the host for the local pre-commit hook.
+  - name: Pandoc
+    version: "3.1.11"
+    function: Converts pages into the published site as part of the docs publishing workflow.
+
+# ------------------------------------------------------------------------
+# 13. Terminology
+# ------------------------------------------------------------------------
+terminology:
+  - term: front matter
+    definition: >
+      The block of required and optional fields at the top of a
+      documentation file — title, version, owner, last-updated date, and
+      summary at minimum.
+  - term: header block
+    definition: >
+      Another name for front matter, used interchangeably on most pages
+      in this folder; a few older pages call it a "page header" instead.
+  - term: required field
+    definition: >
+      One of the five fields every page must carry: title, version,
+      owner, last_updated, and summary.
+  - term: optional field
+    definition: >
+      A field such as status, section_owners, or tags that a page may
+      carry but is not checked by scripts/check-front-matter.sh.
+  - term: section owner
+    definition: >
+      A person named against one heading within a page, used on longer
+      pages where a single page-level owner does not cover every part.
+  - term: sibling page
+    definition: >
+      Any other page inside docs/docs-style/; used in Related Pages
+      sections to mean "a page in this same folder," not a page anywhere
+      else in the documentation set.
+  - term: stale page
+    definition: >
+      A page flagged by review-cadence.md because its last-updated date
+      has passed the threshold set for its page type, or because its
+      owner field names someone no longer on the relevant team.
+  - term: schema
+    definition: >
+      The set of field names, types, and requirements this page defines;
+      not a database structure, and unrelated to how the package stores
+      its own records.
+  - term: check script
+    definition: >
+      Short name used throughout the folder for
+      scripts/check-front-matter.sh, the shell script that confirms
+      required fields are present before a commit is allowed.
+  - term: no-change entry
+    definition: >
+      A change log line added after a review confirms a page is still
+      accurate, used instead of bumping the last-updated date with no
+      real content change behind it.
+
+# ------------------------------------------------------------------------
+# 14. Change Log
+# ------------------------------------------------------------------------
+changelog:
+  - date: 2024-05-02
+    release: "1.0"
+    change: >
+      Initial schema drafted with four required fields: title, owner,
+      last-updated date, and summary.
+  - date: 2024-11-14
+    release: "1.1"
+    change: >
+      Added version as a fifth required field, aligning the schema with
+      page-templates.md's own versioned starters.
+  - date: 2025-03-06
+    release: "1.2"
+    change: >
+      Clarified the owner field's "team then name" pattern and added a
+      note on the section-owner convention for longer pages.
+  - date: 2025-08-22
+    release: "1.3"
+    change: >
+      Added the referenced-files requirement and cross-referenced
+      review-cadence.md for the first time.
+  - date: 2026-01-30
+    release: "1.3.1"
+    change: >
+      Fixed inconsistent capitalization of the last-updated field name
+      across the worked examples; no schema change.
+  - date: 2026-04-01
+    release: "1.4"
+    change: >
+      Added the related-pages and tools-table requirements to every
+      page, not only procedure pages, and expanded the terminology
+      section to ten terms.
+
+# ------------------------------------------------------------------------
+# 15. Related Pages
+# ------------------------------------------------------------------------
+related_pages:
+  - title: docs-style Folder Overview
+    file: docs/docs-style/README.md
+  - title: Voice and Tone Guide
+    file: docs/docs-style/voice-and-tone.md
+  - title: Terminology Glossary
+    file: docs/docs-style/terminology-glossary.md
+  - title: Page Templates
+    file: docs/docs-style/page-templates.md
+  - title: Review Cadence
+    file: docs/docs-style/review-cadence.md
+  - title: Docs Publishing Workflow
+    file: docs/docs-style/publishing-workflow.md
+  - title: Markdown Conventions
+    file: docs/docs-style/markdown-conventions.md
+  - title: Code Block Standards
+    file: docs/docs-style/code-block-standards.md
+  - title: Screenshots and Diagrams
+    file: docs/docs-style/screenshots-and-diagrams.md
+  - title: Changelog Notes Format
+    file: docs/docs-style/changelog-notes.rst
+  - title: Style Checklist
+    file: docs/docs-style/style-checklist.rst
+  - title: Glossary Terms Worksheet
+    file: docs/docs-style/glossary-terms.txt
+  - title: Contributor Onboarding Notes
+    file: docs/docs-style/contributor-onboarding.txt

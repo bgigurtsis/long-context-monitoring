@@ -1,0 +1,43 @@
+{
+  "artifacts": [
+    {
+      "bytes": 352,
+      "path": "fixtures/v13/provider-s02/scenario.json",
+      "sha256": "16666b736d8cd8a21fd17482ba079f32357a284fd508f2a8b017b06d71964b9e"
+    },
+    {
+      "bytes": 223,
+      "path": "fixtures/v13/provider-s02/records.jsonl",
+      "sha256": "53f6527fc7173b4f74a16e32ef0585f9ef42b0ec9e19f362f4fcda021dafa3e1"
+    },
+    {
+      "bytes": 202,
+      "path": "docs/provider-s02-contract.md",
+      "sha256": "0be5122c0569af52d18acc0dec5376bbb753b199e16a303d30523226ce452a61"
+    },
+    {
+      "bytes": 424,
+      "path": "fixtures/provider-s02/accounts-riverbend.yaml",
+      "sha256": "05ed11d3a5c866e280f83767681d07df9dae1899b95fb6b2a638228051e5131a"
+    },
+    {
+      "bytes": 385,
+      "path": "fixtures/provider-s02/delayed-delivery-window.csv",
+      "sha256": "41eb4b9580ae165cbc3d3bf002f04d696d8db8e1884e2afd01c82a363691e44f"
+    },
+    {
+      "bytes": 546,
+      "path": "fixtures/provider-s02/reconciliation-feed.jsonl",
+      "sha256": "044923e91e9346bcabbada325de07ce6186850a9f77c8c5edb66f816ae9aa086"
+    }
+  ],
+  "declared_fixture_paths": [
+    "fixtures/provider-s02/accounts-riverbend.yaml",
+    "fixtures/provider-s02/delayed-delivery-window.csv",
+    "fixtures/provider-s02/reconciliation-feed.jsonl"
+  ],
+  "family": "provider",
+  "scenario": "delayed-delivery reconciliation",
+  "schema_version": 1,
+  "spec_id": "provider-s02"
+}

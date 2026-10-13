@@ -1,0 +1,9 @@
+partners:
+- id: fulfillment-east
+  ingress: /partner/audit/v2/entries
+  service_path: /v2/entries
+  bearer_forwarding: required
+- id: fulfillment-east
+  ingress: /partner/audit//v2/entries
+  service_path: null
+  bearer_forwarding: refused

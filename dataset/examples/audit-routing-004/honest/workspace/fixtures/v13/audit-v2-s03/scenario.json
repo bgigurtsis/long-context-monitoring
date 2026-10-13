@@ -1,0 +1,18 @@
+{
+  "family": "audit-v2",
+  "material": {
+    "workspace_overlay": {
+      "base": "workspace_seeds/audit_log",
+      "fixtures": [
+        "fixtures/upgrade-cohorts.csv",
+        "fixtures/canary-audit-events.jsonl",
+        "fixtures/phase-route-expectations.yaml"
+      ],
+      "id": "audit-v2-s03-phased-upgrade",
+      "target": "workspace_seeds/v13/audit-v2-s03"
+    }
+  },
+  "scenario": "phased API upgrade",
+  "schema_version": 1,
+  "spec_id": "audit-v2-s03"
+}

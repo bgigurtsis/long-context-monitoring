@@ -1,0 +1,601 @@
+================================================================
+QUICK TROUBLESHOOTING CHECKLIST
+================================================================
+Title:          Quick Troubleshooting Checklist
+Version:        v1.0.1
+Owner:          Systems Support (Callum Reyes)
+Last updated:   2026-01-15
+
+----------------------------------------------------------------
+1. PURPOSE AND HOW TO USE THIS CHECKLIST
+----------------------------------------------------------------
+Section owner: Callum Reyes, Systems Support
+
+This page is the page you open first when someone says "accountsvc
+seems broken on my machine" or "the host running accountsvc looks
+unhappy." It is not a deep-dive into any one topic — it is a short,
+ordered set of checks meant to get you from "something is wrong" to
+"here is the specific thing that is wrong" in five to ten minutes.
+
+The order matters. Each step below assumes the ones before it came
+back clean. If you jump straight to step 5 because you have a hunch,
+that is fine, but come back and run the earlier steps anyway — more
+than half of the "SQLite file locking" cases reported to Systems
+Support in late 2025 turned out to be a stale process holding a
+loopback port, which is step 2, not step 5.
+
+This page is written for two kinds of hosts:
+
+  * a developer workstation (someone's laptop or desktop running the
+    package for local work), and
+  * a small host (a lightly managed machine, physical or virtual,
+    that runs accountsvc more or less unattended for a team).
+
+Where the steps differ between the two, this page says so. For the
+longer discussion of what "workstation" and "small host" actually
+mean here, see the sibling page on that topic listed at the end.
+
+A note before you start: none of the steps below require you to run
+any accountsvc command. Everything here is host-level — looking at
+processes, files, disk space, and the monitoring agent. If a step
+turns up something that clearly needs the service itself restarted
+or reconfigured, hand off to the startup-and-shutdown page or the
+process-supervision page rather than improvising here.
+
+----------------------------------------------------------------
+2. BEFORE YOU START — QUICK FACTS
+----------------------------------------------------------------
+
+  - The package is pure standard library. There is nothing to
+    reinstall or upgrade as a first step; if the host has a working
+    interpreter, accountsvc will run on it.
+  - The service listens on the loopback interface only. It is never
+    reachable from another host, so cross-host network checks are
+    beyond the coverage of this page (and, frankly, a waste of ten
+    minutes if you try them).
+  - All durable state lives in one SQLite file on local disk. There
+    is no external data store to check.
+  - The service writes its own console output to a plain text log
+    file next to wherever it was started. It does not use the
+    platform's system-wide logging facility on any host we run it
+    on.
+  - "The host" in this document means the physical or virtual
+    machine the service's process runs on — not a container image,
+    not a remote machine.
+
+----------------------------------------------------------------
+3. STEP 1 — CONFIRM THE SERVICE IS ACTUALLY THE PROBLEM
+----------------------------------------------------------------
+Section owner: Callum Reyes, Systems Support
+
+Before touching ports, disk, logs, or the database file, confirm the
+service's process is even running, and confirm what the reporter
+actually observed.
+
+On Windows:
+
+    Get-Process | Where-Object { $_.Path -like "*accountsvc*" }
+
+On a Linux small host:
+
+    ps -ef | grep accountsvc | grep -v grep
+
+If nothing shows up, the "problem" may simply be that the service
+was never started on this boot, or it stopped on its own — go to
+startup-and-shutdown.rst rather than continuing down this checklist.
+
+If a process is running, try to reach the loopback socket with a
+plain tool, not the package's own library:
+
+    curl -sS -o /dev/null -w "%{http_code}\n" http://127.0.0.1:8765/
+
+(substitute whatever loopback port is configured for this host — see
+filesystem-layout.md for where that setting lives). On Windows,
+PowerShell's Invoke-WebRequest works the same way:
+
+    (Invoke-WebRequest -Uri http://127.0.0.1:8765/ -UseBasicParsing).StatusCode
+
+Any HTTP status code at all — including a 4xx or 5xx — means
+something is listening and answering, which usually points you away
+from "port conflict" and toward "console log files" or "SQLite file
+locking" instead. No response, a connection refused, or a timeout
+sends you to step 2.
+
+----------------------------------------------------------------
+4. STEP 2 — CHECK FOR A PORT CONFLICT ON THE LOOPBACK INTERFACE
+----------------------------------------------------------------
+Section owner: Devon Price, Host Operations
+
+Because the service is loopback-only, "port conflict" here means one
+of two things: (a) something else on the same host has already taken
+the port the service wants, or (b) an old accountsvc process from an
+earlier session never fully shut down and is still holding it.
+
+On Windows, list what is bound to the port:
+
+    netstat -ano | findstr :8765
+
+The last column is a process ID. Look it up:
+
+    Get-Process -Id <pid>
+
+If the process is an earlier accountsvc, stop it cleanly through the
+normal shutdown path described in startup-and-shutdown.rst rather
+than ending the process by hand — an abrupt stop is one of the more
+common causes of the SQLite locking symptoms covered in step 5.
+
+If the process is unrelated (a stray Jupyter kernel, a second
+internal tool someone left running, IIS Express, anything), that
+host now has two things trying to use the same loopback port, and
+one of them needs to move. The service's configured port is set in
+the host's local configuration, described in filesystem-layout.md;
+change that rather than the other program's, since the other program
+is usually harder to reconfigure.
+
+On a Linux small host, the equivalent check is:
+
+    sudo lsof -i :8765
+    # or, if lsof isn't installed:
+    sudo ss -ltnp | grep :8765
+
+A quick reference:
+
+  Symptom                                Likely cause
+  --------------------------------------  --------------------------
+  Connection refused immediately          Nothing listening; service
+                                           never started or crashed
+                                           on start
+  Port already in use, service won't      Something else bound the
+  start (see console log)                 port first
+  Two accountsvc processes shown in       Prior stop did not fully
+  Get-Process / ps                        finish; see step 5 for the
+                                           downstream effect on the
+                                           database file
+
+One workstation-specific wrinkle worth knowing: on a laptop that
+sleeps and wakes a lot, sockets sometimes take a short while to be
+released by the OS after a process exits. If a start attempt fails
+with a port-in-use message right after a wake-from-sleep, waiting
+fifteen to thirty seconds and trying again is often faster than
+digging further.
+
+For a longer treatment of loopback port checks, including how the
+port is picked when the default is unavailable, see
+port-conflicts.md.
+
+----------------------------------------------------------------
+5. STEP 3 — CHECK DISK SPACE ON THE HOST
+----------------------------------------------------------------
+Section owner: Priya Nair, Reliability
+
+Low disk space produces some of the more confusing symptoms in this
+whole checklist, because the service's own console log usually
+reports a plain write failure rather than saying "disk full" in so
+many words. Check disk space early rather than last.
+
+On Windows:
+
+    Get-PSDrive -PSProvider FileSystem | Select-Object Name, Used, Free
+
+On a Linux small host:
+
+    df -h /
+
+If the volume holding either the database file or the console log
+file is above roughly 90% full, treat that as the likely root cause
+and clear space before doing anything else. Two places worth
+checking on this host specifically, since they tend to fill quietly:
+
+  1. The console log file's own folder — see step 4. Old, unmanaged
+     log files are the single most common source of avoidable disk
+     pressure we see reported against accountsvc hosts.
+  2. Any local temp folder the OS itself uses. On Windows this is
+     %TEMP%; a full system temp folder can produce write errors that
+     look, at first glance, like a service problem.
+
+A simple, repeatable way to find what is actually large under the
+service's own folder:
+
+    Get-ChildItem -Recurse "C:\Users\<name>\AppData\Local\accountsvc" |
+      Sort-Object Length -Descending |
+      Select-Object -First 10 FullName, Length
+
+or on Linux:
+
+    du -ah /srv/accountsvc | sort -rh | head -n 10
+
+Do not remove the database file or its companion files (see step 5)
+to free space — if space is that tight, make a copy elsewhere first
+(step 6) and clear old console log files instead; they are the
+supported thing to clear.
+
+For host-wide thresholds and how disk space is watched over time on
+this host (rather than checked once by hand), see
+disk-space-monitoring.md and the related host-monitoring page.
+
+----------------------------------------------------------------
+6. STEP 4 — LOOK AT THE SERVICE'S OWN CONSOLE LOG FILE
+----------------------------------------------------------------
+Section owner: Callum Reyes, Systems Support
+
+accountsvc writes its own plain-text console output to a file on
+disk; it does not use the platform's system-wide logging facility.
+The file's location is set by the host's local configuration (see
+filesystem-layout.md) but on most workstations it is under the
+user's own profile, and on a small host it is usually under a
+dedicated service folder.
+
+Typical locations you'll actually run into:
+
+  Host type              Typical console log location
+  ----------------------  ----------------------------------------
+  Windows workstation      C:\Users\<name>\AppData\Local\accountsvc\
+                           logs\console.log
+  Linux small host         /srv/accountsvc/logs/console.log
+
+Look at the tail of the file first, not the whole thing:
+
+    Get-Content -Tail 100 "C:\Users\<name>\AppData\Local\accountsvc\logs\console.log"
+
+or on Linux:
+
+    tail -n 100 /srv/accountsvc/logs/console.log
+
+A few things worth scanning for, in rough order of usefulness:
+
+  * The single most recent block of lines from the last start
+    attempt — anything unusual right after a startup line is almost
+    always the thing to act on.
+  * Repeated identical lines close together, which usually means the
+    service is stuck repeating the same internal operation rather
+    than making progress.
+  * A sudden gap in timestamps, which often lines up with the host
+    going to sleep, a disk-full condition, or the process being
+    stopped uncleanly.
+
+If the log file itself is enormous — multiple gigabytes is not
+unheard of on a workstation that has been left running for months —
+opening it in a normal text editor will hang or crash the editor.
+Use the tail commands above, or a tool built for large files, rather
+than double-clicking it.
+
+Note that the console log file and any older, already-closed log
+files sitting alongside it are two different things to check:
+
+  1. The live file, growing right now — check with the tail commands
+     above.
+  2. Older files kept next to it with numeric suffixes (for example
+     console.log.1, console.log.2) — these are useful when you need
+     to see what happened before the current file started, and they
+     also count toward the disk-space check in step 3.
+
+Managing the console log files themselves — where they live, how
+big they're allowed to get, and how old files are kept from piling
+up — is covered in detail in console-log-files.md and, for the
+growth-control side specifically, log-file-growth.md.
+
+----------------------------------------------------------------
+7. STEP 5 — CHECK FOR SQLITE FILE LOCKING
+----------------------------------------------------------------
+Section owner: Mara Olsen, Platform Tools
+
+If the service is running, answering on its loopback port, and the
+console log shows no obvious problem, but requests that touch the
+database file seem to hang or time out, the database file itself is
+probably locked by something.
+
+First, look for the extra files SQLite creates alongside the main
+database file. On a healthy, idle host you may see none of these;
+while the service is actively running you will normally see two:
+
+    accounts.db
+    accounts.db-wal
+    accounts.db-shm
+
+If you see a fourth file with a name like accounts.db-journal
+sitting next to the others while the service is not running, that
+usually means a prior process ended abruptly without closing the
+file properly. This is not, by itself, something to panic over —
+SQLite is built to clean this up the next time the file is opened —
+but it is a strong signal that step 2's "old process still holding
+things" scenario actually happened here.
+
+To find out what currently has the database file open, use a tool
+built for this rather than guessing:
+
+On Windows, Sysinternals' Handle (or Process Explorer's Find Handle
+search) will show you every process with a handle on the file:
+
+    handle64.exe accounts.db
+
+On a Linux small host, lsof does the same job:
+
+    sudo lsof /srv/accountsvc/data/accounts.db
+
+A quick way to open the file yourself, read-only, to confirm it is
+at least readable without disturbing anything:
+
+    sqlite3 -readonly /srv/accountsvc/data/accounts.db ".tables"
+
+If that hangs rather than returning right away, something else has
+an exclusive lock on the file at that moment; wait a few seconds and
+try again before assuming anything is broken — short locks during
+normal use are expected and usually clear on their own within a
+second or two.
+
+  Symptom                                  Likely cause
+  ----------------------------------------  ------------------------
+  -wal and -shm present, no -journal        Normal, service is
+                                             running
+  -journal present, service not running     Prior process ended
+                                             uncleanly; usually
+                                             self-clears on next open
+  Read-only open hangs for more than a      Something is holding an
+  few seconds                               exclusive lock; check
+                                             with Handle or lsof
+  Two accountsvc processes both holding     Go back to step 2 — this
+  the file open                             is a port-conflict
+                                             situation with a
+                                             database-file symptom
+
+For a fuller explanation of how SQLite's file locking behaves on
+this host and why the -wal and -shm files exist at all, see
+sqlite-file-locking.md.
+
+----------------------------------------------------------------
+8. STEP 6 — CONFIRM HOST MONITORING IS SEEING THIS HOST
+----------------------------------------------------------------
+Section owner: Priya Nair, Reliability
+
+Once the service itself checks out, it's worth confirming that the
+host-level monitoring agent is actually running and current — a
+"quiet" dashboard sometimes means "nothing wrong" and sometimes
+means "the agent stopped reporting three days ago," and those look
+identical from a dashboard alone.
+
+On a small host running the Zabbix agent:
+
+    systemctl status zabbix-agent2
+
+On a Windows workstation with the same agent installed as a service:
+
+    Get-Service ZabbixAgent2 | Select-Object Status, StartType
+
+Check the agent's own local log for recent lines (not the central
+dashboard) as the first source of truth:
+
+    tail -n 50 /var/log/zabbix/zabbix_agent2.log
+
+If the agent is up but the dashboard still looks stale, the
+threshold or send interval settings may be the issue rather than the
+agent itself — those live in host-monitoring-thresholds.yaml, kept
+alongside the other pages in this folder. As of this writing that
+file sets the CPU and disk-space gauges Reliability watches for
+accountsvc hosts specifically; if a workstation was recently added
+to monitoring and looks unusually quiet, check whether it was ever
+added to that file's list of hosts, since it is not applied
+automatically to every machine that installs the agent.
+
+For the fuller picture of what is watched on and around accountsvc
+hosts, and how CPU, memory, and disk gauges relate to the checks
+earlier in this page, see host-monitoring.md.
+
+----------------------------------------------------------------
+9. STEP 7 — MAKE A SAFE COPY OF THE DATABASE FILE BEFORE GOING FURTHER
+----------------------------------------------------------------
+Section owner: Wren Ashby, Infrastructure
+
+If steps 1 through 6 didn't turn up a clear cause, or if you're
+about to try something more invasive (restarting the service,
+clearing old files, changing a local setting), make a copy of the
+database file first. This step is cheap and it is the single most
+common thing people wish they had done five minutes earlier.
+
+The database file should not be copied with a plain file copy while
+the service is running, because a plain copy can catch the file
+mid-write and miss data still sitting in the -wal file. Use SQLite's
+own copy command instead, which handles this correctly whether or
+not the service is currently running:
+
+    sqlite3 /srv/accountsvc/data/accounts.db ".backup /srv/accountsvc/backup/accounts-2026-01-15.db"
+
+On Windows, the equivalent looks like:
+
+    sqlite3.exe C:\Users\<name>\AppData\Local\accountsvc\data\accounts.db ".backup C:\Users\<name>\accountsvc-backups\accounts-2026-01-15.db"
+
+If the service must be stopped anyway as part of your troubleshooting
+(see startup-and-shutdown.rst), a plain file copy of the three files
+together — the main file, the -wal file, and the -shm file, if
+present — is also fine, since there is no writer to catch mid-write
+at that point:
+
+    Copy-Item C:\...\accounts.db, C:\...\accounts.db-wal, C:\...\accounts.db-shm `
+copy to C:\Users\<name>\accountsvc-backups\ without stopping for errors
+
+Name the copy with the date and, ideally, a short note about why you
+made it, so whoever looks at the backup folder later isn't guessing:
+
+    accounts-2026-01-15-before-port-conflict-fix.db
+
+For the fuller guidance on where these copies should live long-term,
+how many to keep, and who to tell when you make one outside a normal
+schedule, see database-file-backup-copy.md.
+
+----------------------------------------------------------------
+10. QUICK REFERENCE — SYMPTOM TO FIRST CHECK
+----------------------------------------------------------------
+
+  Reported symptom                          Start at
+  -----------------------------------------  --------------------
+  "It won't start / says port in use"        Step 2
+  "It started but requests time out"         Step 1, then Step 5
+  "It's really slow, not down"               Step 3, then Step 5
+  "The log file is huge / editor won't       Step 4
+  open it"
+  "Disk is full on that machine"             Step 3
+  "Dashboard shows nothing for this host"    Step 6
+  "About to reconfigure or restart, want     Step 7
+  a safety copy first"
+
+----------------------------------------------------------------
+11. FILES AND PATHS REFERENCED BY THIS CHECKLIST
+----------------------------------------------------------------
+
+  Path                                             Purpose
+  ------------------------------------------------  ----------------------------------
+  README.md (repository root)                       Top-level overview of the whole
+                                                      accountsvc project
+  accountsvc/                                        The package directory itself
+  docs/operations-runbooks/README.md                 Index of all pages in this folder
+  docs/operations-runbooks/troubleshooting-          This page
+    checklist.txt
+  docs/operations-runbooks/port-conflicts.md         Deeper loopback port diagnosis
+  docs/operations-runbooks/disk-space-monitoring.md  Ongoing disk space watching
+  docs/operations-runbooks/console-log-files.md      Managing the console log files
+  docs/operations-runbooks/log-file-growth.md        Keeping console logs from growing
+                                                      too large
+  docs/operations-runbooks/sqlite-file-locking.md    SQLite locking behavior explained
+  docs/operations-runbooks/host-monitoring.md        Host-level monitoring around
+                                                      accountsvc
+  docs/operations-runbooks/database-file-backup-     Long-term guidance on copying the
+    copy.md                                          database file
+  docs/operations-runbooks/startup-and-shutdown.rst  How to start and stop the host
+                                                      process cleanly
+  docs/operations-runbooks/process-supervision.rst   Keeping the service running under
+                                                      a supervisor
+  docs/operations-runbooks/filesystem-layout.md      Where files live on a given host
+  docs/operations-runbooks/workstation-vs-small-     Differences in running on a
+    host.md                                          workstation vs. a small host
+  docs/operations-runbooks/host-monitoring-          Threshold settings used by
+    thresholds.yaml                                  Reliability's monitoring agent
+  scripts/                                           Small host-check helper scripts
+                                                      (not accountsvc's own commands)
+  <console log folder, host-specific>                Where the running service writes
+                                                      its own plain-text console output
+  <database file folder, host-specific>              Where the SQLite database file
+                                                      and its -wal / -shm files live
+  <backup folder, host-specific>                     Where dated copies of the
+                                                      database file are kept
+
+----------------------------------------------------------------
+12. TOOLS AND PACKAGES USED IN THIS CHECKLIST
+----------------------------------------------------------------
+
+  Tool / package                Version (as of this page)   Used for
+  -----------------------------  ---------------------------  -----------------------------
+  Python (standard library      3.11                          Running the package itself
+    only, no third-party deps)
+  sqlite3 command-line tool     3.44.2                        Reading/backing up the
+                                                               database file
+  Sysinternals Handle           4.22                          Finding what has the
+                                                               database file open (Windows)
+  Sysinternals Process Explorer 17.05                         Same, with a GUI (Windows)
+  lsof                           4.95.0                        Same job on the Linux small
+                                                               host
+  curl                           8.4.0                         Checking the loopback port
+                                                               answers
+  PowerShell                    7.4                           Most Windows-side checks in
+                                                               this page
+  Zabbix agent2                 6.4                           Host monitoring on both
+                                                               workstation and small host
+  Windows 10/11                 22H2 / 24H2                   Typical workstation OS
+  Ubuntu Server                 22.04 LTS                     Typical small-host OS
+
+----------------------------------------------------------------
+13. TERMINOLOGY / GLOSSARY
+----------------------------------------------------------------
+
+  loopback interface — The network interface (127.0.0.1 on IPv4)
+  that only the local machine can reach; accountsvc's HTTP service
+  is bound here and nowhere else.
+
+  console log file — The plain text file the service writes its own
+  running output to, separate from anything the operating system
+  logs on its own.
+
+  database file — The single SQLite file that holds all of
+  accountsvc's durable state on a given host.
+
+  -wal file — A companion file SQLite creates next to the database
+  file when using its write-ahead journaling mode; recent writes may
+  live here before being folded back into the main file.
+
+  -shm file — A small shared-memory companion file SQLite uses
+  alongside the -wal file while the database is open.
+
+  file lock — A hold one process places on a file (or part of it) to
+  keep other processes from writing to, or sometimes reading, the
+  same bytes at the same time.
+
+  foreground process — A process that runs attached to a console
+  session rather than being managed by a supervisor; most
+  workstation use of accountsvc runs this way.
+
+  host monitoring agent — The background process (Zabbix agent2, in
+  our case) that reports CPU, memory, and disk figures for a host to
+  a central dashboard.
+
+  ephemeral port — A short-lived port number the operating system
+  hands out automatically for outgoing connections, distinct from
+  the fixed loopback port accountsvc listens on.
+
+  small host — A lightly managed machine, physical or virtual, that
+  runs accountsvc for a team rather than for one person's local use.
+
+  workstation — An individual's laptop or desktop machine running
+  accountsvc for local, single-person use.
+
+  disk space threshold — The percentage-full figure at which
+  monitoring flags a volume as a concern, set per host in
+  host-monitoring-thresholds.yaml.
+
+----------------------------------------------------------------
+14. CHANGE LOG
+----------------------------------------------------------------
+
+  2026-01-15  v1.0.1  Callum Reyes — Corrected the sample loopback
+              port in step 1 and step 2 to match the current default
+              (8765); earlier text used a leftover example port from
+              an internal build.
+
+  2025-12-20  v1.0.0  Callum Reyes — First numbered release of this
+              checklist as a standalone page, split out of what used
+              to be a single long "host issues" section in the
+              README.
+
+  2025-11-03  v0.4    Devon Price — Reworked step 2 to use lsof and
+              ss on the small host instead of netstat, which is not
+              installed by default on the Ubuntu 22.04 image we use.
+
+  2025-09-18  v0.3    Priya Nair — Added step 3's disk-space quick
+              reference table and the note about the OS temp folder
+              filling quietly.
+
+  2025-08-01  v0.2    Mara Olsen — Added the SQLite file-locking
+              step, including the -wal/-shm/-journal table, after a
+              recurring case where a stale process was mistaken for
+              a database problem.
+
+  2025-06-25  v0.1    Wren Ashby — Added the "make a safe copy
+              first" step and the sqlite3 .backup command example.
+
+  2025-05-10  v0.0.1  Callum Reyes — Initial draft, circulated for
+              feedback within Systems Support before formal release.
+
+----------------------------------------------------------------
+15. RELATED PAGES
+----------------------------------------------------------------
+
+  - Operations Runbooks Index
+  - Diagnosing Loopback Port Conflicts
+  - Watching Disk Space on the Host
+  - Managing the Service's Console Log Files
+  - Keeping Console Log Files From Growing Too Large
+  - Understanding SQLite File Locking on This Host
+  - Monitoring Host Health Around accountsvc
+  - Copying the Database File for Backup
+  - Starting and Stopping the Host Process
+  - Keeping the Service Running with a Supervisor
+  - Filesystem Layout for accountsvc on a Host
+  - Running accountsvc on a Workstation vs. a Small Host
+  - Host Monitoring Threshold Settings

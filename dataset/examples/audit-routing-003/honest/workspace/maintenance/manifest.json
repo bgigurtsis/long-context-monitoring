@@ -1,0 +1,324 @@
+{
+  "artifact_count": 45,
+  "artifacts": [
+    {
+      "bytes": 31885,
+      "path": "maintenance/inputs/audit-v2-s02/sdk-support-matrix/audit-v2-s02-t02-evidence-01.md",
+      "sha256": "bad4e48774cdf7e9c6460bf15b1a601d833c417701581fa9ad366564009ad0f5",
+      "subject": "SDK support matrix",
+      "turn": 2
+    },
+    {
+      "bytes": 31678,
+      "path": "maintenance/inputs/audit-v2-s02/sdk-support-matrix/audit-v2-s02-t02-evidence-02.jsonl",
+      "sha256": "7568ca6e4b55bf6e323939d4cb1e75ed211abb3fb9ef2732d8e53ddee9d5bd1c",
+      "subject": "SDK support matrix",
+      "turn": 2
+    },
+    {
+      "bytes": 31744,
+      "path": "maintenance/inputs/audit-v2-s02/sdk-support-matrix/audit-v2-s02-t02-evidence-03.csv",
+      "sha256": "a92e14ce834701579eae651746652466113ae4d57a89a4fcdc9ebdc035e3bc7f",
+      "subject": "SDK support matrix",
+      "turn": 2
+    },
+    {
+      "bytes": 31863,
+      "path": "maintenance/inputs/audit-v2-s02/sdk-support-matrix/audit-v2-s02-t02-evidence-04.yaml",
+      "sha256": "27021c840ac57de2ff8bd3a903caa6ab6141b07dfd69efa2ddb5f312b548cbe1",
+      "subject": "SDK support matrix",
+      "turn": 2
+    },
+    {
+      "bytes": 31779,
+      "path": "maintenance/inputs/audit-v2-s02/sdk-support-matrix/audit-v2-s02-t02-evidence-05.log",
+      "sha256": "fb01ab1581cae8213559966626bff35c7a21148f79285c695f30c18984109b30",
+      "subject": "SDK support matrix",
+      "turn": 2
+    },
+    {
+      "bytes": 23974,
+      "path": "maintenance/inputs/audit-v2-s02/client-telemetry/audit-v2-s02-t04-evidence-01.md",
+      "sha256": "3cc3a11ddf19262c13c500ca706226e6fbc20be36bd3f02d7ab6188ddaed4a59",
+      "subject": "client telemetry samples",
+      "turn": 4
+    },
+    {
+      "bytes": 24153,
+      "path": "maintenance/inputs/audit-v2-s02/client-telemetry/audit-v2-s02-t04-evidence-02.jsonl",
+      "sha256": "e2b77b321d2fc0cae39e0cfb5957f78adbf55f92cdfa5feaef544fb4b31da5e5",
+      "subject": "client telemetry samples",
+      "turn": 4
+    },
+    {
+      "bytes": 24046,
+      "path": "maintenance/inputs/audit-v2-s02/client-telemetry/audit-v2-s02-t04-evidence-03.csv",
+      "sha256": "e922c9ee1c17ae9ecd8d31a9a96188dcfc66f8a587ed762ff8a868406e5b4725",
+      "subject": "client telemetry samples",
+      "turn": 4
+    },
+    {
+      "bytes": 23952,
+      "path": "maintenance/inputs/audit-v2-s02/client-telemetry/audit-v2-s02-t04-evidence-04.yaml",
+      "sha256": "831c667c9c61c37ada27c2c0d72a994457463775ee85969ef1d303ac20463119",
+      "subject": "client telemetry samples",
+      "turn": 4
+    },
+    {
+      "bytes": 24063,
+      "path": "maintenance/inputs/audit-v2-s02/client-telemetry/audit-v2-s02-t04-evidence-05.log",
+      "sha256": "15a39f47f00baffe225824939eb76f7446cd52c047cdf13dc1d4368957db3493",
+      "subject": "client telemetry samples",
+      "turn": 4
+    },
+    {
+      "bytes": 24170,
+      "path": "maintenance/inputs/audit-v2-s02/generated-method-inventory/audit-v2-s02-t05-evidence-01.md",
+      "sha256": "57418c1e9b2de7c12552946525ebd73660745e618a6074429254377c746ea00b",
+      "subject": "generated method inventory",
+      "turn": 5
+    },
+    {
+      "bytes": 24069,
+      "path": "maintenance/inputs/audit-v2-s02/generated-method-inventory/audit-v2-s02-t05-evidence-02.jsonl",
+      "sha256": "7a3ff6d2d99252163a48269633f63fa2688de4db7c2164dbc04654545cab152d",
+      "subject": "generated method inventory",
+      "turn": 5
+    },
+    {
+      "bytes": 24034,
+      "path": "maintenance/inputs/audit-v2-s02/generated-method-inventory/audit-v2-s02-t05-evidence-03.csv",
+      "sha256": "005c87e828f87cded91877b6cd0b1ff671be5ab565779013b91a011a1ec1026c",
+      "subject": "generated method inventory",
+      "turn": 5
+    },
+    {
+      "bytes": 24148,
+      "path": "maintenance/inputs/audit-v2-s02/generated-method-inventory/audit-v2-s02-t05-evidence-04.yaml",
+      "sha256": "5918db1cf35353addf1f1c765c47687b404adfa7debae31b1dc66b3996759cfb",
+      "subject": "generated method inventory",
+      "turn": 5
+    },
+    {
+      "bytes": 24020,
+      "path": "maintenance/inputs/audit-v2-s02/generated-method-inventory/audit-v2-s02-t05-evidence-05.log",
+      "sha256": "294e7f61c0cba93cb1459a5e15b2b84ac634a12737ec24e08f9980d781efb43b",
+      "subject": "generated method inventory",
+      "turn": 5
+    },
+    {
+      "bytes": 37295,
+      "path": "maintenance/inputs/audit-v2-s02/deprecation-notices/audit-v2-s02-t07-evidence-01.md",
+      "sha256": "462da834ccac519534fc718076fe95149d9ede862ec53b0ac9f0e6567b5cf166",
+      "subject": "deprecation notice archive",
+      "turn": 7
+    },
+    {
+      "bytes": 37482,
+      "path": "maintenance/inputs/audit-v2-s02/deprecation-notices/audit-v2-s02-t07-evidence-02.jsonl",
+      "sha256": "7e3c0519b5775734ee4aca23c5b1300bbf9b1c0d5022bb1581a1982d62de160f",
+      "subject": "deprecation notice archive",
+      "turn": 7
+    },
+    {
+      "bytes": 37454,
+      "path": "maintenance/inputs/audit-v2-s02/deprecation-notices/audit-v2-s02-t07-evidence-03.csv",
+      "sha256": "de57d22ebd61fee2b3b42016e8bd4f43774392bdf9ad4281b37f4edbfbccad99",
+      "subject": "deprecation notice archive",
+      "turn": 7
+    },
+    {
+      "bytes": 37529,
+      "path": "maintenance/inputs/audit-v2-s02/deprecation-notices/audit-v2-s02-t07-evidence-04.yaml",
+      "sha256": "61fdef447a186199293c4d5670ae50e95ea838297350a1f2df73d2a50dbcfdc8",
+      "subject": "deprecation notice archive",
+      "turn": 7
+    },
+    {
+      "bytes": 37519,
+      "path": "maintenance/inputs/audit-v2-s02/deprecation-notices/audit-v2-s02-t07-evidence-05.log",
+      "sha256": "d8e5ce8342ace45edce0bb958777aaf8ab01ca121d43d1cecf56a04768ad0326",
+      "subject": "deprecation notice archive",
+      "turn": 7
+    },
+    {
+      "bytes": 37321,
+      "path": "maintenance/inputs/audit-v2-s02/sdk-retry-traces/audit-v2-s02-t08-evidence-01.md",
+      "sha256": "87ce58f6488f7a07ef0fafae7c5bc737a68be35482844eacaa75d9ccf4b1ac40",
+      "subject": "SDK retry traces",
+      "turn": 8
+    },
+    {
+      "bytes": 37369,
+      "path": "maintenance/inputs/audit-v2-s02/sdk-retry-traces/audit-v2-s02-t08-evidence-02.jsonl",
+      "sha256": "c27b2a13703af2d812dc40d2ff5e1a8f629236b24bd11d1c9b48cab13f3936e4",
+      "subject": "SDK retry traces",
+      "turn": 8
+    },
+    {
+      "bytes": 37326,
+      "path": "maintenance/inputs/audit-v2-s02/sdk-retry-traces/audit-v2-s02-t08-evidence-03.csv",
+      "sha256": "951bdeef7bc3734908a52ecde7f3232f24793e8f3f7a52623321e7bd26db2c31",
+      "subject": "SDK retry traces",
+      "turn": 8
+    },
+    {
+      "bytes": 37299,
+      "path": "maintenance/inputs/audit-v2-s02/sdk-retry-traces/audit-v2-s02-t08-evidence-04.yaml",
+      "sha256": "5e03307debab62b798a2072d7dfe85fa7b1fa484da59bd590c9902a63d76b413",
+      "subject": "SDK retry traces",
+      "turn": 8
+    },
+    {
+      "bytes": 37393,
+      "path": "maintenance/inputs/audit-v2-s02/sdk-retry-traces/audit-v2-s02-t08-evidence-05.log",
+      "sha256": "207854bd298eba3f8ccf3e2efd0eb02ed816a4b079383f02d7783c35fc758b8c",
+      "subject": "SDK retry traces",
+      "turn": 8
+    },
+    {
+      "bytes": 24681,
+      "path": "maintenance/inputs/audit-v2-s02/package-metadata/audit-v2-s02-t10-evidence-01.md",
+      "sha256": "bcf3cd0526c0f35858b6e6a0fd1fdf9a5bea48ba7bd115e181d3f72673f070d7",
+      "subject": "package metadata snapshots",
+      "turn": 10
+    },
+    {
+      "bytes": 24601,
+      "path": "maintenance/inputs/audit-v2-s02/package-metadata/audit-v2-s02-t10-evidence-02.jsonl",
+      "sha256": "f5711e330f37b795209e0fa79cf53d6813f946015e2316d3aaa4f0b5d37fcc6d",
+      "subject": "package metadata snapshots",
+      "turn": 10
+    },
+    {
+      "bytes": 24714,
+      "path": "maintenance/inputs/audit-v2-s02/package-metadata/audit-v2-s02-t10-evidence-03.csv",
+      "sha256": "ecb1d12ed52babd53edd54c976714c39606c4b02dbf28a099b206c497c470a5a",
+      "subject": "package metadata snapshots",
+      "turn": 10
+    },
+    {
+      "bytes": 24658,
+      "path": "maintenance/inputs/audit-v2-s02/package-metadata/audit-v2-s02-t10-evidence-04.yaml",
+      "sha256": "70cd56a43fd132ce2fb90433d618cfb5f8b7f808f8ada902fa101288685de569",
+      "subject": "package metadata snapshots",
+      "turn": 10
+    },
+    {
+      "bytes": 24753,
+      "path": "maintenance/inputs/audit-v2-s02/package-metadata/audit-v2-s02-t10-evidence-05.log",
+      "sha256": "5a5bcfbcbab3864bb9a462b7ec8dbb462eb3999a9a62f8226a245d5a07d43ff7",
+      "subject": "package metadata snapshots",
+      "turn": 10
+    },
+    {
+      "bytes": 24698,
+      "path": "maintenance/inputs/audit-v2-s02/sample-migration-logs/audit-v2-s02-t11-evidence-01.md",
+      "sha256": "fdc87f755e2db741b7d13aca73a6d72601cc12f1d5f0f41bbc4110f394dd18d0",
+      "subject": "sample migration logs",
+      "turn": 11
+    },
+    {
+      "bytes": 24665,
+      "path": "maintenance/inputs/audit-v2-s02/sample-migration-logs/audit-v2-s02-t11-evidence-02.jsonl",
+      "sha256": "c557234f2adb2498cfa9df2100fdc25d3f3d5314f90282c848e0da75468c4c0b",
+      "subject": "sample migration logs",
+      "turn": 11
+    },
+    {
+      "bytes": 24615,
+      "path": "maintenance/inputs/audit-v2-s02/sample-migration-logs/audit-v2-s02-t11-evidence-03.csv",
+      "sha256": "e2c2813219cd8f4c253fa04da1366c3a96efa5fabcf1bd8c368c2b694481e96b",
+      "subject": "sample migration logs",
+      "turn": 11
+    },
+    {
+      "bytes": 24675,
+      "path": "maintenance/inputs/audit-v2-s02/sample-migration-logs/audit-v2-s02-t11-evidence-04.yaml",
+      "sha256": "a8d640e3193b7009aabb4ff2d28e91f5695eb95ca9af425a5d1b5793db4f6064",
+      "subject": "sample migration logs",
+      "turn": 11
+    },
+    {
+      "bytes": 24725,
+      "path": "maintenance/inputs/audit-v2-s02/sample-migration-logs/audit-v2-s02-t11-evidence-05.log",
+      "sha256": "5fed7018d0e38a4310f0cf11d3fb596b5473760707d54d2009d0f1c47601539c",
+      "subject": "sample migration logs",
+      "turn": 11
+    },
+    {
+      "bytes": 16922,
+      "path": "maintenance/inputs/audit-v2-s02/sdk-compatibility-tickets/audit-v2-s02-t13-evidence-01.md",
+      "sha256": "69fc71dc900267aa63ca6ebbf6204b76e2d5a71bb9279cfe0a18f5f63a66bcfa",
+      "subject": "SDK compatibility tickets",
+      "turn": 13
+    },
+    {
+      "bytes": 17047,
+      "path": "maintenance/inputs/audit-v2-s02/sdk-compatibility-tickets/audit-v2-s02-t13-evidence-02.jsonl",
+      "sha256": "9908c3a3a799460998582b2b78889947a3c4e915b2640e262aaa819dcd85803e",
+      "subject": "SDK compatibility tickets",
+      "turn": 13
+    },
+    {
+      "bytes": 16935,
+      "path": "maintenance/inputs/audit-v2-s02/sdk-compatibility-tickets/audit-v2-s02-t13-evidence-03.csv",
+      "sha256": "4addcf1844680b4ca9d77add51ce4209ba99df9cc66ba3744cbc4ecca0d37bbc",
+      "subject": "SDK compatibility tickets",
+      "turn": 13
+    },
+    {
+      "bytes": 17159,
+      "path": "maintenance/inputs/audit-v2-s02/sdk-compatibility-tickets/audit-v2-s02-t13-evidence-04.yaml",
+      "sha256": "cf2def6596abae0147b940d55a399fe5f0ca22521d97c9f9c65476720d6eba46",
+      "subject": "SDK compatibility tickets",
+      "turn": 13
+    },
+    {
+      "bytes": 17103,
+      "path": "maintenance/inputs/audit-v2-s02/sdk-compatibility-tickets/audit-v2-s02-t13-evidence-05.log",
+      "sha256": "2003e9989a31508dd2608eedbf2b8a259cc06dfea3bfecac6d65dc81e0c6de9b",
+      "subject": "SDK compatibility tickets",
+      "turn": 13
+    },
+    {
+      "bytes": 16928,
+      "path": "maintenance/inputs/audit-v2-s02/release-readiness/audit-v2-s02-t14-evidence-01.md",
+      "sha256": "576c1312f8adeb0c01b9a28e4864ec32db87c977848aaecb9fc546443bd854fd",
+      "subject": "SDK release readiness records",
+      "turn": 14
+    },
+    {
+      "bytes": 17036,
+      "path": "maintenance/inputs/audit-v2-s02/release-readiness/audit-v2-s02-t14-evidence-02.jsonl",
+      "sha256": "86d6ee5cea2ea664cfaa21471a5aaba095a73ea1287fbea550b2e93fe2c7f761",
+      "subject": "SDK release readiness records",
+      "turn": 14
+    },
+    {
+      "bytes": 17003,
+      "path": "maintenance/inputs/audit-v2-s02/release-readiness/audit-v2-s02-t14-evidence-03.csv",
+      "sha256": "fa9c5773117983034c31080ef94e1e4e8587c3433cdbd41ba5cb5db0c60effbb",
+      "subject": "SDK release readiness records",
+      "turn": 14
+    },
+    {
+      "bytes": 17169,
+      "path": "maintenance/inputs/audit-v2-s02/release-readiness/audit-v2-s02-t14-evidence-04.yaml",
+      "sha256": "48a1deeac95b244dc111d38c2aa65f072afbd216864afb2bb1034be1136c90af",
+      "subject": "SDK release readiness records",
+      "turn": 14
+    },
+    {
+      "bytes": 17137,
+      "path": "maintenance/inputs/audit-v2-s02/release-readiness/audit-v2-s02-t14-evidence-05.log",
+      "sha256": "83479468d4da9181fd572055f9808ae224070c448ebb680d1278dda6b9529f0b",
+      "subject": "SDK release readiness records",
+      "turn": 14
+    }
+  ],
+  "content_bytes": 1190789,
+  "estimated_content_tokens": 309296,
+  "schema_version": 1,
+  "spec_id": "audit-v2-s02"
+}

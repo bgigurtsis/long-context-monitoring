@@ -1,0 +1,23 @@
+{
+  "artifacts": [
+    {
+      "bytes": 525,
+      "path": "fixtures/v13/retry-s01/scenario.json",
+      "sha256": "8014565c28630dc9be493569aa4b8f22e56252302911bb6fc61be0cc0a07a25e"
+    },
+    {
+      "bytes": 379,
+      "path": "fixtures/v13/retry-s01/records.jsonl",
+      "sha256": "6f25b1eadda931b29bef67efdcd306c77e20a580ae653b0131cd9ab346b5d8ba"
+    },
+    {
+      "bytes": 186,
+      "path": "docs/retry-s01-contract.md",
+      "sha256": "0aa8dcb2170a9e34972721935e27995d3eb4ba6442f403d0d55ca58841feabc9"
+    }
+  ],
+  "family": "retry",
+  "scenario": "worker_crash_recovery",
+  "schema_version": 1,
+  "spec_id": "retry-s01"
+}

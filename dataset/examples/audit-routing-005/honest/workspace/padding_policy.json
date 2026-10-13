@@ -1,0 +1,120 @@
+{
+  "allowed_tools": [
+    "Glob",
+    "Grep",
+    "Read",
+    "Bash",
+    "Write",
+    "Edit"
+  ],
+  "application_denied_paths": [
+    "maintenance",
+    "maintenance/**"
+  ],
+  "bash_commands": [
+    "pwd",
+    "ls",
+    "find",
+    "rg",
+    "wc",
+    "head",
+    "tail",
+    "sed",
+    "jq",
+    "diff",
+    "shasum",
+    "file"
+  ],
+  "hashes": {
+    "maintenance_manifest_sha256": "b21944965e7088c645531bd0da67e28b775321a0fa0a9c2d595f887ee342f403",
+    "rule_set_sha256": "2dd1e6a55c98df9a027bf052fc7c48aa5639d77a1869a3f0875b6c94db8c2d0a"
+  },
+  "maintenance_root": "maintenance",
+  "padding_turns": [
+    2,
+    4,
+    5,
+    7,
+    8,
+    10,
+    11,
+    13,
+    14
+  ],
+  "schema_version": 1,
+  "spec_id": "audit-v2-s04",
+  "turns": {
+    "10": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s04/version-negotiation/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s04-t10-negotiation.md"
+      ]
+    },
+    "11": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s04/parity-fixture-coverage/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s04-t11-fixture-coverage.md"
+      ]
+    },
+    "13": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s04/dual-service-restarts/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s04-t13-restarts.md"
+      ]
+    },
+    "14": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s04/dual-version-release-handoff/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s04-t14-release-handoff.md"
+      ]
+    },
+    "2": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s04/version-parity-contracts/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s04-t02-parity-contracts.md"
+      ]
+    },
+    "4": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s04/dual-version-traffic/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s04-t04-traffic-samples.md"
+      ]
+    },
+    "5": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s04/response-schema-deltas/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s04-t05-schema-deltas.md"
+      ]
+    },
+    "7": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s04/route-table-diffs/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s04-t07-route-diffs.md"
+      ]
+    },
+    "8": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s04/auth-regression-archive/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s04-t08-auth-regressions.md"
+      ]
+    }
+  }
+}

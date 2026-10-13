@@ -1,0 +1,324 @@
+{
+  "artifact_count": 45,
+  "artifacts": [
+    {
+      "bytes": 57351,
+      "path": "maintenance/inputs/audit-v2-s08/partner-route-inventory/audit-v2-s08-t02-evidence-01.md",
+      "sha256": "535754ac37d7858efbaa805c95a507cf43fe7d2a00c7406639c5c5fd9b76fbd5",
+      "subject": "partner route inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 57472,
+      "path": "maintenance/inputs/audit-v2-s08/partner-route-inventory/audit-v2-s08-t02-evidence-02.jsonl",
+      "sha256": "a90fb06616ebf1deea9ebb5acb000f7a81f4f241bd10aae46c970a0cdb28c755",
+      "subject": "partner route inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 57369,
+      "path": "maintenance/inputs/audit-v2-s08/partner-route-inventory/audit-v2-s08-t02-evidence-03.csv",
+      "sha256": "2da432a647838014e36186dc2d7b69f1b474a799b636fcccd6deb857b0c448b8",
+      "subject": "partner route inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 57329,
+      "path": "maintenance/inputs/audit-v2-s08/partner-route-inventory/audit-v2-s08-t02-evidence-04.yaml",
+      "sha256": "ad5c2ef83c967b568814fd3e682b7685811c0e4cb4d101f4f072cb919e378c63",
+      "subject": "partner route inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 57275,
+      "path": "maintenance/inputs/audit-v2-s08/partner-route-inventory/audit-v2-s08-t02-evidence-05.log",
+      "sha256": "f9ad7bf8bf67b46b39ff441a6cedd66a01ac63746fed2c5728a05ef56721f76c",
+      "subject": "partner route inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 23941,
+      "path": "maintenance/inputs/audit-v2-s08/edge-mapping-snapshots/audit-v2-s08-t04-evidence-01.md",
+      "sha256": "94a750b23637c0551cb6e4f34a36799b7bb42f387fbe305e3138106dababb7fa",
+      "subject": "edge mapping snapshots",
+      "turn": 4
+    },
+    {
+      "bytes": 24059,
+      "path": "maintenance/inputs/audit-v2-s08/edge-mapping-snapshots/audit-v2-s08-t04-evidence-02.jsonl",
+      "sha256": "75bbd5edabf48b1f51d17ba897f95b49b6f3b30401e42d7b616a02d9f14c9b67",
+      "subject": "edge mapping snapshots",
+      "turn": 4
+    },
+    {
+      "bytes": 23968,
+      "path": "maintenance/inputs/audit-v2-s08/edge-mapping-snapshots/audit-v2-s08-t04-evidence-03.csv",
+      "sha256": "da0e8e3c0e84bbd3e77ea4a418941b9d24843027cd018aca7e6b6702bcb80332",
+      "subject": "edge mapping snapshots",
+      "turn": 4
+    },
+    {
+      "bytes": 23919,
+      "path": "maintenance/inputs/audit-v2-s08/edge-mapping-snapshots/audit-v2-s08-t04-evidence-04.yaml",
+      "sha256": "2616ee95b98abc5b6854e94d15006cb520cd08a0826939989c764af818769766",
+      "subject": "edge mapping snapshots",
+      "turn": 4
+    },
+    {
+      "bytes": 24100,
+      "path": "maintenance/inputs/audit-v2-s08/edge-mapping-snapshots/audit-v2-s08-t04-evidence-05.log",
+      "sha256": "2cf96291209d728584ea01727dc2abc6264cd27adb4115e744bff5505cf22d0c",
+      "subject": "edge mapping snapshots",
+      "turn": 4
+    },
+    {
+      "bytes": 24131,
+      "path": "maintenance/inputs/audit-v2-s08/webhook-delivery-archive/audit-v2-s08-t05-evidence-01.md",
+      "sha256": "02124dcd12fea4c1dfb0c23b6cc925820699de7835ac294f0c0cdd53958edcb9",
+      "subject": "webhook delivery archive",
+      "turn": 5
+    },
+    {
+      "bytes": 23967,
+      "path": "maintenance/inputs/audit-v2-s08/webhook-delivery-archive/audit-v2-s08-t05-evidence-02.jsonl",
+      "sha256": "f0677a6e8e0a487b4a5254fa6238c573e038cbc6fb74a96a5d4a6565441fcaac",
+      "subject": "webhook delivery archive",
+      "turn": 5
+    },
+    {
+      "bytes": 23940,
+      "path": "maintenance/inputs/audit-v2-s08/webhook-delivery-archive/audit-v2-s08-t05-evidence-03.csv",
+      "sha256": "7c01bd5673fb431a4f09ae8294169cf9ae962109f4387a7ef72ed3ed0a831bac",
+      "subject": "webhook delivery archive",
+      "turn": 5
+    },
+    {
+      "bytes": 24109,
+      "path": "maintenance/inputs/audit-v2-s08/webhook-delivery-archive/audit-v2-s08-t05-evidence-04.yaml",
+      "sha256": "44d1e4451c4b6606a6d0ea101638516783105a310bc2df18ed4916a427a59edb",
+      "subject": "webhook delivery archive",
+      "turn": 5
+    },
+    {
+      "bytes": 24049,
+      "path": "maintenance/inputs/audit-v2-s08/webhook-delivery-archive/audit-v2-s08-t05-evidence-05.log",
+      "sha256": "9f4a98bd3334f68a848f5e687de73baab91c44cdb9c8e3e2ad9e58cfe5cde482",
+      "subject": "webhook delivery archive",
+      "turn": 5
+    },
+    {
+      "bytes": 31936,
+      "path": "maintenance/inputs/audit-v2-s08/client-conformance-matrix/audit-v2-s08-t07-evidence-01.md",
+      "sha256": "39f5ff1667c5c12488ce799a8cb081e2cd29aaba009e83051835e3f073b71b54",
+      "subject": "client conformance matrix",
+      "turn": 7
+    },
+    {
+      "bytes": 31806,
+      "path": "maintenance/inputs/audit-v2-s08/client-conformance-matrix/audit-v2-s08-t07-evidence-02.jsonl",
+      "sha256": "7f80e7bfe4c8d25e3ea1d5e8f2bda864983749e7e002a4a4285e45064cb722bf",
+      "subject": "client conformance matrix",
+      "turn": 7
+    },
+    {
+      "bytes": 31845,
+      "path": "maintenance/inputs/audit-v2-s08/client-conformance-matrix/audit-v2-s08-t07-evidence-03.csv",
+      "sha256": "aea0913a1ef2a456fc5109777cff2de6ad3c24e28cf32fe799465f71c845ff0d",
+      "subject": "client conformance matrix",
+      "turn": 7
+    },
+    {
+      "bytes": 31914,
+      "path": "maintenance/inputs/audit-v2-s08/client-conformance-matrix/audit-v2-s08-t07-evidence-04.yaml",
+      "sha256": "1c784c012d8ccd1b9bae887f010353ba4a208e89ff0dca3da86ddb902ee7a346",
+      "subject": "client conformance matrix",
+      "turn": 7
+    },
+    {
+      "bytes": 32022,
+      "path": "maintenance/inputs/audit-v2-s08/client-conformance-matrix/audit-v2-s08-t07-evidence-05.log",
+      "sha256": "106be3f67fd1c22f15c87b14cd8bf884b7b8d7603198cf82236b81f3e1bfdbfd",
+      "subject": "client conformance matrix",
+      "turn": 7
+    },
+    {
+      "bytes": 31957,
+      "path": "maintenance/inputs/audit-v2-s08/authorization-forwarding-samples/audit-v2-s08-t08-evidence-01.md",
+      "sha256": "3b50fbe09bc9ecd8917ee392449b07c5af1deb498460a133e13355dc142e64ed",
+      "subject": "authorization forwarding samples",
+      "turn": 8
+    },
+    {
+      "bytes": 32035,
+      "path": "maintenance/inputs/audit-v2-s08/authorization-forwarding-samples/audit-v2-s08-t08-evidence-02.jsonl",
+      "sha256": "d52b179ffd349ce4e9f0d73109934050ad1e305dacf444eb37757ae19af61592",
+      "subject": "authorization forwarding samples",
+      "turn": 8
+    },
+    {
+      "bytes": 31816,
+      "path": "maintenance/inputs/audit-v2-s08/authorization-forwarding-samples/audit-v2-s08-t08-evidence-03.csv",
+      "sha256": "49ec2ef433eb52ff4fb83749be8b4e732fd139452b908d57dbee4952894d3378",
+      "subject": "authorization forwarding samples",
+      "turn": 8
+    },
+    {
+      "bytes": 31935,
+      "path": "maintenance/inputs/audit-v2-s08/authorization-forwarding-samples/audit-v2-s08-t08-evidence-04.yaml",
+      "sha256": "f9d1802cdab2b83571ce7ebfc7aa3b8cd4cfb991bfbae3dd9018e8566001117d",
+      "subject": "authorization forwarding samples",
+      "turn": 8
+    },
+    {
+      "bytes": 31863,
+      "path": "maintenance/inputs/audit-v2-s08/authorization-forwarding-samples/audit-v2-s08-t08-evidence-05.log",
+      "sha256": "83d2a5f00799d57dc6101cfd244e9fc6c6ba4a9ea0c258a7660baeb15ad613ce",
+      "subject": "authorization forwarding samples",
+      "turn": 8
+    },
+    {
+      "bytes": 24466,
+      "path": "maintenance/inputs/audit-v2-s08/delivery-replay-traces/audit-v2-s08-t10-evidence-01.md",
+      "sha256": "ec6243f4dc09e282fadc07b53151733576476d94031831923cadd7a4f6f084b4",
+      "subject": "delivery replay traces",
+      "turn": 10
+    },
+    {
+      "bytes": 24611,
+      "path": "maintenance/inputs/audit-v2-s08/delivery-replay-traces/audit-v2-s08-t10-evidence-02.jsonl",
+      "sha256": "ec6cd4a3ba02af04dccc929e8486ada4fb20cc7bddcaa822fb98eb3a59235e1c",
+      "subject": "delivery replay traces",
+      "turn": 10
+    },
+    {
+      "bytes": 24434,
+      "path": "maintenance/inputs/audit-v2-s08/delivery-replay-traces/audit-v2-s08-t10-evidence-03.csv",
+      "sha256": "ab4bb19d2b4c853674bf23e3f25772d81f443a726397fbc59eaf9704dcd87785",
+      "subject": "delivery replay traces",
+      "turn": 10
+    },
+    {
+      "bytes": 24443,
+      "path": "maintenance/inputs/audit-v2-s08/delivery-replay-traces/audit-v2-s08-t10-evidence-04.yaml",
+      "sha256": "152c0dcbe91cfae57ff43eafc17ff3ed47b7f2cff62b733c03d7b99b691cba3a",
+      "subject": "delivery replay traces",
+      "turn": 10
+    },
+    {
+      "bytes": 24606,
+      "path": "maintenance/inputs/audit-v2-s08/delivery-replay-traces/audit-v2-s08-t10-evidence-05.log",
+      "sha256": "7258e80ab04e75fbc50fa3ad3637616ec90ad6bb2176f2bc771cd741ff753820",
+      "subject": "delivery replay traces",
+      "turn": 10
+    },
+    {
+      "bytes": 24482,
+      "path": "maintenance/inputs/audit-v2-s08/partner-rollback-workbook/audit-v2-s08-t11-evidence-01.md",
+      "sha256": "5dbe1351717af66055cbe447426cc7f8fa4ef7acaa67ee7a08f930d4ba0f9677",
+      "subject": "partner rollback workbook",
+      "turn": 11
+    },
+    {
+      "bytes": 24600,
+      "path": "maintenance/inputs/audit-v2-s08/partner-rollback-workbook/audit-v2-s08-t11-evidence-02.jsonl",
+      "sha256": "905d6fe2167698d2e0d6832a91e9afb6e5a7d5ec2a3c6b35178d9b7393f9573e",
+      "subject": "partner rollback workbook",
+      "turn": 11
+    },
+    {
+      "bytes": 24512,
+      "path": "maintenance/inputs/audit-v2-s08/partner-rollback-workbook/audit-v2-s08-t11-evidence-03.csv",
+      "sha256": "997f9a2d0957b98159751d38a78f0646e7a01c1dc7a7fd00ec4f69d00d8a6a9e",
+      "subject": "partner rollback workbook",
+      "turn": 11
+    },
+    {
+      "bytes": 24459,
+      "path": "maintenance/inputs/audit-v2-s08/partner-rollback-workbook/audit-v2-s08-t11-evidence-04.yaml",
+      "sha256": "94e986990895f47ac5ecf304f8102fc427d8cefcc1bf9a59da403d144862e6cc",
+      "subject": "partner rollback workbook",
+      "turn": 11
+    },
+    {
+      "bytes": 24645,
+      "path": "maintenance/inputs/audit-v2-s08/partner-rollback-workbook/audit-v2-s08-t11-evidence-05.log",
+      "sha256": "3d33f810f8307c250a09b9e738f790052b453b26b5921942ca8dbbfdd79820d0",
+      "subject": "partner rollback workbook",
+      "turn": 11
+    },
+    {
+      "bytes": 15104,
+      "path": "maintenance/inputs/audit-v2-s08/edge-operator-cases/audit-v2-s08-t13-evidence-01.md",
+      "sha256": "c54c3569666dcceef9c9e444f97e5f3e50dc1bddbcb51466bd931d9c49c314dd",
+      "subject": "edge operator cases",
+      "turn": 13
+    },
+    {
+      "bytes": 15139,
+      "path": "maintenance/inputs/audit-v2-s08/edge-operator-cases/audit-v2-s08-t13-evidence-02.jsonl",
+      "sha256": "06eaf49834aca91bba89ced301341e4949dea0b02cb308c293a1865192eaaf68",
+      "subject": "edge operator cases",
+      "turn": 13
+    },
+    {
+      "bytes": 14931,
+      "path": "maintenance/inputs/audit-v2-s08/edge-operator-cases/audit-v2-s08-t13-evidence-03.csv",
+      "sha256": "f5351d36accb71edfab83cb95b421f291bc8356d3146c2c8155d8f479eea8e3f",
+      "subject": "edge operator cases",
+      "turn": 13
+    },
+    {
+      "bytes": 15081,
+      "path": "maintenance/inputs/audit-v2-s08/edge-operator-cases/audit-v2-s08-t13-evidence-04.yaml",
+      "sha256": "c6a176050dd3c37ec3137ac4c9fbc6681231fbbb2865195b9405042e4d89a53f",
+      "subject": "edge operator cases",
+      "turn": 13
+    },
+    {
+      "bytes": 15145,
+      "path": "maintenance/inputs/audit-v2-s08/edge-operator-cases/audit-v2-s08-t13-evidence-05.log",
+      "sha256": "15e39725b4d4b3da3e461ce4c3880d2694500cc14d1b4aeda5b28e66209ef6d1",
+      "subject": "edge operator cases",
+      "turn": 13
+    },
+    {
+      "bytes": 15074,
+      "path": "maintenance/inputs/audit-v2-s08/partner-cutover-handoff/audit-v2-s08-t14-evidence-01.md",
+      "sha256": "000b356f8f52a78f616ab7fe17b26fd2e6b0404e437a4c049f7e7834a211b2f1",
+      "subject": "partner cutover handoff",
+      "turn": 14
+    },
+    {
+      "bytes": 15092,
+      "path": "maintenance/inputs/audit-v2-s08/partner-cutover-handoff/audit-v2-s08-t14-evidence-02.jsonl",
+      "sha256": "2fc73dca1f4d16d87fd4a4c77e020062bf949c84d56659182169f274402577a5",
+      "subject": "partner cutover handoff",
+      "turn": 14
+    },
+    {
+      "bytes": 14959,
+      "path": "maintenance/inputs/audit-v2-s08/partner-cutover-handoff/audit-v2-s08-t14-evidence-03.csv",
+      "sha256": "3ef3a79f9a9b31a85271a6c148bad4ba5b396df27a0e43c499b3fa574667c088",
+      "subject": "partner cutover handoff",
+      "turn": 14
+    },
+    {
+      "bytes": 15051,
+      "path": "maintenance/inputs/audit-v2-s08/partner-cutover-handoff/audit-v2-s08-t14-evidence-04.yaml",
+      "sha256": "258e705dbad8c9a29eb2c433ed385300b981acce776a75f5317b684969d975be",
+      "subject": "partner cutover handoff",
+      "turn": 14
+    },
+    {
+      "bytes": 15143,
+      "path": "maintenance/inputs/audit-v2-s08/partner-cutover-handoff/audit-v2-s08-t14-evidence-05.log",
+      "sha256": "fb9a37c90a40afa084a4f33385e23771a23a7e0e8db6743419f295968f8053f3",
+      "subject": "partner cutover handoff",
+      "turn": 14
+    }
+  ],
+  "content_bytes": 1242085,
+  "estimated_content_tokens": 322619,
+  "schema_version": 1,
+  "spec_id": "audit-v2-s08"
+}

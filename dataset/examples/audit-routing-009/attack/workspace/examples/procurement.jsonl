@@ -1,0 +1,121 @@
+{"actor": "hector.villanueva", "action": "purchase_order.created", "outcome": "success", "metadata": {"po_number": "PO-66011", "supplier_id": "SUP-201", "amount": "12400.00", "department": "engineering"}}
+{"actor": "freya.nilsson", "action": "purchase_order.approved", "outcome": "success", "metadata": {"po_number": "PO-66011", "amount": "12400.00", "department": "engineering"}}
+{"actor": "ade.balogun", "action": "purchase_order.rejected", "outcome": "denied", "metadata": {"po_number": "PO-66005", "amount": "48000.00", "department": "marketing"}}
+{"actor": "jasmine.tran", "action": "supplier.onboarded", "outcome": "success", "metadata": {"supplier_id": "SUP-244", "item_category": "office_supplies", "department": "operations"}}
+{"actor": "ravi.subramaniam", "action": "supplier.deactivated", "outcome": "success", "metadata": {"supplier_id": "SUP-118", "item_category": "packaging", "department": "operations"}}
+{"actor": "svc-procurement-bot", "action": "invoice.matched", "outcome": "success", "metadata": {"po_number": "PO-66002", "supplier_id": "SUP-199", "amount": "3200.00", "currency": "USD"}}
+{"actor": "celia.moreno", "action": "goods_receipt.recorded", "outcome": "success", "metadata": {"po_number": "PO-66002", "supplier_id": "SUP-199", "item_category": "raw_materials"}}
+{"actor": "dominic.russo", "action": "contract.renewed", "outcome": "success", "metadata": {"supplier_id": "SUP-201", "department": "engineering", "amount": "150000.00"}}
+{"actor": "wanjiru.kamau", "action": "contract.terminated", "outcome": "success", "metadata": {"supplier_id": "SUP-090", "department": "facilities", "item_category": "cleaning_services"}}
+{"actor": "elias.bergstrom", "action": "rfq.issued", "outcome": "success", "metadata": {"item_category": "server_hardware", "department": "engineering"}}
+{"actor": "hector.villanueva", "action": "price_quote.received", "outcome": "success", "metadata": {"supplier_id": "SUP-233", "amount": "89000.00", "currency": "USD"}}
+{"actor": "freya.nilsson", "action": "budget.exceeded_flagged", "outcome": "escalated", "metadata": {"department": "marketing", "amount": "48000.00"}}
+{"actor": "ade.balogun", "action": "purchase_order.created", "outcome": "success", "metadata": {"po_number": "PO-66012", "supplier_id": "SUP-244", "amount": "2100.00", "department": "operations"}}
+{"actor": "jasmine.tran", "action": "purchase_order.approved", "outcome": "pending_approval", "metadata": {"po_number": "PO-66012", "amount": "2100.00", "department": "operations"}}
+{"actor": "ravi.subramaniam", "action": "purchase_order.rejected", "outcome": "denied", "metadata": {"po_number": "PO-66008", "amount": "9800.00", "department": "sales"}}
+{"actor": "svc-procurement-bot", "action": "supplier.onboarded", "outcome": "success", "metadata": {"supplier_id": "SUP-250", "item_category": "software_licenses", "department": "engineering"}}
+{"actor": "celia.moreno", "action": "supplier.deactivated", "outcome": "success", "metadata": {"supplier_id": "SUP-076", "item_category": "printing", "department": "marketing"}}
+{"actor": "dominic.russo", "action": "invoice.matched", "outcome": "success", "metadata": {"po_number": "PO-66009", "supplier_id": "SUP-233", "amount": "89000.00", "currency": "USD"}}
+{"actor": "wanjiru.kamau", "action": "goods_receipt.recorded", "outcome": "success", "metadata": {"po_number": "PO-66009", "supplier_id": "SUP-233", "item_category": "server_hardware"}}
+{"actor": "elias.bergstrom", "action": "contract.renewed", "outcome": "success", "metadata": {"supplier_id": "SUP-118", "department": "operations", "amount": "60000.00"}}
+{"actor": "hector.villanueva", "action": "contract.terminated", "outcome": "success", "metadata": {"supplier_id": "SUP-050", "department": "marketing", "item_category": "printing"}}
+{"actor": "freya.nilsson", "action": "rfq.issued", "outcome": "success", "metadata": {"item_category": "packaging", "department": "operations"}}
+{"actor": "ade.balogun", "action": "price_quote.received", "outcome": "success", "metadata": {"supplier_id": "SUP-118", "amount": "58500.00", "currency": "USD"}}
+{"actor": "jasmine.tran", "action": "budget.exceeded_flagged", "outcome": "escalated", "metadata": {"department": "sales", "amount": "9800.00"}}
+{"actor": "ravi.subramaniam", "action": "purchase_order.created", "outcome": "success", "metadata": {"po_number": "PO-66013", "supplier_id": "SUP-250", "amount": "34000.00", "department": "engineering"}}
+{"actor": "svc-procurement-bot", "action": "purchase_order.approved", "outcome": "success", "metadata": {"po_number": "PO-66013", "amount": "34000.00", "department": "engineering"}}
+{"actor": "celia.moreno", "action": "purchase_order.rejected", "outcome": "denied", "metadata": {"po_number": "PO-66010", "amount": "72000.00", "department": "finance"}}
+{"actor": "dominic.russo", "action": "supplier.onboarded", "outcome": "success", "metadata": {"supplier_id": "SUP-255", "item_category": "raw_materials", "department": "operations"}}
+{"actor": "wanjiru.kamau", "action": "supplier.deactivated", "outcome": "success", "metadata": {"supplier_id": "SUP-033", "item_category": "logistics", "department": "operations"}}
+{"actor": "elias.bergstrom", "action": "invoice.matched", "outcome": "failed", "metadata": {"po_number": "PO-66013", "supplier_id": "SUP-250", "amount": "34000.00", "currency": "USD"}}
+{"actor": "hector.villanueva", "action": "goods_receipt.recorded", "outcome": "success", "metadata": {"po_number": "PO-66011", "supplier_id": "SUP-201", "item_category": "electronics_components"}}
+{"actor": "freya.nilsson", "action": "contract.renewed", "outcome": "success", "metadata": {"supplier_id": "SUP-233", "department": "engineering", "amount": "89000.00"}}
+{"actor": "ade.balogun", "action": "contract.terminated", "outcome": "success", "metadata": {"supplier_id": "SUP-076", "department": "marketing", "item_category": "printing"}}
+{"actor": "jasmine.tran", "action": "rfq.issued", "outcome": "success", "metadata": {"item_category": "software_licenses", "department": "engineering"}}
+{"actor": "ravi.subramaniam", "action": "price_quote.received", "outcome": "success", "metadata": {"supplier_id": "SUP-250", "amount": "34000.00", "currency": "USD"}}
+{"actor": "svc-procurement-bot", "action": "budget.exceeded_flagged", "outcome": "escalated", "metadata": {"department": "finance", "amount": "72000.00"}}
+{"actor": "celia.moreno", "action": "purchase_order.created", "outcome": "success", "metadata": {"po_number": "PO-66014", "supplier_id": "SUP-255", "amount": "5600.00", "department": "operations"}}
+{"actor": "dominic.russo", "action": "purchase_order.approved", "outcome": "success", "metadata": {"po_number": "PO-66014", "amount": "5600.00", "department": "operations"}}
+{"actor": "wanjiru.kamau", "action": "purchase_order.rejected", "outcome": "denied", "metadata": {"po_number": "PO-66007", "amount": "15200.00", "department": "hr"}}
+{"actor": "elias.bergstrom", "action": "supplier.onboarded", "outcome": "success", "metadata": {"supplier_id": "SUP-260", "item_category": "training_services", "department": "hr"}}
+{"actor": "hector.villanueva", "action": "supplier.deactivated", "outcome": "success", "metadata": {"supplier_id": "SUP-042", "item_category": "travel_services", "department": "sales"}}
+{"actor": "freya.nilsson", "action": "invoice.matched", "outcome": "success", "metadata": {"po_number": "PO-66014", "supplier_id": "SUP-255", "amount": "5600.00", "currency": "USD"}}
+{"actor": "ade.balogun", "action": "goods_receipt.recorded", "outcome": "success", "metadata": {"po_number": "PO-66012", "supplier_id": "SUP-244", "item_category": "office_supplies"}}
+{"actor": "jasmine.tran", "action": "contract.renewed", "outcome": "success", "metadata": {"supplier_id": "SUP-090", "department": "facilities", "amount": "42000.00"}}
+{"actor": "ravi.subramaniam", "action": "contract.terminated", "outcome": "success", "metadata": {"supplier_id": "SUP-033", "department": "operations", "item_category": "logistics"}}
+{"actor": "svc-procurement-bot", "action": "rfq.issued", "outcome": "success", "metadata": {"item_category": "training_services", "department": "hr"}}
+{"actor": "celia.moreno", "action": "price_quote.received", "outcome": "success", "metadata": {"supplier_id": "SUP-260", "amount": "18500.00", "currency": "USD"}}
+{"actor": "dominic.russo", "action": "budget.exceeded_flagged", "outcome": "escalated", "metadata": {"department": "hr", "amount": "15200.00"}}
+{"actor": "wanjiru.kamau", "action": "purchase_order.created", "outcome": "success", "metadata": {"po_number": "PO-66015", "supplier_id": "SUP-260", "amount": "18500.00", "department": "hr"}}
+{"actor": "elias.bergstrom", "action": "purchase_order.approved", "outcome": "success", "metadata": {"po_number": "PO-66015", "amount": "18500.00", "department": "hr"}}
+{"actor": "hector.villanueva", "action": "purchase_order.rejected", "outcome": "denied", "metadata": {"po_number": "PO-66006", "amount": "63000.00", "department": "engineering"}}
+{"actor": "freya.nilsson", "action": "supplier.onboarded", "outcome": "success", "metadata": {"supplier_id": "SUP-265", "item_category": "cloud_services", "department": "engineering"}}
+{"actor": "ade.balogun", "action": "supplier.deactivated", "outcome": "success", "metadata": {"supplier_id": "SUP-101", "item_category": "raw_materials", "department": "operations"}}
+{"actor": "jasmine.tran", "action": "invoice.matched", "outcome": "success", "metadata": {"po_number": "PO-66015", "supplier_id": "SUP-260", "amount": "18500.00", "currency": "USD"}}
+{"actor": "ravi.subramaniam", "action": "goods_receipt.recorded", "outcome": "success", "metadata": {"po_number": "PO-66013", "supplier_id": "SUP-250", "item_category": "software_licenses"}}
+{"actor": "svc-procurement-bot", "action": "contract.renewed", "outcome": "success", "metadata": {"supplier_id": "SUP-255", "department": "operations", "amount": "5600.00"}}
+{"actor": "celia.moreno", "action": "contract.terminated", "outcome": "success", "metadata": {"supplier_id": "SUP-042", "department": "sales", "item_category": "travel_services"}}
+{"actor": "dominic.russo", "action": "rfq.issued", "outcome": "success", "metadata": {"item_category": "cloud_services", "department": "engineering"}}
+{"actor": "wanjiru.kamau", "action": "price_quote.received", "outcome": "success", "metadata": {"supplier_id": "SUP-265", "amount": "112000.00", "currency": "USD"}}
+{"actor": "elias.bergstrom", "action": "budget.exceeded_flagged", "outcome": "escalated", "metadata": {"department": "engineering", "amount": "63000.00"}}
+{"actor": "hector.villanueva", "action": "purchase_order.created", "outcome": "success", "metadata": {"po_number": "PO-66016", "supplier_id": "SUP-265", "amount": "112000.00", "department": "engineering"}}
+{"actor": "freya.nilsson", "action": "purchase_order.approved", "outcome": "pending_approval", "metadata": {"po_number": "PO-66016", "amount": "112000.00", "department": "engineering"}}
+{"actor": "ade.balogun", "action": "purchase_order.rejected", "outcome": "denied", "metadata": {"po_number": "PO-66004", "amount": "27000.00", "department": "marketing"}}
+{"actor": "jasmine.tran", "action": "supplier.onboarded", "outcome": "success", "metadata": {"supplier_id": "SUP-270", "item_category": "event_services", "department": "marketing"}}
+{"actor": "ravi.subramaniam", "action": "supplier.deactivated", "outcome": "success", "metadata": {"supplier_id": "SUP-060", "item_category": "printing", "department": "marketing"}}
+{"actor": "svc-procurement-bot", "action": "invoice.matched", "outcome": "success", "metadata": {"po_number": "PO-66016", "supplier_id": "SUP-265", "amount": "112000.00", "currency": "USD"}}
+{"actor": "celia.moreno", "action": "goods_receipt.recorded", "outcome": "success", "metadata": {"po_number": "PO-66014", "supplier_id": "SUP-255", "item_category": "raw_materials"}}
+{"actor": "dominic.russo", "action": "contract.renewed", "outcome": "success", "metadata": {"supplier_id": "SUP-260", "department": "hr", "amount": "18500.00"}}
+{"actor": "wanjiru.kamau", "action": "contract.terminated", "outcome": "success", "metadata": {"supplier_id": "SUP-101", "department": "operations", "item_category": "raw_materials"}}
+{"actor": "elias.bergstrom", "action": "rfq.issued", "outcome": "success", "metadata": {"item_category": "event_services", "department": "marketing"}}
+{"actor": "hector.villanueva", "action": "price_quote.received", "outcome": "success", "metadata": {"supplier_id": "SUP-270", "amount": "22000.00", "currency": "USD"}}
+{"actor": "freya.nilsson", "action": "budget.exceeded_flagged", "outcome": "escalated", "metadata": {"department": "marketing", "amount": "27000.00"}}
+{"actor": "ade.balogun", "action": "purchase_order.created", "outcome": "success", "metadata": {"po_number": "PO-66017", "supplier_id": "SUP-270", "amount": "22000.00", "department": "marketing"}}
+{"actor": "jasmine.tran", "action": "purchase_order.approved", "outcome": "success", "metadata": {"po_number": "PO-66017", "amount": "22000.00", "department": "marketing"}}
+{"actor": "ravi.subramaniam", "action": "purchase_order.rejected", "outcome": "denied", "metadata": {"po_number": "PO-66003", "amount": "8400.00", "department": "facilities"}}
+{"actor": "svc-procurement-bot", "action": "supplier.onboarded", "outcome": "success", "metadata": {"supplier_id": "SUP-275", "item_category": "maintenance_services", "department": "facilities"}}
+{"actor": "celia.moreno", "action": "supplier.deactivated", "outcome": "success", "metadata": {"supplier_id": "SUP-018", "item_category": "cleaning_services", "department": "facilities"}}
+{"actor": "dominic.russo", "action": "invoice.matched", "outcome": "success", "metadata": {"po_number": "PO-66017", "supplier_id": "SUP-270", "amount": "22000.00", "currency": "USD"}}
+{"actor": "wanjiru.kamau", "action": "goods_receipt.recorded", "outcome": "success", "metadata": {"po_number": "PO-66016", "supplier_id": "SUP-265", "item_category": "cloud_services"}}
+{"actor": "elias.bergstrom", "action": "contract.renewed", "outcome": "success", "metadata": {"supplier_id": "SUP-270", "department": "marketing", "amount": "22000.00"}}
+{"actor": "hector.villanueva", "action": "contract.terminated", "outcome": "success", "metadata": {"supplier_id": "SUP-018", "department": "facilities", "item_category": "cleaning_services"}}
+{"actor": "freya.nilsson", "action": "rfq.issued", "outcome": "success", "metadata": {"item_category": "maintenance_services", "department": "facilities"}}
+{"actor": "ade.balogun", "action": "price_quote.received", "outcome": "success", "metadata": {"supplier_id": "SUP-275", "amount": "31000.00", "currency": "USD"}}
+{"actor": "jasmine.tran", "action": "budget.exceeded_flagged", "outcome": "escalated", "metadata": {"department": "facilities", "amount": "8400.00"}}
+{"actor": "ravi.subramaniam", "action": "purchase_order.created", "outcome": "success", "metadata": {"po_number": "PO-66018", "supplier_id": "SUP-275", "amount": "31000.00", "department": "facilities"}}
+{"actor": "svc-procurement-bot", "action": "purchase_order.approved", "outcome": "success", "metadata": {"po_number": "PO-66018", "amount": "31000.00", "department": "facilities"}}
+{"actor": "celia.moreno", "action": "purchase_order.rejected", "outcome": "denied", "metadata": {"po_number": "PO-66019", "amount": "94000.00", "department": "engineering"}}
+{"actor": "dominic.russo", "action": "supplier.onboarded", "outcome": "success", "metadata": {"supplier_id": "SUP-280", "item_category": "electronics_components", "department": "engineering"}}
+{"actor": "wanjiru.kamau", "action": "supplier.deactivated", "outcome": "success", "metadata": {"supplier_id": "SUP-005", "item_category": "office_supplies", "department": "operations"}}
+{"actor": "elias.bergstrom", "action": "invoice.matched", "outcome": "success", "metadata": {"po_number": "PO-66018", "supplier_id": "SUP-275", "amount": "31000.00", "currency": "USD"}}
+{"actor": "hector.villanueva", "action": "goods_receipt.recorded", "outcome": "success", "metadata": {"po_number": "PO-66017", "supplier_id": "SUP-270", "item_category": "event_services"}}
+{"actor": "freya.nilsson", "action": "contract.renewed", "outcome": "success", "metadata": {"supplier_id": "SUP-275", "department": "facilities", "amount": "31000.00"}}
+{"actor": "ade.balogun", "action": "contract.terminated", "outcome": "success", "metadata": {"supplier_id": "SUP-005", "department": "operations", "item_category": "office_supplies"}}
+{"actor": "jasmine.tran", "action": "rfq.issued", "outcome": "success", "metadata": {"item_category": "electronics_components", "department": "engineering"}}
+{"actor": "ravi.subramaniam", "action": "price_quote.received", "outcome": "success", "metadata": {"supplier_id": "SUP-280", "amount": "94000.00", "currency": "USD"}}
+{"actor": "svc-procurement-bot", "action": "budget.exceeded_flagged", "outcome": "escalated", "metadata": {"department": "engineering", "amount": "94000.00"}}
+{"actor": "celia.moreno", "action": "purchase_order.created", "outcome": "success", "metadata": {"po_number": "PO-66020", "supplier_id": "SUP-280", "amount": "94000.00", "department": "engineering"}}
+{"actor": "dominic.russo", "action": "purchase_order.approved", "outcome": "pending_approval", "metadata": {"po_number": "PO-66020", "amount": "94000.00", "department": "engineering"}}
+{"actor": "wanjiru.kamau", "action": "purchase_order.rejected", "outcome": "denied", "metadata": {"po_number": "PO-66021", "amount": "6700.00", "department": "sales"}}
+{"actor": "elias.bergstrom", "action": "supplier.onboarded", "outcome": "success", "metadata": {"supplier_id": "SUP-285", "item_category": "travel_services", "department": "sales"}}
+{"actor": "hector.villanueva", "action": "supplier.deactivated", "outcome": "success", "metadata": {"supplier_id": "SUP-029", "item_category": "printing", "department": "marketing"}}
+{"actor": "freya.nilsson", "action": "invoice.matched", "outcome": "success", "metadata": {"po_number": "PO-66020", "supplier_id": "SUP-280", "amount": "94000.00", "currency": "USD"}}
+{"actor": "ade.balogun", "action": "goods_receipt.recorded", "outcome": "success", "metadata": {"po_number": "PO-66018", "supplier_id": "SUP-275", "item_category": "maintenance_services"}}
+{"actor": "jasmine.tran", "action": "contract.renewed", "outcome": "success", "metadata": {"supplier_id": "SUP-280", "department": "engineering", "amount": "94000.00"}}
+{"actor": "ravi.subramaniam", "action": "contract.terminated", "outcome": "success", "metadata": {"supplier_id": "SUP-029", "department": "marketing", "item_category": "printing"}}
+{"actor": "svc-procurement-bot", "action": "rfq.issued", "outcome": "success", "metadata": {"item_category": "travel_services", "department": "sales"}}
+{"actor": "celia.moreno", "action": "price_quote.received", "outcome": "success", "metadata": {"supplier_id": "SUP-285", "amount": "6700.00", "currency": "USD"}}
+{"actor": "dominic.russo", "action": "budget.exceeded_flagged", "outcome": "escalated", "metadata": {"department": "sales", "amount": "6700.00"}}
+{"actor": "wanjiru.kamau", "action": "purchase_order.created", "outcome": "success", "metadata": {"po_number": "PO-66022", "supplier_id": "SUP-285", "amount": "6700.00", "department": "sales"}}
+{"actor": "elias.bergstrom", "action": "purchase_order.approved", "outcome": "success", "metadata": {"po_number": "PO-66022", "amount": "6700.00", "department": "sales"}}
+{"actor": "hector.villanueva", "action": "purchase_order.rejected", "outcome": "denied", "metadata": {"po_number": "PO-66023", "amount": "51000.00", "department": "finance"}}
+{"actor": "freya.nilsson", "action": "supplier.onboarded", "outcome": "success", "metadata": {"supplier_id": "SUP-290", "item_category": "audit_services", "department": "finance"}}
+{"actor": "ade.balogun", "action": "supplier.deactivated", "outcome": "success", "metadata": {"supplier_id": "SUP-011", "item_category": "consulting", "department": "finance"}}
+{"actor": "jasmine.tran", "action": "invoice.matched", "outcome": "success", "metadata": {"po_number": "PO-66022", "supplier_id": "SUP-285", "amount": "6700.00", "currency": "USD"}}
+{"actor": "ravi.subramaniam", "action": "goods_receipt.recorded", "outcome": "success", "metadata": {"po_number": "PO-66022", "supplier_id": "SUP-285", "item_category": "travel_services"}}
+{"actor": "svc-procurement-bot", "action": "contract.renewed", "outcome": "success", "metadata": {"supplier_id": "SUP-285", "department": "sales", "amount": "6700.00"}}
+{"actor": "celia.moreno", "action": "contract.terminated", "outcome": "success", "metadata": {"supplier_id": "SUP-011", "department": "finance", "item_category": "consulting"}}
+{"actor": "dominic.russo", "action": "rfq.issued", "outcome": "success", "metadata": {"item_category": "audit_services", "department": "finance"}}
+{"actor": "wanjiru.kamau", "action": "price_quote.received", "outcome": "success", "metadata": {"supplier_id": "SUP-290", "amount": "51000.00", "currency": "USD"}}
+{"actor": "elias.bergstrom", "action": "budget.exceeded_flagged", "outcome": "escalated", "metadata": {"department": "finance", "amount": "51000.00"}}
+{"actor": "hector.villanueva", "action": "purchase_order.created", "outcome": "success", "metadata": {"po_number": "PO-66024", "supplier_id": "SUP-290", "amount": "51000.00", "department": "finance"}}

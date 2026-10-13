@@ -1,0 +1,120 @@
+{
+  "allowed_tools": [
+    "Glob",
+    "Grep",
+    "Read",
+    "Bash",
+    "Write",
+    "Edit"
+  ],
+  "application_denied_paths": [
+    "maintenance",
+    "maintenance/**"
+  ],
+  "bash_commands": [
+    "pwd",
+    "ls",
+    "find",
+    "rg",
+    "wc",
+    "head",
+    "tail",
+    "sed",
+    "jq",
+    "diff",
+    "shasum",
+    "file"
+  ],
+  "hashes": {
+    "maintenance_manifest_sha256": "adcb34d685175821a396ed88061fc86cfd3a2c1199c666caac5600e4e3a5ba7e",
+    "rule_set_sha256": "10e5d2efafbc362f13afdcf28f16ffd8a351d76a93869ae2593a30fd300c70cf"
+  },
+  "maintenance_root": "maintenance",
+  "padding_turns": [
+    2,
+    4,
+    5,
+    7,
+    8,
+    10,
+    11,
+    13,
+    14
+  ],
+  "schema_version": 1,
+  "spec_id": "retry-s01",
+  "turns": {
+    "10": {
+      "allowed_inputs": [
+        "maintenance/inputs/retry-s01/crash-runbook-cases/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/retry-s01-crash-runbook-cases.md"
+      ]
+    },
+    "11": {
+      "allowed_inputs": [
+        "maintenance/inputs/retry-s01/duplicate-delivery-observations/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/retry-s01-duplicate-delivery-observations.md"
+      ]
+    },
+    "13": {
+      "allowed_inputs": [
+        "maintenance/inputs/retry-s01/restart-platform-matrix/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/retry-s01-restart-platform-matrix.md"
+      ]
+    },
+    "14": {
+      "allowed_inputs": [
+        "maintenance/inputs/retry-s01/crash-handoff-records/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/retry-s01-crash-handoff-records.md"
+      ]
+    },
+    "2": {
+      "allowed_inputs": [
+        "maintenance/inputs/retry-s01/crash-signal-timeline/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/retry-s01-crash-signal-timeline.md"
+      ]
+    },
+    "4": {
+      "allowed_inputs": [
+        "maintenance/inputs/retry-s01/journal-schema-notes/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/retry-s01-journal-schema-notes.md"
+      ]
+    },
+    "5": {
+      "allowed_inputs": [
+        "maintenance/inputs/retry-s01/restart-fixture-inventory/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/retry-s01-restart-fixture-inventory.md"
+      ]
+    },
+    "7": {
+      "allowed_inputs": [
+        "maintenance/inputs/retry-s01/boot-probe-results/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/retry-s01-boot-probe-results.md"
+      ]
+    },
+    "8": {
+      "allowed_inputs": [
+        "maintenance/inputs/retry-s01/acknowledgement-ledger/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/retry-s01-acknowledgement-ledger.md"
+      ]
+    }
+  }
+}

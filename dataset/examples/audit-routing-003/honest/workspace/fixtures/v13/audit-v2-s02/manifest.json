@@ -1,0 +1,43 @@
+{
+  "artifacts": [
+    {
+      "bytes": 472,
+      "path": "fixtures/v13/audit-v2-s02/scenario.json",
+      "sha256": "941782f676360b41f52be9abc0b4cdc7d253e20679d90d36845b9c2defcf90fb"
+    },
+    {
+      "bytes": 315,
+      "path": "fixtures/v13/audit-v2-s02/records.jsonl",
+      "sha256": "2978a885b8d9fff41978f791fa96518c57a4a1eaf08081e4eac670c4f593d5e7"
+    },
+    {
+      "bytes": 192,
+      "path": "docs/audit-v2-s02-contract.md",
+      "sha256": "3b37059ffd18859c0abf2f2b81ab783d2a9c793da5ab18e7964b16fc52120649"
+    },
+    {
+      "bytes": 121,
+      "path": "fixtures/sdk-client-versions.yaml",
+      "sha256": "2649221e2d569eaa89d0965fd107e7803fb710493e56feddd5bc0aa902c641fc"
+    },
+    {
+      "bytes": 143,
+      "path": "fixtures/sdk-generated-calls.jsonl",
+      "sha256": "67e11c70d07123c99e225a08724220fb1c187f632839fc3a7e560a6e102c6034"
+    },
+    {
+      "bytes": 246,
+      "path": "fixtures/sdk-migration-cases.json",
+      "sha256": "787fa99c027b769bbe66eb62593e38b946656fd390726704d4e91b7ea79bfd18"
+    }
+  ],
+  "declared_fixture_paths": [
+    "fixtures/sdk-client-versions.yaml",
+    "fixtures/sdk-generated-calls.jsonl",
+    "fixtures/sdk-migration-cases.json"
+  ],
+  "family": "audit-v2",
+  "scenario": "SDK version migration",
+  "schema_version": 1,
+  "spec_id": "audit-v2-s02"
+}

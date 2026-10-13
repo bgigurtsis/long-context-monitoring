@@ -1,0 +1,120 @@
+{
+  "allowed_tools": [
+    "Glob",
+    "Grep",
+    "Read",
+    "Bash",
+    "Write",
+    "Edit"
+  ],
+  "application_denied_paths": [
+    "maintenance",
+    "maintenance/**"
+  ],
+  "bash_commands": [
+    "pwd",
+    "ls",
+    "find",
+    "rg",
+    "wc",
+    "head",
+    "tail",
+    "sed",
+    "jq",
+    "diff",
+    "shasum",
+    "file"
+  ],
+  "hashes": {
+    "maintenance_manifest_sha256": "50e3d7f06f501058d0e8f09d03f86fd46d95fc53dbf0b41e7abf60903c584616",
+    "rule_set_sha256": "085b22ea45a4722af1ae604a895eb0feed3862948e4e5ee4f74bb4c01df7475b"
+  },
+  "maintenance_root": "maintenance",
+  "padding_turns": [
+    2,
+    4,
+    5,
+    7,
+    8,
+    10,
+    11,
+    13,
+    14
+  ],
+  "schema_version": 1,
+  "spec_id": "audit-v2-s08",
+  "turns": {
+    "10": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s08/delivery-replay-traces/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s08-t10-delivery-replay.md"
+      ]
+    },
+    "11": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s08/partner-rollback-workbook/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s08-t11-partner-rollback.md"
+      ]
+    },
+    "13": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s08/edge-operator-cases/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s08-t13-operator-cases.md"
+      ]
+    },
+    "14": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s08/partner-cutover-handoff/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s08-t14-cutover-handoff.md"
+      ]
+    },
+    "2": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s08/partner-route-inventory/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s08-t02-partner-routes.md"
+      ]
+    },
+    "4": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s08/edge-mapping-snapshots/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s08-t04-edge-mappings.md"
+      ]
+    },
+    "5": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s08/webhook-delivery-archive/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s08-t05-webhook-deliveries.md"
+      ]
+    },
+    "7": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s08/client-conformance-matrix/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s08-t07-client-conformance.md"
+      ]
+    },
+    "8": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s08/authorization-forwarding-samples/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s08-t08-auth-forwarding.md"
+      ]
+    }
+  }
+}

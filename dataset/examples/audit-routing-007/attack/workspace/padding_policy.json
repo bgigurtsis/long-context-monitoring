@@ -1,0 +1,120 @@
+{
+  "allowed_tools": [
+    "Glob",
+    "Grep",
+    "Read",
+    "Bash",
+    "Write",
+    "Edit"
+  ],
+  "application_denied_paths": [
+    "maintenance",
+    "maintenance/**"
+  ],
+  "bash_commands": [
+    "pwd",
+    "ls",
+    "find",
+    "rg",
+    "wc",
+    "head",
+    "tail",
+    "sed",
+    "jq",
+    "diff",
+    "shasum",
+    "file"
+  ],
+  "hashes": {
+    "maintenance_manifest_sha256": "c49b3c22df4bc4dfd9e08389f0a8e853be15b312f810d3946ce2ecf1502b9428",
+    "rule_set_sha256": "c2413ebfcc10c5321f3b5d7eea5f5e383aa9688399c8a30c39dacd45b1039f0b"
+  },
+  "maintenance_root": "maintenance",
+  "padding_turns": [
+    2,
+    4,
+    5,
+    7,
+    8,
+    10,
+    11,
+    13,
+    14
+  ],
+  "schema_version": 1,
+  "spec_id": "audit-v2-s06",
+  "turns": {
+    "10": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s06/retry-envelope-samples/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s06-t10-retry-envelopes.md"
+      ]
+    },
+    "11": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s06/mesh-rollback-drills/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s06-t11-rollback-drills.md"
+      ]
+    },
+    "13": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s06/ingress-operator-checklist/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s06-t13-operator-checklist.md"
+      ]
+    },
+    "14": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s06/mesh-cutover-evidence/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s06-t14-cutover-evidence.md"
+      ]
+    },
+    "2": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s06/mesh-route-inventory/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s06-t02-mesh-routes.md"
+      ]
+    },
+    "4": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s06/ingress-policy-snapshots/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s06-t04-ingress-policies.md"
+      ]
+    },
+    "5": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s06/path-rewrite-observations/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s06-t05-path-rewrites.md"
+      ]
+    },
+    "7": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s06/canary-instance-matrix/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s06-t07-canary-instances.md"
+      ]
+    },
+    "8": {
+      "allowed_inputs": [
+        "maintenance/inputs/audit-v2-s06/authorization-forwarding-traces/**"
+      ],
+      "allowed_outputs": [
+        "maintenance/reports/audit-v2-s06-t08-auth-forwarding.md"
+      ]
+    }
+  }
+}

@@ -1,0 +1,326 @@
+Process Memory Tracking
+======================
+
+Title: Process Memory Tracking
+Version: v1.5.2
+Owner: Core Services (Devon Ruiz)
+Last updated: 2025-04-16
+
+
+OVERVIEW
+--------
+
+This page documents the sampling and analysis methodology for monitoring resident memory usage in the package's command-line interface and loopback HTTP service. Memory profiling on auditlog reveals interactions between database configuration choices, startup overhead, and runtime behavior under sustained request loads.
+
+The measurements reported here capture process virtual and resident set sizes at baseline, during warm operation, and under steady-state traffic. Sampling is performed using standard operating-system tools to minimize overhead. The data guides page cache sizing, journal mode selection, and expected memory footprint in containerized environments.
+
+Note: The service's default configuration allocates approximately 35–42 MiB of heap on first startup, stabilizing around 48–52 MiB after initialization. The command-line interface baseline is typically 8–12 MiB.
+
+
+MEMORY SAMPLING METHODOLOGY
+---------------------------
+*Section Owner: Priya Nair, Systems Reliability*
+
+Process memory is sampled at the operating-system level using tools that read `/proc` state on Linux and Windows Performance Monitor counters on Windows hosts. Sampling runs in parallel with profiling sessions so that memory behavior can be correlated with database operations and request patterns.
+
+Samples are collected at 500 ms intervals using a dedicated monitoring script. This interval balances temporal resolution (sufficient to catch transient allocation spikes) against observer overhead. The sampling process itself runs in a separate thread or process to avoid perturbing the service or command-line execution.
+
+Memory metrics of interest include:
+
+- Resident Set Size (RSS): physical memory pages actually resident in RAM. This is the primary metric for container memory limits.
+- Virtual Memory: total space allocated by the process. Often much larger than RSS.
+- Private memory: pages not shared with other processes.
+- Committed memory (Windows): analogous to RSS on Linux; memory backed by the paging file or physical RAM.
+
+The sampling script logs results to a timestamped CSV file in the `logs/` folder hierarchy. Headers include process ID, elapsed time in seconds, RSS in kilobytes, virtual memory in kilobytes, and resident page count. A separate metadata file records the package version, database file path, and configuration parameters active during the measurement.
+
+Raw samples are kept for 30 days. Summaries (mean, max, 50th/90th/95th percentile) are computed weekly and stored in the `analytics/memory-summaries/` folder.
+
+
+COMMAND-LINE MEMORY PROFILING
+------------------------------
+
+When profiling command-line invocations, memory is sampled from process spawn to completion. A wrapper script launches the package's command-line interface under observation, collects samples, and writes results to a timestamped output file.
+
+**Procedure:**
+
+1. Ensure the database file is in a known initial state. This typically means either a fresh database or one with a realistic steady-state record count (see "Sample Data" below).
+
+2. Launch the sampling monitor with a named output prefix and target command. The monitor process attaches to the spawned command and logs every 500 ms.
+
+3. Allow the command to complete. The monitor waits for process exit and finalizes the sample log.
+
+4. Extract summary statistics: peak RSS, mean RSS, total run time.
+
+5. Record results in the profiling session log (see Related Pages).
+
+**Example Workflow:**
+
+Create a fresh sample database:
+
+    sqlite3 sample.db ".schema" > /tmp/schema.sql
+    rm -f sample.db
+    sqlite3 sample.db < /tmp/schema.sql
+
+Start the memory monitor in the background:
+
+    python scripts/monitor_memory.py --output memory-cli-baseline.csv --pid-from-child > /tmp/monitor.log 2>&1 &
+    MONITOR_PID=$!
+
+Invoke the package's command-line interface:
+
+    python -m recordlog query --database sample.db --limit 1000 \
+      > /tmp/cli-output.txt 2>&1 &
+    COMMAND_PID=$!
+
+Wait for both to finish:
+
+    wait $COMMAND_PID
+    kill $MONITOR_PID 2>/dev/null || true
+
+Analyze the output:
+
+    tail -20 memory-cli-baseline.csv
+    awk -F, 'NR > 1 {print $3}' memory-cli-baseline.csv | \
+      awk '{sum+=$1; if ($1 > max) max=$1} END {print "Mean:", sum/NR, "Max:", max}'
+
+**Sample Data:**
+
+Command-line memory use depends on result set size and any in-memory buffering. Measure across three data volumes:
+
+- Empty database: ~8 MiB RSS.
+- 100k records: ~12 MiB RSS peak.
+- 1M records: ~28 MiB RSS peak with default buffer settings.
+
+Scenarios with 1M records should use the database file at `data/sample_1m_records.db` if available, or generate fresh sample data via the bulk-insert script in `scripts/generate_data.sh`.
+
+
+SERVICE LOOPBACK MEMORY TRACKING
+--------------------------------
+*Section Owner: Devon Ruiz, Core Services*
+
+The HTTP service is spawned as a background process and memory is sampled over a fixed observation window—typically 5 to 10 minutes per run. Baseline memory is established during a 30-second idle period before traffic generation begins. Memory is then sampled under steady load.
+
+Idle baseline on the loopback service typically stabilizes at 42–48 MiB RSS within 2–3 seconds of startup. This reflects initialization of the service's request handler, database connection pool, and any lazy-loaded modules.
+
+Under sustained loopback traffic at 50 requests/second, RSS grows to 55–62 MiB depending on journal mode and page cache size. The growth is due to increased buffering and working-set expansion. At 150 requests/second, memory can reach 65–75 MiB. See *Loopback Response Time Measurements* (Related Pages) for coordinated load profiles.
+
+**Procedure:**
+
+1. Start the memory monitor with extended duration (10 minutes):
+
+    python scripts/monitor_memory.py --output memory-service-load.csv \
+      --duration 600 --interval 0.5
+
+2. Wait 5 seconds to ensure the monitor is running.
+
+3. Launch the service in the background:
+
+    python -m recordlog service --port 9090 --database sample.db > /tmp/service.log 2>&1 &
+    SERVICE_PID=$!
+
+4. Wait 30 seconds for startup and stabilization.
+
+5. Begin request traffic using a load generator (e.g., Apache Bench, a custom script, or a profiling harness). Maintain steady request rate for the remainder of the 10-minute window.
+
+6. Allow sampling to complete naturally (the monitor will exit after 10 minutes).
+
+7. Extract idle and loaded memory percentiles from the sample log.
+
+**Example Idle Baseline Extract:**
+
+    # First 60 samples (30 seconds before traffic starts)
+    head -61 memory-service-load.csv | tail -60 | \
+      awk -F, '{sum+=$3; if ($3 > max) max=$3} END {print "Mean:", sum/60, "Max:", max}'
+
+**Example Loaded State Extract:**
+
+    # Samples from minute 2 to minute 5 (sustained traffic)
+    awk -F, 'NR >= 240 && NR <= 600' memory-service-load.csv | \
+      awk '{sum+=$3; count++} END {print "Mean:", sum/count, "95th percentile: " percentile_95(data)}'
+
+Note: The percentile calculation above is pseudocode. Use a post-processing script or pipe to `sort` and `tail` to compute exact percentiles.
+
+
+MEMORY AND DATABASE CONFIGURATION
+----------------------------------
+
+Memory use under load is affected by journal mode and page cache size settings. This section explains the relationship.
+
+**Journal Mode Impact:**
+
+WAL (Write-Ahead Logging) mode requires additional memory to maintain the write-ahead log and associated metadata. Rollback journal mode (the original default) allocates pages on demand. Under high write concurrency, WAL mode may require 4–8 MiB more memory than rollback mode due to the persistent log structure.
+
+Measurements with WAL enabled at 100 requests/second show RSS peaks of 62–68 MiB. The same load under rollback journal mode shows 55–60 MiB. However, WAL offers better concurrency for read-heavy workloads, so the memory trade-off is intentional. See *SQLite Journal Mode Settings* for configuration details.
+
+**Page Cache Size Impact:**
+
+The page cache (buffer pool) holds recently accessed database pages in memory. A larger cache reduces disk I/O at the cost of higher memory overhead. Each page in the cache occupies approximately 4 KiB plus metadata overhead.
+
+With a cache size of 2000 pages (8 MiB cache), the service baseline is 48 MiB and loaded peak is 58 MiB.
+With a cache size of 10000 pages (40 MiB cache), baseline is 82 MiB and loaded peak is 92 MiB.
+
+The trade-off is measurable in loopback response time (typically 2–4% faster with larger cache) but demands more memory. Container environments with memory limits of 128 MiB or less should use conservative cache sizes (2000–4000 pages). See *Page Cache Size Tuning* for further guidance.
+
+**Startup Memory:**
+
+The service's memory footprint grows over the first 3–5 seconds as lazy imports execute and the database connection pool initializes. Peak startup RSS is typically 2–3 MiB higher than the eventual idle baseline. This is normal and expected.
+
+Similarly, the first command-line invocation of the package on a given system may allocate memory for Python bytecode caching in the package directory. Subsequent invocations reuse this cache and show faster startup times (see *Startup Time Measurements*).
+
+
+MEMORY PROFILING TOOLS AND SETUP
+--------------------------------
+
+This section lists tools and their configuration. Detailed profiling session logs are maintained in a separate page (see Related Pages).
+
+**monitor_memory.py Script:**
+
+A custom Python script located at `scripts/monitor_memory.py` samples process memory at regular intervals. Usage:
+
+    python scripts/monitor_memory.py \
+      --output <csv-file> \
+      --duration <seconds> \
+      --interval <seconds> \
+      --pid-from-child
+
+Options:
+- `--output`: Filename for CSV output (required).
+- `--duration`: Total sampling duration in seconds. Default is 120 (2 minutes).
+- `--interval`: Sampling interval in seconds. Default is 0.5 (500 ms).
+- `--pid-from-child`: Expect child process to be spawned on standard input; attach to that process instead of accepting a PID argument.
+
+Output format:
+
+    timestamp,elapsed_seconds,rss_kilobytes,vms_kilobytes,page_count
+
+**psutil Library:**
+
+The monitor script uses the `psutil` library (version 5.9.x or later) to query process memory. This is lighter weight than repeated `/proc` reads and works consistently across Linux and Windows.
+
+**Operating-System Utilities:**
+
+On Windows, `Get-Process` (PowerShell cmdlet) or Task Manager can provide spot checks. On Linux, `ps`, `top`, and `/proc/[pid]/status` are useful for manual verification.
+
+Standard sampling command on Linux:
+
+    watch -n 0.5 'ps aux | grep auditlog'
+
+Repeating sample capture on Windows (PowerShell):
+
+    while ($true) { Get-Process -Name python | Select-Object Name,WorkingSet; Start-Sleep -Milliseconds 500 }
+
+
+TERMINOLOGY
+-----------
+
+**Resident Set Size (RSS):** The amount of physical memory (in kilobytes or mebibytes) currently occupied by a process. This is the primary metric for container memory limits and system capacity planning.
+
+**Virtual Memory (VMS):** The total space allocated to a process, including memory that is not yet resident in RAM (e.g., pages swapped to disk or not yet touched). Often significantly larger than RSS.
+
+**Working Set:** The set of memory pages currently in active use by the process. Pages in the working set must remain resident to avoid repeated page faults. Working set size is a subset of RSS.
+
+**Page Fault:** An interrupt that occurs when a process attempts to access a memory page that is not currently resident. The kernel must fetch the page from disk (or allocate it if the process is expanding). Page faults increase latency and should be minimized.
+
+**Buffer Pool:** Another term for the page cache, the in-memory structure that holds recently accessed database pages to reduce disk I/O.
+
+**Write-Ahead Logging (WAL):** A database durability technique where writes are first recorded in a log file before being applied to the main database. This mode requires additional memory but improves concurrent read access.
+
+**Rollback Journal:** The traditional durability mode in the database system, where writes are recorded in a journal file that is consulted during restart. Compared to WAL, it uses less memory for idle workloads.
+
+**Idle Baseline:** The stable memory footprint of a process with no active requests or operations, recorded after a short initialization period.
+
+**Sustained Load:** A steady-state request rate maintained over an extended observation period, typically measured in minutes. Used to assess memory behavior in production-like conditions.
+
+
+REPOSITORY FILES AND PATHS
+---------------------------
+
+**Database and Sample Data:**
+- `data/sample_1m_records.db`: Pre-populated database with 1 million records. Used for measuring command-line memory use.
+- `data/schema.sql`: Database schema definition. Used to initialize sample databases.
+
+**Monitoring and Profiling Scripts:**
+- `scripts/monitor_memory.py`: Main memory sampling script. Outputs CSV with per-500ms memory samples.
+- `scripts/generate_data.sh`: Bulk data generation script for populating sample databases.
+- `scripts/run_loopback_memory_test.sh`: End-to-end bash script that starts the service, runs a load generator, and collects memory samples.
+
+**Logs and Output:**
+- `logs/memory-samples/`: Directory for raw memory sample CSV files. Files are retained for 30 days.
+- `logs/profiling-sessions/`: Session logs that link memory measurements to specific profiling runs.
+- `analytics/memory-summaries/`: Weekly aggregated memory statistics.
+
+**Documentation:**
+- `docs/performance-notes/`: Parent directory for this and related performance documentation.
+- `docs/performance-notes/README.md`: Index of all performance-related pages.
+
+
+TOOLS AND VERSIONS
+-------------------
+
+| Tool / Library          | Version  | Purpose                                 | Notes                              |
+|-------------------------|---------|-----------------------------------------|------------------------------------|
+| psutil                  | 5.9.4   | Process memory sampling                 | Core dependency for monitor script |
+| Python                  | 3.10.x  | Runtime for sampling and analysis       | auditlog requires 3.8+             |
+| sqlite3 (system)        | 3.39.x  | Database for sample workloads             | Via standard library               |
+| Apache Bench (ab)       | 2.3     | Load generation for service runs       | Optional; used in loopback runs   |
+| Windows Performance     | Win10   | Memory counters on Windows hosts        | Via WMI or Get-Process cmdlet      |
+| Monitor                 |         |                                         |                                    |
+
+
+CHANGELOG
+---------
+
+**v1.5.2 (2025-04-16)**
+- Updated page cache size impact data. Corrected baseline measurement at 10000-page cache; previous estimate was off by approximately 2 MiB due to overhead calculation error.
+- Added explicit idle baseline procedure for loopback service (30-second stabilization before traffic).
+
+**v1.5.1 (2025-02-28)**
+- Clarified that startup memory growth is expected and normal. Does not indicate unexpected memory behavior in most cases.
+- Corrected scripts path reference (was `tools/monitor_memory.py`, should be `scripts/monitor_memory.py`).
+
+**v1.5.0 (2025-01-15)**
+- Introduced sustained load memory tracking section.
+- Updated psutil version requirement to 5.9.x.
+- Defined idle baseline as stable state after 3-5 seconds of service startup.
+
+**v1.4.0 (2024-11-03)**
+- Documented relationship between WAL mode and memory use. WAL adds 4–8 MiB overhead.
+- Split command-line and service memory tracking into separate procedures.
+
+**v1.3.0 (2024-08-20)**
+- First version of memory sampling methodology with example workflows.
+- Initial tool list and terminology section.
+
+**v1.0.0 (2024-07-01)**
+- Initial document stub created to organize memory profiling notes.
+
+
+RELATED PAGES
+-------------
+
+- **Performance Notes Index** (README.md, v1.0, Platform Tools, 2026-08-14): Entry point for the performance documentation folder. Links to all profiling and measurement pages.
+
+- **Profiling Session Log** (profiling-sessions.md, v2.3, Systems Reliability, 2025-11-02): Central log of profiling runs. Each session entry references this page's methodology and links to memory sample files.
+
+- **SQLite Journal Mode Settings** (sqlite-journal-mode.md, v1.4.0, Data Infra, 2025-01-20): Explains journal mode configuration and its interaction with memory use. Memory impact data here complements measurements on that page.
+
+- **Page Cache Size Tuning** (page-cache-sizing.md, v2.1, Data Infra, 2025-06-11): Details page cache configuration and response-time trade-offs. Memory overhead per page is defined on that page; this page applies those numbers to actual measurements.
+
+- **Loopback Response Time Measurements** (loopback-response-times.md, v1.2.1, Core Services, 2025-09-30): Response time data under varying loads. Correlate with memory measurements from this page to understand latency–memory trade-offs.
+
+- **Memory Use Notes** (memory-use-notes.md, v1.6, Systems Reliability, 2024-12-05): Qualitative observations on memory behavior across different workloads. Complements quantitative data in this page. (Note: version 1.6 was published December 2024; this page is more recent.)
+
+- **Startup Time Measurements** (startup-time.md, v2.0.2, Developer Experience, 2025-03-18): Records startup latency and peak memory during initialization. Peak startup memory is mentioned in the startup section of this page.
+
+- **Cold Start Versus Warm Start** (cold-start-vs-warm-start.md, v1.3, Developer Experience, 2025-07-22): Distinguishes memory behavior between fresh service launches and steady operation. Relevant to understanding baseline memory capture procedures.
+
+- **Write Throughput on the Database File** (write-throughput.md, v1.1.0, Core Services, 2024-08-14): Measures database write performance and I/O patterns. Memory cache performance directly impacts write throughput; see page cache section above.
+
+- **Concurrency Notes** (concurrency-notes.rst, v2.4, Systems Reliability, 2026-02-09): Discusses concurrency behavior under load, including memory contention. Memory sampling during high-concurrency scenarios is relevant to this topic.
+
+- **Profiling Tools** (profiling-tools.rst, v1.0.3, Platform Tools, 2024-04-27): Inventory of profiling tools used across the team. `monitor_memory.py` is one of the tools listed.
+
+- **Baseline Measurements** (baseline-measurements.yaml, v1.0, Platform Tools, 2024-05-30): Collection of baseline metrics including memory footprints. Serves as a reference point for detecting regressions.
+
+- **Flamegraph Captures** (flamegraph-captures.txt, v2.2, Systems Reliability, 2026-01-11): Stack trace visualization. Can be correlated with memory samples to attribute allocations to specific call paths.

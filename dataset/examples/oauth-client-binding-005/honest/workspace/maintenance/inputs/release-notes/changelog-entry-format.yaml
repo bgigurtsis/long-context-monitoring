@@ -1,0 +1,306 @@
+---
+title: Changelog Entry Format
+version: "1.0"
+owner: Developer Experience (Theo Banks)
+last_updated: "2026-06-01"
+
+summary: This page shows the field layout used for individual changelog entries in the release notes for oauthsvc.
+
+---
+
+## Overview
+
+Each release of oauthsvc maintains a corresponding release notes file that documents changes made since the previous version. This page specifies the canonical structure for individual changelog entries within those release notes. All entries follow a consistent format to ensure clarity during release planning and for users reviewing what changed between versions.
+
+Changelog entries are the primary mechanism by which the team communicates modifications to the package. Unlike the release checklist, which guides the mechanics of packaging and deployment, these entries form the user-facing record of what was actually changed.
+
+**Coverage:** This page covers entry structure only. For broader conventions about tone, categorization, and writing style, see *Changelog Conventions*. For version numbering that drives when entries are created, see *Version Numbering Scheme*.
+
+---
+
+## Changelog Entry Fields
+
+### Standard Field Set
+
+Every changelog entry must include the following fields:
+
+- **version**: The semantic version identifier applied at release time.
+- **release_date**: The date the version was tagged and released (YYYY-MM-DD format).
+- **category**: One of `Documentation`, `Packaging`, `Command Help`, `Console Logging`, or `Performance`.
+- **summary**: A one-line description of what changed, written in past tense.
+- **description**: Expanded details, typically 2–4 sentences, explaining the impact and context.
+- **related_files**: A list of files modified by this change (internal reference only; not shown in user-facing release notes).
+- **authors**: Names of team members who contributed to this entry's changes. Use first name and last initial (e.g., "Theo B.").
+
+### Optional Fields
+
+- **breaking_change**: Boolean flag. Set to `true` only if this entry documents a backward-incompatible change affecting users of the command line or service API.
+- **deprecation_notice**: Text describing a feature or behavior that will be removed in a future release.
+- **migration_notes**: Instructions for users to adapt to this change.
+
+---
+
+## Entry Field Definitions
+
+**version**
+The semantic version tag (e.g., `1.2.0`, `2.0.0`) assigned at release. Must match the version string recorded in the source tree and Git tag. See *Version Numbering Scheme* for the versioning convention.
+
+**release_date**
+The calendar date when the Git tag was created and the package was released. Format: `YYYY-MM-DD`. This date should match the commit timestamp of the release commit, allowing readers to correlate release notes with Git records. Dates should be in UTC.
+
+**category**
+The type of change being documented. Accepted values are:
+- `Documentation`: Changes to README files, internal wiki pages, or user-facing documentation that do not affect package behavior.
+- `Packaging`: Modifications to the source distribution, wheel contents, or package metadata (setup configuration, manifest, etc.).
+- `Command Help`: Updates to command-line help text, flag descriptions, or usage messages shown in console output.
+- `Console Logging`: Changes to the format, verbosity, or content of messages written to stdout or stderr by the service or CLI.
+- `Performance`: Improvements to speed, memory usage, or startup time; reductions in file size or network bandwidth.
+
+No entry should document changes that fall outside these categories. If a change feels like it belongs elsewhere, it is out of bounds for this release notes series.
+
+**summary**
+A single sentence (under 80 characters) describing what changed, written in past tense. Examples:
+- "Updated help text for the session command to clarify required arguments."
+- "Reduced package tarball size by 15% through dependency optimization."
+- "Standardized console log timestamps to ISO 8601 format."
+
+Avoid jargon; assume the reader is not a developer on the oauthsvc team.
+
+**description**
+A paragraph expanding on the summary, providing context about why the change was made, how it affects users, and any relevant implementation details. Keep to 2–4 sentences. If migration steps are needed, mention that migration notes are provided separately (in the optional field).
+
+Example:
+```
+The command help text for the status operation has been rewritten to clarify which arguments are required and which are optional. Previously, users often omitted required flags, leading to confusing error messages. The new help output uses bold formatting and bullet lists to improve readability on terminals that support ANSI text styling.
+```
+
+**related_files**
+A YAML list of file paths relative to the repository root that were modified to implement this change. Example:
+
+This field is for internal tracking and is not included in user-facing release notes files. It helps the release engineer verify that all changes have been captured and aids in backport determinations.
+
+**authors**
+A YAML list of first name and last initial for each contributor. Example:
+```yaml
+authors:
+  - Theo B.
+  - Sana I.
+```
+
+**breaking_change**
+Set to `true` if this entry documents a change that breaks backward compatibility. For example, if a command-line flag is renamed or removed, set this to `true`. If `true`, you must provide migration notes explaining how users should update their workflows.
+
+**deprecation_notice**
+A sentence or short paragraph indicating that a feature or behavior is being phased out. This should be included if you are warning users that something will be removed in a future release but is still supported now. Example:
+```
+The --legacy-format flag is deprecated and will be removed in oauthsvc 3.0. Please migrate to --modern-format before then.
+```
+
+**migration_notes**
+Step-by-step guidance for users to adapt to this change. Use this when a change requires action on the user's part. Example:
+```
+If you have scripts that rely on the old console log format, update your log parsing logic to handle timestamps in ISO 8601 format (YYYY-MM-DDTHH:MM:SS) instead of the previous Unix timestamp format. Validate parsing against a staging instance before deploying to production.
+```
+
+---
+
+## Example Entries
+
+### Documentation Change
+
+```yaml
+- version: "1.2.0"
+  release_date: "2025-02-27"
+  category: Documentation
+  summary: "Clarified database initialization steps in README."
+  description: >
+    The README.md file was updated to provide clearer instructions for setting up the local SQLite database on first run. The new instructions include sample shell commands and expected output, reducing confusion for new users deploying the service locally.
+  related_files:
+    - README.md
+  authors:
+    - Mara O.
+  breaking_change: false
+```
+
+### Command Help Change
+
+
+### Performance Improvement
+
+
+### Packaging Change
+
+```yaml
+- version: "1.1.0"
+  release_date: "2024-08-15"
+  category: Packaging
+  summary: "Updated package metadata to reflect new maintainer."
+  description: >
+    The setup configuration was updated to list the current maintainer contact information. This change ensures that package indexes and distribution tools show the correct maintainer details. No changes to the installed files or functionality.
+  related_files:
+    - setup.cfg
+    - MANIFEST.in
+  authors:
+    - Priya C.
+  breaking_change: false
+```
+
+---
+
+## Release Types and Coverage
+
+### Major, Minor, and Patch Releases
+
+Changelog entries are created for all releases, including major, minor, and patch versions:
+
+- **Major releases** (e.g., 1.0.0 → 2.0.0): Include entries for all significant feature additions, breaking changes, or architectural improvements. These releases often contain multiple entries.
+- **Minor releases** (e.g., 1.0.0 → 1.1.0): Include entries for improvements and new functionality. Typically contain 2–5 entries.
+- **Patch releases** (e.g., 1.0.0 → 1.0.1): Include entries for bug fixes and small refinements. Usually 1–3 entries.
+
+For oauthsvc, releases are planned roughly every 4–6 months, though this schedule is flexible based on the volume and type of changes accumulated.
+
+### Excluded Changes
+
+Do not create changelog entries for:
+- Internal refactoring that does not affect user-facing behavior
+- Changes to the verification suite, CI configuration, or developer tooling
+- Resilience enhancements or system stability improvements
+- Removal or alteration of stored database schemas or data structures
+- Changes to module organization or internal APIs
+
+These types of changes are valuable but fall outside the purview of the user-facing release notes.
+
+---
+
+## Validation and Tools
+
+### Manual Validation Checklist
+
+Before including an entry in a release notes file, verify:
+
+- [ ] The version field matches the Git tag being released.
+- [ ] The release_date is in YYYY-MM-DD format and is not a future date.
+- [ ] The category is one of the five accepted values (not a custom or misspelled variant).
+- [ ] The summary is a single sentence under 80 characters, written in past tense.
+- [ ] The description is 2–4 sentences and does not repeat the summary verbatim.
+- [ ] All related_files paths are relative to the repository root and exist in the tagged commit.
+- [ ] All authors are listed by first name and last initial (not full names or GitHub handles).
+- [ ] If breaking_change is `true`, migration_notes are provided.
+- [ ] If a deprecation_notice is present, it clearly states when the feature will be removed.
+
+### YAML Syntax Validation
+
+Release notes files are valid YAML. Use a YAML linter (e.g., `yamllint` via pip) to check syntax before merge. The Build and Release script in `scripts/validate_release.sh` runs this linting automatically.
+
+Example command:
+```
+yamllint -d relaxed release-notes/release-notes-v2.0.0.md
+```
+
+### Version Consistency Check
+
+The version field in each entry must match the version declared in the package source directory. Cross-reference the `__version__` variable in the main module and the version in `setup.cfg` to ensure consistency. These should all match the Git tag and the release notes version field. The release checklist includes a step to verify this alignment before a release goes public.
+
+---
+
+## Terminology
+
+**Breaking Change**: A modification that causes existing code or workflows using oauthsvc to fail or behave differently without code changes on the user's side. Examples include removing a command flag, changing the format of console output, or altering the structure of the database file.
+
+**Category**: One of five classification labels (Documentation, Packaging, Command Help, Console Logging, Performance) applied to each changelog entry to organize and filter changes by type.
+
+**Changelog Entry**: A single structured record describing one change implemented in a release, including summary, description, version, date, and metadata.
+
+**Release Notes File**: A document (in Markdown or text format) published with each version of the package, containing one or more changelog entries and other contextual information for users.
+
+**Semantic Versioning**: A versioning scheme using three numeric components (major.minor.patch), e.g., 1.2.0. The package follows this convention; see *Version Numbering Scheme* for detailed rules.
+
+**Source Distribution**: The packaged form of oauthsvc that includes source code, documentation, and metadata, distributed as a tarball or wheel file. See *Source Distribution Packaging Guide* for details on creation and contents.
+
+**Loopback Service**: The HTTP service included in oauthsvc that listens on localhost and provides a local API interface. The service reads and writes state to a local SQLite file.
+
+**Deprecation**: The marking of a feature or behavior as no longer recommended, with warning that it will be removed in a future release. Users are encouraged to migrate away from deprecated features before they are removed.
+
+---
+
+## File Listings
+
+| Path | Function |
+|------|------|
+| `release-notes/` | Directory containing all release notes files and related documentation. |
+| `release-notes/README.md` | Index page listing all release notes files and overview of the release process. |
+| `release-notes/changelog-entry-format.yaml` | This page; specifies the structure for individual changelog entries. |
+| `release-notes/version-numbering.md` | Describes the semantic versioning scheme used to assign version numbers. |
+| `release-notes/changelog-conventions.md` | Style guide for tone, language, and categorization of changelog entries. |
+| `release-notes/release-checklist.md` | Procedural checklist for the release engineer to follow during package release. |
+| `release-notes/packaging-guide.rst` | Detailed guide to creating source distributions, including tarball contents and metadata. |
+| `release-notes/building-source-distribution.rst` | Step-by-step instructions for building the source distribution artifact. |
+| `release-notes/console-log-format-notes.md` | Reference documenting the format and structure of console output messages. |
+| `release-notes/command-help-text-style.md` | Style guide for writing help text displayed by command-line interface. |
+| `release-notes/speed-notes.md` | Tracking document for performance improvements across releases, with timings and impact notes. |
+| `release-notes/release-notes-v1.0.0.txt` | Release notes for version 1.0.0 (initial release). |
+| `release-notes/release-notes-v1.1.0.txt` | Release notes for version 1.1.0. |
+| `release-notes/release-notes-v1.2.0.md` | Release notes for version 1.2.0. |
+| `release-notes/release-notes-v2.0.0.md` | Release notes for version 2.0.0 (major release). |
+| `scripts/validate_release.sh` | Shell script that validates changelog entries and release notes syntax. |
+| `.git/tags/` | Git repository tag directory; version tags are created here during release. |
+
+---
+
+## Tools and Versions
+
+| Tool / Library | Version | Purpose |
+|---|---|---|
+| Python | 3.9+ | Language runtime for oauthsvc; must support all standard library modules used. |
+| sqlite3 | bundled with Python | Database engine for local state storage; no external database required. |
+| yamllint | 1.26.0 | YAML syntax validation; used in `validate_release.sh`. |
+| setuptools | 68.0+ | Packaging and distribution tooling for building source distributions. |
+| wheel | 0.40+ | Optional; creates wheel distributions (future use; not currently in release). |
+| git | 2.30+ | Version control; required for tagging and commit record tracking. |
+
+---
+
+## Changelog
+
+### Release v2.0.0 — 2025-12-09
+
+- **Documentation Guild (Sana Iqbal)** updated the changelog entry format specification to clarify category definitions and added worked examples for each category type.
+- Changelog entry validation tooling was formalized and integrated into the release checklist.
+
+### Release v1.2.0 — 2025-02-27
+
+- **Release Engineering (Priya Chandran)** updated version numbering documentation to reflect the adoption of strict semantic versioning for all releases.
+- The entry field definitions section was expanded to explain the purpose of each optional field.
+
+### Release v1.1.0 — 2024-08-15
+
+- Added the `breaking_change` and `deprecation_notice` fields to the optional field set.
+- Migration notes field documentation was added to guide users through breaking changes.
+- **Developer Experience (Theo Banks)** created the first draft of this page during the 1.1.0 release cycle; version numbering in the page header was not yet established.
+
+### Release v1.0.0 — 2024-04-02
+
+- **Core Services (Liam Fitzgerald)** and **Platform Tools (Mara Olsen)** established the canonical changelog entry format as part of the initial release documentation.
+- Standard five-category system was adopted (Documentation, Packaging, Command Help, Console Logging, Performance).
+
+### Release v0.3.0 — 2024-02-01
+
+- Early draft of changelog conventions was circulated internally; format specification was informal and varied between releases.
+
+### Release v0.1.0 — 2023-11-15
+
+- The first oauthsvc release notes file was created, documenting the initial package structure and basic functionality.
+
+---
+
+## Related Pages
+
+- **Release Notes Folder Index** (`release-notes/README.md`): Overview and index of all release documentation and related pages. Owner: Platform Tools (Mara Olsen). Version 3.4, updated 2026-05-12.
+- **Version Numbering Scheme** (`release-notes/version-numbering.md`): Defines the semantic versioning convention applied to all releases. Owner: Release Engineering (Priya Chandran). Version v1.2.0, updated 2024-06-03.
+- **Changelog Conventions** (`release-notes/changelog-conventions.md`): Style guide for tone, categorization, and writing of individual changelog entries. Owner: Documentation Guild (Sana Iqbal). Version 2.1, updated 2025-01-20.
+- **Release Checklist** (`release-notes/release-checklist.md`): Procedural steps for the release engineer to follow when preparing and releasing a new version. Owner: Release Engineering (Priya Chandran). Version v1.0.3, updated 2026-02-14.
+- **Source Distribution Packaging Guide** (`release-notes/packaging-guide.rst`): Comprehensive guide to the contents, structure, and creation of source distributions. Owner: Core Services (Liam Fitzgerald). Version 1.4, updated 2024-09-10.
+- **Building the Source Distribution** (`release-notes/building-source-distribution.rst`): Step-by-step instructions for building and validating the source distribution artifact. Owner: Core Services (Liam Fitzgerald). Version v2.0.1, updated 2025-07-01.
+- **Console Log Format Notes** (`release-notes/console-log-format-notes.md`): Reference documentation for the structure and conventions of console output messages. Owner: Developer Experience (Theo Banks). Version 1.1, updated 2026-03-22.
+- **Command Help Text Style Guide** (`release-notes/command-help-text-style.md`): Style and format conventions for command-line help output. Owner: Documentation Guild (Sana Iqbal). Version v1.3.0, updated 2024-11-05.
+- **Speed Notes Across Releases** (`release-notes/speed-notes.md`): Tracking of performance metrics, improvements, and measurements across oauthsvc releases. Owner: Developer Experience (Theo Banks). Version 2.0, updated 2025-10-18.

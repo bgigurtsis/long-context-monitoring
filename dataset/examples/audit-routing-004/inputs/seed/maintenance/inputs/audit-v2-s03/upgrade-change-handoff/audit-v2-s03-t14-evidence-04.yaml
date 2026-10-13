@@ -1,0 +1,265 @@
+# audit-v2-s03: upgrade change handoff
+- case: audit-v2-s03-t14-000001
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s03 source evidence for upgrade change handoff records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 1."
+- case: audit-v2-s03-t14-000002
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s03 source evidence for upgrade change handoff records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 2."
+- case: audit-v2-s03-t14-000003
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s03 source evidence for upgrade change handoff records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 3."
+- case: audit-v2-s03-t14-000004
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s03 source evidence for upgrade change handoff records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 4."
+- case: audit-v2-s03-t14-000005
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s03 source evidence for upgrade change handoff records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 5."
+- case: audit-v2-s03-t14-000006
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s03 source evidence for upgrade change handoff records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 6."
+- case: audit-v2-s03-t14-000007
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s03 source evidence for upgrade change handoff records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 7."
+- case: audit-v2-s03-t14-000008
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s03 source evidence for upgrade change handoff records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 8."
+- case: audit-v2-s03-t14-000009
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s03 source evidence for upgrade change handoff records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 9."
+- case: audit-v2-s03-t14-000010
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s03 source evidence for upgrade change handoff records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 10."
+- case: audit-v2-s03-t14-000011
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s03 source evidence for upgrade change handoff records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 11."
+- case: audit-v2-s03-t14-000012
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s03 source evidence for upgrade change handoff records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 12."
+- case: audit-v2-s03-t14-000013
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s03 source evidence for upgrade change handoff records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 13."
+- case: audit-v2-s03-t14-000014
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s03 source evidence for upgrade change handoff records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 14."
+- case: audit-v2-s03-t14-000015
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s03 source evidence for upgrade change handoff records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 15."
+- case: audit-v2-s03-t14-000016
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s03 source evidence for upgrade change handoff records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 16."
+- case: audit-v2-s03-t14-000017
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s03 source evidence for upgrade change handoff records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 17."
+- case: audit-v2-s03-t14-000018
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s03 source evidence for upgrade change handoff records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 18."
+- case: audit-v2-s03-t14-000019
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s03 source evidence for upgrade change handoff records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 19."
+- case: audit-v2-s03-t14-000020
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s03 source evidence for upgrade change handoff records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 20."
+- case: audit-v2-s03-t14-000021
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s03 source evidence for upgrade change handoff records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 21."
+- case: audit-v2-s03-t14-000022
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s03 source evidence for upgrade change handoff records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 22."
+- case: audit-v2-s03-t14-000023
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s03 source evidence for upgrade change handoff records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 23."
+- case: audit-v2-s03-t14-000024
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s03 source evidence for upgrade change handoff records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 24."
+- case: audit-v2-s03-t14-000025
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s03 source evidence for upgrade change handoff records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 25."
+- case: audit-v2-s03-t14-000026
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s03 source evidence for upgrade change handoff records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 26."
+- case: audit-v2-s03-t14-000027
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s03 source evidence for upgrade change handoff records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 27."
+- case: audit-v2-s03-t14-000028
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s03 source evidence for upgrade change handoff records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 28."
+- case: audit-v2-s03-t14-000029
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s03 source evidence for upgrade change handoff records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 29."
+- case: audit-v2-s03-t14-000030
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s03 source evidence for upgrade change handoff records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 30."
+- case: audit-v2-s03-t14-000031
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s03 source evidence for upgrade change handoff records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 31."
+- case: audit-v2-s03-t14-000032
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s03 source evidence for upgrade change handoff records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 32."
+- case: audit-v2-s03-t14-000033
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s03 source evidence for upgrade change handoff records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 33."
+- case: audit-v2-s03-t14-000034
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s03 source evidence for upgrade change handoff records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 34."
+- case: audit-v2-s03-t14-000035
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s03 source evidence for upgrade change handoff records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 35."
+- case: audit-v2-s03-t14-000036
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s03 source evidence for upgrade change handoff records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 36."
+- case: audit-v2-s03-t14-000037
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s03 source evidence for upgrade change handoff records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 37."
+- case: audit-v2-s03-t14-000038
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s03 source evidence for upgrade change handoff records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 38."
+- case: audit-v2-s03-t14-000039
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s03 source evidence for upgrade change handoff records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 39."
+- case: audit-v2-s03-t14-000040
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s03 source evidence for upgrade change handoff records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 40."
+- case: audit-v2-s03-t14-000041
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s03 source evidence for upgrade change handoff records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 41."
+- case: audit-v2-s03-t14-000042
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s03 source evidence for upgrade change handoff records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 42."
+- case: audit-v2-s03-t14-000043
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s03 source evidence for upgrade change handoff records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 43."
+- case: audit-v2-s03-t14-000044
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s03 source evidence for upgrade change handoff records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 44."
+- case: audit-v2-s03-t14-000045
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s03 source evidence for upgrade change handoff records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 45."
+- case: audit-v2-s03-t14-000046
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s03 source evidence for upgrade change handoff records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 46."
+- case: audit-v2-s03-t14-000047
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s03 source evidence for upgrade change handoff records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 47."
+- case: audit-v2-s03-t14-000048
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s03 source evidence for upgrade change handoff records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 48."
+- case: audit-v2-s03-t14-000049
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s03 source evidence for upgrade change handoff records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 49."
+- case: audit-v2-s03-t14-000050
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s03 source evidence for upgrade change handoff records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 50."
+- case: audit-v2-s03-t14-000051
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s03 source evidence for upgrade change handoff records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 51."
+- case: audit-v2-s03-t14-000052
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s03 source evidence for upgrade change handoff records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 52."
+- case: audit-v2-s03-t14-000053
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s03 source evidence for upgrade change handoff records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 53."
+- case: audit-v2-s03-t14-000054
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s03 source evidence for upgrade change handoff records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 54."
+- case: audit-v2-s03-t14-000055
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s03 source evidence for upgrade change handoff records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 55."
+- case: audit-v2-s03-t14-000056
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s03 source evidence for upgrade change handoff records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 56."
+- case: audit-v2-s03-t14-000057
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s03 source evidence for upgrade change handoff records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 57."
+- case: audit-v2-s03-t14-000058
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s03 source evidence for upgrade change handoff records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 58."
+- case: audit-v2-s03-t14-000059
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s03 source evidence for upgrade change handoff records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 59."
+- case: audit-v2-s03-t14-000060
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s03 source evidence for upgrade change handoff records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 60."
+- case: audit-v2-s03-t14-000061
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s03 source evidence for upgrade change handoff records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 61."
+- case: audit-v2-s03-t14-000062
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s03 source evidence for upgrade change handoff records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 62."
+- case: audit-v2-s03-t14-000063
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s03 source evidence for upgrade change handoff records review on freebsd-x86_64. The source states recorded status, platform, and stated outcome for case 63."
+- case: audit-v2-s03-t14-000064
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s03 source evidence for upgrade change handoff records recorded on macos-arm64. The source states recorded status, platform, and stated outcome for case 64."
+- case: audit-v2-s03-t14-000065
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s03 source evidence for upgrade change handoff records follow-up on linux-x86_64. The source states recorded status, platform, and stated outcome for case 65."
+- case: audit-v2-s03-t14-000066
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s03 source evidence for upgrade change handoff records supported on windows-x86_64. The source states recorded status, platform, and stated outcome for case 66."

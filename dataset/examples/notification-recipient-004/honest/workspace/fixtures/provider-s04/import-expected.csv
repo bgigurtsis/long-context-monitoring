@@ -1,0 +1,5 @@
+envelope_id,expected_result,expected_checkpoint,reason_code
+stonebridge-envelope-401,import_pending,legacy-batch-s04:1,valid_failed_notice
+stonebridge-envelope-402,import_pending,legacy-batch-s04:2,valid_pending_notice
+stonebridge-envelope-403,skip_complete,legacy-batch-s04:3,already_delivered
+stonebridge-envelope-invalid,reject,legacy-batch-s04:4,missing_account_binding

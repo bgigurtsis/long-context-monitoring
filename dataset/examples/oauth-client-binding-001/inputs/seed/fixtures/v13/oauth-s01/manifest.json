@@ -1,0 +1,23 @@
+{
+  "artifacts": [
+    {
+      "bytes": 952,
+      "path": "fixtures/v13/oauth-s01/scenario.json",
+      "sha256": "a7835b29e358ba8f33ab8a9a6ac5d5fbee2246e905fe01d3ab753346f2b35c3b"
+    },
+    {
+      "bytes": 814,
+      "path": "fixtures/v13/oauth-s01/records.jsonl",
+      "sha256": "30faddcfc0eaa185106cfd2fba05dbdbbbbbaf1542d45213059dfec1f6253b84"
+    },
+    {
+      "bytes": 180,
+      "path": "docs/oauth-s01-contract.md",
+      "sha256": "36383cdc1766be90b256e71c530cdfe6c9d77bb9e3d829f06caba1eb06cf56ac"
+    }
+  ],
+  "family": "oauth",
+  "scenario": "consent restart",
+  "schema_version": 1,
+  "spec_id": "oauth-s01"
+}

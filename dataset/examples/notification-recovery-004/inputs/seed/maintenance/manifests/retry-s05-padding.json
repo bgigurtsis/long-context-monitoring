@@ -1,0 +1,324 @@
+{
+  "artifact_count": 45,
+  "artifacts": [
+    {
+      "bytes": 42709,
+      "path": "maintenance/inputs/retry-s05/support-role-inventory/retry-s05-t02-evidence-01.md",
+      "sha256": "10d0193e6168feefee45bac9a9142276b952bbc49307ff546dc09863ff47ba26",
+      "subject": "support operator role inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 42751,
+      "path": "maintenance/inputs/retry-s05/support-role-inventory/retry-s05-t02-evidence-02.jsonl",
+      "sha256": "46e0cd5a544ae9b9cff7a919358cd219bb7e09d4b3517943b934049230b3d92b",
+      "subject": "support operator role inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 42786,
+      "path": "maintenance/inputs/retry-s05/support-role-inventory/retry-s05-t02-evidence-03.csv",
+      "sha256": "7845da343227029e53d354d9c344ca27856706d6872862188cd089a72fc240b8",
+      "subject": "support operator role inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 42687,
+      "path": "maintenance/inputs/retry-s05/support-role-inventory/retry-s05-t02-evidence-04.yaml",
+      "sha256": "5541cafcfe3809570273b6586d4100a95a020e2347e2bc4203053d037378c5b6",
+      "subject": "support operator role inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 42805,
+      "path": "maintenance/inputs/retry-s05/support-role-inventory/retry-s05-t02-evidence-05.log",
+      "sha256": "b408ed4ea02c35bb7cd6e0d614986662d6d2ea06eaa9aaa9623c36e2b99d10b3",
+      "subject": "support operator role inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 33929,
+      "path": "maintenance/inputs/retry-s05/ticket-link-samples/retry-s05-t04-evidence-01.md",
+      "sha256": "bbb12300709fd683455d4f7499ca431bc1ccadcc6a2adb27edd12528f4cbd7fd",
+      "subject": "recovery support ticket links",
+      "turn": 4
+    },
+    {
+      "bytes": 33870,
+      "path": "maintenance/inputs/retry-s05/ticket-link-samples/retry-s05-t04-evidence-02.jsonl",
+      "sha256": "0290ca296d47c82d9218a209aebade681e1e4322babf9d7209e93c6b6fe0097a",
+      "subject": "recovery support ticket links",
+      "turn": 4
+    },
+    {
+      "bytes": 33878,
+      "path": "maintenance/inputs/retry-s05/ticket-link-samples/retry-s05-t04-evidence-03.csv",
+      "sha256": "46b72d10fec79023c337af9da14c9a25030a46b0ec267a0a0d2713a23258534d",
+      "subject": "recovery support ticket links",
+      "turn": 4
+    },
+    {
+      "bytes": 33907,
+      "path": "maintenance/inputs/retry-s05/ticket-link-samples/retry-s05-t04-evidence-04.yaml",
+      "sha256": "c3075ee5390484a445e28ea362cc7d3d33c968fd5841dda3ba5c10724946b242",
+      "subject": "recovery support ticket links",
+      "turn": 4
+    },
+    {
+      "bytes": 33937,
+      "path": "maintenance/inputs/retry-s05/ticket-link-samples/retry-s05-t04-evidence-05.log",
+      "sha256": "4b50628f8d4423f83a987d086af9ffc0dc5ea786a76cf717524a3a8f76f020c3",
+      "subject": "recovery support ticket links",
+      "turn": 4
+    },
+    {
+      "bytes": 33774,
+      "path": "maintenance/inputs/retry-s05/operator-fixture-register/retry-s05-t05-evidence-01.md",
+      "sha256": "5dfd0c9c7d3f00bfe2990633cc91cbd19b72c47a197bcd26baba59175fb20146",
+      "subject": "operator retry fixture register",
+      "turn": 5
+    },
+    {
+      "bytes": 33956,
+      "path": "maintenance/inputs/retry-s05/operator-fixture-register/retry-s05-t05-evidence-02.jsonl",
+      "sha256": "c616992e501970a9f8739806ceb089c8b230b4a14386a7da5cb5deec5820cb75",
+      "subject": "operator retry fixture register",
+      "turn": 5
+    },
+    {
+      "bytes": 33829,
+      "path": "maintenance/inputs/retry-s05/operator-fixture-register/retry-s05-t05-evidence-03.csv",
+      "sha256": "fe1a07e61c11db299a171a71101e30e178d031fba5209beb27222c6082edc4e2",
+      "subject": "operator retry fixture register",
+      "turn": 5
+    },
+    {
+      "bytes": 33752,
+      "path": "maintenance/inputs/retry-s05/operator-fixture-register/retry-s05-t05-evidence-04.yaml",
+      "sha256": "9001d9f4a1b40816123054cbdbb50f383c71c8c0070a1c9abed1170ebf388055",
+      "subject": "operator retry fixture register",
+      "turn": 5
+    },
+    {
+      "bytes": 33828,
+      "path": "maintenance/inputs/retry-s05/operator-fixture-register/retry-s05-t05-evidence-05.log",
+      "sha256": "819731c9ee40e51672f0953374086bc83f3aee8010815d09d22e0fec6254747b",
+      "subject": "operator retry fixture register",
+      "turn": 5
+    },
+    {
+      "bytes": 28371,
+      "path": "maintenance/inputs/retry-s05/authorization-probe-results/retry-s05-t07-evidence-01.md",
+      "sha256": "42a5bb2bd507d1012fbc61833643a476678f4ac378e249f0cf3d560eb2704092",
+      "subject": "operator authorization probe results",
+      "turn": 7
+    },
+    {
+      "bytes": 28328,
+      "path": "maintenance/inputs/retry-s05/authorization-probe-results/retry-s05-t07-evidence-02.jsonl",
+      "sha256": "fe6d8d8d9084533dff4f240d9adb247ca31ba567f59e247044259d83a86b6760",
+      "subject": "operator authorization probe results",
+      "turn": 7
+    },
+    {
+      "bytes": 28298,
+      "path": "maintenance/inputs/retry-s05/authorization-probe-results/retry-s05-t07-evidence-03.csv",
+      "sha256": "71c3fb8ed27b6cb58866e03c6b0a4d0907b08ce5b58f2557d619a97517fa0dec",
+      "subject": "operator authorization probe results",
+      "turn": 7
+    },
+    {
+      "bytes": 28349,
+      "path": "maintenance/inputs/retry-s05/authorization-probe-results/retry-s05-t07-evidence-04.yaml",
+      "sha256": "54e0695e0d2b026d9dca90fe70d87454b08c1a44023e01918500fb28b5bd3a5c",
+      "subject": "operator authorization probe results",
+      "turn": 7
+    },
+    {
+      "bytes": 28145,
+      "path": "maintenance/inputs/retry-s05/authorization-probe-results/retry-s05-t07-evidence-05.log",
+      "sha256": "67a7edcde6f4662a678eac8483855cc69c05003763a1ac976100f2c22f88d513",
+      "subject": "operator authorization probe results",
+      "turn": 7
+    },
+    {
+      "bytes": 28366,
+      "path": "maintenance/inputs/retry-s05/ticket-lifecycle-observations/retry-s05-t08-evidence-01.md",
+      "sha256": "d96b4d610708162876ca6b4da3dc47c490de97bbd9f672d1ede4549eb0792d64",
+      "subject": "support ticket lifecycle observations",
+      "turn": 8
+    },
+    {
+      "bytes": 28322,
+      "path": "maintenance/inputs/retry-s05/ticket-lifecycle-observations/retry-s05-t08-evidence-02.jsonl",
+      "sha256": "5cac0917176aead00c018a2ea0ae298b5108fdf0074cc3b5ff01af6b584b2559",
+      "subject": "support ticket lifecycle observations",
+      "turn": 8
+    },
+    {
+      "bytes": 28296,
+      "path": "maintenance/inputs/retry-s05/ticket-lifecycle-observations/retry-s05-t08-evidence-03.csv",
+      "sha256": "cc98e1e90d4adcc22c92fd06c6e99537b9fff7ea3a0bfd5854c58d8d46146887",
+      "subject": "support ticket lifecycle observations",
+      "turn": 8
+    },
+    {
+      "bytes": 28344,
+      "path": "maintenance/inputs/retry-s05/ticket-lifecycle-observations/retry-s05-t08-evidence-04.yaml",
+      "sha256": "ab7eb9d8e65cdf1d600b9e06bd2f570436e8001c4473f6e5c3f5d7a93c0d149a",
+      "subject": "support ticket lifecycle observations",
+      "turn": 8
+    },
+    {
+      "bytes": 28140,
+      "path": "maintenance/inputs/retry-s05/ticket-lifecycle-observations/retry-s05-t08-evidence-05.log",
+      "sha256": "fcc7aa2ec6a50dc27efce0b05a9c6273f1dc9d2acae35f701bbf09b2950b83df",
+      "subject": "support ticket lifecycle observations",
+      "turn": 8
+    },
+    {
+      "bytes": 9126,
+      "path": "maintenance/inputs/retry-s05/operator-runbook-cases/retry-s05-t10-evidence-01.md",
+      "sha256": "ab14dfaf5ba04e68dad726f1d29668bee90c5be30bd1ac1ea842d0e0f98fb022",
+      "subject": "operator retry runbook cases",
+      "turn": 10
+    },
+    {
+      "bytes": 9153,
+      "path": "maintenance/inputs/retry-s05/operator-runbook-cases/retry-s05-t10-evidence-02.jsonl",
+      "sha256": "02cc28d689da1f31e70099dcdb6b67f58c27257db99944de96ea4c747ec5ea61",
+      "subject": "operator retry runbook cases",
+      "turn": 10
+    },
+    {
+      "bytes": 9240,
+      "path": "maintenance/inputs/retry-s05/operator-runbook-cases/retry-s05-t10-evidence-03.csv",
+      "sha256": "1b5929b8a4fe8c4394d7ef1ceb8ace7080ec6854f194201ae897fcf9ba7a9b02",
+      "subject": "operator retry runbook cases",
+      "turn": 10
+    },
+    {
+      "bytes": 9103,
+      "path": "maintenance/inputs/retry-s05/operator-runbook-cases/retry-s05-t10-evidence-04.yaml",
+      "sha256": "4e4327d1f1d54591644d44a9dc23bef58b4492f14eb5203a2f45c8cbecc110f6",
+      "subject": "operator retry runbook cases",
+      "turn": 10
+    },
+    {
+      "bytes": 9217,
+      "path": "maintenance/inputs/retry-s05/operator-runbook-cases/retry-s05-t10-evidence-05.log",
+      "sha256": "71d8c4c95ee5d4805c398cc737c4bd7ff9773fcb43bcfa60229c5cfdd0d2b42d",
+      "subject": "operator retry runbook cases",
+      "turn": 10
+    },
+    {
+      "bytes": 9348,
+      "path": "maintenance/inputs/retry-s05/retry-audit-samples/retry-s05-t11-evidence-01.md",
+      "sha256": "9a44cff81deb30f5282ec79438a283f527196df4f0860f310e8e013bc47f5943",
+      "subject": "operator retry audit samples",
+      "turn": 11
+    },
+    {
+      "bytes": 9120,
+      "path": "maintenance/inputs/retry-s05/retry-audit-samples/retry-s05-t11-evidence-02.jsonl",
+      "sha256": "e06550b43182c891fb5ad56c824b9f86f14b5143db34aeeb753387fffb6eacad",
+      "subject": "operator retry audit samples",
+      "turn": 11
+    },
+    {
+      "bytes": 9199,
+      "path": "maintenance/inputs/retry-s05/retry-audit-samples/retry-s05-t11-evidence-03.csv",
+      "sha256": "20032147f822a63875472f6b8177c1afa0e21d67b0bd0f81952581057fa580b2",
+      "subject": "operator retry audit samples",
+      "turn": 11
+    },
+    {
+      "bytes": 9325,
+      "path": "maintenance/inputs/retry-s05/retry-audit-samples/retry-s05-t11-evidence-04.yaml",
+      "sha256": "4d46748a41e32925a88fd76a28827de9af352e1dc113d0633ae5a00f181cd2e9",
+      "subject": "operator retry audit samples",
+      "turn": 11
+    },
+    {
+      "bytes": 9181,
+      "path": "maintenance/inputs/retry-s05/retry-audit-samples/retry-s05-t11-evidence-05.log",
+      "sha256": "3667a45b47c81ed754eb3629f8e3cef820d882e038f0d00474fae812a1a69c33",
+      "subject": "operator retry audit samples",
+      "turn": 11
+    },
+    {
+      "bytes": 334,
+      "path": "maintenance/inputs/retry-s05/support-platform-notes/retry-s05-t13-evidence-01.md",
+      "sha256": "8f1711b46b9913848c672ef4d2aaa9ec4dae052052e416e1469eccbd20f8a64d",
+      "subject": "support console platform notes",
+      "turn": 13
+    },
+    {
+      "bytes": 278,
+      "path": "maintenance/inputs/retry-s05/support-platform-notes/retry-s05-t13-evidence-02.jsonl",
+      "sha256": "758eef2c92950824d4fb831c095b2fc884cc6d5d3113c5338702d06af928eef9",
+      "subject": "support console platform notes",
+      "turn": 13
+    },
+    {
+      "bytes": 261,
+      "path": "maintenance/inputs/retry-s05/support-platform-notes/retry-s05-t13-evidence-03.csv",
+      "sha256": "b9e58601ee8c526ccf5063e11ef12318ca9bbbc297f067a5b84c28bdb9bed103",
+      "subject": "support console platform notes",
+      "turn": 13
+    },
+    {
+      "bytes": 311,
+      "path": "maintenance/inputs/retry-s05/support-platform-notes/retry-s05-t13-evidence-04.yaml",
+      "sha256": "fdbaac73ffa85f9ab9c5074370949610708e9a8de66703721bbaef0d8422b41c",
+      "subject": "support console platform notes",
+      "turn": 13
+    },
+    {
+      "bytes": 321,
+      "path": "maintenance/inputs/retry-s05/support-platform-notes/retry-s05-t13-evidence-05.log",
+      "sha256": "6292939ac5d80c7526111ea3af70585bc6d70d58f3cc7a8036eb8a5afc60302b",
+      "subject": "support console platform notes",
+      "turn": 13
+    },
+    {
+      "bytes": 330,
+      "path": "maintenance/inputs/retry-s05/support-release-handoff/retry-s05-t14-evidence-01.md",
+      "sha256": "80404d6a33339aef45744f285c75c0ecec8b8d932aa70263da6891facf27589d",
+      "subject": "operator retry release handoff",
+      "turn": 14
+    },
+    {
+      "bytes": 274,
+      "path": "maintenance/inputs/retry-s05/support-release-handoff/retry-s05-t14-evidence-02.jsonl",
+      "sha256": "508324729520e282be6c9dbb764653214511dd2f47c34b10153004abb0f8a453",
+      "subject": "operator retry release handoff",
+      "turn": 14
+    },
+    {
+      "bytes": 257,
+      "path": "maintenance/inputs/retry-s05/support-release-handoff/retry-s05-t14-evidence-03.csv",
+      "sha256": "760f7354b69e50e359da5453b83f6525fadbe4573d6fc06fec57d1a6d78cd662",
+      "subject": "operator retry release handoff",
+      "turn": 14
+    },
+    {
+      "bytes": 307,
+      "path": "maintenance/inputs/retry-s05/support-release-handoff/retry-s05-t14-evidence-04.yaml",
+      "sha256": "71112644b7f5a878a73c43311b71eb0b6fae6cc3789a0a89f7578afa9ac2c4e4",
+      "subject": "operator retry release handoff",
+      "turn": 14
+    },
+    {
+      "bytes": 317,
+      "path": "maintenance/inputs/retry-s05/support-release-handoff/retry-s05-t14-evidence-05.log",
+      "sha256": "4827d97f95938b740bcf1f657f8cf240a0c7f36bac9dfc0c4dbc3e8e4302a1cd",
+      "subject": "operator retry release handoff",
+      "turn": 14
+    }
+  ],
+  "content_bytes": 930359,
+  "estimated_content_tokens": 241652,
+  "schema_version": 1,
+  "spec_id": "retry-s05"
+}

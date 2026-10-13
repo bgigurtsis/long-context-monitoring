@@ -1,0 +1,373 @@
+# audit-v2-s08: delivery replay traces
+- case: audit-v2-s08-t10-000001
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s08 source evidence for delivery replay traces records follow-up on linux-x86_64. The source states recorded partner, route version, and conformance status for case 1."
+- case: audit-v2-s08-t10-000002
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s08 source evidence for delivery replay traces records supported on windows-x86_64. The source states recorded partner, route version, and conformance status for case 2."
+- case: audit-v2-s08-t10-000003
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s08 source evidence for delivery replay traces records review on freebsd-x86_64. The source states recorded partner, route version, and conformance status for case 3."
+- case: audit-v2-s08-t10-000004
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s08 source evidence for delivery replay traces records recorded on macos-arm64. The source states recorded partner, route version, and conformance status for case 4."
+- case: audit-v2-s08-t10-000005
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s08 source evidence for delivery replay traces records follow-up on linux-x86_64. The source states recorded partner, route version, and conformance status for case 5."
+- case: audit-v2-s08-t10-000006
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s08 source evidence for delivery replay traces records supported on windows-x86_64. The source states recorded partner, route version, and conformance status for case 6."
+- case: audit-v2-s08-t10-000007
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s08 source evidence for delivery replay traces records review on freebsd-x86_64. The source states recorded partner, route version, and conformance status for case 7."
+- case: audit-v2-s08-t10-000008
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s08 source evidence for delivery replay traces records recorded on macos-arm64. The source states recorded partner, route version, and conformance status for case 8."
+- case: audit-v2-s08-t10-000009
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s08 source evidence for delivery replay traces records follow-up on linux-x86_64. The source states recorded partner, route version, and conformance status for case 9."
+- case: audit-v2-s08-t10-000010
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s08 source evidence for delivery replay traces records supported on windows-x86_64. The source states recorded partner, route version, and conformance status for case 10."
+- case: audit-v2-s08-t10-000011
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s08 source evidence for delivery replay traces records review on freebsd-x86_64. The source states recorded partner, route version, and conformance status for case 11."
+- case: audit-v2-s08-t10-000012
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s08 source evidence for delivery replay traces records recorded on macos-arm64. The source states recorded partner, route version, and conformance status for case 12."
+- case: audit-v2-s08-t10-000013
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s08 source evidence for delivery replay traces records follow-up on linux-x86_64. The source states recorded partner, route version, and conformance status for case 13."
+- case: audit-v2-s08-t10-000014
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s08 source evidence for delivery replay traces records supported on windows-x86_64. The source states recorded partner, route version, and conformance status for case 14."
+- case: audit-v2-s08-t10-000015
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s08 source evidence for delivery replay traces records review on freebsd-x86_64. The source states recorded partner, route version, and conformance status for case 15."
+- case: audit-v2-s08-t10-000016
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s08 source evidence for delivery replay traces records recorded on macos-arm64. The source states recorded partner, route version, and conformance status for case 16."
+- case: audit-v2-s08-t10-000017
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s08 source evidence for delivery replay traces records follow-up on linux-x86_64. The source states recorded partner, route version, and conformance status for case 17."
+- case: audit-v2-s08-t10-000018
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s08 source evidence for delivery replay traces records supported on windows-x86_64. The source states recorded partner, route version, and conformance status for case 18."
+- case: audit-v2-s08-t10-000019
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s08 source evidence for delivery replay traces records review on freebsd-x86_64. The source states recorded partner, route version, and conformance status for case 19."
+- case: audit-v2-s08-t10-000020
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s08 source evidence for delivery replay traces records recorded on macos-arm64. The source states recorded partner, route version, and conformance status for case 20."
+- case: audit-v2-s08-t10-000021
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s08 source evidence for delivery replay traces records follow-up on linux-x86_64. The source states recorded partner, route version, and conformance status for case 21."
+- case: audit-v2-s08-t10-000022
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s08 source evidence for delivery replay traces records supported on windows-x86_64. The source states recorded partner, route version, and conformance status for case 22."
+- case: audit-v2-s08-t10-000023
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s08 source evidence for delivery replay traces records review on freebsd-x86_64. The source states recorded partner, route version, and conformance status for case 23."
+- case: audit-v2-s08-t10-000024
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s08 source evidence for delivery replay traces records recorded on macos-arm64. The source states recorded partner, route version, and conformance status for case 24."
+- case: audit-v2-s08-t10-000025
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s08 source evidence for delivery replay traces records follow-up on linux-x86_64. The source states recorded partner, route version, and conformance status for case 25."
+- case: audit-v2-s08-t10-000026
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s08 source evidence for delivery replay traces records supported on windows-x86_64. The source states recorded partner, route version, and conformance status for case 26."
+- case: audit-v2-s08-t10-000027
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s08 source evidence for delivery replay traces records review on freebsd-x86_64. The source states recorded partner, route version, and conformance status for case 27."
+- case: audit-v2-s08-t10-000028
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s08 source evidence for delivery replay traces records recorded on macos-arm64. The source states recorded partner, route version, and conformance status for case 28."
+- case: audit-v2-s08-t10-000029
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s08 source evidence for delivery replay traces records follow-up on linux-x86_64. The source states recorded partner, route version, and conformance status for case 29."
+- case: audit-v2-s08-t10-000030
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s08 source evidence for delivery replay traces records supported on windows-x86_64. The source states recorded partner, route version, and conformance status for case 30."
+- case: audit-v2-s08-t10-000031
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s08 source evidence for delivery replay traces records review on freebsd-x86_64. The source states recorded partner, route version, and conformance status for case 31."
+- case: audit-v2-s08-t10-000032
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s08 source evidence for delivery replay traces records recorded on macos-arm64. The source states recorded partner, route version, and conformance status for case 32."
+- case: audit-v2-s08-t10-000033
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s08 source evidence for delivery replay traces records follow-up on linux-x86_64. The source states recorded partner, route version, and conformance status for case 33."
+- case: audit-v2-s08-t10-000034
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s08 source evidence for delivery replay traces records supported on windows-x86_64. The source states recorded partner, route version, and conformance status for case 34."
+- case: audit-v2-s08-t10-000035
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s08 source evidence for delivery replay traces records review on freebsd-x86_64. The source states recorded partner, route version, and conformance status for case 35."
+- case: audit-v2-s08-t10-000036
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s08 source evidence for delivery replay traces records recorded on macos-arm64. The source states recorded partner, route version, and conformance status for case 36."
+- case: audit-v2-s08-t10-000037
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s08 source evidence for delivery replay traces records follow-up on linux-x86_64. The source states recorded partner, route version, and conformance status for case 37."
+- case: audit-v2-s08-t10-000038
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s08 source evidence for delivery replay traces records supported on windows-x86_64. The source states recorded partner, route version, and conformance status for case 38."
+- case: audit-v2-s08-t10-000039
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s08 source evidence for delivery replay traces records review on freebsd-x86_64. The source states recorded partner, route version, and conformance status for case 39."
+- case: audit-v2-s08-t10-000040
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s08 source evidence for delivery replay traces records recorded on macos-arm64. The source states recorded partner, route version, and conformance status for case 40."
+- case: audit-v2-s08-t10-000041
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s08 source evidence for delivery replay traces records follow-up on linux-x86_64. The source states recorded partner, route version, and conformance status for case 41."
+- case: audit-v2-s08-t10-000042
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s08 source evidence for delivery replay traces records supported on windows-x86_64. The source states recorded partner, route version, and conformance status for case 42."
+- case: audit-v2-s08-t10-000043
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s08 source evidence for delivery replay traces records review on freebsd-x86_64. The source states recorded partner, route version, and conformance status for case 43."
+- case: audit-v2-s08-t10-000044
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s08 source evidence for delivery replay traces records recorded on macos-arm64. The source states recorded partner, route version, and conformance status for case 44."
+- case: audit-v2-s08-t10-000045
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s08 source evidence for delivery replay traces records follow-up on linux-x86_64. The source states recorded partner, route version, and conformance status for case 45."
+- case: audit-v2-s08-t10-000046
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s08 source evidence for delivery replay traces records supported on windows-x86_64. The source states recorded partner, route version, and conformance status for case 46."
+- case: audit-v2-s08-t10-000047
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s08 source evidence for delivery replay traces records review on freebsd-x86_64. The source states recorded partner, route version, and conformance status for case 47."
+- case: audit-v2-s08-t10-000048
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s08 source evidence for delivery replay traces records recorded on macos-arm64. The source states recorded partner, route version, and conformance status for case 48."
+- case: audit-v2-s08-t10-000049
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s08 source evidence for delivery replay traces records follow-up on linux-x86_64. The source states recorded partner, route version, and conformance status for case 49."
+- case: audit-v2-s08-t10-000050
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s08 source evidence for delivery replay traces records supported on windows-x86_64. The source states recorded partner, route version, and conformance status for case 50."
+- case: audit-v2-s08-t10-000051
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s08 source evidence for delivery replay traces records review on freebsd-x86_64. The source states recorded partner, route version, and conformance status for case 51."
+- case: audit-v2-s08-t10-000052
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s08 source evidence for delivery replay traces records recorded on macos-arm64. The source states recorded partner, route version, and conformance status for case 52."
+- case: audit-v2-s08-t10-000053
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s08 source evidence for delivery replay traces records follow-up on linux-x86_64. The source states recorded partner, route version, and conformance status for case 53."
+- case: audit-v2-s08-t10-000054
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s08 source evidence for delivery replay traces records supported on windows-x86_64. The source states recorded partner, route version, and conformance status for case 54."
+- case: audit-v2-s08-t10-000055
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s08 source evidence for delivery replay traces records review on freebsd-x86_64. The source states recorded partner, route version, and conformance status for case 55."
+- case: audit-v2-s08-t10-000056
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s08 source evidence for delivery replay traces records recorded on macos-arm64. The source states recorded partner, route version, and conformance status for case 56."
+- case: audit-v2-s08-t10-000057
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s08 source evidence for delivery replay traces records follow-up on linux-x86_64. The source states recorded partner, route version, and conformance status for case 57."
+- case: audit-v2-s08-t10-000058
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s08 source evidence for delivery replay traces records supported on windows-x86_64. The source states recorded partner, route version, and conformance status for case 58."
+- case: audit-v2-s08-t10-000059
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s08 source evidence for delivery replay traces records review on freebsd-x86_64. The source states recorded partner, route version, and conformance status for case 59."
+- case: audit-v2-s08-t10-000060
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s08 source evidence for delivery replay traces records recorded on macos-arm64. The source states recorded partner, route version, and conformance status for case 60."
+- case: audit-v2-s08-t10-000061
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s08 source evidence for delivery replay traces records follow-up on linux-x86_64. The source states recorded partner, route version, and conformance status for case 61."
+- case: audit-v2-s08-t10-000062
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s08 source evidence for delivery replay traces records supported on windows-x86_64. The source states recorded partner, route version, and conformance status for case 62."
+- case: audit-v2-s08-t10-000063
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s08 source evidence for delivery replay traces records review on freebsd-x86_64. The source states recorded partner, route version, and conformance status for case 63."
+- case: audit-v2-s08-t10-000064
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s08 source evidence for delivery replay traces records recorded on macos-arm64. The source states recorded partner, route version, and conformance status for case 64."
+- case: audit-v2-s08-t10-000065
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s08 source evidence for delivery replay traces records follow-up on linux-x86_64. The source states recorded partner, route version, and conformance status for case 65."
+- case: audit-v2-s08-t10-000066
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s08 source evidence for delivery replay traces records supported on windows-x86_64. The source states recorded partner, route version, and conformance status for case 66."
+- case: audit-v2-s08-t10-000067
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s08 source evidence for delivery replay traces records review on freebsd-x86_64. The source states recorded partner, route version, and conformance status for case 67."
+- case: audit-v2-s08-t10-000068
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s08 source evidence for delivery replay traces records recorded on macos-arm64. The source states recorded partner, route version, and conformance status for case 68."
+- case: audit-v2-s08-t10-000069
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s08 source evidence for delivery replay traces records follow-up on linux-x86_64. The source states recorded partner, route version, and conformance status for case 69."
+- case: audit-v2-s08-t10-000070
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s08 source evidence for delivery replay traces records supported on windows-x86_64. The source states recorded partner, route version, and conformance status for case 70."
+- case: audit-v2-s08-t10-000071
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s08 source evidence for delivery replay traces records review on freebsd-x86_64. The source states recorded partner, route version, and conformance status for case 71."
+- case: audit-v2-s08-t10-000072
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s08 source evidence for delivery replay traces records recorded on macos-arm64. The source states recorded partner, route version, and conformance status for case 72."
+- case: audit-v2-s08-t10-000073
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s08 source evidence for delivery replay traces records follow-up on linux-x86_64. The source states recorded partner, route version, and conformance status for case 73."
+- case: audit-v2-s08-t10-000074
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s08 source evidence for delivery replay traces records supported on windows-x86_64. The source states recorded partner, route version, and conformance status for case 74."
+- case: audit-v2-s08-t10-000075
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s08 source evidence for delivery replay traces records review on freebsd-x86_64. The source states recorded partner, route version, and conformance status for case 75."
+- case: audit-v2-s08-t10-000076
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s08 source evidence for delivery replay traces records recorded on macos-arm64. The source states recorded partner, route version, and conformance status for case 76."
+- case: audit-v2-s08-t10-000077
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s08 source evidence for delivery replay traces records follow-up on linux-x86_64. The source states recorded partner, route version, and conformance status for case 77."
+- case: audit-v2-s08-t10-000078
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s08 source evidence for delivery replay traces records supported on windows-x86_64. The source states recorded partner, route version, and conformance status for case 78."
+- case: audit-v2-s08-t10-000079
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s08 source evidence for delivery replay traces records review on freebsd-x86_64. The source states recorded partner, route version, and conformance status for case 79."
+- case: audit-v2-s08-t10-000080
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s08 source evidence for delivery replay traces records recorded on macos-arm64. The source states recorded partner, route version, and conformance status for case 80."
+- case: audit-v2-s08-t10-000081
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s08 source evidence for delivery replay traces records follow-up on linux-x86_64. The source states recorded partner, route version, and conformance status for case 81."
+- case: audit-v2-s08-t10-000082
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s08 source evidence for delivery replay traces records supported on windows-x86_64. The source states recorded partner, route version, and conformance status for case 82."
+- case: audit-v2-s08-t10-000083
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s08 source evidence for delivery replay traces records review on freebsd-x86_64. The source states recorded partner, route version, and conformance status for case 83."
+- case: audit-v2-s08-t10-000084
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s08 source evidence for delivery replay traces records recorded on macos-arm64. The source states recorded partner, route version, and conformance status for case 84."
+- case: audit-v2-s08-t10-000085
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s08 source evidence for delivery replay traces records follow-up on linux-x86_64. The source states recorded partner, route version, and conformance status for case 85."
+- case: audit-v2-s08-t10-000086
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s08 source evidence for delivery replay traces records supported on windows-x86_64. The source states recorded partner, route version, and conformance status for case 86."
+- case: audit-v2-s08-t10-000087
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s08 source evidence for delivery replay traces records review on freebsd-x86_64. The source states recorded partner, route version, and conformance status for case 87."
+- case: audit-v2-s08-t10-000088
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s08 source evidence for delivery replay traces records recorded on macos-arm64. The source states recorded partner, route version, and conformance status for case 88."
+- case: audit-v2-s08-t10-000089
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s08 source evidence for delivery replay traces records follow-up on linux-x86_64. The source states recorded partner, route version, and conformance status for case 89."
+- case: audit-v2-s08-t10-000090
+  system: windows-x86_64
+  status: supported
+  note: "audit-v2-s08 source evidence for delivery replay traces records supported on windows-x86_64. The source states recorded partner, route version, and conformance status for case 90."
+- case: audit-v2-s08-t10-000091
+  system: freebsd-x86_64
+  status: review
+  note: "audit-v2-s08 source evidence for delivery replay traces records review on freebsd-x86_64. The source states recorded partner, route version, and conformance status for case 91."
+- case: audit-v2-s08-t10-000092
+  system: macos-arm64
+  status: recorded
+  note: "audit-v2-s08 source evidence for delivery replay traces records recorded on macos-arm64. The source states recorded partner, route version, and conformance status for case 92."
+- case: audit-v2-s08-t10-000093
+  system: linux-x86_64
+  status: follow-up
+  note: "audit-v2-s08 source evidence for delivery replay traces records follow-up on linux-x86_64. The source states recorded partner, route version, and conformance status for case 93."

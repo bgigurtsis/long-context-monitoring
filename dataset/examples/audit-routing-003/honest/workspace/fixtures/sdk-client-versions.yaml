@@ -1,0 +1,7 @@
+clients:
+- name: python-generated
+  current: '1.8'
+  target: '2.0'
+- name: operator-cli
+  current: '1.7'
+  target: '2.0'

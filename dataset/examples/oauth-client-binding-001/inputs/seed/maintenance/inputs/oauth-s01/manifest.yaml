@@ -1,0 +1,324 @@
+{
+  "artifact_count": 45,
+  "artifacts": [
+    {
+      "bytes": 35132,
+      "path": "maintenance/inputs/oauth-s01/browser-consent-telemetry/oauth-s01-t02-evidence-01.md",
+      "sha256": "f37b1aec51eb94d3fc7dfd0ddaff2a512722fa2f9e39b404ade80e06636153e9",
+      "subject": "browser consent telemetry inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 35196,
+      "path": "maintenance/inputs/oauth-s01/browser-consent-telemetry/oauth-s01-t02-evidence-02.jsonl",
+      "sha256": "17e3a244d161fccf916e132571abaf762c7d60c2ffa3cefb93bad37f12bb1e71",
+      "subject": "browser consent telemetry inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 35187,
+      "path": "maintenance/inputs/oauth-s01/browser-consent-telemetry/oauth-s01-t02-evidence-03.csv",
+      "sha256": "d772b1bfffdb8852993f37814a4aefaeb280daea2582a7ea0a9f482356d2d4b6",
+      "subject": "browser consent telemetry inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 35110,
+      "path": "maintenance/inputs/oauth-s01/browser-consent-telemetry/oauth-s01-t02-evidence-04.yaml",
+      "sha256": "0cd5da22121f7cb0d331a50c9fed78eb75fbb45df11d9befaedf7bb3c1a071d3",
+      "subject": "browser consent telemetry inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 35259,
+      "path": "maintenance/inputs/oauth-s01/browser-consent-telemetry/oauth-s01-t02-evidence-05.log",
+      "sha256": "839be35ee7312062082645ab170f53ed2e41b534537b9c713991a2ebbfb51869",
+      "subject": "browser consent telemetry inventory",
+      "turn": 2
+    },
+    {
+      "bytes": 28714,
+      "path": "maintenance/inputs/oauth-s01/consent-copy-revisions/oauth-s01-t04-evidence-01.md",
+      "sha256": "06032c1dfb86934b46a03e70549796383003f81bf855eda446565a3a859781cf",
+      "subject": "consent copy revision archive",
+      "turn": 4
+    },
+    {
+      "bytes": 28566,
+      "path": "maintenance/inputs/oauth-s01/consent-copy-revisions/oauth-s01-t04-evidence-02.jsonl",
+      "sha256": "f186e57cc87f278e90d36b728b73ff77e651a420976c1368864d1129baa05f28",
+      "subject": "consent copy revision archive",
+      "turn": 4
+    },
+    {
+      "bytes": 28652,
+      "path": "maintenance/inputs/oauth-s01/consent-copy-revisions/oauth-s01-t04-evidence-03.csv",
+      "sha256": "ad31666da10671f5329d9f1fa207f567168088c93b1b9b044376d6bc1f128212",
+      "subject": "consent copy revision archive",
+      "turn": 4
+    },
+    {
+      "bytes": 28692,
+      "path": "maintenance/inputs/oauth-s01/consent-copy-revisions/oauth-s01-t04-evidence-04.yaml",
+      "sha256": "8ae6f0bfbe16d819ee9bf7bb5e3545c7ca2149aa41c80a820e3892f0247a5cd5",
+      "subject": "consent copy revision archive",
+      "turn": 4
+    },
+    {
+      "bytes": 28573,
+      "path": "maintenance/inputs/oauth-s01/consent-copy-revisions/oauth-s01-t04-evidence-05.log",
+      "sha256": "6584585e049dc9ff612cb5a3986c92f9af94ca72fcba78acda9ce7e62fd96010",
+      "subject": "consent copy revision archive",
+      "turn": 4
+    },
+    {
+      "bytes": 28687,
+      "path": "maintenance/inputs/oauth-s01/restart-support-tickets/oauth-s01-t05-evidence-01.md",
+      "sha256": "43d620798fe0986e6ab8a5158458ccfe46d1dc250137ba9b7a95271145d12631",
+      "subject": "browser restart support tickets",
+      "turn": 5
+    },
+    {
+      "bytes": 28782,
+      "path": "maintenance/inputs/oauth-s01/restart-support-tickets/oauth-s01-t05-evidence-02.jsonl",
+      "sha256": "183fbf7c83cf7d39654c38a0a1deb0d2c84026d38be1a1979435463e9da05428",
+      "subject": "browser restart support tickets",
+      "turn": 5
+    },
+    {
+      "bytes": 28687,
+      "path": "maintenance/inputs/oauth-s01/restart-support-tickets/oauth-s01-t05-evidence-03.csv",
+      "sha256": "e51c76a10a127a6b07f62dd7e840ec686ca99c3059cb59ece41db97e911f22e8",
+      "subject": "browser restart support tickets",
+      "turn": 5
+    },
+    {
+      "bytes": 28665,
+      "path": "maintenance/inputs/oauth-s01/restart-support-tickets/oauth-s01-t05-evidence-04.yaml",
+      "sha256": "65ca0f5f83ca4d6ce36dd05f0aa15d5a1f89107e2939822c86354f897d756d57",
+      "subject": "browser restart support tickets",
+      "turn": 5
+    },
+    {
+      "bytes": 28568,
+      "path": "maintenance/inputs/oauth-s01/restart-support-tickets/oauth-s01-t05-evidence-05.log",
+      "sha256": "fae4d0968e6751fa5051dba70d20e2115b378a67cacb5cfe5a59038432fbb9e4",
+      "subject": "browser restart support tickets",
+      "turn": 5
+    },
+    {
+      "bytes": 25156,
+      "path": "maintenance/inputs/oauth-s01/scope-catalog-changes/oauth-s01-t07-evidence-01.md",
+      "sha256": "a66d5a02c1d4b33a87cad1a76e020a146f45dc70e4b0d1b8364ae73b738d3320",
+      "subject": "scope catalog change log",
+      "turn": 7
+    },
+    {
+      "bytes": 25167,
+      "path": "maintenance/inputs/oauth-s01/scope-catalog-changes/oauth-s01-t07-evidence-02.jsonl",
+      "sha256": "bbb6d95365b98c069a2b6e106a81bb319d107a58491673b16b3292590af953df",
+      "subject": "scope catalog change log",
+      "turn": 7
+    },
+    {
+      "bytes": 25158,
+      "path": "maintenance/inputs/oauth-s01/scope-catalog-changes/oauth-s01-t07-evidence-03.csv",
+      "sha256": "c7be481cfec5c722a6d4726838a938e70a89bbb5231814239dc0d351e9479647",
+      "subject": "scope catalog change log",
+      "turn": 7
+    },
+    {
+      "bytes": 25134,
+      "path": "maintenance/inputs/oauth-s01/scope-catalog-changes/oauth-s01-t07-evidence-04.yaml",
+      "sha256": "9637bc75ae71e0dc645e3a13cfc6bdecd8bbbcffc8b5d29f3c90db37579f62b2",
+      "subject": "scope catalog change log",
+      "turn": 7
+    },
+    {
+      "bytes": 25130,
+      "path": "maintenance/inputs/oauth-s01/scope-catalog-changes/oauth-s01-t07-evidence-05.log",
+      "sha256": "67c3a59114e32dbb3fae016c30ac298c726db71cde76a3d388e3bf87bcea1731",
+      "subject": "scope catalog change log",
+      "turn": 7
+    },
+    {
+      "bytes": 25296,
+      "path": "maintenance/inputs/oauth-s01/consent-localization/oauth-s01-t08-evidence-01.md",
+      "sha256": "c961c81167344ccc3fec64a46f76bb5882cd85ee663ede5f5bcf9e0fe0b755aa",
+      "subject": "consent page localization handoff",
+      "turn": 8
+    },
+    {
+      "bytes": 25231,
+      "path": "maintenance/inputs/oauth-s01/consent-localization/oauth-s01-t08-evidence-02.jsonl",
+      "sha256": "f8bf9fa3d29239044ba12450abab93d7cd75781cca7fa0bfcbf34c7a71e85a76",
+      "subject": "consent page localization handoff",
+      "turn": 8
+    },
+    {
+      "bytes": 25279,
+      "path": "maintenance/inputs/oauth-s01/consent-localization/oauth-s01-t08-evidence-03.csv",
+      "sha256": "bc52edb9dfa5e8bdb22aafa1a15bee1a00f247da12da149286d6ce4b16ed1e9b",
+      "subject": "consent page localization handoff",
+      "turn": 8
+    },
+    {
+      "bytes": 25274,
+      "path": "maintenance/inputs/oauth-s01/consent-localization/oauth-s01-t08-evidence-04.yaml",
+      "sha256": "c5a8774f7101d5898e13087d1d1a1bc9f415f0119a09603734651de45f86069a",
+      "subject": "consent page localization handoff",
+      "turn": 8
+    },
+    {
+      "bytes": 25105,
+      "path": "maintenance/inputs/oauth-s01/consent-localization/oauth-s01-t08-evidence-05.log",
+      "sha256": "948740608e9340e42c470af6574dbb326f20b392edadba74ee98d4029a6b4d49",
+      "subject": "consent page localization handoff",
+      "turn": 8
+    },
+    {
+      "bytes": 20847,
+      "path": "maintenance/inputs/oauth-s01/expiry-window-observations/oauth-s01-t10-evidence-01.md",
+      "sha256": "a481931a4b1e8d7f31da00497910c3f8f588f7effd982d26820a176e295c2742",
+      "subject": "expiry window observations",
+      "turn": 10
+    },
+    {
+      "bytes": 20911,
+      "path": "maintenance/inputs/oauth-s01/expiry-window-observations/oauth-s01-t10-evidence-02.jsonl",
+      "sha256": "a090347039ad6d0d7370d35b6f0d4a0e0d8f6f544d41dba7d4c598b357d80299",
+      "subject": "expiry window observations",
+      "turn": 10
+    },
+    {
+      "bytes": 20751,
+      "path": "maintenance/inputs/oauth-s01/expiry-window-observations/oauth-s01-t10-evidence-03.csv",
+      "sha256": "c3fd73a44788578771a7c62afebb10e846c1c892839543b6a672a77c84065441",
+      "subject": "expiry window observations",
+      "turn": 10
+    },
+    {
+      "bytes": 20824,
+      "path": "maintenance/inputs/oauth-s01/expiry-window-observations/oauth-s01-t10-evidence-04.yaml",
+      "sha256": "57a9c7a9811bf46f4c1256dec928f776aec917b3643195ae1340bb3f15609a57",
+      "subject": "expiry window observations",
+      "turn": 10
+    },
+    {
+      "bytes": 20804,
+      "path": "maintenance/inputs/oauth-s01/expiry-window-observations/oauth-s01-t10-evidence-05.log",
+      "sha256": "a4b4ec9c1845a9e0ff0d5af75e39dae30033bd61dcc3f5e8741b8006d5169107",
+      "subject": "expiry window observations",
+      "turn": 10
+    },
+    {
+      "bytes": 20723,
+      "path": "maintenance/inputs/oauth-s01/loopback-browser-matrix/oauth-s01-t11-evidence-01.md",
+      "sha256": "7aa6c44baa725baa012a69e411e304336055f9948ceade7f81bbf44afe3aa0af",
+      "subject": "loopback browser compatibility matrix",
+      "turn": 11
+    },
+    {
+      "bytes": 20701,
+      "path": "maintenance/inputs/oauth-s01/loopback-browser-matrix/oauth-s01-t11-evidence-02.jsonl",
+      "sha256": "564946e9bb46caa576db9f28f122939061fa4fc49c33322e5fbd80c99e45007f",
+      "subject": "loopback browser compatibility matrix",
+      "turn": 11
+    },
+    {
+      "bytes": 20853,
+      "path": "maintenance/inputs/oauth-s01/loopback-browser-matrix/oauth-s01-t11-evidence-03.csv",
+      "sha256": "a2bd5e3edfb8da5867abb945e89b64254caa65567ecbab872e697b2f5ca94822",
+      "subject": "loopback browser compatibility matrix",
+      "turn": 11
+    },
+    {
+      "bytes": 20700,
+      "path": "maintenance/inputs/oauth-s01/loopback-browser-matrix/oauth-s01-t11-evidence-04.yaml",
+      "sha256": "1e533427ab629213b7943fb1af28fbf57bed893945d8b6ee737997f32766f9fd",
+      "subject": "loopback browser compatibility matrix",
+      "turn": 11
+    },
+    {
+      "bytes": 20772,
+      "path": "maintenance/inputs/oauth-s01/loopback-browser-matrix/oauth-s01-t11-evidence-05.log",
+      "sha256": "3276b7ef49589d942a9b3116fc8192ace1b714af66232136c6e6a75a73d9073c",
+      "subject": "loopback browser compatibility matrix",
+      "turn": 11
+    },
+    {
+      "bytes": 6266,
+      "path": "maintenance/inputs/oauth-s01/diagnostics-field-registry/oauth-s01-t13-evidence-01.md",
+      "sha256": "82b13cd389100628cc7e5b70c976bf306e110a1d9534b002110922e7e7b13b64",
+      "subject": "consent diagnostics field registry",
+      "turn": 13
+    },
+    {
+      "bytes": 6195,
+      "path": "maintenance/inputs/oauth-s01/diagnostics-field-registry/oauth-s01-t13-evidence-02.jsonl",
+      "sha256": "1e7300afb2834221fe009656d9315282d0d5ddd7d6a2451560ec1d02cccd6c0b",
+      "subject": "consent diagnostics field registry",
+      "turn": 13
+    },
+    {
+      "bytes": 6190,
+      "path": "maintenance/inputs/oauth-s01/diagnostics-field-registry/oauth-s01-t13-evidence-03.csv",
+      "sha256": "aa78b9298a40921fcc2e69c66c2d3a6e4f8e2f254cd73ab72b23452b9a54900e",
+      "subject": "consent diagnostics field registry",
+      "turn": 13
+    },
+    {
+      "bytes": 6243,
+      "path": "maintenance/inputs/oauth-s01/diagnostics-field-registry/oauth-s01-t13-evidence-04.yaml",
+      "sha256": "5c24292a571db8a9069a1abcb0cf570a11147ffd0e0549d6f18694961a790be7",
+      "subject": "consent diagnostics field registry",
+      "turn": 13
+    },
+    {
+      "bytes": 6226,
+      "path": "maintenance/inputs/oauth-s01/diagnostics-field-registry/oauth-s01-t13-evidence-05.log",
+      "sha256": "360272d27a3b47501e8e0a9d9b34c15e701240dcb445c8a7763a3e6a878b8e03",
+      "subject": "consent diagnostics field registry",
+      "turn": 13
+    },
+    {
+      "bytes": 6241,
+      "path": "maintenance/inputs/oauth-s01/consent-incident-timelines/oauth-s01-t14-evidence-01.md",
+      "sha256": "3dacf6bbc125d97ace00b3c142c63283dfb0dcfcac2abbf0e06efba29889765f",
+      "subject": "consent incident timeline samples",
+      "turn": 14
+    },
+    {
+      "bytes": 6168,
+      "path": "maintenance/inputs/oauth-s01/consent-incident-timelines/oauth-s01-t14-evidence-02.jsonl",
+      "sha256": "93abade0682190b65c7ec60208bd2ed985e149e3b2c1735710352c1065a2f741",
+      "subject": "consent incident timeline samples",
+      "turn": 14
+    },
+    {
+      "bytes": 6159,
+      "path": "maintenance/inputs/oauth-s01/consent-incident-timelines/oauth-s01-t14-evidence-03.csv",
+      "sha256": "14b31c40c3d60bf481b8aebd00d88523c52849ab87ceb6c78388a30c56828f33",
+      "subject": "consent incident timeline samples",
+      "turn": 14
+    },
+    {
+      "bytes": 6218,
+      "path": "maintenance/inputs/oauth-s01/consent-incident-timelines/oauth-s01-t14-evidence-04.yaml",
+      "sha256": "43d732824c93e38c21b3a6bdf8cb3c19d0182bb77c0208bfb1237f4dc0b309e4",
+      "subject": "consent incident timeline samples",
+      "turn": 14
+    },
+    {
+      "bytes": 6202,
+      "path": "maintenance/inputs/oauth-s01/consent-incident-timelines/oauth-s01-t14-evidence-05.log",
+      "sha256": "cc0bede1944bc74bd07b05f71897bb3003bedc2d27349f3c2f50e6367253b9f2",
+      "subject": "consent incident timeline samples",
+      "turn": 14
+    }
+  ],
+  "content_bytes": 984394,
+  "estimated_content_tokens": 255687,
+  "schema_version": 1,
+  "spec_id": "oauth-s01"
+}

@@ -1,0 +1,5 @@
+# retry-s05: support console platform notes
+- case: retry-s05-t13-000001
+  system: windows-x86_64
+  status: recorded
+  note: "retry-s05 source evidence for support console platform notes records recorded on windows-x86_64. The source states client versions, JSON behavior, and loopback constraints for case 1."

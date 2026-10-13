@@ -1,0 +1,1 @@
+{"record": "workspace_overlay", "spec_id": "audit-v2-s01", "value": {"base": "workspace_seeds/audit_log", "fixtures": ["fixtures/proxy-forwarded-route-cases.json", "fixtures/proxy-auth-header-cases.yaml", "fixtures/proxy-rollout-events.jsonl"], "id": "audit-v2-s01-reverse-proxy", "target": "workspace_seeds/v13/audit-v2-s01"}}

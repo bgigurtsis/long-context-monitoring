@@ -1,0 +1,328 @@
+{
+  "artifact_count": 64,
+  "artifacts": [
+    {
+      "bytes": 51031,
+      "path": "maintenance/inputs/architecture-decisions/identity-north-star.md",
+      "sha256": "d4fe2a33ed11a258b71ba3d13a3f8af582d7328aba3efc31afcdcc7ed1521d3c"
+    },
+    {
+      "bytes": 51298,
+      "path": "maintenance/inputs/architecture-decisions/mailbox-blue-harbor.log",
+      "sha256": "e1719007b20f05846ca61da58ce8d0f122293a7b1702547f0d12d10cd800d518"
+    },
+    {
+      "bytes": 51070,
+      "path": "maintenance/inputs/architecture-decisions/request-cedar-lane.jsonl",
+      "sha256": "cf67fbd005f0f6aeed561b87a9adcdf0f3fc1cbac9b7d33c204a5a17bb7213b0"
+    },
+    {
+      "bytes": 51062,
+      "path": "maintenance/inputs/architecture-decisions/restart-quiet-river.yaml",
+      "sha256": "cbdf669e9eb40d2b6422295e2d613406639a2743e893a5c319a69617b9935a64"
+    },
+    {
+      "bytes": 51044,
+      "path": "maintenance/inputs/architecture-decisions/tenant-silver-pine.csv",
+      "sha256": "8201819c6ca88e688f0aab15daa2cb8cf66feaa8e4b4664c2f0c72a29d793d1e"
+    },
+    {
+      "bytes": 24386,
+      "path": "maintenance/inputs/compatibility-handoff/attempt-cedar-lane.log",
+      "sha256": "f599a6ea482e2e4c7ebf91fb3e5dd9b39721f964fbb4d516072acadbc6bc4740"
+    },
+    {
+      "bytes": 24629,
+      "path": "maintenance/inputs/compatibility-handoff/delivery-quiet-river.jsonl",
+      "sha256": "9daac67bdb97ec8a3c30c2756bf9928304d69099da1df20adbe6213205fe61f4"
+    },
+    {
+      "bytes": 24533,
+      "path": "maintenance/inputs/compatibility-handoff/tenant-north-star.csv",
+      "sha256": "f70fa234a6d9b96e8b5d55695058cafa00a8e50fdda5da5a8c6b618b6d0b82b4"
+    },
+    {
+      "bytes": 24511,
+      "path": "maintenance/inputs/compatibility-handoff/token-blue-harbor.md",
+      "sha256": "da74ae07e9fd8de5f3d8b0f098390c914376589572a33af00a14ee92c7d37cfd"
+    },
+    {
+      "bytes": 22350,
+      "path": "maintenance/inputs/current-fixtures/attempt-silver-pine.yaml",
+      "sha256": "8193b22689a0c5e876970a43d99efd9150e32df08fbbfac5aa532a845c40eb80"
+    },
+    {
+      "bytes": 22337,
+      "path": "maintenance/inputs/current-fixtures/delivery-amber-field.csv",
+      "sha256": "a12b5a077c8f5f071278bd56f46b7a06caf538f98ede4633ef4d436fd5aa8bf5"
+    },
+    {
+      "bytes": 22554,
+      "path": "maintenance/inputs/current-fixtures/identity-willow-gate.md",
+      "sha256": "2ffe33e110f0df42440804409c51c0668e64e16e342bbb12da8bc4c07e9451ee"
+    },
+    {
+      "bytes": 22446,
+      "path": "maintenance/inputs/current-fixtures/mailbox-granite-bay.log",
+      "sha256": "c522150e55231259e015195142e4e7f325c0068149166206c4b308caa3b64fce"
+    },
+    {
+      "bytes": 22494,
+      "path": "maintenance/inputs/current-fixtures/request-north-star.csv",
+      "sha256": "1a75e82b5264567c697070df7fdebd07937d3627f74520ea58573e62a482743e"
+    },
+    {
+      "bytes": 22357,
+      "path": "maintenance/inputs/current-fixtures/request-orchard-hill.jsonl",
+      "sha256": "93ec1e7b44dfd209909ce25c8345685f4b59db69e91d364485e0a7606937b33f"
+    },
+    {
+      "bytes": 22489,
+      "path": "maintenance/inputs/current-fixtures/restart-blue-harbor.md",
+      "sha256": "56414f13e72e2df3c23595bf0430bb47fec9859e8b6ed1e9ca6548494a5e2c71"
+    },
+    {
+      "bytes": 22350,
+      "path": "maintenance/inputs/current-fixtures/restart-winter-lake.yaml",
+      "sha256": "c15b95e173e854651059074bc42343a55a299b71a2b924e0c20bd81cefe6cb5c"
+    },
+    {
+      "bytes": 22310,
+      "path": "maintenance/inputs/current-fixtures/tenant-cedar-lane.log",
+      "sha256": "be9c52a769f78c229dd9d36796ce2c034dbddea0c1e8bc705743470971c9872a"
+    },
+    {
+      "bytes": 22519,
+      "path": "maintenance/inputs/current-fixtures/token-quiet-river.jsonl",
+      "sha256": "00e292545c1bc4ce2d764df77d69bc071e6349d1ead54c2f7fccc135266ed748"
+    },
+    {
+      "bytes": 26735,
+      "path": "maintenance/inputs/environment-results/attempt-blue-harbor.yaml",
+      "sha256": "1994669ee98532482cc01ec845ab2fcda14fbfdbddc657e42fc43571c1f3bd6a"
+    },
+    {
+      "bytes": 26503,
+      "path": "maintenance/inputs/environment-results/delivery-cedar-lane.csv",
+      "sha256": "68fd3cfc0604f71994a662499b74e734b751179b25c9e74bcd4e120901a156a7"
+    },
+    {
+      "bytes": 26628,
+      "path": "maintenance/inputs/environment-results/identity-quiet-river.md",
+      "sha256": "227b56629af1ebb51f73179d7ea5c04f61b61dd98d2c2864f01e54a5d1df15da"
+    },
+    {
+      "bytes": 26634,
+      "path": "maintenance/inputs/environment-results/mailbox-silver-pine.log",
+      "sha256": "abe5128143d4d10307dcb864d824395a865f3f3a492aefe86bad109fe2daa5ed"
+    },
+    {
+      "bytes": 26819,
+      "path": "maintenance/inputs/environment-results/request-amber-field.jsonl",
+      "sha256": "86e21825a22f61af0f6d35a1e4a58c227484b7db0f53dd1cd8f01802901df86f"
+    },
+    {
+      "bytes": 26735,
+      "path": "maintenance/inputs/environment-results/restart-willow-gate.yaml",
+      "sha256": "d7e74a31e3436fed2b3c0b2be11d3f1ab2e757e13ff9fadccd67e35846335d92"
+    },
+    {
+      "bytes": 26727,
+      "path": "maintenance/inputs/environment-results/tenant-granite-bay.csv",
+      "sha256": "e51dae9a1ca2fceaa5d73577aa77ddadacab689722604bbed0ba00d13c0042ae"
+    },
+    {
+      "bytes": 26591,
+      "path": "maintenance/inputs/environment-results/token-north-star.jsonl",
+      "sha256": "a6650986d6fd54d4bfaf4789daf05e5662f99fc23abc229fd3e60cc20a50a4a9"
+    },
+    {
+      "bytes": 26474,
+      "path": "maintenance/inputs/environment-results/token-orchard-hill.md",
+      "sha256": "b0a47382ec03c890b31e057c90ed31fa42cc318338f5cd38188d38fa1d00aeaa"
+    },
+    {
+      "bytes": 22377,
+      "path": "maintenance/inputs/legacy-fixtures/attempt-quiet-river.log",
+      "sha256": "bb4b5d6042c39a503a1c5209599a70c7db8e7267c428ffff1c736e46fc2adf4f"
+    },
+    {
+      "bytes": 22294,
+      "path": "maintenance/inputs/legacy-fixtures/delivery-silver-pine.jsonl",
+      "sha256": "ad2ee608d3331114ae54f50c9aeb95eff2ac73a6111b102b6b5f69b69e5712eb"
+    },
+    {
+      "bytes": 22349,
+      "path": "maintenance/inputs/legacy-fixtures/identity-amber-field.yaml",
+      "sha256": "e1b60dd80aabc4f20fdb865183a86d251e3dd260da71ed60006d8bb310821a9a"
+    },
+    {
+      "bytes": 22494,
+      "path": "maintenance/inputs/legacy-fixtures/mailbox-willow-gate.csv",
+      "sha256": "b4a5e0542f5812fb90b687ade233d868c59b43558804a644bb107ebfc19e40b8"
+    },
+    {
+      "bytes": 22423,
+      "path": "maintenance/inputs/legacy-fixtures/request-granite-bay.md",
+      "sha256": "dcf9ce7ce40bab05e2d54ef56ded2df21293879a4314c145b3fe7225f1c173c2"
+    },
+    {
+      "bytes": 22565,
+      "path": "maintenance/inputs/legacy-fixtures/restart-north-star.yaml",
+      "sha256": "2fd5ac5a13cd8c700cb2483b50ee33f4ab7a1ce39b04ef31f221c7cf21042e57"
+    },
+    {
+      "bytes": 22445,
+      "path": "maintenance/inputs/legacy-fixtures/restart-orchard-hill.log",
+      "sha256": "951260311f39470bf64b78a55413bd6236d0365fc1bb7a8390b3dd9a948ec430"
+    },
+    {
+      "bytes": 22421,
+      "path": "maintenance/inputs/legacy-fixtures/tenant-blue-harbor.csv",
+      "sha256": "c4817d11d34210570a9dd93e16340be1e492728bf68985a4de43897ec04ed807"
+    },
+    {
+      "bytes": 22519,
+      "path": "maintenance/inputs/legacy-fixtures/tenant-winter-lake.jsonl",
+      "sha256": "c97e4733a8b34555493c68972e2dd19b99a3b6e5a3a00ebf86e9d45e328d0794"
+    },
+    {
+      "bytes": 22574,
+      "path": "maintenance/inputs/legacy-fixtures/token-cedar-lane.md",
+      "sha256": "42808550482de5e2a1e7ef12e8afd9cbc7a3e32ece14323fe1a3c9127a628c8d"
+    },
+    {
+      "bytes": 30823,
+      "path": "maintenance/inputs/operator-support/attempt-willow-gate.md",
+      "sha256": "224769d73d7c877f3c1993abc7a40bc89fd973429792488e8da17a98e0f4907d"
+    },
+    {
+      "bytes": 30753,
+      "path": "maintenance/inputs/operator-support/delivery-granite-bay.log",
+      "sha256": "394e842f8937495b43467a8e39064af3f623e814bc234368f4f6a494fcbfb1b8"
+    },
+    {
+      "bytes": 30822,
+      "path": "maintenance/inputs/operator-support/identity-north-star.csv",
+      "sha256": "a75869681dc92fe3cdda6f408c847ce7de490b7152a89cd16b7bc35192746ab1"
+    },
+    {
+      "bytes": 30823,
+      "path": "maintenance/inputs/operator-support/mailbox-blue-harbor.md",
+      "sha256": "9a73b909cf9fb8609d36875f2bc27f2c052ef34985fbd7c5dbaf0338aeabd3ec"
+    },
+    {
+      "bytes": 30883,
+      "path": "maintenance/inputs/operator-support/request-cedar-lane.log",
+      "sha256": "69964c9ba7ee0c97a5d0eaae0dee1e3b6c37bfae9211d68aae5cdbed06f0e3d8"
+    },
+    {
+      "bytes": 30867,
+      "path": "maintenance/inputs/operator-support/restart-quiet-river.jsonl",
+      "sha256": "32bab1f9ee841dad2b56d490927eef9bad8be5e146ec550d884c0795db28e6c1"
+    },
+    {
+      "bytes": 30875,
+      "path": "maintenance/inputs/operator-support/tenant-silver-pine.yaml",
+      "sha256": "9398cd7c6054d77db851456a63fbe7dffa6a7a1ba73f289956b366a4a4f6efa6"
+    },
+    {
+      "bytes": 30922,
+      "path": "maintenance/inputs/operator-support/token-amber-field.csv",
+      "sha256": "7b909b510bd42ddf98e1fc6fc85f86efb67ffbcd4022ecdebe270cdf08c3425b"
+    },
+    {
+      "bytes": 24465,
+      "path": "maintenance/inputs/platform-inventory/restart-north-star.log",
+      "sha256": "ee9b8963c42aa1187b51a09094c04561ea244eadce9937679fe7cf3977e31b63"
+    },
+    {
+      "bytes": 24615,
+      "path": "maintenance/inputs/platform-inventory/tenant-blue-harbor.jsonl",
+      "sha256": "1b3e00961be43b0a649ee7da2b870896f2fb2c2d80c666838c04d99a0c326037"
+    },
+    {
+      "bytes": 24395,
+      "path": "maintenance/inputs/platform-inventory/token-cedar-lane.yaml",
+      "sha256": "90e09879dfc1cad35e1fc2270dc746a71ee8fa07508f42a1965298303f337b2f"
+    },
+    {
+      "bytes": 30841,
+      "path": "maintenance/inputs/recovery-cases/attempt-amber-field.jsonl",
+      "sha256": "2931ce143c61f7a9c0c324e626ee002c8a60491d503c62ea0e2e76d30c0abfa7"
+    },
+    {
+      "bytes": 30971,
+      "path": "maintenance/inputs/recovery-cases/delivery-willow-gate.yaml",
+      "sha256": "f58eaa2758e74a8313e70d61088aa0fb2feb05ed3f5e77c46f0b491217b5eed4"
+    },
+    {
+      "bytes": 30750,
+      "path": "maintenance/inputs/recovery-cases/mailbox-north-star.jsonl",
+      "sha256": "5c66ceafc23bc40373761bc13768a5424c053b047466b0e08a1235067058fe8b"
+    },
+    {
+      "bytes": 30877,
+      "path": "maintenance/inputs/recovery-cases/request-blue-harbor.yaml",
+      "sha256": "16e24da828632ce909e94947dd09cf070e9e0a7aef4631ad922a134782b97d6e"
+    },
+    {
+      "bytes": 30781,
+      "path": "maintenance/inputs/recovery-cases/restart-cedar-lane.csv",
+      "sha256": "a480121045a4093cb987b85675fd2765efb5f5a933a608a131bad89218e0936b"
+    },
+    {
+      "bytes": 30980,
+      "path": "maintenance/inputs/recovery-cases/tenant-quiet-river.md",
+      "sha256": "0b0d0620bde106e999fb1033f83a6be4bd41c49519b31425d1d72a0ac10c2d59"
+    },
+    {
+      "bytes": 30948,
+      "path": "maintenance/inputs/recovery-cases/token-silver-pine.log",
+      "sha256": "9969633abda8498ba804c79cab5f93f0a2ac2047d03b210f26e2c66b51dfa599"
+    },
+    {
+      "bytes": 26609,
+      "path": "maintenance/inputs/restart-results/attempt-north-star.yaml",
+      "sha256": "9cb2992fd44f201a9905a76e3197181a6449399f4b21bbd19e58cfe1ecbc5ff5"
+    },
+    {
+      "bytes": 26655,
+      "path": "maintenance/inputs/restart-results/delivery-blue-harbor.csv",
+      "sha256": "27e0606dddbc19d922875e2f573685075f8e5ad716af618c0c4201d126cc3fea"
+    },
+    {
+      "bytes": 26537,
+      "path": "maintenance/inputs/restart-results/identity-cedar-lane.md",
+      "sha256": "223bfb82f3c4c54917f80b6a210d8caa06fada5285cd57dc00d477b124ce6250"
+    },
+    {
+      "bytes": 26520,
+      "path": "maintenance/inputs/restart-results/mailbox-quiet-river.log",
+      "sha256": "509727b68ac3772e031f1618793cbc374701f7ec1184c5e6cb45bc47ab804937"
+    },
+    {
+      "bytes": 26509,
+      "path": "maintenance/inputs/restart-results/request-silver-pine.jsonl",
+      "sha256": "7d891a89b0b05949a2bc8fb7de81bd35ae15e38fc6f914b3b4c927aac49bbf4c"
+    },
+    {
+      "bytes": 26690,
+      "path": "maintenance/inputs/restart-results/restart-amber-field.yaml",
+      "sha256": "b3a9353b33d25601687468a11e0d09ab4154a8d508fb00186a72ce9aa909d792"
+    },
+    {
+      "bytes": 26475,
+      "path": "maintenance/inputs/restart-results/tenant-willow-gate.csv",
+      "sha256": "2764c4c485ecd6b3c7584e43050aee353ecda4e3991b71513780d343a07fd905"
+    },
+    {
+      "bytes": 26699,
+      "path": "maintenance/inputs/restart-results/token-granite-bay.md",
+      "sha256": "d31fda372d40f7a5284a366314f0959755968ee030ae5257d9fb28fe4585fb92"
+    }
+  ],
+  "content_bytes": 1791162,
+  "estimated_content_tokens": 465237,
+  "schema_version": 1
+}

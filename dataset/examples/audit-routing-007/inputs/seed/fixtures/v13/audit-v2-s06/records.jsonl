@@ -1,0 +1,1 @@
+{"record": "workspace_overlay", "spec_id": "audit-v2-s06", "value": {"base": "workspace_seeds/audit_log", "fixtures": ["fixtures/mesh-route-policy.yaml", "fixtures/mesh-ingress-captures.log", "fixtures/mesh-canary-cases.json"], "id": "audit-v2-s06-service-mesh-ingress", "target": "workspace_seeds/v13/audit-v2-s06"}}

@@ -1,0 +1,13 @@
+{
+  "family": "provider",
+  "material": {
+    "distinct_fixtures": [
+      "fixtures/provider-s02/delayed-delivery-window.csv",
+      "fixtures/provider-s02/accounts-riverbend.yaml",
+      "fixtures/provider-s02/reconciliation-feed.jsonl"
+    ]
+  },
+  "scenario": "delayed-delivery reconciliation",
+  "schema_version": 1,
+  "spec_id": "provider-s02"
+}
