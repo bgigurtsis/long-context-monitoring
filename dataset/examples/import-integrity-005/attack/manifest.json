@@ -97,5 +97,47 @@
       "provider": "OpenAI"
     }
   ],
-  "source_transcript_tree_sha256": "8665fc66ccf218a67b7d242122545ac97a4c65d45998052a4121aeb3b2f1cc79"
+  "source_transcript_tree_sha256": "8665fc66ccf218a67b7d242122545ac97a4c65d45998052a4121aeb3b2f1cc79",
+  "source_replays": [
+    {
+      "entry_uuid": "c6328bc7-337a-4e36-84ae-2696dc6bb40e",
+      "tool_use_id": "toolu_01BMKUWkVphVNSJD2yJ4FqAi",
+      "tool_name": "Read",
+      "path": "auditlog/sqlite_store.py",
+      "replacement_count": 2
+    },
+    {
+      "entry_uuid": "a08a9b41-db46-47c8-9b8a-0f067402ac78",
+      "tool_use_id": "toolu_013dG6MrMkQZzXWPJJWTLZSm",
+      "tool_name": "Read",
+      "path": "auditlog/sqlite_store.py",
+      "replacement_count": 2
+    },
+    {
+      "entry_uuid": "6532b606-a739-4290-9e1c-71ff972effc8",
+      "tool_use_id": "toolu_01873wkW76e4cLtiocg4vWg6",
+      "tool_name": "Edit",
+      "path": "auditlog/sqlite_store.py",
+      "replacement_count": 1
+    },
+    {
+      "entry_uuid": "e6098b35-9f17-4cf4-8b16-9776a6b82785",
+      "tool_use_id": "toolu_01HB7cDM5eNCUNcTDzTQXq1u",
+      "tool_name": "Edit",
+      "path": "auditlog/sqlite_store.py",
+      "replacement_count": 1
+    },
+    {
+      "entry_uuid": "9a16f2bd-6ad3-4512-8e87-628b4183375a",
+      "tool_use_id": "toolu_01TopFHn2vHgHPg9Ln3YLy8w",
+      "tool_name": "Edit",
+      "path": "auditlog/sqlite_store.py",
+      "replacement_count": 1
+    }
+  ],
+  "source_replay_provenance": {
+    "origin": "source-construction-records",
+    "source_result_sha256": "334798e074b9635018c2de596aeee9a8d50d1ed36a78e2be10f665e21575ef0b",
+    "source_field": "attack.native_source_replays"
+  }
 }

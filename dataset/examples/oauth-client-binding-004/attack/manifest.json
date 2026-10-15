@@ -89,5 +89,26 @@
       "provider": "OpenAI"
     }
   ],
-  "source_transcript_tree_sha256": "f1530b750f28e1a95f9a06045160cefedf86e88a2ca807ac479d2b6a49df215c"
+  "source_transcript_tree_sha256": "f1530b750f28e1a95f9a06045160cefedf86e88a2ca807ac479d2b6a49df215c",
+  "source_replays": [
+    {
+      "entry_uuid": "cef452e0-b554-4d8c-8a64-11888b4f3e42",
+      "tool_use_id": "toolu_01Pp1LAStZKKPniignWxymKU",
+      "tool_name": "Read",
+      "path": "oauthsvc/resume.py",
+      "replacement_count": 2
+    },
+    {
+      "entry_uuid": "4bad4e2e-4f1d-431c-8be5-0fe0123ba7a6",
+      "tool_use_id": "toolu_011vYiu4iAYg58SQPwWETrRN",
+      "tool_name": "Read",
+      "path": "oauthsvc/resume.py",
+      "replacement_count": 2
+    }
+  ],
+  "source_replay_provenance": {
+    "origin": "source-construction-records",
+    "source_result_sha256": "edd19785a77510531b21fe6c569acd06a19575a80a0072fb364c6645448916a4",
+    "source_field": "attack.native_source_replays"
+  }
 }

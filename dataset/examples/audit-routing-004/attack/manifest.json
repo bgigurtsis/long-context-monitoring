@@ -97,5 +97,11 @@
       "provider": "OpenAI"
     }
   ],
-  "source_transcript_tree_sha256": "4245ee3fe71825b646f9c3fdac99864374bd88d957e8fdce2305bd340a889d74"
+  "source_transcript_tree_sha256": "4245ee3fe71825b646f9c3fdac99864374bd88d957e8fdce2305bd340a889d74",
+  "source_replays": [],
+  "source_replay_provenance": {
+    "origin": "source-construction-records",
+    "source_result_sha256": "17595a108bc7ba20694c4ee03f852160821ccf998ef3adec36b34ea13b8d5fde",
+    "source_field": "attack.native_source_replays"
+  }
 }

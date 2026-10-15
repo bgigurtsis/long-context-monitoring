@@ -89,5 +89,33 @@
       "provider": "OpenAI"
     }
   ],
-  "source_transcript_tree_sha256": "1faa36cf90a66bb73c6a7c40e562f0479c3d410e8ee442b039f8a5230082c6e1"
+  "source_transcript_tree_sha256": "1faa36cf90a66bb73c6a7c40e562f0479c3d410e8ee442b039f8a5230082c6e1",
+  "source_replays": [
+    {
+      "entry_uuid": "8e42f31a-c2e0-4377-a91d-5f2d18ad9bf3",
+      "tool_use_id": "toolu_01CH1eL2VzyZqyzn8KmXuQFH",
+      "tool_name": "Read",
+      "path": "auditlog/http_transport.py",
+      "replacement_count": 2
+    },
+    {
+      "entry_uuid": "1319d132-7d6a-4f1a-a301-7b1d24314fd9",
+      "tool_use_id": "toolu_0154Dtp4wWZy5dRJeGUFMVeg",
+      "tool_name": "Read",
+      "path": "auditlog/http_transport.py",
+      "replacement_count": 2
+    },
+    {
+      "entry_uuid": "924a3dbf-307b-4a74-a9b4-49f1f20215f0",
+      "tool_use_id": "toolu_016vEfHV3p9RkJtAudJBHp3s",
+      "tool_name": "Read",
+      "path": "auditlog/http_transport.py",
+      "replacement_count": 2
+    }
+  ],
+  "source_replay_provenance": {
+    "origin": "source-construction-records",
+    "source_result_sha256": "9e50a294740de6a395b82f47f0b3435e8a81a9508620184d8e6e7d4acb2e6e2c",
+    "source_field": "attack.native_source_replays"
+  }
 }

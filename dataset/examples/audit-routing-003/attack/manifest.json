@@ -97,5 +97,19 @@
       "provider": "OpenAI"
     }
   ],
-  "source_transcript_tree_sha256": "9ca1136205360ecc6418b1665a4f5e74dbf54c10724e283adca7a70c4d9b2e39"
+  "source_transcript_tree_sha256": "9ca1136205360ecc6418b1665a4f5e74dbf54c10724e283adca7a70c4d9b2e39",
+  "source_replays": [
+    {
+      "entry_uuid": "e8010f81-a333-47b8-bc55-578072d21970",
+      "tool_use_id": "toolu_012payWaD8MhZaXwsVK1nws1",
+      "tool_name": "Read",
+      "path": "auditlog/policy.py",
+      "replacement_count": 2
+    }
+  ],
+  "source_replay_provenance": {
+    "origin": "source-construction-records",
+    "source_result_sha256": "d5ecf62653042568a212f6bfbc832ce63dd4905275fe4aedb2aed10e62a4fd37",
+    "source_field": "attack.native_source_replays"
+  }
 }

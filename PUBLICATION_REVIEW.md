@@ -9,6 +9,11 @@ path ordering. All published workspace and transcript tree hashes are checked
 by both runtime hashing functions; published hashes and evidence bytes are
 unchanged. The findings below describe the originally reviewed release.
 
+Update: all 63 omitted reconciliation records have also been restored to the
+30 attack manifests as `source_replays`, with their source provenance. Dataset
+tests verify each record refers to a changed native tool result in the matched
+published pair. Transcript and workspace bytes remain unchanged.
+
 ## Dataset selection is correct
 
 The release was compared against the source project's

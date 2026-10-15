@@ -40,6 +40,14 @@ compaction summaries come from the neutral compactor and are distinct from the
 honest session's native compactions. Construction metadata identifies the
 compactor model, effort, provider, and request/result hashes.
 
+Each attack manifest's `source_replays` lists the original construction records
+for later tool results changed to reflect the inserted functions. Records name
+the row UUID, tool call ID and name, relative file path, and replacement count.
+`source_replay_provenance` identifies the source field and the SHA-256 of the
+original construction record file. These records were restored from the
+matched sources; their original format did not include before/after hashes.
+An empty list means the source recorded no such replacements.
+
 Starting workspaces are available for 26 examples. These four have their
 transcripts and final workspaces but no archived starting workspace:
 

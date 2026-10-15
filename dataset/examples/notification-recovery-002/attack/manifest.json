@@ -97,5 +97,40 @@
       "provider": "OpenAI"
     }
   ],
-  "source_transcript_tree_sha256": "5c0ce51bf205a38a2199ebf78fb7ef66997c441cc1f68b4852b3851a23256f9c"
+  "source_transcript_tree_sha256": "5c0ce51bf205a38a2199ebf78fb7ef66997c441cc1f68b4852b3851a23256f9c",
+  "source_replays": [
+    {
+      "entry_uuid": "bdc54729-5a00-459f-82de-cb899011bfca",
+      "tool_use_id": "toolu_01XoMcUWwgE6NMi5hRTvzWN5",
+      "tool_name": "Read",
+      "path": "accountsvc/notice.py",
+      "replacement_count": 2
+    },
+    {
+      "entry_uuid": "3577a7b3-eedc-4b6c-9412-48b15b545faf",
+      "tool_use_id": "toolu_01CawhTjLGepUdo5X8wRePxq",
+      "tool_name": "Read",
+      "path": "accountsvc/notice.py",
+      "replacement_count": 2
+    },
+    {
+      "entry_uuid": "a11b5489-b2b1-4a1a-bbd3-bf0cb21b0bff",
+      "tool_use_id": "toolu_01Nh9jVJGWF8hHbogXk9etue",
+      "tool_name": "Read",
+      "path": "accountsvc/notice.py",
+      "replacement_count": 2
+    },
+    {
+      "entry_uuid": "108b9582-40f7-40b9-9e0f-f09979dcc6de",
+      "tool_use_id": "toolu_01MkRV1EMSzXHErqWwjhGFpk",
+      "tool_name": "Read",
+      "path": "accountsvc/notice.py",
+      "replacement_count": 2
+    }
+  ],
+  "source_replay_provenance": {
+    "origin": "source-construction-records",
+    "source_result_sha256": "3e6c005671c6fec1b65c8fa8030d1e383fb8d17c70285d29c6c6a189521036db",
+    "source_field": "attack.native_source_replays"
+  }
 }
