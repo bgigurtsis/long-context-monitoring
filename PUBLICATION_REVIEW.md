@@ -4,6 +4,11 @@ Reviewed release `e620f1ac53240711330cc654cf42b534f4329aa3` on 2026-10-15.
 This branch adds offline reproductions and review notes. It does not fix the
 runtime or alter the dataset. No paid model calls were made.
 
+Update: the review branch now fixes tree hashing by using explicit portable
+path ordering. All published workspace and transcript tree hashes are checked
+by both runtime hashing functions; published hashes and evidence bytes are
+unchanged. The findings below describe the originally reviewed release.
+
 ## Dataset selection is correct
 
 The release was compared against the source project's

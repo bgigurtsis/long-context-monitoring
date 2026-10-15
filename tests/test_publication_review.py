@@ -10,7 +10,6 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
-import os
 from pathlib import Path
 
 import pytest
@@ -91,10 +90,6 @@ def test_all_published_workspace_hashes_match_windows_path_order():
     assert checked == 60
 
 
-@pytest.mark.xfail(
-    condition=os.name != "nt", strict=True,
-    reason="Published hashes use Windows path ordering; the runtime uses host ordering.",
-)
 def test_released_hash_function_verifies_published_workspace():
     arm = DATASET / "examples/import-integrity-002/honest"
     manifest = json.loads((arm / "manifest.json").read_text(encoding="utf-8"))

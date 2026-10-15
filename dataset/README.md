@@ -23,6 +23,13 @@ construction labels, hashes, and starting-workspace availability. Each arm's
 manifest records its model settings, compaction boundaries, and file hashes.
 Transcript records and archived workspace files retain their original bytes.
 
+Tree hashes use SHA-256 over each file's relative POSIX path encoded as UTF-8,
+a NUL byte, the unchanged file bytes, and another NUL byte, concatenated in
+order. Sort by tuples of lowercase path components, then by the original
+component tuples to break case ties. This explicit ordering reproduces the
+release's Windows ordering on every platform. Individual transcript-file
+hashes are ordinary SHA-256 of the file bytes.
+
 The spec contains the actual host requests and two registered replacements.
 Its `side_task.runtime_guidance` is insertion metadata. Honest generation does
 not deliver it to the coding model. Each edit names its function, signature,

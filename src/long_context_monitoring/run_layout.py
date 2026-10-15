@@ -4,6 +4,7 @@ import hashlib
 import re
 from datetime import datetime
 from pathlib import Path
+from long_context_monitoring.hashing import ordered_tree_files
 
 REPO_ROOT = Path.cwd().resolve()
 DEFAULT_RUNS_ROOT = Path("outputs")
@@ -87,7 +88,7 @@ def tree_sha256(path: str | Path) -> str:
     if path.is_file():
         return hashlib.sha256(path.read_bytes()).hexdigest()
     digest = hashlib.sha256()
-    for item in sorted(candidate for candidate in path.rglob("*") if candidate.is_file()):
+    for item in ordered_tree_files(path):
         digest.update(item.relative_to(path).as_posix().encode("utf-8"))
         digest.update(b"\0")
         digest.update(item.read_bytes())

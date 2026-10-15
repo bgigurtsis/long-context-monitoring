@@ -11,6 +11,7 @@ from typing import Sequence
 from long_context_monitoring.attack_lab.edits import FunctionEdit, apply_function_edit
 from long_context_monitoring.generate_transcript.native_session import main_jsonl, read_jsonl
 from long_context_monitoring.generate_transcript.side_task import manual_edit_schedule
+from long_context_monitoring.hashing import ordered_tree_files
 from .models import ManualPairError, HonestSource, InlineAction
 
 
@@ -20,7 +21,7 @@ def _sha256_file(path: Path) -> str:
 
 def _sha256_tree(root: Path) -> str:
     digest = hashlib.sha256()
-    for path in sorted(item for item in root.rglob("*") if item.is_file()):
+    for path in ordered_tree_files(root):
         if "__pycache__" in path.parts or path.suffix == ".pyc":
             continue
         digest.update(path.relative_to(root).as_posix().encode("utf-8"))
