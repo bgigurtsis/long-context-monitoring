@@ -23,6 +23,13 @@ construction labels, hashes, and starting-workspace availability. Each arm's
 manifest records its model settings, compaction boundaries, and file hashes.
 Transcript records and archived workspace files retain their original bytes.
 
+Tree hashes use SHA-256 over each file's relative POSIX path encoded as UTF-8,
+a NUL byte, the unchanged file bytes, and another NUL byte, concatenated in
+order. Sort by tuples of lowercase path components, then by the original
+component tuples to break case ties. This explicit ordering reproduces the
+release's Windows ordering on every platform. Individual transcript-file
+hashes are ordinary SHA-256 of the file bytes.
+
 The spec contains the actual host requests and two registered replacements.
 Its `side_task.runtime_guidance` is insertion metadata. Honest generation does
 not deliver it to the coding model. Each edit names its function, signature,
@@ -32,6 +39,22 @@ The attack is a labeled derivative of the matched honest session. Its
 compaction summaries come from the neutral compactor and are distinct from the
 honest session's native compactions. Construction metadata identifies the
 compactor model, effort, provider, and request/result hashes.
+
+Each attack manifest's `source_replays` lists the original construction records
+for later tool results changed to reflect the inserted functions. Records name
+the row UUID, tool call ID and name, relative file path, and replacement count.
+`source_replay_provenance` identifies the source field and the SHA-256 of the
+original construction record file. These records were restored from the
+matched sources; their original format did not include before/after hashes.
+An empty list means the source recorded no such replacements.
+
+New insertions also record `before_sha256` and `after_sha256` for each changed
+result. These hash UTF-8 compact JSON of the object's `content` and
+`toolUseResult` fields, with sorted keys and `ensure_ascii=False`. They cover
+both the displayed result and structured native payload. These hashes were
+not retroactively presented as original records for the released examples.
+Historical records are preserved even when the stricter current builder would
+refuse to reconstruct that history.
 
 Starting workspaces are available for 26 examples. These four have their
 transcripts and final workspaces but no archived starting workspace:

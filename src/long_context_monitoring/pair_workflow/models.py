@@ -68,3 +68,5 @@ class SourceReplayRecord:
     tool_name: str
     path: str
     replacement_count: int
+    before_sha256: str
+    after_sha256: str

@@ -3,16 +3,18 @@
 from __future__ import annotations
 
 import copy
+import hashlib
+import json
 import re
 from typing import Sequence
 from .models import ManualPairError, SourceReplayRecord
+from .evidence_tools import tool_read_path
 from .native_rows import (
     _is_manual_edit_entry,
     _tool_use_items,
     _normalized_tool_text,
-    _same_workspace_path,
-    _native_result_strings,
     _manual_edit_sources,
+    _nested_strings,
 )
 
 
@@ -36,27 +38,43 @@ def _replace_source_observation(
             replaced = replaced.replace("\n", first_ending.group(0))
         return replaced, normalized_count
 
-    lines = value.splitlines()
-    numbered = [re.match(r"^(\s*)(\d+)\t(.*)$", line) for line in lines]
-    if not lines or any(match is None for match in numbered):
-        return value, 0
-    normalized = "\n".join(match.group(3) for match in numbered if match is not None)
-    normalized_old = normalized_old.strip()
-    replacement_count = normalized.count(normalized_old)
-    if not replacement_count:
-        return value, 0
-    replaced = normalized.replace(normalized_old, normalized_new.strip())
-    first = numbered[0]
-    assert first is not None
-    leading = first.group(1)
-    start = int(first.group(2))
-    rebuilt = "\n".join(
-        f"{leading}{start + offset}\t{line}"
-        for offset, line in enumerate(replaced.splitlines())
-    )
-    if value.endswith("\n"):
-        rebuilt += "\n"
-    return rebuilt, replacement_count
+    return _replace_numbered_source(value, normalized_old, normalized_new)
+
+
+def _replace_numbered_source(value: str, old: str, new: str) -> tuple[str, int]:
+    """Preserve native read headings/reminders outside numbered source spans."""
+    lines = value.splitlines(keepends=True)
+    output: list[str] = []
+    count = 0
+    index = 0
+    pattern = re.compile(r"^(\s*)(\d+)(\t|→)([^\r\n]*)(\r?\n)?$")
+    while index < len(lines):
+        first = pattern.match(lines[index])
+        if first is None:
+            output.append(lines[index])
+            index += 1
+            continue
+        start = index
+        source: list[str] = []
+        last = first
+        while index < len(lines) and (match := pattern.match(lines[index])) is not None:
+            source.append(match.group(4))
+            last = match
+            index += 1
+        observed = "\n".join(source)
+        occurrences = observed.count(old.rstrip("\n"))
+        if not occurrences:
+            output.extend(lines[start:index])
+            continue
+        replaced = observed.replace(old.rstrip("\n"), new.rstrip("\n"))
+        ending = first.group(5) or "\n"
+        rebuilt = ending.join(
+            f"{first.group(1)}{int(first.group(2)) + offset}{first.group(3)}{line}"
+            for offset, line in enumerate(replaced.splitlines())
+        )
+        output.append(rebuilt + (last.group(5) or ""))
+        count += occurrences
+    return "".join(output), count
 
 
 def _replay_value(
@@ -92,133 +110,137 @@ def _replay_value(
     return value, 0
 
 
-def replay_native_source_results(
-    entries: Sequence[dict],
-) -> tuple[list[dict], list[SourceReplayRecord]]:
-    """Replay copied source observations against the manual-edit timeline."""
+def _result_items(entry: dict) -> list[dict]:
+    content = entry.get("message", {}).get("content", [])
+    if not isinstance(content, list):
+        return []
+    return [item for item in content if isinstance(item, dict) and item.get("type") == "tool_result"]
 
+
+def _result_hash(entry: dict, item: dict) -> str:
+    evidence = {"content": item.get("content"), "toolUseResult": entry.get("toolUseResult")}
+    text = json.dumps(evidence, sort_keys=True, ensure_ascii=False, separators=(",", ":"))
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()
+
+
+def _activate(entry: dict, active: dict[str, list[tuple[str, str]]]) -> None:
+    for path, old, new in _manual_edit_sources(entry):
+        active.setdefault(path, []).append((old, new))
+
+
+def _pending_reads(entry: dict, active: dict, pending: dict, completed: set[str] | None = None) -> None:
+    for tool in _tool_use_items(entry):
+        path = tool_read_path(tool, entry, active) if active else None
+        if isinstance(tool.get("id"), str):
+            pending[tool["id"]] = (tool.get("name"), path)
+            if completed is not None:
+                completed.discard(tool["id"])
+        elif active:
+            raise ManualPairError("native tool call has no tool ID after insertion")
+
+
+def _known_read(item: dict, known: dict, active: dict) -> tuple[str | None, str | None]:
+    tool_id = item.get("tool_use_id")
+    if not isinstance(tool_id, str):
+        raise ManualPairError("native tool result has no tool ID")
+    if tool_id not in known:
+        if active:
+            raise ManualPairError("cannot attribute native tool result after insertion")
+        return None, None
+    return known[tool_id]
+
+
+def _require_updated_read(entry: dict, item: dict, replacements: list[tuple[str, str]]) -> None:
+    """A partial or unrecognized affected read must never silently retain old code."""
+    displayed = list(_nested_strings(item.get("content")))
+    structured = list(_nested_strings(entry.get("toolUseResult")))
+    for old, new in replacements:
+        for values in (displayed, structured) if structured else (displayed,):
+            normalized = [_normalized_tool_text(value) for value in values]
+            if any(_normalized_tool_text(old) in value for value in normalized):
+                raise ManualPairError(f"unreconciled source read at {entry.get('uuid')}")
+            if not any(_normalized_tool_text(new) in value for value in normalized):
+                raise ManualPairError(f"cannot reconcile partial or unrecognized source read at {entry.get('uuid')}")
+
+
+def replay_native_source_results(entries: Sequence[dict]) -> tuple[list[dict], list[SourceReplayRecord]]:
+    """Change only established reads of the currently edited workspace files."""
     updated = copy.deepcopy(list(entries))
-    active_edits: dict[str, list[tuple[str, str]]] = {}
-    pending_tools: dict[str, str] = {}
+    active: dict[str, list[tuple[str, str]]] = {}
+    pending: dict[str, tuple[str, str | None]] = {}
     records: list[SourceReplayRecord] = []
-
     for entry in updated:
         if _is_manual_edit_entry(entry):
-            for path, old_string, new_string in _manual_edit_sources(entry):
-                active_edits.setdefault(path, []).append((old_string, new_string))
+            _activate(entry, active)
             continue
-
-        for item in _tool_use_items(entry):
-            tool_use_id = item.get("id")
-            tool_name = item.get("name")
-            if isinstance(tool_use_id, str) and isinstance(tool_name, str):
-                pending_tools[tool_use_id] = tool_name
-
-        content = entry.get("message", {}).get("content", [])
-        if not isinstance(content, list):
-            continue
-        for item in content:
-            if not isinstance(item, dict) or item.get("type") != "tool_result":
+        _pending_reads(entry, active, pending)
+        for item in _result_items(entry):
+            tool_id = item.get("tool_use_id")
+            # Native compaction can retain the same result again without its call.
+            # Keep the original call provenance so every retained copy is reconciled.
+            name, path = _known_read(item, pending, active)
+            if path is None:
                 continue
-            tool_use_id = item.get("tool_use_id")
-            if not isinstance(tool_use_id, str) or tool_use_id not in pending_tools:
-                continue
-            tool_name = pending_tools.pop(tool_use_id)
-            records.extend(
-                _replay_tool_result(entry, item, tool_use_id, tool_name, active_edits)
-            )
+            if item.get("is_error"):
+                raise ManualPairError(f"cannot reconcile failed source read at {entry.get('uuid')}")
+            before = _result_hash(entry, item)
+            item["content"], count = _replay_value(item.get("content"), active[path])
+            native = entry.get("toolUseResult")
+            if native is not None:
+                if len(_result_items(entry)) != 1:
+                    raise ManualPairError("cannot attribute a shared structured result to one tool call")
+                entry["toolUseResult"], native_count = _replay_value(native, active[path])
+                count += native_count
+                _update_read_line_counts(native, entry["toolUseResult"])
+            _require_updated_read(entry, item, active[path])
+            if count:
+                records.append(SourceReplayRecord(
+                    entry_uuid=str(entry.get("uuid", "<unknown>")), tool_use_id=tool_id,
+                    tool_name=name, path=path, replacement_count=count,
+                    before_sha256=before, after_sha256=_result_hash(entry, item),
+                ))
     return updated, records
 
 
-def _validate_no_direct_native_contradictions(entries: Sequence[dict]) -> None:
-    """Reject copied native evidence that directly contradicts a manual edit."""
-
-    manual_calls: list[tuple[int, str, str, str]] = []
-    for index, entry in enumerate(entries):
-        if not _is_manual_edit_entry(entry):
-            continue
-        for path, old_string, new_string in _manual_edit_sources(entry):
-            manual_calls.append((index, path, old_string, new_string))
-
-    for call_index, path, old_string, new_string in manual_calls:
-        expected_old = _normalized_tool_text(old_string)
-        function_headers = {
-            source.strip().splitlines()[0]
-            for source in (old_string, new_string)
-            if source.strip()
-        }
-        for entry in entries[call_index + 1 :]:
-            _validate_following_native_entry(
-                entry, path, expected_old, function_headers
-            )
-
-
-def _replay_tool_result(
-    entry: dict,
-    item: dict,
-    tool_use_id: str,
-    tool_name: str,
-    active_edits: dict,
-) -> list[SourceReplayRecord]:
-    """Update displayed and structured copies together, recording each changed path."""
-    records = []
-    for path, replacements in active_edits.items():
-        replayed_content, content_count = _replay_value(
-            item.get("content"), replacements
-        )
-        item["content"] = replayed_content
-        result_count = 0
-        native_result = entry.get("toolUseResult")
-        if native_result is not None:
-            replayed_result, result_count = _replay_value(native_result, replacements)
-            entry["toolUseResult"] = replayed_result
-        replacement_count = content_count + result_count
-        if replacement_count:
-            records.append(
-                SourceReplayRecord(
-                    entry_uuid=str(entry.get("uuid", "<unknown>")),
-                    tool_use_id=tool_use_id,
-                    tool_name=tool_name,
-                    path=path,
-                    replacement_count=replacement_count,
-                )
-            )
-    return records
-
-
-def _validate_following_native_entry(
-    entry: dict,
-    path: str,
-    expected_old: str,
-    function_headers: set[str],
-) -> None:
-    """Reject later writes, overlapping edits, and unreconciled direct reads."""
-    if _is_manual_edit_entry(entry):
+def _update_read_line_counts(before: object, after: object) -> None:
+    if not isinstance(before, dict) or not isinstance(after, dict):
         return
-    for item in _tool_use_items(entry):
-        if item.get("name") not in {"Edit", "Write"}:
+    old_file, new_file = before.get("file"), after.get("file")
+    if not isinstance(old_file, dict) or not isinstance(new_file, dict):
+        return
+    old_source, new_source = old_file.get("content"), new_file.get("content")
+    if isinstance(old_source, str) and isinstance(new_source, str):
+        delta = len(new_source.splitlines()) - len(old_source.splitlines())
+        for key in ("numLines", "totalLines"):
+            if isinstance(new_file.get(key), int):
+                new_file[key] += delta
+
+
+def _validate_no_direct_native_contradictions(
+    entries: Sequence[dict], *, require_updated_reads: bool = True,
+) -> None:
+    """Validate call provenance before rewriting; then check affected reads only."""
+    active: dict[str, list[tuple[str, str]]] = {}
+    pending: dict[str, tuple[str, str | None]] = {}
+    completed: set[str] = set()
+    for entry in entries:
+        if _is_manual_edit_entry(entry):
+            _activate(entry, active)
             continue
-        tool_input = item.get("input")
-        if isinstance(tool_input, dict) and _same_workspace_path(
-            tool_input.get("file_path"), path
-        ):
-            if item.get("name") == "Write":
-                raise ManualPairError(
-                    "native transcript writes an edited path after its manual edit: "
-                    f"{path} at {entry.get('uuid', '<unknown>')}"
-                )
-            changed_source = "\n".join(
-                str(tool_input.get(key, "")) for key in ("old_string", "new_string")
-            )
-            if any(header in changed_source for header in function_headers):
-                raise ManualPairError(
-                    "native transcript edits a registered function after its "
-                    f"manual edit: {path} at "
-                    f"{entry.get('uuid', '<unknown>')}"
-                )
-    for result_text in _native_result_strings(entry):
-        if expected_old and expected_old in _normalized_tool_text(result_text):
-            raise ManualPairError(
-                "native tool result contradicts a registered manual edit: "
-                f"{path} at {entry.get('uuid', '<unknown>')}"
-            )
+        _pending_reads(entry, active, pending, completed)
+        for item in _result_items(entry):
+            _name, path = _known_read(item, pending, active)
+            completed.add(item.get("tool_use_id"))
+            if path is not None and require_updated_reads:
+                _require_updated_read(entry, item, active[path])
+    if any(path is not None and tool_id not in completed
+           for tool_id, (_name, path) in pending.items()):
+        raise ManualPairError("affected source read has no matching tool result")
+
+
+def reconcile_native_entries(entries: Sequence[dict]) -> tuple[list[dict], list[SourceReplayRecord]]:
+    """Perform all free consistency checks before any compactor call."""
+    _validate_no_direct_native_contradictions(entries, require_updated_reads=False)
+    updated, records = replay_native_source_results(entries)
+    _validate_no_direct_native_contradictions(updated)
+    return updated, records

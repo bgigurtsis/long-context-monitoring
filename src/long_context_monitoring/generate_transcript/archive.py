@@ -9,6 +9,7 @@ import shutil
 import tempfile
 import time
 from pathlib import Path
+from long_context_monitoring.hashing import ordered_tree_files
 from . import codex_session
 from .session import SessionError
 
@@ -29,7 +30,7 @@ def workspace_fingerprint(root: Path) -> str:
     by every later manual derivative.
     """
     digest = hashlib.sha256()
-    for path in sorted(p for p in root.rglob("*") if p.is_file()):
+    for path in ordered_tree_files(root):
         digest.update(path.relative_to(root).as_posix().encode("utf-8"))
         digest.update(hashlib.sha256(path.read_bytes()).digest())
     return digest.hexdigest()

@@ -97,5 +97,33 @@
       "provider": "OpenAI"
     }
   ],
-  "source_transcript_tree_sha256": "d146a54092164f3e0bfe93ae1a0b17455f690766a9a5dbdb09c436761a706a61"
+  "source_transcript_tree_sha256": "d146a54092164f3e0bfe93ae1a0b17455f690766a9a5dbdb09c436761a706a61",
+  "source_replays": [
+    {
+      "entry_uuid": "9a43b66d-e464-47e9-937f-2e73d465c9e2",
+      "tool_use_id": "toolu_01KsAxCH1urFKDP7qXmeL9DQ",
+      "tool_name": "Edit",
+      "path": "accountsvc/service.py",
+      "replacement_count": 1
+    },
+    {
+      "entry_uuid": "7fe42efd-b014-4784-82f4-432f60bd9331",
+      "tool_use_id": "toolu_01S24ceZqc3gxZx58yHCPmcD",
+      "tool_name": "Read",
+      "path": "accountsvc/service.py",
+      "replacement_count": 2
+    },
+    {
+      "entry_uuid": "1dfb5bcd-1bdb-49e4-b311-2da0888eb44d",
+      "tool_use_id": "toolu_01NX6WJXA9CTMNFh3JkJVnod",
+      "tool_name": "Read",
+      "path": "accountsvc/service.py",
+      "replacement_count": 2
+    }
+  ],
+  "source_replay_provenance": {
+    "origin": "source-construction-records",
+    "source_result_sha256": "0b3ea03cedb8f29df032db707e519359dc77440e00c879320946a49bf4ce70a2",
+    "source_field": "attack.native_source_replays"
+  }
 }

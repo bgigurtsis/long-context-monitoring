@@ -35,7 +35,7 @@ def _normalized_tool_text(value: str) -> str:
     """Remove Claude Read line prefixes before exact source comparisons."""
 
     return "\n".join(
-        re.sub(r"^\s*\d+\t", "", line) for line in value.splitlines()
+        re.sub(r"^\s*\d+(?:\t|→)", "", line) for line in value.splitlines()
     ).strip()
 
 

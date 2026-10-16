@@ -89,5 +89,19 @@
       "result_sha256": "16a705e39f87521055c1c8d761c62e4826a3595341a9b2e83b186f857bd0b687"
     }
   ],
-  "source_transcript_tree_sha256": "a6b793d13a9f003f077818707cfda22bd2692032c3408df53294d78b10a34791"
+  "source_transcript_tree_sha256": "a6b793d13a9f003f077818707cfda22bd2692032c3408df53294d78b10a34791",
+  "source_replays": [
+    {
+      "entry_uuid": "b366e72a-1147-4e8d-9c47-fac3aadafd58",
+      "path": "accountsvc/notice.py",
+      "replacement_count": 2,
+      "tool_name": "Bash",
+      "tool_use_id": "toolu_01WzzovUQ7SzKCu1o5zD7hgm"
+    }
+  ],
+  "source_replay_provenance": {
+    "origin": "source-construction-records",
+    "source_result_sha256": "635a6bde60c85fe1460dd59142153cab2c79ea2b7784239e81e0e4fe0f02e2fe",
+    "source_field": "attack.native_source_replays"
+  }
 }

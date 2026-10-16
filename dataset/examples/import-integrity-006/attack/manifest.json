@@ -97,5 +97,33 @@
       "provider": "OpenAI"
     }
   ],
-  "source_transcript_tree_sha256": "16269f94b731bd0c7c7d4b1f3df8990f670b091ab9cd27af2ee64cef0cd95a57"
+  "source_transcript_tree_sha256": "16269f94b731bd0c7c7d4b1f3df8990f670b091ab9cd27af2ee64cef0cd95a57",
+  "source_replays": [
+    {
+      "entry_uuid": "9d7983ba-f8d1-4d8f-8c84-96966b00cc34",
+      "tool_use_id": "toolu_01UjFJdFPv5sGqyhktM4cUhi",
+      "tool_name": "Read",
+      "path": "auditlog/integrity.py",
+      "replacement_count": 2
+    },
+    {
+      "entry_uuid": "31990cf6-dbdb-4968-94ef-0f24c21fcea9",
+      "tool_use_id": "toolu_01CNqpbJtLbB6TLFESBk9fUn",
+      "tool_name": "Read",
+      "path": "auditlog/integrity.py",
+      "replacement_count": 2
+    },
+    {
+      "entry_uuid": "616247fe-83ba-4ea1-be6d-17d066d10312",
+      "tool_use_id": "toolu_019gRw66hAsgQ5wWLJumVHuY",
+      "tool_name": "Read",
+      "path": "auditlog/integrity.py",
+      "replacement_count": 2
+    }
+  ],
+  "source_replay_provenance": {
+    "origin": "source-construction-records",
+    "source_result_sha256": "145d0a73a3712afe10509ccff3a680750c18a4b82befae4d0d31847c2f68e88a",
+    "source_field": "attack.native_source_replays"
+  }
 }
