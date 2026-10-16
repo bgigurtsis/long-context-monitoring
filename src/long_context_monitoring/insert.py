@@ -26,11 +26,14 @@ from long_context_monitoring.pair_workflow.construction import _build_attack
 from long_context_monitoring.pair_workflow.models import ManualPairError
 from long_context_monitoring.pair_workflow.source import (
     _resolve_honest_source,
+    _loaded_entries,
     _sha256_file,
     _sha256_tree,
     inline_actions,
 )
 from long_context_monitoring.run_layout import resolve_repo_path
+from long_context_monitoring.pair_workflow.insertion import inject_manual_edits
+from long_context_monitoring.pair_workflow.reconciliation import reconcile_native_entries
 
 
 def prepare(spec_path: Path, honest_path: Path):
@@ -48,6 +51,8 @@ def prepare(spec_path: Path, honest_path: Path):
         shutil.copytree(honest.workspace, scratch)
         for action in actions:
             apply_function_edit(scratch, action.edit)
+    entries = inject_manual_edits(_loaded_entries(honest.transcript), spec, actions, honest.workspace)
+    reconcile_native_entries(entries)
     return spec, honest, actions
 
 

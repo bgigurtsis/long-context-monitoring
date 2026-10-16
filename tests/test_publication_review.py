@@ -1,9 +1,4 @@
-"""Offline reproductions for the review of release e620f1a.
-
-Known failures are strict xfails so they stay visible without breaking the
-existing suite. Use --runxfail to see the original assertion failures.
-No transcript command is executed and no model client is created.
-"""
+"""Regression checks for the publication review; no transcript command is executed."""
 
 from __future__ import annotations
 
@@ -96,7 +91,6 @@ def test_released_hash_function_verifies_published_workspace():
     assert _sha256_tree(arm / "workspace") == manifest["workspace_sha256"]
 
 
-@pytest.mark.xfail(strict=True, reason="Validation ignores Bash writes to registered functions.")
 def test_validator_rejects_shell_overwrite_of_registered_function():
     rows = manual_edit_rows() + later_tool_rows(
         "Bash", {"command": "printf \"def value():\\n    return 'safe'\\n\" > app.py"}, "",
@@ -105,7 +99,6 @@ def test_validator_rejects_shell_overwrite_of_registered_function():
         _validate_no_direct_native_contradictions(rows)
 
 
-@pytest.mark.xfail(strict=True, reason="Validation only detects Edit overlap by function header.")
 def test_validator_rejects_body_only_edit_of_registered_function():
     # This copied honest edit would no longer apply after the inserted change.
     rows = manual_edit_rows() + later_tool_rows(
@@ -125,7 +118,6 @@ def test_validator_rejects_body_only_edit_of_registered_function():
     ],
     ids=["different-file-read", "historical-command-output"],
 )
-@pytest.mark.xfail(strict=True, reason="Replay replaces matching text without checking read provenance.")
 def test_reconciliation_preserves_unrelated_results(name: str, tool_input: dict):
     rows = manual_edit_rows() + later_tool_rows(name, tool_input, OLD_SOURCE)
     before = copy.deepcopy(rows)
@@ -133,6 +125,7 @@ def test_reconciliation_preserves_unrelated_results(name: str, tool_input: dict)
     assert rows == before
     assert updated[-1] == before[-1]
     assert records == []
+    _validate_no_direct_native_contradictions(updated)
 
 
 def test_reconciliation_updates_a_registered_file_read():

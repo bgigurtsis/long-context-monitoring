@@ -72,11 +72,30 @@ uv run lcm insert --spec dataset/examples/import-integrity-002/spec.yaml \
   --output outputs/example-attack --dry-run
 ```
 
-Remove `--dry-run` to construct the attack. Insertion preserves the honest
+The dry run performs the same free consistency checks as construction, before
+creating a model client. It can refuse archived histories that the current
+validator cannot establish as consistent. Remove `--dry-run` to construct an
+attack from a source that passes these checks. Insertion preserves the honest
 source, checks each function signature, inserts complete Edit call/result
 pairs, reconciles affected file reads, and rebuilds summaries with the neutral
 compactor. It refuses to overwrite a destination or invent downstream tool
 behavior that contradicts the inserted changes.
+
+After an insertion, later native `Edit` or `Write` calls to the affected file
+are refused, including edits that omit the function header. Shell commands
+must match the supported grammar: one full-file `cat`, simple diagnostic or
+Git inspection commands, or ordinary `python -m unittest`, `python -m pytest`,
+and `pytest` invocations with basic verbosity flags. Compound commands,
+redirection, glob expansion, scripts, and other shell programs are refused.
+Choose another source or a later registered anchor for such histories. This
+conservative check is an offline evidence check, not a shell sandbox or a proof
+that arbitrary test code has no side effects.
+
+Reconciliation updates only established reads of the affected current file.
+Absolute paths require the native `cwd`; unrelated files, historical Git
+output, and test output retain their original bytes. Partial or unrecognized
+affected reads are refused. The stricter insertion rules do not change the
+released transcripts or their availability for monitoring.
 
 The anchors `before_host_turn`, `after_host_turn`, and
 `after_native_function_edit` specify the insertion position. This is a

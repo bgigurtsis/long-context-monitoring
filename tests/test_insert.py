@@ -13,6 +13,7 @@ import yaml
 
 from long_context_monitoring.insert import construct
 from long_context_monitoring.pair_workflow.source import _sha256_tree
+from long_context_monitoring.pair_workflow.models import ManualPairError
 from tests.insertion_fixtures import FakeCompactor, WorkspaceFixture, _actions, _entries, _spec
 
 
@@ -104,3 +105,49 @@ def test_compactor_failure_does_not_publish_partial_output(tmp_path):
         with pytest.raises(RuntimeError):
             construct(args)
     assert not args.output.exists()
+
+
+@pytest.mark.parametrize("dry_run", [True, False])
+@pytest.mark.parametrize(("name", "tool_input"), [
+    ("Bash", {"command": "cp changed.py package/helper.py"}),
+    ("Edit", {"file_path": "package/helper.py", "old_string": "return 'safe-b'",
+              "new_string": "return 'changed'"}),
+])
+def test_inconsistent_later_writes_fail_before_client_or_output(tmp_path, dry_run, name, tool_input):
+    from tests.test_publication_review import later_tool_rows
+
+    args = fixture(tmp_path)
+    args.dry_run = dry_run
+    transcript = args.honest / "transcript/session.jsonl"
+    extra = later_tool_rows(name, tool_input, "success")
+    with transcript.open("a", encoding="utf-8") as stream:
+        for row in extra:
+            stream.write(json.dumps(row) + "\n")
+    original = _sha256_tree(args.honest)
+    with patch("long_context_monitoring.insert.compactor_client") as client:
+        with pytest.raises(ManualPairError, match="after insertion"):
+            construct(args)
+    client.assert_not_called()
+    assert not args.output.exists()
+    assert not args.cache_root.exists()
+    assert _sha256_tree(args.honest) == original
+
+
+def test_construction_records_a_reconciled_read_and_keeps_test_output(tmp_path):
+    from tests.test_publication_review import later_tool_rows
+
+    args = fixture(tmp_path)
+    source = (args.honest / "workspace/package/helper.py").read_text()
+    rows = later_tool_rows("Read", {"file_path": "package/helper.py"}, source)
+    rows += later_tool_rows("Bash", {"command": "python3 -m unittest -v"}, source)
+    with (args.honest / "transcript/session.jsonl").open("a", encoding="utf-8") as stream:
+        for row in rows:
+            stream.write(json.dumps(row) + "\n")
+    with patch("long_context_monitoring.insert.compactor_client", return_value=FakeCompactor()):
+        construct(args)
+    manifest = json.loads((args.output / "manifest.json").read_text())
+    record, = manifest["source_replays"]
+    assert len(record["before_sha256"]) == len(record["after_sha256"]) == 64
+    assert record["before_sha256"] != record["after_sha256"]
+    result = [json.loads(line) for line in (args.output / "transcript/constructed.jsonl").read_text().splitlines()]
+    assert result[-1]["toolUseResult"]["stdout"] == source

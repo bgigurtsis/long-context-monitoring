@@ -1,18 +1,25 @@
 # Publication review
 
 Reviewed release `e620f1ac53240711330cc654cf42b534f4329aa3` on 2026-10-15.
-This branch adds offline reproductions and review notes. It does not fix the
-runtime or alter the dataset. No paid model calls were made.
-
-Update: the review branch now fixes tree hashing by using explicit portable
+This branch contains fixes and offline regression tests for the findings
+below. No paid model calls were made. The review branch fixes tree hashing by using explicit portable
 path ordering. All published workspace and transcript tree hashes are checked
 by both runtime hashing functions; published hashes and evidence bytes are
 unchanged. The findings below describe the originally reviewed release.
 
-Update: all 63 omitted reconciliation records have also been restored to the
+All 63 omitted reconciliation records have also been restored to the
 30 attack manifests as `source_replays`, with their source provenance. Dataset
 tests verify each record refers to a changed native tool result in the matched
 published pair. Transcript and workspace bytes remain unchanged.
+
+Insertion now validates histories before creating a compactor client. It
+rejects later native edits/writes to the affected file and unrecognized shell
+operations. It rewrites only verified current-file reads, preserving unrelated,
+historical, and test output. Affected partial/ambiguous reads are refused. New
+rewrite records include before/after result hashes. This conservative offline
+grammar accepts ordinary test invocations; it is not a sandbox or a proof
+that arbitrary test code has no side effects. The original findings below are
+retained to explain the changes.
 
 ## Dataset selection is correct
 
@@ -114,28 +121,31 @@ derive them from preserved evidence in a separately documented audit if needed.
 
 ## Reproduce the checks
 
-The new tests are `tests/test_publication_review.py`. Known failures use strict
-`xfail` markers to keep them visible in the ordinary suite. A fixed behavior
-becomes an unexpected pass until its marker is removed. The hash failure is
-marked only on non-Windows hosts.
+The regression tests are `tests/test_publication_review.py`,
+`tests/test_reconciliation.py`, `tests/test_hashing.py`, and the dataset and
+insertion tests. All original expected-failure markers have been removed.
 
 ```bash
-# On macOS: five reproduced failures and two passing controls.
-uv run pytest tests/test_publication_review.py --runxfail -q
+# Verify the original reproductions and added controls.
+uv run pytest tests/test_publication_review.py tests/test_reconciliation.py -q
 
-# Ordinary suite, with the known failures explicitly reported.
+# Full suite and lint.
 uv run pytest -q
 uv run python -m scripts.check_ruff
 ```
 
-The five failures are the workspace hash mismatch, shell overwrite, body-only
-edit, unrelated file read, and historical command output. The passing checks
-verify all 60 hashes with Windows ordering and reconciliation of a registered
-file read. The tests make no network or model calls.
+The original five reproductions now pass: workspace hash verification, shell
+overwrite refusal, body-only edit refusal, unrelated file reads, and historical
+command output. Added checks cover native working directories, numbered reads,
+structured line counts, partial reads, result hashes, and construction refusal
+before client creation. All published workspace/transcript hashes and restored
+provenance references are verified. The tests make no network or model calls.
 
-Validation on macOS: the full suite reported **334 passed, 5 xfailed, and 118
-subtests passed**. Ruff passed. Running the review tests with `--runxfail`
-reported **5 failed and 2 passed**, exposing the expected failures directly.
+Final validation after the fixes: **382 tests and 118 subtests passed**, with
+no expected failures remaining. Ruff passed. The archived
+`import-integrity-002` insertion dry run now refuses its unsupported shell
+history during the free preflight, as documented; monitoring its already
+published pair is unaffected.
 
 ## Credential audit completed
 

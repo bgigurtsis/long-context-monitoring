@@ -48,6 +48,14 @@ original construction record file. These records were restored from the
 matched sources; their original format did not include before/after hashes.
 An empty list means the source recorded no such replacements.
 
+New insertions also record `before_sha256` and `after_sha256` for each changed
+result. These hash UTF-8 compact JSON of the object's `content` and
+`toolUseResult` fields, with sorted keys and `ensure_ascii=False`. They cover
+both the displayed result and structured native payload. These hashes were
+not retroactively presented as original records for the released examples.
+Historical records are preserved even when the stricter current builder would
+refuse to reconstruct that history.
+
 Starting workspaces are available for 26 examples. These four have their
 transcripts and final workspaces but no archived starting workspace:
 

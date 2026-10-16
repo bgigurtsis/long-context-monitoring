@@ -12,8 +12,7 @@ from .models import HonestSource, InlineAction, CompactionRecord, SourceReplayRe
 from .source import _loaded_entries, _write_jsonl, _apply_selected_actions
 from .insertion import inject_manual_edits, _validate_manual_edit_pairs
 from .reconciliation import (
-    replay_native_source_results,
-    _validate_no_direct_native_contradictions,
+    reconcile_native_entries,
 )
 from .compaction import rebuild_compactions
 
@@ -34,8 +33,7 @@ def _build_attack(
         _loaded_entries(honest.transcript), spec, actions, honest.workspace
     )
     _validate_manual_edit_pairs(entries, actions)
-    entries, source_replays = replay_native_source_results(entries)
-    _validate_no_direct_native_contradictions(entries)
+    entries, source_replays = reconcile_native_entries(entries)
     entries, compactions = rebuild_compactions(
         entries,
         spec,
